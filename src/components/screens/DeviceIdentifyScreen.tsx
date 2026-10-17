@@ -226,7 +226,7 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
               </h2>
             </div>
             <div className="w-9 flex justify-end">
-              <img src="/images/xiaomi_logo.png" alt="Xiaomi" className="w-6 h-6 rounded-md object-cover shadow-xs" />
+              <img src="./images/xiaomi_logo.png" alt="Xiaomi" className="w-6 h-6 rounded-md object-cover shadow-xs" />
             </div>
           </div>
 

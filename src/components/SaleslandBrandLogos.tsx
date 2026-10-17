@@ -41,7 +41,7 @@ export const SaleslandLogo: React.FC<LogoProps> = ({ className = "h-8" }) => (
     style={{ height: '32px', display: 'inline-flex', alignItems: 'center' }}
   >
     <img
-      src="/images/salesland_logo_transparent.png?v=2"
+      src="./images/salesland_logo_transparent.png?v=2"
       alt="Salesland"
       style={{ height: '30px', width: 'auto', objectFit: 'contain' }}
       loading="eager"
@@ -66,7 +66,7 @@ export const XiaomiLogo: React.FC<{ className?: string; withLabel?: boolean }> =
       style={{ width: '42px', height: '42px', borderRadius: '14px', overflow: 'hidden' }}
     >
       <img
-        src="/images/xiaomi_logo.png"
+        src="./images/xiaomi_logo.png"
         alt="Xiaomi"
         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         loading="eager"
@@ -86,14 +86,14 @@ export const XiaomiLogo: React.FC<{ className?: string; withLabel?: boolean }> =
 export const CoBrandBadge: React.FC<{ className?: string }> = ({ className = "" }) => (
   <div className={`inline-flex items-center gap-2.5 px-3 py-1.5 rounded-2xl bg-[#0a3343]/90 border border-[#009ca6]/30 backdrop-blur-md shadow-sm ${className}`}>
     <img
-      src="/images/salesland_logo.png"
+      src="./images/salesland_logo.png"
       alt="Salesland"
       className="h-5 sm:h-6 w-auto object-contain"
     />
     <div className="h-4 w-px bg-white/20" />
     <div className="flex items-center gap-1.5">
       <img
-        src="/images/xiaomi_logo.png"
+        src="./images/xiaomi_logo.png"
         alt="Xiaomi"
         className="w-4 h-4 rounded-md object-cover shadow-xs"
       />

@@ -91,14 +91,14 @@ export const App: React.FC = () => {
         <header className="w-full bg-[#072431]/90 backdrop-blur-md border-b border-white/10 px-4 sm:px-6 py-2.5 flex items-center justify-between text-xs z-30 sticky top-0 shadow-sm animate-fadeIn">
           <div className="flex items-center gap-3">
             <img
-              src="/images/salesland_logo.png"
+              src="./images/salesland_logo.png"
               alt="Salesland"
               className="h-6 sm:h-7 w-auto object-contain cursor-pointer"
               onClick={() => setCurrentStep('welcome')}
             />
             <div className="h-4 w-px bg-white/20 hidden sm:block" />
             <div className="flex items-center gap-1.5 bg-black/20 px-2 py-1 rounded-xl border border-white/10">
-              <img src="/images/xiaomi_logo.png" alt="Xiaomi" className="w-4 h-4 rounded-md object-cover" />
+              <img src="./images/xiaomi_logo.png" alt="Xiaomi" className="w-4 h-4 rounded-md object-cover" />
               <span className="text-[10px] font-bold text-slate-200 tracking-tight hidden sm:inline">
                 Retail Brand Spaces
               </span>

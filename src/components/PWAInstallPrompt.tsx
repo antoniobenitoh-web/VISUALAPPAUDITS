@@ -124,7 +124,7 @@ export const PWAInstallPrompt: React.FC = () => {
 
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-2xl bg-[#009ca6]/20 border border-[#009ca6]/40 flex items-center justify-center shrink-0">
-                <img src="/images/xiaomi_logo.png" alt="App" className="w-8 h-8 rounded-lg object-cover" />
+                <img src="./images/xiaomi_logo.png" alt="App" className="w-8 h-8 rounded-lg object-cover" />
               </div>
               <div>
                 <h3 className="text-base font-black text-white">Instalar en tu iPhone</h3>

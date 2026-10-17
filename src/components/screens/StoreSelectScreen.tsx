@@ -95,7 +95,7 @@ export const StoreSelectScreen: React.FC<StoreSelectScreenProps> = ({
           </div>
 
           <div className="flex items-center gap-2 bg-white/10 px-2.5 py-1 rounded-xl border border-white/10">
-            <img src="/images/xiaomi_logo.png" alt="Xiaomi" className="w-5 h-5 rounded-md object-cover" />
+            <img src="./images/xiaomi_logo.png" alt="Xiaomi" className="w-5 h-5 rounded-md object-cover" />
             <span className="text-[10px] font-bold text-slate-200 uppercase tracking-tight hidden sm:inline">Partner</span>
           </div>
         </div>

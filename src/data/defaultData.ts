@@ -38,7 +38,7 @@ export const INITIAL_RETAILERS: RetailerInfo[] = [
   {
     id: 'Alcampo',
     name: 'Alcampo',
-    logo: '/images/retailers/alcampo.png',
+    logo: './images/retailers/alcampo.png',
     brandColor: '#e2001a',
     accentColor: '#b50015',
     status: 'active'

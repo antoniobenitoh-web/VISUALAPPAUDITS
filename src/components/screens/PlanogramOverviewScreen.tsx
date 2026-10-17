@@ -56,27 +56,27 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
   const isMesa2Active = activeSpace.toUpperCase().includes('MESA 2');
   const isCara2Active = activeSpace.includes('Cara 2') || activeSpace.includes('Cara B');
 
-  let bgImage = '/images/tables/table1_cara1_render.jpg';
+  let bgImage = './images/tables/table1_cara1_render.jpg';
   if (isLinealActive) {
-    bgImage = '/images/tables/lineal_smartwatch.jpg';
+    bgImage = './images/tables/lineal_smartwatch.jpg';
   } else if (isWallActive) {
-    bgImage = '/images/tables/wall.jpg';
+    bgImage = './images/tables/wall.jpg';
   } else if (isTableCrf) {
     bgImage = isCara2Active
-      ? '/images/tables/table_crf_cara2_render.jpg'
-      : '/images/tables/table_crf_cara1_render.jpg';
+      ? './images/tables/table_crf_cara2_render.jpg'
+      : './images/tables/table_crf_cara1_render.jpg';
   } else if (isMesa2Active) {
     bgImage = isCara2Active
-      ? '/images/tables/table2_mesa2_cara2.jpg'
-      : '/images/tables/table2_mesa2_cara1.jpg';
+      ? './images/tables/table2_mesa2_cara2.jpg'
+      : './images/tables/table2_mesa2_cara1.jpg';
   } else if (isTable1 && hasWall) {
     bgImage = isCara2Active
-      ? '/images/tables/table1_wall_cara2_render.jpg'
-      : '/images/tables/table1_wall_cara1_render.jpg';
+      ? './images/tables/table1_wall_cara2_render.jpg'
+      : './images/tables/table1_wall_cara1_render.jpg';
   } else {
     bgImage = isCara2Active
-      ? '/images/tables/table1_cara2_render.jpg'
-      : '/images/tables/table1_cara1_render.jpg';
+      ? './images/tables/table1_cara2_render.jpg'
+      : './images/tables/table1_cara1_render.jpg';
   }
 
   const containerBgColor = isWallActive ? '#9c9b99' : isLinealActive ? '#ded6ca' : '#c5c6c8';
