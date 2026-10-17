@@ -1,0 +1,73 @@
+* {
+            -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box;
+        }
+        html, body {
+            overscroll-behavior-y: none;
+            -webkit-font-smoothing: antialiased;
+        }
+        button, label, input, select, textarea {
+            touch-action: manipulation;
+        }
+        /* Evita que iOS Safari haga zoom automático al tocar un input en móvil */
+        @media (max-width: 640px) {
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            input[type="date"],
+            select,
+            textarea {
+                font-size: 16px !important;
+            }
+        }
+        .safe-top {
+            padding-top: env(safe-area-inset-top, 0px);
+        }
+        .safe-bottom {
+            padding-bottom: calc(0.65rem + env(safe-area-inset-bottom, 0px));
+        }
+        .marker-badge {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translate(-50%, -50%);
+            touch-action: manipulation;
+        }
+        /* Área táctil expandida invisible para pulsar con facilidad cada pin en pantallas móviles */
+        .marker-badge::after {
+            content: '';
+            position: absolute;
+            inset: -6px;
+        }
+        .marker-badge:hover {
+            transform: translate(-50%, -50%) scale(1.25);
+            z-index: 40 !important;
+        }
+        .marker-badge.selected-pin {
+            transform: translate(-50%, -50%) scale(1.3);
+            z-index: 50 !important;
+            animation: pulse-ring 2s infinite;
+        }
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.75); }
+            70% { box-shadow: 0 0 0 9px rgba(2, 132, 199, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(2, 132, 199, 0); }
+        }
+        .tooltip-bubble {
+            pointer-events: none;
+            opacity: 0;
+            transform: translateY(4px);
+            transition: all 0.2s ease-in-out;
+        }
+        @media (min-width: 641px) {
+            .marker-badge:hover .tooltip-bubble {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-none {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }

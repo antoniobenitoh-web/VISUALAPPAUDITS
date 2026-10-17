@@ -1,0 +1,766 @@
+[
+  {
+    "tiendaId": "MIESD00575",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Sant Antoni",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 22,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESP00034",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Badalona",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 22,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00174",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Barcelona 5 Fontanella",
+    "tipoEspacioId": "Table 2",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 24,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "MESA 2 · Cara 1",
+      "MESA 2 · Cara 2",
+      "WALL",
+      "LINEAL SMARTWATCH"
+    ],
+    "auditStatus": "Pendiente",
+    "linealWearablesPlanogram": "L. Wearables_9.0",
+    "linealWearablesCount": 9,
+    "hasPad8Pro": true
+  },
+  {
+    "tiendaId": "MIESO00036",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Diagonal Digital 1",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 22,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESS00026",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Diagonal Mar-Barcelona",
+    "tipoEspacioId": "Table 3",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 32,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "MESA 2 · Cara 1",
+      "MESA 2 · Cara 2",
+      "MESA 3 · Cara 1",
+      "MESA 3 · Cara 2",
+      "MINIWALL",
+      "LINEAL SMARTWATCH"
+    ],
+    "auditStatus": "Pendiente",
+    "linealWearablesPlanogram": "L. Wearables_8.0",
+    "linealWearablesCount": 8,
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00175",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media El Prat",
+    "tipoEspacioId": "Table 2",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 20,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "MESA 2 · Cara 1",
+      "MESA 2 · Cara 2",
+      "LINEAL SMARTWATCH"
+    ],
+    "auditStatus": "Pendiente",
+    "linealWearablesPlanogram": "L. Wearables_9.0",
+    "linealWearablesCount": 9,
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESO00034",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Esplugues",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 12,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "LINEAL SMARTWATCH"
+    ],
+    "auditStatus": "Pendiente",
+    "linealWearablesPlanogram": "L. Wearables_7.0",
+    "linealWearablesCount": 7,
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESO00033",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Gava",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 16,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "WALL",
+      "LINEAL SMARTWATCH"
+    ],
+    "auditStatus": "Pendiente",
+    "linealWearablesPlanogram": "L. Wearables_7.0",
+    "linealWearablesCount": 7,
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00182",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Girona",
+    "tipoEspacioId": "Table 3",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 28,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "MESA 2 · Cara 1",
+      "MESA 2 · Cara 2",
+      "MESA 3 · Cara 1",
+      "MESA 3 · Cara 2",
+      "LINEAL SMARTWATCH"
+    ],
+    "auditStatus": "Pendiente",
+    "linealWearablesPlanogram": "L. Wearables_9.0",
+    "linealWearablesCount": 9,
+    "hasPad8Pro": true
+  },
+  {
+    "tiendaId": "MIESP00037",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Girona 2",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 22,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESM00438",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Girona 3",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 22,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00187",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Lleida",
+    "tipoEspacioId": "Table 2",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 20,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "MESA 2 · Cara 1",
+      "MESA 2 · Cara 2",
+      "LINEAL SMARTWATCH"
+    ],
+    "auditStatus": "Pendiente",
+    "linealWearablesPlanogram": "L. Wearables_6.0",
+    "linealWearablesCount": 6,
+    "hasPad8Pro": true
+  },
+  {
+    "tiendaId": "MIESD00176",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Maquinista",
+    "tipoEspacioId": "Table 2",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 24,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "MESA 2 · Cara 1",
+      "MESA 2 · Cara 2",
+      "MINIWALL",
+      "LINEAL SMARTWATCH"
+    ],
+    "auditStatus": "Pendiente",
+    "linealWearablesPlanogram": "L. Wearables_8.0",
+    "linealWearablesCount": 8,
+    "hasPad8Pro": true
+  },
+  {
+    "tiendaId": "MIESD00177",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Mataro",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 12,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "LINEAL SMARTWATCH"
+    ],
+    "auditStatus": "Pendiente",
+    "linealWearablesPlanogram": "L. Wearables_8.0",
+    "linealWearablesCount": 8,
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00178",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Parets",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 12,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "LINEAL SMARTWATCH"
+    ],
+    "auditStatus": "Pendiente",
+    "linealWearablesPlanogram": "L. Wearables_9.0",
+    "linealWearablesCount": 9,
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESP03781",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Sabadell",
+    "tipoEspacioId": "Table 2",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 20,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "MESA 2 · Cara 1",
+      "MESA 2 · Cara 2",
+      "LINEAL SMARTWATCH"
+    ],
+    "auditStatus": "Pendiente",
+    "linealWearablesPlanogram": "L. Wearables_7.0",
+    "linealWearablesCount": 7,
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00180",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Sant Cugat (Barcelona)",
+    "tipoEspacioId": "Table 2",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 24,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "MESA 2 · Cara 1",
+      "MESA 2 · Cara 2",
+      "WALL",
+      "LINEAL SMARTWATCH"
+    ],
+    "auditStatus": "Pendiente",
+    "linealWearablesPlanogram": "L. Wearables_9.0",
+    "linealWearablesCount": 9,
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESO00043",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Tarragona",
+    "tipoEspacioId": "Table 2",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 24,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "MESA 2 · Cara 1",
+      "MESA 2 · Cara 2",
+      "WALL",
+      "LINEAL SMARTWATCH"
+    ],
+    "auditStatus": "Pendiente",
+    "linealWearablesPlanogram": "L. Wearables_9.0",
+    "linealWearablesCount": 9,
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00179",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Terrassa",
+    "tipoEspacioId": "Table 2",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 24,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "MESA 2 · Cara 1",
+      "MESA 2 · Cara 2",
+      "WALL",
+      "LINEAL SMARTWATCH"
+    ],
+    "auditStatus": "Pendiente",
+    "linealWearablesPlanogram": "L. Wearables_9.0",
+    "linealWearablesCount": 9,
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD02181",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Vilanova",
+    "tipoEspacioId": "Table 2",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 24,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "MESA 2 · Cara 1",
+      "MESA 2 · Cara 2",
+      "WALL",
+      "LINEAL SMARTWATCH"
+    ],
+    "auditStatus": "Pendiente",
+    "linealWearablesPlanogram": "L. Wearables_7.0",
+    "linealWearablesCount": 7,
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00203",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Zaragoza",
+    "tipoEspacioId": "Table 2",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 20,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "MESA 2 · Cara 1",
+      "MESA 2 · Cara 2",
+      "LINEAL SMARTWATCH"
+    ],
+    "auditStatus": "Pendiente",
+    "linealWearablesPlanogram": "L. Wearables_8.0",
+    "linealWearablesCount": 8,
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00204",
+    "retailer": "MediaMarkt",
+    "nombreTienda": "Media Zaragoza 2",
+    "tipoEspacioId": "Table 2",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 24,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "MESA 2 · Cara 1",
+      "MESA 2 · Cara 2",
+      "WALL",
+      "LINEAL SMARTWATCH"
+    ],
+    "auditStatus": "Pendiente",
+    "linealWearablesPlanogram": "L. Wearables_6.0",
+    "linealWearablesCount": 6,
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00077",
+    "retailer": "El Corte Inglés",
+    "nombreTienda": "ECI C.C. GIROCENTRE",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 22,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00114",
+    "retailer": "El Corte Inglés",
+    "nombreTienda": "ECI CAN DRAGO",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 12,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "WALL"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESS00002",
+    "retailer": "El Corte Inglés",
+    "nombreTienda": "ECI CATALUÑA",
+    "tipoEspacioId": "Table 2",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 24,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "MESA 2 · Cara 1",
+      "MESA 2 · Cara 2",
+      "MINIWALL",
+      "LINEAL SMARTWATCH"
+    ],
+    "auditStatus": "Pendiente",
+    "linealWearablesPlanogram": "L. Wearables_ECI 6",
+    "linealWearablesCount": 6,
+    "hasPad8Pro": true
+  },
+  {
+    "tiendaId": "MIESD00121",
+    "retailer": "El Corte Inglés",
+    "nombreTienda": "ECI CORNELLA",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 12,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "MINIWALL"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESS00003",
+    "retailer": "El Corte Inglés",
+    "nombreTienda": "ECI DIAGONAL",
+    "tipoEspacioId": "Table 2",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 16,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "MESA 2 · Cara 1",
+      "MESA 2 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": true
+  },
+  {
+    "tiendaId": "MIESD00103",
+    "retailer": "El Corte Inglés",
+    "nombreTienda": "ECI INDEPENDENCIA",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 22,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00113",
+    "retailer": "El Corte Inglés",
+    "nombreTienda": "ECI MERIDIANA",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 22,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00105",
+    "retailer": "El Corte Inglés",
+    "nombreTienda": "ECI PUERTO VENECIA",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 22,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00076",
+    "retailer": "El Corte Inglés",
+    "nombreTienda": "ECI SABADELL",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 16,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "MINIWALL",
+      "LINEAL SMARTWATCH"
+    ],
+    "auditStatus": "Pendiente",
+    "linealWearablesPlanogram": "L. Wearables_ECI 6",
+    "linealWearablesCount": 6,
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00088",
+    "retailer": "El Corte Inglés",
+    "nombreTienda": "ECI TARRAGONA",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 22,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00104",
+    "retailer": "El Corte Inglés",
+    "nombreTienda": "ECI ZARAGOZA",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 12,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2",
+      "MINIWALL"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESS00018",
+    "retailer": "FNAC",
+    "nombreTienda": "FNAC Illa",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 22,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00149",
+    "retailer": "FNAC",
+    "nombreTienda": "FNAC Plaza España",
+    "tipoEspacioId": "Table FNAC",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 8,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00145",
+    "retailer": "FNAC",
+    "nombreTienda": "FNAC Arenas",
+    "tipoEspacioId": "Table FNAC",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 8,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00144",
+    "retailer": "FNAC",
+    "nombreTienda": "FNAC Maquinista",
+    "tipoEspacioId": "Table 1",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 22,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00638",
+    "retailer": "Carrefour",
+    "nombreTienda": "CRF Cabrera",
+    "tipoEspacioId": "Table CRF",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 8,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESO00015",
+    "retailer": "Carrefour",
+    "nombreTienda": "CRF Manresa",
+    "tipoEspacioId": "Table CRF",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 8,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESP00031",
+    "retailer": "Carrefour",
+    "nombreTienda": "CRF Maquinista",
+    "tipoEspacioId": "Table CRF",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 8,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESO00009",
+    "retailer": "Carrefour",
+    "nombreTienda": "CRF Gran Vía 2",
+    "tipoEspacioId": "Table CRF",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 8,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESD00069",
+    "retailer": "Carrefour",
+    "nombreTienda": "CRF Augusta",
+    "tipoEspacioId": "Table Premium",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 4,
+    "availableSpaces": [
+      "MESA 1 · Cara 1"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "MIESO00023",
+    "retailer": "Carrefour",
+    "nombreTienda": "CRF Tarragona",
+    "tipoEspacioId": "Table CRF",
+    "zona": "Cataluña",
+    "region": "Noreste",
+    "totalPuestos": 8,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  },
+  {
+    "tiendaId": "ALCP00012",
+    "retailer": "Alcampo",
+    "nombreTienda": "Alcampo Utebo",
+    "tipoEspacioId": "Table Alcampo",
+    "zona": "Aragón",
+    "region": "Noreste",
+    "totalPuestos": 8,
+    "availableSpaces": [
+      "MESA 1 · Cara 1",
+      "MESA 1 · Cara 2"
+    ],
+    "auditStatus": "Pendiente",
+    "hasPad8Pro": false
+  }
+]
