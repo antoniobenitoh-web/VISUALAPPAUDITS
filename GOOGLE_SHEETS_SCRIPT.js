@@ -60,76 +60,158 @@ function getSpacesSpreadsheet() {
 function getUsersFromExternalSheet() {
   try {
     const usersSS = SpreadsheetApp.openById(SPREADSHEET_USERS_ID);
-    const sheet = usersSS.getSheetByName("usuarios") || usersSS.getSheetByName("Usuarios") || usersSS.getSheets()[0];
+    const sheet = usersSS.getSheetByName("BBDD Promotores") || 
+                  usersSS.getSheetByName("usuarios") || 
+                  usersSS.getSheetByName("Usuarios") || 
+                  usersSS.getSheets()[0];
     if (!sheet) return [];
 
     const rows = sheet.getDataRange().getValues();
     if (rows.length < 2) return [];
 
-    // Por directrices: Columna C (idx 2), Columna D (idx 3), Columna K (idx 10)
-    let colEmail = 2;
-    let colPass = 3;
-    let colCentro = 10;
-    let colZona = -1;
-    let colNombre = -1;
-    let colRol = -1;
+    // Mapeo exacto según especificación:
+    // Columna B (idx 1): Nombre de la persona
+    // Columna C (idx 2): Usuario / Email
+    // Columna D (idx 3): Contraseña
+    // Columna E (idx 4): Rol
+    // Columna F (idx 5): Nombre del GPV -> centros asignados para él
+    // Columna G (idx 6): Nombre del AM -> centros asignados para él
+    // Columna J (idx 9): Nombre de la Administradora -> centros asignados para ella
+    // Columna K (idx 10): Centro asignado (para promotores)
+    const COL_NOMBRE = 1;
+    const COL_EMAIL = 2;
+    const COL_PASS = 3;
+    const COL_ROL = 4;
+    const COL_GPV = 5;
+    const COL_AM = 6;
+    const COL_ADMIN = 9;
+    const COL_CENTRO = 10;
 
-    // Escanear cabecera para afinar columnas automáticas
-    const headerRow = rows[0];
-    for (let c = 0; c < headerRow.length; c++) {
-      const h = String(headerRow[c]).toLowerCase().trim();
-      if (h.indexOf("zona") !== -1) colZona = c;
-      if (h.indexOf("nombre") !== -1 || h.indexOf("apellidos") !== -1) colNombre = c;
-      if (h.indexOf("rol") !== -1 || h.indexOf("cargo") !== -1) colRol = c;
+    // Diccionarios acumuladores para recopilar todos los centros asignados a cada GPV, AM, Admin y Promotor
+    const gpvCentersMap = {};   // clave: nombre en minúsculas -> array de nombres de centros
+    const amCentersMap = {};    // clave: nombre en minúsculas -> array de nombres de centros
+    const adminCentersMap = {}; // clave: nombre en minúsculas -> array de nombres de centros
+    const promotorCentersMap = {}; // clave: email en minúsculas -> array de nombres de centros
+
+    function addCenter(map, key, center) {
+      if (!key || !center) return;
+      const cleanKey = String(key).trim().toLowerCase();
+      const cleanCenter = String(center).trim();
+      if (!cleanKey || !cleanCenter) return;
+      if (!map[cleanKey]) map[cleanKey] = [];
+      if (map[cleanKey].indexOf(cleanCenter) === -1) {
+        map[cleanKey].push(cleanCenter);
+      }
     }
 
-    const users = [];
+    // PASO 1: Recorrer todas las filas para construir los catálogos de centros por responsable
     for (let i = 1; i < rows.length; i++) {
-      const email = String(rows[i][colEmail] || "").trim();
+      const row = rows[i];
+      const centro = row[COL_CENTRO] ? String(row[COL_CENTRO]).trim() : "";
+      if (!centro) continue;
+
+      const email = row[COL_EMAIL] ? String(row[COL_EMAIL]).trim().toLowerCase() : "";
+      const gpv = row[COL_GPV] ? String(row[COL_GPV]).trim() : "";
+      const am = row[COL_AM] ? String(row[COL_AM]).trim() : "";
+      const admin = row[COL_ADMIN] ? String(row[COL_ADMIN]).trim() : "";
+
+      if (email) addCenter(promotorCentersMap, email, centro);
+      if (gpv) addCenter(gpvCentersMap, gpv, centro);
+      if (am) addCenter(amCentersMap, am, centro);
+      if (admin) addCenter(adminCentersMap, admin, centro);
+    }
+
+    // Función auxiliar para recuperar centros buscando por coincidencia con el nombre o email
+    function findCentersForName(map, personName, personEmail) {
+      const result = [];
+      const cleanName = String(personName || "").trim().toLowerCase();
+      const cleanEmail = String(personEmail || "").trim().toLowerCase();
+
+      for (const key in map) {
+        if (!key) continue;
+        if ((cleanName && (key.indexOf(cleanName) !== -1 || cleanName.indexOf(key) !== -1)) ||
+            (cleanEmail && (key.indexOf(cleanEmail) !== -1 || cleanEmail.indexOf(key) !== -1))) {
+          map[key].forEach(function(c) {
+            if (result.indexOf(c) === -1) result.push(c);
+          });
+        }
+      }
+      return result;
+    }
+
+    // PASO 2: Construir la lista de usuarios únicos deduciendo roles y asociando sus centros
+    const usersMap = {};
+    for (let i = 1; i < rows.length; i++) {
+      const row = rows[i];
+      const email = String(row[COL_EMAIL] || "").trim();
       if (!email || email.indexOf("@") === -1) continue;
 
-      const password = String(rows[i][colPass] || "").trim();
-      const centro = String(rows[i][colCentro] || "").trim();
-      const zona = colZona !== -1 ? String(rows[i][colZona] || "").trim() : "Cataluña";
-      const nombre = colNombre !== -1 && rows[i][colNombre]
-        ? String(rows[i][colNombre]).trim()
-        : email.split("@")[0].replace(/[._]/g, " ").toUpperCase();
-
-      // Deducir rol RBAC normalizado
-      let rol = "Promotor";
       const emailLower = email.toLowerCase();
-      if (colRol !== -1 && rows[i][colRol]) {
-        const rawRol = String(rows[i][colRol]).trim().toLowerCase();
-        if (rawRol.indexOf("admin") !== -1 || rawRol.indexOf("coordin") !== -1 || rawRol.indexOf("director") !== -1) {
-          rol = "SuperAdmin";
-        } else if (rawRol === "am" || rawRol.indexOf("area") !== -1 || rawRol.indexOf("trainer") !== -1 || rawRol.indexOf("formador") !== -1) {
-          rol = "AM";
-        } else if (rawRol === "gpv") {
-          rol = "GPV";
-        } else {
-          rol = "Promotor";
+      if (usersMap[emailLower]) {
+        // Si el usuario ya existe en otra fila, añadir centro si no lo tiene
+        const centro = row[COL_CENTRO] ? String(row[COL_CENTRO]).trim() : "";
+        if (centro && usersMap[emailLower].centrosAsignados.indexOf(centro) === -1) {
+          usersMap[emailLower].centrosAsignados.push(centro);
+          usersMap[emailLower].tiendaAsignadaId = usersMap[emailLower].centrosAsignados.join(", ");
         }
-      } else if (emailLower.indexOf("admin") !== -1) {
-        rol = "SuperAdmin";
-      } else if (emailLower.indexOf("am") !== -1 || emailLower.indexOf("antonio") !== -1) {
-        rol = "AM";
-      } else if (emailLower.indexOf("gpv") !== -1 || emailLower.indexOf("ricardo") !== -1 || !centro) {
-        rol = "GPV";
+        continue;
       }
 
-      users.push({
+      const nombre = String(row[COL_NOMBRE] || "").trim() || email.split("@")[0].toUpperCase();
+      const password = String(row[COL_PASS] || "").trim();
+      const rawRol = String(row[COL_ROL] || "").trim().toLowerCase();
+
+      // Normalizar rol canónico
+      let rol = "Promotor";
+      if (rawRol.indexOf("admin") !== -1 || rawRol.indexOf("coordin") !== -1 || rawRol.indexOf("director") !== -1 || emailLower.indexOf("admin") !== -1) {
+        rol = "SuperAdmin";
+      } else if (rawRol === "am" || rawRol.indexOf("area") !== -1 || rawRol.indexOf("trainer") !== -1 || rawRol.indexOf("formador") !== -1 || emailLower.indexOf("am") !== -1) {
+        rol = "AM";
+      } else if (rawRol === "gpv" || emailLower.indexOf("gpv") !== -1) {
+        rol = "GPV";
+      } else {
+        rol = "Promotor";
+      }
+
+      // Obtener lista de centros asignados según rol y columnas F, G, J o K
+      let centrosAsignados = [];
+      const centroFila = row[COL_CENTRO] ? String(row[COL_CENTRO]).trim() : "";
+
+      if (rol === "GPV") {
+        centrosAsignados = findCentersForName(gpvCentersMap, nombre, emailLower);
+        if (centrosAsignados.length === 0 && centroFila) centrosAsignados.push(centroFila);
+      } else if (rol === "AM") {
+        centrosAsignados = findCentersForName(amCentersMap, nombre, emailLower);
+        if (centrosAsignados.length === 0 && centroFila) centrosAsignados.push(centroFila);
+      } else if (rol === "SuperAdmin") {
+        centrosAsignados = findCentersForName(adminCentersMap, nombre, emailLower);
+        if (centrosAsignados.length === 0 && centroFila) centrosAsignados.push(centroFila);
+      } else {
+        // Promotor: centro asignado en Columna K
+        centrosAsignados = promotorCentersMap[emailLower] || (centroFila ? [centroFila] : []);
+      }
+
+      usersMap[emailLower] = {
         email: email,
         password: password,
         nombre: nombre,
         rol: rol,
-        retailer: centro.indexOf("ECI") !== -1 ? "El Corte Inglés" : "MediaMarkt",
-        zona: zona,
+        retailer: centroFila.indexOf("ECI") !== -1 ? "El Corte Inglés" : "MediaMarkt",
+        zona: "Cataluña",
         region: "Noreste",
-        tiendaAsignadaId: centro
-      });
+        tiendaAsignadaId: centrosAsignados.length > 0 ? centrosAsignados.join(", ") : centroFila,
+        centrosAsignados: centrosAsignados,
+        gpv: row[COL_GPV] ? String(row[COL_GPV]).trim() : undefined,
+        am: row[COL_AM] ? String(row[COL_AM]).trim() : undefined,
+        administradora: row[COL_ADMIN] ? String(row[COL_ADMIN]).trim() : undefined
+      };
     }
 
-    return users;
+    const usersList = [];
+    for (const em in usersMap) {
+      usersList.push(usersMap[em]);
+    }
+    return usersList;
   } catch (err) {
     Logger.log("Error al leer hoja de usuarios: " + err.toString());
     return [];

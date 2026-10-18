@@ -53,86 +53,132 @@ export class AuthService {
   }
 
   /**
+   * Limpieza y normalización de cadenas de texto para comparaciones flexibles
+   */
+  static normalizeText(text: string): string {
+    return text
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '') // Quita tildes
+      .replace(/[^a-z0-9]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  /**
+   * Determina si el nombre de un centro asignado (Columna K) coincide con un centro del catálogo,
+   * teniendo en cuenta que el nombre puede estar acortado en la hoja de cálculo.
+   */
+  static isStoreMatch(assignedName: string, store: StoreCenter): boolean {
+    if (!assignedName) return false;
+    const a = this.normalizeText(assignedName);
+    const sName = this.normalizeText(store.nombreTienda);
+    const sId = this.normalizeText(store.tiendaId);
+
+    // 1. Coincidencia exacta con ID de tienda o Nombre
+    if (a === sId || a === sName) return true;
+
+    // 2. Si el nombre acortado de la hoja es prefijo o está contenido íntegramente
+    // Ej: "media barcelona 5 fontane" es prefijo de "media barcelona 5 fontanella"
+    if (sName.startsWith(a) || a.startsWith(sName)) return true;
+    if (sName.includes(a) || a.includes(sName)) return true;
+
+    // 3. Coincidencia por tokens / palabras clave distintivas
+    const stopwords = new Set([
+      'media', 'markt', 'mediamarkt', 'el', 'la', 'los', 'las', 'de', 'del', 'en',
+      'corte', 'ingles', 'eci', 'crf', 'carrefour', 'fnac', 'alcampo', 'tienda', 'space', 'barcelona'
+    ]);
+
+    const aWords = a.split(' ').filter(w => w.length >= 3 && !stopwords.has(w));
+    const sWords = sName.split(' ').filter(w => w.length >= 3 && !stopwords.has(w));
+
+    if (aWords.length > 0 && sWords.length > 0) {
+      // Si alguna palabra clave distintiva asignada coincide o es prefijo directo de una palabra de la tienda
+      // Ej: "fontane" con "fontanella", "prat" con "prat", "parets" con "parets"
+      const hasDistinctiveMatch = aWords.some(aw =>
+        sWords.some(sw => sw === aw || sw.startsWith(aw) || aw.startsWith(sw))
+      );
+      if (hasDistinctiveMatch) return true;
+    }
+
+    return false;
+  }
+
+  /**
    * Lógica de Acceso Jerárquico RBAC según Especificación:
-   * - SuperAdmin / Coordinación / Dirección: Acceso global a todas las superficies y tiendas.
-   * - AM / Trainer / Formador: Acceso a todas las tiendas de su Región o Nacional/Global.
-   * - GPV: Acceso a las tiendas pertenecientes a su Zona o Región.
-   * - Promotor: Acceso a su propia tienda asignada (comparando ID de tienda o nombre de centro).
+   * - Promotor: Centros asignados en Columna K.
+   * - GPV: Centros donde su nombre aparece en Columna F (asignados para él).
+   * - AM: Centros donde su nombre aparece en Columna G (asignados para él).
+   * - Administradora: Centros donde su nombre aparece en Columna J (o acceso global si es Nacional/Global).
    */
   static canAccessStore(user: UserProfile, store: StoreCenter): boolean {
     if (!user) return true;
     const role = this.normalizeRole(user.rol);
 
-    // SuperAdmin y Coordinación: acceso global
-    if (role === 'SuperAdmin') {
-      return true;
+    // 1. Recopilar centros asignados expresamente para este usuario
+    const userCenters: string[] = [];
+    if (user.centrosAsignados && Array.isArray(user.centrosAsignados)) {
+      userCenters.push(...user.centrosAsignados);
+    }
+    if (user.tiendaAsignadaId) {
+      user.tiendaAsignadaId.split(',').forEach(c => {
+        const tr = c.trim();
+        if (tr && !userCenters.includes(tr)) userCenters.push(tr);
+      });
     }
 
-    // AM y Trainers: acceso a todas las tiendas de su región o nacional
+    const hasGlobalFlag = userCenters.some(c => {
+      const cl = c.toLowerCase();
+      return cl === 'national' || cl === 'nacional' || cl === 'global' || cl === 'todos';
+    });
+
+    // 2. Administradora / SuperAdmin
+    if (role === 'SuperAdmin') {
+      if (hasGlobalFlag || userCenters.length === 0) return true;
+      // Si la administradora tiene lista específica de centros asignados (Col J)
+      return userCenters.some(assigned => this.isStoreMatch(assigned, store));
+    }
+
+    // 3. AM (Area Manager)
     if (role === 'AM') {
+      if (hasGlobalFlag) return true;
+      // Centros donde su nombre aparece en Col G
+      if (userCenters.length > 0) {
+        const matchesAssigned = userCenters.some(assigned => this.isStoreMatch(assigned, store));
+        if (matchesAssigned) return true;
+      }
+      // Fallback a región si coincide
       if (!user.region || user.region === 'Nacional' || user.region === 'Global' || user.region === 'Todos') {
         return true;
       }
-      return Boolean(
-        store.region.toLowerCase() === user.region.toLowerCase() ||
-        (user.zona && store.zona.toLowerCase().includes(user.zona.toLowerCase()))
-      );
+      return Boolean(store.region.toLowerCase() === user.region.toLowerCase());
     }
 
-    // GPV: acceso a tiendas de su zona
+    // 4. GPV
     if (role === 'GPV') {
-      if (!user.zona || user.zona === 'Todos' || user.zona === 'Nacional' || user.zona === 'Global') {
-        return true;
+      if (hasGlobalFlag) return true;
+      // Centros donde su nombre aparece en Col F
+      if (userCenters.length > 0) {
+        const matchesAssigned = userCenters.some(assigned => this.isStoreMatch(assigned, store));
+        if (matchesAssigned) return true;
       }
-      return Boolean(
-        store.zona.toLowerCase().includes(user.zona.toLowerCase()) ||
-        (user.region && store.region.toLowerCase() === user.region.toLowerCase())
-      );
+      // Fallback a zona asignada
+      if (user.zona && user.zona !== 'Todos' && user.zona !== 'Nacional' && user.zona !== 'Global') {
+        return Boolean(store.zona.toLowerCase().includes(user.zona.toLowerCase()));
+      }
+      return true;
     }
 
-    // Promotor: asignación por centro o nombre de tienda
+    // 5. Promotor
     if (role === 'Promotor') {
-      const uTienda = (user.tiendaAsignadaId || '').toLowerCase().trim();
-      if (!uTienda || uTienda === 'national' || uTienda === 'nacional' || uTienda === 'todos') {
+      if (hasGlobalFlag) return true;
+      if (userCenters.length > 0) {
+        return userCenters.some(assigned => this.isStoreMatch(assigned, store));
+      }
+      // Si no tiene centro asignado pero su nombre coincide con la tienda
+      if (user.nombre && store.nombreTienda.toLowerCase().includes(user.nombre.toLowerCase())) {
         return true;
       }
-
-      const sId = store.tiendaId.toLowerCase().trim();
-      const sName = store.nombreTienda.toLowerCase().trim();
-
-      // Coincidencia directa por código o nombre
-      if (sId === uTienda || sName === uTienda) {
-        return true;
-      }
-
-      // Si tiendaAsignadaId contiene o está contenida en el nombre de la tienda
-      if (sName.includes(uTienda) || uTienda.includes(sName)) {
-        return true;
-      }
-
-      // Coincidencia por palabras clave representativas (evitando palabras comunes)
-      const stopwords = new Set([
-        'media', 'markt', 'mediamarkt', 'el', 'la', 'los', 'las', 'de', 'del', 'en', 
-        'corte', 'ingles', 'tienda', 'space', 'brand', 'xiaomi'
-      ]);
-      const userKeywords = uTienda
-        .replace(/[^a-záéíóúñ0-9\s]/gi, ' ')
-        .split(/\s+/)
-        .map(w => w.trim())
-        .filter(w => w.length > 2 && !stopwords.has(w));
-
-      if (userKeywords.length > 0) {
-        const storeText = `${sId} ${sName}`.toLowerCase();
-        if (userKeywords.some(kw => storeText.includes(kw))) {
-          return true;
-        }
-      }
-
-      // Si el nombre del usuario aparece en la tienda
-      if (user.nombre && sName.includes(user.nombre.toLowerCase())) {
-        return true;
-      }
-
       return false;
     }
 
@@ -148,7 +194,7 @@ export class AuthService {
     // Si el filtro no encuentra ninguna tienda asignada para este usuario (ej. usuario nuevo o tienda sin mapear),
     // devolvemos todas las tiendas para que nunca se quede la pantalla en blanco
     if (filtered.length === 0) {
-      console.warn(`[AuthService] No se encontraron tiendas restringidas para ${user.email}. Mostrando todas las tiendas disponibles.`);
+      console.warn(`[AuthService] No se encontraron tiendas específicas para ${user.email}. Mostrando tiendas disponibles.`);
       return stores;
     }
 

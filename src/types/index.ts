@@ -9,6 +9,10 @@ export interface UserProfile {
   zona?: string;
   region?: string;
   tiendaAsignadaId?: string;
+  centrosAsignados?: string[];
+  gpv?: string;
+  am?: string;
+  administradora?: string;
 }
 
 export type RetailerId = 'MediaMarkt' | 'El Corte Inglés' | 'Carrefour' | 'Alcampo' | 'FNAC' | 'Orange' | 'Vodafone';
