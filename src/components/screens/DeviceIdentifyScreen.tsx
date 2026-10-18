@@ -1,7 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { PlanogramPosition, PositionAuditState, StoreCenter, UserProfile } from '../../types';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { PlanogramPosition, PositionAuditState, StoreCenter, UserProfile, IncidentCategory, PositionStatus } from '../../types';
 import { ScannerModal } from '../ScannerModal';
 import { ImageCompressionService } from '../../services/imageCompressionService';
+import { DbService } from '../../services/dbService';
+import planogramData from '../../data/realPlanograms.json';
 import { 
   ArrowLeft, 
   Barcode, 
@@ -16,10 +18,27 @@ import {
   Sparkles, 
   ShieldCheck, 
   ChevronRight,
+  ChevronDown,
   Lock,
   Upload,
-  Check
+  Check,
+  ShieldAlert,
+  Search,
+  Copy,
+  FileWarning
 } from 'lucide-react';
+
+// Catálogo de modelos oficiales Xiaomi / Redmi extraídos de los planogramas reales
+const ALL_CATALOG_MODELS: string[] = Array.from(
+  new Set(
+    Object.values(planogramData as Record<string, Array<{ device: string }>>)
+      .flat()
+      .map(item => item?.device)
+      .filter(Boolean)
+  )
+).sort();
+
+export type IncidentType = 'no_coincide' | 'robo' | 'fallo_alarmado' | null;
 
 interface DeviceIdentifyScreenProps {
   position: PlanogramPosition;
@@ -47,6 +66,53 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
   const [showScanner, setShowScanner] = useState(false);
   const [isCompressing, setIsCompressing] = useState(false);
   const [keypadMode, setKeypadMode] = useState<'123' | 'ABC'>('123');
+
+  // Estados de Gestión de Incidencias
+  const initialIncidentType: IncidentType = currentState?.estadoPosicion === 'Incidencia'
+    ? (currentState.tipoIncidencia === 'No coincide' || currentState.tipoIncidencia === 'Modelo incorrecto' ? 'no_coincide'
+      : currentState.tipoIncidencia === 'Robo' || currentState.tipoIncidencia === 'Material faltante' ? 'robo'
+      : currentState.tipoIncidencia === 'Fallo alarmado' || currentState.tipoIncidencia === 'Alarma defectuosa' ? 'fallo_alarmado'
+      : null)
+    : null;
+
+  const [incidentType, setIncidentType] = useState<IncidentType>(initialIncidentType);
+  const [showIncidentDrawer, setShowIncidentDrawer] = useState<boolean>(initialIncidentType !== null);
+  const [replacedModel, setReplacedModel] = useState<string>(
+    currentState?.tipoIncidencia === 'No coincide' || currentState?.tipoIncidencia === 'Modelo incorrecto'
+      ? (currentState.modeloDetectado || '')
+      : ''
+  );
+  const [modelSearch, setModelSearch] = useState<string>('');
+  const [hasDeviceWithAlarmFault, setHasDeviceWithAlarmFault] = useState<boolean>(
+    currentState?.comentarios?.includes('Dispositivo ausente') ? false : true
+  );
+  const [copiedImei, setCopiedImei] = useState<boolean>(false);
+
+  // Detección de IMEI / Serial previo auditado en este centro y posición (para casos de robo)
+  const previousImei = useMemo(() => {
+    if (currentState?.imeiSerial && currentState.imeiSerial !== '-' && !currentState.imeiSerial.includes('Robo')) {
+      return currentState.imeiSerial;
+    }
+    const history = DbService.getHistory();
+    for (const record of history) {
+      if (record.tiendaId === store.tiendaId) {
+        const match = record.positions?.find(
+          p => p.posicionId === position.id || (p.mesaId === position.mesaId && p.posicionNumero === position.posicionNumero)
+        );
+        if (match?.imeiSerial && match.imeiSerial !== '-' && !match.imeiSerial.includes('Robo')) {
+          return match.imeiSerial;
+        }
+      }
+    }
+    return null;
+  }, [currentState, position, store.tiendaId]);
+
+  // Modelos filtrados para selector de "No coincide"
+  const filteredCatalogModels = useMemo(() => {
+    if (!modelSearch.trim()) return ALL_CATALOG_MODELS.slice(0, 15);
+    const query = modelSearch.toLowerCase();
+    return ALL_CATALOG_MODELS.filter(m => m.toLowerCase().includes(query)).slice(0, 25);
+  }, [modelSearch]);
 
   // Estados de cámara con marco de directriz
   const [tempCapturedPhoto, setTempCapturedPhoto] = useState<string | null>(null);
@@ -137,14 +203,36 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
   };
 
   const handleValidate = () => {
-    if (!isDummy) {
-      if (isSmartphone && imei.trim().length < 15) {
-        alert('Por favor introduce un IMEI válido de 15 dígitos numéricos (ej. 863142080419480).');
+    // Validaciones específicas según el tipo de incidencia
+    if (incidentType === 'no_coincide') {
+      if (!replacedModel.trim()) {
+        alert('Por favor selecciona o escribe el modelo que está colocado físicamente en su lugar.');
         return;
       }
-      if (!isSmartphone && imei.trim().length < 6) {
-        alert('Por favor introduce un número de serie válido (ej. 68707/EFAPBS6QD00345).');
-        return;
+    } else if (incidentType === 'robo') {
+      // En caso de robo, no se exige IMEI nuevo porque el dispositivo no está
+      if (previousImei && !imei) {
+        setImei(previousImei);
+      }
+    } else if (incidentType === 'fallo_alarmado') {
+      // Si el dispositivo está presente y no es maqueta, comprobamos si se introdujo IMEI
+      if (hasDeviceWithAlarmFault && !isDummy && imei.trim().length > 0) {
+        if (isSmartphone && imei.trim().length < 15) {
+          alert('Por favor introduce un IMEI válido de 15 dígitos numéricos (ej. 863142080419480).');
+          return;
+        }
+      }
+    } else {
+      // Sin incidencia: validación estándar según directriz
+      if (!isDummy) {
+        if (isSmartphone && imei.trim().length < 15) {
+          alert('Por favor introduce un IMEI válido de 15 dígitos numéricos (ej. 863142080419480).');
+          return;
+        }
+        if (!isSmartphone && imei.trim().length < 6) {
+          alert('Por favor introduce un número de serie válido (ej. 68707/EFAPBS6QD00345).');
+          return;
+        }
       }
     }
     setSubStep('confirmation');
@@ -186,16 +274,45 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
       return;
     }
 
+    const isIncident = incidentType !== null;
+    let estadoPos: PositionStatus = isIncident ? 'Incidencia' : 'OK';
+    let tipoInc: IncidentCategory | '' = '';
+    let finalDetectedModel = position.modeloOficial;
+    let finalImei = imei.trim();
+    let comments = '';
+
+    if (incidentType === 'no_coincide') {
+      tipoInc = 'No coincide';
+      finalDetectedModel = replacedModel.trim() || '(Modelo no coincidente)';
+      comments = `NO COINCIDE: Modelo oficial esperado ${position.modeloOficial}. En su lugar está colocado: ${finalDetectedModel}.`;
+    } else if (incidentType === 'robo') {
+      tipoInc = 'Robo';
+      finalDetectedModel = '(Terminal Robado)';
+      finalImei = previousImei || (finalImei ? finalImei : 'Sin IMEI previo');
+      comments = `ROBO: Terminal sustraído. IMEI anterior registrado para baja/auditoría: ${finalImei}.`;
+    } else if (incidentType === 'fallo_alarmado') {
+      tipoInc = 'Fallo alarmado';
+      if (hasDeviceWithAlarmFault) {
+        finalDetectedModel = position.modeloOficial;
+        comments = 'FALLO ALARMADO: Dispositivo presente en tienda. Acción: Enviar únicamente alarmado nuevo.';
+      } else {
+        finalDetectedModel = '(Falta terminal por fallo de alarma)';
+        comments = 'FALLO ALARMADO: Dispositivo ausente. Acción: Enviar alarmado nuevo + dispositivo de reposición.';
+      }
+    }
+
     const state: PositionAuditState = {
       posicionId: position.id,
       mesaId: position.mesaId,
       posicionNumero: position.posicionNumero,
       modeloOficial: position.modeloOficial,
-      modeloDetectado: position.modeloOficial,
-      imeiSerial: imei,
-      estadoPosicion: 'OK',
+      modeloDetectado: finalDetectedModel,
+      imeiSerial: finalImei || (isDummy ? 'Maqueta (Exento)' : '-'),
+      estadoPosicion: estadoPos,
+      tipoIncidencia: tipoInc,
       esMaqueta: isDummy,
       fotoEvidenciaUrl: photoUrl,
+      comentarios: comments,
       auditadoPor: currentUser.nombre,
       fechaHora: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     };
@@ -370,17 +487,339 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
                 </button>
               </div>
             </div>
+            {/* SECCIÓN DE INCIDENCIAS (Debajo del Tipo de Terminal) */}
+            <div className="space-y-3 pt-2">
+              <div className="flex items-center justify-between">
+                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">
+                  Incidencias
+                </label>
+                {incidentType && (
+                  <span className="text-[10px] font-black text-rose-700 bg-rose-100 px-2.5 py-0.5 rounded-full border border-rose-300 uppercase tracking-tight flex items-center gap-1">
+                    <AlertTriangle className="w-3 h-3 text-rose-600" />
+                    {incidentType === 'no_coincide' ? 'No coincide' : incidentType === 'robo' ? 'Robo' : 'Fallo alarmado'}
+                  </span>
+                )}
+              </div>
+
+              {/* Botón Reporte de Incidencia (Estilo idéntico a Método de Lectura) */}
+              <button
+                type="button"
+                onClick={() => setShowIncidentDrawer(!showIncidentDrawer)}
+                className={`w-full bg-white hover:bg-slate-50 border rounded-2xl p-4 text-left flex items-center justify-between transition active:scale-[0.99] group shadow-xs cursor-pointer ${
+                  incidentType ? 'border-rose-400 bg-rose-50/30 ring-2 ring-rose-200' : 'border-slate-200/90 hover:border-[#009ca6]'
+                }`}
+              >
+                <div className="flex items-center gap-3.5">
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition ${
+                    incidentType 
+                      ? 'bg-rose-600 text-white shadow-sm' 
+                      : 'bg-rose-50 text-rose-600 group-hover:bg-rose-600 group-hover:text-white'
+                  }`}>
+                    <AlertTriangle className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs sm:text-sm font-black text-slate-900 group-hover:text-rose-700 transition-colors">
+                      Reporte de incidencia
+                    </h4>
+                    <p className="text-[11px] text-slate-500">
+                      {incidentType === 'no_coincide' 
+                        ? `Modelo no coincide: ${replacedModel || 'Seleccionar de la lista'}`
+                        : incidentType === 'robo'
+                        ? `Robo detectado ${previousImei ? `(IMEI previo: ${previousImei})` : ''}`
+                        : incidentType === 'fallo_alarmado'
+                        ? `Fallo de alarma (${hasDeviceWithAlarmFault ? 'Dispositivo presente' : 'Dispositivo ausente'})`
+                        : 'No coincide, robo o fallo de alarmado'}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  {incidentType && (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIncidentType(null);
+                        setReplacedModel('');
+                      }}
+                      className="text-[11px] font-bold text-rose-600 hover:text-rose-800 underline px-1 py-0.5"
+                    >
+                      Quitar
+                    </button>
+                  )}
+                  <ChevronDown className={`w-5 h-5 text-slate-400 group-hover:text-slate-600 transition-transform ${showIncidentDrawer ? 'rotate-180' : ''}`} />
+                </div>
+              </button>
+
+              {/* PANEL EXPANDIBLE DE OPCIONES DE INCIDENCIA */}
+              {showIncidentDrawer && (
+                <div className="p-4 sm:p-5 bg-slate-50 border border-slate-200/90 rounded-2xl space-y-4 shadow-inner animate-fadeIn">
+                  <span className="text-[11px] font-bold text-slate-600 uppercase tracking-wider block">
+                    Selecciona el tipo de incidencia:
+                  </span>
+
+                  {/* 3 Selector Cards */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                    {/* Opción 1: No coincide */}
+                    <button
+                      type="button"
+                      onClick={() => setIncidentType('no_coincide')}
+                      className={`p-3 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ${
+                        incidentType === 'no_coincide'
+                          ? 'bg-white border-rose-500 ring-2 ring-rose-300 shadow-xs'
+                          : 'bg-white/80 border-slate-200 hover:bg-white text-slate-700'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs font-black text-slate-900">1. No coincide</span>
+                        {incidentType === 'no_coincide' && <Check className="w-3.5 h-3.5 text-rose-600" />}
+                      </div>
+                      <p className="text-[10px] text-slate-500 leading-tight">
+                        Hay otro modelo colocado en lugar del oficial
+                      </p>
+                    </button>
+
+                    {/* Opción 2: Robo */}
+                    <button
+                      type="button"
+                      onClick={() => setIncidentType('robo')}
+                      className={`p-3 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ${
+                        incidentType === 'robo'
+                          ? 'bg-white border-rose-500 ring-2 ring-rose-300 shadow-xs'
+                          : 'bg-white/80 border-slate-200 hover:bg-white text-slate-700'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs font-black text-slate-900">2. Robo</span>
+                        {incidentType === 'robo' && <Check className="w-3.5 h-3.5 text-rose-600" />}
+                      </div>
+                      <p className="text-[10px] text-slate-500 leading-tight">
+                        Dispositivo sustraído; auditar IMEI previo
+                      </p>
+                    </button>
+
+                    {/* Opción 3: Fallo alarmado */}
+                    <button
+                      type="button"
+                      onClick={() => setIncidentType('fallo_alarmado')}
+                      className={`p-3 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ${
+                        incidentType === 'fallo_alarmado'
+                          ? 'bg-white border-rose-500 ring-2 ring-rose-300 shadow-xs'
+                          : 'bg-white/80 border-slate-200 hover:bg-white text-slate-700'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs font-black text-slate-900">3. Fallo alarmado</span>
+                        {incidentType === 'fallo_alarmado' && <Check className="w-3.5 h-3.5 text-rose-600" />}
+                      </div>
+                      <p className="text-[10px] text-slate-500 leading-tight">
+                        Alarma rota / cable dañado
+                      </p>
+                    </button>
+                  </div>
+
+                  {/* DETALLE SEGÚN OPCIÓN SELECCIONADA */}
+
+                  {/* 1. DETALLE: NO COINCIDE */}
+                  {incidentType === 'no_coincide' && (
+                    <div className="p-3.5 bg-white border border-rose-200 rounded-xl space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-black text-slate-900">
+                          Dispositivo colocado en su lugar:
+                        </span>
+                        {replacedModel && (
+                          <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                            Seleccionado
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Buscador de modelos del catálogo */}
+                      <div className="relative">
+                        <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                        <input
+                          type="text"
+                          value={modelSearch}
+                          onChange={(e) => setModelSearch(e.target.value)}
+                          placeholder="Buscar en catálogo Xiaomi (ej. 15T, Note 15, Watch S5...)"
+                          className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#009ca6] focus:bg-white"
+                        />
+                      </div>
+
+                      {/* Chips rápidos de modelos disponibles */}
+                      <div className="max-h-36 overflow-y-auto pr-1 flex flex-wrap gap-1.5 border border-slate-100 p-2 rounded-xl bg-slate-50/50">
+                        {filteredCatalogModels.map((m) => (
+                          <button
+                            key={m}
+                            type="button"
+                            onClick={() => setReplacedModel(m)}
+                            className={`px-2.5 py-1 text-[11px] font-semibold rounded-lg transition cursor-pointer text-left ${
+                              replacedModel === m
+                                ? 'bg-[#009ca6] text-white shadow-2xs font-bold'
+                                : 'bg-white hover:bg-slate-200/80 text-slate-700 border border-slate-200'
+                            }`}
+                          >
+                            {m}
+                          </button>
+                        ))}
+                      </div>
+
+                      {/* Input manual libre de modelo */}
+                      <div>
+                        <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">
+                          O escribe el modelo exacto si no está en la lista:
+                        </label>
+                        <input
+                          type="text"
+                          value={replacedModel}
+                          onChange={(e) => setReplacedModel(e.target.value)}
+                          placeholder="Escribe el modelo físico expuesto en el puesto"
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#009ca6]"
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* 2. DETALLE: ROBO */}
+                  {incidentType === 'robo' && (
+                    <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-xl space-y-2.5">
+                      <div className="flex items-center gap-2 text-rose-900 font-black text-xs">
+                        <ShieldAlert className="w-4 h-4 text-rose-600 shrink-0" />
+                        <span>Sustracción / Robo de Terminal</span>
+                      </div>
+                      <p className="text-[11px] text-rose-800 leading-snug">
+                        Para tramitar la reposición, es necesario auditar y dar de baja el IMEI previo registrado antes del robo:
+                      </p>
+
+                      <div className="bg-white p-3 rounded-xl border border-rose-200">
+                        <span className="text-[10px] font-bold text-slate-500 uppercase block">
+                          IMEI / Serial anterior registrado en este centro:
+                        </span>
+                        {previousImei ? (
+                          <div className="flex items-center justify-between pt-1">
+                            <span className="font-mono text-xs sm:text-sm font-black text-rose-900 tracking-wider">
+                              {previousImei}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                navigator.clipboard.writeText(previousImei);
+                                setCopiedImei(true);
+                                setTimeout(() => setCopiedImei(false), 2000);
+                              }}
+                              className="px-2 py-1 bg-rose-100 hover:bg-rose-200 text-rose-800 rounded-lg text-[10px] font-bold flex items-center gap-1 cursor-pointer transition"
+                            >
+                              {copiedImei ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                              <span>{copiedImei ? 'Copiado' : 'Copiar'}</span>
+                            </button>
+                          </div>
+                        ) : (
+                          <div className="pt-1 space-y-1.5">
+                            <span className="text-[11px] text-slate-500 italic block">
+                              No hay registro de IMEI previo en auditorías anteriores de esta tienda.
+                            </span>
+                            <input
+                              type="text"
+                              value={imei}
+                              onChange={(e) => setImei(e.target.value)}
+                              placeholder="Introduce el IMEI conocido para bloqueo (opcional)"
+                              className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs font-mono text-slate-800"
+                            />
+                          </div>
+                        )}
+                      </div>
+                      <span className="text-[10px] text-rose-700 block font-medium">
+                        * Se registrará la incidencia para solicitar el envío del nuevo terminal de reposición.
+                      </span>
+                    </div>
+                  )}
+
+                  {/* 3. DETALLE: FALLO ALARMADO */}
+                  {incidentType === 'fallo_alarmado' && (
+                    <div className="p-3.5 bg-amber-50 border border-amber-200 rounded-xl space-y-2.5">
+                      <div className="flex items-center gap-2 text-amber-950 font-black text-xs">
+                        <AlertTriangle className="w-4 h-4 text-amber-700 shrink-0" />
+                        <span>Incidencia de Alarma / Seguridad</span>
+                      </div>
+                      <p className="text-[11px] text-amber-900">
+                        ¿Se encuentra el dispositivo físicamente en el lineal?
+                      </p>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                        <button
+                          type="button"
+                          onClick={() => setHasDeviceWithAlarmFault(true)}
+                          className={`p-3 rounded-xl border text-left transition cursor-pointer ${
+                            hasDeviceWithAlarmFault
+                              ? 'bg-white border-teal-600 ring-2 ring-teal-500/20 shadow-xs'
+                              : 'bg-white/70 border-slate-200 hover:bg-white text-slate-700'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-black text-slate-900">Sí, dispositivo presente</span>
+                            {hasDeviceWithAlarmFault && <Check className="w-3.5 h-3.5 text-teal-600" />}
+                          </div>
+                          <p className="text-[10px] text-teal-700 font-bold mt-1">
+                            Acción: Enviar únicamente alarmado nuevo
+                          </p>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => setHasDeviceWithAlarmFault(false)}
+                          className={`p-3 rounded-xl border text-left transition cursor-pointer ${
+                            !hasDeviceWithAlarmFault
+                              ? 'bg-white border-rose-600 ring-2 ring-rose-500/20 shadow-xs'
+                              : 'bg-white/70 border-slate-200 hover:bg-white text-slate-700'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-black text-slate-900">No, falta dispositivo</span>
+                            {!hasDeviceWithAlarmFault && <Check className="w-3.5 h-3.5 text-rose-600" />}
+                          </div>
+                          <p className="text-[10px] text-rose-700 font-bold mt-1">
+                            Acción: Enviar alarmado nuevo + dispositivo
+                          </p>
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="flex justify-end pt-1">
+                    <button
+                      type="button"
+                      onClick={() => setShowIncidentDrawer(false)}
+                      className="text-xs font-bold text-slate-600 hover:text-slate-900 px-3 py-1 bg-white border border-slate-200 rounded-lg cursor-pointer"
+                    >
+                      Ocultar opciones
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Botón Validar */}
+          {/* Botón Validar / Continuar con Incidencia */}
           <div className="p-5 bg-white border-t border-slate-200">
             <button
               type="button"
               onClick={handleValidate}
-              className="w-full bg-gradient-to-r from-[#009ca6] to-[#00b4bf] hover:from-[#008992] hover:to-[#00a3ad] active:scale-[0.98] text-white font-black py-4 px-6 rounded-2xl shadow-xl shadow-[#009ca6]/20 transition text-sm sm:text-base flex items-center justify-center gap-2 cursor-pointer"
+              className={`w-full active:scale-[0.98] text-white font-black py-4 px-6 rounded-2xl shadow-xl transition text-sm sm:text-base flex items-center justify-center gap-2 cursor-pointer ${
+                incidentType
+                  ? 'bg-gradient-to-r from-rose-600 via-rose-500 to-rose-700 hover:brightness-110 shadow-rose-500/25'
+                  : 'bg-gradient-to-r from-[#009ca6] to-[#00b4bf] hover:from-[#008992] hover:to-[#00a3ad] shadow-[#009ca6]/20'
+              }`}
             >
-              <ShieldCheck className="w-5 h-5" />
-              <span>Validar Posición</span>
+              {incidentType ? (
+                <>
+                  <AlertTriangle className="w-5 h-5 text-white" />
+                  <span>Continuar y Capturar Evidencia de Incidencia</span>
+                </>
+              ) : (
+                <>
+                  <ShieldCheck className="w-5 h-5" />
+                  <span>Validar Posición</span>
+                </>
+              )}
             </button>
           </div>
         </div>
@@ -610,29 +1049,81 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
       {subStep === 'confirmation' && (
         <div className="flex-1 flex flex-col justify-between p-6 sm:p-8 bg-white text-center">
           <div className="space-y-4 pt-2 my-auto">
-            <div className="w-20 h-20 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-lg animate-pulseGlow">
-              <CheckCircle2 className="w-12 h-12" />
+            <div className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto shadow-lg ${
+              incidentType 
+                ? 'bg-rose-100 text-rose-600 animate-pulse' 
+                : 'bg-emerald-100 text-emerald-600 animate-pulseGlow'
+            }`}>
+              {incidentType ? <AlertTriangle className="w-12 h-12" /> : <CheckCircle2 className="w-12 h-12" />}
             </div>
 
             <div>
-              <span className="text-[10px] font-bold text-teal-700 uppercase tracking-widest block">
-                Auditoría Aprobada
+              <span className={`text-[10px] font-bold uppercase tracking-widest block ${
+                incidentType ? 'text-rose-600' : 'text-teal-700'
+              }`}>
+                {incidentType ? 'Incidencia Registrada' : 'Auditoría Aprobada'}
               </span>
-              <h2 className="text-2xl font-black text-slate-900 tracking-tight">
-                Puesto Validado Correctamente
+              <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                {incidentType === 'no_coincide'
+                  ? 'Discrepancia: Modelo No Coincide'
+                  : incidentType === 'robo'
+                  ? 'Incidencia: Terminal Sustraído (Robo)'
+                  : incidentType === 'fallo_alarmado'
+                  ? 'Incidencia: Fallo en Sistema de Alarma'
+                  : 'Puesto Validado Correctamente'}
               </h2>
             </div>
 
             <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 text-left space-y-2.5 text-xs shadow-xs max-w-md mx-auto">
               <div className="flex items-center gap-3 pb-3 border-b border-slate-200">
-                <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center p-1 shrink-0">
-                  <Smartphone className="w-6 h-6 text-[#104a60]" />
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center p-1 shrink-0 ${
+                  incidentType ? 'bg-rose-50 text-rose-600 border border-rose-200' : 'bg-white border border-slate-200 text-[#104a60]'
+                }`}>
+                  <Smartphone className="w-6 h-6" />
                 </div>
                 <div>
                   <h4 className="font-black text-slate-900 text-sm">{position.modeloOficial}</h4>
                   <p className="text-xs text-slate-400">{position.categoria} • Puesto #{position.posicionNumero}</p>
                 </div>
               </div>
+
+              {/* Detalle específico según Incidencia */}
+              {incidentType === 'no_coincide' && (
+                <div className="flex justify-between py-1 border-b border-slate-100 bg-rose-50/60 px-2 rounded-lg">
+                  <span className="text-rose-700 font-bold">Modelo en su lugar:</span>
+                  <span className="font-black text-rose-900">{replacedModel || 'No especificado'}</span>
+                </div>
+              )}
+
+              {incidentType === 'robo' && (
+                <>
+                  <div className="flex justify-between py-1 border-b border-slate-100 bg-rose-50/60 px-2 rounded-lg">
+                    <span className="text-rose-700 font-bold">Estado:</span>
+                    <span className="font-black text-rose-900">Sustraído / Robo</span>
+                  </div>
+                  <div className="flex justify-between py-1 border-b border-slate-100 bg-rose-50/60 px-2 rounded-lg">
+                    <span className="text-rose-700 font-bold">IMEI previo a baja:</span>
+                    <span className="font-mono font-black text-rose-900">{previousImei || imei || 'Sin IMEI previo'}</span>
+                  </div>
+                </>
+              )}
+
+              {incidentType === 'fallo_alarmado' && (
+                <>
+                  <div className="flex justify-between py-1 border-b border-slate-100 bg-amber-50/60 px-2 rounded-lg">
+                    <span className="text-amber-800 font-bold">Dispositivo en tienda:</span>
+                    <span className="font-black text-amber-950">
+                      {hasDeviceWithAlarmFault ? 'SÍ, presente' : 'NO, falta dispositivo'}
+                    </span>
+                  </div>
+                  <div className="flex justify-between py-1 border-b border-slate-100 bg-amber-50/60 px-2 rounded-lg">
+                    <span className="text-amber-800 font-bold">Acción requerida:</span>
+                    <span className="font-bold text-amber-900">
+                      {hasDeviceWithAlarmFault ? 'Enviar únicamente alarma' : 'Enviar alarma + dispositivo'}
+                    </span>
+                  </div>
+                </>
+              )}
 
               <div className="flex justify-between py-1 border-b border-slate-100">
                 <span className="text-slate-400 font-medium">Tipo de Terminal:</span>
@@ -641,10 +1132,12 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
                 </span>
               </div>
 
-              <div className="flex justify-between py-1 border-b border-slate-100">
-                <span className="text-slate-400 font-medium">{isSmartphone ? 'IMEI Registrado:' : 'Número de Serie:'}</span>
-                <span className="font-mono font-bold text-slate-900">{imei || (isDummy ? 'Maqueta (Exento)' : 'LDU')}</span>
-              </div>
+              {!incidentType && (
+                <div className="flex justify-between py-1 border-b border-slate-100">
+                  <span className="text-slate-400 font-medium">{isSmartphone ? 'IMEI Registrado:' : 'Número de Serie:'}</span>
+                  <span className="font-mono font-bold text-slate-900">{imei || (isDummy ? 'Maqueta (Exento)' : 'LDU')}</span>
+                </div>
+              )}
 
               <div className="flex justify-between py-1 border-b border-slate-100">
                 <span className="text-slate-400 font-medium">Centro:</span>

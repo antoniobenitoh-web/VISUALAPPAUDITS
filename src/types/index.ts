@@ -79,6 +79,9 @@ export type IncidentCategory =
   | 'Falta cartela de precio'
   | 'Suciedad'
   | 'Dispositivo no asegurado'
+  | 'No coincide'
+  | 'Robo'
+  | 'Fallo alarmado'
   | 'Otro';
 
 export interface PositionAuditState {
