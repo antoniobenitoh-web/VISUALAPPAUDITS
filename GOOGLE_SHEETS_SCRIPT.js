@@ -417,90 +417,10 @@ function doPost(e) {
         driveError = driveErr.toString();
       }
 
-      // ==============================================================
-      // 2. PESTAÑA ESPECÍFICA DE LA TIENDA EN GOOGLE SHEETS
-      // ==============================================================
-      try {
-        const storeSheetName = (payload.nombreTienda || "Tienda").slice(0, 30);
-        let storeSheet = ss.getSheetByName(storeSheetName);
-        
-        if (!storeSheet) {
-          storeSheet = ss.insertSheet(storeSheetName);
-          const headers = [
-            "Fecha", "Hora", "Tienda", "Espacio", "Posición", 
-            "Modelo esperado", "Modelo detectado", "IMEI", "Estado"
-          ];
-          storeSheet.appendRow(headers);
-          
-          const headerRange = storeSheet.getRange(1, 1, 1, headers.length);
-          headerRange.setBackground("#009ca6").setFontColor("#FFFFFF").setFontWeight("bold");
-          storeSheet.setFrozenRows(1);
-        }
-
-        positions.forEach(function(p) {
-          const isOk = p.estadoPosicion === 'OK';
-          const isInc = p.estadoPosicion === 'Incidencia';
-          const estadoLabel = isOk ? 'OK' : isInc ? 'INCIDENCIA' : 'NO AUDITADO';
-
-          const rowNum = storeSheet.getLastRow() + 1;
-          storeSheet.appendRow([
-            dateFormatted,
-            timeFormatted,
-            payload.nombreTienda,
-            p.mesaId || "Xiaomi",
-            String(p.posicionNumero).padStart(2, '0'),
-            p.modeloOficial,
-            p.modeloDetectado || "-",
-            p.imeiSerial || "-",
-            estadoLabel
-          ]);
-
-          // Colores de estado idénticos a la directriz
-          const statusCell = storeSheet.getRange(rowNum, 9);
-          if (isOk) {
-            statusCell.setBackground("#D1FAE5").setFontColor("#065F46").setFontWeight("bold");
-          } else if (isInc) {
-            statusCell.setBackground("#FEE2E2").setFontColor("#991B1B").setFontWeight("bold");
-          } else {
-            statusCell.setBackground("#FEF3C7").setFontColor("#92400E").setFontWeight("bold");
-          }
-        });
-      } catch (sheetErr) {
-        Logger.log("Aviso en Pestaña de Tienda: " + sheetErr.toString());
-      }
-
-      // ==============================================================
-      // 3. LOG CENTRALIZADO EN AUDITORIAS_LOG
-      // ==============================================================
-      let logSheet = ss.getSheetByName("Auditorias_Log");
-      if (!logSheet) {
-        logSheet = ss.insertSheet("Auditorias_Log");
-        logSheet.appendRow([
-          "Audit_ID", "Fecha_Hora", "Usuario_Email", "Tienda_ID", "Tienda_Nombre", 
-          "Mesa_Espacio", "Posicion_Numero", "Modelo_Oficial", "Modelo_Detectado", 
-          "IMEI_Serial", "Estado_Posicion", "Tipo_Incidencia", "Es_Maqueta", "Comentarios"
-        ]);
-        logSheet.getRange(1, 1, 1, 14).setBackground("#1F2937").setFontColor("#FFFFFF").setFontWeight("bold");
-      }
-
-      positions.forEach(function(p) {
-        logSheet.appendRow([
-          payload.auditId,
-          payload.fechaHora || `${dateFormatted} ${timeFormatted}`,
-          payload.usuarioEmail,
-          payload.tiendaId,
-          payload.nombreTienda,
-          p.mesaId,
-          p.posicionNumero,
-          p.modeloOficial,
-          p.modeloDetectado,
-          p.imeiSerial || "",
-          p.estadoPosicion,
-          p.tipoIncidencia || "",
-          p.esMaqueta ? "SI" : "NO",
-          p.comentarios || ""
-        ]);
-      });
+      // NOTA: Se ha prescindido de la creación de pestañas por tienda y de Auditorias_Log
+      // en la hoja de cálculo principal para maximizar la velocidad de subida (ahorro de 8-10s)
+      // y mantener la hoja de centros completamente limpia e inalterada.
+      // Toda la información oficial se almacena en Google Drive (archivo Excel formateado y fotos).
 
       return ContentService.createTextOutput(JSON.stringify({ 
         success: true, 
