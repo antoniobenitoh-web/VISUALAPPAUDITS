@@ -52,7 +52,7 @@ export class SheetsService {
       const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'text/plain;charset=utf-8'
         },
         body: JSON.stringify({
           action: 'POST_AUDIT_LOG',
@@ -137,4 +137,43 @@ export class SheetsService {
       return null;
     }
   }
+
+  /**
+   * Diagnóstico de conexión en tiempo real: verifica si el Webhook y la carpeta de Google Drive son accesibles.
+   */
+  static async testConnection(): Promise<{ ok: boolean; driveOk?: boolean; message: string }> {
+    const webhookUrl = DbService.getSheetsWebhookUrl();
+    if (!webhookUrl) return { ok: false, message: 'No hay URL de Webhook configurada.' };
+
+    try {
+      const driveFolderId = DbService.getGoogleDriveFolderId();
+      const testUrl = `${webhookUrl}?action=TEST_DRIVE&folderId=${encodeURIComponent(driveFolderId)}`;
+      const res = await fetch(testUrl);
+      if (!res.ok) return { ok: false, message: `Error HTTP al conectar: ${res.status}` };
+      const data = await res.json();
+      
+      if (data && data.success) {
+        return {
+          ok: true,
+          driveOk: true,
+          message: `Conexión verificada: Google Apps Script tiene acceso a la carpeta "${data.folderName}".`
+        };
+      } else if (data && data.status === 'OK') {
+        return {
+          ok: true,
+          driveOk: false,
+          message: 'Conectado a Google Sheets, pero la versión desplegada en Apps Script aún no tiene autorizada la subida a Google Drive. Por favor, ejecuta testAutorizacionDrive() en Apps Script e implementa una Nueva Versión.'
+        };
+      } else {
+        return {
+          ok: false,
+          driveOk: false,
+          message: (data && data.error) ? data.error : 'Respuesta no esperada del Webhook.'
+        };
+      }
+    } catch (e: any) {
+      return { ok: false, message: 'No se pudo conectar con el Webhook: ' + (e?.message || e) };
+    }
+  }
 }
+

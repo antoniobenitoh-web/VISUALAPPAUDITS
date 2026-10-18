@@ -672,16 +672,12 @@ export const AuditSummaryScreen: React.FC<AuditSummaryScreenProps> = ({
               <span className="px-2 py-1 text-slate-400">...</span>
             </div>
 
-            {/* Tabla de Google Sheets idéntica al render oficial */}
-            <div className="overflow-x-auto">
+            {/* Tabla de Google Sheets idéntica al render oficial de la imagen */}
+            <div className="overflow-x-auto max-h-[460px]">
               <table className="w-full text-left border-collapse text-xs">
-                <thead>
-                  <tr className="bg-[#009ca6] text-white font-bold text-[11px] tracking-wide">
-                    <th className="py-2.5 px-3 border-r border-[#00878f]/50">Fecha</th>
-                    <th className="py-2.5 px-3 border-r border-[#00878f]/50">Hora</th>
-                    <th className="py-2.5 px-3 border-r border-[#00878f]/50">Tienda</th>
-                    <th className="py-2.5 px-3 border-r border-[#00878f]/50">Espacio</th>
-                    <th className="py-2.5 px-3 border-r border-[#00878f]/50 text-center">Posición</th>
+                <thead className="sticky top-0 z-10">
+                  <tr className="bg-[#009ca6] text-white font-bold text-[11px] tracking-wide shadow-xs">
+                    <th className="py-2.5 px-2.5 sm:px-3 text-center w-12 border-r border-[#00878f]/50">Posición</th>
                     <th className="py-2.5 px-3 border-r border-[#00878f]/50">Modelo esperado</th>
                     <th className="py-2.5 px-3 border-r border-[#00878f]/50">Modelo detectado</th>
                     <th className="py-2.5 px-3 border-r border-[#00878f]/50">IMEI</th>
@@ -689,35 +685,23 @@ export const AuditSummaryScreen: React.FC<AuditSummaryScreenProps> = ({
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 text-[11px]">
-                  {fullStorePositionsList.slice(0, 8).map((pos, idx) => {
+                  {fullStorePositionsList.map((pos, idx) => {
                     const isOk = pos.estadoPosicion === 'OK';
                     const isInc = pos.estadoPosicion === 'Incidencia';
                     const isAudited = isOk || isInc;
                     return (
                       <tr key={pos.posicionId || idx} className="hover:bg-slate-50/80 transition-colors">
-                        <td className="py-2 px-3 text-slate-600 font-mono text-[10px] whitespace-nowrap">
-                          {currentDateFormatted}
-                        </td>
-                        <td className="py-2 px-3 text-slate-600 font-mono text-[10px]">
-                          {currentTimeFormatted}
-                        </td>
-                        <td className="py-2 px-3 font-semibold text-slate-800 whitespace-nowrap">
-                          {store.nombreTienda}
-                        </td>
-                        <td className="py-2 px-3 text-slate-600 whitespace-nowrap">
-                          {pos.mesaId ? pos.mesaId.replace(' · Cara ', ' C') : 'Xiaomi'}
-                        </td>
-                        <td className="py-2 px-3 text-center font-mono font-bold text-slate-700">
-                          {String(pos.posicionNumero).padStart(2, '0')}
+                        <td className="py-2 px-2.5 sm:px-3 text-center font-mono font-bold text-slate-700">
+                          {pos.posicionNumero}
                         </td>
                         <td className="py-2 px-3 font-medium text-slate-800">
                           {pos.modeloOficial}
                         </td>
-                        <td className="py-2 px-3 text-slate-700 font-medium">
+                        <td className="py-2 px-3 text-slate-600 font-medium">
                           {isAudited ? (pos.modeloDetectado || pos.modeloOficial) : '—'}
                         </td>
-                        <td className="py-2 px-3 font-mono text-[10px] text-slate-600 truncate max-w-[120px]">
-                          {pos.imeiSerial && pos.imeiSerial !== '-' ? `${pos.imeiSerial.slice(0, 6)}XXXXXX` : '—'}
+                        <td className="py-2 px-3 font-mono text-[10px] text-slate-600">
+                          {pos.imeiSerial && pos.imeiSerial !== '-' ? `${pos.imeiSerial.slice(0, 8)}...` : '—'}
                         </td>
                         <td className="py-2 px-3 text-center whitespace-nowrap">
                           {isOk ? (
@@ -729,7 +713,7 @@ export const AuditSummaryScreen: React.FC<AuditSummaryScreenProps> = ({
                               INCIDENCIA
                             </span>
                           ) : (
-                            <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-black bg-[#ffa8a8] text-rose-900 shadow-2xs">
+                            <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-black bg-[#ffa8a8] text-rose-950 shadow-2xs">
                               NO AUDITADO
                             </span>
                           )}
@@ -739,193 +723,54 @@ export const AuditSummaryScreen: React.FC<AuditSummaryScreenProps> = ({
                   })}
                 </tbody>
               </table>
-              {fullStorePositionsList.length > 8 && (
-                <div className="px-4 py-2 bg-slate-50 text-[10px] text-slate-500 font-medium text-center border-t border-slate-100">
-                  Mostrando 8 de {fullStorePositionsList.length} posiciones sincronizadas en Google Sheets.
-                </div>
-              )}
             </div>
           </div>
 
-          {/* PARTE INFERIOR: DOS TARJETAS (CARPETA GOOGLE DRIVE + BENEFICIOS) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* PARTE INFERIOR: ACCIONES Y CONFIRMACIÓN INTERNA (SIN ÁRBOL DE DIRECTORIOS NI BENEFICIOS) */}
+          <div className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm space-y-4">
             
-            {/* TARJETA 1: CARPETA EN GOOGLE DRIVE */}
-            <div className="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-sm flex flex-col justify-between space-y-4">
-              <div>
-                {/* Header de Carpeta Drive */}
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2.5">
-                    {/* Icono oficial Google Drive */}
-                    <div className="w-7 h-7 flex items-center justify-center">
-                      <svg className="w-6 h-6" viewBox="0 0 87.3 78" fill="none">
-                        <path d="m6.6 66.85 3.85 6.65c.8 1.4 1.9 2.5 3.2 3.3l16.3-28.2H6.6c0 1.5.4 3 1.2 4.3l-1.2 13.95z" fill="#0066DA"/>
-                        <path d="M43.65 25 29.8 1.1c-1.3.8-2.4 1.9-3.2 3.2l-25.4 44c-.8 1.4-1.2 2.9-1.2 4.4h29.95L43.65 25z" fill="#00AC47"/>
-                        <path d="m73.55 76.8c1.3-.8 2.4-1.9 3.2-3.2l7.7-13.3c.8-1.4 1.2-2.9 1.2-4.4 0-1.5-.4-3-1.2-4.3l-20.7-35.9H43.65l13.85 24H73.55l-16.25 28.2 16.25 8.9z" fill="#EA4335"/>
-                        <path d="M43.65 25 57.5 1.1C56.2.3 54.7 0 53.2 0H34.1c-1.5 0-3 .4-4.3 1.1L43.65 25z" fill="#00832D"/>
-                        <path d="M59.95 52.7H27.35L11.1 80.9c1.3.8 2.8 1.1 4.3 1.1h56.4c1.5 0 3-.4 4.3-1.1L59.95 52.7z" fill="#2684FC"/>
-                        <path d="M73.55 76.8 59.95 52.7H29.95l-16.3 28.2c1.3.8 2.8 1.1 4.3 1.1h56.4c1.5 0 3-.4 4.3-1.1z" fill="#FFBA00"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 className="text-xs sm:text-sm font-bold text-slate-800">
-                        Carpeta en Google Drive
-                      </h3>
-                      <p className="text-[10px] text-slate-400 font-mono truncate max-w-[200px]">
-                        ID: {driveRootFolderId}
-                      </p>
-                    </div>
-                  </div>
-
-                  <a
-                    href={driveRootUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-1.5 text-slate-400 hover:text-[#009ca6] transition rounded-lg hover:bg-slate-50"
-                    title="Abrir carpeta en Google Drive"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-                </div>
-
-                {/* Vista en Árbol de Carpetas */}
-                <div className="bg-slate-50/80 rounded-xl p-3 border border-slate-200/70 font-mono text-xs text-slate-700 space-y-1">
-                  <div className="flex items-center gap-1.5 font-bold text-slate-900">
-                    <Folder className="w-4 h-4 text-amber-500 fill-amber-500" />
-                    <span className="truncate">AUDITORÍA ESPACIOS DE MARCA</span>
-                  </div>
-                  
-                  <div className="pl-4 border-l border-slate-200 ml-2 space-y-1">
-                    <div className="flex items-center gap-1.5 font-semibold text-slate-800">
-                      <Folder className="w-4 h-4 text-amber-500 fill-amber-500" />
-                      <span className="truncate">{store.retailer}</span>
-                    </div>
-
-                    <div className="pl-4 border-l border-slate-200 ml-2 space-y-1">
-                      <div className="flex items-center gap-1.5 font-semibold text-slate-800">
-                        <Folder className="w-4 h-4 text-amber-500 fill-amber-500" />
-                        <span className="truncate">{store.nombreTienda}</span>
-                      </div>
-
-                      <div className="pl-4 border-l border-slate-200 ml-2 space-y-1">
-                        <div className="flex items-center gap-1.5 text-slate-700">
-                          <Folder className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-                          <span>{currentYear}</span>
-                        </div>
-
-                        <div className="pl-4 border-l border-slate-200 ml-2 space-y-1">
-                          <div className="flex items-center gap-1.5 text-slate-800 font-medium">
-                            <Folder className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-                            <span>{currentDateDash}</span>
-                          </div>
-
-                          {/* Archivos guardados */}
-                          <div className="pl-4 border-l border-slate-200 ml-2 space-y-1 pt-0.5 text-[11px] text-slate-600">
-                            <div className="flex items-center gap-1.5 text-emerald-700 font-semibold truncate">
-                              <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                              <span className="truncate">Auditoria_{store.nombreTienda.replace(/[^a-zA-Z0-9]/g, '')}_{currentDateDash}.xlsx</span>
-                            </div>
-                            {auditedList.slice(0, 2).map((item, i) => (
-                              <div key={i} className="flex items-center gap-1.5 text-slate-600 truncate">
-                                <FileText className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                                <span className="truncate">
-                                  {(item.modeloOficial || 'Dispositivo').replace(/[^a-zA-Z0-9]/g, '')}_{item.imeiSerial && item.imeiSerial !== '-' ? item.imeiSerial.slice(0, 6) : `Pos${item.posicionNumero}`}.jpg
-                                </span>
-                              </div>
-                            ))}
-                            {auditedList.length > 2 && (
-                              <div className="text-[10px] text-slate-400 italic pl-5">
-                                + {auditedList.length - 2} fotografías de evidencia más...
-                              </div>
-                            )}
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Botones inferiores de la tarjeta de Drive */}
-              <div className="space-y-2 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setMode('summary')}
-                  className="w-full bg-[#009ca6] hover:bg-[#008992] text-white font-bold py-2.5 px-4 rounded-xl text-xs sm:text-sm shadow-sm transition cursor-pointer text-center"
-                >
-                  Ver resumen
-                </button>
-                <button
-                  type="button"
-                  onClick={onFinishComplete}
-                  className="w-full bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-bold py-2.5 px-4 rounded-xl text-xs sm:text-sm transition cursor-pointer text-center"
-                >
-                  Volver al inicio
-                </button>
+            {/* Aviso de procesamiento interno en Google Drive */}
+            <div className="flex items-center gap-3 p-3.5 bg-emerald-50/90 border border-emerald-200/90 rounded-xl text-emerald-800 text-xs">
+              <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+              <div className="flex-1">
+                <p className="font-bold text-emerald-950 text-xs sm:text-sm">
+                  Auditoría procesada y archivada internamente con éxito
+                </p>
+                <p className="text-[11px] text-emerald-700 mt-0.5">
+                  El informe Excel oficial y las fotografías de evidencia se han sincronizado con Google Drive y registrado en Google Sheets.
+                </p>
               </div>
             </div>
 
-            {/* TARJETA 2: BENEFICIOS */}
-            <div className="bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-6 shadow-sm flex flex-col justify-between">
-              <div>
-                <h3 className="text-base sm:text-lg font-black text-slate-800 mb-4 tracking-tight">
-                  Beneficios
-                </h3>
+            {/* Botones de acción directos */}
+            <div className="space-y-2.5 pt-1">
+              <button
+                type="button"
+                onClick={onFinishComplete}
+                className="w-full bg-gradient-to-r from-[#009ca6] via-[#008992] to-[#104a60] hover:brightness-110 active:scale-[0.99] text-white font-black py-4 px-4 rounded-2xl shadow-xl shadow-[#009ca6]/20 transition flex items-center justify-center gap-2 cursor-pointer text-sm sm:text-base"
+              >
+                <span>Finalizar y Volver a Tiendas</span>
+              </button>
 
-                <ul className="space-y-3.5 text-xs sm:text-sm text-slate-700">
-                  <li className="flex items-center gap-3">
-                    <span className="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0">
-                      <Check className="w-3.5 h-3.5 stroke-[3]" />
-                    </span>
-                    <span className="font-medium text-slate-800">Control de posición y modelo.</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <span className="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0">
-                      <Check className="w-3.5 h-3.5 stroke-[3]" />
-                    </span>
-                    <span className="font-medium text-slate-800">Registro de IMEI y fotografía.</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <span className="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0">
-                      <Check className="w-3.5 h-3.5 stroke-[3]" />
-                    </span>
-                    <span className="font-medium text-slate-800">Trazabilidad por tienda y fecha.</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <span className="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0">
-                      <Check className="w-3.5 h-3.5 stroke-[3]" />
-                    </span>
-                    <span className="font-medium text-slate-800">Detección de duplicados.</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <span className="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0">
-                      <Check className="w-3.5 h-3.5 stroke-[3]" />
-                    </span>
-                    <span className="font-medium text-slate-800">Información en tiempo real.</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <span className="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0">
-                      <Check className="w-3.5 h-3.5 stroke-[3]" />
-                    </span>
-                    <span className="font-medium text-slate-800">Sin necesidad de instalación (vía PWA).</span>
-                  </li>
-                </ul>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={handleDownloadExcel}
+                  className="w-full bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 font-bold py-3 px-3 rounded-xl transition flex items-center justify-center gap-2 cursor-pointer text-xs"
+                >
+                  <FileSpreadsheet className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>Descargar Copia Excel (.xlsx)</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setMode('summary')}
+                  className="w-full bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 font-bold py-3 px-3 rounded-xl transition flex items-center justify-center gap-2 cursor-pointer text-xs"
+                >
+                  <RotateCcw className="w-4 h-4 text-slate-500 shrink-0" />
+                  <span>Ver Resumen Métrico</span>
+                </button>
               </div>
-
-              {/* Firma manuscrita corporativa "Todo bajo control" */}
-              <div className="pt-6 pb-2 text-right">
-                <div className="inline-block relative">
-                  <span className="text-xl sm:text-2xl font-bold tracking-wide italic text-[#009ca6] drop-shadow-2xs select-none" style={{ fontFamily: 'Caveat, cursive, sans-serif' }}>
-                    Todo bajo control
-                  </span>
-                  {/* Trazo decorativo de subrayado manual */}
-                  <svg className="w-full h-3 -mt-1 text-[#009ca6]" viewBox="0 0 100 12" fill="none">
-                    <path d="M2 7C25 2 70 3 98 8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-                  </svg>
-                </div>
-              </div>
-
             </div>
 
           </div>

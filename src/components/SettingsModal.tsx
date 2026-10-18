@@ -13,6 +13,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
   const [driveFolderId, setDriveFolderId] = useState(DbService.getGoogleDriveFolderId());
   const [statusMsg, setStatusMsg] = useState<{ type: 'ok' | 'err'; text: string } | null>(null);
   const [isSyncing, setIsSyncing] = useState(false);
+  const [isTesting, setIsTesting] = useState(false);
 
   if (!isOpen) return null;
 
@@ -20,6 +21,24 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
     DbService.saveSheetsWebhookUrl(webhookUrl);
     DbService.saveGoogleDriveFolderId(driveFolderId);
     setStatusMsg({ type: 'ok', text: 'Configuración de Google Sheets y Google Drive guardada correctamente.' });
+  };
+
+  const handleTestConnection = async () => {
+    setIsTesting(true);
+    setStatusMsg(null);
+    DbService.saveSheetsWebhookUrl(webhookUrl);
+    DbService.saveGoogleDriveFolderId(driveFolderId);
+    try {
+      const result = await SheetsService.testConnection();
+      setStatusMsg({
+        type: result.driveOk ? 'ok' : 'err',
+        text: result.message
+      });
+    } catch (e: any) {
+      setStatusMsg({ type: 'err', text: 'Error al probar conexión: ' + (e?.message || e) });
+    } finally {
+      setIsTesting(false);
+    }
   };
 
   const handleSyncPending = async () => {
@@ -99,6 +118,15 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
             <p className="text-[11px] text-slate-400">
               Webhook para sincronizar las pestañas de tienda, <strong className="text-slate-300">Auditorias_Log</strong> y subir archivos a Google Drive.
             </p>
+            <button
+              type="button"
+              onClick={handleTestConnection}
+              disabled={isTesting || !webhookUrl}
+              className="w-full py-2.5 px-3 bg-sky-950/60 hover:bg-sky-900/60 text-sky-300 border border-sky-800/80 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+            >
+              <RefreshCw className={`w-3.5 h-3.5 ${isTesting ? 'animate-spin' : ''}`} />
+              <span>{isTesting ? 'Comprobando acceso a Google Drive...' : 'Probar Conexión con Google Drive'}</span>
+            </button>
           </div>
 
           {statusMsg && (

@@ -8,14 +8,46 @@
  * 2. Hoja de Usuarios y Permisos RBAC:
  *    ID: 1HgC4qVTZYbD17pQSiunxptck4C_VIv3_8DCgrYAfAGw
  *    Pestaña: "usuarios"
- *    - Columna C: Usuario (Email)
- *    - Columna D: Contraseña
- *    - Columna K: Centro asignado (Tienda)
- *    - Columna Zona: Zona asignada
+ * 
+ * 3. Carpeta Raíz de Google Drive para Almacenar Auditorías:
+ *    ID: 1RNmY0KnIqtOV6zU0mu080bJKAFFEhRyD
  */
 
 const SPREADSHEET_SPACES_ID = "1s9hGfmS7tqvD3hP-QktLyDsTo_fRn7q8r0IMc1Dy-uo";
 const SPREADSHEET_USERS_ID = "1HgC4qVTZYbD17pQSiunxptck4C_VIv3_8DCgrYAfAGw";
+const GDRIVE_ROOT_FOLDER_ID = "1RNmY0KnIqtOV6zU0mu080bJKAFFEhRyD";
+
+/**
+ * =========================================================================
+ * PASO 1 (OBLIGATORIO): AUTORIZAR PERMISOS DE GOOGLE DRIVE EN APPS SCRIPT
+ * =========================================================================
+ * Para que Google permita a esta aplicación crear carpetas y guardar
+ * los archivos Excel y Fotos en Drive:
+ * 1. En el editor de Apps Script, selecciona la función "testAutorizacionDrive" en la barra superior.
+ * 2. Haz clic en "Ejecutar" (icono de Reproducir ▶).
+ * 3. Si Google muestra la ventana emergente "Se requiere autorización":
+ *    - Pulsa "Revisar permisos".
+ *    - Selecciona tu cuenta de Google.
+ *    - Pulsa "Avanzada" (o "Configuración avanzada").
+ *    - Haz clic en "Ir a Proyecto (no seguro)" abajo del todo.
+ *    - Pulsa "Permitir".
+ * 4. Verás en el registro de ejecución: "✅ CONEXIÓN EXITOSA CON GOOGLE DRIVE".
+ * 5. Por último, haz clic en: Implementar > Gestionar implementaciones > Editar (icono lápiz) >
+ *    Versión: "Nueva versión" > Implementar.
+ */
+function testAutorizacionDrive() {
+  try {
+    const rootFolder = DriveApp.getFolderById(GDRIVE_ROOT_FOLDER_ID);
+    const folderName = rootFolder.getName();
+    Logger.log("✅ CONEXIÓN EXITOSA CON GOOGLE DRIVE.");
+    Logger.log("Carpeta Raíz: " + folderName + " (ID: " + rootFolder.getId() + ")");
+    Logger.log("URL de acceso: " + rootFolder.getUrl());
+    return "OK: " + folderName;
+  } catch (e) {
+    Logger.log("❌ ERROR AL ACCEDER A GOOGLE DRIVE: " + e.toString());
+    throw new Error("No se pudo acceder a la carpeta de Google Drive ID " + GDRIVE_ROOT_FOLDER_ID + ". Asegúrate de autorizar los permisos de DriveApp y que la carpeta esté compartida con tu cuenta con permisos de Editor.");
+  }
+}
 
 function getSpacesSpreadsheet() {
   try {
@@ -196,12 +228,26 @@ function doGet(e) {
       .setMimeType(ContentService.MimeType.JSON);
   }
 
+  if (action === "TEST_DRIVE") {
+    try {
+      const folderId = (e && e.parameter && e.parameter.folderId) ? e.parameter.folderId : GDRIVE_ROOT_FOLDER_ID;
+      const folder = DriveApp.getFolderById(folderId);
+      return ContentService.createTextOutput(JSON.stringify({ 
+        success: true, 
+        folderName: folder.getName(),
+        folderId: folder.getId()
+      })).setMimeType(ContentService.MimeType.JSON);
+    } catch (err) {
+      return ContentService.createTextOutput(JSON.stringify({ 
+        success: false, 
+        error: err.toString() 
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+  }
+
   return ContentService.createTextOutput(JSON.stringify({ status: "OK", spacesSheetId: SPREADSHEET_SPACES_ID, usersSheetId: SPREADSHEET_USERS_ID }))
     .setMimeType(ContentService.MimeType.JSON);
 }
-
-// ID de Carpeta Raíz de Google Drive para Almacenamiento de Auditorías
-const GDRIVE_ROOT_FOLDER_ID = "1RNmY0KnIqtOV6zU0mu080bJKAFFEhRyD";
 
 function getOrCreateFolder(parentFolder, folderName) {
   const folders = parentFolder.getFoldersByName(folderName);
@@ -232,6 +278,7 @@ function doPost(e) {
       // 1. GESTIÓN DE GOOGLE DRIVE (Carpetas, Excel y Fotos)
       // ==============================================================
       let driveUrl = "";
+      let driveError = "";
       try {
         const rootFolderId = payload.driveFolderId || GDRIVE_ROOT_FOLDER_ID;
         const rootFolder = DriveApp.getFolderById(rootFolderId);
@@ -249,7 +296,8 @@ function doPost(e) {
 
         // 1.1 Guardar archivo Excel oficial (.xlsx)
         if (payload.excelFile && payload.excelFile.base64) {
-          const excelBytes = Utilities.base64Decode(payload.excelFile.base64);
+          const cleanExcel = String(payload.excelFile.base64).replace(/^data:.*?;base64,/, '');
+          const excelBytes = Utilities.base64Decode(cleanExcel);
           const excelBlob = Utilities.newBlob(
             excelBytes, 
             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", 
@@ -262,7 +310,7 @@ function doPost(e) {
         if (payload.photos && Array.isArray(payload.photos) && payload.photos.length > 0) {
           payload.photos.forEach(function(photo) {
             if (photo.base64) {
-              const cleanBase64 = photo.base64.replace(/^data:image\/\w+;base64,/, '');
+              const cleanBase64 = String(photo.base64).replace(/^data:image\/\w+;base64,/, '').replace(/^data:.*?;base64,/, '');
               const photoBytes = Utilities.base64Decode(cleanBase64);
               const photoBlob = Utilities.newBlob(
                 photoBytes, 
@@ -275,6 +323,7 @@ function doPost(e) {
         }
       } catch (driveErr) {
         Logger.log("Aviso en Drive: " + driveErr.toString());
+        driveError = driveErr.toString();
       }
 
       // ==============================================================
@@ -365,7 +414,8 @@ function doPost(e) {
       return ContentService.createTextOutput(JSON.stringify({ 
         success: true, 
         count: positions.length,
-        driveFolderUrl: driveUrl || `https://drive.google.com/drive/folders/${GDRIVE_ROOT_FOLDER_ID}`
+        driveFolderUrl: driveUrl || `https://drive.google.com/drive/folders/${GDRIVE_ROOT_FOLDER_ID}`,
+        driveError: driveError || undefined
       })).setMimeType(ContentService.MimeType.JSON);
     }
 
