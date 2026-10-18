@@ -134,7 +134,14 @@ export class DbService {
 
   // Configuración de Google Sheets Webhook
   static getSheetsWebhookUrl(): string {
-    return localStorage.getItem(SHEETS_CONFIG_KEY) || 'https://script.google.com/macros/s/AKfycbw6m4LUbqvMEVVWFFGds_IyMokoB9v0wig5KcPjUi8BcXDhRdC0hMldXFayP5_c67HOQg/exec';
+    const defaultUrl = 'https://script.google.com/macros/s/AKfycbzn_qcs03cfotJkAhHEn6YskpKNIZIXlWEBmXmTE_NN89KCnt8DP_7AGx6zQ9aENye5/exec';
+    const stored = localStorage.getItem(SHEETS_CONFIG_KEY);
+    // Si tiene la URL antigua desactualizada, migrar automáticamente a la nueva URL activa con Drive
+    if (stored && stored.includes('AKfycbw6m4LUbqvMEVVWFFGds_IyMokoB9v0wig5KcPjUi8BcXDhRdC0hMldXFayP5_c67HOQg')) {
+      localStorage.setItem(SHEETS_CONFIG_KEY, defaultUrl);
+      return defaultUrl;
+    }
+    return stored || defaultUrl;
   }
 
   static saveSheetsWebhookUrl(url: string) {
