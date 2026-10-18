@@ -49,7 +49,7 @@ export const App: React.FC = () => {
     if (navigator.onLine) {
       SheetsService.refreshCatalogFromSheets().then((data) => {
         if (data) {
-          if (data.stores && data.stores.length > 0) setStores(data.stores);
+          if (data.stores && data.stores.length > 0) setStores(data.stores.map(s => DbService.sanitizeStore(s)));
           if (data.users && data.users.length > 0) setUsers(data.users);
         }
       }).catch((e) => {

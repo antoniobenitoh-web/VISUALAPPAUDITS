@@ -27,6 +27,33 @@ export class DbService {
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
   }
 
+  // Sanitizador universal de tiendas para asegurar coherencia de retailer (especialmente Alcampo Utebo)
+  static sanitizeStore(s: StoreCenter): StoreCenter {
+    const nameLower = (s.nombreTienda || '').toLowerCase();
+    const idLower = (s.tiendaId || '').toLowerCase();
+    const spaceLower = (s.tipoEspacioId || '').toLowerCase();
+
+    let retailer = s.retailer;
+    if (
+      nameLower.includes('alcampo') || 
+      nameLower.includes('utebo') || 
+      idLower.startsWith('alcp') || 
+      spaceLower.includes('alcampo')
+    ) {
+      retailer = 'Alcampo';
+    } else if (nameLower.includes('eci') || nameLower.includes('corte') || idLower.startsWith('eci')) {
+      retailer = 'El Corte Inglés';
+    } else if (nameLower.includes('fnac') || idLower.startsWith('fnac')) {
+      retailer = 'FNAC';
+    } else if (nameLower.includes('crf') || nameLower.includes('carrefour') || idLower.startsWith('crf')) {
+      retailer = 'Carrefour';
+    } else if (nameLower.includes('media') || nameLower.includes('mm') || idLower.startsWith('mies')) {
+      retailer = 'MediaMarkt';
+    }
+
+    return { ...s, retailer };
+  }
+
   // Tiendas
   static getStores(): StoreCenter[] {
     const raw = localStorage.getItem(STORES_KEY);
@@ -46,22 +73,12 @@ export class DbService {
       localStorage.setItem(STORES_KEY, JSON.stringify(INITIAL_STORES));
     }
 
-    // Auto-sanitizar tiendas para asegurar coherencia de retailer
-    return stores.map(s => {
-      if (s.nombreTienda && s.nombreTienda.toLowerCase().includes('alcampo') && s.retailer !== 'Alcampo') {
-        return { ...s, retailer: 'Alcampo' as const };
-      }
-      return s;
-    });
+    // Auto-sanitizar tiendas para asegurar coherencia absoluta de retailer
+    return stores.map(s => this.sanitizeStore(s));
   }
 
   static saveStores(stores: StoreCenter[]) {
-    const sanitized = stores.map(s => {
-      if (s.nombreTienda && s.nombreTienda.toLowerCase().includes('alcampo') && s.retailer !== 'Alcampo') {
-        return { ...s, retailer: 'Alcampo' as const };
-      }
-      return s;
-    });
+    const sanitized = stores.map(s => this.sanitizeStore(s));
     localStorage.setItem(STORES_KEY, JSON.stringify(sanitized));
   }
 

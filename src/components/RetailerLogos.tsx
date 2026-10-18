@@ -17,21 +17,21 @@ export const RetailerLogo: React.FC<RetailerLogoProps> = ({
   let logoSrc = './images/retailers/mediamarkt.png';
   let altText = id;
 
-  if (normId.includes('media') || normId.includes('markt') || normId === 'mediamarkt') {
-    logoSrc = './images/retailers/mediamarkt.png';
-    altText = 'MediaMarkt';
+  if (normId.includes('alcampo') || normId.includes('utebo') || normId.startsWith('alcp')) {
+    logoSrc = './images/retailers/alcampo.png';
+    altText = 'Alcampo';
   } else if (normId.includes('corte') || normId.includes('eci') || normId === 'el corte inglés') {
     logoSrc = './images/retailers/el_corte_ingles.svg';
     altText = 'El Corte Inglés';
   } else if (normId.includes('fnac')) {
     logoSrc = './images/retailers/fnac.webp';
     altText = 'FNAC';
-  } else if (normId.includes('carrefour')) {
+  } else if (normId.includes('carrefour') || normId.includes('crf')) {
     logoSrc = './images/retailers/carrefour.svg';
     altText = 'Carrefour';
-  } else if (normId.includes('alcampo')) {
-    logoSrc = './images/retailers/alcampo.png';
-    altText = 'Alcampo';
+  } else if (normId.includes('media') || normId.includes('markt') || normId === 'mediamarkt') {
+    logoSrc = './images/retailers/mediamarkt.png';
+    altText = 'MediaMarkt';
   } else {
     return (
       <div className={`inline-flex items-center justify-center px-2 py-0.5 bg-slate-100 rounded-md text-slate-700 font-bold text-[11px] ${className}`}>

@@ -191,12 +191,19 @@ function getUsersFromExternalSheet() {
         centrosAsignados = promotorCentersMap[emailLower] || (centroFila ? [centroFila] : []);
       }
 
+      const cUpper = String(centroFila).toUpperCase();
+      let userRetailer = "MediaMarkt";
+      if (cUpper.indexOf("ECI") !== -1 || cUpper.indexOf("CORTE") !== -1) userRetailer = "El Corte Inglés";
+      else if (cUpper.indexOf("FNAC") !== -1) userRetailer = "FNAC";
+      else if (cUpper.indexOf("CRF") !== -1 || cUpper.indexOf("CARREFOUR") !== -1) userRetailer = "Carrefour";
+      else if (cUpper.indexOf("ALCAMPO") !== -1 || cUpper.indexOf("ALCP") !== -1 || cUpper.indexOf("UTEBO") !== -1) userRetailer = "Alcampo";
+
       usersMap[emailLower] = {
         email: email,
         password: password,
         nombre: nombre,
         rol: rol,
-        retailer: centroFila.indexOf("ECI") !== -1 ? "El Corte Inglés" : "MediaMarkt",
+        retailer: userRetailer,
         zona: "Cataluña",
         region: "Noreste",
         tiendaAsignadaId: centrosAsignados.length > 0 ? centrosAsignados.join(", ") : centroFila,
@@ -283,9 +290,25 @@ function doGet(e) {
       if (hasLineal) spaces.push("LINEAL SMARTWATCH");
 
       let retailer = "MediaMarkt";
-      if (name.indexOf("ECI") !== -1 || name.indexOf("Corte") !== -1) retailer = "El Corte Inglés";
-      else if (name.indexOf("FNAC") !== -1 || name.indexOf("Fnac") !== -1) retailer = "FNAC";
-      else if (name.indexOf("CRF") !== -1 || name.indexOf("Carrefour") !== -1) retailer = "Carrefour";
+      const nameUpper = String(name).toUpperCase();
+      const codeUpper = String(code).toUpperCase();
+      const planUpper = String(planogram).toUpperCase();
+
+      if (nameUpper.indexOf("ECI") !== -1 || nameUpper.indexOf("CORTE") !== -1 || codeUpper.indexOf("ECI") !== -1) {
+        retailer = "El Corte Inglés";
+      } else if (nameUpper.indexOf("FNAC") !== -1 || codeUpper.indexOf("FNAC") !== -1) {
+        retailer = "FNAC";
+      } else if (nameUpper.indexOf("CRF") !== -1 || nameUpper.indexOf("CARREFOUR") !== -1 || codeUpper.indexOf("CRF") !== -1) {
+        retailer = "Carrefour";
+      } else if (
+        nameUpper.indexOf("ALCAMPO") !== -1 || 
+        nameUpper.indexOf("ALCP") !== -1 || 
+        nameUpper.indexOf("UTEBO") !== -1 || 
+        codeUpper.indexOf("ALCP") !== -1 || 
+        planUpper.indexOf("ALCAMPO") !== -1
+      ) {
+        retailer = "Alcampo";
+      }
 
       stores.push({
         tiendaId: String(code).trim(),
