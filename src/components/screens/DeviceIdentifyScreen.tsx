@@ -124,6 +124,14 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
 
   const isSmartphone = position.categoria === 'Smartphone';
 
+  const attachStreamToVideo = (videoEl: HTMLVideoElement | null, stream: MediaStream | null) => {
+    if (!videoEl || !stream) return;
+    if (videoEl.srcObject !== stream) {
+      videoEl.srcObject = stream;
+    }
+    videoEl.play().catch(() => {});
+  };
+
   const startCamera = async (mode: 'environment' | 'user' = facingMode) => {
     stopCamera();
     setCameraError(null);
@@ -142,10 +150,7 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
       });
       streamRef.current = stream;
       setCameraActive(true);
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        videoRef.current.play().catch(() => {});
-      }
+      attachStreamToVideo(videoRef.current, stream);
     } catch (err: any) {
       console.warn('Error starting camera stream:', err);
       setCameraActive(false);
@@ -171,6 +176,13 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
       stopCamera();
     };
   }, [subStep, tempCapturedPhoto]);
+
+  // Asegurar que si el elemento video se monta tras recibir el stream, se vincule al instante
+  useEffect(() => {
+    if (cameraActive && streamRef.current && videoRef.current) {
+      attachStreamToVideo(videoRef.current, streamRef.current);
+    }
+  }, [cameraActive, subStep]);
 
   const toggleFacingMode = () => {
     const nextMode = facingMode === 'environment' ? 'user' : 'environment';
@@ -417,45 +429,67 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
               </button>
             </div>
 
-            {/* Input Directo de IMEI o Número de Serie */}
+            {/* Visualizador Bloqueado de IMEI o Número de Serie (Solo Escaneo o Teclado) */}
             <div className="pt-2">
               <div className="flex items-center justify-between mb-1.5">
-                <label className="block text-xs font-bold text-slate-700">
-                  {isSmartphone ? 'IMEI (15 dígitos)' : 'Número de Serie (S/N)'}
-                </label>
-                <span className="text-[10px] text-slate-400 font-mono">
-                  {isSmartphone ? '863142080419480' : '68707/EFAPBS6QD00345'}
+                <div className="flex items-center gap-1.5">
+                  <Lock className="w-3.5 h-3.5 text-slate-500" />
+                  <label className="block text-xs font-bold text-slate-800">
+                    {isSmartphone ? 'IMEI / Serial Asignado' : 'Número de Serie (S/N)'}
+                  </label>
+                </div>
+                <span className="text-[10px] font-bold text-teal-800 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-200/80 flex items-center gap-1">
+                  <Lock className="w-2.5 h-2.5 text-teal-600" />
+                  <span>Solo Escáner / Teclado</span>
                 </span>
               </div>
               <div className="relative">
                 <input
                   type="text"
+                  readOnly
                   value={imei}
-                  onChange={(e) => {
-                    const val = e.target.value;
-                    if (isSmartphone) {
-                      setImei(val.replace(/\D/g, '').slice(0, 15));
-                    } else {
-                      setImei(val.toUpperCase());
-                    }
-                  }}
-                  placeholder={isSmartphone ? '863142080419480' : '68707/EFAPBS6QD00345'}
-                  className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3.5 text-sm font-mono font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#009ca6] focus:bg-white transition"
+                  placeholder={
+                    isSmartphone 
+                      ? 'Bloqueado · Usa "Escanear" o "Teclado táctil" arriba' 
+                      : 'Bloqueado · Usa "Escanear" o "Teclado táctil"'
+                  }
+                  className={`w-full rounded-2xl px-4 py-3.5 text-sm font-mono font-black transition cursor-default select-all ${
+                    imei
+                      ? 'bg-emerald-50/80 border-2 border-emerald-500/80 text-emerald-950 shadow-xs'
+                      : 'bg-slate-100 border border-slate-300 text-slate-400 placeholder:text-slate-400/90 placeholder:text-xs placeholder:font-normal'
+                  }`}
                 />
+                {imei ? (
+                  <button
+                    type="button"
+                    onClick={() => setImei('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 p-1.5 rounded-xl transition cursor-pointer"
+                    title="Borrar IMEI para reescanear"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                ) : (
+                  <div className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+                    <Lock className="w-4 h-4 text-slate-400" />
+                  </div>
+                )}
+              </div>
+              <div className="flex items-center justify-between mt-1 text-[10px]">
+                <span className="text-slate-500">
+                  {imei 
+                    ? `✓ ${isSmartphone ? 'IMEI' : 'Serial'} registrado (${imei.length} caracteres)` 
+                    : 'Campo de visualización. Para introducir valor pulsa Escanear o Teclado arriba.'}
+                </span>
                 {imei && (
                   <button
-                    onClick={() => setImei('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1"
+                    type="button"
+                    onClick={() => setSubStep('manual_keypad')}
+                    className="text-[#009ca6] font-bold hover:underline cursor-pointer"
                   >
-                    <X className="w-4 h-4" />
+                    Editar con teclado
                   </button>
                 )}
               </div>
-              <p className="text-[10px] text-slate-500 mt-1">
-                {isSmartphone 
-                  ? 'Ejemplo oficial: 863142080419480 (marcar *#06# o escanear código)' 
-                  : 'Ejemplo oficial: 68707/EFAPBS6QD00345 (reverso o base de expositor)'}
-              </p>
             </div>
 
             {/* Selector de Tipo de Terminal: LDU o Maqueta */}
@@ -851,17 +885,11 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
             <div className="bg-slate-50 border-2 border-[#009ca6] rounded-2xl p-3 sm:p-4 flex items-center justify-between shadow-xs">
               <input
                 type="text"
+                readOnly
+                inputMode="none"
                 value={imei}
-                onChange={(e) => {
-                  const val = e.target.value;
-                  if (isSmartphone) {
-                    setImei(val.replace(/\D/g, '').slice(0, 15));
-                  } else {
-                    setImei(val.toUpperCase().slice(0, 30));
-                  }
-                }}
                 placeholder={isSmartphone ? '863142080419480' : '68707/EFAPBS6QD00345'}
-                className="w-full bg-transparent font-mono text-base sm:text-lg font-black text-slate-900 tracking-wider focus:outline-none placeholder:text-slate-400 placeholder:font-normal placeholder:text-xs sm:placeholder:text-sm"
+                className="w-full bg-transparent font-mono text-base sm:text-lg font-black text-slate-900 tracking-wider focus:outline-none placeholder:text-slate-400 placeholder:font-normal placeholder:text-xs sm:placeholder:text-sm cursor-default"
               />
               {imei && (
                 <button
@@ -1294,32 +1322,41 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
                   alt="Evidencia Capturada"
                   className="w-full h-full object-cover"
                 />
-              ) : cameraActive ? (
-                <video
-                  ref={videoRef}
-                  autoPlay
-                  playsInline
-                  muted
-                  className="w-full h-full object-cover"
-                />
               ) : (
-                <div className="p-6 text-center space-y-3">
-                  <Camera className="w-12 h-12 text-slate-500 mx-auto" />
-                  <p className="text-xs text-slate-400">
-                    {cameraError || 'Iniciando cámara en directo...'}
-                  </p>
-                  <label className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#009ca6] text-white rounded-xl text-xs font-bold cursor-pointer hover:bg-[#008992] transition">
-                    <Upload className="w-4 h-4" />
-                    <span>Abrir Cámara / Galería</span>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      capture="environment"
-                      onChange={handleCapturePhoto}
-                      className="hidden"
-                    />
-                  </label>
-                </div>
+                <>
+                  <video
+                    ref={(el) => {
+                      videoRef.current = el;
+                      if (el && streamRef.current && el.srcObject !== streamRef.current) {
+                        el.srcObject = streamRef.current;
+                        el.play().catch(() => {});
+                      }
+                    }}
+                    autoPlay
+                    playsInline
+                    muted
+                    className={`w-full h-full object-cover ${cameraActive ? 'block' : 'hidden'}`}
+                  />
+                  {!cameraActive && (
+                    <div className="p-6 text-center space-y-3">
+                      <Camera className="w-12 h-12 text-slate-500 mx-auto animate-pulse" />
+                      <p className="text-xs text-slate-400">
+                        {cameraError || 'Iniciando cámara en directo...'}
+                      </p>
+                      <label className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#009ca6] text-white rounded-xl text-xs font-bold cursor-pointer hover:bg-[#008992] transition">
+                        <Upload className="w-4 h-4" />
+                        <span>Abrir Cámara / Galería</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          capture="environment"
+                          onChange={handleCapturePhoto}
+                          className="hidden"
+                        />
+                      </label>
+                    </div>
+                  )}
+                </>
               )}
 
               {/* OVERLAY DEL MARCO GUÍA SEGÚN DIRECTRIZ */}
