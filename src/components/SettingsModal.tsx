@@ -1,7 +1,18 @@
 import React, { useState } from 'react';
 import { DbService } from '../services/dbService';
 import { SheetsService } from '../services/sheetsService';
-import { X, Save, RefreshCw, Link2, CheckCircle2, AlertCircle, FileCode } from 'lucide-react';
+import { 
+  X, 
+  RefreshCw, 
+  CheckCircle2, 
+  AlertCircle, 
+  Sparkles, 
+  ShieldCheck, 
+  CloudOff, 
+  Smartphone,
+  ChevronDown,
+  ChevronUp
+} from 'lucide-react';
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -9,38 +20,73 @@ interface SettingsModalProps {
 }
 
 export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose }) => {
-  const [webhookUrl, setWebhookUrl] = useState(DbService.getSheetsWebhookUrl());
-  const [driveFolderId, setDriveFolderId] = useState(DbService.getGoogleDriveFolderId());
-  const [statusMsg, setStatusMsg] = useState<{ type: 'ok' | 'err'; text: string } | null>(null);
+  const [isUpdating, setIsUpdating] = useState(false);
   const [isSyncing, setIsSyncing] = useState(false);
   const [isTesting, setIsTesting] = useState(false);
+  const [statusMsg, setStatusMsg] = useState<{ type: 'ok' | 'err'; text: string } | null>(null);
+  const [showDiagnostics, setShowDiagnostics] = useState(false);
 
   if (!isOpen) return null;
 
-  const handleSave = () => {
-    DbService.saveSheetsWebhookUrl(webhookUrl);
-    DbService.saveGoogleDriveFolderId(driveFolderId);
-    setStatusMsg({ type: 'ok', text: 'Configuración de Google Sheets y Google Drive guardada correctamente.' });
-  };
+  const appVersion = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '1.2.5';
+  const buildTime = typeof __BUILD_TIME__ !== 'undefined' ? __BUILD_TIME__ : 'Reciente';
+  const pendingCount = DbService.getSyncQueue().length;
 
-  const handleTestConnection = async () => {
-    setIsTesting(true);
-    setStatusMsg(null);
-    DbService.saveSheetsWebhookUrl(webhookUrl);
-    DbService.saveGoogleDriveFolderId(driveFolderId);
+  // Actualizar la aplicación limpiando service worker y caché de GitHub Pages
+  const handleUpdateApp = async () => {
+    setIsUpdating(true);
+    setStatusMsg({ type: 'ok', text: 'Buscando última versión compilada en GitHub y renovando caché...' });
+
     try {
-      const result = await SheetsService.testConnection();
-      setStatusMsg({
-        type: result.driveOk ? 'ok' : 'err',
-        text: result.message
+      // 1. Forzar actualización de Service Workers
+      if ('serviceWorker' in navigator) {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        for (const reg of registrations) {
+          await reg.update();
+        }
+      }
+
+      // 2. Limpiar todos los cachés locales de la PWA (Workbox / CacheStorage)
+      if ('caches' in window) {
+        const cacheNames = await caches.keys();
+        await Promise.all(cacheNames.map(name => caches.delete(name)));
+      }
+
+      // 3. Si hay conexión a internet, refrescar catálogos de tiendas y usuarios
+      if (navigator.onLine) {
+        try {
+          await SheetsService.refreshCatalogFromSheets();
+        } catch (e) {
+          console.warn('Aviso al refrescar catálogos:', e);
+        }
+      }
+
+      setStatusMsg({ 
+        type: 'ok', 
+        text: '¡Caché renovada y última versión aplicada! Reiniciando la app...' 
       });
-    } catch (e: any) {
-      setStatusMsg({ type: 'err', text: 'Error al probar conexión: ' + (e?.message || e) });
+
+      // 4. Recargar forzando bypass de caché tras 900ms
+      setTimeout(() => {
+        const refreshUrl = window.location.origin + window.location.pathname + '?v=' + Date.now();
+        window.location.href = refreshUrl;
+      }, 900);
+
+    } catch (err: any) {
+      console.error('Error durante la actualización:', err);
+      setStatusMsg({ 
+        type: 'err', 
+        text: 'Error al limpiar caché. Recargando de forma estándar...' 
+      });
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } finally {
-      setIsTesting(false);
+      setIsUpdating(false);
     }
   };
 
+  // Sincronizar auditorías locales pendientes
   const handleSyncPending = async () => {
     setIsSyncing(true);
     setStatusMsg(null);
@@ -48,135 +94,199 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
       const count = await SheetsService.processPendingQueue();
       setStatusMsg({
         type: 'ok',
-        text: `Sincronización completada: ${count} auditorías enviadas a Google Sheets y Drive.`
+        text: `Sincronización completada: ${count} auditorías enviadas al servidor.`
       });
     } catch (e) {
-      setStatusMsg({ type: 'err', text: 'Error al sincronizar con Google Sheets.' });
+      setStatusMsg({ type: 'err', text: 'Error al sincronizar auditorías pendientes. Comprueba la conexión.' });
     } finally {
       setIsSyncing(false);
     }
   };
 
+  // Diagnóstico de conexión interno (sin exponer credenciales ni IDs)
+  const handleTestConnection = async () => {
+    setIsTesting(true);
+    setStatusMsg(null);
+    try {
+      const result = await SheetsService.testConnection();
+      setStatusMsg({
+        type: result.driveOk ? 'ok' : 'err',
+        text: result.driveOk 
+          ? '✅ Conexión con los servidores de Google activa y verificada.' 
+          : '⚠️ Servidor accesible pero con advertencia: ' + result.message
+      });
+    } catch (e: any) {
+      setStatusMsg({ type: 'err', text: 'No se pudo conectar con el servidor: ' + (e?.message || e) });
+    } finally {
+      setIsTesting(false);
+    }
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fadeIn">
-      <div className="w-full max-w-lg bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
-        {/* Header */}
-        <div className="p-4 sm:p-5 border-b border-slate-800 flex items-center justify-between">
-          <div className="flex items-center gap-2.5 text-white font-extrabold text-base">
-            <Link2 className="w-5 h-5 text-sky-400" />
-            <span>Configuración de Google Sheets & Drive</span>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md animate-fadeIn">
+      <div className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+        
+        {/* Cabecera */}
+        <div className="p-4 sm:p-5 border-b border-slate-800/80 bg-slate-950/40 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center shadow-inner">
+              <RefreshCw className={`w-5 h-5 ${isUpdating ? 'animate-spin' : ''}`} />
+            </div>
+            <div>
+              <h2 className="text-white font-black text-sm sm:text-base leading-tight">
+                Actualizaciones del Sistema
+              </h2>
+              <p className="text-[11px] text-slate-400 font-medium">
+                Brand Spaces Retail Audit PWA
+              </p>
+            </div>
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center transition cursor-pointer"
+            className="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition cursor-pointer"
+            title="Cerrar"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Contenido */}
-        <div className="p-4 sm:p-6 space-y-5 overflow-y-auto">
-          {/* Carpeta Google Drive */}
-          <div className="space-y-2">
-            <label className="block text-xs font-bold text-slate-300">
-              ID Carpeta de Google Drive (Auditoría Espacios de Marca)
-            </label>
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={driveFolderId}
-                onChange={(e) => setDriveFolderId(e.target.value)}
-                placeholder="1RNmY0KnIqtOV6zU0mu080bJKAFFEhRyD"
-                className="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500"
-              />
-              <a
-                href={`https://drive.google.com/drive/folders/${driveFolderId}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-sky-400 hover:text-sky-300 text-xs font-bold rounded-xl flex items-center justify-center transition"
-                title="Abrir en Google Drive"
-              >
-                Abrir
-              </a>
+        {/* Contenido del Modal */}
+        <div className="p-4 sm:p-5 space-y-4 overflow-y-auto">
+          
+          {/* Tarjeta de Versión y Compilación */}
+          <div className="bg-gradient-to-br from-slate-950 to-slate-900 border border-slate-800 rounded-2xl p-4 shadow-sm space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Smartphone className="w-4 h-4 text-sky-400" />
+                <span className="text-xs font-bold text-slate-200">Versión Instalada</span>
+              </div>
+              <span className="text-xs font-black px-2.5 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20 font-mono">
+                v{appVersion}
+              </span>
             </div>
-            <p className="text-[11px] text-slate-400">
-              Carpeta raíz donde se almacenan automáticamente los Excel y fotografías organizados por <strong className="text-slate-300">Retailer / Centro / Año / Fecha</strong>.
-            </p>
+
+            <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1 border-t border-slate-800/60">
+              <span>Última Compilación GitHub:</span>
+              <span className="font-semibold text-slate-300 font-mono">{buildTime}</span>
+            </div>
+
+            <div className="flex items-center justify-between text-[11px] text-slate-400">
+              <span>Modo de Operación:</span>
+              <span className="inline-flex items-center gap-1.5 font-semibold text-emerald-400">
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                Offline Ready / PWA
+              </span>
+            </div>
           </div>
 
+          {/* Botón Principal: Forzar Actualización y Limpiar Caché */}
           <div className="space-y-2">
-            <label className="block text-xs font-bold text-slate-300">
-              URL del Webhook de Google Apps Script (REST API)
-            </label>
-            <input
-              type="url"
-              value={webhookUrl}
-              onChange={(e) => setWebhookUrl(e.target.value)}
-              placeholder="https://script.google.com/macros/s/.../exec"
-              className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500"
-            />
-            <p className="text-[11px] text-slate-400">
-              Webhook para sincronizar las pestañas de tienda, <strong className="text-slate-300">Auditorias_Log</strong> y subir archivos a Google Drive.
-            </p>
             <button
-              type="button"
-              onClick={handleTestConnection}
-              disabled={isTesting || !webhookUrl}
-              className="w-full py-2.5 px-3 bg-sky-950/60 hover:bg-sky-900/60 text-sky-300 border border-sky-800/80 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+              onClick={handleUpdateApp}
+              disabled={isUpdating}
+              className="w-full py-3.5 px-4 bg-gradient-to-r from-sky-600 via-sky-500 to-teal-500 hover:from-sky-500 hover:to-teal-400 active:scale-[0.99] text-white font-black rounded-2xl shadow-lg shadow-sky-600/25 transition flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-60"
             >
-              <RefreshCw className={`w-3.5 h-3.5 ${isTesting ? 'animate-spin' : ''}`} />
-              <span>{isTesting ? 'Comprobando acceso a Google Drive...' : 'Probar Conexión con Google Drive'}</span>
+              <RefreshCw className={`w-4 h-4 ${isUpdating ? 'animate-spin' : ''}`} />
+              <span className="text-xs sm:text-sm">
+                {isUpdating ? 'Aplicando Actualización...' : 'Buscar y Aplicar Cambios de GitHub'}
+              </span>
             </button>
+            <p className="text-[11px] text-slate-400 text-center leading-relaxed px-2">
+              Pulsa este botón cuando se hayan subido cambios o nuevas versiones al repositorio para renovar la memoria caché del navegador de forma instantánea.
+            </p>
           </div>
 
+          {/* Mensajes de Estado / Notificaciones */}
           {statusMsg && (
             <div
-              className={`p-3 rounded-xl border text-xs flex items-center gap-2 ${
+              className={`p-3 rounded-2xl border text-xs flex items-center gap-2.5 transition-all ${
                 statusMsg.type === 'ok'
                   ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
                   : 'bg-rose-500/10 text-rose-400 border-rose-500/30'
               }`}
             >
-              {statusMsg.type === 'ok' ? <CheckCircle2 className="w-4 h-4 shrink-0" /> : <AlertCircle className="w-4 h-4 shrink-0" />}
-              <span>{statusMsg.text}</span>
+              {statusMsg.type === 'ok' ? (
+                <CheckCircle2 className="w-4 h-4 shrink-0" />
+              ) : (
+                <AlertCircle className="w-4 h-4 shrink-0" />
+              )}
+              <span className="font-medium leading-tight">{statusMsg.text}</span>
             </div>
           )}
 
-          {/* Sincronización Manual */}
-          <div className="bg-slate-950/60 p-4 rounded-2xl border border-slate-800 space-y-2">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-white">Cola de Sincronización Offline</span>
-              <span className="text-[11px] text-slate-400">
-                {DbService.getSyncQueue().length} pendientes
-              </span>
+          {/* Estado de Auditorías Locales (Pendientes) */}
+          <div className="bg-slate-950/60 p-3.5 rounded-2xl border border-slate-800 space-y-2">
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-bold text-slate-300">Auditorías en el Dispositivo</span>
+              {pendingCount > 0 ? (
+                <span className="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] font-black">
+                  {pendingCount} pendientes
+                </span>
+              ) : (
+                <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-black flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3" />
+                  Al día
+                </span>
+              )}
             </div>
-            <button
-              onClick={handleSyncPending}
-              disabled={isSyncing}
-              className="w-full py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2"
-            >
-              <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin' : ''}`} />
-              <span>{isSyncing ? 'Sincronizando...' : 'Forzar Sincronización Ahora'}</span>
-            </button>
+
+            {pendingCount > 0 ? (
+              <button
+                onClick={handleSyncPending}
+                disabled={isSyncing}
+                className="w-full py-2 px-3 bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin' : ''}`} />
+                <span>{isSyncing ? 'Subiendo...' : 'Sincronizar Auditorías Pendientes'}</span>
+              </button>
+            ) : (
+              <p className="text-[11px] text-slate-400 leading-snug">
+                Todas tus auditorías ya están guardadas y sincronizadas con la nube de forma segura.
+              </p>
+            )}
           </div>
+
+          {/* Acordeón de Diagnóstico Interno (Soporte Técnico) */}
+          <div className="border-t border-slate-800/80 pt-2">
+            <button
+              type="button"
+              onClick={() => setShowDiagnostics(!showDiagnostics)}
+              className="w-full py-1.5 flex items-center justify-between text-slate-400 hover:text-slate-300 text-[11px] font-semibold transition cursor-pointer"
+            >
+              <span>Diagnóstico de Servidor (Soporte)</span>
+              {showDiagnostics ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+            </button>
+
+            {showDiagnostics && (
+              <div className="mt-2 p-3 bg-slate-950/80 rounded-xl border border-slate-800/80 space-y-2 text-xs">
+                <p className="text-[11px] text-slate-400 leading-relaxed">
+                  Verifica que el servicio en segundo plano de Google Apps Script y almacenamiento en la nube respondan correctamente sin exponer directorios.
+                </p>
+                <button
+                  type="button"
+                  onClick={handleTestConnection}
+                  disabled={isTesting}
+                  className="w-full py-2 px-3 bg-slate-800 hover:bg-slate-700 text-sky-300 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                >
+                  <RefreshCw className={`w-3.5 h-3.5 ${isTesting ? 'animate-spin' : ''}`} />
+                  <span>{isTesting ? 'Verificando...' : 'Comprobar Estado del Servidor'}</span>
+                </button>
+              </div>
+            )}
+          </div>
+
         </div>
 
-        {/* Footer */}
-        <div className="p-4 bg-slate-950/50 border-t border-slate-800 flex justify-end gap-2">
+        {/* Pie del modal */}
+        <div className="p-3.5 sm:p-4 bg-slate-950/60 border-t border-slate-800 flex justify-end">
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-bold transition"
+            className="w-full sm:w-auto px-5 py-2.5 bg-slate-800 hover:bg-slate-700 active:scale-95 text-slate-200 rounded-xl text-xs font-bold transition cursor-pointer"
           >
             Cerrar
           </button>
-          <button
-            onClick={handleSave}
-            className="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-lg"
-          >
-            <Save className="w-3.5 h-3.5" />
-            <span>Guardar Ajustes</span>
-          </button>
         </div>
+
       </div>
     </div>
   );

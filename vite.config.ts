@@ -4,6 +4,16 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
   base: './', // Permite despliegue estático en GitHub Pages, Vercel o Netlify
+  define: {
+    __BUILD_TIME__: JSON.stringify(new Date().toLocaleString('es-ES', { 
+      day: '2-digit', 
+      month: '2-digit', 
+      year: 'numeric', 
+      hour: '2-digit', 
+      minute: '2-digit'
+    })),
+    __APP_VERSION__: JSON.stringify('1.2.5')
+  },
   plugins: [
     react(),
     VitePWA({
@@ -38,6 +48,7 @@ export default defineConfig({
         ]
       },
       workbox: {
+        cleanupOutdatedCaches: true,
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5MB para empaquetar Three.js y ExcelJS en cache offline
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json}']
       }

@@ -125,11 +125,11 @@ export const App: React.FC = () => {
               <span className="hidden sm:inline">{isOnline ? 'Sincronizado' : 'Offline'}</span>
             </div>
 
-            {/* Botón Ajustes Google Sheets */}
+            {/* Botón Ajustes / Actualización de App */}
             <button
               onClick={() => setIsSettingsOpen(true)}
               className="p-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 hover:text-white transition cursor-pointer"
-              title="Ajustes Google Sheets"
+              title="Actualizaciones de la Aplicación"
             >
               <Settings className="w-3.5 h-3.5" />
             </button>

@@ -110,11 +110,11 @@ export const Header: React.FC<HeaderProps> = ({
             )}
           </div>
 
-          {/* Botón Ajustes Google Sheets */}
+          {/* Botón Ajustes / Actualización de App */}
           <button
             onClick={onOpenSettings}
-            title="Configurar Google Sheets Webhook"
-            className="w-9 h-9 rounded-2xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 hover:text-white flex items-center justify-center border border-slate-700 transition"
+            title="Actualizaciones de la Aplicación"
+            className="w-9 h-9 rounded-2xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 hover:text-white flex items-center justify-center border border-slate-700 transition cursor-pointer"
           >
             <Settings className="w-4 h-4" />
           </button>
