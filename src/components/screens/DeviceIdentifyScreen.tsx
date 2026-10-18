@@ -25,18 +25,50 @@ import {
   ShieldAlert,
   Search,
   Copy,
-  FileWarning
+  FileWarning,
+  Watch,
+  Headphones,
+  Tablet
 } from 'lucide-react';
 
-// Catálogo de modelos oficiales Xiaomi / Redmi extraídos de los planogramas reales
-const ALL_CATALOG_MODELS: string[] = Array.from(
-  new Set(
-    Object.values(planogramData as Record<string, Array<{ device: string }>>)
-      .flat()
-      .map(item => item?.device)
-      .filter(Boolean)
-  )
-).sort();
+// Helper para clasificar por categoría con icono visual cada modelo
+const getDeviceCategoryIcon = (deviceName: string) => {
+  const d = (deviceName || '').toLowerCase();
+  if (d.includes('watch') || d.includes('band')) {
+    return <Watch className="w-3.5 h-3.5 text-sky-500 shrink-0" />;
+  }
+  if (d.includes('buds') || d.includes('openwear') || d.includes('audio')) {
+    return <Headphones className="w-3.5 h-3.5 text-emerald-500 shrink-0" />;
+  }
+  if (d.includes('pad') || d.includes('tablet')) {
+    return <Tablet className="w-3.5 h-3.5 text-purple-500 shrink-0" />;
+  }
+  return <Smartphone className="w-3.5 h-3.5 text-blue-500 shrink-0" />;
+};
+
+// Resaltado visual sutil de coincidencias en el buscador de modelos
+const highlightModelMatch = (text: string, query: string) => {
+  const clean = (query || '').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  if (!clean) return text;
+  const tokens = clean.split(/\s+/).filter(Boolean);
+  if (tokens.length === 0) return text;
+  const escaped = tokens.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+  try {
+    const regex = new RegExp(`(${escaped})`, 'gi');
+    const parts = text.split(regex);
+    return parts.map((part, i) =>
+      regex.test(part) ? (
+        <mark key={i} className="bg-amber-200 text-amber-950 font-black px-0.5 rounded">
+          {part}
+        </mark>
+      ) : (
+        part
+      )
+    );
+  } catch {
+    return text;
+  }
+};
 
 export type IncidentType = 'no_coincide' | 'robo' | 'fallo_alarmado' | null;
 
@@ -107,12 +139,21 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
     return null;
   }, [currentState, position, store.tiendaId]);
 
-  // Modelos filtrados para selector de "No coincide"
+  // Catálogo completo de dispositivos (Planogramas Columna D) sin duplicados
+  const catalogModels = useMemo(() => {
+    return DbService.getCatalogDevices();
+  }, []);
+
+  // Modelos filtrados interactivamente para el selector de "No coincide"
   const filteredCatalogModels = useMemo(() => {
-    if (!modelSearch.trim()) return ALL_CATALOG_MODELS.slice(0, 15);
-    const query = modelSearch.toLowerCase();
-    return ALL_CATALOG_MODELS.filter(m => m.toLowerCase().includes(query)).slice(0, 25);
-  }, [modelSearch]);
+    const q = modelSearch.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    if (!q) return catalogModels;
+    const tokens = q.split(/\s+/).filter(Boolean);
+    return catalogModels.filter(m => {
+      const normM = m.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      return tokens.every(token => normM.includes(token));
+    });
+  }, [catalogModels, modelSearch]);
 
   // Estados de cámara con marco de directriz
   const [tempCapturedPhoto, setTempCapturedPhoto] = useState<string | null>(null);
@@ -655,61 +696,121 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
 
                   {/* 1. DETALLE: NO COINCIDE */}
                   {incidentType === 'no_coincide' && (
-                    <div className="p-3.5 bg-white border border-rose-200 rounded-xl space-y-3">
+                    <div className="p-3.5 sm:p-4 bg-white border border-rose-200 rounded-2xl shadow-xs space-y-3">
+                      
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-black text-slate-900">
-                          Dispositivo colocado en su lugar:
+                        <div className="flex items-center gap-1.5 text-xs font-black text-slate-900">
+                          <Smartphone className="w-4 h-4 text-rose-600 shrink-0" />
+                          <span>Dispositivo colocado en su lugar:</span>
+                        </div>
+                        <span className="text-[10px] font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">
+                          {filteredCatalogModels.length} de {catalogModels.length} modelos
                         </span>
-                        {replacedModel && (
-                          <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                            Seleccionado
-                          </span>
-                        )}
                       </div>
 
-                      {/* Buscador de modelos del catálogo */}
-                      <div className="relative">
-                        <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-                        <input
-                          type="text"
-                          value={modelSearch}
-                          onChange={(e) => setModelSearch(e.target.value)}
-                          placeholder="Buscar en catálogo Xiaomi (ej. 15T, Note 15, Watch S5...)"
-                          className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#009ca6] focus:bg-white"
-                        />
-                      </div>
-
-                      {/* Chips rápidos de modelos disponibles */}
-                      <div className="max-h-36 overflow-y-auto pr-1 flex flex-wrap gap-1.5 border border-slate-100 p-2 rounded-xl bg-slate-50/50">
-                        {filteredCatalogModels.map((m) => (
+                      {/* Tarjeta de modelo actualmente seleccionado */}
+                      {replacedModel ? (
+                        <div className="p-2.5 sm:p-3 bg-emerald-50 border border-emerald-200/90 rounded-xl flex items-center justify-between gap-2 animate-fadeIn">
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                            <div className="min-w-0">
+                              <span className="text-[10px] uppercase font-bold text-emerald-700 block">
+                                Modelo Seleccionado
+                              </span>
+                              <p className="text-xs sm:text-sm font-black text-emerald-950 truncate">
+                                {replacedModel}
+                              </p>
+                            </div>
+                          </div>
                           <button
-                            key={m}
                             type="button"
-                            onClick={() => setReplacedModel(m)}
-                            className={`px-2.5 py-1 text-[11px] font-semibold rounded-lg transition cursor-pointer text-left ${
-                              replacedModel === m
-                                ? 'bg-[#009ca6] text-white shadow-2xs font-bold'
-                                : 'bg-white hover:bg-slate-200/80 text-slate-700 border border-slate-200'
-                            }`}
+                            onClick={() => {
+                              setReplacedModel('');
+                              setModelSearch('');
+                            }}
+                            className="text-[11px] font-bold text-emerald-800 hover:text-emerald-950 px-2.5 py-1 bg-white hover:bg-emerald-100/80 rounded-lg border border-emerald-200 transition cursor-pointer shrink-0 shadow-2xs"
                           >
-                            {m}
+                            Cambiar
                           </button>
-                        ))}
+                        </div>
+                      ) : null}
+
+                      {/* Buscador interactivo en vivo con absolutamente todos los dispositivos del catálogo */}
+                      <div className="space-y-1.5">
+                        <div className="relative">
+                          <Search className={`w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 transition-colors ${
+                            modelSearch.trim() ? 'text-[#009ca6]' : 'text-slate-400'
+                          }`} />
+                          <input
+                            type="text"
+                            value={modelSearch}
+                            onChange={(e) => setModelSearch(e.target.value)}
+                            placeholder="Buscar dispositivo (ej. 17 Ultra, Note 15, Watch 5, Buds, Pad...)"
+                            className="w-full pl-9 pr-8 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#009ca6] focus:bg-white transition"
+                          />
+                          {modelSearch && (
+                            <button
+                              type="button"
+                              onClick={() => setModelSearch('')}
+                              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
+                              title="Limpiar búsqueda"
+                            >
+                              <X className="w-3.5 h-3.5" />
+                            </button>
+                          )}
+                        </div>
+
+                        {/* Lista interactiva con todos los modelos de planogramas (sin duplicados) */}
+                        <div className="max-h-52 overflow-y-auto divide-y divide-slate-100 border border-slate-200 rounded-xl bg-white shadow-inner">
+                          {filteredCatalogModels.length === 0 ? (
+                            <div className="p-4 text-center text-slate-400 text-xs">
+                              <p className="font-bold text-slate-700">No se encontró "{modelSearch}" en el catálogo</p>
+                              <p className="text-[11px] text-slate-400 mt-1">Puedes escribirlo manualmente en el campo inferior.</p>
+                            </div>
+                          ) : (
+                            filteredCatalogModels.map((m) => {
+                              const isSelected = replacedModel === m;
+                              return (
+                                <button
+                                  key={m}
+                                  type="button"
+                                  onClick={() => {
+                                    setReplacedModel(m);
+                                  }}
+                                  className={`w-full px-3 py-2 text-left text-xs transition flex items-center justify-between gap-2 cursor-pointer ${
+                                    isSelected
+                                      ? 'bg-sky-50 text-sky-950 font-bold border-l-4 border-l-[#009ca6]'
+                                      : 'hover:bg-slate-50 text-slate-700'
+                                  }`}
+                                >
+                                  <div className="flex items-center gap-2.5 min-w-0">
+                                    {getDeviceCategoryIcon(m)}
+                                    <span className="truncate">{highlightModelMatch(m, modelSearch)}</span>
+                                  </div>
+                                  {isSelected && (
+                                    <CheckCircle2 className="w-4 h-4 text-[#009ca6] shrink-0" />
+                                  )}
+                                </button>
+                              );
+                            })
+                          )}
+                        </div>
                       </div>
 
-                      {/* Input manual libre de modelo */}
-                      <div>
-                        <label className="block text-[10px] font-bold text-slate-500 uppercase mb-1">
-                          O escribe el modelo exacto si no está en la lista:
+                      {/* Input manual libre de modelo (mantenido en la parte inferior tal y como solicitó el usuario) */}
+                      <div className="pt-2 border-t border-slate-100 space-y-1">
+                        <label className="block text-[10px] font-bold text-slate-500 uppercase">
+                          ¿El modelo expuesto no figura en la lista? Escríbelo manualmente:
                         </label>
                         <input
                           type="text"
                           value={replacedModel}
                           onChange={(e) => setReplacedModel(e.target.value)}
-                          placeholder="Escribe el modelo físico expuesto en el puesto"
-                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#009ca6]"
+                          placeholder="Escribe el modelo físico exacto expuesto en el puesto"
+                          className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#009ca6] focus:bg-white transition"
                         />
                       </div>
+
                     </div>
                   )}
 

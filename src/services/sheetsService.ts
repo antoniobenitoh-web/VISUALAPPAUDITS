@@ -131,6 +131,9 @@ export class SheetsService {
       if (data && data.users && Array.isArray(data.users)) {
         DbService.saveUsers(data.users);
       }
+      if (data && data.devices && Array.isArray(data.devices)) {
+        DbService.saveCatalogDevices(data.devices);
+      }
       return data;
     } catch (e) {
       console.warn('No se pudo conectar a Google Sheets en tiempo real, usando cache offline:', e);

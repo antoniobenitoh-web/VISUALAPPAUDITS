@@ -1,5 +1,6 @@
 import { AuditRecord, PositionAuditState, StoreCenter, UserProfile } from '../types';
 import { INITIAL_STORES, INITIAL_USERS } from '../data/defaultData';
+import realPlanogramsData from '../data/realPlanograms.json';
 
 const DRAFTS_KEY = 'brand_audit_drafts';
 const HISTORY_KEY = 'brand_audit_history';
@@ -177,5 +178,46 @@ export class DbService {
 
   static saveGoogleDriveFolderId(id: string) {
     localStorage.setItem('brand_audit_gdrive_folder_id', id.trim());
+  }
+
+  // Catálogo completo de dispositivos (Planogramas Columna D) sin duplicados
+  static getCatalogDevices(): string[] {
+    const DEVICES_KEY = 'brand_audit_catalog_devices_v1';
+    const raw = localStorage.getItem(DEVICES_KEY);
+    if (raw) {
+      try {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      } catch {}
+    }
+
+    // Extraer sin duplicados desde realPlanograms.json
+    const set = new Set<string>();
+    Object.values(realPlanogramsData as Record<string, Array<{ device?: string }>>)
+      .flat()
+      .forEach(item => {
+        if (item?.device && typeof item.device === 'string' && item.device.trim()) {
+          set.add(item.device.trim());
+        }
+      });
+
+    const list = Array.from(set).sort((a, b) => a.localeCompare(b, 'es', { sensitivity: 'base' }));
+    localStorage.setItem(DEVICES_KEY, JSON.stringify(list));
+    return list;
+  }
+
+  static saveCatalogDevices(devices: string[]) {
+    const DEVICES_KEY = 'brand_audit_catalog_devices_v1';
+    if (Array.isArray(devices) && devices.length > 0) {
+      const current = this.getCatalogDevices();
+      const set = new Set<string>([...devices, ...current]);
+      const list = Array.from(set)
+        .map(d => String(d).trim())
+        .filter(Boolean)
+        .sort((a, b) => a.localeCompare(b, 'es', { sensitivity: 'base' }));
+      localStorage.setItem(DEVICES_KEY, JSON.stringify(list));
+    }
   }
 }

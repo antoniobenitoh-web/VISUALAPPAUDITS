@@ -338,7 +338,26 @@ function doGet(e) {
       ];
     }
 
-    return ContentService.createTextOutput(JSON.stringify({ stores: stores, users: users }))
+    // 3. Obtener lista única de modelos desde la pestaña "Planogramas" (Columna D = index 3)
+    let devices = [];
+    try {
+      const planSheet = ss.getSheetByName("Planogramas") || ss.getSheetByName("Plantilla de planogramas");
+      if (planSheet) {
+        const pValues = planSheet.getDataRange().getValues();
+        const devSet = {};
+        for (let p = 1; p < pValues.length; p++) {
+          const d = pValues[p][3]; // Columna D (índice 3)
+          if (d && String(d).trim()) {
+            devSet[String(d).trim()] = true;
+          }
+        }
+        devices = Object.keys(devSet).sort();
+      }
+    } catch (pErr) {
+      Logger.log("Aviso leyendo dispositivos de planogramas: " + pErr.toString());
+    }
+
+    return ContentService.createTextOutput(JSON.stringify({ stores: stores, users: users, devices: devices }))
       .setMimeType(ContentService.MimeType.JSON);
   }
 
