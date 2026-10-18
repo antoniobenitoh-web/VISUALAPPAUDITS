@@ -66,8 +66,9 @@ export class AuthService {
   }
 
   /**
-   * Determina si el nombre de un centro asignado (Columna K) coincide con un centro del catálogo,
-   * teniendo en cuenta que el nombre puede estar acortado en la hoja de cálculo.
+   * Determina si el nombre de un centro asignado (Columna K) coincide con un centro del catálogo.
+   * Regla de negocio: La parte inicial es completa y DEBE coincidir obligatoriamente (mismo retailer y localidad).
+   * El nombre de la hoja solo puede estar acortado en su parte final (ej: "Media Barcelona 5 Fontane" -> "Media Barcelona 5 Fontanella").
    */
   static isStoreMatch(assignedName: string, store: StoreCenter): boolean {
     if (!assignedName) return false;
@@ -75,30 +76,26 @@ export class AuthService {
     const sName = this.normalizeText(store.nombreTienda);
     const sId = this.normalizeText(store.tiendaId);
 
-    // 1. Coincidencia exacta con ID de tienda o Nombre
+    // 1. Coincidencia exacta con ID de tienda o Nombre completo
     if (a === sId || a === sName) return true;
 
-    // 2. Si el nombre acortado de la hoja es prefijo o está contenido íntegramente
-    // Ej: "media barcelona 5 fontane" es prefijo de "media barcelona 5 fontanella"
-    if (sName.startsWith(a) || a.startsWith(sName)) return true;
-    if (sName.includes(a) || a.includes(sName)) return true;
+    // 2. Coincidencia estricta desde el INICIO (prefijo):
+    // La parte inicial debe coincidir íntegramente. El truncamiento solo se permite en la parte final.
+    if (sName.startsWith(a)) {
+      const remaining = sName.slice(a.length).trim();
+      // Si la tienda oficial añade un número de centro diferente (ej: "2"), no coincide
+      if (/^\d/.test(remaining)) {
+        return false;
+      }
+      return true;
+    }
 
-    // 3. Coincidencia por tokens / palabras clave distintivas
-    const stopwords = new Set([
-      'media', 'markt', 'mediamarkt', 'el', 'la', 'los', 'las', 'de', 'del', 'en',
-      'corte', 'ingles', 'eci', 'crf', 'carrefour', 'fnac', 'alcampo', 'tienda', 'space', 'barcelona'
-    ]);
-
-    const aWords = a.split(' ').filter(w => w.length >= 3 && !stopwords.has(w));
-    const sWords = sName.split(' ').filter(w => w.length >= 3 && !stopwords.has(w));
-
-    if (aWords.length > 0 && sWords.length > 0) {
-      // Si alguna palabra clave distintiva asignada coincide o es prefijo directo de una palabra de la tienda
-      // Ej: "fontane" con "fontanella", "prat" con "prat", "parets" con "parets"
-      const hasDistinctiveMatch = aWords.some(aw =>
-        sWords.some(sw => sw === aw || sw.startsWith(aw) || aw.startsWith(sw))
-      );
-      if (hasDistinctiveMatch) return true;
+    if (a.startsWith(sName)) {
+      const remaining = a.slice(sName.length).trim();
+      if (/^\d/.test(remaining)) {
+        return false;
+      }
+      return true;
     }
 
     return false;
