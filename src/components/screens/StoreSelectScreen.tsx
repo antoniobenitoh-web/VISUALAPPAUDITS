@@ -22,6 +22,87 @@ interface StoreSelectScreenProps {
   onBack: () => void;
 }
 
+// Normalización insensible a tildes, mayúsculas y diacríticos
+const normalizeStr = (text: string): string => {
+  return (text || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim();
+};
+
+// Generador de supertexto de búsqueda enriquecido con sinónimos de cadena comercial
+const getStoreSearchableText = (store: StoreCenter): string => {
+  const parts = [
+    store.nombreTienda,
+    store.tiendaId,
+    store.retailer,
+    store.zona || '',
+    store.region || '',
+    store.tipoEspacioId || ''
+  ];
+
+  const ret = (store.retailer || '').toLowerCase();
+  if (ret.includes('media') || ret.includes('markt')) {
+    parts.push('mm mediamarkt media markt');
+  } else if (ret.includes('corte') || ret.includes('eci')) {
+    parts.push('eci el corte ingles corte ingles');
+  } else if (ret.includes('carrefour') || ret.includes('crf')) {
+    parts.push('crf carrefour');
+  } else if (ret.includes('alcampo') || ret.includes('alcp')) {
+    parts.push('alcp alcampo hipermercado utebo');
+  } else if (ret.includes('fnac')) {
+    parts.push('fnac');
+  }
+
+  return normalizeStr(parts.join(' '));
+};
+
+// Comprobación multi-palabra inteligente: cada palabra introducida debe encontrarse en el centro
+const isStoreMatch = (store: StoreCenter, search: string): boolean => {
+  const cleanSearch = normalizeStr(search);
+  if (!cleanSearch) return true;
+
+  const tokens = cleanSearch.split(/\s+/).filter(Boolean);
+  if (tokens.length === 0) return true;
+
+  const searchable = getStoreSearchableText(store);
+  return tokens.every(token => searchable.includes(token));
+};
+
+// Resaltado visual sutil de coincidencias
+const highlightMatch = (text: string, query: string) => {
+  const cleanQuery = normalizeStr(query);
+  if (!cleanQuery) return text;
+
+  const tokens = cleanQuery.split(/\s+/).filter(Boolean);
+  if (tokens.length === 0) return text;
+
+  const escaped = tokens
+    .map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+    .filter(t => t.length > 0)
+    .join('|');
+
+  if (!escaped) return text;
+
+  try {
+    const regex = new RegExp(`(${escaped})`, 'gi');
+    const parts = text.split(regex);
+
+    return parts.map((part, i) =>
+      regex.test(part) ? (
+        <mark key={i} className="bg-amber-200 text-amber-950 px-0.5 rounded font-black">
+          {part}
+        </mark>
+      ) : (
+        part
+      )
+    );
+  } catch {
+    return text;
+  }
+};
+
 export const StoreSelectScreen: React.FC<StoreSelectScreenProps> = ({
   currentUser,
   stores,
@@ -35,27 +116,26 @@ export const StoreSelectScreen: React.FC<StoreSelectScreenProps> = ({
   const storeCatalog = (stores && stores.length > 0 ? stores : DbService.getStores()).map(s => DbService.sanitizeStore(s));
   const accessibleStores = AuthService.filterStoresForUser(currentUser, storeCatalog);
 
-  const filteredStores = accessibleStores.filter((s) => {
-    const term = searchTerm.toLowerCase().trim();
-    const matchesSearch =
-      !term ||
-      s.nombreTienda.toLowerCase().includes(term) ||
-      s.zona.toLowerCase().includes(term) ||
-      s.tiendaId.toLowerCase().includes(term) ||
-      s.retailer.toLowerCase().includes(term);
+  // 1. Filtrado inteligente en tiempo real sobre el catálogo accesible
+  const searchMatchedStores = accessibleStores.filter(s => isStoreMatch(s, searchTerm));
 
-    const matchesChain = selectedChain === 'all' || s.retailer === selectedChain;
-    return matchesSearch && matchesChain;
-  });
+  // 2. Si hay búsqueda y el filtro de retailer deja 0 resultados pero existen en otros,
+  // conmutamos automáticamente a 'all' para no dar falsos negativos
+  const matchesInSelectedChain = searchMatchedStores.filter(s => selectedChain === 'all' || s.retailer === selectedChain).length;
+  const effectiveChain = (searchTerm.trim() && matchesInSelectedChain === 0 && searchMatchedStores.length > 0)
+    ? 'all'
+    : selectedChain;
 
-  // Estadísticas rápidas para los filtros
+  const filteredStores = searchMatchedStores.filter(s => effectiveChain === 'all' || s.retailer === effectiveChain);
+
+  // 3. Contadores dinámicos que se recalculan en vivo mientras se teclea
   const retailerCounts: Record<string, number> = {
-    all: accessibleStores.length,
-    'MediaMarkt': accessibleStores.filter(s => s.retailer === 'MediaMarkt').length,
-    'El Corte Inglés': accessibleStores.filter(s => s.retailer === 'El Corte Inglés').length,
-    'FNAC': accessibleStores.filter(s => s.retailer === 'FNAC').length,
-    'Carrefour': accessibleStores.filter(s => s.retailer === 'Carrefour').length,
-    'Alcampo': accessibleStores.filter(s => s.retailer === 'Alcampo').length,
+    all: searchMatchedStores.length,
+    'MediaMarkt': searchMatchedStores.filter(s => s.retailer === 'MediaMarkt').length,
+    'El Corte Inglés': searchMatchedStores.filter(s => s.retailer === 'El Corte Inglés').length,
+    'FNAC': searchMatchedStores.filter(s => s.retailer === 'FNAC').length,
+    'Carrefour': searchMatchedStores.filter(s => s.retailer === 'Carrefour').length,
+    'Alcampo': searchMatchedStores.filter(s => s.retailer === 'Alcampo').length,
   };
 
   return (
@@ -106,29 +186,39 @@ export const StoreSelectScreen: React.FC<StoreSelectScreenProps> = ({
       <div className="p-4 sm:px-6 sm:py-4 bg-slate-50/80 border-b border-slate-200/80 space-y-3">
         <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
           
-          {/* Buscador de Tiendas */}
+          {/* Buscador Inteligente de Tiendas */}
           <div className="relative flex-1 max-w-xl">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className={`w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 transition-colors ${
+              searchTerm.trim() ? 'text-[#009ca6]' : 'text-slate-400'
+            }`} />
             <input
               type="text"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Buscar tienda por nombre, código ECI/MM, localidad o zona..."
+              placeholder="Buscar por nombre, código, localidad, marca (ej. Utebo, MM, ECI)..."
               className="w-full bg-white border border-slate-300/80 rounded-2xl pl-10 pr-9 py-2.5 text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#009ca6] focus:border-transparent transition shadow-xs"
             />
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
+                title="Limpiar búsqueda"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
             )}
           </div>
 
-          {/* Contador de tiendas */}
+          {/* Contador en tiempo real */}
           <div className="text-[11px] font-bold text-slate-500 flex items-center justify-between sm:justify-end gap-2 shrink-0">
-            <span>Mostrando <strong className="text-slate-900">{filteredStores.length}</strong> de {accessibleStores.length} tiendas</span>
+            {searchTerm.trim() ? (
+              <span className="text-[#009ca6] flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#009ca6] animate-pulse" />
+                <span><strong className="text-slate-900">{filteredStores.length}</strong> {filteredStores.length === 1 ? 'coincidencia' : 'coincidencias'}</span>
+              </span>
+            ) : (
+              <span>Mostrando <strong className="text-slate-900">{filteredStores.length}</strong> de {accessibleStores.length} tiendas</span>
+            )}
           </div>
         </div>
 
@@ -223,20 +313,20 @@ export const StoreSelectScreen: React.FC<StoreSelectScreenProps> = ({
                     )}
                   </div>
 
-                  {/* Nombre del centro y detalles */}
+                  {/* Nombre del centro y detalles con resaltado inteligente */}
                   <div className="space-y-1 my-2">
                     <h3 
                       className="text-sm sm:text-base font-extrabold text-slate-900 group-hover:text-[#104a60] transition leading-snug line-clamp-1"
                       title={store.nombreTienda}
                     >
-                      {store.nombreTienda}
+                      {highlightMatch(store.nombreTienda, searchTerm)}
                     </h3>
                     
                     <div className="flex items-center gap-1.5 text-xs text-slate-500">
                       <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                      <span className="truncate">{store.zona || 'España'}</span>
+                      <span className="truncate">{highlightMatch(store.zona || 'España', searchTerm)}</span>
                       <span className="text-slate-300">•</span>
-                      <span className="font-mono text-[11px] text-slate-400">{store.tiendaId}</span>
+                      <span className="font-mono text-[11px] text-slate-400">{highlightMatch(store.tiendaId, searchTerm)}</span>
                     </div>
                   </div>
 
