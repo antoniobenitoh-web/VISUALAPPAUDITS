@@ -33,7 +33,12 @@ export class DbService {
     let stores = INITIAL_STORES;
     if (raw) {
       try {
-        stores = JSON.parse(raw);
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          stores = parsed;
+        } else {
+          stores = INITIAL_STORES;
+        }
       } catch {
         stores = INITIAL_STORES;
       }

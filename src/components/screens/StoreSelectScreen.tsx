@@ -31,8 +31,9 @@ export const StoreSelectScreen: React.FC<StoreSelectScreenProps> = ({
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedChain, setSelectedChain] = useState<string>('all');
 
-  // Filtrado RBAC estricto según rol del usuario
-  const accessibleStores = AuthService.filterStoresForUser(currentUser, stores);
+  // Filtrado RBAC estricto según rol del usuario con fallback a catálogo de tiendas
+  const storeCatalog = stores && stores.length > 0 ? stores : DbService.getStores();
+  const accessibleStores = AuthService.filterStoresForUser(currentUser, storeCatalog);
 
   const filteredStores = accessibleStores.filter((s) => {
     const term = searchTerm.toLowerCase().trim();

@@ -1,4 +1,4 @@
-export type UserRole = 'Promotor' | 'GPV' | 'AM' | 'SuperAdmin';
+export type UserRole = 'Promotor' | 'GPV' | 'AM' | 'SuperAdmin' | string;
 
 export interface UserProfile {
   password?: string;

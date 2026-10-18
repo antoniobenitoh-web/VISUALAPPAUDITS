@@ -95,11 +95,20 @@ function getUsersFromExternalSheet() {
         ? String(rows[i][colNombre]).trim()
         : email.split("@")[0].replace(/[._]/g, " ").toUpperCase();
 
-      // Deducir rol RBAC
+      // Deducir rol RBAC normalizado
       let rol = "Promotor";
       const emailLower = email.toLowerCase();
       if (colRol !== -1 && rows[i][colRol]) {
-        rol = String(rows[i][colRol]).trim();
+        const rawRol = String(rows[i][colRol]).trim().toLowerCase();
+        if (rawRol.indexOf("admin") !== -1 || rawRol.indexOf("coordin") !== -1 || rawRol.indexOf("director") !== -1) {
+          rol = "SuperAdmin";
+        } else if (rawRol === "am" || rawRol.indexOf("area") !== -1 || rawRol.indexOf("trainer") !== -1 || rawRol.indexOf("formador") !== -1) {
+          rol = "AM";
+        } else if (rawRol === "gpv") {
+          rol = "GPV";
+        } else {
+          rol = "Promotor";
+        }
       } else if (emailLower.indexOf("admin") !== -1) {
         rol = "SuperAdmin";
       } else if (emailLower.indexOf("am") !== -1 || emailLower.indexOf("antonio") !== -1) {
