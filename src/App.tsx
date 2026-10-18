@@ -113,16 +113,18 @@ export const App: React.FC = () => {
               <span className="font-bold text-white truncate max-w-[120px]">{currentUser.nombre}</span>
             </div>
 
-            {/* Conexión Online / Offline */}
+            {/* Indicador Conectado / Desconectado */}
             <div
+              title={isOnline ? 'Conectado a la base de datos' : 'Desconectado de la base de datos (Modo Local)'}
               className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold border transition ${
                 isOnline
-                  ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
-                  : 'bg-amber-500/10 text-amber-400 border-amber-500/30'
+                  ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
+                  : 'bg-rose-500/10 text-rose-400 border-rose-500/30'
               }`}
             >
+              <span className={`w-1.5 h-1.5 rounded-full ${isOnline ? 'bg-emerald-400 animate-pulse' : 'bg-rose-500'}`} />
               {isOnline ? <Wifi className="w-3 h-3" /> : <WifiOff className="w-3 h-3" />}
-              <span className="hidden sm:inline">{isOnline ? 'Sincronizado' : 'Offline'}</span>
+              <span className="hidden sm:inline">{isOnline ? 'Conectado' : 'Desconectado'}</span>
             </div>
 
             {/* Botón Ajustes / Actualización de App */}

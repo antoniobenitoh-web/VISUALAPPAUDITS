@@ -260,16 +260,17 @@ export const StoreSelectScreen: React.FC<StoreSelectScreenProps> = ({
         )}
       </div>
 
-      {/* FOOTER INFORMATIVO */}
+      {/* FOOTER CORPORATIVO */}
       <div className="px-6 py-3 bg-white border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-2">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-500" />
-          <span>Catálogo conectado: <strong>Google Sheets BBDD_Brand Space</strong></span>
+          <span className="font-semibold text-slate-600">
+            {stores.length} {stores.length === 1 ? 'centro asignado' : 'centros asignados'}
+          </span>
         </div>
         <div className="flex items-center gap-3 text-slate-400">
-          <span>Base de Datos Oficial Salesland</span>
+          <span>Salesland Retail</span>
           <span>•</span>
-          <span className="text-[#ff6900] font-bold">Xiaomi Retail España</span>
+          <span className="text-[#ff6900] font-bold">Xiaomi España</span>
         </div>
       </div>
 

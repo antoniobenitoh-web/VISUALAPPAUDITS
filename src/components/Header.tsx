@@ -41,17 +41,18 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Controles de Estado y Perfil */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Indicador Offline / Online */}
+          {/* Indicador de Conexión */}
           <div
-            title={isOnline ? 'Conectado a la red' : 'Modo Offline (Almacenando localmente)'}
+            title={isOnline ? 'Conectado a la base de datos' : 'Desconectado de la base de datos (Modo Local)'}
             className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold border transition ${
               isOnline
-                ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
-                : 'bg-amber-500/10 text-amber-400 border-amber-500/30'
+                ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
+                : 'bg-rose-500/10 text-rose-400 border-rose-500/30'
             }`}
           >
+            <span className={`w-1.5 h-1.5 rounded-full ${isOnline ? 'bg-emerald-400 animate-pulse' : 'bg-rose-500'}`} />
             {isOnline ? <Wifi className="w-3.5 h-3.5" /> : <WifiOff className="w-3.5 h-3.5" />}
-            <span className="hidden sm:inline">{isOnline ? 'Online' : 'Offline'}</span>
+            <span className="hidden sm:inline">{isOnline ? 'Conectado' : 'Desconectado'}</span>
           </div>
 
           {/* Selector de Rol / Perfil RBAC */}
