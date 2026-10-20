@@ -434,79 +434,33 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
                 Método de Lectura
               </label>
 
-              {/* Botón Escáner OCR Pantalla (Prioritario para Wearables y Tablets) */}
+              {/* Botón Unificado de Escaneo con Cámara Inteligente */}
               <button
                 type="button"
                 onClick={() => {
-                  setScannerMode('ocr');
+                  setScannerMode(isSmartphone ? 'barcode' : 'ocr');
                   setShowScanner(true);
                 }}
-                className={`w-full bg-white hover:bg-slate-50 border rounded-2xl p-4 text-left flex items-center justify-between transition active:scale-[0.99] group shadow-xs cursor-pointer ${
-                  !isSmartphone 
-                    ? 'border-teal-400/90 bg-teal-50/30 ring-2 ring-teal-200/80' 
-                    : 'border-slate-200/90 hover:border-[#009ca6]'
-                }`}
+                className="w-full bg-white hover:bg-slate-50 border border-slate-200/90 hover:border-[#009ca6] rounded-2xl p-4 text-left flex items-center justify-between transition active:scale-[0.99] group shadow-xs cursor-pointer"
               >
                 <div className="flex items-center gap-3.5">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-xs transition group-hover:scale-105 ${
-                    !isSmartphone
-                      ? 'bg-gradient-to-br from-teal-500 to-[#009ca6] text-white shadow-teal-500/20'
-                      : 'bg-teal-50 text-teal-700 group-hover:bg-[#009ca6] group-hover:text-white'
-                  }`}>
-                    <ScanText className="w-6 h-6" />
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-[#009ca6] text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition">
+                    <Camera className="w-6 h-6" />
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
                       <h4 className="text-xs sm:text-sm font-black text-slate-900 group-hover:text-[#104a60] transition-colors">
-                        Escanear S/N en pantalla (OCR Cámara)
+                        Escanear con cámara
                       </h4>
-                      {!isSmartphone && (
-                        <span className="text-[9px] font-black uppercase tracking-wider bg-teal-100 text-teal-900 px-2 py-0.5 rounded-full border border-teal-300">
-                          Recomendado
-                        </span>
-                      )}
+                      <span className="text-[9px] font-black uppercase tracking-wider bg-teal-50 text-teal-800 px-2 py-0.5 rounded-full border border-teal-200/80">
+                        {isSmartphone ? 'Código de barras / OCR' : 'OCR Pantalla / Código'}
+                      </span>
                     </div>
                     <p className="text-[11px] text-slate-500">
-                      Lectura en vídeo continuo: 5 núm / 14 caracteres (ej. 55912/24AA12345678)
+                      {isSmartphone 
+                        ? 'Lector de IMEI por código de barras o texto en pantalla' 
+                        : 'Lector automático de Número de Serie en pantalla o caja'}
                     </p>
-                  </div>
-                </div>
-                <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-[#009ca6] group-hover:translate-x-0.5 transition" />
-              </button>
-
-              {/* Botón Escáner Barcode */}
-              <button
-                type="button"
-                onClick={() => {
-                  setScannerMode('barcode');
-                  setShowScanner(true);
-                }}
-                className={`w-full bg-white hover:bg-slate-50 border rounded-2xl p-4 text-left flex items-center justify-between transition active:scale-[0.99] group shadow-xs cursor-pointer ${
-                  isSmartphone 
-                    ? 'border-[#009ca6] bg-sky-50/20 ring-2 ring-sky-200/80' 
-                    : 'border-slate-200/90 hover:border-[#009ca6]'
-                }`}
-              >
-                <div className="flex items-center gap-3.5">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-xs transition group-hover:scale-105 ${
-                    isSmartphone
-                      ? 'bg-[#009ca6] text-white'
-                      : 'bg-slate-100 text-slate-700 group-hover:bg-[#009ca6] group-hover:text-white'
-                  }`}>
-                    <Barcode className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <h4 className="text-xs sm:text-sm font-black text-slate-900 group-hover:text-[#104a60] transition-colors">
-                        Escanear código de barras (IMEI)
-                      </h4>
-                      {isSmartphone && (
-                        <span className="text-[9px] font-black uppercase tracking-wider bg-sky-100 text-sky-800 px-2 py-0.5 rounded-full border border-sky-300">
-                          Recomendado
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-[11px] text-slate-500">Apunta al código de barras del terminal, caja o *#06#</p>
                   </div>
                 </div>
                 <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-[#009ca6] group-hover:translate-x-0.5 transition" />
