@@ -28,8 +28,10 @@ import {
   FileWarning,
   Watch,
   Headphones,
-  Tablet
+  Tablet,
+  ScanText
 } from 'lucide-react';
+import { validateImeiLuhn, validateSerialFormat } from '../../services/ocrService';
 
 // Helper para clasificar por categoría con icono visual cada modelo
 const getDeviceCategoryIcon = (deviceName: string) => {
@@ -96,6 +98,9 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
   const [photoUrl, setPhotoUrl] = useState<string | undefined>(currentState?.fotoEvidenciaUrl);
   const [isDummy, setIsDummy] = useState(currentState?.esMaqueta ?? position.esDummy);
   const [showScanner, setShowScanner] = useState(false);
+  const [scannerMode, setScannerMode] = useState<'barcode' | 'ocr'>(
+    position.categoria === 'Wearable' || position.categoria === 'Tablet' ? 'ocr' : 'barcode'
+  );
   const [isCompressing, setIsCompressing] = useState(false);
   const [keypadMode, setKeypadMode] = useState<'123' | 'ABC'>('123');
 
@@ -424,26 +429,84 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
             </div>
 
             {/* Opciones de Identificación */}
-            <div className="space-y-3">
+            <div className="space-y-2.5">
               <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">
                 Método de Lectura
               </label>
 
+              {/* Botón Escáner OCR Pantalla (Prioritario para Wearables y Tablets) */}
+              <button
+                type="button"
+                onClick={() => {
+                  setScannerMode('ocr');
+                  setShowScanner(true);
+                }}
+                className={`w-full bg-white hover:bg-slate-50 border rounded-2xl p-4 text-left flex items-center justify-between transition active:scale-[0.99] group shadow-xs cursor-pointer ${
+                  !isSmartphone 
+                    ? 'border-teal-400/90 bg-teal-50/30 ring-2 ring-teal-200/80' 
+                    : 'border-slate-200/90 hover:border-[#009ca6]'
+                }`}
+              >
+                <div className="flex items-center gap-3.5">
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-xs transition group-hover:scale-105 ${
+                    !isSmartphone
+                      ? 'bg-gradient-to-br from-teal-500 to-[#009ca6] text-white shadow-teal-500/20'
+                      : 'bg-teal-50 text-teal-700 group-hover:bg-[#009ca6] group-hover:text-white'
+                  }`}>
+                    <ScanText className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h4 className="text-xs sm:text-sm font-black text-slate-900 group-hover:text-[#104a60] transition-colors">
+                        Escanear S/N en pantalla (OCR Cámara)
+                      </h4>
+                      {!isSmartphone && (
+                        <span className="text-[9px] font-black uppercase tracking-wider bg-teal-100 text-teal-900 px-2 py-0.5 rounded-full border border-teal-300">
+                          Recomendado
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-[11px] text-slate-500">
+                      Lectura en vídeo continuo: 5 núm / 14 caracteres (ej. 55912/24AA12345678)
+                    </p>
+                  </div>
+                </div>
+                <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-[#009ca6] group-hover:translate-x-0.5 transition" />
+              </button>
+
               {/* Botón Escáner Barcode */}
               <button
                 type="button"
-                onClick={() => setShowScanner(true)}
-                className="w-full bg-white hover:bg-slate-50 border border-slate-200/90 hover:border-[#009ca6] rounded-2xl p-4 text-left flex items-center justify-between transition active:scale-[0.99] group shadow-xs cursor-pointer"
+                onClick={() => {
+                  setScannerMode('barcode');
+                  setShowScanner(true);
+                }}
+                className={`w-full bg-white hover:bg-slate-50 border rounded-2xl p-4 text-left flex items-center justify-between transition active:scale-[0.99] group shadow-xs cursor-pointer ${
+                  isSmartphone 
+                    ? 'border-[#009ca6] bg-sky-50/20 ring-2 ring-sky-200/80' 
+                    : 'border-slate-200/90 hover:border-[#009ca6]'
+                }`}
               >
                 <div className="flex items-center gap-3.5">
-                  <div className="w-12 h-12 rounded-xl bg-[#009ca6]/10 text-[#009ca6] flex items-center justify-center shrink-0 group-hover:bg-[#009ca6] group-hover:text-white transition">
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-xs transition group-hover:scale-105 ${
+                    isSmartphone
+                      ? 'bg-[#009ca6] text-white'
+                      : 'bg-slate-100 text-slate-700 group-hover:bg-[#009ca6] group-hover:text-white'
+                  }`}>
                     <Barcode className="w-6 h-6" />
                   </div>
                   <div>
-                    <h4 className="text-xs sm:text-sm font-black text-slate-900 group-hover:text-[#104a60] transition-colors">
-                      Escanear código de barras (IMEI)
-                    </h4>
-                    <p className="text-[11px] text-slate-500">Apunta con la cámara al código o marca *#06#</p>
+                    <div className="flex items-center gap-2">
+                      <h4 className="text-xs sm:text-sm font-black text-slate-900 group-hover:text-[#104a60] transition-colors">
+                        Escanear código de barras (IMEI)
+                      </h4>
+                      {isSmartphone && (
+                        <span className="text-[9px] font-black uppercase tracking-wider bg-sky-100 text-sky-800 px-2 py-0.5 rounded-full border border-sky-300">
+                          Recomendado
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-[11px] text-slate-500">Apunta al código de barras del terminal, caja o *#06#</p>
                   </div>
                 </div>
                 <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-[#009ca6] group-hover:translate-x-0.5 transition" />
@@ -463,7 +526,7 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
                     <h4 className="text-xs sm:text-sm font-black text-slate-900 group-hover:text-[#104a60] transition-colors">
                       Teclado numérico táctil
                     </h4>
-                    <p className="text-[11px] text-slate-500">Para terminales sin cámara o introducción rápida</p>
+                    <p className="text-[11px] text-slate-500">Para terminales sin cámara o introducción manual</p>
                   </div>
                 </div>
                 <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-[#009ca6] group-hover:translate-x-0.5 transition" />
@@ -492,7 +555,7 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
                   placeholder={
                     isSmartphone 
                       ? 'Bloqueado · Usa "Escanear" o "Teclado táctil" arriba' 
-                      : 'Bloqueado · Usa "Escanear" o "Teclado táctil"'
+                      : 'Bloqueado · Usa "Escanear S/N" o "Teclado táctil"'
                   }
                   className={`w-full rounded-2xl px-4 py-3.5 text-sm font-mono font-black transition cursor-default select-all ${
                     imei
@@ -505,7 +568,7 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
                     type="button"
                     onClick={() => setImei('')}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 p-1.5 rounded-xl transition cursor-pointer"
-                    title="Borrar IMEI para reescanear"
+                    title="Borrar para reescanear"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -516,11 +579,25 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
                 )}
               </div>
               <div className="flex items-center justify-between mt-1 text-[10px]">
-                <span className="text-slate-500">
-                  {imei 
-                    ? `✓ ${isSmartphone ? 'IMEI' : 'Serial'} registrado (${imei.length} caracteres)` 
-                    : 'Campo de visualización. Para introducir valor pulsa Escanear o Teclado arriba.'}
-                </span>
+                <div className="text-slate-500">
+                  {imei ? (
+                    validateSerialFormat(imei) ? (
+                      <span className="text-emerald-700 font-bold flex items-center gap-1">
+                        <Check className="w-3.5 h-3.5 text-emerald-600" />
+                        <span>S/N Xiaomi validado (20 caracteres exactos)</span>
+                      </span>
+                    ) : validateImeiLuhn(imei) ? (
+                      <span className="text-emerald-700 font-bold flex items-center gap-1">
+                        <Check className="w-3.5 h-3.5 text-emerald-600" />
+                        <span>IMEI validado con algoritmo Luhn (15 dígitos)</span>
+                      </span>
+                    ) : (
+                      <span>✓ {isSmartphone ? 'IMEI' : 'Serial'} registrado ({imei.length} caracteres)</span>
+                    )
+                  ) : (
+                    'Campo de visualización. Para introducir valor pulsa Escanear o Teclado arriba.'
+                  )}
+                </div>
                 {imei && (
                   <button
                     type="button"
@@ -1587,13 +1664,15 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
         </div>
       )}
 
-      {/* MODAL SCANNER BARCODE */}
+      {/* MODAL SCANNER BARCODE & OCR PANTALLA */}
       {showScanner && (
         <ScannerModal
           isOpen={showScanner}
+          initialMode={scannerMode}
+          deviceCategory={position.categoria}
           onClose={() => setShowScanner(false)}
-          onScanSuccess={(detectedImei) => {
-            setImei(detectedImei);
+          onScanSuccess={(detectedCode) => {
+            setImei(detectedCode);
             setShowScanner(false);
           }}
         />
