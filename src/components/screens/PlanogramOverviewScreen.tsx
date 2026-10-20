@@ -48,18 +48,19 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
   const [activeSpace, setActiveSpace] = useState<string>(availableSpaces[0]);
   const positions = getPositionsForSpace(store.tipoEspacioId, activeSpace, store);
 
-  const hasWall = store.availableSpaces && store.availableSpaces.some(s => s.toUpperCase().includes('WALL'));
+  const hasWall = store.availableSpaces && store.availableSpaces.some(s => s.toUpperCase().includes('WALL') && !s.toUpperCase().includes('MINIWALL'));
   const isTable1 = store.tipoEspacioId.includes('Table 1');
   const isTableCrf = store.tipoEspacioId.includes('Table CRF');
   const isLinealActive = activeSpace.toUpperCase().includes('LINEAL') || activeSpace.toUpperCase().includes('SMARTWATCH');
-  const isWallActive = activeSpace.toUpperCase().includes('WALL') && !activeSpace.toUpperCase().includes('MINIWALL');
+  const isMiniWallActive = activeSpace.toUpperCase().includes('MINIWALL');
+  const isWallActive = activeSpace.toUpperCase().includes('WALL') && !isMiniWallActive;
   const isMesa2Active = activeSpace.toUpperCase().includes('MESA 2');
   const isCara2Active = activeSpace.includes('Cara 2') || activeSpace.includes('Cara B');
 
   let bgImage = './images/tables/table1_cara1_render.jpg';
   if (isLinealActive) {
     bgImage = './images/tables/lineal_smartwatch.jpg';
-  } else if (isWallActive) {
+  } else if (isWallActive || isMiniWallActive) {
     bgImage = './images/tables/wall.jpg';
   } else if (isTableCrf) {
     bgImage = isCara2Active
@@ -79,7 +80,7 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
       : './images/tables/table1_cara1_render.jpg';
   }
 
-  const containerBgColor = isWallActive ? '#9c9b99' : isLinealActive ? '#ded6ca' : '#c5c6c8';
+  const containerBgColor = (isWallActive || isMiniWallActive) ? '#9c9b99' : isLinealActive ? '#ded6ca' : '#c5c6c8';
 
   const [selectedPos, setSelectedPos] = useState<PlanogramPosition>(positions[0] || null);
 

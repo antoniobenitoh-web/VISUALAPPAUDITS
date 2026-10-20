@@ -3208,16 +3208,17 @@ export const getPositionsForSpace = (
 ): PlanogramPosition[] => {
   // Buscar en los planogramas reales de la hoja de cálculo
   let searchKey = '';
-  const isWall = mesaId.includes('WALL');
-  const isMiniWall = mesaId.includes('MINIWALL');
-  const isLineal = mesaId.includes('LINEAL') || mesaId.includes('SMARTWATCH');
+  const upperMesaId = mesaId.toUpperCase();
+  const isMiniWall = upperMesaId.includes('MINIWALL');
+  const isWall = upperMesaId.includes('WALL') && !isMiniWall;
+  const isLineal = upperMesaId.includes('LINEAL') || upperMesaId.includes('SMARTWATCH');
 
   let linealCount = 9;
 
-  if (isWall) {
-    searchKey = 'Wall_Wall';
-  } else if (isMiniWall) {
+  if (isMiniWall) {
     searchKey = 'MiniWall_Miniwall';
+  } else if (isWall) {
+    searchKey = 'Wall_Wall';
   } else if (isLineal) {
     // Configuración específica de Lineal Wearables por tienda (Columna U y V del Drive)
     let planogram = 'L. Wearables_9.0';
@@ -3316,6 +3317,14 @@ export const getPositionsForSpace = (
     { pinX: 73.2, pinY: 73.5 }, // 9. Xiaomi Smart Band 9 active (Banda centro-dcha 2)
     { pinX: 85.5, pinY: 73.5 }, // 10. Xiaomi Smart Band 11 Active (Banda dcha 1)
     { pinX: 90.5, pinY: 73.5 }  // 11. Xiaomi Smart Band 9 active (Banda dcha 2)
+  ];
+
+  // Coordenadas calibradas para MiniWall (4 puestos lineales sobre balda)
+  const MINIWALL_PINS = [
+    { pinX: 20.0, pinY: 73.5 }, // 1. Redmi Note 17 Pro Max 5G White&Orange
+    { pinX: 40.0, pinY: 73.5 }, // 2. Redmi Watch 6 Active
+    { pinX: 60.0, pinY: 73.5 }, // 3. Redmi Watch 5 Lite
+    { pinX: 80.0, pinY: 73.5 }  // 4. Redmi Pad 2
   ];
 
   // Coordenadas calibradas alternas para Lineal Wearables:
@@ -3438,6 +3447,8 @@ export const getPositionsForSpace = (
   let selectedItems = items;
   if (isLineal) {
     selectedItems = items;
+  } else if (isMiniWall) {
+    selectedItems = items;
   } else if (isWall) {
     selectedItems = items;
   } else if (items.length >= 22) {
@@ -3452,7 +3463,9 @@ export const getPositionsForSpace = (
 
   const count = isLineal 
     ? (linealCount || selectedItems.length || 9) 
-    : (isWall ? 11 : (selectedItems.length || 10));
+    : isMiniWall
+      ? (selectedItems.length || 4)
+      : (isWall ? 11 : (selectedItems.length || 10));
   const positions: PlanogramPosition[] = [];
   const isCrf = tipoEspacioId === 'Table CRF';
 
@@ -3473,6 +3486,9 @@ export const getPositionsForSpace = (
     if (isLineal) {
       const pinList = LINEAL_PINS_MAP[count] || LINEAL_PINS_MAP[9];
       const coord = pinList ? pinList[i - 1] : undefined;
+      if (coord) { pinX = coord.pinX; pinY = coord.pinY; }
+    } else if (isMiniWall) {
+      const coord = MINIWALL_PINS[i - 1];
       if (coord) { pinX = coord.pinX; pinY = coord.pinY; }
     } else if (isWall) {
       const coord = WALL_PINS[i - 1];
@@ -3506,7 +3522,7 @@ export const getPositionsForSpace = (
       id: `${tipoEspacioId}-${mesaId.replace(/\s+/g, '_')}-P${posNum}`,
       tipoEspacioId,
       mesaId,
-      cara: isLineal ? 'Lineal' : (isWall ? 'Wall' : (isCara2 ? 'Cara 2' : 'Cara 1')),
+      cara: isLineal ? 'Lineal' : (isMiniWall ? 'MiniWall' : (isWall ? 'Wall' : (isCara2 ? 'Cara 2' : 'Cara 1'))),
       posicionNumero: posNum,
       categoria: item.category as ProductCategory,
       modeloOficial: item.device,
@@ -3515,9 +3531,9 @@ export const getPositionsForSpace = (
       requiereImei: !item.dummy,
       pinX,
       pinY,
-      x: isLineal ? linealX : (isWall ? (i - 6) * 0.4 : xPos),
-      y: isLineal ? linealY : (isWall ? 1.6 : 0.78),
-      z: isLineal ? -0.5 : (isWall ? -1.0 : zPos)
+      x: isLineal ? linealX : (isMiniWall ? (i - 2.5) * 0.7 : (isWall ? (i - 6) * 0.4 : xPos)),
+      y: isLineal ? linealY : (isWall || isMiniWall ? 1.6 : 0.78),
+      z: isLineal ? -0.5 : (isWall || isMiniWall ? -1.0 : zPos)
     });
   }
 
