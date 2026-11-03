@@ -1,9 +1,18 @@
-import { AuditRecord, PositionAuditState, StoreCenter, UserProfile } from '../types';
+import {
+  AuditRecord,
+  ImplantationDraft,
+  ImplantationRecord,
+  PositionAuditState,
+  StoreCenter,
+  UserProfile
+} from '../types';
 import { INITIAL_STORES, INITIAL_USERS } from '../data/defaultData';
 import realPlanogramsData from '../data/realPlanograms.json';
 
 const DRAFTS_KEY = 'brand_audit_drafts';
 const HISTORY_KEY = 'brand_audit_history';
+const IMPLANTATION_DRAFTS_KEY = 'brand_implantation_drafts';
+const IMPLANTATION_HISTORY_KEY = 'brand_implantation_history';
 const STORES_KEY = 'brand_audit_stores_v6';
 const USERS_KEY = 'brand_audit_users_v4';
 const SYNC_QUEUE_KEY = 'brand_audit_sync_queue';
@@ -219,5 +228,48 @@ export class DbService {
         .sort((a, b) => a.localeCompare(b, 'es', { sensitivity: 'base' }));
       localStorage.setItem(DEVICES_KEY, JSON.stringify(list));
     }
+  }
+
+  // =========================================================================
+  // PERSISTENCIA DE "NUEVA IMPLANTACIÓN" (BORRADORES E HISTORIAL)
+  // =========================================================================
+
+  static getImplantationDraft(tiendaId: string): ImplantationDraft | null {
+    const raw = localStorage.getItem(`${IMPLANTATION_DRAFTS_KEY}_${tiendaId}`);
+    if (!raw) return null;
+    try {
+      return JSON.parse(raw);
+    } catch {
+      return null;
+    }
+  }
+
+  static saveImplantationDraft(draft: ImplantationDraft) {
+    localStorage.setItem(`${IMPLANTATION_DRAFTS_KEY}_${draft.tiendaId}`, JSON.stringify(draft));
+  }
+
+  static clearImplantationDraft(tiendaId: string) {
+    localStorage.removeItem(`${IMPLANTATION_DRAFTS_KEY}_${tiendaId}`);
+  }
+
+  static getImplantationHistory(): ImplantationRecord[] {
+    const raw = localStorage.getItem(IMPLANTATION_HISTORY_KEY);
+    if (!raw) return [];
+    try {
+      return JSON.parse(raw);
+    } catch {
+      return [];
+    }
+  }
+
+  static saveImplantationRecord(record: ImplantationRecord) {
+    const history = this.getImplantationHistory();
+    const updated = [record, ...history.filter((r) => r.implantationId !== record.implantationId)];
+    localStorage.setItem(IMPLANTATION_HISTORY_KEY, JSON.stringify(updated));
+  }
+
+  static getLatestImplantationForStore(tiendaId: string): ImplantationRecord | null {
+    const history = this.getImplantationHistory();
+    return history.find((r) => r.tiendaId === tiendaId) || null;
   }
 }

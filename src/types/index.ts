@@ -125,3 +125,139 @@ export interface SheetsSyncConfig {
   useOfflineFallback: boolean;
   lastSyncTimestamp?: number;
 }
+
+// ============================================================================
+// TIPOS PARA EL MÓDULO "NUEVA IMPLANTACIÓN" (SWAP IN/OUT + PARTE VISUAL PLV)
+// ============================================================================
+
+export type AuditWorkflowMode = 'complete_audit' | 'new_implantation';
+
+export type SwapStatus = 'Pendiente' | 'OK' | 'Incidencia';
+
+export type SwapOutIncidentMotivo =
+  | 'Terminal ausente / Posible robo'
+  | 'Terminal bloqueado / Sin encendido (Imei ilegible)'
+  | 'Daño físico estético o funcional'
+  | 'Alarma dañada';
+
+export type SwapInIncidentMotivo =
+  | 'Material no recibido en tienda'
+  | 'Caja dañada / Terminal defectuoso de origen'
+  | 'Fallo en alarmado'
+  | 'Falta Cartela especificaciones'
+  | 'Falta ficha energética'
+  | 'Modo demo / Mi show no responde';
+
+export type SwapIncidentMotivo = SwapOutIncidentMotivo | SwapInIncidentMotivo | string;
+
+export interface SwapCampaignAssignment {
+  posicionId: string;
+  mesaId: string;
+  posicionNumero: number;
+  categoria: ProductCategory;
+  modeloSaliente: string;
+  esDummySaliente: boolean;
+  modeloEntrante: string;
+  esDummyEntrante: boolean;
+}
+
+export interface PositionSwapState {
+  posicionId: string;
+  mesaId: string;
+  posicionNumero: number;
+  categoria: ProductCategory;
+  modeloRetirado: string;
+  esDummyRetirado: boolean;
+  imeiRetirado: string;
+  fotoOutUrl?: string;
+  modeloNuevo: string;
+  esDummyNuevo: boolean;
+  imeiNuevo: string;
+  fotoInUrl?: string;
+  estadoSwap: SwapStatus;
+  incidenciaActiva: boolean;
+  motivoIncidencia?: SwapIncidentMotivo | '';
+  motivoIncidenciaOut?: SwapOutIncidentMotivo | '';
+  motivoIncidenciaIn?: SwapInIncidentMotivo | '';
+  observacionesIncidencia?: string;
+  auditadoPor: string;
+  usuarioEmail: string;
+  fechaHora: string;
+}
+
+export type VisualIncidentMotivo =
+  | 'Medidas no coinciden'
+  | 'Material roto o dañado de origen'
+  | 'Falta perfilería/sujeción'
+  | 'Otro';
+
+export interface VisualElementDefinition {
+  id: string;
+  nombreElemento: string;
+  tipoMaterial:
+    | 'Textil / Lona'
+    | 'Cartelería / Cabecero'
+    | 'Merchandising / Metacrilato'
+    | 'Pantalla Digital / Hanshow'
+    | 'Faldón Mesa / Vinilo';
+  ubicacionEspacio: string;
+  campanaOficial: string;
+  medidasOficiales: string;
+  instruccionesFijacion: string;
+  guiaVisualTipo:
+    | 'lona_mesa'
+    | 'cabecero_wall'
+    | 'stands_merch'
+    | 'hanshow_screen'
+    | 'faldon_mesa';
+  imagenReferenciaAntes?: string;
+  imagenReferenciaDespues?: string;
+}
+
+export interface VisualElementAuditState {
+  elementoId: string;
+  nombreElemento: string;
+  tipoMaterial: string;
+  medidasOficiales: string;
+  fotoAntiguaUrl?: string;
+  fotoNuevaUrl?: string;
+  fijacionYMedidaCorrecta: boolean | null;
+  estadoVisual: 'Pendiente' | 'OK' | 'Incidencia';
+  motivoIncidencia?: VisualIncidentMotivo | '';
+  notas?: string;
+  auditadoPor: string;
+  usuarioEmail: string;
+  fechaHora: string;
+}
+
+export interface ImplantationDraft {
+  tiendaId: string;
+  campanaNombre: string;
+  swapStates: Record<string, PositionSwapState>;
+  visualStates: Record<string, VisualElementAuditState>;
+  updatedAt: string;
+}
+
+export interface ImplantationRecord {
+  implantationId: string;
+  campanaNombre: string;
+  tiendaId: string;
+  nombreTienda: string;
+  retailer: string;
+  usuarioEmail: string;
+  usuarioNombre: string;
+  fechaHora: string;
+  totalSwapPositions: number;
+  completedSwapCount: number;
+  swapIncidentsCount: number;
+  totalVisualElements: number;
+  completedVisualCount: number;
+  visualIncidentsCount: number;
+  swapPositions: PositionSwapState[];
+  visualElements: VisualElementAuditState[];
+  fotoMesaCompletaUrl?: string;
+  directLinkUrl: string;
+  sharedDriveEmail: string;
+  sincronizadoSheets: boolean;
+}
+

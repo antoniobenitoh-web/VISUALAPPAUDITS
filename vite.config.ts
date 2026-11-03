@@ -12,7 +12,7 @@ export default defineConfig({
       hour: '2-digit', 
       minute: '2-digit'
     })),
-    __APP_VERSION__: JSON.stringify('1.2.5')
+    __APP_VERSION__: JSON.stringify('1.3.0')
   },
   plugins: [
     react(),
@@ -49,8 +49,10 @@ export default defineConfig({
       },
       workbox: {
         cleanupOutdatedCaches: true,
-        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5MB para empaquetar Three.js y ExcelJS en cache offline
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,json}']
+        skipWaiting: true,
+        clientsClaim: true,
+        maximumFileSizeToCacheInBytes: 10 * 1024 * 1024, // 10MB para empaquetar Three.js, ExcelJS e imágenes de planogramas en caché offline
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,jpg}']
       }
     })
   ]

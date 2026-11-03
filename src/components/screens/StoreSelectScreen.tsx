@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { StoreCenter, UserProfile } from '../../types';
+import { StoreCenter, UserProfile, AuditWorkflowMode } from '../../types';
 import { AuthService } from '../../services/authService';
 import { DbService } from '../../services/dbService';
+import {
+  ACTIVE_IMPLANTATION_CAMPAIGN,
+  hasActiveImplantationCampaign
+} from '../../data/implantationCampaignData';
 import { RetailerLogo } from '../RetailerLogos';
 import { SaleslandLogo, XiaomiLogo } from '../SaleslandBrandLogos';
 import { 
@@ -12,13 +16,19 @@ import {
   MapPin, 
   Layers, 
   Clock, 
-  X
+  X,
+  ClipboardCheck,
+  RefreshCw,
+  Sparkles,
+  CheckCircle2,
+  Lock
 } from 'lucide-react';
 
 interface StoreSelectScreenProps {
   currentUser: UserProfile;
   stores: StoreCenter[];
   onSelectStore: (store: StoreCenter) => void;
+  onSelectStoreMode?: (store: StoreCenter, mode: AuditWorkflowMode) => void;
   onBack: () => void;
 }
 
@@ -107,10 +117,25 @@ export const StoreSelectScreen: React.FC<StoreSelectScreenProps> = ({
   currentUser,
   stores,
   onSelectStore,
+  onSelectStoreMode,
   onBack
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedChain, setSelectedChain] = useState<string>('all');
+  const [modalStore, setModalStore] = useState<StoreCenter | null>(null);
+
+  const handleStoreCardClick = (store: StoreCenter) => {
+    setModalStore(store);
+  };
+
+  const handleChooseWorkflow = (store: StoreCenter, mode: AuditWorkflowMode) => {
+    setModalStore(null);
+    if (onSelectStoreMode) {
+      onSelectStoreMode(store, mode);
+    } else {
+      onSelectStore(store);
+    }
+  };
 
   // Filtrado RBAC estricto según rol del usuario con fallback a catálogo de tiendas y sanitización
   const storeCatalog = (stores && stores.length > 0 ? stores : DbService.getStores()).map(s => DbService.sanitizeStore(s));
@@ -291,26 +316,47 @@ export const StoreSelectScreen: React.FC<StoreSelectScreenProps> = ({
               const draftCount = draft ? draft.length : 0;
               const totalPuestos = store.totalPuestos || 12;
 
+              const impDraft = DbService.getImplantationDraft(store.tiendaId);
+              const impRecord = DbService.getLatestImplantationForStore(store.tiendaId);
+              const hasImpDraft = impDraft && (
+                Object.values(impDraft.swapStates || {}).some(s => s.estadoSwap !== 'Pendiente') ||
+                Object.values(impDraft.visualStates || {}).some(v => v.estadoVisual !== 'Pendiente')
+              );
+
               return (
                 <div
                   key={store.tiendaId}
-                  onClick={() => onSelectStore(store)}
-                  className="group relative bg-white hover:bg-slate-50/90 rounded-2xl p-4 sm:p-5 border border-slate-200/90 hover:border-[#009ca6] shadow-xs hover:shadow-lg transition-all duration-200 cursor-pointer flex flex-col justify-between min-h-[170px] hover:-translate-y-0.5"
+                  onClick={() => handleStoreCardClick(store)}
+                  className="group relative bg-white hover:bg-slate-50/90 rounded-2xl p-4 sm:p-5 border border-slate-200/90 hover:border-[#009ca6] shadow-xs hover:shadow-lg transition-all duration-200 cursor-pointer flex flex-col justify-between min-h-[175px] hover:-translate-y-0.5"
                 >
                   {/* Fila superior: Logo Retailer y Estado */}
-                  <div className="flex items-start justify-between gap-3 mb-2.5">
+                  <div className="flex items-start justify-between gap-2 mb-2.5 flex-wrap">
                     <RetailerLogo id={store.retailer} variant="card" />
 
-                    {hasDraft ? (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200 shrink-0">
-                        <Clock className="w-3 h-3 text-amber-500" />
-                        <span>Borrador ({draftCount}/{totalPuestos})</span>
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600 border border-slate-200 shrink-0">
-                        <span>Pendiente</span>
-                      </span>
-                    )}
+                    <div className="flex items-center gap-1.5 flex-wrap justify-end">
+                      {hasActiveImplantationCampaign(store) && impRecord ? (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
+                          <CheckCircle2 className="w-3 h-3 text-emerald-500" />
+                          <span>Swap OK</span>
+                        </span>
+                      ) : hasActiveImplantationCampaign(store) && hasImpDraft ? (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-orange-50 text-[#ff6900] border border-orange-200 shrink-0">
+                          <RefreshCw className="w-3 h-3 text-[#ff6900]" />
+                          <span>Swap en curso</span>
+                        </span>
+                      ) : null}
+
+                      {hasDraft ? (
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200 shrink-0">
+                          <Clock className="w-3 h-3 text-amber-500" />
+                          <span>Borrador ({draftCount}/{totalPuestos})</span>
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600 border border-slate-200 shrink-0">
+                          <span>Pendiente</span>
+                        </span>
+                      )}
+                    </div>
                   </div>
 
                   {/* Nombre del centro y detalles con resaltado inteligente */}
@@ -339,7 +385,7 @@ export const StoreSelectScreen: React.FC<StoreSelectScreenProps> = ({
                     </div>
 
                     <div className="flex items-center gap-1 text-[11px] font-bold text-[#009ca6] group-hover:translate-x-0.5 transition">
-                      <span>Auditar</span>
+                      <span>Seleccionar Modo</span>
                       <ChevronRight className="w-3.5 h-3.5" />
                     </div>
                   </div>
@@ -349,6 +395,144 @@ export const StoreSelectScreen: React.FC<StoreSelectScreenProps> = ({
           </div>
         )}
       </div>
+
+      {/* MODAL DE SELECCIÓN DE MODALIDAD: AUDITORÍA COMPLETA vs NUEVA IMPLANTACIÓN */}
+      {modalStore && (
+        <div
+          className="fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn"
+          onClick={() => setModalStore(null)}
+        >
+          <div
+            className="bg-white rounded-3xl max-w-xl w-full overflow-hidden shadow-2xl border border-slate-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Cabecera del Modal */}
+            <div className="px-6 py-5 bg-gradient-to-r from-[#072431] via-[#104a60] to-[#0a3343] text-white flex items-start justify-between gap-4">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="px-2 py-0.5 rounded-md bg-white/10 text-teal-300 font-mono text-[11px] font-bold border border-white/15">
+                    {modalStore.tiendaId}
+                  </span>
+                  <span className="text-xs text-slate-300 font-medium">
+                    {modalStore.retailer} · {modalStore.tipoEspacioId}
+                  </span>
+                </div>
+                <h2 className="text-lg sm:text-xl font-black text-white leading-tight">
+                  {modalStore.nombreTienda}
+                </h2>
+                <p className="text-xs text-slate-300 mt-1">
+                  Selecciona el tipo de intervención a realizar en este espacio Xiaomi:
+                </p>
+              </div>
+              <button
+                onClick={() => setModalStore(null)}
+                className="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition cursor-pointer shrink-0"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Opciones de flujo */}
+            <div className="p-5 sm:p-6 space-y-3.5 bg-slate-50">
+              {/* OPCIÓN A: AUDITORÍA COMPLETA DE TIENDA */}
+              <button
+                onClick={() => handleChooseWorkflow(modalStore, 'complete_audit')}
+                className="w-full text-left bg-white hover:bg-teal-50/40 border-2 border-slate-200 hover:border-[#009ca6] rounded-2xl p-4 sm:p-5 transition-all shadow-xs hover:shadow-md group cursor-pointer flex items-center gap-4"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-[#104a60]/10 group-hover:bg-[#009ca6] text-[#104a60] group-hover:text-white flex items-center justify-center shrink-0 transition-colors">
+                  <ClipboardCheck className="w-6 h-6" />
+                </div>
+                <div className="flex-1 min-w-0 flex items-center justify-between gap-2">
+                  <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-[#104a60]">
+                    Auditoría completa de tienda
+                  </h3>
+                  <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-[#009ca6] group-hover:translate-x-0.5 transition shrink-0" />
+                </div>
+              </button>
+
+              {/* OPCIÓN B: NUEVA IMPLANTACIÓN (Visible en todas las tiendas; activa solo en las que coinciden con el planograma de MediaMarkt Tarragona) */}
+              {(() => {
+                const isCampaignActive = hasActiveImplantationCampaign(modalStore);
+                return (
+                  <button
+                    type="button"
+                    disabled={!isCampaignActive}
+                    onClick={() => {
+                      if (!isCampaignActive) return;
+                      handleChooseWorkflow(modalStore, 'new_implantation');
+                    }}
+                    className={`w-full text-left rounded-2xl p-4 sm:p-5 transition-all flex items-center gap-4 relative overflow-hidden border-2 ${
+                      isCampaignActive
+                        ? 'bg-white hover:bg-orange-50/40 border-orange-200 hover:border-[#ff6900] shadow-xs hover:shadow-md group cursor-pointer'
+                        : 'bg-slate-100/90 border-slate-200 opacity-75 cursor-not-allowed'
+                    }`}
+                  >
+                    <div
+                      className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 transition-colors ${
+                        isCampaignActive
+                          ? 'bg-[#ff6900]/15 group-hover:bg-[#ff6900] text-[#ff6900] group-hover:text-white'
+                          : 'bg-slate-200 text-slate-400'
+                      }`}
+                    >
+                      {isCampaignActive ? (
+                        <RefreshCw className="w-6 h-6" />
+                      ) : (
+                        <Lock className="w-6 h-6" />
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2 flex-wrap">
+                        {isCampaignActive ? (
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            <span className="inline-flex items-center gap-1 text-[10px] font-extrabold uppercase tracking-wider text-white bg-[#ff6900] px-2.5 py-0.5 rounded-md shadow-xs">
+                              <Sparkles className="w-3 h-3" /> Campaña Activa
+                            </span>
+                            <span className="text-[11px] font-extrabold text-[#104a60] bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200">
+                              {ACTIVE_IMPLANTATION_CAMPAIGN}
+                            </span>
+                          </div>
+                        ) : (
+                          <span className="inline-flex items-center gap-1 text-[10px] font-extrabold uppercase tracking-wider text-slate-500 bg-slate-200/80 px-2.5 py-0.5 rounded-md">
+                            <Lock className="w-3 h-3" /> Sin implantación disponible
+                          </span>
+                        )}
+                        {isCampaignActive && (
+                          <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-[#ff6900] group-hover:translate-x-0.5 transition shrink-0" />
+                        )}
+                      </div>
+                      <h3
+                        className={`text-base sm:text-lg font-black mt-1.5 transition-colors ${
+                          isCampaignActive
+                            ? 'text-slate-900 group-hover:text-[#ff6900]'
+                            : 'text-slate-500'
+                        }`}
+                      >
+                        Nueva implantación
+                      </h3>
+                      {!isCampaignActive && (
+                        <p className="text-xs text-slate-500 mt-0.5 font-medium">
+                          No hay ninguna implantación nueva disponible para este planograma ({modalStore.tipoEspacioId}).
+                        </p>
+                      )}
+                    </div>
+                  </button>
+                );
+              })()}
+            </div>
+
+            {/* Pie del Modal */}
+            <div className="px-6 py-3 bg-white border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+              <span>Puedes alternar entre ambos flujos en cualquier momento</span>
+              <button
+                onClick={() => setModalStore(null)}
+                className="font-bold text-slate-600 hover:text-slate-900 cursor-pointer"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* FOOTER CORPORATIVO */}
       <div className="px-6 py-3 bg-white border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-2">

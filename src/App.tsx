@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { StoreCenter, UserProfile, PlanogramPosition, PositionAuditState } from './types';
+import {
+  StoreCenter,
+  UserProfile,
+  PlanogramPosition,
+  PositionAuditState,
+  AuditWorkflowMode,
+  PositionSwapState,
+  VisualElementAuditState,
+  SwapCampaignAssignment
+} from './types';
 import { AuthService } from './services/authService';
 import { DbService } from './services/dbService';
 import { SheetsService } from './services/sheetsService';
+import { ACTIVE_IMPLANTATION_CAMPAIGN } from './data/implantationCampaignData';
 
 // Pantallas del flujo responsive adaptadas a Móvil y PC
 import { WelcomeScreen } from './components/screens/WelcomeScreen';
@@ -10,16 +20,20 @@ import { StoreSelectScreen } from './components/screens/StoreSelectScreen';
 import { PlanogramOverviewScreen } from './components/screens/PlanogramOverviewScreen';
 import { DeviceIdentifyScreen } from './components/screens/DeviceIdentifyScreen';
 import { AuditSummaryScreen } from './components/screens/AuditSummaryScreen';
+import { ImplantationOverviewScreen } from './components/screens/ImplantationOverviewScreen';
+import { SwapDeviceScreen } from './components/screens/SwapDeviceScreen';
 import { SettingsModal } from './components/SettingsModal';
 import { PWAInstallPrompt } from './components/PWAInstallPrompt';
 import { Wifi, WifiOff, Settings } from 'lucide-react';
 
 export type AppStep = 
-  | 'welcome'          // Pantalla 1: Inicio / Login con Google
-  | 'store_select'     // Pantalla 2: Selecciona tienda
-  | 'planogram_3d'     // Pantalla 3 y 4: Planograma 3D y Hotspots
-  | 'device_identify'  // Pantalla 5, 6, 7 y 8: Escáner IMEI / Teclado manual / Foto
-  | 'audit_summary';   // Pantalla 9, 10 y 11: Resumen de auditoría y resultado
+  | 'welcome'                   // Pantalla 1: Inicio / Login con Google
+  | 'store_select'              // Pantalla 2: Selecciona tienda y modalidad
+  | 'planogram_3d'              // Pantalla 3 y 4: Planograma 3D y Hotspots (Auditoría Completa)
+  | 'device_identify'           // Pantalla 5-8: Escáner IMEI / Teclado manual / Foto (Auditoría Completa)
+  | 'audit_summary'             // Pantalla 9-11: Resumen de auditoría y resultado (Auditoría Completa)
+  | 'implantation_overview'     // Módulo Nueva Implantación: Vista 3D / Lista Swap + Parte Visual (PLV)
+  | 'implantation_swap_device'; // Módulo Nueva Implantación: Paso 1 OUT (Retirada) + Paso 2 IN (Instalación)
 
 export const App: React.FC = () => {
   const [currentUser, setCurrentUser] = useState<UserProfile>(AuthService.getActiveUser());
@@ -29,7 +43,11 @@ export const App: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<AppStep>('welcome');
   const [selectedStore, setSelectedStore] = useState<StoreCenter | null>(null);
   const [selectedPosition, setSelectedPosition] = useState<PlanogramPosition | null>(null);
+  const [selectedSwapAssignment, setSelectedSwapAssignment] = useState<SwapCampaignAssignment | null>(null);
   const [auditStates, setAuditStates] = useState<Record<string, PositionAuditState>>({});
+  const [swapStates, setSwapStates] = useState<Record<string, PositionSwapState>>({});
+  const [visualStates, setVisualStates] = useState<Record<string, VisualElementAuditState>>({});
+  const [openImplantationSummaryOnMount, setOpenImplantationSummaryOnMount] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isOnline, setIsOnline] = useState(navigator.onLine);
 
@@ -58,6 +76,50 @@ export const App: React.FC = () => {
     }
   }, []);
 
+  const loadImplantationStateForStore = (store: StoreCenter, openSummary = false) => {
+    setSelectedStore(store);
+    const impDraft = DbService.getImplantationDraft(store.tiendaId);
+    const latestRec = DbService.getLatestImplantationForStore(store.tiendaId);
+
+    let sMap: Record<string, PositionSwapState> = {};
+    let vMap: Record<string, VisualElementAuditState> = {};
+
+    if (
+      impDraft &&
+      (Object.keys(impDraft.swapStates || {}).length > 0 ||
+        Object.keys(impDraft.visualStates || {}).length > 0)
+    ) {
+      sMap = { ...impDraft.swapStates };
+      vMap = { ...impDraft.visualStates };
+    } else if (latestRec) {
+      latestRec.swapPositions.forEach(s => { sMap[s.posicionId] = s; });
+      latestRec.visualElements.forEach(v => { vMap[v.elementoId] = v; });
+    }
+
+    setSwapStates(sMap);
+    setVisualStates(vMap);
+    setOpenImplantationSummaryOnMount(openSummary);
+    setCurrentStep('implantation_overview');
+  };
+
+  // Soporte para Enlace Directo (URL) desde Excel "Matriz Control Retail" (?mode=implantation_view&storeId=...)
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const modeParam = params.get('mode');
+      const storeIdParam = params.get('storeId');
+      if (modeParam === 'implantation_view' && storeIdParam) {
+        const allStores = (stores && stores.length > 0 ? stores : DbService.getStores()).map(s => DbService.sanitizeStore(s));
+        const targetStore = allStores.find(s => s.tiendaId.toUpperCase() === storeIdParam.toUpperCase());
+        if (targetStore && AuthService.canAccessStore(currentUser, targetStore)) {
+          loadImplantationStateForStore(targetStore, true);
+        }
+      }
+    } catch (e) {
+      console.warn('Error procesando parámetros de enlace directo:', e);
+    }
+  }, []);
+
   const handleSelectStore = (store: StoreCenter) => {
     setSelectedStore(store);
     const draft = DbService.getDraft(store.tiendaId);
@@ -71,6 +133,14 @@ export const App: React.FC = () => {
     setCurrentStep('planogram_3d');
   };
 
+  const handleSelectStoreMode = (store: StoreCenter, mode: AuditWorkflowMode) => {
+    if (mode === 'new_implantation') {
+      loadImplantationStateForStore(store, false);
+    } else {
+      handleSelectStore(store);
+    }
+  };
+
   const handleConfirmPosition = (state: PositionAuditState, andNext: boolean) => {
     if (!selectedStore) return;
     const updated = {
@@ -82,6 +152,41 @@ export const App: React.FC = () => {
 
     setCurrentStep('planogram_3d');
     setSelectedPosition(null);
+  };
+
+  const handleConfirmSwapState = (state: PositionSwapState) => {
+    if (!selectedStore) return;
+    const updatedSwaps = {
+      ...swapStates,
+      [state.posicionId]: state
+    };
+    setSwapStates(updatedSwaps);
+    DbService.saveImplantationDraft({
+      tiendaId: selectedStore.tiendaId,
+      campanaNombre: ACTIVE_IMPLANTATION_CAMPAIGN,
+      swapStates: updatedSwaps,
+      visualStates,
+      updatedAt: new Date().toISOString()
+    });
+    setCurrentStep('implantation_overview');
+    setSelectedPosition(null);
+    setSelectedSwapAssignment(null);
+  };
+
+  const handleUpdateVisualState = (state: VisualElementAuditState) => {
+    if (!selectedStore) return;
+    const updatedVisuals = {
+      ...visualStates,
+      [state.elementoId]: state
+    };
+    setVisualStates(updatedVisuals);
+    DbService.saveImplantationDraft({
+      tiendaId: selectedStore.tiendaId,
+      campanaNombre: ACTIVE_IMPLANTATION_CAMPAIGN,
+      swapStates,
+      visualStates: updatedVisuals,
+      updatedAt: new Date().toISOString()
+    });
   };
 
   return (
@@ -159,6 +264,7 @@ export const App: React.FC = () => {
               currentUser={currentUser}
               stores={stores}
               onSelectStore={handleSelectStore}
+              onSelectStoreMode={handleSelectStoreMode}
               onBack={() => setCurrentStep('welcome')}
             />
           )}
@@ -197,6 +303,44 @@ export const App: React.FC = () => {
                 setSelectedStore(null);
               }}
               onBack={() => setCurrentStep('planogram_3d')}
+            />
+          )}
+
+          {currentStep === 'implantation_overview' && selectedStore && (
+            <ImplantationOverviewScreen
+              store={selectedStore}
+              allStores={stores}
+              currentUser={currentUser}
+              swapStates={swapStates}
+              visualStates={visualStates}
+              initialOpenSummary={openImplantationSummaryOnMount}
+              onSelectSwapPosition={(pos, assignment) => {
+                setSelectedPosition(pos);
+                setSelectedSwapAssignment(assignment);
+                setCurrentStep('implantation_swap_device');
+              }}
+              onUpdateVisualState={handleUpdateVisualState}
+              onFinishComplete={() => {
+                setOpenImplantationSummaryOnMount(false);
+                setCurrentStep('store_select');
+                setSelectedStore(null);
+              }}
+              onBack={() => {
+                setOpenImplantationSummaryOnMount(false);
+                setCurrentStep('store_select');
+              }}
+            />
+          )}
+
+          {currentStep === 'implantation_swap_device' && selectedStore && selectedPosition && selectedSwapAssignment && (
+            <SwapDeviceScreen
+              position={selectedPosition}
+              assignment={selectedSwapAssignment}
+              store={selectedStore}
+              currentUser={currentUser}
+              currentState={swapStates[selectedPosition.id]}
+              onConfirmSwap={handleConfirmSwapState}
+              onBack={() => setCurrentStep('implantation_overview')}
             />
           )}
         </div>

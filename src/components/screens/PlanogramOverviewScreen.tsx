@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { StoreCenter, PlanogramPosition, PositionAuditState } from '../../types';
 import { getPositionsForSpace } from '../../data/defaultData';
+import { PLANOGRAM_IMAGES } from '../../data/planogramImages';
 import { RetailerLogo } from '../RetailerLogos';
 import { 
   ArrowLeft, 
@@ -57,27 +58,27 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
   const isMesa2Active = activeSpace.toUpperCase().includes('MESA 2');
   const isCara2Active = activeSpace.includes('Cara 2') || activeSpace.includes('Cara B');
 
-  let bgImage = './images/tables/table1_cara1_render.jpg';
+  let bgImage = PLANOGRAM_IMAGES.table1Cara1;
   if (isLinealActive) {
-    bgImage = './images/tables/lineal_smartwatch.jpg';
+    bgImage = PLANOGRAM_IMAGES.linealSmartwatchImg;
   } else if (isWallActive || isMiniWallActive) {
-    bgImage = './images/tables/wall.jpg';
+    bgImage = PLANOGRAM_IMAGES.wallImg;
   } else if (isTableCrf) {
     bgImage = isCara2Active
-      ? './images/tables/table_crf_cara2_render.jpg'
-      : './images/tables/table_crf_cara1_render.jpg';
+      ? PLANOGRAM_IMAGES.tableCrfCara2
+      : PLANOGRAM_IMAGES.tableCrfCara1;
   } else if (isMesa2Active) {
     bgImage = isCara2Active
-      ? './images/tables/table2_mesa2_cara2.jpg'
-      : './images/tables/table2_mesa2_cara1.jpg';
+      ? PLANOGRAM_IMAGES.table2Mesa2Cara2
+      : PLANOGRAM_IMAGES.table2Mesa2Cara1;
   } else if (isTable1 && hasWall) {
     bgImage = isCara2Active
-      ? './images/tables/table1_wall_cara2_render.jpg'
-      : './images/tables/table1_wall_cara1_render.jpg';
+      ? PLANOGRAM_IMAGES.table1WallCara2
+      : PLANOGRAM_IMAGES.table1WallCara1;
   } else {
     bgImage = isCara2Active
-      ? './images/tables/table1_cara2_render.jpg'
-      : './images/tables/table1_cara1_render.jpg';
+      ? PLANOGRAM_IMAGES.table1Cara2
+      : PLANOGRAM_IMAGES.table1Cara1;
   }
 
   const containerBgColor = (isWallActive || isMiniWallActive) ? '#9c9b99' : isLinealActive ? '#ded6ca' : '#c5c6c8';
@@ -230,25 +231,25 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
         
         {/* COLUMNA VISUAL: FOTO DE LA MESA Y PINES INTERACTIVOS SIN MÁRGENES NEGROS */}
         <div 
-          className="lg:col-span-7 xl:col-span-8 relative flex flex-col justify-center items-center min-h-[260px] xs:min-h-[320px] sm:min-h-[440px] lg:min-h-full overflow-hidden p-0 transition-colors duration-300"
+          className="lg:col-span-7 xl:col-span-8 shrink-0 w-full relative flex flex-col justify-center items-center min-h-[240px] xs:min-h-[290px] sm:min-h-[400px] lg:min-h-full lg:h-[calc(100vh-140px)] overflow-hidden p-0 transition-colors duration-300"
           style={{ backgroundColor: containerBgColor }}
         >
           
           {viewMode === 'visual' ? (
             <div 
-              className="relative w-full h-full flex items-center justify-center overflow-hidden transition-colors duration-300"
+              className="relative w-full lg:h-full flex items-center justify-center overflow-hidden transition-colors duration-300"
               style={{ backgroundColor: containerBgColor }}
             >
               {/* Imagen Real de la Mesa Oficial que se adapta al formato sin márgenes negros */}
               <div 
-                className="relative w-full h-full flex items-center justify-center transition-transform duration-200 ease-out"
+                className="relative w-full lg:h-full flex items-center justify-center transition-transform duration-200 ease-out"
                 style={{ transform: `scale(${zoomLevel})` }}
               >
-                <div className="relative max-w-full max-h-full flex items-center justify-center">
+                <div className="relative inline-block w-full lg:w-auto lg:max-w-full lg:max-h-full">
                   <img
                     src={bgImage}
                     alt={activeSpace}
-                    className="w-full h-auto max-h-[calc(100vh-135px)] lg:max-h-full object-contain select-none block"
+                    className="w-full lg:w-auto h-auto lg:max-w-full lg:max-h-[calc(100vh-145px)] object-contain select-none block"
                     draggable={false}
                   />
 

@@ -1,0 +1,1867 @@
+import React, { useState, useMemo, useRef, useEffect } from 'react';
+import {
+  PlanogramPosition,
+  PositionSwapState,
+  StoreCenter,
+  SwapCampaignAssignment,
+  UserProfile,
+  VisualElementAuditState,
+  VisualElementDefinition,
+  VisualIncidentMotivo
+} from '../../types';
+import { getPositionsForSpace } from '../../data/defaultData';
+import { PLANOGRAM_IMAGES } from '../../data/planogramImages';
+import {
+  ACTIVE_IMPLANTATION_CAMPAIGN,
+  getAllSwapAssignmentsForStore,
+  getSwapAssignmentForPosition,
+  getVisualElementsForStore
+} from '../../data/implantationCampaignData';
+import { ImageCompressionService } from '../../services/imageCompressionService';
+import { ImplantationSummaryModal } from './ImplantationSummaryModal';
+import {
+  AlertTriangle,
+  ArrowLeft,
+  ArrowRightLeft,
+  Camera,
+  Check,
+  CheckCircle2,
+  ChevronRight,
+  Clock,
+  HelpCircle,
+  Image as ImageIcon,
+  Layers,
+  PackageMinus,
+  PackagePlus,
+  RotateCcw,
+  Ruler,
+  ShieldCheck,
+  Smartphone,
+  Sparkles,
+  Trash2,
+  Upload,
+  ZoomIn,
+  ZoomOut
+} from 'lucide-react';
+
+interface ImplantationOverviewScreenProps {
+  store: StoreCenter;
+  allStores: StoreCenter[];
+  currentUser: UserProfile;
+  swapStates: Record<string, PositionSwapState>;
+  visualStates: Record<string, VisualElementAuditState>;
+  initialOpenSummary?: boolean;
+  onSelectSwapPosition: (pos: PlanogramPosition, assignment: SwapCampaignAssignment) => void;
+  onUpdateVisualState: (state: VisualElementAuditState) => void;
+  onFinishComplete: () => void;
+  onBack: () => void;
+}
+
+const VISUAL_INCIDENT_MOTIVOS: VisualIncidentMotivo[] = [
+  'Medidas no coinciden',
+  'Material roto o dañado de origen',
+  'Falta perfilería/sujeción',
+  'Otro'
+];
+
+export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProps> = ({
+  store,
+  allStores,
+  currentUser,
+  swapStates,
+  visualStates,
+  initialOpenSummary = false,
+  onSelectSwapPosition,
+  onUpdateVisualState,
+  onFinishComplete,
+  onBack
+}) => {
+  // Subsecciones dentro de Nueva Implantación: 1. "Dispositivos (Swap)" | 2. "Parte Visual"
+  const [subModule, setSubModule] = useState<'swap_devices' | 'visual_plv'>('swap_devices');
+
+  // Pestañas superiores dentro de Dispositivos: "Vista Interactiva 3D" | "Lista de Dispositivos"
+  const [viewMode, setViewMode] = useState<'visual' | 'list'>('visual');
+  const [showLegend, setShowLegend] = useState(true);
+  const [zoomLevel, setZoomLevel] = useState<number>(1);
+  const [isSummaryModalOpen, setIsSummaryModalOpen] = useState<boolean>(initialOpenSummary);
+
+  const availableSpaces = useMemo(() => {
+    return store.availableSpaces && store.availableSpaces.length > 0
+      ? store.availableSpaces
+      : ['MESA 1 · Cara 1', 'MESA 1 · Cara 2', 'WALL', 'LINEAL SMARTWATCH'];
+  }, [store.availableSpaces]);
+
+  const [activeSpace, setActiveSpace] = useState<string>(availableSpaces[0]);
+  const positions = useMemo(
+    () => getPositionsForSpace(store.tipoEspacioId, activeSpace, store),
+    [store, activeSpace]
+  );
+
+  // Todas las posiciones asignadas a la campaña de lanzamiento en esta tienda
+  const allStoreSwapAssignments = useMemo(
+    () => getAllSwapAssignmentsForStore(store),
+    [store]
+  );
+
+  // Elementos de Parte Visual (Lonas, Cartelería y Merchandising)
+  const visualDefinitions = useMemo(() => getVisualElementsForStore(store), [store]);
+  const [activeVisualId, setActiveVisualId] = useState<string>(visualDefinitions[0]?.id || '');
+  const activeVisualDef =
+    visualDefinitions.find((v) => v.id === activeVisualId) || visualDefinitions[0];
+
+  // Cámara para Parte Visual (Paso 1 Foto Previa / Paso 2 Foto Posterior)
+  const [visualCameraTarget, setVisualCameraTarget] = useState<{
+    elementoId: string;
+    step: 'antigua' | 'nueva';
+  } | null>(null);
+  const [tempVisualPhoto, setTempVisualPhoto] = useState<string | null>(null);
+  const [cameraActive, setCameraActive] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const streamRef = useRef<MediaStream | null>(null);
+
+  // Modal de previsualización en pantalla completa para imágenes de referencia POSM
+  const [posmPreviewModal, setPosmPreviewModal] = useState<{
+    src: string;
+    title: string;
+    subtitle?: string;
+    isFaldon?: boolean;
+  } | null>(null);
+
+  // Selección de puesto en el mapa 3D (por defecto el primer puesto que interviene en el Swap)
+  const [selectedPos, setSelectedPos] = useState<PlanogramPosition>(() => {
+    const firstCampaignPos = positions.find((p) => Boolean(getSwapAssignmentForPosition(p)));
+    return firstCampaignPos || positions[0];
+  });
+
+  // Imagen de fondo del espacio 3D idéntica a PlanogramOverviewScreen
+  const hasWall =
+    store.availableSpaces &&
+    store.availableSpaces.some(
+      (s) => s.toUpperCase().includes('WALL') && !s.toUpperCase().includes('MINIWALL')
+    );
+  const isTable1 = store.tipoEspacioId.includes('Table 1');
+  const isTableCrf = store.tipoEspacioId.includes('Table CRF');
+  const isLinealActive =
+    activeSpace.toUpperCase().includes('LINEAL') ||
+    activeSpace.toUpperCase().includes('SMARTWATCH');
+  const isMiniWallActive = activeSpace.toUpperCase().includes('MINIWALL');
+  const isWallActive = activeSpace.toUpperCase().includes('WALL') && !isMiniWallActive;
+  const isMesa2Active = activeSpace.toUpperCase().includes('MESA 2');
+  const isCara2Active = activeSpace.includes('Cara 2') || activeSpace.includes('Cara B');
+
+  let bgImage = PLANOGRAM_IMAGES.table1Cara1;
+  if (isLinealActive) {
+    bgImage = PLANOGRAM_IMAGES.linealSmartwatchImg;
+  } else if (isWallActive || isMiniWallActive) {
+    bgImage = PLANOGRAM_IMAGES.wallImg;
+  } else if (isTableCrf) {
+    bgImage = isCara2Active
+      ? PLANOGRAM_IMAGES.tableCrfCara2
+      : PLANOGRAM_IMAGES.tableCrfCara1;
+  } else if (isMesa2Active) {
+    bgImage = isCara2Active
+      ? PLANOGRAM_IMAGES.table2Mesa2Cara2
+      : PLANOGRAM_IMAGES.table2Mesa2Cara1;
+  } else if (isTable1 && hasWall) {
+    bgImage = isCara2Active
+      ? PLANOGRAM_IMAGES.table1WallCara2
+      : PLANOGRAM_IMAGES.table1WallCara1;
+  } else {
+    bgImage = isCara2Active
+      ? PLANOGRAM_IMAGES.table1Cara2
+      : PLANOGRAM_IMAGES.table1Cara1;
+  }
+
+  const containerBgColor =
+    isWallActive || isMiniWallActive ? '#9c9b99' : isLinealActive ? '#ded6ca' : '#c5c6c8';
+
+  // Métricas globales de avance de Nueva Implantación
+  const completedSwapsCount = allStoreSwapAssignments.filter(
+    (a) => swapStates[a.posicionId] && swapStates[a.posicionId].estadoSwap !== 'Pendiente'
+  ).length;
+  const totalSwapsCount = allStoreSwapAssignments.length;
+
+  const completedVisualsCount = visualDefinitions.filter(
+    (v) => visualStates[v.id] && visualStates[v.id].estadoVisual !== 'Pendiente'
+  ).length;
+  const totalVisualsCount = visualDefinitions.length;
+
+  const globalTotal = totalSwapsCount + totalVisualsCount;
+  const globalDone = completedSwapsCount + completedVisualsCount;
+  const globalProgressPercent =
+    globalTotal > 0 ? Math.min(100, Math.round((globalDone / globalTotal) * 100)) : 0;
+
+  // Gestión de cámara para Parte Visual
+  const stopCamera = () => {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach((t) => t.stop());
+      streamRef.current = null;
+    }
+    setCameraActive(false);
+  };
+
+  useEffect(() => {
+    if (visualCameraTarget && !tempVisualPhoto) {
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices
+          .getUserMedia({ video: { facingMode: 'environment' }, audio: false })
+          .then((stream) => {
+            streamRef.current = stream;
+            setCameraActive(true);
+            if (videoRef.current) {
+              videoRef.current.srcObject = stream;
+              videoRef.current.play().catch(() => {});
+            }
+          })
+          .catch(() => setCameraActive(false));
+      }
+    } else {
+      stopCamera();
+    }
+    return () => stopCamera();
+  }, [visualCameraTarget, tempVisualPhoto]);
+
+  const getOrCreateVisualState = (def: VisualElementDefinition): VisualElementAuditState => {
+    const existing = visualStates[def.id];
+    if (existing) return existing;
+    return {
+      elementoId: def.id,
+      nombreElemento: def.nombreElemento,
+      tipoMaterial: def.tipoMaterial,
+      medidasOficiales: def.medidasOficiales,
+      fijacionYMedidaCorrecta: null,
+      estadoVisual: 'Pendiente',
+      motivoIncidencia: '',
+      notas: '',
+      auditadoPor: currentUser.nombre,
+      usuarioEmail: currentUser.email,
+      fechaHora: new Date().toLocaleString('es-ES')
+    };
+  };
+
+  const computeVisualStatus = (
+    _fotoAntigua?: string,
+    fotoNueva?: string,
+    medidasOk?: boolean | null
+  ): 'Pendiente' | 'OK' | 'Incidencia' => {
+    if (medidasOk === false) return 'Incidencia';
+    if (fotoNueva && medidasOk === true) return 'OK';
+    return 'Pendiente';
+  };
+
+  const handleSaveVisualPhoto = (photoDataUrl: string) => {
+    if (!visualCameraTarget || !activeVisualDef) return;
+    const base = getOrCreateVisualState(activeVisualDef);
+    const nextAntigua =
+      visualCameraTarget.step === 'antigua' ? photoDataUrl : base.fotoAntiguaUrl;
+    const nextNueva = visualCameraTarget.step === 'nueva' ? photoDataUrl : base.fotoNuevaUrl;
+    const nextEstado = computeVisualStatus(
+      nextAntigua,
+      nextNueva,
+      base.fijacionYMedidaCorrecta
+    );
+
+    onUpdateVisualState({
+      ...base,
+      fotoAntiguaUrl: nextAntigua,
+      fotoNuevaUrl: nextNueva,
+      estadoVisual: nextEstado,
+      auditadoPor: currentUser.nombre,
+      usuarioEmail: currentUser.email,
+      fechaHora: new Date().toLocaleString('es-ES')
+    });
+
+    stopCamera();
+    setTempVisualPhoto(null);
+    setVisualCameraTarget(null);
+  };
+
+  const generateDemoVisualPhoto = (def: VisualElementDefinition, step: 'antigua' | 'nueva') => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 960;
+    canvas.height = 640;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const grad = ctx.createLinearGradient(0, 0, 960, 640);
+    if (step === 'antigua') {
+      grad.addColorStop(0, '#334155');
+      grad.addColorStop(1, '#1e293b');
+    } else {
+      grad.addColorStop(0, '#072431');
+      grad.addColorStop(0.6, '#104a60');
+      grad.addColorStop(1, '#009ca6');
+    }
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 960, 640);
+
+    // Marco bastidor PLV
+    ctx.strokeStyle = step === 'antigua' ? '#fbbf24' : '#2dd4bf';
+    ctx.lineWidth = 6;
+    ctx.strokeRect(50, 50, 860, 540);
+
+    ctx.fillStyle = '#ff6900';
+    ctx.beginPath();
+    ctx.roundRect(80, 80, 70, 70, 16);
+    ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 34px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('mi', 115, 128);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 28px sans-serif';
+    ctx.fillText(
+      step === 'antigua'
+        ? `PASO 1 · CARTELERÍA ANTIGUA RETIRADA`
+        : `PASO 2 · NUEVA CARTELERÍA IMPLANTADA`,
+      480,
+      200
+    );
+
+    ctx.fillStyle = step === 'antigua' ? '#fcd34d' : '#5eead4';
+    ctx.font = 'bold 34px sans-serif';
+    ctx.fillText(def.nombreElemento.toUpperCase(), 480, 270);
+
+    ctx.fillStyle = '#e2e8f0';
+    ctx.font = 'bold 24px sans-serif';
+    ctx.fillText(
+      step === 'antigua'
+        ? 'Campaña Anterior: Serie Xiaomi 17 Ultra / Xiaomi 17'
+        : `Nueva Campaña Oficial: ${ACTIVE_IMPLANTATION_CAMPAIGN}`,
+      480,
+      340
+    );
+
+    ctx.font = '20px monospace';
+    ctx.fillStyle = '#cbd5e1';
+    ctx.fillText(`Medidas Oficiales: ${def.medidasOficiales}`, 480, 405);
+    ctx.fillText(
+      `Tienda: ${store.nombreTienda} · ${new Date().toLocaleDateString('es-ES')}`,
+      480,
+      460
+    );
+
+    setTempVisualPhoto(canvas.toDataURL('image/jpeg', 0.85));
+  };
+
+  const selectedPosAssignment = selectedPos ? getSwapAssignmentForPosition(selectedPos) : null;
+  const selectedPosSwapState = selectedPos ? swapStates[selectedPos.id] : undefined;
+
+  return (
+    <div className="w-full min-h-[92dvh] sm:min-h-[80vh] flex flex-col bg-white text-slate-800 rounded-none sm:rounded-3xl shadow-2xl overflow-hidden border border-slate-200/80 transition-all duration-300">
+      {/* =====================================================================
+          HEADER CORPORATIVO SALESLAND + BOTÓN PRINCIPAL "FINALIZAR AUDITORÍA"
+          ===================================================================== */}
+      <div className="px-3.5 sm:px-6 py-3 bg-gradient-to-r from-[#072431] via-[#104a60] to-[#0a3343] text-white flex flex-wrap items-center justify-between gap-2.5 sticky top-0 z-20 shadow-md">
+        <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+          <button
+            type="button"
+            onClick={onBack}
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition active:scale-95 shrink-0 cursor-pointer"
+            title="Volver a selección de tienda"
+          >
+            <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+          </button>
+
+          <div className="min-w-0">
+            <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+              <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#ff6900] text-white">
+                Nueva Implantación
+              </span>
+              <span className="text-[10px] font-bold text-teal-300 truncate">
+                {ACTIVE_IMPLANTATION_CAMPAIGN}
+              </span>
+            </div>
+            <h1 className="text-xs sm:text-base font-black text-white truncate tracking-tight mt-0.5">
+              {store.nombreTienda} ({store.retailer})
+            </h1>
+          </div>
+        </div>
+
+        {/* Progreso Circular + Leyenda + Botón Principal "Finalizar Auditoría" */}
+        <div className="flex items-center gap-2 sm:gap-2.5 shrink-0 ml-auto">
+          <div className="flex items-center gap-2 bg-black/25 px-2.5 py-1 rounded-2xl border border-white/10">
+            <div className="text-right hidden md:block">
+              <span className="block text-[9px] font-medium text-slate-300 uppercase">
+                Avance Global
+              </span>
+              <span className="text-xs font-black text-white">
+                {globalDone} / {globalTotal}
+              </span>
+            </div>
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border-2 border-[#009ca6] flex items-center justify-center font-bold text-[10px] text-[#00c4cc] bg-[#009ca6]/20">
+              {globalProgressPercent}%
+            </div>
+          </div>
+
+          {subModule === 'swap_devices' && (
+            <button
+              type="button"
+              onClick={() => setShowLegend(!showLegend)}
+              className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-teal-200 transition text-xs font-semibold flex items-center gap-1 cursor-pointer"
+              title="Ver leyenda de colores de Nueva Implantación"
+            >
+              <HelpCircle className="w-4 h-4" />
+              <span className="hidden lg:inline">Leyenda</span>
+            </button>
+          )}
+
+          {/* BOTÓN PRINCIPAL EN CABECERA: "Finalizar Auditoría" */}
+          <button
+            type="button"
+            onClick={() => setIsSummaryModalOpen(true)}
+            className="px-3.5 sm:px-4 py-2 rounded-xl bg-gradient-to-r from-[#009ca6] to-[#00b4bf] hover:brightness-110 active:scale-95 text-white font-black text-xs flex items-center gap-1.5 shadow-lg shadow-[#009ca6]/30 cursor-pointer transition"
+          >
+            <ShieldCheck className="w-4 h-4 text-white shrink-0" />
+            <span>Finalizar Auditoría</span>
+          </button>
+        </div>
+      </div>
+
+      {/* =====================================================================
+          PESTAÑAS / SUBSECCIONES DENTRO DE NUEVA IMPLANTACIÓN:
+          1. "Dispositivos (Swap)" | 2. "Parte Visual"
+          ===================================================================== */}
+      <div className="px-3.5 sm:px-6 py-2.5 bg-[#0a2e3d] text-white border-b border-white/10 flex flex-wrap items-center justify-between gap-2">
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setSubModule('swap_devices')}
+            className={`px-3.5 py-2 rounded-xl text-xs font-black flex items-center gap-2 transition cursor-pointer ${
+              subModule === 'swap_devices'
+                ? 'bg-[#009ca6] text-white shadow-md ring-2 ring-teal-300/40'
+                : 'bg-white/10 text-slate-200 hover:bg-white/15'
+            }`}
+          >
+            <ArrowRightLeft className="w-3.5 h-3.5" />
+            <span>1. Dispositivos (Swap)</span>
+            <span
+              className={`px-1.5 py-0.2 rounded-full text-[10px] ${
+                subModule === 'swap_devices' ? 'bg-black/25 text-white' : 'bg-white/10 text-teal-200'
+              }`}
+            >
+              {completedSwapsCount}/{totalSwapsCount}
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setSubModule('visual_plv')}
+            className={`px-3.5 py-2 rounded-xl text-xs font-black flex items-center gap-2 transition cursor-pointer ${
+              subModule === 'visual_plv'
+                ? 'bg-[#ff6900] text-white shadow-md ring-2 ring-orange-300/40'
+                : 'bg-white/10 text-slate-200 hover:bg-white/15'
+            }`}
+          >
+            <ImageIcon className="w-3.5 h-3.5" />
+            <span>2. POSM</span>
+            <span
+              className={`px-1.5 py-0.2 rounded-full text-[10px] ${
+                subModule === 'visual_plv' ? 'bg-black/25 text-white' : 'bg-white/10 text-amber-200'
+              }`}
+            >
+              {completedVisualsCount}/{totalVisualsCount}
+            </span>
+          </button>
+        </div>
+
+        {/* Pestañas superiores de vista ("Vista Interactiva 3D" y "Lista de Dispositivos") cuando estamos en Dispositivos Swap */}
+        {subModule === 'swap_devices' && (
+          <div className="bg-black/30 border border-white/15 p-0.5 rounded-xl flex text-xs font-bold shrink-0">
+            <button
+              type="button"
+              onClick={() => setViewMode('visual')}
+              className={`px-3 py-1.5 rounded-lg transition cursor-pointer ${
+                viewMode === 'visual'
+                  ? 'bg-[#009ca6] text-white shadow-xs'
+                  : 'text-slate-300 hover:text-white'
+              }`}
+            >
+              Vista Interactiva 3D
+            </button>
+            <button
+              type="button"
+              onClick={() => setViewMode('list')}
+              className={`px-3 py-1.5 rounded-lg transition cursor-pointer ${
+                viewMode === 'list'
+                  ? 'bg-[#009ca6] text-white shadow-xs'
+                  : 'text-slate-300 hover:text-white'
+              }`}
+            >
+              Lista de Dispositivos ({positions.length})
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* =====================================================================
+          SUBSECCIÓN 1: "DISPOSITIVOS (SWAP)" (IDÉNTICA A AUDITORÍA COMPLETA)
+          ===================================================================== */}
+      {subModule === 'swap_devices' && (
+        <>
+          {/* Barra de superficies / muebles de la tienda */}
+          <div className="px-3.5 sm:px-6 py-2 bg-slate-50 border-b border-slate-200 flex items-center justify-between gap-2 overflow-x-auto scrollbar-none">
+            <div className="flex items-center gap-1.5">
+              {availableSpaces.map((space) => {
+                const isSelected = activeSpace === space;
+                const spacePositions = getPositionsForSpace(store.tipoEspacioId, space, store);
+                const spaceCampaignCount = spacePositions.filter((p) =>
+                  Boolean(getSwapAssignmentForPosition(p))
+                ).length;
+
+                return (
+                  <button
+                    key={space}
+                    type="button"
+                    onClick={() => {
+                      setActiveSpace(space);
+                      const newPositions = getPositionsForSpace(store.tipoEspacioId, space, store);
+                      const firstCamp = newPositions.find((p) =>
+                        Boolean(getSwapAssignmentForPosition(p))
+                      );
+                      if (firstCamp) setSelectedPos(firstCamp);
+                      else if (newPositions.length > 0) setSelectedPos(newPositions[0]);
+                    }}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 shrink-0 ${
+                      isSelected
+                        ? 'bg-[#104a60] text-white shadow-xs ring-2 ring-[#009ca6]/40'
+                        : 'bg-white text-slate-600 hover:bg-slate-200/70 border border-slate-200'
+                    }`}
+                  >
+                    <Layers
+                      className={`w-3.5 h-3.5 ${isSelected ? 'text-[#00c4cc]' : 'text-slate-400'}`}
+                    />
+                    <span>{space}</span>
+                    {spaceCampaignCount > 0 && (
+                      <span
+                        className={`text-[10px] px-1.5 py-0.2 rounded-full font-black ${
+                          isSelected ? 'bg-rose-500 text-white' : 'bg-rose-100 text-rose-700'
+                        }`}
+                      >
+                        {spaceCampaignCount} Swap
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Leyenda de colores de campaña */}
+          {showLegend && (
+            <div className="bg-[#104a60]/10 border-b border-[#009ca6]/20 px-4 py-2 flex flex-wrap items-center justify-around text-xs font-bold text-slate-700 gap-2">
+              <span className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-full bg-rose-600 ring-2 ring-rose-400 animate-pulse" />
+                <span>Pendiente de Sustituir (Swap Activo)</span>
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-full bg-emerald-500" />
+                <span>Sustituido OK (Sin Incidencias)</span>
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-full bg-amber-500" />
+                <span>Con Incidencia</span>
+              </span>
+              <span className="flex items-center gap-1.5 text-slate-400">
+                <span className="w-3 h-3 rounded-full bg-slate-400 opacity-50" />
+                <span>Posición Atenuada (No interviene en campaña)</span>
+              </span>
+            </div>
+          )}
+
+          {/* Cuerpo Principal 70% Mapa 3D / 30% Inspector */}
+          <div
+            className="flex-1 lg:grid lg:grid-cols-12 flex flex-col overflow-y-auto lg:overflow-hidden transition-colors duration-300"
+            style={{ backgroundColor: containerBgColor }}
+          >
+            {/* Columna Visual: Render 3D de la Mesa con Pines Resaltados vs Atenuados */}
+            <div
+              className="lg:col-span-7 xl:col-span-8 shrink-0 w-full relative flex flex-col justify-center items-center min-h-[240px] xs:min-h-[290px] sm:min-h-[400px] lg:min-h-full lg:h-[calc(100vh-140px)] overflow-hidden p-0"
+              style={{ backgroundColor: containerBgColor }}
+            >
+              {viewMode === 'visual' ? (
+                <div
+                  className="relative w-full lg:h-full flex items-center justify-center overflow-hidden"
+                  style={{ backgroundColor: containerBgColor }}
+                >
+                  <div
+                    className="relative w-full lg:h-full flex items-center justify-center transition-transform duration-200 ease-out"
+                    style={{ transform: `scale(${zoomLevel})` }}
+                  >
+                    <div className="relative inline-block w-full lg:w-auto lg:max-w-full lg:max-h-full">
+                      <img
+                        src={bgImage}
+                        alt={activeSpace}
+                        className="w-full lg:w-auto h-auto lg:max-w-full lg:max-h-[calc(100vh-145px)] object-contain select-none block"
+                        draggable={false}
+                      />
+
+                      {/* Pines en el Mapa 3D: Resaltados para campaña activa, atenuados para los demás */}
+                      <div className="absolute inset-0 pointer-events-none">
+                        {positions.map((pos, idx) => {
+                          const assignment = getSwapAssignmentForPosition(pos);
+                          const isCampaignPos = Boolean(assignment);
+                          const swapState = swapStates[pos.id];
+                          const isDoneOk = swapState?.estadoSwap === 'OK';
+                          const isDoneInc = swapState?.estadoSwap === 'Incidencia';
+                          const isSel = selectedPos?.id === pos.id;
+
+                          const hasCoords =
+                            typeof pos.pinX === 'number' && typeof pos.pinY === 'number';
+                          const inlineStyle: React.CSSProperties = hasCoords
+                            ? {
+                                position: 'absolute',
+                                left: `${pos.pinX}%`,
+                                top: `${pos.pinY}%`,
+                                transform: 'translate(-50%, -50%)',
+                                pointerEvents: 'auto'
+                              }
+                            : {
+                                position: 'absolute',
+                                left: `${((idx + 0.5) / positions.length) * 100}%`,
+                                top: '52%',
+                                transform: 'translate(-50%, -50%)',
+                                pointerEvents: 'auto'
+                              };
+
+                          // Estilo diferenciado según campaña vs no interviene
+                          let pinClasses = '';
+                          if (!isCampaignPos) {
+                            pinClasses =
+                              'bg-slate-700/60 text-slate-300 border-slate-400/50 opacity-35 saturate-0 hover:opacity-65';
+                          } else if (isDoneOk) {
+                            pinClasses =
+                              'bg-emerald-500 text-white border-white ring-4 ring-emerald-400/60 shadow-lg shadow-emerald-500/40';
+                          } else if (isDoneInc) {
+                            pinClasses =
+                              'bg-amber-500 text-white border-white ring-4 ring-amber-400/60 shadow-lg shadow-amber-500/40';
+                          } else {
+                            // Antes de ser sustituido: rojo/alerta con halo pulsante
+                            pinClasses =
+                              'bg-rose-600 text-white border-white ring-4 ring-rose-400/80 shadow-xl shadow-rose-600/60 animate-pulse';
+                          }
+
+                          return (
+                            <div
+                              key={pos.id}
+                              style={inlineStyle}
+                              className={`flex flex-col items-center pointer-events-auto group ${
+                                isCampaignPos ? 'z-30' : 'z-10'
+                              }`}
+                            >
+                              <div
+                                className={`w-[2px] h-2.5 sm:h-3.5 transition-all ${
+                                  isCampaignPos
+                                    ? isDoneOk
+                                      ? 'bg-emerald-400'
+                                      : 'bg-rose-500'
+                                    : 'bg-white/30'
+                                }`}
+                              />
+
+                              <div className="relative flex items-center justify-center">
+                                {/* Halo pulsante exterior para posiciones de campaña pendientes */}
+                                {isCampaignPos && !isDoneOk && !isDoneInc && (
+                                  <span className="absolute -inset-1.5 rounded-full bg-rose-500/60 animate-ping pointer-events-none" />
+                                )}
+
+                                <button
+                                  type="button"
+                                  onClick={() => setSelectedPos(pos)}
+                                  className={`relative rounded-full font-black flex items-center justify-center transition-all cursor-pointer border-2 ${pinClasses} ${
+                                    isSel
+                                      ? 'w-8 h-8 sm:w-10 sm:h-10 scale-120 ring-4 ring-[#00c4cc] z-40'
+                                      : isCampaignPos
+                                        ? 'w-6 h-6 sm:w-8 sm:h-8 hover:scale-115'
+                                        : 'w-5 h-5 sm:w-6 sm:h-6'
+                                  }`}
+                                  title={
+                                    assignment
+                                      ? `SWAP P${pos.posicionNumero}: ${assignment.modeloSaliente} → ${assignment.modeloEntrante}`
+                                      : `Puesto ${pos.posicionNumero}: ${pos.modeloOficial} (No interviene en campaña)`
+                                  }
+                                >
+                                  {isCampaignPos && isDoneOk ? (
+                                    <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+                                  ) : isCampaignPos && isDoneInc ? (
+                                    <AlertTriangle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+                                  ) : (
+                                    <span className="text-[9px] sm:text-[11px] font-black">
+                                      {String(pos.posicionNumero).padStart(2, '0')}
+                                    </span>
+                                  )}
+
+                                  {/* Tooltip flotante en PC */}
+                                  <div className="absolute top-full mt-1.5 hidden lg:group-hover:block bg-slate-950/95 text-white text-[10px] font-bold px-2.5 py-1.5 rounded-lg whitespace-nowrap pointer-events-none shadow-xl border border-white/20 z-50">
+                                    {assignment ? (
+                                      <span>
+                                        SWAP P{String(pos.posicionNumero).padStart(2, '0')}:{' '}
+                                        <span className="text-amber-300">
+                                          {assignment.modeloSaliente}
+                                        </span>{' '}
+                                        →{' '}
+                                        <span className="text-teal-300">
+                                          {assignment.modeloEntrante}
+                                        </span>
+                                      </span>
+                                    ) : (
+                                      <span className="text-slate-400">
+                                        P{String(pos.posicionNumero).padStart(2, '0')} ·{' '}
+                                        {pos.modeloOficial} (Sin cambio)
+                                      </span>
+                                    )}
+                                  </div>
+                                </button>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Controles de Zoom */}
+                  <div className="absolute bottom-2.5 left-2.5 bg-black/70 backdrop-blur-md border border-white/10 rounded-xl p-1 flex items-center gap-1 z-20 text-white text-xs shadow-lg">
+                    <button
+                      type="button"
+                      onClick={() => setZoomLevel((prev) => Math.max(0.8, prev - 0.1))}
+                      className="p-1.5 hover:bg-white/20 rounded-lg cursor-pointer"
+                    >
+                      <ZoomOut className="w-4 h-4" />
+                    </button>
+                    <span className="font-mono text-[10px] px-1">
+                      {Math.round(zoomLevel * 100)}%
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setZoomLevel((prev) => Math.min(1.5, prev + 0.1))}
+                      className="p-1.5 hover:bg-white/20 rounded-lg cursor-pointer"
+                    >
+                      <ZoomIn className="w-4 h-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setZoomLevel(1)}
+                      className="p-1.5 hover:bg-white/20 rounded-lg cursor-pointer text-teal-300"
+                    >
+                      <RotateCcw className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                /* Vista "Lista de Dispositivos" */
+                <div className="w-full h-full bg-slate-900 p-4 sm:p-6 overflow-y-auto space-y-2">
+                  <div className="text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider flex items-center justify-between">
+                    <span>Terminales en {activeSpace} ({positions.length})</span>
+                    <span className="text-teal-400">
+                      {positions.filter((p) => Boolean(getSwapAssignmentForPosition(p))).length}{' '}
+                      asignados al lanzamiento
+                    </span>
+                  </div>
+                  {positions.map((p) => {
+                    const asg = getSwapAssignmentForPosition(p);
+                    const swState = swapStates[p.id];
+                    const isOk = swState?.estadoSwap === 'OK';
+                    const isInc = swState?.estadoSwap === 'Incidencia';
+                    const isSel = selectedPos?.id === p.id;
+
+                    return (
+                      <div
+                        key={p.id}
+                        onClick={() => setSelectedPos(p)}
+                        className={`p-3 rounded-2xl border transition-all cursor-pointer flex items-center justify-between ${
+                          !asg
+                            ? 'bg-white/5 border-white/5 opacity-45 text-slate-400'
+                            : isSel
+                              ? 'bg-white/15 border-[#009ca6] ring-2 ring-[#009ca6]/40 text-white'
+                              : 'bg-white/10 border-rose-500/30 hover:bg-white/15 text-white'
+                        }`}
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <span
+                            className={`w-8 h-8 rounded-xl font-black text-xs flex items-center justify-center shrink-0 ${
+                              !asg
+                                ? 'bg-slate-800 text-slate-500'
+                                : isOk
+                                  ? 'bg-emerald-500 text-white'
+                                  : isInc
+                                    ? 'bg-amber-500 text-white'
+                                    : 'bg-rose-600 text-white animate-pulse'
+                            }`}
+                          >
+                            {String(p.posicionNumero).padStart(2, '0')}
+                          </span>
+                          <div className="min-w-0">
+                            {asg ? (
+                              <>
+                                <p className="text-xs sm:text-sm font-black truncate text-white">
+                                  <span className="text-amber-300 line-through mr-1.5 font-normal">
+                                    {asg.modeloSaliente}
+                                  </span>
+                                  → <span className="text-teal-300">{asg.modeloEntrante}</span>
+                                </p>
+                                <p className="text-[10px] text-slate-300">
+                                  Campaña Swap Activa •{' '}
+                                  <strong className="text-white">
+                                    {asg.esDummyEntrante ? 'Maqueta (DUMMY)' : 'LDU (Real)'}
+                                  </strong>
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                <p className="text-xs sm:text-sm font-bold truncate">
+                                  {p.modeloOficial}
+                                </p>
+                                <p className="text-[10px] text-slate-500">
+                                  No interviene en esta campaña ({p.esDummy ? 'Maqueta' : 'LDU'})
+                                </p>
+                              </>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="shrink-0 ml-2">
+                          {!asg ? (
+                            <span className="text-[10px] font-semibold text-slate-500">
+                              Sin cambio
+                            </span>
+                          ) : isOk ? (
+                            <span className="text-[10px] font-black text-emerald-400 flex items-center gap-1">
+                              <CheckCircle2 className="w-3.5 h-3.5" /> Sustituido OK
+                            </span>
+                          ) : isInc ? (
+                            <span className="text-[10px] font-black text-amber-400 flex items-center gap-1">
+                              <AlertTriangle className="w-3.5 h-3.5" /> Con Incidencia
+                            </span>
+                          ) : (
+                            <span className="text-[10px] font-black text-rose-400 flex items-center gap-1">
+                              <Clock className="w-3.5 h-3.5" /> Pendiente Swap
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            {/* Columna Lateral: Inspector de Posición de Campaña */}
+            <div className="lg:col-span-5 xl:col-span-4 p-4 sm:p-6 bg-white border-t lg:border-t-0 lg:border-l border-slate-200 flex flex-col justify-between space-y-4">
+              <div className="space-y-3.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-black uppercase tracking-wider text-slate-400">
+                    Puestos en {activeSpace}
+                  </span>
+                  <span className="text-[10px] font-black px-2 py-0.5 rounded-md bg-rose-50 text-rose-700 border border-rose-200">
+                    {positions.filter((p) => Boolean(getSwapAssignmentForPosition(p))).length}{' '}
+                    puestos en lanzamiento
+                  </span>
+                </div>
+
+                {/* Barra táctil rápida de puestos */}
+                <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+                  {positions.map((p, idx) => {
+                    const asg = getSwapAssignmentForPosition(p);
+                    const swState = swapStates[p.id];
+                    const isOk = swState?.estadoSwap === 'OK';
+                    const isInc = swState?.estadoSwap === 'Incidencia';
+                    const isSel = selectedPos?.id === p.id;
+
+                    let badgeClass = 'bg-slate-100 text-slate-400 border-slate-200 opacity-50';
+                    if (asg) {
+                      if (isOk)
+                        badgeClass = 'bg-emerald-50 text-emerald-700 border-emerald-300 font-black';
+                      else if (isInc)
+                        badgeClass = 'bg-amber-50 text-amber-800 border-amber-300 font-black';
+                      else badgeClass = 'bg-rose-50 text-rose-700 border-rose-300 font-black';
+                    }
+
+                    const isCara1 = positions.length === 12;
+                    const showSectorSeparator = isCara1 && (idx === 6 || idx === 9);
+
+                    return (
+                      <React.Fragment key={p.id}>
+                        {showSectorSeparator && (
+                          <div className="h-5 w-[1px] bg-slate-300 mx-0.5 shrink-0" />
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => setSelectedPos(p)}
+                          className={`px-2.5 py-1.5 rounded-xl text-xs shrink-0 transition-all border cursor-pointer flex items-center gap-1 ${badgeClass} ${
+                            isSel ? 'ring-2 ring-[#009ca6] scale-105 opacity-100 shadow-xs' : ''
+                          }`}
+                        >
+                          <span>P{String(p.posicionNumero).padStart(2, '0')}</span>
+                          {asg && (
+                            <span
+                              className={`w-1.5 h-1.5 rounded-full ${
+                                isOk
+                                  ? 'bg-emerald-500'
+                                  : isInc
+                                    ? 'bg-amber-500'
+                                    : 'bg-rose-600 animate-ping'
+                              }`}
+                            />
+                          )}
+                        </button>
+                      </React.Fragment>
+                    );
+                  })}
+                </div>
+
+                {/* Tarjeta del puesto seleccionado */}
+                {selectedPos && (
+                  <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-3 shadow-xs">
+                    {selectedPosAssignment ? (
+                      <>
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-xs font-black text-white bg-rose-600 px-2 py-0.5 rounded-lg">
+                            Puesto {String(selectedPos.posicionNumero).padStart(2, '0')}
+                          </span>
+                          <span className="text-[10px] font-black uppercase tracking-wider text-[#ff6900]">
+                            {ACTIVE_IMPLANTATION_CAMPAIGN}
+                          </span>
+                        </div>
+
+                        {/* Resumen limpio del cambio */}
+                        <div className="space-y-2 pt-1">
+                          <div className="p-3 bg-amber-50/80 border border-amber-200 rounded-xl flex items-center justify-between">
+                            <div className="flex items-center gap-2.5">
+                              <PackageMinus className="w-5 h-5 text-amber-600 shrink-0" />
+                              <div>
+                                <span className="text-[10px] font-black uppercase text-amber-700 block">
+                                  1. Retirar
+                                </span>
+                                <span className="text-xs sm:text-sm font-black text-slate-900">
+                                  {selectedPosAssignment.modeloSaliente}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="p-3 bg-teal-50/80 border border-teal-200 rounded-xl flex items-center justify-between">
+                            <div className="flex items-center gap-2.5">
+                              <PackagePlus className="w-5 h-5 text-[#009ca6] shrink-0" />
+                              <div>
+                                <span className="text-[10px] font-black uppercase text-[#009ca6] block">
+                                  2. Instalar
+                                </span>
+                                <span className="text-xs sm:text-sm font-black text-slate-900">
+                                  {selectedPosAssignment.modeloEntrante}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Estado actual del cambio */}
+                        <div className="pt-1">
+                          {selectedPosSwapState?.estadoSwap === 'OK' ? (
+                            <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold flex items-center gap-2">
+                              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                              <span>Cambio completado OK</span>
+                            </div>
+                          ) : selectedPosSwapState?.estadoSwap === 'Incidencia' ? (
+                            <div className="p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold flex items-center gap-2">
+                              <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" />
+                              <span>
+                                Incidencia: {selectedPosSwapState.motivoIncidencia}
+                              </span>
+                            </div>
+                          ) : (
+                            <div className="p-2.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs font-bold flex items-center gap-2">
+                              <Clock className="w-4 h-4 text-rose-600 shrink-0" />
+                              <span>Pendiente de realizar cambio</span>
+                            </div>
+                          )}
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() =>
+                            onSelectSwapPosition(selectedPos, selectedPosAssignment)
+                          }
+                          className="w-full py-3.5 bg-gradient-to-r from-[#009ca6] to-[#00b4bf] hover:from-[#008992] hover:to-[#00a3ad] active:scale-[0.98] text-white font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-[#009ca6]/20 transition flex items-center justify-center gap-2 cursor-pointer"
+                        >
+                          <ArrowRightLeft className="w-4 h-4" />
+                          <span>
+                            {selectedPosSwapState
+                              ? `Editar cambio Puesto ${String(selectedPos.posicionNumero).padStart(2, '0')}`
+                              : `Realizar cambio Puesto ${String(selectedPos.posicionNumero).padStart(2, '0')}`}
+                          </span>
+                          <ChevronRight className="w-4 h-4" />
+                        </button>
+                      </>
+                    ) : (
+                      /* Puesto atenuado que no interviene en la campaña */
+                      <div className="space-y-2.5 text-xs">
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-xs font-bold text-slate-600 bg-slate-200 px-2 py-0.5 rounded">
+                            Puesto {String(selectedPos.posicionNumero).padStart(2, '0')}
+                          </span>
+                          <span className="text-[10px] font-bold text-slate-400 uppercase">
+                            Posición Atenuada
+                          </span>
+                        </div>
+                        <h3 className="text-sm font-black text-slate-800">
+                          {selectedPos.modeloOficial}
+                        </h3>
+                        <p className="text-slate-500 leading-relaxed">
+                          Esta posición <strong>no interviene</strong> en la campaña activa{' '}
+                          <strong>"{ACTIVE_IMPLANTATION_CAMPAIGN}"</strong>. El dispositivo actual
+                          permanece expuesto sin cambios.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Pie del inspector lateral: Ir a POSM o Finalizar Auditoría */}
+              <div className="pt-3 border-t border-slate-200 space-y-2">
+                <button
+                  type="button"
+                  onClick={() => setSubModule('visual_plv')}
+                  className="w-full py-2.5 bg-orange-50 hover:bg-orange-100 text-[#ff6900] border border-orange-200 font-black text-xs rounded-xl transition flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <ImageIcon className="w-4 h-4" />
+                  <span>
+                    Ir a 2. POSM ({completedVisualsCount}/{totalVisualsCount})
+                  </span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setIsSummaryModalOpen(true)}
+                  className="w-full py-3 bg-[#104a60] hover:bg-[#093545] text-white font-black text-xs sm:text-sm rounded-xl shadow-md transition flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <ShieldCheck className="w-4 h-4 text-[#00c4cc]" />
+                  <span>Finalizar Auditoría (Resumen y Excel)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* =====================================================================
+          SUBSECCIÓN 2: SUBMÓDULO "POSM" (LONAS, PANTALLA HANSHOW, FALDÓN Y MERCH)
+          ===================================================================== */}
+      {subModule === 'visual_plv' && (
+        <div className="flex-1 bg-slate-100/70 p-4 sm:p-6 overflow-y-auto">
+          <div className="max-w-5xl mx-auto space-y-5">
+            {/* Selector de puestos/elementos POSM a intervenir */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              {visualDefinitions.map((def, idx) => {
+                const vState = visualStates[def.id];
+                const isSelected = activeVisualDef?.id === def.id;
+                const isOk = vState?.estadoVisual === 'OK';
+                const isInc = vState?.estadoVisual === 'Incidencia';
+
+                return (
+                  <button
+                    key={def.id}
+                    type="button"
+                    onClick={() => setActiveVisualId(def.id)}
+                    className={`p-4 rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between gap-2 ${
+                      isSelected
+                        ? 'bg-[#104a60] text-white border-[#009ca6] ring-2 ring-[#009ca6]/40 shadow-md'
+                        : 'bg-white text-slate-800 border-slate-200 hover:border-[#009ca6]'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span
+                        className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                          isSelected
+                            ? 'bg-white/15 text-teal-200'
+                            : 'bg-slate-100 text-slate-600'
+                        }`}
+                      >
+                        POSM 0{idx + 1} · {def.tipoMaterial}
+                      </span>
+                      {isOk ? (
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-500 text-white flex items-center gap-1">
+                          <Check className="w-3 h-3" /> OK
+                        </span>
+                      ) : isInc ? (
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-rose-500 text-white flex items-center gap-1">
+                          <AlertTriangle className="w-3 h-3" /> Incidencia
+                        </span>
+                      ) : (
+                        <span
+                          className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                            isSelected
+                              ? 'bg-amber-400/20 text-amber-200'
+                              : 'bg-amber-50 text-amber-700'
+                          }`}
+                        >
+                          Pendiente
+                        </span>
+                      )}
+                    </div>
+
+                    <div>
+                      <h3 className="text-sm sm:text-base font-black">{def.nombreElemento}</h3>
+                      <p
+                        className={`text-[11px] mt-0.5 ${
+                          isSelected ? 'text-slate-300' : 'text-slate-500'
+                        }`}
+                      >
+                        {def.ubicacionEspacio}
+                      </p>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Tarjeta de intervención del elemento POSM seleccionado */}
+            {activeVisualDef && (() => {
+              const curVState = getOrCreateVisualState(activeVisualDef);
+              const isHanshow = activeVisualDef.guiaVisualTipo === 'hanshow_screen';
+              const isFaldon = activeVisualDef.guiaVisualTipo === 'faldon_mesa';
+
+              return (
+                <div className="bg-white border border-slate-200 rounded-3xl p-5 sm:p-7 shadow-sm space-y-6">
+                  {/* Guía visual oficial del elemento POSM */}
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center bg-gradient-to-br from-[#072431] via-[#104a60] to-[#0d3b4c] text-white rounded-2xl p-5">
+                    <div className="lg:col-span-5 space-y-2.5">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-[#ff6900] text-white">
+                        Guía Visual POSM
+                      </span>
+                      <h2 className="text-lg sm:text-xl font-black text-white">
+                        {activeVisualDef.nombreElemento}
+                      </h2>
+                      <p className="text-xs text-teal-200 font-semibold">
+                        {activeVisualDef.campanaOficial}
+                      </p>
+
+                      {isHanshow ? (
+                        <div className="bg-black/30 p-3.5 rounded-xl border border-teal-400/30 space-y-1.5 text-xs">
+                          <span className="text-[10px] font-black uppercase tracking-wider text-teal-300 block">
+                            Configuración Punto de Acceso Móvil (Hotspot)
+                          </span>
+                          <div className="flex items-center justify-between bg-white/10 px-2.5 py-1.5 rounded-lg">
+                            <span className="text-slate-300">Nombre Red (SSID):</span>
+                            <strong className="font-mono text-amber-300 text-sm">Hanshow</strong>
+                          </div>
+                          <div className="flex items-center justify-between bg-white/10 px-2.5 py-1.5 rounded-lg">
+                            <span className="text-slate-300">Contraseña:</span>
+                            <strong className="font-mono text-teal-300 text-sm">12345678</strong>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-2 text-xs bg-black/25 px-3 py-2 rounded-xl border border-white/10">
+                          <Ruler className="w-4 h-4 text-[#00c4cc] shrink-0" />
+                          <span>
+                            Referencia: <strong>{activeVisualDef.medidasOficiales}</strong>
+                          </span>
+                        </div>
+                      )}
+
+                      <p className="text-xs sm:text-sm text-white font-semibold bg-white/10 p-3 rounded-xl border border-white/15 leading-relaxed">
+                        {activeVisualDef.instruccionesFijacion}
+                      </p>
+                    </div>
+
+                    {/* Visualización derecha según tipo de POSM */}
+                    <div className="lg:col-span-7">
+                      {activeVisualDef.imagenReferenciaAntes &&
+                      activeVisualDef.imagenReferenciaDespues ? (
+                        /* FORMATO ANTES ➔ DESPUÉS CON FLECHA GUÍA (LONA DE WALL Y PANTALLA HANSHOW) */
+                        <div className="rounded-2xl overflow-hidden border-2 border-teal-400/50 bg-slate-950/90 p-4 shadow-2xl">
+                          <div className="flex items-center justify-between mb-3">
+                            <span className="text-[10px] font-black uppercase tracking-wider text-teal-300">
+                              {isHanshow
+                                ? 'Guía Visual de Cambio en Pantalla Hanshow'
+                                : 'Guía Visual de Cambio en Lona de Wall'}
+                            </span>
+                            <span className="px-2 py-0.5 rounded bg-[#ff6900] text-white text-[9px] font-black uppercase">
+                              Antes ➔ Después
+                            </span>
+                          </div>
+
+                          <div className="grid grid-cols-11 gap-2 sm:gap-3 items-center">
+                            {/* Foto Antes (Pulsa para ampliar) */}
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setPosmPreviewModal({
+                                  src: activeVisualDef.imagenReferenciaAntes!,
+                                  title: 'ANTES (Retirar)',
+                                  subtitle: isHanshow
+                                    ? 'Redmi Note 17 Series'
+                                    : 'Lona Xiaomi 17 Ultra'
+                                })
+                              }
+                              className="col-span-5 bg-slate-900 hover:bg-slate-800/90 rounded-xl p-2 border border-rose-500/40 flex flex-col items-center cursor-pointer transition group text-left"
+                            >
+                              <span className="text-[10px] font-black uppercase text-rose-400 mb-1.5">
+                                ANTES (Retirar)
+                              </span>
+                              <div
+                                className={`relative w-full ${
+                                  isHanshow ? 'aspect-[3/4]' : 'aspect-[16/10]'
+                                } rounded-lg overflow-hidden bg-black border border-white/10`}
+                              >
+                                <img
+                                  src={activeVisualDef.imagenReferenciaAntes}
+                                  alt="Antes"
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                />
+                                <span className="absolute bottom-1.5 right-1.5 bg-black/75 backdrop-blur-xs text-white text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 border border-white/20">
+                                  <ZoomIn className="w-3 h-3 text-teal-300" /> Ampliar
+                                </span>
+                              </div>
+                              <span className="text-[10px] text-slate-300 font-bold mt-1.5 text-center">
+                                {isHanshow ? 'Redmi Note 17 Series' : 'Lona Xiaomi 17 Ultra'}
+                              </span>
+                            </button>
+
+                            {/* Flecha central guía */}
+                            <div className="col-span-1 flex flex-col items-center justify-center">
+                              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-[#ff6900] to-[#009ca6] text-white flex items-center justify-center shadow-lg ring-2 ring-white/30 animate-pulse">
+                                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />
+                              </div>
+                            </div>
+
+                            {/* Foto Después (Pulsa para ampliar) */}
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setPosmPreviewModal({
+                                  src: activeVisualDef.imagenReferenciaDespues!,
+                                  title: 'AHORA (Nuevo)',
+                                  subtitle: isHanshow
+                                    ? 'Xiaomi 18 Pro & Pro Max'
+                                    : 'Lona Xiaomi 18 Pro Max'
+                                })
+                              }
+                              className="col-span-5 bg-slate-900 hover:bg-slate-800/90 rounded-xl p-2 border-2 border-emerald-400/80 flex flex-col items-center shadow-lg cursor-pointer transition group text-left"
+                            >
+                              <span className="text-[10px] font-black uppercase text-emerald-400 mb-1.5">
+                                AHORA (Nuevo)
+                              </span>
+                              <div
+                                className={`relative w-full ${
+                                  isHanshow ? 'aspect-[3/4]' : 'aspect-[16/10]'
+                                } rounded-lg overflow-hidden bg-black border border-white/10`}
+                              >
+                                <img
+                                  src={activeVisualDef.imagenReferenciaDespues}
+                                  alt="Después"
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                />
+                                <span className="absolute bottom-1.5 right-1.5 bg-black/75 backdrop-blur-xs text-white text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 border border-white/20">
+                                  <ZoomIn className="w-3 h-3 text-emerald-300" /> Ampliar
+                                </span>
+                              </div>
+                              <span className="text-[10px] text-emerald-300 font-black mt-1.5 text-center">
+                                {isHanshow ? 'Xiaomi 18 Pro & Pro Max' : 'Lona Xiaomi 18 Pro Max'}
+                              </span>
+                            </button>
+                          </div>
+                          <p className="text-[11px] text-teal-200/90 font-semibold text-center mt-2.5 flex items-center justify-center gap-1.5">
+                            <ZoomIn className="w-3.5 h-3.5 text-teal-300" />
+                            <span>Pulsa sobre cualquiera de las imágenes para verla en grande</span>
+                          </p>
+                        </div>
+                      ) : isFaldon && activeVisualDef.imagenReferenciaDespues ? (
+                        /* EJEMPLO REAL 2: FALDÓN MESA 1 CARA 1 CON FLECHAS SEÑALANDO LA TIRA DEL FALDÓN */
+                        <div className="rounded-2xl overflow-hidden border-2 border-teal-400/50 bg-slate-950/90 p-4 shadow-2xl space-y-2.5">
+                          <div className="flex items-center justify-between">
+                            <span className="text-[10px] font-black uppercase tracking-wider text-teal-300">
+                              Imagen de Referencia · Faldón Lateral Mesa 1 Cara 1
+                            </span>
+                            <span className="px-2 py-0.5 rounded bg-[#ff6900] text-white text-[9px] font-black uppercase">
+                              Indicador con Flechas
+                            </span>
+                          </div>
+                          <div
+                            onClick={() =>
+                              setPosmPreviewModal({
+                                src: activeVisualDef.imagenReferenciaDespues!,
+                                title: 'Faldón Xiaomi 18 Pro Max · Mesa 1 Cara 1',
+                                subtitle: 'Colocar en la tira frontal de la Mesa 1 Cara 1',
+                                isFaldon: true
+                              })
+                            }
+                            className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-black border border-white/15 cursor-pointer group"
+                          >
+                            <img
+                              src={activeVisualDef.imagenReferenciaDespues}
+                              alt="Faldón Xiaomi 18 Pro Max en Mesa 1 Cara 1"
+                              className="w-full h-full object-cover group-hover:scale-102 transition-transform"
+                            />
+
+                            {/* Recuadro de resaltado sobre la tira del faldón (MAX POWER · Xiaomi 18 Pro Max · MAX POWER) */}
+                            <div
+                              className="absolute left-[7%] right-[7%] top-[53%] h-[10%] rounded-lg border-2 border-[#ff6900] bg-[#ff6900]/10 shadow-[0_0_20px_rgba(255,105,0,0.85)] pointer-events-none"
+                            />
+
+                            {/* Flechas superiores apuntando hacia abajo a la tira del faldón */}
+                            <div className="absolute left-[18%] top-[36%] flex flex-col items-center pointer-events-none animate-bounce">
+                              <span className="px-2 py-0.5 rounded bg-[#ff6900] text-white text-[9px] font-black uppercase shadow-md whitespace-nowrap">
+                                Faldón
+                              </span>
+                              <svg className="w-6 h-7 text-[#ff6900] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11 4h2v11l4.5-4.5 1.42 1.42L12 18.84l-6.92-6.92 1.42-1.42L11 15V4z" />
+                              </svg>
+                            </div>
+
+                            <div className="absolute left-1/2 -translate-x-1/2 top-[34%] flex flex-col items-center pointer-events-none animate-bounce">
+                              <span className="px-2.5 py-0.5 rounded bg-[#ff6900] text-white text-[10px] font-black uppercase shadow-lg border border-white/40 whitespace-nowrap">
+                                ▼ Tira Faldón: "Xiaomi 18 Pro Max" ▼
+                              </span>
+                              <svg className="w-7 h-8 text-[#ff6900] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11 4h2v11l4.5-4.5 1.42 1.42L12 18.84l-6.92-6.92 1.42-1.42L11 15V4z" />
+                              </svg>
+                            </div>
+
+                            <div className="absolute right-[18%] top-[36%] flex flex-col items-center pointer-events-none animate-bounce">
+                              <span className="px-2 py-0.5 rounded bg-[#ff6900] text-white text-[9px] font-black uppercase shadow-md whitespace-nowrap">
+                                Faldón
+                              </span>
+                              <svg className="w-6 h-7 text-[#ff6900] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11 4h2v11l4.5-4.5 1.42 1.42L12 18.84l-6.92-6.92 1.42-1.42L11 15V4z" />
+                              </svg>
+                            </div>
+
+                            {/* Flecha inferior apuntando hacia arriba a la tira del faldón */}
+                            <div className="absolute left-1/2 -translate-x-1/2 top-[65%] flex flex-col items-center pointer-events-none">
+                              <svg className="w-7 h-7 text-[#00c4cc] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M13 20h-2V9l-4.5 4.5-1.42-1.42L12 5.16l6.92 6.92-1.42 1.42L13 9v11z" />
+                              </svg>
+                              <span className="px-2.5 py-0.5 rounded bg-slate-950/90 text-teal-300 text-[10px] font-black border border-teal-400/50 shadow-md whitespace-nowrap">
+                                Colocar en esta tira frontal de la Mesa 1 Cara 1
+                              </span>
+                            </div>
+
+                            <span className="absolute bottom-2 right-2 bg-black/80 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 border border-white/20">
+                              <ZoomIn className="w-3.5 h-3.5 text-teal-300" /> Ampliar imagen
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-teal-200/90 font-semibold text-center flex items-center justify-center gap-1.5">
+                            <ZoomIn className="w-3.5 h-3.5 text-teal-300" />
+                            <span>Pulsa sobre la imagen para verla en grande</span>
+                          </p>
+                        </div>
+                      ) : (
+                        /* GUÍA OFICIAL POR DEFECTO */
+                        <div className="relative rounded-2xl overflow-hidden border-2 border-teal-400/50 bg-gradient-to-r from-slate-950 via-slate-900 to-[#0f3142] p-5 shadow-2xl">
+                          <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center gap-2">
+                              <img
+                                src="./images/xiaomi_logo.png"
+                                alt="Xiaomi"
+                                className="w-6 h-6 rounded-md"
+                              />
+                              <span className="text-xs font-black tracking-wider uppercase text-white">
+                                XIAOMI 18 PRO MAX · LEICA OPTICS
+                              </span>
+                            </div>
+                            <span className="px-2 py-0.5 rounded bg-red-600 text-white text-[9px] font-black uppercase">
+                              Leica Co-Engineered
+                            </span>
+                          </div>
+
+                          <div className="grid grid-cols-3 gap-3 items-center py-2">
+                            <div className="col-span-2 space-y-1.5">
+                              <span className="text-[10px] font-bold uppercase tracking-widest text-[#ff6900] block">
+                                NUEVA CARTELERÍA OFICIAL A COLOCAR
+                              </span>
+                              <h4 className="text-base sm:text-lg font-black text-white leading-tight">
+                                {activeVisualDef.guiaVisualTipo === 'lona_mesa'
+                                  ? 'Lona Backlight Textil: Xiaomi 18 Pro Max & 18 Pro'
+                                  : activeVisualDef.guiaVisualTipo === 'cabecero_wall'
+                                    ? 'Cabecero Mural: Ecosistema Xiaomi 18 Series'
+                                    : 'Stands Metacrilato A4 + Glorificador Leica + 4 Cartelas'}
+                              </h4>
+                              <p className="text-[11px] text-slate-300">
+                                Ubicación: {activeVisualDef.ubicacionEspacio}
+                              </p>
+                            </div>
+                            <div className="flex flex-col items-center justify-center bg-white/10 rounded-xl p-3 border border-white/15 text-center">
+                              <Smartphone className="w-9 h-9 text-teal-300 mb-1" />
+                              <span className="text-[10px] font-black text-white">
+                                Serie Xiaomi 18
+                              </span>
+                              <span className="text-[9px] text-teal-300">
+                                {activeVisualDef.medidasOficiales.split('(')[0]}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* CAPTURA DE FOTO ÚNICA DEL ELEMENTO NUEVO / ACTUALIZADO (SIN PEDIR FOTO ANTIGUA) */}
+                  <div className="p-4 sm:p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 flex flex-col justify-between">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                      <div>
+                        <span className="text-[10px] font-black uppercase tracking-wider text-teal-800 bg-teal-100 px-2.5 py-0.5 rounded-full">
+                          PASO 1 · Evidencia Fotográfica POSM Instalado
+                        </span>
+                        <h4 className="text-sm sm:text-base font-black text-slate-900 mt-2">
+                          {isHanshow
+                            ? 'Captura de la pantalla Hanshow actualizada'
+                            : isFaldon
+                              ? 'Captura del faldón instalado en Mesa 1 Cara 1'
+                              : 'Captura de la nueva lona instalada'}
+                        </h4>
+                        <p className="text-xs text-slate-500">
+                          Fotografía únicamente el nuevo elemento ya colocado o actualizado en tienda.
+                        </p>
+                      </div>
+                    </div>
+
+                    {curVState.fotoNuevaUrl ? (
+                      <div className="space-y-2">
+                        <div className="relative h-52 rounded-xl overflow-hidden border border-emerald-300 bg-black">
+                          <img
+                            src={curVState.fotoNuevaUrl}
+                            alt="Evidencia POSM Nueva"
+                            className="w-full h-full object-cover"
+                          />
+                          <span className="absolute top-2 left-2 px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-[10px] font-black shadow-sm">
+                            ✓ Foto de Evidencia POSM Adjuntada
+                          </span>
+                        </div>
+                        <div className="flex justify-between pt-1">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setTempVisualPhoto(null);
+                              setVisualCameraTarget({
+                                elementoId: activeVisualDef.id,
+                                step: 'nueva'
+                              });
+                            }}
+                            className="text-xs font-bold text-[#009ca6] hover:underline cursor-pointer"
+                          >
+                            Cambiar fotografía de evidencia
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              onUpdateVisualState({
+                                ...curVState,
+                                fotoNuevaUrl: undefined,
+                                estadoVisual: computeVisualStatus(
+                                  curVState.fotoAntiguaUrl,
+                                  undefined,
+                                  curVState.fijacionYMedidaCorrecta
+                                )
+                              })
+                            }
+                            className="text-xs font-bold text-rose-600 hover:underline cursor-pointer"
+                          >
+                            Eliminar
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setTempVisualPhoto(null);
+                          setVisualCameraTarget({
+                            elementoId: activeVisualDef.id,
+                            step: 'nueva'
+                          });
+                        }}
+                        className="w-full py-3.5 bg-gradient-to-r from-[#009ca6] to-[#00b4bf] hover:brightness-110 text-white font-black rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                      >
+                        <Camera className="w-4 h-4" />
+                        <span>
+                          {isHanshow
+                            ? 'Capturar Foto de Pantalla Hanshow Actualizada'
+                            : isFaldon
+                              ? 'Capturar Foto del Faldón Instalado'
+                              : 'Capturar Foto de la Lona Nueva Instalada'}
+                        </span>
+                      </button>
+                    )}
+                  </div>
+
+                  {/* PASO 2: CUESTIONARIO DE VERIFICACIÓN RÁPIDA */}
+                  <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div>
+                        <span className="text-[10px] font-black uppercase tracking-wider text-[#104a60] block">
+                          PASO 2 · Cuestionario de Verificación Rápida
+                        </span>
+                        <h4 className="text-sm sm:text-base font-black text-slate-900 mt-0.5">
+                          {isHanshow
+                            ? '¿La pantalla Hanshow se ha actualizado correctamente al nuevo cartel Xiaomi 18 Series?'
+                            : '¿El elemento POSM queda bien fijado y la medida es la correcta?'}
+                        </h4>
+                      </div>
+
+                      <div className="flex items-center gap-2 shrink-0">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            onUpdateVisualState({
+                              ...curVState,
+                              fijacionYMedidaCorrecta: true,
+                              motivoIncidencia: '',
+                              estadoVisual: computeVisualStatus(
+                                curVState.fotoAntiguaUrl,
+                                curVState.fotoNuevaUrl,
+                                true
+                              ),
+                              fechaHora: new Date().toLocaleString('es-ES')
+                            });
+                          }}
+                          className={`px-5 py-2.5 rounded-xl font-black text-xs sm:text-sm flex items-center gap-1.5 border transition cursor-pointer ${
+                            curVState.fijacionYMedidaCorrecta === true
+                              ? 'bg-emerald-600 text-white border-emerald-600 shadow-md'
+                              : 'bg-white text-slate-700 border-slate-300 hover:bg-emerald-50'
+                          }`}
+                        >
+                          <Check className="w-4 h-4" />
+                          <span>Sí</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            onUpdateVisualState({
+                              ...curVState,
+                              fijacionYMedidaCorrecta: false,
+                              motivoIncidencia:
+                                curVState.motivoIncidencia || 'Medidas no coinciden',
+                              estadoVisual: 'Incidencia',
+                              fechaHora: new Date().toLocaleString('es-ES')
+                            });
+                          }}
+                          className={`px-5 py-2.5 rounded-xl font-black text-xs sm:text-sm flex items-center gap-1.5 border transition cursor-pointer ${
+                            curVState.fijacionYMedidaCorrecta === false
+                              ? 'bg-rose-600 text-white border-rose-600 shadow-md'
+                              : 'bg-white text-slate-700 border-slate-300 hover:bg-rose-50'
+                          }`}
+                        >
+                          <AlertTriangle className="w-4 h-4" />
+                          <span>No</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Si se marca "No": desplegable de motivos de incidencia y campo para observaciones */}
+                    {curVState.fijacionYMedidaCorrecta === false && (
+                      <div className="p-4 bg-rose-50/70 border border-rose-200 rounded-2xl space-y-3 animate-fadeIn">
+                        <div>
+                          <label className="block text-xs font-black text-rose-900 uppercase mb-1">
+                            Motivo de la incidencia en Parte Visual / PLV:
+                          </label>
+                          <select
+                            value={curVState.motivoIncidencia || 'Medidas no coinciden'}
+                            onChange={(e) =>
+                              onUpdateVisualState({
+                                ...curVState,
+                                motivoIncidencia: e.target.value as VisualIncidentMotivo,
+                                estadoVisual: 'Incidencia'
+                              })
+                            }
+                            className="w-full bg-white border border-rose-300 rounded-xl px-3 py-2.5 text-xs sm:text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-rose-400"
+                          >
+                            {VISUAL_INCIDENT_MOTIVOS.map((m) => (
+                              <option key={m} value={m}>
+                                {m}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+
+                        <div>
+                          <label className="block text-xs font-black text-rose-900 uppercase mb-1">
+                            Observaciones / Notas adicionales:
+                          </label>
+                          <textarea
+                            rows={2}
+                            value={curVState.notas || ''}
+                            onChange={(e) =>
+                              onUpdateVisualState({
+                                ...curVState,
+                                notas: e.target.value
+                              })
+                            }
+                            placeholder="Especifica medidas reales medidas en tienda, estado de perfilería o detalles..."
+                            className="w-full bg-white border border-rose-200 rounded-xl px-3 py-2 text-xs text-slate-800"
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })()}
+          </div>
+        </div>
+      )}
+
+      {/* MODAL DE CÁMARA PARA PARTE VISUAL (PASO 1 ANTIGUA / PASO 2 NUEVA) */}
+      {visualCameraTarget && activeVisualDef && (
+        <div className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="w-full max-w-lg bg-slate-900 border border-slate-700 rounded-3xl p-5 text-white space-y-4 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+              <div>
+                <span className="text-[10px] font-black uppercase tracking-wider text-teal-400 block">
+                  {visualCameraTarget.step === 'antigua'
+                    ? 'PASO 1 · Fotografía Cartelería / Lona Antigua'
+                    : 'PASO 2 · Fotografía Nueva Cartelería Instalada'}
+                </span>
+                <h3 className="text-sm sm:text-base font-black">{activeVisualDef.nombreElemento}</h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  stopCamera();
+                  setVisualCameraTarget(null);
+                  setTempVisualPhoto(null);
+                }}
+                className="px-3 py-1.5 rounded-xl bg-slate-800 text-xs font-bold cursor-pointer"
+              >
+                Cerrar
+              </button>
+            </div>
+
+            <div className="relative aspect-[3/2] w-full bg-black rounded-2xl overflow-hidden border-2 border-dashed border-teal-400/70 flex items-center justify-center">
+              {tempVisualPhoto ? (
+                <img
+                  src={tempVisualPhoto}
+                  alt="Preview PLV"
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <>
+                  <video
+                    ref={(el) => {
+                      videoRef.current = el;
+                      if (el && streamRef.current && el.srcObject !== streamRef.current) {
+                        el.srcObject = streamRef.current;
+                        el.play().catch(() => {});
+                      }
+                    }}
+                    autoPlay
+                    playsInline
+                    muted
+                    className={`w-full h-full object-cover ${cameraActive ? 'block' : 'hidden'}`}
+                  />
+                  {!cameraActive && (
+                    <div className="p-6 text-center space-y-3">
+                      <Camera className="w-10 h-10 text-slate-400 mx-auto" />
+                      <p className="text-xs text-slate-300">
+                        Encuadra el elemento PLV completo ({activeVisualDef.medidasOficiales})
+                      </p>
+                      <div className="flex flex-wrap justify-center gap-2">
+                        <label className="px-4 py-2.5 bg-[#009ca6] hover:bg-[#008992] rounded-xl text-xs font-black cursor-pointer inline-flex items-center gap-2">
+                          <Upload className="w-4 h-4" />
+                          <span>Abrir Cámara / Galería</span>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            capture="environment"
+                            onChange={async (e) => {
+                              const file = e.target.files?.[0];
+                              if (!file) return;
+                              const compressed =
+                                await ImageCompressionService.compressImage(file);
+                              setTempVisualPhoto(compressed);
+                              stopCamera();
+                            }}
+                            className="hidden"
+                          />
+                        </label>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            generateDemoVisualPhoto(activeVisualDef, visualCameraTarget.step)
+                          }
+                          className="px-4 py-2.5 bg-white/10 hover:bg-white/20 border border-white/15 rounded-xl text-xs font-bold text-teal-200 cursor-pointer inline-flex items-center gap-1.5"
+                        >
+                          <Sparkles className="w-4 h-4" />
+                          <span>Generar Foto de Prueba Local</span>
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+
+            <div className="flex items-center justify-end gap-2.5">
+              {tempVisualPhoto ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => setTempVisualPhoto(null)}
+                    className="px-4 py-2.5 bg-slate-800 rounded-xl text-xs font-bold cursor-pointer"
+                  >
+                    Repetir
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleSaveVisualPhoto(tempVisualPhoto)}
+                    className="px-5 py-2.5 bg-[#009ca6] hover:bg-[#008992] rounded-xl text-xs font-black cursor-pointer flex items-center gap-1.5"
+                  >
+                    <CheckCircle2 className="w-4 h-4" />
+                    <span>Guardar Evidencia PLV</span>
+                  </button>
+                </>
+              ) : (
+                cameraActive && (
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      if (!videoRef.current) return;
+                      const canvas = document.createElement('canvas');
+                      canvas.width = videoRef.current.videoWidth || 1280;
+                      canvas.height = videoRef.current.videoHeight || 720;
+                      const ctx = canvas.getContext('2d');
+                      if (!ctx) return;
+                      ctx.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+                      const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+                      setTempVisualPhoto(dataUrl);
+                      stopCamera();
+                    }}
+                    className="w-full py-3 bg-[#009ca6] rounded-xl text-xs font-black cursor-pointer"
+                  >
+                    Capturar Fotografía Ahora
+                  </button>
+                )
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL DE PREVISUALIZACIÓN EN GRANDE DE IMÁGENES DE REFERENCIA POSM */}
+      {posmPreviewModal && (
+        <div
+          onClick={() => setPosmPreviewModal(null)}
+          className="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md flex flex-col justify-between p-4 sm:p-6 animate-fadeIn"
+        >
+          {/* Barra superior con botón para volver a la pantalla anterior */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-4xl mx-auto flex items-center justify-between gap-3 pb-3 border-b border-white/15"
+          >
+            <button
+              type="button"
+              onClick={() => setPosmPreviewModal(null)}
+              className="px-4 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-black text-xs sm:text-sm flex items-center gap-2 cursor-pointer transition shadow-md"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Volver a la pantalla anterior</span>
+            </button>
+
+            <div className="text-right">
+              <span className="text-xs sm:text-sm font-black text-teal-300 block">
+                {posmPreviewModal.title}
+              </span>
+              {posmPreviewModal.subtitle && (
+                <span className="text-[11px] text-slate-300 block">
+                  {posmPreviewModal.subtitle}
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* Imagen ampliada en el centro */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="flex-1 flex items-center justify-center my-4 overflow-hidden"
+          >
+            {posmPreviewModal.isFaldon ? (
+              <div className="relative w-full max-w-4xl aspect-[16/10] rounded-2xl overflow-hidden bg-black border-2 border-teal-400/50 shadow-2xl">
+                <img
+                  src={posmPreviewModal.src}
+                  alt={posmPreviewModal.title}
+                  className="w-full h-full object-cover"
+                />
+                {/* Recuadro de resaltado sobre la tira del faldón */}
+                <div className="absolute left-[7%] right-[7%] top-[53%] h-[10%] rounded-lg border-2 border-[#ff6900] bg-[#ff6900]/10 shadow-[0_0_20px_rgba(255,105,0,0.85)] pointer-events-none" />
+                <div className="absolute left-[18%] top-[36%] flex flex-col items-center pointer-events-none animate-bounce">
+                  <span className="px-2 py-0.5 rounded bg-[#ff6900] text-white text-[10px] sm:text-xs font-black uppercase shadow-md whitespace-nowrap">
+                    Faldón
+                  </span>
+                  <svg className="w-6 h-7 sm:w-8 sm:h-9 text-[#ff6900] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M11 4h2v11l4.5-4.5 1.42 1.42L12 18.84l-6.92-6.92 1.42-1.42L11 15V4z" />
+                  </svg>
+                </div>
+                <div className="absolute left-1/2 -translate-x-1/2 top-[34%] flex flex-col items-center pointer-events-none animate-bounce">
+                  <span className="px-2.5 py-0.5 rounded bg-[#ff6900] text-white text-[10px] sm:text-sm font-black uppercase shadow-lg border border-white/40 whitespace-nowrap">
+                    ▼ Tira Faldón: "Xiaomi 18 Pro Max" ▼
+                  </span>
+                  <svg className="w-7 h-8 sm:w-9 sm:h-10 text-[#ff6900] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M11 4h2v11l4.5-4.5 1.42 1.42L12 18.84l-6.92-6.92 1.42-1.42L11 15V4z" />
+                  </svg>
+                </div>
+                <div className="absolute right-[18%] top-[36%] flex flex-col items-center pointer-events-none animate-bounce">
+                  <span className="px-2 py-0.5 rounded bg-[#ff6900] text-white text-[10px] sm:text-xs font-black uppercase shadow-md whitespace-nowrap">
+                    Faldón
+                  </span>
+                  <svg className="w-6 h-7 sm:w-8 sm:h-9 text-[#ff6900] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M11 4h2v11l4.5-4.5 1.42 1.42L12 18.84l-6.92-6.92 1.42-1.42L11 15V4z" />
+                  </svg>
+                </div>
+                <div className="absolute left-1/2 -translate-x-1/2 top-[65%] flex flex-col items-center pointer-events-none">
+                  <svg className="w-7 h-7 sm:w-9 sm:h-9 text-[#00c4cc] drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M13 20h-2V9l-4.5 4.5-1.42-1.42L12 5.16l6.92 6.92-1.42 1.42L13 9v11z" />
+                  </svg>
+                  <span className="px-2.5 py-0.5 rounded bg-slate-950/90 text-teal-300 text-[10px] sm:text-xs font-black border border-teal-400/50 shadow-md whitespace-nowrap">
+                    Colocar en esta tira frontal de la Mesa 1 Cara 1
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <img
+                src={posmPreviewModal.src}
+                alt={posmPreviewModal.title}
+                className="max-w-full max-h-[75vh] w-auto h-auto object-contain rounded-2xl border-2 border-white/20 shadow-2xl"
+              />
+            )}
+          </div>
+
+          {/* Botón inferior para volver */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-md mx-auto pt-2"
+          >
+            <button
+              type="button"
+              onClick={() => setPosmPreviewModal(null)}
+              className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#009ca6] to-[#00b4bf] text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-xl"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Volver a la pantalla anterior</span>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* PANTALLA MODAL DE RESUMEN PREVIO Y FINALIZACIÓN DE AUDITORÍA */}
+      {isSummaryModalOpen && (
+        <ImplantationSummaryModal
+          store={store}
+          allStores={allStores}
+          currentUser={currentUser}
+          swapAssignments={allStoreSwapAssignments}
+          swapStates={swapStates}
+          visualDefinitions={visualDefinitions}
+          visualStates={visualStates}
+          onClose={() => setIsSummaryModalOpen(false)}
+          onFinishComplete={() => {
+            setIsSummaryModalOpen(false);
+            onFinishComplete();
+          }}
+        />
+      )}
+    </div>
+  );
+};
