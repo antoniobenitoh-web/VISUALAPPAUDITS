@@ -21,7 +21,9 @@ import {
   RefreshCw,
   Sparkles,
   CheckCircle2,
-  Lock
+  Lock,
+  AlertTriangle,
+  RotateCcw
 } from 'lucide-react';
 
 interface StoreSelectScreenProps {
@@ -315,6 +317,7 @@ export const StoreSelectScreen: React.FC<StoreSelectScreenProps> = ({
               const hasDraft = draft && draft.length > 0;
               const draftCount = draft ? draft.length : 0;
               const totalPuestos = store.totalPuestos || 12;
+              const latestAudit = DbService.getLatestAuditForStore(store.tiendaId);
 
               const impDraft = DbService.getImplantationDraft(store.tiendaId);
               const impRecord = DbService.getLatestImplantationForStore(store.tiendaId);
@@ -351,6 +354,18 @@ export const StoreSelectScreen: React.FC<StoreSelectScreenProps> = ({
                           <Clock className="w-3 h-3 text-amber-500" />
                           <span>Borrador ({draftCount}/{totalPuestos})</span>
                         </span>
+                      ) : latestAudit ? (
+                        latestAudit.incidenciasCount > 0 ? (
+                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200 shrink-0">
+                            <AlertTriangle className="w-3 h-3 text-rose-500" />
+                            <span>Incidencias ({latestAudit.incidenciasCount})</span>
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
+                            <CheckCircle2 className="w-3 h-3 text-emerald-500" />
+                            <span>Vigente OK</span>
+                          </span>
+                        )
                       ) : (
                         <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600 border border-slate-200 shrink-0">
                           <span>Pendiente</span>
@@ -374,6 +389,13 @@ export const StoreSelectScreen: React.FC<StoreSelectScreenProps> = ({
                       <span className="text-slate-300">•</span>
                       <span className="font-mono text-[11px] text-slate-400">{highlightMatch(store.tiendaId, searchTerm)}</span>
                     </div>
+
+                    {latestAudit && !hasDraft && (
+                      <div className="flex items-center gap-1 text-[10px] text-slate-400 font-medium pt-0.5">
+                        <Clock className="w-3 h-3 text-slate-400 shrink-0" />
+                        <span>Auditada: {latestAudit.fechaHora.slice(0, 10)}</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Pie de la tarjeta: Tipo de Espacio y Botón Acción */}
@@ -434,21 +456,93 @@ export const StoreSelectScreen: React.FC<StoreSelectScreenProps> = ({
 
             {/* Opciones de flujo */}
             <div className="p-5 sm:p-6 space-y-3.5 bg-slate-50">
-              {/* OPCIÓN A: AUDITORÍA COMPLETA DE TIENDA */}
-              <button
-                onClick={() => handleChooseWorkflow(modalStore, 'complete_audit')}
-                className="w-full text-left bg-white hover:bg-teal-50/40 border-2 border-slate-200 hover:border-[#009ca6] rounded-2xl p-4 sm:p-5 transition-all shadow-xs hover:shadow-md group cursor-pointer flex items-center gap-4"
-              >
-                <div className="w-12 h-12 rounded-2xl bg-[#104a60]/10 group-hover:bg-[#009ca6] text-[#104a60] group-hover:text-white flex items-center justify-center shrink-0 transition-colors">
-                  <ClipboardCheck className="w-6 h-6" />
-                </div>
-                <div className="flex-1 min-w-0 flex items-center justify-between gap-2">
-                  <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-[#104a60]">
-                    Auditoría completa de tienda
-                  </h3>
-                  <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-[#009ca6] group-hover:translate-x-0.5 transition shrink-0" />
-                </div>
-              </button>
+              {/* Tarjeta de Resumen del Reporte Vigente (si existe) */}
+              {(() => {
+                const latest = DbService.getLatestAuditForStore(modalStore.tiendaId);
+                const draft = DbService.getDraft(modalStore.tiendaId);
+                if (!latest && (!draft || draft.length === 0)) return null;
+
+                return (
+                  <div className="bg-sky-50/90 border border-sky-200/90 rounded-2xl p-3.5 sm:p-4 text-xs text-sky-950 flex flex-col gap-1.5 shadow-2xs">
+                    <div className="flex items-center justify-between font-bold">
+                      <div className="flex items-center gap-1.5">
+                        <Sparkles className="w-4 h-4 text-[#009ca6]" />
+                        <span className="text-slate-900 font-extrabold text-xs sm:text-sm">
+                          {draft && draft.length > 0 ? 'Borrador temporal detectado' : 'Último reporte vigente disponible'}
+                        </span>
+                      </div>
+                      <span className="text-[10px] text-slate-500 font-normal">
+                        {draft && draft.length > 0 ? `${draft.length} puestos modificados` : latest?.fechaHora}
+                      </span>
+                    </div>
+
+                    {latest && (!draft || draft.length === 0) && (
+                      <div className="flex items-center justify-between pt-1 text-[11px] text-slate-600 border-t border-sky-100">
+                        <span>Auditor: <strong className="text-slate-800">{latest.usuarioNombre}</strong></span>
+                        <div className="flex items-center gap-2 font-bold">
+                          <span className="text-emerald-600">{latest.okCount} OK</span>
+                          <span>•</span>
+                          <span className={latest.incidenciasCount > 0 ? 'text-rose-600' : 'text-slate-500'}>
+                            {latest.incidenciasCount} incidencias
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
+
+              {/* OPCIÓN A: CONTINUAR / ACTUALIZAR REPORTE VIGENTE O AUDITORÍA COMPLETA */}
+              {(() => {
+                const hasExistingData = Boolean(
+                  DbService.getLatestAuditForStore(modalStore.tiendaId) ||
+                  (DbService.getDraft(modalStore.tiendaId)?.length || 0) > 0
+                );
+
+                return (
+                  <>
+                    <button
+                      onClick={() => handleChooseWorkflow(modalStore, 'complete_audit')}
+                      className="w-full text-left bg-white hover:bg-teal-50/40 border-2 border-slate-200 hover:border-[#009ca6] rounded-2xl p-4 sm:p-5 transition-all shadow-xs hover:shadow-md group cursor-pointer flex items-center gap-4"
+                    >
+                      <div className="w-12 h-12 rounded-2xl bg-[#104a60]/10 group-hover:bg-[#009ca6] text-[#104a60] group-hover:text-white flex items-center justify-center shrink-0 transition-colors">
+                        <ClipboardCheck className="w-6 h-6" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between gap-2">
+                          <h3 className="text-base sm:text-lg font-black text-slate-900 group-hover:text-[#104a60]">
+                            {hasExistingData ? 'Continuar / Modificar reporte vigente' : 'Auditoría completa de tienda'}
+                          </h3>
+                          <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-[#009ca6] group-hover:translate-x-0.5 transition shrink-0" />
+                        </div>
+                        <p className="text-xs text-slate-500 mt-0.5 font-medium">
+                          {hasExistingData
+                            ? 'Carga los puestos auditados para modificar terminales o solventar incidencias sin empezar de cero.'
+                            : 'Audita y verifica todas las posiciones y dispositivos del planograma.'}
+                        </p>
+                      </div>
+                    </button>
+
+                    {hasExistingData && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (window.confirm('¿Seguro que deseas iniciar una auditoría limpia desde cero? Esto reiniciará las posiciones previas de esta tienda.')) {
+                            handleChooseWorkflow(modalStore, 'clean_audit');
+                          }
+                        }}
+                        className="w-full text-left bg-white hover:bg-slate-100/80 border border-slate-200 rounded-xl px-4 py-2.5 transition flex items-center justify-between text-xs font-semibold text-slate-600 hover:text-slate-900 cursor-pointer"
+                      >
+                        <span className="flex items-center gap-2">
+                          <RotateCcw className="w-3.5 h-3.5 text-slate-400" />
+                          <span>Iniciar nueva auditoría limpia (desde cero)</span>
+                        </span>
+                        <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Reset</span>
+                      </button>
+                    )}
+                  </>
+                );
+              })()}
 
               {/* OPCIÓN B: NUEVA IMPLANTACIÓN (Visible en todas las tiendas; activa solo en las que coinciden con el planograma de MediaMarkt Tarragona) */}
               {(() => {

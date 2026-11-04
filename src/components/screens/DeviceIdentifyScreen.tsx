@@ -29,7 +29,8 @@ import {
   Watch,
   Headphones,
   Tablet,
-  ScanText
+  ScanText,
+  Clock
 } from 'lucide-react';
 import { validateImeiLuhn, validateSerialFormat } from '../../services/ocrService';
 
@@ -378,6 +379,64 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
     onConfirmSuccess(state, andNext);
   };
 
+  // Helper para convertir el tipo interno de incidencia a IncidentCategory oficial
+  const mapIncidentCategory = (type: IncidentType): IncidentCategory | '' => {
+    if (type === 'no_coincide') return 'No coincide';
+    if (type === 'robo') return 'Robo';
+    if (type === 'fallo_alarmado') return 'Fallo alarmado';
+    return '';
+  };
+
+  // Guarda automáticamente el estado en el borrador si hay un IMEI introducido antes de volver atrás
+  const handleSafeBack = () => {
+    const cleanImei = (imei || '').trim();
+    if (cleanImei && cleanImei !== '-') {
+      const isIncident = incidentType !== null;
+      const estadoPos: PositionStatus = photoUrl 
+        ? (isIncident ? 'Incidencia' : 'OK') 
+        : (currentState?.estadoPosicion || 'Pendiente');
+
+      const draftState: PositionAuditState = {
+        posicionId: position.id,
+        mesaId: position.mesaId,
+        posicionNumero: position.posicionNumero,
+        modeloOficial: position.modeloOficial,
+        modeloDetectado: replacedModel.trim() || position.modeloOficial,
+        imeiSerial: cleanImei,
+        estadoPosicion: estadoPos,
+        tipoIncidencia: mapIncidentCategory(incidentType),
+        esMaqueta: isDummy,
+        fotoEvidenciaUrl: photoUrl,
+        comentarios: 'Borrador: IMEI guardado',
+        auditadoPor: currentUser.nombre,
+        fechaHora: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+      onConfirmSuccess(draftState, false);
+    } else {
+      onBack();
+    }
+  };
+
+  const handleSaveDraftWithoutPhoto = () => {
+    const cleanImei = (imei || '').trim();
+    const draftState: PositionAuditState = {
+      posicionId: position.id,
+      mesaId: position.mesaId,
+      posicionNumero: position.posicionNumero,
+      modeloOficial: position.modeloOficial,
+      modeloDetectado: replacedModel.trim() || position.modeloOficial,
+      imeiSerial: cleanImei || (isDummy ? 'Maqueta (Exento)' : '-'),
+      estadoPosicion: 'Pendiente',
+      tipoIncidencia: mapIncidentCategory(incidentType),
+      esMaqueta: isDummy,
+      fotoEvidenciaUrl: photoUrl,
+      comentarios: 'Borrador: IMEI guardado en progreso',
+      auditadoPor: currentUser.nombre,
+      fechaHora: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+    onConfirmSuccess(draftState, false);
+  };
+
   return (
     <div className="w-full max-w-xl mx-auto min-h-[92dvh] sm:min-h-[640px] flex flex-col bg-white text-slate-800 rounded-none sm:rounded-3xl shadow-2xl relative overflow-hidden border border-slate-200/80 transition-all duration-300">
       
@@ -387,7 +446,7 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
           {/* Header Salesland Corporate */}
           <div className="px-5 py-4 bg-gradient-to-r from-[#072431] via-[#104a60] to-[#0a3343] text-white flex items-center justify-between sticky top-0 z-10 shadow-md">
             <button
-              onClick={onBack}
+              onClick={handleSafeBack}
               className="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition active:scale-95 cursor-pointer"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -1376,15 +1435,25 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
 
             {/* Botón Guardar y Continuar: Bloqueado si no hay foto */}
             {!photoUrl ? (
-              <button
-                type="button"
-                disabled={true}
-                className="w-full bg-slate-100 border border-slate-200 text-slate-400 font-bold py-4 rounded-2xl transition text-sm flex items-center justify-center gap-2 cursor-not-allowed select-none opacity-80"
-                title="Debes adjuntar la fotografía de evidencia antes de continuar"
-              >
-                <Lock className="w-4 h-4 text-slate-400" />
-                <span>Guardar y Continuar (Bloqueado)</span>
-              </button>
+              <div className="space-y-2">
+                <button
+                  type="button"
+                  disabled={true}
+                  className="w-full bg-slate-100 border border-slate-200 text-slate-400 font-bold py-3.5 rounded-2xl transition text-sm flex items-center justify-center gap-2 cursor-not-allowed select-none opacity-80"
+                  title="Debes adjuntar la fotografía de evidencia antes de continuar"
+                >
+                  <Lock className="w-4 h-4 text-slate-400" />
+                  <span>Guardar y Validar (Requiere Foto)</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={handleSaveDraftWithoutPhoto}
+                  className="w-full bg-white hover:bg-slate-50 active:scale-[0.98] text-[#104a60] font-bold py-3 rounded-2xl border border-slate-300 transition text-xs flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
+                >
+                  <Clock className="w-3.5 h-3.5 text-[#009ca6]" />
+                  <span>Guardar IMEI como borrador (añadir foto más tarde)</span>
+                </button>
+              </div>
             ) : (
               <button
                 type="button"

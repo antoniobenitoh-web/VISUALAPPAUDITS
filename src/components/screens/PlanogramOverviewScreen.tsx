@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { StoreCenter, PlanogramPosition, PositionAuditState } from '../../types';
+import { DbService } from '../../services/dbService';
 import { getPositionsForSpace } from '../../data/defaultData';
 import { PLANOGRAM_IMAGES } from '../../data/planogramImages';
 import { RetailerLogo } from '../RetailerLogos';
@@ -20,7 +21,8 @@ import {
   ZoomOut,
   RotateCcw,
   Sparkles,
-  ShieldCheck
+  ShieldCheck,
+  RotateCcw as ResetIcon
 } from 'lucide-react';
 
 interface PlanogramOverviewScreenProps {
@@ -29,6 +31,7 @@ interface PlanogramOverviewScreenProps {
   onSelectPosition: (pos: PlanogramPosition) => void;
   onFinishAudit: () => void;
   onBack: () => void;
+  onResetAudit?: () => void;
 }
 
 export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = ({
@@ -36,7 +39,8 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
   auditStates,
   onSelectPosition,
   onFinishAudit,
-  onBack
+  onBack,
+  onResetAudit
 }) => {
   const [viewMode, setViewMode] = useState<'visual' | 'list'>('visual');
   const [showLegend, setShowLegend] = useState(false);
@@ -93,11 +97,30 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
     });
     return sum > 0 ? sum : (store.totalPuestos || positions.length);
   }, [availableSpaces, store, positions.length]);
-  const auditedCount = Object.keys(auditStates).length;
-  const currentPosState = selectedPos ? auditStates[selectedPos.id] : undefined;
+  const getPosAuditState = (pos: PlanogramPosition | null): PositionAuditState | undefined => {
+    if (!pos) return undefined;
+    if (auditStates[pos.id]) return auditStates[pos.id];
+    return Object.values(auditStates).find(
+      a => a.posicionId === pos.id || (a.mesaId === pos.mesaId && a.posicionNumero === pos.posicionNumero)
+    );
+  };
+
+  const auditedCount = useMemo(() => {
+    return Object.values(auditStates).filter(
+      s => s.estadoPosicion === 'OK' || s.estadoPosicion === 'Incidencia' || (s.imeiSerial && s.imeiSerial !== '-')
+    ).length;
+  }, [auditStates]);
+
+  const currentPosState = getPosAuditState(selectedPos);
   const isPosOk = currentPosState?.estadoPosicion === 'OK';
   const isPosIncident = currentPosState?.estadoPosicion === 'Incidencia';
   const progressPercent = Math.min(100, Math.round((auditedCount / totalPositions) * 100));
+  const latestAudit = useMemo(() => DbService.getLatestAuditForStore(store.tiendaId), [store.tiendaId]);
+  const hasDraft = useMemo(() => {
+    const d = DbService.getDraft(store.tiendaId);
+    return Boolean(d && d.length > 0);
+  }, [store.tiendaId]);
+  const isVigenteActive = Boolean(latestAudit && !hasDraft && auditedCount > 0);
 
   return (
     <div className="w-full min-h-[92dvh] sm:min-h-[80vh] flex flex-col bg-white text-slate-800 rounded-none sm:rounded-3xl shadow-2xl overflow-hidden border border-slate-200/80 transition-all duration-300">
@@ -115,8 +138,8 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
           
           <div className="min-w-0">
             <div className="flex items-center gap-1.5 sm:gap-2">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-teal-300">
-                Auditoría en Curso
+              <span className={`text-[10px] font-bold uppercase tracking-wider ${isVigenteActive ? 'text-emerald-300' : 'text-teal-300'}`}>
+                {isVigenteActive ? 'Reporte Vigente' : hasDraft ? 'Borrador en Curso' : 'Auditoría en Curso'}
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#ff6900]" />
               <span className="text-[10px] text-slate-300 truncate hidden xs:inline">
@@ -152,6 +175,30 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
           </button>
         </div>
       </div>
+
+      {/* Banner Informativo si hay Reporte Vigente Activo */}
+      {latestAudit && auditedCount > 0 && (
+        <div className="bg-sky-50 border-b border-sky-200/80 px-4 py-2 flex items-center justify-between gap-3 text-xs text-sky-950 flex-wrap">
+          <div className="flex items-center gap-2 min-w-0">
+            <Sparkles className="w-4 h-4 text-[#009ca6] shrink-0" />
+            <span className="truncate">
+              <strong>Reporte vigente ({latestAudit.fechaHora}):</strong> {auditedCount} puestos registrados. Pulsa en cualquier posición para actualizar datos o resolver incidencias.
+            </span>
+          </div>
+          {onResetAudit && (
+            <button
+              onClick={() => {
+                if (window.confirm('¿Seguro que deseas reiniciar y comenzar una auditoría limpia desde cero para esta tienda?')) {
+                  onResetAudit();
+                }
+              }}
+              className="text-[11px] font-bold text-rose-600 hover:text-rose-800 underline cursor-pointer shrink-0 ml-auto"
+            >
+              Empezar auditoría de cero
+            </button>
+          )}
+        </div>
+      )}
 
       {/* BARRA DE SUPERFICIES Y SWITCH DE MODO */}
       <div className="px-3.5 sm:px-6 py-2 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2.5">
@@ -256,7 +303,7 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                   {/* Hotspots / Pines Interactivos Lineales que no tapan los dispositivos */}
                   <div className="absolute inset-0 pointer-events-none">
                   {positions.map((pos, idx) => {
-                    const pState = auditStates[pos.id];
+                    const pState = getPosAuditState(pos);
                     const isOk = pState?.estadoPosicion === 'OK';
                     const isInc = pState?.estadoPosicion === 'Incidencia';
                     const isSel = selectedPos?.id === pos.id;
@@ -364,7 +411,7 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                 Terminales en {activeSpace} ({positions.length})
               </div>
               {positions.map((p) => {
-                const pState = auditStates[p.id];
+                const pState = getPosAuditState(p);
                 const isOk = pState?.estadoPosicion === 'OK';
                 const isInc = pState?.estadoPosicion === 'Incidencia';
                 const isSel = selectedPos?.id === p.id;
@@ -388,6 +435,9 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                       <div>
                         <p className="text-xs sm:text-sm font-bold truncate">{p.modeloOficial}</p>
                         <p className="text-[10px] text-teal-300/80">{p.categoria} • <span className="font-semibold text-white">{p.esDummy ? 'Maqueta' : 'LDU'}</span></p>
+                        {pState?.imeiSerial && pState.imeiSerial !== '-' && (
+                          <p className="text-[10px] font-mono font-bold text-teal-300 mt-0.5">IMEI: {pState.imeiSerial}</p>
+                        )}
                       </div>
                     </div>
 
@@ -428,7 +478,7 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
             {/* BARRA TÁCTIL RÁPIDA DE PUESTOS (Organizada linealmente) */}
             <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
               {positions.map((p, idx) => {
-                const pState = auditStates[p.id];
+                const pState = getPosAuditState(p);
                 const isOk = pState?.estadoPosicion === 'OK';
                 const isInc = pState?.estadoPosicion === 'Incidencia';
                 const isSel = selectedPos?.id === p.id;
@@ -537,12 +587,43 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                   )}
                 </div>
 
+                {/* IMEI / S/N Registrado en la posición */}
+                {currentPosState?.imeiSerial && currentPosState.imeiSerial !== '-' && (
+                  <div className="p-3 bg-white rounded-xl border border-teal-200 shadow-2xs space-y-1">
+                    <div className="flex items-center justify-between text-[10px] text-slate-500 font-bold uppercase tracking-wider">
+                      <span className="flex items-center gap-1 text-teal-800">
+                        <Smartphone className="w-3.5 h-3.5 text-teal-600" />
+                        <span>IMEI / Serial Registrado</span>
+                      </span>
+                      <span className={`px-2 py-0.5 rounded-full text-[9px] font-black ${
+                        isPosOk ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' :
+                        isPosIncident ? 'bg-rose-50 text-rose-700 border border-rose-200' :
+                        'bg-amber-50 text-amber-700 border border-amber-200'
+                      }`}>
+                        {currentPosState.estadoPosicion}
+                      </span>
+                    </div>
+                    <div className="font-mono text-sm sm:text-base font-black text-slate-900 tracking-wider select-all">
+                      {currentPosState.imeiSerial}
+                    </div>
+                    {currentPosState.fechaHora && (
+                      <div className="text-[10px] text-slate-400">
+                        Modificado: {currentPosState.fechaHora} {currentPosState.auditadoPor ? `· ${currentPosState.auditadoPor}` : ''}
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 {/* Botón Principal para auditar este puesto */}
                 <button
                   onClick={() => onSelectPosition(selectedPos)}
                   className="w-full py-3.5 bg-gradient-to-r from-[#009ca6] to-[#00b4bf] hover:from-[#008992] hover:to-[#00a3ad] active:scale-[0.98] text-white font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-[#009ca6]/20 transition flex items-center justify-center gap-2 cursor-pointer group"
                 >
-                  <span>Auditar Puesto {String(selectedPos.posicionNumero).padStart(2, '0')}</span>
+                  <span>
+                    {currentPosState?.imeiSerial && currentPosState.imeiSerial !== '-'
+                      ? `Editar Puesto ${String(selectedPos.posicionNumero).padStart(2, '0')}`
+                      : `Auditar Puesto ${String(selectedPos.posicionNumero).padStart(2, '0')}`}
+                  </span>
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition" />
                 </button>
               </div>

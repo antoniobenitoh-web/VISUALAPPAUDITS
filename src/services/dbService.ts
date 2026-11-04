@@ -11,6 +11,7 @@ import realPlanogramsData from '../data/realPlanograms.json';
 
 const DRAFTS_KEY = 'brand_audit_drafts';
 const HISTORY_KEY = 'brand_audit_history';
+const LATEST_AUDIT_KEY_PREFIX = 'brand_audit_latest_';
 const IMPLANTATION_DRAFTS_KEY = 'brand_implantation_drafts';
 const IMPLANTATION_HISTORY_KEY = 'brand_implantation_history';
 const STORES_KEY = 'brand_audit_stores_v6';
@@ -111,7 +112,7 @@ export class DbService {
     localStorage.removeItem(`${DRAFTS_KEY}_${tiendaId}`);
   }
 
-  // Historial de auditorías
+  // Historial y Reporte Vigente de auditorías
   static getHistory(): AuditRecord[] {
     const raw = localStorage.getItem(HISTORY_KEY);
     if (!raw) return [];
@@ -122,22 +123,84 @@ export class DbService {
     }
   }
 
-  static saveAuditRecord(record: AuditRecord) {
-    const history = this.getHistory();
-    const updated = [record, ...history];
-    localStorage.setItem(HISTORY_KEY, JSON.stringify(updated));
+  // Obtiene el último reporte vigente completado de una tienda específica
+  static getLatestAuditForStore(tiendaId: string): AuditRecord | null {
+    const rawDirect = localStorage.getItem(`${LATEST_AUDIT_KEY_PREFIX}${tiendaId}`);
+    if (rawDirect) {
+      try {
+        const parsed = JSON.parse(rawDirect);
+        if (parsed && parsed.tiendaId === tiendaId) {
+          return parsed;
+        }
+      } catch {}
+    }
 
-    // Si no está sincronizado, añadir a cola offline
+    const history = this.getHistory();
+    return history.find(r => r.tiendaId === tiendaId) || null;
+  }
+
+  // Guarda el registro de auditoría en la aplicación optimizando el almacenamiento:
+  // Se guardan todos los datos (posiciones, modelos, IMEIs, incidencias, notas, fechas),
+  // pero se excluyen las imágenes pesadas en base64 de la copia local, ya que estas se suben a Google Drive.
+  static saveAuditRecord(record: AuditRecord) {
+    // 1. Generar copia ligera sin las fotos base64 para no saturar localStorage
+    const lightweightPositions = (record.positions || []).map(p => {
+      const { fotoEvidenciaUrl, ...rest } = p;
+      return {
+        ...rest,
+        fotoEvidenciaUrl: fotoEvidenciaUrl ? '[Almacenada en Google Drive]' : undefined
+      };
+    });
+
+    const lightweightRecord: AuditRecord = {
+      ...record,
+      positions: lightweightPositions
+    };
+
+    // 2. Guardar como reporte vigente de la tienda para consulta inmediata
+    try {
+      localStorage.setItem(
+        `${LATEST_AUDIT_KEY_PREFIX}${record.tiendaId}`,
+        JSON.stringify(lightweightRecord)
+      );
+    } catch (e) {
+      console.warn('Error guardando reporte vigente en localStorage:', e);
+    }
+
+    // 3. Guardar en historial general (manteniendo los últimos 30 registros)
+    try {
+      const history = this.getHistory().filter(h => h.auditId !== record.auditId);
+      const updatedHistory = [lightweightRecord, ...history].slice(0, 30);
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(updatedHistory));
+    } catch (e) {
+      console.warn('Error guardando en historial general:', e);
+    }
+
+    // Si no está sincronizado, añadir a cola offline (manteniendo registro con fotos para reintento)
     if (!record.sincronizadoSheets) {
       this.addToSyncQueue(record);
     }
 
-    // Actualizar estado en tiendas
+    // 4. Actualizar estado y fecha en el catálogo de tiendas
     const stores = this.getStores();
     const storeIdx = stores.findIndex(s => s.tiendaId === record.tiendaId);
     if (storeIdx !== -1) {
       stores[storeIdx].auditStatus = record.incidenciasCount > 0 ? 'Con Incidencias' : 'Auditada';
       stores[storeIdx].lastAuditDate = new Date().toISOString().slice(0, 10);
+      this.saveStores(stores);
+    }
+  }
+
+  // Permite reiniciar o limpiar la auditoría de una tienda si el usuario desea empezar desde cero
+  static clearStoreAudit(tiendaId: string) {
+    this.clearDraft(tiendaId);
+    localStorage.removeItem(`${LATEST_AUDIT_KEY_PREFIX}${tiendaId}`);
+
+    const stores = this.getStores();
+    const storeIdx = stores.findIndex(s => s.tiendaId === tiendaId);
+    if (storeIdx !== -1) {
+      stores[storeIdx].auditStatus = 'Pendiente';
+      stores[storeIdx].lastAuditDate = undefined;
       this.saveStores(stores);
     }
   }

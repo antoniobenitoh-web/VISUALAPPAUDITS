@@ -130,7 +130,7 @@ export interface SheetsSyncConfig {
 // TIPOS PARA EL MÓDULO "NUEVA IMPLANTACIÓN" (SWAP IN/OUT + PARTE VISUAL PLV)
 // ============================================================================
 
-export type AuditWorkflowMode = 'complete_audit' | 'new_implantation';
+export type AuditWorkflowMode = 'complete_audit' | 'new_implantation' | 'clean_audit';
 
 export type SwapStatus = 'Pendiente' | 'OK' | 'Incidencia';
 

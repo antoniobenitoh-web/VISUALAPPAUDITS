@@ -228,7 +228,11 @@ export const AuditSummaryScreen: React.FC<AuditSummaryScreenProps> = ({
       setMode('drive_success');
     } catch (error) {
       console.error('Error al sincronizar con Google Drive:', error);
-      alert('Se ha generado el archivo Excel localmente. Revisa la conexión de red.');
+      const record = buildAuditRecord();
+      record.sincronizadoSheets = false;
+      DbService.saveAuditRecord(record);
+      DbService.clearDraft(store.tiendaId);
+      alert('Se ha guardado el reporte vigente en la aplicación. Revisa la conexión de red para sincronizar las fotos con Google Drive.');
       setMode('drive_success');
     } finally {
       setIsExporting(false);

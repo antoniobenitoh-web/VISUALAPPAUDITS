@@ -122,23 +122,47 @@ export const App: React.FC = () => {
 
   const handleSelectStore = (store: StoreCenter) => {
     setSelectedStore(store);
-    const draft = DbService.getDraft(store.tiendaId);
-    if (draft) {
-      const map: Record<string, PositionAuditState> = {};
-      draft.forEach(p => { map[p.posicionId] = p; });
-      setAuditStates(map);
-    } else {
-      setAuditStates({});
+    const map: Record<string, PositionAuditState> = {};
+
+    // 1. Cargar como base el último reporte vigente guardado en la app
+    const latestAudit = DbService.getLatestAuditForStore(store.tiendaId);
+    if (latestAudit && latestAudit.positions && latestAudit.positions.length > 0) {
+      latestAudit.positions.forEach(p => {
+        if (p.estadoPosicion !== 'Pendiente' || (p.modeloDetectado && p.modeloDetectado !== '-') || (p.imeiSerial && p.imeiSerial !== '-')) {
+          map[p.posicionId] = p;
+        }
+      });
     }
+
+    // 2. Superponer las modificaciones del borrador temporal en curso
+    const draft = DbService.getDraft(store.tiendaId);
+    if (draft && draft.length > 0) {
+      draft.forEach(p => {
+        map[p.posicionId] = p;
+      });
+    }
+
+    setAuditStates(map);
     setCurrentStep('planogram_3d');
   };
 
   const handleSelectStoreMode = (store: StoreCenter, mode: AuditWorkflowMode) => {
     if (mode === 'new_implantation') {
       loadImplantationStateForStore(store, false);
+    } else if (mode === 'clean_audit') {
+      setSelectedStore(store);
+      DbService.clearStoreAudit(store.tiendaId);
+      setAuditStates({});
+      setCurrentStep('planogram_3d');
     } else {
       handleSelectStore(store);
     }
+  };
+
+  const handleResetAudit = () => {
+    if (!selectedStore) return;
+    DbService.clearStoreAudit(selectedStore.tiendaId);
+    setAuditStates({});
   };
 
   const handleConfirmPosition = (state: PositionAuditState, andNext: boolean) => {
@@ -278,6 +302,7 @@ export const App: React.FC = () => {
                 setCurrentStep('device_identify');
               }}
               onFinishAudit={() => setCurrentStep('audit_summary')}
+              onResetAudit={handleResetAudit}
               onBack={() => setCurrentStep('store_select')}
             />
           )}
