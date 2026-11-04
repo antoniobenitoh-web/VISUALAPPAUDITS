@@ -1,5 +1,8 @@
 import {
+  AuditRecord,
+  DeviceReturnState,
   PlanogramPosition,
+  ProductCategory,
   StoreCenter,
   SwapCampaignAssignment,
   VisualElementDefinition
@@ -19,18 +22,423 @@ export const hasActiveImplantationCampaign = (store: StoreCenter): boolean => {
 };
 
 /**
+ * 11 Posiciones oficiales de la nueva implantación para Mesa 1 Cara 1
+ * Coordenadas calibradas milimétricamente con el nuevo render visual.
+ */
+export const getImplantationPositionsForMesa1Cara1 = (store: StoreCenter): PlanogramPosition[] => {
+  return [
+    {
+      id: `${store.tiendaId}-M1-C1-P1`,
+      tipoEspacioId: store.tipoEspacioId,
+      mesaId: 'MESA 1',
+      cara: 'Cara 1',
+      posicionNumero: 1,
+      categoria: 'Smartphone',
+      modeloOficial: 'Xiaomi 18 Pro Max',
+      colorOficial: 'Black',
+      esDummy: false,
+      requiereImei: true,
+      pinX: 13.5,
+      pinY: 46.5
+    },
+    {
+      id: `${store.tiendaId}-M1-C1-P2`,
+      tipoEspacioId: store.tipoEspacioId,
+      mesaId: 'MESA 1',
+      cara: 'Cara 1',
+      posicionNumero: 2,
+      categoria: 'Smartphone',
+      modeloOficial: 'Xiaomi 18 Pro Max',
+      colorOficial: 'Green (Maqueta)',
+      esDummy: true,
+      requiereImei: false,
+      pinX: 23.1,
+      pinY: 46.5
+    },
+    {
+      id: `${store.tiendaId}-M1-C1-P3`,
+      tipoEspacioId: store.tipoEspacioId,
+      mesaId: 'MESA 1',
+      cara: 'Cara 1',
+      posicionNumero: 3,
+      categoria: 'Smartphone',
+      modeloOficial: 'Xiaomi 18 Pro',
+      colorOficial: 'Black',
+      esDummy: false,
+      requiereImei: true,
+      pinX: 34.5,
+      pinY: 46.5
+    },
+    {
+      id: `${store.tiendaId}-M1-C1-P4`,
+      tipoEspacioId: store.tipoEspacioId,
+      mesaId: 'MESA 1',
+      cara: 'Cara 1',
+      posicionNumero: 4,
+      categoria: 'Smartphone',
+      modeloOficial: 'Xiaomi 18 Pro',
+      colorOficial: 'Blue (Maqueta)',
+      esDummy: true,
+      requiereImei: false,
+      pinX: 44.2,
+      pinY: 46.5
+    },
+    {
+      id: `${store.tiendaId}-M1-C1-P5`,
+      tipoEspacioId: store.tipoEspacioId,
+      mesaId: 'MESA 1',
+      cara: 'Cara 1',
+      posicionNumero: 5,
+      categoria: 'Smartphone',
+      modeloOficial: 'Xiaomi 17T Pro',
+      colorOficial: 'Blue',
+      esDummy: false,
+      requiereImei: true,
+      pinX: 52.9,
+      pinY: 46.5
+    },
+    {
+      id: `${store.tiendaId}-M1-C1-P6`,
+      tipoEspacioId: store.tipoEspacioId,
+      mesaId: 'MESA 1',
+      cara: 'Cara 1',
+      posicionNumero: 6,
+      categoria: 'Smartphone',
+      modeloOficial: 'Xiaomi 17T',
+      colorOficial: 'Purple',
+      esDummy: false,
+      requiereImei: true,
+      pinX: 58.6,
+      pinY: 46.5
+    },
+    {
+      id: `${store.tiendaId}-M1-C1-P7`,
+      tipoEspacioId: store.tipoEspacioId,
+      mesaId: 'MESA 1',
+      cara: 'Cara 1',
+      posicionNumero: 7,
+      categoria: 'Wearable',
+      modeloOficial: 'Xiaomi Band 11',
+      colorOficial: 'Black',
+      esDummy: false,
+      requiereImei: true,
+      pinX: 62.7,
+      pinY: 46.5
+    },
+    {
+      id: `${store.tiendaId}-M1-C1-P8`,
+      tipoEspacioId: store.tipoEspacioId,
+      mesaId: 'MESA 1',
+      cara: 'Cara 1',
+      posicionNumero: 8,
+      categoria: 'Audio',
+      modeloOficial: 'Xiaomi Clip',
+      colorOficial: 'Black',
+      esDummy: false,
+      requiereImei: true,
+      pinX: 67.5,
+      pinY: 46.5
+    },
+    {
+      id: `${store.tiendaId}-M1-C1-P9`,
+      tipoEspacioId: store.tipoEspacioId,
+      mesaId: 'MESA 1',
+      cara: 'Cara 1',
+      posicionNumero: 9,
+      categoria: 'Smartphone',
+      modeloOficial: 'Redmi Note 17 Pro Max',
+      colorOficial: 'Black',
+      esDummy: false,
+      requiereImei: true,
+      pinX: 74.5,
+      pinY: 46.5
+    },
+    {
+      id: `${store.tiendaId}-M1-C1-P10`,
+      tipoEspacioId: store.tipoEspacioId,
+      mesaId: 'MESA 1',
+      cara: 'Cara 1',
+      posicionNumero: 10,
+      categoria: 'Smartphone',
+      modeloOficial: 'Redmi Note 17 Pro Max',
+      colorOficial: 'Green (Maqueta)',
+      esDummy: true,
+      requiereImei: false,
+      pinX: 81.0,
+      pinY: 46.5
+    },
+    {
+      id: `${store.tiendaId}-M1-C1-P11`,
+      tipoEspacioId: store.tipoEspacioId,
+      mesaId: 'MESA 1',
+      cara: 'Cara 1',
+      posicionNumero: 11,
+      categoria: 'Smartphone',
+      modeloOficial: 'Redmi Note 17 Pro Max',
+      colorOficial: 'White & Orange',
+      esDummy: false,
+      requiereImei: true,
+      pinX: 87.2,
+      pinY: 46.5
+    }
+  ];
+};
+
+/**
+ * Definición base de los 7 dispositivos no coincidentes que deben ser devueltos/retirados
+ */
+export interface DeviceReturnPlanItem {
+  id: string;
+  posicionAnterior: number;
+  mesaId: string;
+  cara: string;
+  modeloSaliente: string;
+  esDummy: boolean;
+  categoria: ProductCategory;
+  motivoRetirada: string;
+  sustituidoPor: string;
+}
+
+export const BASE_RETURN_DEVICES_M1C1: DeviceReturnPlanItem[] = [
+  {
+    id: 'RET-M1C1-P1',
+    posicionAnterior: 1,
+    mesaId: 'MESA 1',
+    cara: 'Cara 1',
+    modeloSaliente: 'Xiaomi 17 Ultra Green',
+    esDummy: true,
+    categoria: 'Smartphone',
+    motivoRetirada: 'Fin de campaña (Sustituido por nuevo flagship)',
+    sustituidoPor: 'Xiaomi 18 Pro Max (Maqueta)'
+  },
+  {
+    id: 'RET-M1C1-P2',
+    posicionAnterior: 2,
+    mesaId: 'MESA 1',
+    cara: 'Cara 1',
+    modeloSaliente: 'Xiaomi 17 Blue',
+    esDummy: true,
+    categoria: 'Smartphone',
+    motivoRetirada: 'Fin de campaña (Sustituido por nuevo flagship)',
+    sustituidoPor: 'Xiaomi 18 Pro (Maqueta)'
+  },
+  {
+    id: 'RET-M1C1-P3',
+    posicionAnterior: 3,
+    mesaId: 'MESA 1',
+    cara: 'Cara 1',
+    modeloSaliente: 'Xiaomi 17 Ultra Black',
+    esDummy: false,
+    categoria: 'Smartphone',
+    motivoRetirada: 'Fin de campaña (Sustituido por nuevo flagship)',
+    sustituidoPor: 'Xiaomi 18 Pro Max (LDU)'
+  },
+  {
+    id: 'RET-M1C1-P4',
+    posicionAnterior: 4,
+    mesaId: 'MESA 1',
+    cara: 'Cara 1',
+    modeloSaliente: 'Xiaomi 17 Black',
+    esDummy: false,
+    categoria: 'Smartphone',
+    motivoRetirada: 'Fin de campaña (Sustituido por nuevo flagship)',
+    sustituidoPor: 'Xiaomi 18 Pro (LDU)'
+  },
+  {
+    id: 'RET-M1C1-P5',
+    posicionAnterior: 5,
+    mesaId: 'MESA 1',
+    cara: 'Cara 1',
+    modeloSaliente: 'Xiaomi Watch 5',
+    esDummy: false,
+    categoria: 'Wearable',
+    motivoRetirada: 'Desmontaje de mesa (No figura en nuevo planograma)',
+    sustituidoPor: 'Reconfiguración de mesa'
+  },
+  {
+    id: 'RET-M1C1-P6',
+    posicionAnterior: 6,
+    mesaId: 'MESA 1',
+    cara: 'Cara 1',
+    modeloSaliente: 'Xiaomi Buds 6',
+    esDummy: true,
+    categoria: 'Audio',
+    motivoRetirada: 'Desmontaje de mesa (Sustituido por nuevos accesorios)',
+    sustituidoPor: 'Xiaomi Clip / Band 11'
+  },
+  {
+    id: 'RET-M1C1-P9',
+    posicionAnterior: 9,
+    mesaId: 'MESA 1',
+    cara: 'Cara 1',
+    modeloSaliente: 'Xiaomi Smart Band 10 Pro',
+    esDummy: false,
+    categoria: 'Wearable',
+    motivoRetirada: 'Fin de campaña de accesorio',
+    sustituidoPor: 'Xiaomi Band 11 (LDU)'
+  }
+];
+
+/**
+ * Obtiene los 7 dispositivos a retirar, enlazando los IMEIs memorizados de la última auditoría vigente
+ */
+export const getReturnDevicesForStore = (
+  store: StoreCenter,
+  latestAudit?: AuditRecord | null
+): DeviceReturnState[] => {
+  return BASE_RETURN_DEVICES_M1C1.map((item) => {
+    // Buscar si en la última auditoría existía esta posición anterior
+    const prevPos = latestAudit?.positions?.find(
+      (p) =>
+        (p.mesaId.toUpperCase().includes('MESA 1') || p.mesaId.toUpperCase().includes('TABLE 1')) &&
+        (p.posicionNumero === item.posicionAnterior ||
+          p.posicionId?.endsWith(`-P${item.posicionAnterior}`) ||
+          p.modeloOficial.toLowerCase().includes(item.modeloSaliente.toLowerCase().slice(0, 12)))
+    );
+
+    const imei = prevPos?.imeiSerial && prevPos.imeiSerial !== '-' ? prevPos.imeiSerial : undefined;
+
+    return {
+      id: item.id,
+      posicionAnterior: item.posicionAnterior,
+      mesaId: item.mesaId,
+      modeloSaliente: item.modeloSaliente,
+      esDummy: item.esDummy,
+      categoria: item.categoria,
+      motivoRetirada: item.motivoRetirada,
+      sustituidoPor: item.sustituidoPor,
+      imeiMemorizado: imei,
+      estadoRetirada: 'Pendiente'
+    };
+  });
+};
+
+/**
  * Determina si una posición del planograma pertenece a la campaña activa
- * "Lanzamiento Xiaomi 18 Pro Max" (Sustitución desde Xiaomi 17 Ultra hasta Xiaomi 17:
- * Maquetas -> Maquetas Xiaomi 18 Pro Max / Xiaomi 18 Pro, y LDUs -> LDUs Xiaomi 18 Pro Max / Xiaomi 18 Pro).
+ * "Lanzamiento Xiaomi 18 Pro Max"
  */
 export const getSwapAssignmentForPosition = (
   pos: PlanogramPosition
 ): SwapCampaignAssignment | null => {
   const rawModel = (pos.modeloOficial || '').trim();
   const modelLower = rawModel.toLowerCase();
-  const isMesa1Cara1 = pos.mesaId.includes('MESA 1') && (pos.mesaId.includes('Cara 1') || pos.cara === 'Cara 1');
+  const isMesa1Cara1 =
+    pos.mesaId.toUpperCase().includes('MESA 1') &&
+    (pos.mesaId.includes('Cara 1') || pos.cara === 'Cara 1');
 
-  // 1. Caso principal: Modelos Xiaomi 17 Ultra -> Xiaomi 18 Pro Max (Maqueta por Maqueta, LDU por LDU)
+  // Mapeo para las 11 posiciones oficiales de la Nueva Implantación de Mesa 1 Cara 1
+  if (isMesa1Cara1) {
+    if (pos.posicionNumero === 1) {
+      return {
+        posicionId: pos.id,
+        mesaId: pos.mesaId,
+        posicionNumero: 1,
+        categoria: 'Smartphone',
+        modeloSaliente: 'Xiaomi 17 Ultra Black',
+        esDummySaliente: false,
+        modeloEntrante: 'Xiaomi 18 Pro Max',
+        esDummyEntrante: false
+      };
+    }
+    if (pos.posicionNumero === 2) {
+      return {
+        posicionId: pos.id,
+        mesaId: pos.mesaId,
+        posicionNumero: 2,
+        categoria: 'Smartphone',
+        modeloSaliente: 'Xiaomi 17 Ultra Green',
+        esDummySaliente: true,
+        modeloEntrante: 'Xiaomi 18 Pro Max (Maqueta)',
+        esDummyEntrante: true
+      };
+    }
+    if (pos.posicionNumero === 3) {
+      return {
+        posicionId: pos.id,
+        mesaId: pos.mesaId,
+        posicionNumero: 3,
+        categoria: 'Smartphone',
+        modeloSaliente: 'Xiaomi 17 Black',
+        esDummySaliente: false,
+        modeloEntrante: 'Xiaomi 18 Pro',
+        esDummyEntrante: false
+      };
+    }
+    if (pos.posicionNumero === 4) {
+      return {
+        posicionId: pos.id,
+        mesaId: pos.mesaId,
+        posicionNumero: 4,
+        categoria: 'Smartphone',
+        modeloSaliente: 'Xiaomi 17 Blue',
+        esDummySaliente: true,
+        modeloEntrante: 'Xiaomi 18 Pro (Maqueta)',
+        esDummyEntrante: true
+      };
+    }
+    if (pos.posicionNumero === 5) {
+      return {
+        posicionId: pos.id,
+        mesaId: pos.mesaId,
+        posicionNumero: 5,
+        categoria: 'Smartphone',
+        modeloSaliente: 'Xiaomi 17T Pro (Recolocación)',
+        esDummySaliente: false,
+        modeloEntrante: 'Xiaomi 17T Pro',
+        esDummyEntrante: false
+      };
+    }
+    if (pos.posicionNumero === 6) {
+      return {
+        posicionId: pos.id,
+        mesaId: pos.mesaId,
+        posicionNumero: 6,
+        categoria: 'Smartphone',
+        modeloSaliente: 'Xiaomi 17T (Recolocación)',
+        esDummySaliente: false,
+        modeloEntrante: 'Xiaomi 17T',
+        esDummyEntrante: false
+      };
+    }
+    if (pos.posicionNumero === 7) {
+      return {
+        posicionId: pos.id,
+        mesaId: pos.mesaId,
+        posicionNumero: 7,
+        categoria: 'Wearable',
+        modeloSaliente: 'Xiaomi Smart Band 10 Pro',
+        esDummySaliente: false,
+        modeloEntrante: 'Xiaomi Band 11',
+        esDummyEntrante: false
+      };
+    }
+    if (pos.posicionNumero === 8) {
+      return {
+        posicionId: pos.id,
+        mesaId: pos.mesaId,
+        posicionNumero: 8,
+        categoria: 'Audio',
+        modeloSaliente: 'Xiaomi Buds 6',
+        esDummySaliente: true,
+        modeloEntrante: 'Xiaomi Clip',
+        esDummyEntrante: false
+      };
+    }
+    if (pos.posicionNumero >= 9 && pos.posicionNumero <= 11) {
+      return {
+        posicionId: pos.id,
+        mesaId: pos.mesaId,
+        posicionNumero: pos.posicionNumero,
+        categoria: 'Smartphone',
+        modeloSaliente: 'Redmi Note 17 Pro Max',
+        esDummySaliente: pos.esDummy,
+        modeloEntrante: 'Redmi Note 17 Pro Max',
+        esDummyEntrante: pos.esDummy
+      };
+    }
+  }
+
+  // 1. Caso genérico: Modelos Xiaomi 17 Ultra -> Xiaomi 18 Pro Max
   if (modelLower.includes('xiaomi 17 ultra')) {
     const colorSuffix = rawModel.replace(/xiaomi\s+17\s+ultra/i, '').trim();
     const newModel = `Xiaomi 18 Pro Max${colorSuffix ? ` ${colorSuffix}` : ''}`;
@@ -46,7 +454,7 @@ export const getSwapAssignmentForPosition = (
     };
   }
 
-  // 2. Caso principal: Modelos Xiaomi 17 (excluyendo 17T y Redmi 17) -> Xiaomi 18 Pro (Maqueta por Maqueta, LDU por LDU)
+  // 2. Caso genérico: Modelos Xiaomi 17 -> Xiaomi 18 Pro
   const isXiaomi17Standard =
     modelLower.startsWith('xiaomi 17') &&
     !modelLower.startsWith('xiaomi 17t') &&
@@ -67,28 +475,6 @@ export const getSwapAssignmentForPosition = (
     };
   }
 
-  // 3. Fallback para formatos reducidos (Table FNAC, Table CRF, Table Alcampo) en Mesa 1 Cara 1 Puestos 1 y 2
-  if (
-    isMesa1Cara1 &&
-    (pos.tipoEspacioId.includes('FNAC') ||
-      pos.tipoEspacioId.includes('CRF') ||
-      pos.tipoEspacioId.includes('Alcampo') ||
-      pos.tipoEspacioId.includes('4.1')) &&
-    (pos.posicionNumero === 1 || pos.posicionNumero === 2)
-  ) {
-    const isPos1 = pos.posicionNumero === 1;
-    return {
-      posicionId: pos.id,
-      mesaId: pos.mesaId,
-      posicionNumero: pos.posicionNumero,
-      categoria: 'Smartphone',
-      modeloSaliente: rawModel,
-      esDummySaliente: pos.esDummy,
-      modeloEntrante: isPos1 ? 'Xiaomi 18 Pro Max Black' : 'Xiaomi 18 Pro Blue',
-      esDummyEntrante: pos.esDummy
-    };
-  }
-
   return null;
 };
 
@@ -103,7 +489,11 @@ export const getAllSwapAssignmentsForStore = (store: StoreCenter): SwapCampaignA
 
   const list: SwapCampaignAssignment[] = [];
   availableSpaces.forEach((sp) => {
-    const positions = getPositionsForSpace(store.tipoEspacioId, sp, store);
+    const isM1C1 = sp.toUpperCase().includes('MESA 1') && sp.includes('Cara 1');
+    const positions = isM1C1
+      ? getImplantationPositionsForMesa1Cara1(store)
+      : getPositionsForSpace(store.tipoEspacioId, sp, store);
+
     positions.forEach((pos) => {
       const assignment = getSwapAssignmentForPosition(pos);
       if (assignment) {

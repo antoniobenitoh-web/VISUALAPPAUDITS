@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
+  DeviceReturnState,
   ImplantationRecord,
   PositionSwapState,
   StoreCenter,
@@ -18,6 +19,7 @@ import {
   Image as ImageIcon,
   Loader2,
   Lock,
+  PackageMinus,
   RefreshCw,
   RotateCcw,
   ShieldCheck,
@@ -34,6 +36,7 @@ interface ImplantationSummaryModalProps {
   swapStates: Record<string, PositionSwapState>;
   visualDefinitions: VisualElementDefinition[];
   visualStates: Record<string, VisualElementAuditState>;
+  returnDevices?: DeviceReturnState[];
   onClose: () => void;
   onFinishComplete: () => void;
 }
@@ -45,6 +48,7 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
   swapStates,
   visualDefinitions,
   visualStates,
+  returnDevices = [],
   onClose,
   onFinishComplete
 }) => {
@@ -391,6 +395,10 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
       store.tiendaId
     )}&impId=${encodeURIComponent(implantationId)}`;
 
+    const totalReturnCount = returnDevices.length;
+    const completedReturnCount = returnDevices.filter((r) => r.estadoRetirada === 'Retirado').length;
+    const returnIncidentsCount = returnDevices.filter((r) => r.estadoRetirada === 'Incidencia').length;
+
     return {
       implantationId,
       campanaNombre: ACTIVE_IMPLANTATION_CAMPAIGN,
@@ -406,8 +414,12 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
       totalVisualElements: totalVisuals,
       completedVisualCount: completedVisuals,
       visualIncidentsCount: visualIncidents.length,
+      totalReturnDevices: totalReturnCount,
+      completedReturnCount,
+      returnIncidentsCount,
       swapPositions: consolidatedSwaps,
       visualElements: consolidatedVisuals,
+      returnDevices,
       fotoMesaCompletaUrl: tablePhotoUrl || undefined,
       directLinkUrl,
       sharedDriveEmail: '',
@@ -435,6 +447,46 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
 
       DbService.saveImplantationRecord(record);
       DbService.clearImplantationDraft(store.tiendaId);
+
+      // Actualizar automáticamente el Reporte Vigente de la tienda con los nuevos dispositivos e IMEIs instalados
+      try {
+        const updatedPositions = consolidatedSwaps.map((sw) => ({
+          posicionId: sw.posicionId,
+          mesaId: sw.mesaId,
+          posicionNumero: sw.posicionNumero,
+          modeloOficial: sw.modeloNuevo,
+          modeloDetectado: sw.modeloNuevo,
+          imeiSerial: sw.imeiNuevo || '-',
+          estadoPosicion: sw.estadoSwap === 'Incidencia' ? ('Incidencia' as const) : ('OK' as const),
+          tipoIncidencia: sw.motivoIncidencia ? ('Otro' as const) : undefined,
+          esMaqueta: sw.esDummyNuevo,
+          fotoEvidenciaUrl: sw.fotoInUrl,
+          auditadoPor: currentUser.nombre,
+          fechaHora: record.fechaHora
+        }));
+
+        const okCount = updatedPositions.filter((p) => p.estadoPosicion === 'OK').length;
+        const incidenciasCount = updatedPositions.filter((p) => p.estadoPosicion === 'Incidencia').length;
+        const pendientesCount = updatedPositions.length - okCount - incidenciasCount;
+
+        DbService.saveAuditRecord({
+          auditId: `AUD_${store.tiendaId}_POST_IMP_${Date.now()}`,
+          tiendaId: store.tiendaId,
+          nombreTienda: store.nombreTienda,
+          retailer: store.retailer,
+          usuarioEmail: currentUser.email,
+          usuarioNombre: currentUser.nombre,
+          fechaHora: record.fechaHora,
+          totalPosiciones: updatedPositions.length,
+          okCount,
+          incidenciasCount,
+          pendientesCount,
+          positions: updatedPositions,
+          sincronizadoSheets: false
+        });
+      } catch (e) {
+        console.warn('No se pudo actualizar el reporte vigente automático tras la implantación:', e);
+      }
 
       setSealedRecord(record);
       setStepMode('sealed_success');
@@ -642,7 +694,75 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
             </div>
 
             {/* =================================================================
-                2. RESUMEN LIMPIO DE ELEMENTOS POSM (MISMO CÓDIGO DE COLORES)
+                2. RESUMEN DE MATERIAL RETIRADO Y DEVOLUCIÓN DE STOCK
+                ================================================================= */}
+            {returnDevices && returnDevices.length > 0 && (
+              <div className="bg-slate-50 border border-slate-200 rounded-3xl p-4 sm:p-5 space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <PackageMinus className="w-4 h-4 text-amber-600" />
+                    <h3 className="text-xs sm:text-sm font-black uppercase tracking-wider text-slate-800">
+                      Material a Retirar ({returnDevices.filter((r) => r.estadoRetirada === 'Retirado').length} de {returnDevices.length} retirados)
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  {returnDevices.map((ret) => {
+                    const isOk = ret.estadoRetirada === 'Retirado';
+                    const isInc = ret.estadoRetirada === 'Incidencia';
+                    const cardBg = isOk
+                      ? 'bg-emerald-50/90 border-2 border-emerald-400 text-emerald-950'
+                      : isInc
+                        ? 'bg-orange-50/95 border-2 border-orange-400 text-orange-950'
+                        : 'bg-rose-50/90 border-2 border-rose-400 text-rose-950';
+
+                    const badgeBg = isOk
+                      ? 'bg-emerald-600 text-white'
+                      : isInc
+                        ? 'bg-orange-500 text-white'
+                        : 'bg-rose-600 text-white';
+
+                    return (
+                      <div
+                        key={ret.id}
+                        className={`p-3.5 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${cardBg}`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div
+                            className={`w-9 h-9 rounded-xl flex items-center justify-center font-black text-xs shrink-0 ${badgeBg}`}
+                          >
+                            P{ret.posicionAnterior}
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs sm:text-sm font-black">
+                                {ret.modeloSaliente}
+                              </span>
+                              <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase ${badgeBg}`}>
+                                {ret.estadoRetirada}
+                              </span>
+                            </div>
+                            <p className="text-[11px] opacity-80 font-semibold">
+                              {ret.esDummy ? 'Maqueta / Dummy' : 'Terminal LDU'}
+                              {ret.imeiMemorizado ? ` · IMEI Memorizado: ${ret.imeiMemorizado}` : ''}
+                            </p>
+                            {ret.motivoIncidencia && (
+                              <p className="text-xs text-orange-800 font-bold mt-0.5">
+                                Motivo: {ret.motivoIncidencia}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* =================================================================
+                3. RESUMEN LIMPIO DE ELEMENTOS POSM (MISMO CÓDIGO DE COLORES)
                 ================================================================= */}
             <div className="bg-slate-50 border border-slate-200 rounded-3xl p-4 sm:p-5 space-y-3">
               <div className="flex items-center justify-between">

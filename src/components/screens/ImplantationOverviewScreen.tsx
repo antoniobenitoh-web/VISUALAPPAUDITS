@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import {
+  DeviceReturnState,
   PlanogramPosition,
   PositionSwapState,
   StoreCenter,
@@ -14,13 +15,17 @@ import { PLANOGRAM_IMAGES } from '../../data/planogramImages';
 import {
   ACTIVE_IMPLANTATION_CAMPAIGN,
   getAllSwapAssignmentsForStore,
+  getImplantationPositionsForMesa1Cara1,
+  getReturnDevicesForStore,
   getSwapAssignmentForPosition,
   getVisualElementsForStore
 } from '../../data/implantationCampaignData';
+import { DbService } from '../../services/dbService';
 import { ImageCompressionService } from '../../services/imageCompressionService';
 import { ImplantationSummaryModal } from './ImplantationSummaryModal';
 import {
   AlertTriangle,
+  ArrowDownToLine,
   ArrowLeft,
   ArrowRightLeft,
   Camera,
@@ -31,6 +36,7 @@ import {
   HelpCircle,
   Image as ImageIcon,
   Layers,
+  PackageCheck,
   PackageMinus,
   PackagePlus,
   RotateCcw,
@@ -76,8 +82,9 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
   onFinishComplete,
   onBack
 }) => {
-  // Subsecciones dentro de Nueva Implantación: 1. "Dispositivos (Swap)" | 2. "Parte Visual"
-  const [subModule, setSubModule] = useState<'swap_devices' | 'visual_plv'>('swap_devices');
+  // Subsecciones dentro de Nueva Implantación:
+  // 1. "Planograma Nuevo (11)" | 2. "Material a Retirar (7)" | 3. "Parte Visual POSM"
+  const [subModule, setSubModule] = useState<'swap_devices' | 'return_devices' | 'visual_plv'>('swap_devices');
 
   // Pestañas superiores dentro de Dispositivos: "Vista Interactiva 3D" | "Lista de Dispositivos"
   const [viewMode, setViewMode] = useState<'visual' | 'list'>('visual');
@@ -92,16 +99,103 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
   }, [store.availableSpaces]);
 
   const [activeSpace, setActiveSpace] = useState<string>(availableSpaces[0]);
-  const positions = useMemo(
-    () => getPositionsForSpace(store.tipoEspacioId, activeSpace, store),
-    [store, activeSpace]
-  );
+
+  // Si estamos en Mesa 1 Cara 1 durante la Nueva Implantación, se usan las 11 posiciones oficiales de la campaña
+  const isMesa1Cara1 =
+    activeSpace.toUpperCase().includes('MESA 1') &&
+    (activeSpace.includes('Cara 1') || activeSpace.includes('Cara A'));
+
+  const positions = useMemo(() => {
+    if (isMesa1Cara1) {
+      return getImplantationPositionsForMesa1Cara1(store);
+    }
+    return getPositionsForSpace(store.tipoEspacioId, activeSpace, store);
+  }, [store, activeSpace, isMesa1Cara1]);
 
   // Todas las posiciones asignadas a la campaña de lanzamiento en esta tienda
   const allStoreSwapAssignments = useMemo(
     () => getAllSwapAssignmentsForStore(store),
     [store]
   );
+
+  // Última auditoría previa para recuperar los IMEIs memorizados del material saliente
+  const latestAudit = useMemo(
+    () => DbService.getLatestAuditForStore(store.tiendaId),
+    [store.tiendaId]
+  );
+
+  // Lista de 7 dispositivos que deben retirarse de la mesa (Check-Out) con sus IMEIs memorizados
+  const [returnDevices, setReturnDevices] = useState<DeviceReturnState[]>(() => {
+    const draft = DbService.getImplantationDraft(store.tiendaId);
+    if (draft?.returnStates && Object.keys(draft.returnStates).length > 0) {
+      return Object.values(draft.returnStates);
+    }
+    return getReturnDevicesForStore(store, latestAudit);
+  });
+
+  const saveReturnDevicesDraft = (updated: DeviceReturnState[]) => {
+    setReturnDevices(updated);
+    const returnStatesMap: Record<string, DeviceReturnState> = {};
+    updated.forEach((r) => {
+      returnStatesMap[r.id] = r;
+    });
+    DbService.saveImplantationDraft({
+      tiendaId: store.tiendaId,
+      campanaNombre: ACTIVE_IMPLANTATION_CAMPAIGN,
+      swapStates,
+      visualStates,
+      returnStates: returnStatesMap,
+      updatedAt: new Date().toISOString()
+    });
+  };
+
+  const handleConfirmReturn = (id: string) => {
+    const updated = returnDevices.map((r) => {
+      if (r.id === id) {
+        return {
+          ...r,
+          estadoRetirada: 'Retirado' as const,
+          confirmadoPor: currentUser.nombre,
+          fechaHora: new Date().toLocaleString('es-ES')
+        };
+      }
+      return r;
+    });
+    saveReturnDevicesDraft(updated);
+  };
+
+  const handleIncidentReturn = (id: string, motivo: string) => {
+    const updated = returnDevices.map((r) => {
+      if (r.id === id) {
+        return {
+          ...r,
+          estadoRetirada: 'Incidencia' as const,
+          motivoIncidencia: motivo,
+          confirmadoPor: currentUser.nombre,
+          fechaHora: new Date().toLocaleString('es-ES')
+        };
+      }
+      return r;
+    });
+    saveReturnDevicesDraft(updated);
+  };
+
+  const handleQuickReturnAll = () => {
+    if (
+      window.confirm(
+        '¿Confirmas que has retirado de la mesa los 7 dispositivos a devolver y los tienes en sus respectivas cajas?'
+      )
+    ) {
+      const updated = returnDevices.map((r) => ({
+        ...r,
+        estadoRetirada:
+          r.estadoRetirada === 'Incidencia' ? ('Incidencia' as const) : ('Retirado' as const),
+        confirmadoPor: currentUser.nombre,
+        fechaHora: new Date().toLocaleString('es-ES')
+      }));
+      saveReturnDevicesDraft(updated);
+    }
+  };
 
   // Elementos de Parte Visual (Lonas, Cartelería y Merchandising)
   const visualDefinitions = useMemo(() => getVisualElementsForStore(store), [store]);
@@ -133,7 +227,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
     return firstCampaignPos || positions[0];
   });
 
-  // Imagen de fondo del espacio 3D idéntica a PlanogramOverviewScreen
+  // Imagen de fondo del espacio 3D: en Mesa 1 Cara 1 se utiliza el nuevo render oficial de lanzamiento Xiaomi 18
   const hasWall =
     store.availableSpaces &&
     store.availableSpaces.some(
@@ -150,7 +244,9 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
   const isCara2Active = activeSpace.includes('Cara 2') || activeSpace.includes('Cara B');
 
   let bgImage = PLANOGRAM_IMAGES.table1Cara1;
-  if (isLinealActive) {
+  if (isMesa1Cara1) {
+    bgImage = PLANOGRAM_IMAGES.table1Cara1Xiaomi18;
+  } else if (isLinealActive) {
     bgImage = PLANOGRAM_IMAGES.linealSmartwatchImg;
   } else if (isWallActive || isMiniWallActive) {
     bgImage = PLANOGRAM_IMAGES.wallImg;
@@ -186,8 +282,13 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
   ).length;
   const totalVisualsCount = visualDefinitions.length;
 
-  const globalTotal = totalSwapsCount + totalVisualsCount;
-  const globalDone = completedSwapsCount + completedVisualsCount;
+  const completedReturnsCount = returnDevices.filter(
+    (r) => r.estadoRetirada !== 'Pendiente'
+  ).length;
+  const totalReturnsCount = returnDevices.length;
+
+  const globalTotal = totalSwapsCount + totalReturnsCount + totalVisualsCount;
+  const globalDone = completedSwapsCount + completedReturnsCount + completedVisualsCount;
   const globalProgressPercent =
     globalTotal > 0 ? Math.min(100, Math.round((globalDone / globalTotal) * 100)) : 0;
 
@@ -421,7 +522,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
 
       {/* =====================================================================
           PESTAÑAS / SUBSECCIONES DENTRO DE NUEVA IMPLANTACIÓN:
-          1. "Dispositivos (Swap)" | 2. "Parte Visual"
+          1. "Planograma Nuevo (11)" | 2. "Material a Retirar (7)" | 3. "Parte Visual"
           ===================================================================== */}
       <div className="px-3.5 sm:px-6 py-2.5 bg-[#0a2e3d] text-white border-b border-white/10 flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
@@ -434,14 +535,34 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                 : 'bg-white/10 text-slate-200 hover:bg-white/15'
             }`}
           >
-            <ArrowRightLeft className="w-3.5 h-3.5" />
-            <span>1. Dispositivos (Swap)</span>
+            <Smartphone className="w-3.5 h-3.5" />
+            <span>1. Planograma Nuevo</span>
             <span
               className={`px-1.5 py-0.2 rounded-full text-[10px] ${
                 subModule === 'swap_devices' ? 'bg-black/25 text-white' : 'bg-white/10 text-teal-200'
               }`}
             >
               {completedSwapsCount}/{totalSwapsCount}
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setSubModule('return_devices')}
+            className={`px-3.5 py-2 rounded-xl text-xs font-black flex items-center gap-2 transition cursor-pointer ${
+              subModule === 'return_devices'
+                ? 'bg-amber-600 text-white shadow-md ring-2 ring-amber-300/40'
+                : 'bg-white/10 text-slate-200 hover:bg-white/15'
+            }`}
+          >
+            <PackageMinus className="w-3.5 h-3.5" />
+            <span>2. Material a Retirar</span>
+            <span
+              className={`px-1.5 py-0.2 rounded-full text-[10px] ${
+                subModule === 'return_devices' ? 'bg-black/25 text-white' : 'bg-white/10 text-amber-200'
+              }`}
+            >
+              {completedReturnsCount}/{totalReturnsCount}
             </span>
           </button>
 
@@ -455,7 +576,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
             }`}
           >
             <ImageIcon className="w-3.5 h-3.5" />
-            <span>2. POSM</span>
+            <span>3. POSM</span>
             <span
               className={`px-1.5 py-0.2 rounded-full text-[10px] ${
                 subModule === 'visual_plv' ? 'bg-black/25 text-white' : 'bg-white/10 text-amber-200'
@@ -1047,7 +1168,168 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
       )}
 
       {/* =====================================================================
-          SUBSECCIÓN 2: SUBMÓDULO "POSM" (LONAS, PANTALLA HANSHOW, FALDÓN Y MERCH)
+          SUBSECCIÓN 2: SUBMÓDULO "MATERIAL A RETIRAR" (CHECK-OUT DE MODELOS OBSOLETOS)
+          ===================================================================== */}
+      {subModule === 'return_devices' && (
+        <div className="flex-1 bg-slate-100/70 p-4 sm:p-6 overflow-y-auto">
+          <div className="max-w-5xl mx-auto space-y-5">
+            {/* Banner superior con resumen y acción rápida */}
+            <div className="bg-gradient-to-r from-[#072431] via-[#104a60] to-[#0a3343] text-white p-5 sm:p-6 rounded-3xl shadow-xl border border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-400/30">
+                    Check-Out de Material
+                  </span>
+                  <span className="text-xs text-slate-300 font-semibold">
+                    Campaña: {ACTIVE_IMPLANTATION_CAMPAIGN}
+                  </span>
+                </div>
+                <h2 className="text-lg sm:text-xl font-black tracking-tight text-white">
+                  Dispositivos a Retirar y Devolver ({completedReturnsCount} de {totalReturnsCount} procesados)
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-200/90 font-medium max-w-2xl">
+                  Estos 7 modelos salen del planograma para dar paso al nuevo Xiaomi 18 Series. La app precarga los <strong>IMEIs y números de serie memorizados</strong> de la última auditoría vigente de esta tienda.
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2 shrink-0">
+                <button
+                  type="button"
+                  onClick={handleQuickReturnAll}
+                  className="px-4 py-2.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-lg flex items-center gap-2 transition cursor-pointer"
+                >
+                  <PackageCheck className="w-4 h-4" />
+                  <span>Marcar todos como retirados</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Listado de las 7 tarjetas de dispositivos a devolver */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {returnDevices.map((dev) => {
+                const isRetirado = dev.estadoRetirada === 'Retirado';
+                const isIncidencia = dev.estadoRetirada === 'Incidencia';
+
+                return (
+                  <div
+                    key={dev.id}
+                    className={`p-4 sm:p-5 rounded-3xl border transition-all shadow-sm flex flex-col justify-between gap-4 ${
+                      isRetirado
+                        ? 'bg-emerald-50/70 border-emerald-300 ring-2 ring-emerald-400/20'
+                        : isIncidencia
+                        ? 'bg-amber-50/80 border-amber-300 ring-2 ring-amber-400/20'
+                        : 'bg-white border-slate-200 hover:border-slate-300'
+                    }`}
+                  >
+                    <div className="space-y-3">
+                      {/* Cabecera de la ficha */}
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="font-mono text-xs font-black px-2.5 py-1 rounded-xl bg-slate-900 text-white">
+                          Puesto {dev.posicionAnterior} · {dev.mesaId}
+                        </span>
+                        <div className="flex items-center gap-1.5">
+                          <span
+                            className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider ${
+                              dev.esDummy
+                                ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
+                                : 'bg-[#ff6900]/15 text-[#ff6900] border border-[#ff6900]/30'
+                            }`}
+                          >
+                            {dev.esDummy ? 'Maqueta / Dummy' : 'LDU Operativo'}
+                          </span>
+                          {isRetirado && (
+                            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-emerald-600 text-white flex items-center gap-1 shadow-xs">
+                              <Check className="w-3 h-3" /> Retirado
+                            </span>
+                          )}
+                          {isIncidencia && (
+                            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-amber-600 text-white flex items-center gap-1 shadow-xs">
+                              <AlertTriangle className="w-3 h-3" /> Incidencia
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Modelo y motivo */}
+                      <div>
+                        <h3 className="text-base font-black text-slate-900">
+                          {dev.modeloSaliente}
+                        </h3>
+                        <p className="text-xs text-slate-500 font-medium mt-0.5">
+                          {dev.motivoRetirada} ➔ <span className="font-bold text-slate-700">{dev.sustituidoPor}</span>
+                        </p>
+                      </div>
+
+                      {/* Bloque de IMEI / Serial Memorizado */}
+                      <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <ShieldCheck className="w-4 h-4 text-[#009ca6] shrink-0" />
+                          <div className="text-xs">
+                            <span className="text-[10px] uppercase font-bold text-slate-400 block">
+                              IMEI / S/N Memorizado (Último Vigente)
+                            </span>
+                            <span className="font-mono font-black text-slate-900">
+                              {dev.imeiMemorizado || (dev.esDummy ? 'Sin IMEI (Maqueta sin electrónica)' : 'No registrado en auditoría previa')}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {isIncidencia && dev.motivoIncidencia && (
+                        <div className="p-2.5 rounded-xl bg-amber-100/80 border border-amber-300 text-amber-900 text-xs font-bold flex items-center gap-2">
+                          <AlertTriangle className="w-4 h-4 shrink-0 text-amber-700" />
+                          <span>Incidencia: {dev.motivoIncidencia}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Botones de acción */}
+                    <div className="pt-2 border-t border-slate-100 flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => handleConfirmReturn(dev.id)}
+                        className={`flex-1 py-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition cursor-pointer ${
+                          isRetirado
+                            ? 'bg-emerald-600 text-white shadow-xs hover:bg-emerald-700'
+                            : 'bg-emerald-500 hover:bg-emerald-600 text-white shadow-md'
+                        }`}
+                      >
+                        <Check className="w-4 h-4" />
+                        <span>{isRetirado ? 'Retirado (Volver a confirmar)' : 'Confirmar Retirado'}</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const motivo = window.prompt(
+                            'Indica el motivo de incidencia al retirar el terminal (ej. Terminal no encontrado, Roto, etc.):',
+                            'Terminal no encontrado en tienda'
+                          );
+                          if (motivo) {
+                            handleIncidentReturn(dev.id, motivo);
+                          }
+                        }}
+                        className={`py-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-1 transition cursor-pointer ${
+                          isIncidencia
+                            ? 'bg-amber-600 text-white'
+                            : 'bg-amber-100 hover:bg-amber-200 text-amber-800'
+                        }`}
+                        title="Reportar incidencia con este terminal"
+                      >
+                        <AlertTriangle className="w-4 h-4" />
+                        <span className="hidden sm:inline">Incidencia</span>
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* =====================================================================
+          SUBSECCIÓN 3: SUBMÓDULO "POSM" (LONAS, PANTALLA HANSHOW, FALDÓN Y MERCH)
           ===================================================================== */}
       {subModule === 'visual_plv' && (
         <div className="flex-1 bg-slate-100/70 p-4 sm:p-6 overflow-y-auto">
@@ -1855,6 +2137,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
           swapStates={swapStates}
           visualDefinitions={visualDefinitions}
           visualStates={visualStates}
+          returnDevices={returnDevices}
           onClose={() => setIsSummaryModalOpen(false)}
           onFinishComplete={() => {
             setIsSummaryModalOpen(false);

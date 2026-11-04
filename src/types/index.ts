@@ -230,11 +230,30 @@ export interface VisualElementAuditState {
   fechaHora: string;
 }
 
+export interface DeviceReturnState {
+  id: string;
+  posicionAnterior: number;
+  mesaId: string;
+  modeloSaliente: string;
+  esDummy: boolean;
+  categoria: ProductCategory;
+  motivoRetirada: string;
+  sustituidoPor: string;
+  imeiMemorizado?: string;
+  estadoRetirada: 'Pendiente' | 'Retirado' | 'Incidencia';
+  motivoIncidencia?: string;
+  observaciones?: string;
+  fotoRetiradaUrl?: string;
+  confirmadoPor?: string;
+  fechaHora?: string;
+}
+
 export interface ImplantationDraft {
   tiendaId: string;
   campanaNombre: string;
   swapStates: Record<string, PositionSwapState>;
   visualStates: Record<string, VisualElementAuditState>;
+  returnStates?: Record<string, DeviceReturnState>;
   updatedAt: string;
 }
 
@@ -253,8 +272,12 @@ export interface ImplantationRecord {
   totalVisualElements: number;
   completedVisualCount: number;
   visualIncidentsCount: number;
+  totalReturnDevices?: number;
+  completedReturnCount?: number;
+  returnIncidentsCount?: number;
   swapPositions: PositionSwapState[];
   visualElements: VisualElementAuditState[];
+  returnDevices?: DeviceReturnState[];
   fotoMesaCompletaUrl?: string;
   directLinkUrl: string;
   sharedDriveEmail: string;
