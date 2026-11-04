@@ -7,6 +7,7 @@ import {
   UserProfile
 } from '../types';
 import { INITIAL_STORES, INITIAL_USERS } from '../data/defaultData';
+import { SEED_AUDITS } from '../data/seedAudits';
 import realPlanogramsData from '../data/realPlanograms.json';
 
 const DRAFTS_KEY = 'brand_audit_drafts';
@@ -84,8 +85,19 @@ export class DbService {
       localStorage.setItem(STORES_KEY, JSON.stringify(INITIAL_STORES));
     }
 
-    // Auto-sanitizar tiendas para asegurar coherencia absoluta de retailer
-    return stores.map(s => this.sanitizeStore(s));
+    // Auto-sanitizar tiendas y fusionar estados de auditoría precargados oficiales
+    return stores.map(s => {
+      const sanitized = this.sanitizeStore(s);
+      const seed = SEED_AUDITS[s.tiendaId];
+      if (seed && sanitized.auditStatus === 'Pendiente') {
+        return {
+          ...sanitized,
+          auditStatus: seed.incidenciasCount > 0 ? 'Con Incidencias' : 'Auditada',
+          lastAuditDate: seed.fechaHora.slice(0, 10)
+        };
+      }
+      return sanitized;
+    });
   }
 
   static saveStores(stores: StoreCenter[]) {
@@ -114,13 +126,16 @@ export class DbService {
 
   // Historial y Reporte Vigente de auditorías
   static getHistory(): AuditRecord[] {
+    let localHistory: AuditRecord[] = [];
     const raw = localStorage.getItem(HISTORY_KEY);
-    if (!raw) return [];
-    try {
-      return JSON.parse(raw);
-    } catch {
-      return [];
+    if (raw) {
+      try {
+        localHistory = JSON.parse(raw);
+      } catch {}
     }
+    const localStoreIds = new Set(localHistory.map(r => r.tiendaId));
+    const seedRecords = Object.values(SEED_AUDITS).filter(r => !localStoreIds.has(r.tiendaId));
+    return [...localHistory, ...seedRecords];
   }
 
   // Obtiene el último reporte vigente completado de una tienda específica
@@ -136,7 +151,10 @@ export class DbService {
     }
 
     const history = this.getHistory();
-    return history.find(r => r.tiendaId === tiendaId) || null;
+    const fromHistory = history.find(r => r.tiendaId === tiendaId);
+    if (fromHistory) return fromHistory;
+
+    return SEED_AUDITS[tiendaId] || null;
   }
 
   // Guarda el registro de auditoría en la aplicación optimizando el almacenamiento:

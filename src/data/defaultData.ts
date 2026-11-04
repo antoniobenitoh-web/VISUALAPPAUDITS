@@ -90,8 +90,9 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2"
     ],
-    "auditStatus": "Pendiente",
-    "hasPad8Pro": false
+    "auditStatus": "Auditada",
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESP00034",
@@ -105,8 +106,9 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2"
     ],
-    "auditStatus": "Pendiente",
-    "hasPad8Pro": false
+    "auditStatus": "Con Incidencias",
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESD00174",
@@ -124,10 +126,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "WALL",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Pendiente",
+    "auditStatus": "Auditada",
     "linealWearablesPlanogram": "L. Wearables_9.0",
     "linealWearablesCount": 9,
-    "hasPad8Pro": true
+    "hasPad8Pro": true,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESO00036",
@@ -162,10 +165,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MINIWALL",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Pendiente",
+    "auditStatus": "Con Incidencias",
     "linealWearablesPlanogram": "L. Wearables_8.0",
     "linealWearablesCount": 8,
-    "hasPad8Pro": false
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESD00175",
@@ -182,10 +186,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 2 · Cara 2",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Pendiente",
+    "auditStatus": "Auditada",
     "linealWearablesPlanogram": "L. Wearables_9.0",
     "linealWearablesCount": 9,
-    "hasPad8Pro": false
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESO00034",
@@ -200,10 +205,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 1 · Cara 2",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Pendiente",
+    "auditStatus": "Auditada",
     "linealWearablesPlanogram": "L. Wearables_7.0",
     "linealWearablesCount": 7,
-    "hasPad8Pro": false
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESO00033",
@@ -219,10 +225,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "WALL",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Pendiente",
+    "auditStatus": "Auditada",
     "linealWearablesPlanogram": "L. Wearables_7.0",
     "linealWearablesCount": 7,
-    "hasPad8Pro": false
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESD00182",
@@ -241,10 +248,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 3 · Cara 2",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Pendiente",
+    "auditStatus": "Con Incidencias",
     "linealWearablesPlanogram": "L. Wearables_9.0",
     "linealWearablesCount": 9,
-    "hasPad8Pro": true
+    "hasPad8Pro": true,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESP00037",
@@ -258,8 +266,9 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2"
     ],
-    "auditStatus": "Pendiente",
-    "hasPad8Pro": false
+    "auditStatus": "Auditada",
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESM00438",
@@ -273,8 +282,9 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2"
     ],
-    "auditStatus": "Pendiente",
-    "hasPad8Pro": false
+    "auditStatus": "Auditada",
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESD00187",
@@ -312,10 +322,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MINIWALL",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Pendiente",
+    "auditStatus": "Auditada",
     "linealWearablesPlanogram": "L. Wearables_8.0",
     "linealWearablesCount": 8,
-    "hasPad8Pro": true
+    "hasPad8Pro": true,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESD00177",
@@ -330,10 +341,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 1 · Cara 2",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Pendiente",
+    "auditStatus": "Auditada",
     "linealWearablesPlanogram": "L. Wearables_8.0",
     "linealWearablesCount": 8,
-    "hasPad8Pro": false
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESD00178",
@@ -348,10 +360,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 1 · Cara 2",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Pendiente",
+    "auditStatus": "Auditada",
     "linealWearablesPlanogram": "L. Wearables_9.0",
     "linealWearablesCount": 9,
-    "hasPad8Pro": false
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESP03781",
@@ -368,10 +381,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 2 · Cara 2",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Pendiente",
+    "auditStatus": "Con Incidencias",
     "linealWearablesPlanogram": "L. Wearables_7.0",
     "linealWearablesCount": 7,
-    "hasPad8Pro": false
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESD00180",
@@ -389,10 +403,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "WALL",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Pendiente",
+    "auditStatus": "Con Incidencias",
     "linealWearablesPlanogram": "L. Wearables_9.0",
     "linealWearablesCount": 9,
-    "hasPad8Pro": false
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESO00043",
@@ -410,10 +425,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "WALL",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Pendiente",
+    "auditStatus": "Auditada",
     "linealWearablesPlanogram": "L. Wearables_9.0",
     "linealWearablesCount": 9,
-    "hasPad8Pro": false
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESD00179",
@@ -431,10 +447,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "WALL",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Pendiente",
+    "auditStatus": "Auditada",
     "linealWearablesPlanogram": "L. Wearables_9.0",
     "linealWearablesCount": 9,
-    "hasPad8Pro": false
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESD02181",
@@ -452,10 +469,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "WALL",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Pendiente",
+    "auditStatus": "Auditada",
     "linealWearablesPlanogram": "L. Wearables_7.0",
     "linealWearablesCount": 7,
-    "hasPad8Pro": false
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESD00203",
@@ -472,10 +490,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 2 · Cara 2",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Pendiente",
+    "auditStatus": "Auditada",
     "linealWearablesPlanogram": "L. Wearables_8.0",
     "linealWearablesCount": 8,
-    "hasPad8Pro": false
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESD00204",
@@ -493,10 +512,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "WALL",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Pendiente",
+    "auditStatus": "Con Incidencias",
     "linealWearablesPlanogram": "L. Wearables_6.0",
     "linealWearablesCount": 6,
-    "hasPad8Pro": false
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESD00077",
@@ -526,8 +546,9 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 1 · Cara 2",
       "WALL"
     ],
-    "auditStatus": "Pendiente",
-    "hasPad8Pro": false
+    "auditStatus": "Auditada",
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESS00002",
@@ -545,10 +566,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MINIWALL",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Pendiente",
+    "auditStatus": "Con Incidencias",
     "linealWearablesPlanogram": "L. Wearables_ECI 6",
     "linealWearablesCount": 6,
-    "hasPad8Pro": true
+    "hasPad8Pro": true,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESD00121",
@@ -563,8 +585,9 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 1 · Cara 2",
       "MINIWALL"
     ],
-    "auditStatus": "Pendiente",
-    "hasPad8Pro": false
+    "auditStatus": "Auditada",
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESS00003",
@@ -580,8 +603,9 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 2 · Cara 1",
       "MESA 2 · Cara 2"
     ],
-    "auditStatus": "Pendiente",
-    "hasPad8Pro": true
+    "auditStatus": "Auditada",
+    "hasPad8Pro": true,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESD00103",
@@ -610,8 +634,9 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2"
     ],
-    "auditStatus": "Pendiente",
-    "hasPad8Pro": false
+    "auditStatus": "Auditada",
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESD00105",
@@ -642,10 +667,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MINIWALL",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Pendiente",
+    "auditStatus": "Auditada",
     "linealWearablesPlanogram": "L. Wearables_ECI 6",
     "linealWearablesCount": 6,
-    "hasPad8Pro": false
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESD00088",
@@ -675,8 +701,9 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 1 · Cara 2",
       "MINIWALL"
     ],
-    "auditStatus": "Pendiente",
-    "hasPad8Pro": false
+    "auditStatus": "Con Incidencias",
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-04"
   },
   {
     "tiendaId": "MIESS00018",

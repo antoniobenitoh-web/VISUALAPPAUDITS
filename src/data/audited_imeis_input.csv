@@ -1,0 +1,983 @@
+Store Name,Table,Posición,Dispositivo,Dummy,Check,Material a envíar por planograma,Dummy,IMEI/Serial number
+Media Sant Antoni,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080419480
+Media Sant Antoni,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070301808
+Media Sant Antoni,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK01403
+Media Sant Antoni,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media Sant Antoni,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177081959861
+Media Sant Antoni,Table 1,6,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080668082
+Media Sant Antoni,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-b6afmn6qf03097
+Media Sant Antoni,Table 1,8,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084324887
+Media Sant Antoni,Table 1,9,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media Sant Antoni,Table 1,10,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081082852905
+Media Sant Antoni,Table 1,11,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083628863
+Media Sant Antoni,Table 1,12,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Sant Antoni,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707/EFAPBS6QD00345
+Media Sant Antoni,Table 1,14,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+Media Sant Antoni,Table 1,15,Redmi Note 17 5G Purple,NO,True,Redmi Note 17 5G Purple,NO,862728081657184
+Media Sant Antoni,Table 1,16,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400407
+Media Sant Antoni,Table 1,16.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Sant Antoni,Table 1,16.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,47092/W3SH07989
+Media Sant Antoni,Table 1,17,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,865610082792185
+Media Sant Antoni,Table 1,18,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00838
+Media Sant Antoni,Table 1,19,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,8.68506081848884e+15
+Media Sant Antoni,Table 1,20,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA01635
+Media Badalona,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080406321
+Media Badalona,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070350003
+Media Badalona,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK01372
+Media Badalona,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media Badalona,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177082158182
+Media Badalona,Table 1,6,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080734082
+Media Badalona,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-B6AFMN6QF02033
+Media Badalona,Table 1,8,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084347946
+Media Badalona,Table 1,9,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media Badalona,Table 1,10,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081082919100
+Media Badalona,Table 1,11,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083642625
+Media Badalona,Table 1,12,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Badalona,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-EFAPBS6QD01608
+Media Badalona,Table 1,14,Redmi Buds 8 Pro,SI,False,Redmi Buds 8,SI,
+Media Badalona,Table 1,15,Redmi Note 17 5G Purple,NO,True,Redmi Note 17 5G Purple,NO,862728081648225
+Media Badalona,Table 1,16,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400297
+Media Badalona,Table 1,16.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Badalona,Table 1,16.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,
+Media Badalona,Table 1,17,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333084200260
+Media Badalona,Table 1,18,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00968
+Media Badalona,Table 1,19,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081845940
+Media Badalona,Table 1,20,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA01602
+Media Barcelona 5 Fontanella,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080416288
+Media Barcelona 5 Fontanella,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070253348
+Media Barcelona 5 Fontanella,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK01394
+Media Barcelona 5 Fontanella,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media Barcelona 5 Fontanella,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177081933148
+Media Barcelona 5 Fontanella,Table 1,6,Xiaomi Watch S5 45mm,NO,True,Xiaomi Watch S5 45mm,NO,70283-b6afmn6nz00148
+Media Barcelona 5 Fontanella,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-b6afmn6qf02950
+Media Barcelona 5 Fontanella,Table 1,8,Xiaomi 17T PURPLE,NO,True,Xiaomi 17T Purple,NO,866072080715602
+Media Barcelona 5 Fontanella,Table 1,9,Xiaomi 17T blue,SI,True,Xiaomi 17T blue,SI,
+Media Barcelona 5 Fontanella,Table 1,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US03432
+Media Barcelona 5 Fontanella,Table 1,11,Redmi Note 17 Pro Max 5G Black,NO,True,Redmi Note 17 Pro Max 5G Black,NO,860081080937989
+Media Barcelona 5 Fontanella,Table 1,12,Redmi Note 17 Pro Max 5G Green,SI,True,Redmi Note 17 Pro Max 5G Green,SI,
+Media Barcelona 5 Fontanella,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qd00085
+Media Barcelona 5 Fontanella,Table 1,14,Redmi Note 17 Pro 5G Black,NO,True,Redmi Note 17 Pro 5G Black,NO,864603086775307
+Media Barcelona 5 Fontanella,Table 1,15,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Barcelona 5 Fontanella,Table 1,16,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UK14435
+Media Barcelona 5 Fontanella,Table 1,17,Redmi Note 17 5G Black,NO,True,Redmi Note 17 5G Black,NO,862728081869367
+Media Barcelona 5 Fontanella,Table 1,18,Redmi Note 17 5G Blue,NO,True,Redmi Note 17 5G Blue,NO,862728081735261
+Media Barcelona 5 Fontanella,Table 1,19,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333084202449
+Media Barcelona 5 Fontanella,Table 1,20,Redmi Buds 8 Pro,SI,True,Redmi Buds 8 Pro,SI,
+Media Barcelona 5 Fontanella,Table 1,21,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+Media Barcelona 5 Fontanella,Table 2,1,Xiaomi Pad 8 Pro,NO,True,Xiaomi Pad 8 Pro,NO,76419/05Z800067
+Media Barcelona 5 Fontanella,Table 2,1.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Barcelona 5 Fontanella,Table 2,1.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,X4XX03370
+Media Barcelona 5 Fontanella,Table 2,2,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400542
+Media Barcelona 5 Fontanella,Table 2,2.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Barcelona 5 Fontanella,Table 2,2.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,47092/W3SQ01009
+Media Barcelona 5 Fontanella,Table 2,3,Redmi 17 5G Orange,SI,True,Redmi 17 5G Orange,SI,
+Media Barcelona 5 Fontanella,Table 2,4,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00925
+Media Barcelona 5 Fontanella,Table 2,5,Redmi 17 4G Blue,SI,True,Redmi 17 4G Blue,SI,
+Media Barcelona 5 Fontanella,Table 2,6,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA01634
+Media Barcelona 5 Fontanella,Table 2,7,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081083186642
+Media Barcelona 5 Fontanella,Table 2,8,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media Barcelona 5 Fontanella,Table 2,9,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qd00237
+Media Barcelona 5 Fontanella,Table 2,10,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083641940
+Media Barcelona 5 Fontanella,Table 2,11,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Barcelona 5 Fontanella,Table 2,12,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UK14854
+Media Barcelona 5 Fontanella,Table 2,13,Redmi Note 17 5G Purple,NO,True,Redmi Note 17 5G Purple,NO,862728081657887
+Media Barcelona 5 Fontanella,Table 2,14,Redmi Note 17 5G Blue,SI,True,Redmi Note 17 5G Blue,SI,
+Media Barcelona 5 Fontanella,Table 2,15,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78276/B6AFMN6U108824
+Media Barcelona 5 Fontanella,Table 2,16,"Redmi Pad 2 SE 9.7""",NO,True,"Redmi Pad 2 SE 9.7""",NO,76924-66r700608
+Media Barcelona 5 Fontanella,Table 2,17,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081848324
+Media Barcelona 5 Fontanella,Wall,1,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081083097724
+Media Barcelona 5 Fontanella,Wall,2,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78277/B6AFMN6UE02366
+Media Barcelona 5 Fontanella,Wall,3,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78275/B6AFMN6UD49510
+Media Barcelona 5 Fontanella,Wall,4,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083644068
+Media Barcelona 5 Fontanella,Wall,5,Redmi Watch 5 Active,NO,True,Redmi Watch 5 Active,NO,59838/B6AFMN4V802973
+Media Barcelona 5 Fontanella,Wall,6,Redmi Watch 5 Lite,NO,True,Redmi Watch 5 Lite,NO,59836/B6AFMN4V800065
+Media Barcelona 5 Fontanella,Wall,7,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00591
+Media Barcelona 5 Fontanella,Wall,8,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US03364
+Media Barcelona 5 Fontanella,Wall,9,Xiaomi Smart Band 9 active,NO,True,Xiaomi Smart Band 9 active,NO,61790/ATAA5G4XS00230
+Media Barcelona 5 Fontanella,Wall,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US03386
+Media Barcelona 5 Fontanella,Wall,11,Xiaomi Smart Band 9 active,NO,True,Xiaomi Smart Band 9 active,NO,61790/ATAA5G4XR03181
+Media Diagonal Mar-Barcelona,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080434703
+Media Diagonal Mar-Barcelona,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070270805
+Media Diagonal Mar-Barcelona,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK00240
+Media Diagonal Mar-Barcelona,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media Diagonal Mar-Barcelona,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177081966908
+Media Diagonal Mar-Barcelona,Table 1,6,Xiaomi Watch S5 45mm,NO,True,Xiaomi Watch S5 45mm,NO,70283/B6AFMN6NZ02534
+Media Diagonal Mar-Barcelona,Table 1,7,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080667308
+Media Diagonal Mar-Barcelona,Table 1,8,Xiaomi Watch S4 41mm,NO,True,Xiaomi Watch S4 41mm,NO,67088/CRAG525U400722
+Media Diagonal Mar-Barcelona,Table 1,9,Xiaomi 17 Ultra Green,NO,True,Xiaomi 17 Ultra Green,NO,863142080163286
+Media Diagonal Mar-Barcelona,Table 1,10,Xiaomi Watch S5 45mm,NO,True,Xiaomi Watch S5 45mm,NO,70283/B6AFMN6NZ01507
+Media Diagonal Mar-Barcelona,Table 1,11,Xiaomi 17 Blue,NO,True,Xiaomi 17 Blue,NO,860359070543029
+Media Diagonal Mar-Barcelona,Table 1,12,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734/B6AFMN6QF03166
+Media Diagonal Mar-Barcelona,Table 1,13,Xiaomi 17T Pro Purple,NO,True,Xiaomi 17T Pro Purple,NO,862177084701443
+Media Diagonal Mar-Barcelona,Table 1,14,Xiaomi Smart Band 10,NO,True,Xiaomi Smart Band 10,NO,65500/DYAMJQ5RQ05636
+Media Diagonal Mar-Barcelona,Table 1,15,Xiaomi 17T Blue,NO,True,Xiaomi 17T Blue,NO,866072081433627
+Media Diagonal Mar-Barcelona,Table 1,16,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATTA5G6US01540
+Media Diagonal Mar-Barcelona,Table 2,1,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084325249
+Media Diagonal Mar-Barcelona,Table 2,2,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media Diagonal Mar-Barcelona,Table 2,3,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UK07402
+Media Diagonal Mar-Barcelona,Table 2,4,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081083459544
+Media Diagonal Mar-Barcelona,Table 2,5,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083647087
+Media Diagonal Mar-Barcelona,Table 2,6,Redmi Buds 8 Pro,SI,True,Redmi Buds 8 Pro,SI,
+Media Diagonal Mar-Barcelona,Table 2,7,Redmi Note 17 Pro 5G Black,NO,True,Redmi Note 17 Pro 5G Black,NO,864603083827283
+Media Diagonal Mar-Barcelona,Table 2,8,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083646089
+Media Diagonal Mar-Barcelona,Table 2,9,Redmi Note 17 5G Purple,NO,True,Redmi Note 17 5G Purple,NO,862728081657507
+Media Diagonal Mar-Barcelona,Table 2,10,Redmi Note 17 5G Blue,SI,True,Redmi Note 17 5G Blue,SI,
+Media Diagonal Mar-Barcelona,Table 2,11,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333084201003
+Media Diagonal Mar-Barcelona,Table 2,12,Redmi 17 5G Orange,SI,True,Redmi 17 5G Orange,SI,
+Media Diagonal Mar-Barcelona,Table 2,13,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081849363
+Media Diagonal Mar-Barcelona,Table 2,14,Redmi 17 4G Blue,SI,True,Redmi 17 4G Blue,SI,
+Media Diagonal Mar-Barcelona,Table 2,15,Redmi 15C 4G Blue,NO,False,Redmi 15C Black,NO,869292075951684
+Media Diagonal Mar-Barcelona,Table 2,16,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707/EFAPBS6QD00143
+Media Diagonal Mar-Barcelona,Table 2,17,Redmi 15C 4G Green,NO,False,Redmi 15C Black,NO,869292078588400
+Media Diagonal Mar-Barcelona,Table 2,18,Redmi Buds 8 Pro,SI,True,Redmi Buds 8 Pro,SI,
+Media Diagonal Mar-Barcelona,Table 2,19,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+Media Diagonal Mar-Barcelona,Table 3,1,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400194
+Media Diagonal Mar-Barcelona,Table 3,1.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Diagonal Mar-Barcelona,Table 3,1.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,
+Media Diagonal Mar-Barcelona,Table 3,2,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00975
+Media Diagonal Mar-Barcelona,Table 3,3,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00153
+Media Diagonal Mar-Barcelona,Table 3,4,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00805
+Media Diagonal Mar-Barcelona,Table 3,5,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00734
+Media Diagonal Mar-Barcelona,Table 3,6,"Redmi Pad 2 SE 9.7""",NO,True,"Redmi Pad 2 SE 9.7""",NO,76924/66R700034
+Media Diagonal Mar-Barcelona,Table 3,7,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UK03848
+Media Diagonal Mar-Barcelona,Table 3,8,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78276/B6AFMN6U109872
+Media Diagonal Mar-Barcelona,Table 3,9,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707/EFAPBS6QD00272
+Media Diagonal Mar-Barcelona,Table 3,10,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707/EFAPBS6QD00308
+Media Diagonal Mar-Barcelona,Miniwall,1,Redmi Note 17 Pro Max 5G Green,NO,False,Redmi Note 17 Pro Max 5G White&Orange,NO,860081082896126
+Media Diagonal Mar-Barcelona,Miniwall,2,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78277/B6AFMN6UB18511
+Media Diagonal Mar-Barcelona,Miniwall,3,Redmi Watch 5 Lite,NO,True,Redmi Watch 5 Lite,NO,59836/B6AFMN4VA00736
+Media Diagonal Mar-Barcelona,Miniwall,4,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/w5ra00652
+Media El Prat,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080407485
+Media El Prat,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070278881
+Media El Prat,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK00062
+Media El Prat,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media El Prat,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177082128961
+Media El Prat,Table 1,6,Xiaomi Watch S5 45mm,NO,True,Xiaomi Watch S5 45mm,NO,70283-b6afmn6p400019
+Media El Prat,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-b6afmn6qf03833
+Media El Prat,Table 1,8,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080705223
+Media El Prat,Table 1,9,Xiaomi 17T blue,SI,True,Xiaomi 17T blue,SI,
+Media El Prat,Table 1,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971-ataa5g6us03298
+Media El Prat,Table 1,11,Redmi Note 17 Pro Max 5G Black,NO,True,Redmi Note 17 Pro Max 5G Black,NO,860081081087966
+Media El Prat,Table 1,12,Redmi Note 17 Pro Max 5G Green,SI,True,Redmi Note 17 Pro Max 5G Green,SI,
+Media El Prat,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707/EFAPBS6QDO0270
+Media El Prat,Table 1,14,Redmi Note 17 Pro 5G Black,NO,True,Redmi Note 17 Pro 5G Black,NO,864603083869806
+Media El Prat,Table 1,15,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media El Prat,Table 1,16,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UN14884
+Media El Prat,Table 1,17,Redmi Note 17 5G Black,NO,True,Redmi Note 17 5G Black,NO,862728081869748
+Media El Prat,Table 1,18,Redmi Note 17 5G Blue,NO,True,Redmi Note 17 5G Blue,NO,862728081783563
+Media El Prat,Table 1,19,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333084202761
+Media El Prat,Table 1,20,Redmi Buds 8 Pro,SI,True,Redmi Buds 8 Pro,SI,
+Media El Prat,Table 1,21,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+Media El Prat,Table 2,1,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400341
+Media El Prat,Table 2,1.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media El Prat,Table 2,1.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,47092/W3SQ00726
+Media El Prat,Table 2,2,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00888
+Media El Prat,Table 2,3,Redmi 17 5G Orange,SI,True,Redmi 17 5G Orange,SI,
+Media El Prat,Table 2,4,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00967
+Media El Prat,Table 2,5,Redmi 17 4G Blue,SI,True,Redmi 17 4G Blue,SI,
+Media El Prat,Table 2,6,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5R900918
+Media El Prat,Table 2,7,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,864603083869806
+Media El Prat,Table 2,8,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media El Prat,Table 2,9,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qd00135
+Media El Prat,Table 2,10,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083634622
+Media El Prat,Table 2,11,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media El Prat,Table 2,12,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78277-b6afmn6ue00676
+Media El Prat,Table 2,13,Redmi 17 5G Purple,NO,True,Redmi 17 5G Purple,NO,862728081651021
+Media El Prat,Table 2,14,Redmi 17 5G Blue,SI,True,Redmi 17 5G Blue,SI,
+Media El Prat,Table 2,15,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78276-b6afmn6u100538
+Media El Prat,Table 2,16,"Redmi Pad 2 SE 9.7""",NO,True,"Redmi Pad 2 SE 9.7""",NO,76924-66r700579
+Media El Prat,Table 2,17,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081846302
+Media Esplugues,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080407006
+Media Esplugues,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070261986
+Media Esplugues,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK00221
+Media Esplugues,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media Esplugues,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177081310180
+Media Esplugues,Table 1,6,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080726500
+Media Esplugues,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-b6afmn6qf00797
+Media Esplugues,Table 1,8,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084321867
+Media Esplugues,Table 1,9,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media Esplugues,Table 1,10,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081083102524
+Media Esplugues,Table 1,11,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083634846
+Media Esplugues,Table 1,12,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Esplugues,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qd00515
+Media Esplugues,Table 1,14,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+Media Esplugues,Table 1,15,Redmi Note 17 5G Purple,NO,True,Redmi Note 17 5G Purple,NO,862728081627468
+Media Esplugues,Table 1,16,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400337
+Media Esplugues,Table 1,16.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Esplugues,Table 1,16.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,60272/X4XX01751
+Media Esplugues,Table 1,17,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333084203025
+Media Esplugues,Table 1,18,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00109
+Media Esplugues,Table 1,19,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081847987
+Media Esplugues,Table 1,20,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573W/5RA00785
+Media Gava,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080406461
+Media Gava,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070171623
+Media Gava,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK01540
+Media Gava,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media Gava,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177082136204
+Media Gava,Table 1,6,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080701149
+Media Gava,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-b6afmn6qf04785
+Media Gava,Table 1,8,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081093184860
+Media Gava,Table 1,9,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media Gava,Table 1,10,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081082843706
+Media Gava,Table 1,11,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083642161
+Media Gava,Table 1,12,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Gava,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qd01431
+Media Gava,Table 1,14,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+Media Gava,Table 1,15,Redmi Note 17 5G Purple,NO,True,Redmi Note 17 5G Purple,NO,867228081636204
+Media Gava,Table 1,16,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400022
+Media Gava,Table 1,16.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Gava,Table 1,16.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,2/x4xx00684
+Media Gava,Table 1,17,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333082243643
+Media Gava,Table 1,18,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/y5vw00235
+Media Gava,Table 1,19,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081847243
+Media Gava,Table 1,20,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA01188
+Media Gava,Wall,1,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081082924480
+Media Gava,Wall,2,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/b6afmn6un12709
+Media Gava,Wall,3,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78275/b6afmn6ud48045
+Media Gava,Wall,4,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083642583
+Media Gava,Wall,5,Redmi Watch 5 Active,NO,True,Redmi Watch 5 Active,NO,59838/b6afmn4v804729
+Media Gava,Wall,6,Redmi Watch 5 Lite,NO,True,Redmi Watch 5 Lite,NO,59681/B6AFMH4YJ05855
+Media Gava,Wall,7,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00891
+Media Gava,Wall,8,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US03308
+Media Gava,Wall,9,Xiaomi Smart Band 9 active,NO,True,Xiaomi Smart Band 9 active,NO,61790/ATAA5G4XR01302
+Media Gava,Wall,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US03053
+Media Gava,Wall,11,Xiaomi Smart Band 9 active,NO,True,Xiaomi Smart Band 9 active,NO,61790/ATAA5G4XR01274
+Media Girona,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080433606
+Media Girona,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070144505
+Media Girona,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK00907
+Media Girona,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media Girona,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177082142269
+Media Girona,Table 1,6,Xiaomi Watch S5 45mm,NO,True,Xiaomi Watch S5 45mm,NO,70283/B6AFMN6NZ0602
+Media Girona,Table 1,7,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080721048
+Media Girona,Table 1,8,Xiaomi Watch S4 41mm,NO,True,Xiaomi Watch S4 41mm,NO,67088/CRAG525Q400251
+Media Girona,Table 1,9,Xiaomi 17 Ultra Green,NO,True,Xiaomi 17 Ultra Green,NO,863142080163088
+Media Girona,Table 1,10,Xiaomi Watch S5 45mm,NO,True,Xiaomi Watch S5 45mm,NO,70283/B6AFMN6P400012
+Media Girona,Table 1,11,Xiaomi 17 Blue,NO,True,Xiaomi 17 Blue,NO,860359070587745
+Media Girona,Table 1,12,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-B6AFMN6QF03839
+Media Girona,Table 1,13,Xiaomi 17T Pro Purple,NO,True,Xiaomi 17T Pro Purple,NO,862177082359665
+Media Girona,Table 1,14,Xiaomi Smart Band 10,NO,True,Xiaomi Smart Band 10,NO,65500/DYAMJQ5RQ06226
+Media Girona,Table 1,15,Xiaomi 17T Blue,NO,True,Xiaomi 17T Blue,NO,866072081434286
+Media Girona,Table 1,16,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971-ATAA5G6US03385
+Media Girona,Table 2,1,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084360980
+Media Girona,Table 2,2,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media Girona,Table 2,3,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279-B6AFMN6UK13743
+Media Girona,Table 2,4,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081082860460
+Media Girona,Table 2,5,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083643243
+Media Girona,Table 2,6,Redmi Buds 8 Pro,SI,True,Redmi Buds 8 Pro,SI,
+Media Girona,Table 2,7,Redmi Note 17 Pro 5G Black,NO,True,Redmi Note 17 Pro 5G Black,NO,864603086783103
+Media Girona,Table 2,8,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083637062
+Media Girona,Table 2,9,Redmi Note 17 5G Purple,NO,True,Redmi Note 17 5G Purple,NO,862728081652987
+Media Girona,Table 2,10,Redmi Note 17 5G Blue,SI,True,Redmi Note 17 5G Blue,SI,
+Media Girona,Table 2,11,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333082243742
+Media Girona,Table 2,12,Redmi 17 5G Orange,SI,True,Redmi 17 5G Orange,SI,
+Media Girona,Table 2,13,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081850429
+Media Girona,Table 2,14,Redmi 17 4G Blue,SI,True,Redmi 17 4G Blue,SI,
+Media Girona,Table 2,15,Redmi 15C 4G Blue,NO,False,Redmi 15C Black,NO,869292075952161
+Media Girona,Table 2,16,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707/EFAPBS6QD00197
+Media Girona,Table 2,17,Redmi 15C 4G Green,NO,False,Redmi 15C Black,NO,869292078587063
+Media Girona,Table 2,18,Redmi Buds 8 Pro,SI,True,Redmi Buds 8 Pro,SI,
+Media Girona,Table 2,19,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+Media Girona,Table 3,1,Xiaomi Pad 8 Pro,NO,True,Xiaomi Pad 8 Pro,NO,76419/05Z800075
+Media Girona,Table 3,1.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Girona,Table 3,1.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,
+Media Girona,Table 3,2,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75S789/05Z400321
+Media Girona,Table 3,2.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Girona,Table 3,2.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,
+Media Girona,Table 3,3,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW02234
+Media Girona,Table 3,4,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00322
+Media Girona,Table 3,5,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00146
+Media Girona,Table 3,6,"Redmi Pad 2 SE 9.7""",NO,True,"Redmi Pad 2 SE 9.7""",NO,76924-66R700623
+Media Girona,Table 3,7,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78277-B6AFMN6UE08569
+Media Girona,Table 3,8,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78276-B6AFMN6U116672
+Media Girona,Table 3,9,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707/EFAPBS6QD01744
+Media Girona,Table 3,10,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707/EFAPBS6QD00964
+Media Girona 2,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080414002
+Media Girona 2,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070316467
+Media Girona 2,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK00522
+Media Girona 2,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media Girona 2,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177081966262
+Media Girona 2,Table 1,6,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080741681
+Media Girona 2,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-B6AFMN6QF02174
+Media Girona 2,Table 1,8,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084367902
+Media Girona 2,Table 1,9,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media Girona 2,Table 1,10,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081082860726
+Media Girona 2,Table 1,11,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083641106
+Media Girona 2,Table 1,12,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Girona 2,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-EFAPBS6QD01800
+Media Girona 2,Table 1,14,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+Media Girona 2,Table 1,15,Redmi Note 17 5G Purple,NO,True,Redmi Note 17 5G Purple,NO,862728081645429
+Media Girona 2,Table 1,16,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z201001
+Media Girona 2,Table 1,16.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Girona 2,Table 1,16.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,
+Media Girona 2,Table 1,17,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333082243866
+Media Girona 2,Table 1,18,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00923
+Media Girona 2,Table 1,19,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081851583
+Media Girona 2,Table 1,20,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00831
+Media Girona 3,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080420462
+Media Girona 3,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070341663
+Media Girona 3,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK01408
+Media Girona 3,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media Girona 3,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177081885629
+Media Girona 3,Table 1,6,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080756549
+Media Girona 3,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-B6AFMN6QF02085
+Media Girona 3,Table 1,8,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084336626
+Media Girona 3,Table 1,9,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media Girona 3,Table 1,10,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081082903427
+Media Girona 3,Table 1,11,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083636544
+Media Girona 3,Table 1,12,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Girona 3,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-EFAPBS6QD01624
+Media Girona 3,Table 1,14,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+Media Girona 3,Table 1,15,Redmi Note 17 5G Purple,NO,True,Redmi Note 17 5G Purple,NO,862728081656160
+Media Girona 3,Table 1,16,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400372
+Media Girona 3,Table 1,16.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Girona 3,Table 1,16.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,
+Media Girona 3,Table 1,17,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333084200443
+Media Girona 3,Table 1,18,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00916
+Media Girona 3,Table 1,19,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081855766
+Media Girona 3,Table 1,20,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5R900938
+Media Maquinista,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080419886
+Media Maquinista,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070343883
+Media Maquinista,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG52ZK00505
+Media Maquinista,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media Maquinista,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177082127286
+Media Maquinista,Table 1,6,Xiaomi Watch S5 45mm,NO,True,Xiaomi Watch S5 45mm,NO,70283-B6AFMN6NZ03022
+Media Maquinista,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-B6AFMN6QF03172
+Media Maquinista,Table 1,8,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080724125
+Media Maquinista,Table 1,9,Xiaomi 17T blue,SI,True,Xiaomi 17T blue,SI,
+Media Maquinista,Table 1,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US03310
+Media Maquinista,Table 1,11,Redmi Note 17 Pro Max 5G Black,NO,True,Redmi Note 17 Pro Max 5G Black,NO,860081080817108
+Media Maquinista,Table 1,12,Redmi Note 17 Pro Max 5G Green,SI,True,Redmi Note 17 Pro Max 5G Green,SI,
+Media Maquinista,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-EFAPBS6QD00986
+Media Maquinista,Table 1,14,Redmi Note 17 Pro 5G Black,NO,True,Redmi Note 17 Pro 5G Black,NO,864603083877486
+Media Maquinista,Table 1,15,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Maquinista,Table 1,16,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UN15495
+Media Maquinista,Table 1,17,Redmi Note 17 5G Black,NO,True,Redmi Note 17 5G Black,NO,862728081874201
+Media Maquinista,Table 1,18,Redmi Note 17 5G Blue,NO,True,Redmi Note 17 5G Blue,NO,862728081755442
+Media Maquinista,Table 1,19,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333084201326
+Media Maquinista,Table 1,20,Redmi Buds 8 Pro,SI,True,Redmi Buds 8 Pro,SI,
+Media Maquinista,Table 1,21,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+Media Maquinista,Table 2,1,Xiaomi Pad 8 Pro,NO,True,Xiaomi Pad 8 Pro,NO,76419/05Z800074
+Media Maquinista,Table 2,1.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Maquinista,Table 2,1.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,60272/X4XX02029
+Media Maquinista,Table 2,2,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400069
+Media Maquinista,Table 2,2.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Maquinista,Table 2,2.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,60727/X4XX02034
+Media Maquinista,Table 2,3,Redmi 17 5G Orange,SI,True,Redmi 17 5G Orange,SI,
+Media Maquinista,Table 2,4,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW01051
+Media Maquinista,Table 2,5,Redmi 17 4G Blue,SI,True,Redmi 17 4G Blue,SI,
+Media Maquinista,Table 2,6,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00771
+Media Maquinista,Table 2,7,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084357226
+Media Maquinista,Table 2,8,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media Maquinista,Table 2,9,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707/EFAPBS6QD01734
+Media Maquinista,Table 2,10,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083644886
+Media Maquinista,Table 2,11,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Maquinista,Table 2,12,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UK07463
+Media Maquinista,Table 2,13,Redmi Note 17 5G Purple,NO,True,Redmi Note 17 5G Purple,NO,862728081656707
+Media Maquinista,Table 2,14,Redmi Note 17 5G Blue,SI,True,Redmi Note 17 5G Blue,SI,
+Media Maquinista,Table 2,15,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78276/B6AFMN6U108822
+Media Maquinista,Table 2,16,"Redmi Pad 2 SE 9.7""",NO,True,"Redmi Pad 2 SE 9.7""",NO,76924-66R700601
+Media Maquinista,Table 2,17,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081851245
+Media Maquinista,Miniwall,1,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084361525
+Media Maquinista,Miniwall,2,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UK08028
+Media Maquinista,Miniwall,3,Redmi Watch 5 Lite,NO,True,Redmi Watch 5 Lite,NO,59836/B6AFMN4VA05171
+Media Maquinista,Miniwall,4,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00881
+Media Mataro,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080435882
+Media Mataro,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070129902
+Media Mataro,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK00420
+Media Mataro,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media Mataro,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177082137962
+Media Mataro,Table 1,6,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080720065
+Media Mataro,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-B6AFMN6QF04685
+Media Mataro,Table 1,8,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084368587
+Media Mataro,Table 1,9,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media Mataro,Table 1,10,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081083115229
+Media Mataro,Table 1,11,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083644084
+Media Mataro,Table 1,12,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Mataro,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,869292078587709
+Media Mataro,Table 1,14,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+Media Mataro,Table 1,15,Redmi Note 17 5G Purple,NO,True,Redmi Note 17 5G Purple,NO,862728081654066
+Media Mataro,Table 1,16,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400414
+Media Mataro,Table 1,16.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Mataro,Table 1,16.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,
+Media Mataro,Table 1,17,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333084200500
+Media Mataro,Table 1,18,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/y5vw00106
+Media Mataro,Table 1,19,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081833789
+Media Mataro,Table 1,20,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00868
+Media Parets,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080435809
+Media Parets,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070152805
+Media Parets,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK00399
+Media Parets,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media Parets,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177082138663
+Media Parets,Table 1,6,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080720206
+Media Parets,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-b6afmn6qf03187
+Media Parets,Table 1,8,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084364149
+Media Parets,Table 1,9,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media Parets,Table 1,10,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081082855940
+Media Parets,Table 1,11,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083257564
+Media Parets,Table 1,12,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Parets,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qd00021
+Media Parets,Table 1,14,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+Media Parets,Table 1,15,Redmi Note 17 5G Purple,NO,True,Redmi Note 17 5G Purple,NO,862728081656509
+Media Parets,Table 1,16,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400444
+Media Parets,Table 1,16.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Parets,Table 1,16.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,
+Media Parets,Table 1,17,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333082243825
+Media Parets,Table 1,18,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00123
+Media Parets,Table 1,19,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081847532
+Media Parets,Table 1,20,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00501
+Media Sabadell,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080431865
+Media Sabadell,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070141808
+Media Sabadell,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK00400
+Media Sabadell,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media Sabadell,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177082129704
+Media Sabadell,Table 1,6,Xiaomi Watch S5 45mm,NO,True,Xiaomi Watch S5 45mm,NO,70283-b6afmn6p400029
+Media Sabadell,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-b6afmn6qf03100
+Media Sabadell,Table 1,8,Xiaomi 17T PURPLE,NO,True,Xiaomi 17T Purple,NO,866072080754742
+Media Sabadell,Table 1,9,Xiaomi 17T blue,SI,True,Xiaomi 17T blue,SI,
+Media Sabadell,Table 1,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US03239
+Media Sabadell,Table 1,11,Redmi Note 17 Pro Max 5G Black,NO,True,Redmi Note 17 Pro Max 5G Black,NO,860081080736589
+Media Sabadell,Table 1,12,Redmi Note 17 Pro Max 5G Green,SI,True,Redmi Note 17 Pro Max 5G Green,SI,
+Media Sabadell,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qd00436
+Media Sabadell,Table 1,14,Redmi Note 17 Pro 5G Black,NO,True,Redmi Note 17 Pro 5G Black,NO,864603086782204
+Media Sabadell,Table 1,15,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Sabadell,Table 1,16,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UK17201
+Media Sabadell,Table 1,17,Redmi Note 17 5G Black,NO,True,Redmi Note 17 5G Black,NO,862728081868187
+Media Sabadell,Table 1,18,Redmi Note 17 5G Blue,NO,True,Redmi Note 17 5G Blue,NO,862728081735543
+Media Sabadell,Table 1,19,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333084203827
+Media Sabadell,Table 1,20,Redmi Buds 8 Pro,SI,True,Redmi Buds 8 Pro,SI,
+Media Sabadell,Table 1,21,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+Media Sabadell,Table 2,1,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05z400126
+Media Sabadell,Table 2,1.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Sabadell,Table 2,1.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,60272/X4XX02027
+Media Sabadell,Table 2,2,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/y5vw00919
+Media Sabadell,Table 2,3,Redmi 17 5G Orange,SI,True,Redmi 17 5G Orange,SI,
+Media Sabadell,Table 2,4,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW01006
+Media Sabadell,Table 2,5,Redmi 17 4G Blue,SI,True,Redmi 17 4G Blue,SI,
+Media Sabadell,Table 2,6,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00179
+Media Sabadell,Table 2,7,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081083185503
+Media Sabadell,Table 2,8,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media Sabadell,Table 2,9,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qf00103
+Media Sabadell,Table 2,10,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083628608
+Media Sabadell,Table 2,11,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Sabadell,Table 2,12,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78277/B6AFMN6UD00601
+Media Sabadell,Table 2,13,Redmi 17 5G Purple,NO,True,Redmi 17 5G Purple,NO,862728081656384
+Media Sabadell,Table 2,14,,,False,Redmi 17 5G Blue,SI,
+Media Sabadell,Table 2,15,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78276/B6AFMN6U102121
+Media Sabadell,Table 2,16,"Redmi Pad 2 SE 9.7""",NO,True,"Redmi Pad 2 SE 9.7""",NO,76924-66r701187
+Media Sabadell,Table 2,17,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081830504
+Media Sant Cugat (Barcelona),Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080442326
+Media Sant Cugat (Barcelona),Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070155923
+Media Sant Cugat (Barcelona),Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK00402
+Media Sant Cugat (Barcelona),Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media Sant Cugat (Barcelona),Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177082100960
+Media Sant Cugat (Barcelona),Table 1,6,Xiaomi Watch S5 45mm,NO,True,Xiaomi Watch S5 45mm,NO,70283-b6afmn6nz01033
+Media Sant Cugat (Barcelona),Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-b6afmn6qf03180
+Media Sant Cugat (Barcelona),Table 1,8,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080717269
+Media Sant Cugat (Barcelona),Table 1,9,Xiaomi 17T blue,SI,True,Xiaomi 17T blue,SI,
+Media Sant Cugat (Barcelona),Table 1,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US03368
+Media Sant Cugat (Barcelona),Table 1,11,Redmi Note 17 Pro Max 5G Black,NO,True,Redmi Note 17 Pro Max 5G Black,NO,860081080936148
+Media Sant Cugat (Barcelona),Table 1,12,Redmi Note 17 Pro Max 5G Green,SI,True,Redmi Note 17 Pro Max 5G Green,SI,
+Media Sant Cugat (Barcelona),Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qd00619
+Media Sant Cugat (Barcelona),Table 1,14,Redmi Note 17 Pro 5G Black,NO,True,Redmi Note 17 Pro 5G Black,NO,864603086780364
+Media Sant Cugat (Barcelona),Table 1,15,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Sant Cugat (Barcelona),Table 1,16,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78277/B6AFMN6UE05067
+Media Sant Cugat (Barcelona),Table 1,17,Redmi Note 17 5G Black,NO,True,Redmi Note 17 5G Black,NO,862728081873443
+Media Sant Cugat (Barcelona),Table 1,18,Redmi Note 17 5G Blue,NO,True,Redmi Note 17 5G Blue,NO,862728081733522
+Media Sant Cugat (Barcelona),Table 1,19,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333084201920
+Media Sant Cugat (Barcelona),Table 1,20,Redmi Buds 8 Pro,SI,True,Redmi Buds 8 Pro,SI,
+Media Sant Cugat (Barcelona),Table 1,21,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+Media Sant Cugat (Barcelona),Table 2,1,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400338
+Media Sant Cugat (Barcelona),Table 2,1.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Sant Cugat (Barcelona),Table 2,1.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,60272/X4XX01308
+Media Sant Cugat (Barcelona),Table 2,2,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00762
+Media Sant Cugat (Barcelona),Table 2,3,Redmi 17 5G Orange,SI,True,Redmi 17 5G Orange,SI,
+Media Sant Cugat (Barcelona),Table 2,4,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW01042
+Media Sant Cugat (Barcelona),Table 2,5,Redmi 17 4G Blue,SI,True,Redmi 17 4G Blue,SI,
+Media Sant Cugat (Barcelona),Table 2,6,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00167
+Media Sant Cugat (Barcelona),Table 2,7,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081083186089
+Media Sant Cugat (Barcelona),Table 2,8,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media Sant Cugat (Barcelona),Table 2,9,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qd01719
+Media Sant Cugat (Barcelona),Table 2,10,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083643045
+Media Sant Cugat (Barcelona),Table 2,11,REMI 15C,SI,False,Redmi Note 17 Pro 5G Purple,SI,
+Media Sant Cugat (Barcelona),Table 2,12,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UK13680
+Media Sant Cugat (Barcelona),Table 2,13,Redmi 17 5G Purple,NO,True,Redmi 17 5G Purple,NO,862728081656624
+Media Sant Cugat (Barcelona),Table 2,14,Redmi 17 5G Blue,SI,True,Redmi 17 5G Blue,SI,
+Media Sant Cugat (Barcelona),Table 2,15,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78276/B6AFMN6U402565
+Media Sant Cugat (Barcelona),Table 2,16,"Redmi Pad 2 SE 9.7""",NO,True,"Redmi Pad 2 SE 9.7""",NO,76924-66r700606
+Media Sant Cugat (Barcelona),Table 2,17,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081847862
+Media Sant Cugat (Barcelona),Wall,1,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081083106988
+Media Sant Cugat (Barcelona),Wall,2,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UN09830
+Media Sant Cugat (Barcelona),Wall,3,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78275/B6AFMN6UD50031
+Media Sant Cugat (Barcelona),Wall,4,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083641767
+Media Sant Cugat (Barcelona),Wall,5,Redmi Watch 5 Active,NO,True,Redmi Watch 5 Active,NO,59838/B6AFMN4V504888
+Media Sant Cugat (Barcelona),Wall,6,Redmi Watch 5 Lite,NO,True,Redmi Watch 5 Lite,NO,59836/B6AFMN4VA01406
+Media Sant Cugat (Barcelona),Wall,7,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00826
+Media Sant Cugat (Barcelona),Wall,8,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US03392
+Media Sant Cugat (Barcelona),Wall,9,Xiaomi Smart Band 9 active,NO,True,Xiaomi Smart Band 9 active,NO,61790/ATAA5G4XS00239
+Media Sant Cugat (Barcelona),Wall,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US03314
+Media Sant Cugat (Barcelona),Wall,11,Xiaomi Smart Band 9 active,NO,True,Xiaomi Smart Band 9 active,NO,61790/ATAA5G4XR01733
+Media Tarragona,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080434844
+Media Tarragona,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070157721
+Media Tarragona,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK01322
+Media Tarragona,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media Tarragona,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177082140404
+Media Tarragona,Table 1,6,Xiaomi Watch S5 45mm,NO,True,Xiaomi Watch S5 45mm,NO,70283-b6afmn6p400028
+Media Tarragona,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-b6afmn6qf03185
+Media Tarragona,Table 1,8,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080703640
+Media Tarragona,Table 1,9,Xiaomi 17T blue,SI,True,Xiaomi 17T blue,SI,
+Media Tarragona,Table 1,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US01241
+Media Tarragona,Table 1,11,Redmi Note 17 Pro Max 5G Black,NO,True,Redmi Note 17 Pro Max 5G Black,NO,860081080843286
+Media Tarragona,Table 1,12,Redmi Note 17 Pro Max 5G Green,SI,True,Redmi Note 17 Pro Max 5G Green,SI,
+Media Tarragona,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qd00210
+Media Tarragona,Table 1,14,Redmi Note 17 Pro 5G Black,NO,True,Redmi Note 17 Pro 5G Black,NO,864603086785868
+Media Tarragona,Table 1,15,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Tarragona,Table 1,16,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UK07465
+Media Tarragona,Table 1,17,Redmi Note 17 5G Black,NO,True,Redmi Note 17 5G Black,NO,862728081852843
+Media Tarragona,Table 1,18,Redmi Note 17 5G Blue,NO,True,Redmi Note 17 5G Blue,NO,862728081731088
+Media Tarragona,Table 1,19,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333084200427
+Media Tarragona,Table 1,20,Redmi Buds 8 Pro,SI,True,Redmi Buds 8 Pro,SI,
+Media Tarragona,Table 1,21,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+Media Tarragona,Table 2,1,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400400
+Media Tarragona,Table 2,1.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Tarragona,Table 2,1.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,47092/W3SR00144
+Media Tarragona,Table 2,2,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW01036
+Media Tarragona,Table 2,3,Redmi 17 5G Orange,SI,True,Redmi 17 5G Orange,SI,
+Media Tarragona,Table 2,4,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW01045
+Media Tarragona,Table 2,5,Redmi 17 4G Blue,SI,True,Redmi 17 4G Blue,SI,
+Media Tarragona,Table 2,6,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00883
+Media Tarragona,Table 2,7,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084329027
+Media Tarragona,Table 2,8,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media Tarragona,Table 2,9,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qd00284
+Media Tarragona,Table 2,10,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083639001
+Media Tarragona,Table 2,11,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Tarragona,Table 2,12,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UK05340
+Media Tarragona,Table 2,13,Redmi 17 5G Purple,NO,True,Redmi 17 5G Purple,NO,862728081652524
+Media Tarragona,Table 2,14,Redmi 17 5G Blue,SI,True,Redmi 17 5G Blue,SI,
+Media Tarragona,Table 2,15,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78276/B6AFMN6U102200
+Media Tarragona,Table 2,16,"Redmi Pad 2 SE 9.7""",NO,True,"Redmi Pad 2 SE 9.7""",NO,76924-66r700032
+Media Tarragona,Table 2,17,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081847284
+Media Tarragona,Wall,1,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081083471762
+Media Tarragona,Wall,2,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UK18884
+Media Tarragona,Wall,3,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78276/B6AFMN6U120425
+Media Tarragona,Wall,4,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083633608
+Media Tarragona,Wall,5,Redmi Watch 5 Active,NO,True,Redmi Watch 5 Active,NO,59833/B6AFMN4V803653
+Media Tarragona,Wall,6,Redmi Watch 5 Lite,NO,True,Redmi Watch 5 Lite,NO,59836/B6AFMN4VA05736
+Media Tarragona,Wall,7,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00833
+Media Tarragona,Wall,8,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US01258
+Media Tarragona,Wall,9,Xiaomi Smart Band 9 active,NO,True,Xiaomi Smart Band 9 active,NO,61790/ATAA5G4XR01722
+Media Tarragona,Wall,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US01246
+Media Tarragona,Wall,11,Xiaomi Smart Band 9 active,NO,True,Xiaomi Smart Band 9 active,NO,61790/ATAA5G4XR02063
+Media Terrassa,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080441302
+Media Terrassa,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070146740
+Media Terrassa,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK01317
+Media Terrassa,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media Terrassa,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177082134746
+Media Terrassa,Table 1,6,Xiaomi Watch S5 45mm,NO,True,Xiaomi Watch S5 45mm,NO,70283-b6afmn6p400014
+Media Terrassa,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-b6afmn6qf03193
+Media Terrassa,Table 1,8,Xiaomi 17T PURPLE,NO,True,Xiaomi 17T Purple,NO,866072080717061
+Media Terrassa,Table 1,9,Xiaomi 17T blue,SI,True,Xiaomi 17T blue,SI,
+Media Terrassa,Table 1,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971-ataa5g6us03328
+Media Terrassa,Table 1,11,Redmi Note 17 Pro Max 5G Black,NO,True,Redmi Note 17 Pro Max 5G Black,NO,86008108922346
+Media Terrassa,Table 1,12,Redmi Note 17 Pro Max 5G Green,SI,True,Redmi Note 17 Pro Max 5G Green,SI,
+Media Terrassa,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qd00638
+Media Terrassa,Table 1,14,Redmi Note 17 Pro 5G Black,NO,True,Redmi Note 17 Pro 5G Black,NO,864603086783822
+Media Terrassa,Table 1,15,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Terrassa,Table 1,16,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78277/B6AFMN6UE05542
+Media Terrassa,Table 1,17,Redmi Note 17 5G Black,NO,True,Redmi Note 17 5G Black,NO,862728081862289
+Media Terrassa,Table 1,18,Redmi Note 17 5G Blue,NO,True,Redmi Note 17 5G Blue,NO,862728081731047
+Media Terrassa,Table 1,19,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333084203900
+Media Terrassa,Table 1,20,Redmi Buds 8 Pro,SI,True,Redmi Buds 8 Pro,SI,
+Media Terrassa,Table 1,21,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+Media Terrassa,Table 2,1,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05z400548
+Media Terrassa,Table 2,1.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Terrassa,Table 2,1.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,60272/X4XX02443
+Media Terrassa,Table 2,2,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/75VW01019
+Media Terrassa,Table 2,3,Redmi 17 5G Orange,SI,True,Redmi 17 5G Orange,SI,
+Media Terrassa,Table 2,4,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/75VW01043
+Media Terrassa,Table 2,5,Redmi 17 4G Blue,SI,True,Redmi 17 4G Blue,SI,
+Media Terrassa,Table 2,6,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00100
+Media Terrassa,Table 2,7,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081083185545
+Media Terrassa,Table 2,8,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media Terrassa,Table 2,9,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qd00268
+Media Terrassa,Table 2,10,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,8.6460300836468e+15
+Media Terrassa,Table 2,11,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Terrassa,Table 2,12,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UK10029
+Media Terrassa,Table 2,13,Redmi 17 5G Purple,NO,True,Redmi 17 5G Purple,NO,862728081659487
+Media Terrassa,Table 2,14,Redmi 17 5G Blue,SI,True,Redmi 17 5G Blue,SI,
+Media Terrassa,Table 2,15,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78276/B6AFMN6U115472
+Media Terrassa,Table 2,16,"Redmi Pad 2 SE 9.7""",NO,True,"Redmi Pad 2 SE 9.7""",NO,76924-66r701192
+Media Terrassa,Table 2,17,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081853662
+Media Terrassa,Wall,1,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081083096387
+Media Terrassa,Wall,2,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UK16933
+Media Terrassa,Wall,3,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78275/B6AFMN6UD48052
+Media Terrassa,Wall,4,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083643003
+Media Terrassa,Wall,5,Redmi Watch 5 Active,NO,True,Redmi Watch 5 Active,NO,59836/B6AFMN4V504735
+Media Terrassa,Wall,6,Redmi Watch 5 Lite,NO,True,Redmi Watch 5 Lite,NO,59836/B6AFMN4VA00564
+Media Terrassa,Wall,7,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00814
+Media Terrassa,Wall,8,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US03255
+Media Terrassa,Wall,9,Xiaomi Smart Band 9 active,NO,True,Xiaomi Smart Band 9 active,NO,61790/ATAA5G4XS00229
+Media Terrassa,Wall,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US03379
+Media Terrassa,Wall,11,Xiaomi Smart Band 9 active,NO,True,Xiaomi Smart Band 9 active,NO,61790/ATAA5G4XR02490
+Media Vilanova,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080442383
+Media Vilanova,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070132989
+Media Vilanova,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK00417
+Media Vilanova,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media Vilanova,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177082142228
+Media Vilanova,Table 1,6,Xiaomi Watch S5 45mm,NO,True,Xiaomi Watch S5 45mm,NO,70283-b6afmn6p400013
+Media Vilanova,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-b6afmn6qf03181
+Media Vilanova,Table 1,8,Xiaomi 17T PURPLE,NO,True,Xiaomi 17T Purple,NO,866072080729645
+Media Vilanova,Table 1,9,Xiaomi 17T blue,SI,True,Xiaomi 17T blue,SI,
+Media Vilanova,Table 1,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US03357
+Media Vilanova,Table 1,11,Redmi Note 17 Pro Max 5G Black,NO,True,Redmi Note 17 Pro Max 5G Black,NO,860081080817900
+Media Vilanova,Table 1,12,Redmi Note 17 Pro Max 5G Green,SI,True,Redmi Note 17 Pro Max 5G Green,SI,
+Media Vilanova,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qd01021
+Media Vilanova,Table 1,14,Redmi Note 17 Pro 5G Black,NO,True,Redmi Note 17 Pro 5G Black,NO,864603083875589
+Media Vilanova,Table 1,15,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Vilanova,Table 1,16,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UN12720
+Media Vilanova,Table 1,17,Redmi Note 17 5G Black,NO,True,Redmi Note 17 5G Black,NO,862728081873922
+Media Vilanova,Table 1,18,Redmi Note 17 5G Blue,NO,True,Redmi Note 17 5G Blue,NO,862728081745740
+Media Vilanova,Table 1,19,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333084203504
+Media Vilanova,Table 1,20,Redmi Buds 8 Pro,SI,True,Redmi Buds 8 Pro,SI,
+Media Vilanova,Table 1,21,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+Media Vilanova,Table 2,1,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400051
+Media Vilanova,Table 2,1.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Vilanova,Table 2,1.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,60272/X4XX02076
+Media Vilanova,Table 2,2,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00684
+Media Vilanova,Table 2,3,Redmi 17 5G Orange,SI,True,Redmi 17 5G Orange,SI,
+Media Vilanova,Table 2,4,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00938
+Media Vilanova,Table 2,5,Redmi 17 4G Blue,SI,True,Redmi 17 4G Blue,SI,
+Media Vilanova,Table 2,6,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5R900934
+Media Vilanova,Table 2,7,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081083185701
+Media Vilanova,Table 2,8,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media Vilanova,Table 2,9,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qd00557
+Media Vilanova,Table 2,10,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083638409
+Media Vilanova,Table 2,11,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Vilanova,Table 2,12,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UN12718
+Media Vilanova,Table 2,13,Redmi 17 5G Purple,NO,True,Redmi 17 5G Purple,NO,862728081656848
+Media Vilanova,Table 2,14,Redmi 17 5G Blue,SI,True,Redmi 17 5G Blue,SI,
+Media Vilanova,Table 2,15,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78276/ B6AFMN6U111875
+Media Vilanova,Table 2,16,"Redmi Pad 2 SE 9.7""",NO,True,"Redmi Pad 2 SE 9.7""",NO,76924-66r700029
+Media Vilanova,Table 2,17,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081841865
+Media Vilanova,Wall,1,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081082210062
+Media Vilanova,Wall,2,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UK185366
+Media Vilanova,Wall,3,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78275/B6AFMN6D48027
+Media Vilanova,Wall,4,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083637807
+Media Vilanova,Wall,5,Redmi Watch 5 Active,NO,True,Redmi Watch 5 Active,NO,59838/B6AFMN4V503472
+Media Vilanova,Wall,6,Redmi Watch 5 Lite,NO,True,Redmi Watch 5 Lite,NO,59836/B6AFMN4VA05818
+Media Vilanova,Wall,7,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00599
+Media Vilanova,Wall,8,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971 / ATAA5G6US03331
+Media Vilanova,Wall,9,Xiaomi Smart Band 9 active,NO,True,Xiaomi Smart Band 9 active,NO,61790/ATAA5G4XR02477
+Media Vilanova,Wall,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US03316
+Media Vilanova,Wall,11,Xiaomi Smart Band 9 active,NO,True,Xiaomi Smart Band 9 active,NO,61790/ATAA55G4XR01288
+Media Zaragoza,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080434943
+Media Zaragoza,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070144745
+Media Zaragoza,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/crag525zk01306
+Media Zaragoza,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media Zaragoza,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177082097968
+Media Zaragoza,Table 1,6,Xiaomi Watch S5 45mm,NO,True,Xiaomi Watch S5 45mm,NO,70283-B6AFMN6NZ01637
+Media Zaragoza,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-B6AFMN6QF00475
+Media Zaragoza,Table 1,8,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080717087
+Media Zaragoza,Table 1,9,Xiaomi 17T blue,SI,True,Xiaomi 17T blue,SI,
+Media Zaragoza,Table 1,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US01647
+Media Zaragoza,Table 1,11,Redmi Note 17 Pro Max 5G Black,NO,True,Redmi Note 17 Pro Max 5G Black,NO,860081081083866
+Media Zaragoza,Table 1,12,Redmi Note 17 Pro Max 5G Green,SI,True,Redmi Note 17 Pro Max 5G Green,SI,
+Media Zaragoza,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-EFAPBS6QD00820
+Media Zaragoza,Table 1,14,Redmi Note 17 Pro 5G Black,NO,True,Redmi Note 17 Pro 5G Black,NO,864603086771660
+Media Zaragoza,Table 1,15,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Zaragoza,Table 1,16,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/b6afmn6un14892
+Media Zaragoza,Table 1,17,Redmi Note 17 5G Black,NO,True,Redmi Note 17 5G Black,NO,862728081859889
+Media Zaragoza,Table 1,18,Redmi Note 17 5G Blue,NO,True,Redmi Note 17 5G Blue,NO,862728081757885
+Media Zaragoza,Table 1,19,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333084202043
+Media Zaragoza,Table 1,20,Redmi Buds 8 Pro,SI,True,Redmi Buds 8 Pro,SI,
+Media Zaragoza,Table 1,21,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+Media Zaragoza,Table 2,1,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05z400199
+Media Zaragoza,Table 2,1.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Zaragoza,Table 2,1.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,
+Media Zaragoza,Table 2,2,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/y5vw00867
+Media Zaragoza,Table 2,3,Redmi 17 5G Orange,SI,True,Redmi 17 5G Orange,SI,
+Media Zaragoza,Table 2,4,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW02540
+Media Zaragoza,Table 2,5,Redmi 17 4G Blue,SI,True,Redmi 17 4G Blue,SI,
+Media Zaragoza,Table 2,6,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/w5ra00490
+Media Zaragoza,Table 2,7,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081083184282
+Media Zaragoza,Table 2,8,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media Zaragoza,Table 2,9,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-EFAPBS6QD00032
+Media Zaragoza,Table 2,10,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083633624
+Media Zaragoza,Table 2,11,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Zaragoza,Table 2,12,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,68277/b6afmn6ve05189
+Media Zaragoza,Table 2,13,Redmi 17 5G Purple,NO,True,Redmi 17 5G Purple,NO,862728081651047
+Media Zaragoza,Table 2,14,Redmi 17 5G Blue,SI,True,Redmi 17 5G Blue,SI,
+Media Zaragoza,Table 2,15,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78276/b6afmn6u414003
+Media Zaragoza,Table 2,16,"Redmi Pad 2 SE 9.7""",NO,True,"Redmi Pad 2 SE 9.7""",NO,76924-66R701162
+Media Zaragoza,Table 2,17,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,86856081845163
+Media Zaragoza 2,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080442029
+Media Zaragoza 2,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070153126
+Media Zaragoza 2,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK01347
+Media Zaragoza 2,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+Media Zaragoza 2,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177082129605
+Media Zaragoza 2,Table 1,6,Xiaomi Watch S5 45mm,SI,False,Xiaomi Watch S5 45mm,NO,
+Media Zaragoza 2,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-b6afmn6qf03170
+Media Zaragoza 2,Table 1,8,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080717889
+Media Zaragoza 2,Table 1,9,Xiaomi 17T blue,SI,True,Xiaomi 17T blue,SI,
+Media Zaragoza 2,Table 1,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US01863
+Media Zaragoza 2,Table 1,11,Redmi Note 17 Pro Max 5G Black,NO,True,Redmi Note 17 Pro Max 5G Black,NO,860081080842908
+Media Zaragoza 2,Table 1,12,Redmi Note 17 Pro Max 5G Green,SI,True,Redmi Note 17 Pro Max 5G Green,SI,
+Media Zaragoza 2,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qd00127
+Media Zaragoza 2,Table 1,14,Redmi Note 17 Pro 5G Black,NO,True,Redmi Note 17 Pro 5G Black,NO,864603086772809
+Media Zaragoza 2,Table 1,15,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Zaragoza 2,Table 1,16,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UK16415
+Media Zaragoza 2,Table 1,17,Redmi Note 17 5G Black,NO,True,Redmi Note 17 5G Black,NO,862728081873781
+Media Zaragoza 2,Table 1,18,Redmi Note 17 5G Blue,NO,True,Redmi Note 17 5G Blue,NO,862728081752662
+Media Zaragoza 2,Table 1,19,Redmi 15C,NO,False,Redmi 17 5G Orange,NO,869292078585323
+Media Zaragoza 2,Table 1,20,Redmi Buds 8 Pro,SI,True,Redmi Buds 8 Pro,SI,
+Media Zaragoza 2,Table 1,21,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+Media Zaragoza 2,Table 2,1,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400455
+Media Zaragoza 2,Table 2,1.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+Media Zaragoza 2,Table 2,1.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,60272/X4XY00333
+Media Zaragoza 2,Table 2,2,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00957
+Media Zaragoza 2,Table 2,3,Redmi 17 5G Orange,SI,True,Redmi 17 5G Orange,SI,
+Media Zaragoza 2,Table 2,4,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW01024
+Media Zaragoza 2,Table 2,5,Redmi 17 4G Blue,SI,True,Redmi 17 4G Blue,SI,
+Media Zaragoza 2,Table 2,6,Redmi Pad 2,NO,True,Redmi Pad 2,NO,655573/W5RA00524
+Media Zaragoza 2,Table 2,7,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084361665
+Media Zaragoza 2,Table 2,8,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+Media Zaragoza 2,Table 2,9,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qd00375
+Media Zaragoza 2,Table 2,10,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083632766
+Media Zaragoza 2,Table 2,11,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+Media Zaragoza 2,Table 2,12,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UK11168
+Media Zaragoza 2,Table 2,13,Redmi 17 5G Purple,NO,True,Redmi 17 5G Purple,NO,862728081651088
+Media Zaragoza 2,Table 2,14,Redmi 17 5G Blue,SI,True,Redmi 17 5G Blue,SI,
+Media Zaragoza 2,Table 2,15,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78276/B6AFMN6U405182
+Media Zaragoza 2,Table 2,16,"Redmi Pad 2 SE 9.7""",NO,True,"Redmi Pad 2 SE 9.7""",NO,76924-66r701145
+Media Zaragoza 2,Table 2,17,Redmi 15C,NO,False,Redmi 17 4G Green,NO,869292076045163
+Media Zaragoza 2,Wall,1,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081082880500
+Media Zaragoza 2,Wall,2,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UK15019
+Media Zaragoza 2,Wall,3,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78275/B6AFMN6UD48915
+Media Zaragoza 2,Wall,4,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083645404
+Media Zaragoza 2,Wall,5,Redmi Watch 5 Active,NO,True,Redmi Watch 5 Active,NO,59838/B6AFMN4V503006
+Media Zaragoza 2,Wall,6,Redmi Watch 5 Lite,NO,True,Redmi Watch 5 Lite,NO,59836/B6AFMN4VA00170
+Media Zaragoza 2,Wall,7,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00679
+Media Zaragoza 2,Wall,8,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US01830
+Media Zaragoza 2,Wall,9,Xiaomi Smart Band 9 active,NO,True,Xiaomi Smart Band 9 active,NO,61790/ATAA5G4XS00168
+Media Zaragoza 2,Wall,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US01866
+Media Zaragoza 2,Wall,11,Xiaomi Smart Band 9 active,NO,True,Xiaomi Smart Band 9 active,NO,61790/ATAA5G4XR03443
+ECI CAN DRAGO,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080420124
+ECI CAN DRAGO,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070271621
+ECI CAN DRAGO,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG 525ZK00898
+ECI CAN DRAGO,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+ECI CAN DRAGO,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177081944004
+ECI CAN DRAGO,Table 1,6,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080778865
+ECI CAN DRAGO,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-B6AFMN6QF00794
+ECI CAN DRAGO,Table 1,8,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084378941
+ECI CAN DRAGO,Table 1,9,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+ECI CAN DRAGO,Table 1,10,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081083455948
+ECI CAN DRAGO,Table 1,11,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083643441
+ECI CAN DRAGO,Table 1,12,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+ECI CAN DRAGO,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-EFAPBS6QF00229
+ECI CAN DRAGO,Table 1,14,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+ECI CAN DRAGO,Table 1,15,Redmi Note 17 5G Purple,NO,True,Redmi Note 17 5G Purple,NO,862728081657242
+ECI CAN DRAGO,Table 1,16,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400549
+ECI CAN DRAGO,Table 1,16.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+ECI CAN DRAGO,Table 1,16.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,
+ECI CAN DRAGO,Table 1,17,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333084201946
+ECI CAN DRAGO,Table 1,18,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00969
+ECI CAN DRAGO,Table 1,19,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081849082
+ECI CAN DRAGO,Table 1,20,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00758
+ECI CAN DRAGO,Wall,1,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081083463041
+ECI CAN DRAGO,Wall,2,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279-B6AFMN6U124208
+ECI CAN DRAGO,Wall,3,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78275-B6AFMN6UB05431
+ECI CAN DRAGO,Wall,4,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083628087
+ECI CAN DRAGO,Wall,5,Redmi Watch 5 Active,NO,True,Redmi Watch 5 Active,NO,59833/B6AFMN4V502898
+ECI CAN DRAGO,Wall,6,Redmi Watch 5 Lite,NO,True,Redmi Watch 5 Lite,NO,59836/B6AFMN4VA00952
+ECI CAN DRAGO,Wall,7,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00773
+ECI CAN DRAGO,Wall,8,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971-ATAA5G6UN02577
+ECI CAN DRAGO,Wall,9,Xiaomi Smart Band 9 active,NO,True,Xiaomi Smart Band 9 active,NO,61790/ATAA5G4XR01279
+ECI CAN DRAGO,Wall,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971-ATAA5G6UN04016
+ECI CAN DRAGO,Wall,11,Xiaomi Smart Band 9 active,NO,True,Xiaomi Smart Band 9 active,NO,61790/ATAA5G4XR01346
+ECI CORNELLA,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080419803
+ECI CORNELLA,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070249684
+ECI CORNELLA,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK00223
+ECI CORNELLA,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+ECI CORNELLA,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177082144380
+ECI CORNELLA,Table 1,6,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080756648
+ECI CORNELLA,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-b6afmn6qf02110
+ECI CORNELLA,Table 1,8,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084354728
+ECI CORNELLA,Table 1,9,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+ECI CORNELLA,Table 1,10,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081082872846
+ECI CORNELLA,Table 1,11,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083641429
+ECI CORNELLA,Table 1,12,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+ECI CORNELLA,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qd01935
+ECI CORNELLA,Table 1,14,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+ECI CORNELLA,Table 1,15,Redmi Note 17 5G Purple,NO,True,Redmi Note 17 5G Purple,NO,862728081654140
+ECI CORNELLA,Table 1,16,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400387
+ECI CORNELLA,Table 1,16.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+ECI CORNELLA,Table 1,16.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,60272/X4XX03211
+ECI CORNELLA,Table 1,17,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333084201086
+ECI CORNELLA,Table 1,18,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW02226
+ECI CORNELLA,Table 1,19,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081847268
+ECI CORNELLA,Table 1,20,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA01000
+ECI CORNELLA,Miniwall,1,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084356749
+ECI CORNELLA,Miniwall,2,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UK12870
+ECI CORNELLA,Miniwall,3,Redmi Watch 5 Lite,NO,True,Redmi Watch 5 Lite,NO,59836/B6AFMN4VA00569
+ECI CORNELLA,Miniwall,4,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00723
+ECI MERIDIANA,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080423029
+ECI MERIDIANA,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070259725
+ECI MERIDIANA,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525XK01368
+ECI MERIDIANA,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+ECI MERIDIANA,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177082157887
+ECI MERIDIANA,Table 1,6,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080741129
+ECI MERIDIANA,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-B6AFMN6QF00804
+ECI MERIDIANA,Table 1,8,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084335404
+ECI MERIDIANA,Table 1,9,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+ECI MERIDIANA,Table 1,10,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081082880740
+ECI MERIDIANA,Table 1,11,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083645784
+ECI MERIDIANA,Table 1,12,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+ECI MERIDIANA,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-EFAPBS6QE03581
+ECI MERIDIANA,Table 1,14,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+ECI MERIDIANA,Table 1,15,Redmi Note 17 5G Purple,NO,True,Redmi Note 17 5G Purple,NO,862728081628342
+ECI MERIDIANA,Table 1,16,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400470
+ECI MERIDIANA,Table 1,16.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+ECI MERIDIANA,Table 1,16.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,
+ECI MERIDIANA,Table 1,17,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333084203843
+ECI MERIDIANA,Table 1,18,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00680
+ECI MERIDIANA,Table 1,19,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081849223
+ECI MERIDIANA,Table 1,20,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00994
+ECI DIAGONAL,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080416767
+ECI DIAGONAL,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070156186
+ECI DIAGONAL,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK01051
+ECI DIAGONAL,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+ECI DIAGONAL,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177081960760
+ECI DIAGONAL,Table 1,6,Xiaomi Watch S5 45mm,NO,True,Xiaomi Watch S5 45mm,NO,70283-b6afmn6nz01789
+ECI DIAGONAL,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-b6afmn6qf03109
+ECI DIAGONAL,Table 1,8,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080758685
+ECI DIAGONAL,Table 1,9,Xiaomi 17T blue,SI,True,Xiaomi 17T blue,SI,
+ECI DIAGONAL,Table 1,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US03301
+ECI DIAGONAL,Table 1,11,Redmi Note 17 Pro Max 5G Black,NO,True,Redmi Note 17 Pro Max 5G Black,NO,860081080838823
+ECI DIAGONAL,Table 1,12,Redmi Note 17 Pro Max 5G Green,SI,True,Redmi Note 17 Pro Max 5G Green,SI,
+ECI DIAGONAL,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qf00239
+ECI DIAGONAL,Table 1,14,Redmi Note 17 Pro 5G Black,NO,True,Redmi Note 17 Pro 5G Black,NO,864603083872800
+ECI DIAGONAL,Table 1,15,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+ECI DIAGONAL,Table 1,16,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UN13994
+ECI DIAGONAL,Table 1,17,Redmi Note 17 5G Black,NO,True,Redmi Note 17 5G Black,NO,862728081854005
+ECI DIAGONAL,Table 1,18,Redmi Note 17 5G Blue,NO,True,Redmi Note 17 5G Blue,NO,862728081751706
+ECI DIAGONAL,Table 1,19,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333084201961
+ECI DIAGONAL,Table 1,20,Redmi Buds 8 Pro,SI,True,Redmi Buds 8 Pro,SI,
+ECI DIAGONAL,Table 1,21,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+ECI DIAGONAL,Table 2,1,Xiaomi Pad 8 Pro,NO,True,Xiaomi Pad 8 Pro,NO,76419/05Z800035
+ECI DIAGONAL,Table 2,1.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+ECI DIAGONAL,Table 2,1.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,60272/X4XX02021
+ECI DIAGONAL,Table 2,2,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400179
+ECI DIAGONAL,Table 2,2.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+ECI DIAGONAL,Table 2,2.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,60272/X4XX01030
+ECI DIAGONAL,Table 2,3,Redmi 17 5G Orange,SI,True,Redmi 17 5G Orange,SI,
+ECI DIAGONAL,Table 2,4,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00905
+ECI DIAGONAL,Table 2,5,Redmi 17 4G Blue,SI,True,Redmi 17 4G Blue,SI,
+ECI DIAGONAL,Table 2,6,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00710
+ECI DIAGONAL,Table 2,7,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084363828
+ECI DIAGONAL,Table 2,8,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+ECI DIAGONAL,Table 2,9,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qe00268
+ECI DIAGONAL,Table 2,10,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083642120
+ECI DIAGONAL,Table 2,11,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+ECI DIAGONAL,Table 2,12,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78277/B6AFMN6UF05487
+ECI DIAGONAL,Table 2,13,Redmi Note 17 5G Purple,NO,True,Redmi Note 17 5G Purple,NO,862728081656749
+ECI DIAGONAL,Table 2,14,Redmi Note 17 5G Blue,SI,True,Redmi Note 17 5G Blue,SI,
+ECI DIAGONAL,Table 2,15,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78276/B6AFMN6U102465
+ECI DIAGONAL,Table 2,16,"Redmi Pad 2 SE 9.7""",NO,True,"Redmi Pad 2 SE 9.7""",NO,76924-66r700006
+ECI DIAGONAL,Table 2,17,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081840602
+ECI ZARAGOZA,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080455963
+ECI ZARAGOZA,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070142723
+ECI ZARAGOZA,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK01431
+ECI ZARAGOZA,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+ECI ZARAGOZA,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177082136386
+ECI ZARAGOZA,Table 1,6,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080710280
+ECI ZARAGOZA,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-b6afmn6qf01687
+ECI ZARAGOZA,Table 1,8,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084356624
+ECI ZARAGOZA,Table 1,9,,,False,Redmi Note 17 Pro Max 5G White&Orange,SI,
+ECI ZARAGOZA,Table 1,10,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081083457423
+ECI ZARAGOZA,Table 1,11,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083630968
+ECI ZARAGOZA,Table 1,12,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+ECI ZARAGOZA,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707/EFAPBS6QD00337
+ECI ZARAGOZA,Table 1,14,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+ECI ZARAGOZA,Table 1,15,Redmi Note 17 5G Purple,NO,True,Redmi Note 17 5G Purple,NO,862728081656269
+ECI ZARAGOZA,Table 1,16,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400379
+ECI ZARAGOZA,Table 1,16.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+ECI ZARAGOZA,Table 1,16.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,60272/X4Y102982
+ECI ZARAGOZA,Table 1,17,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333082243841
+ECI ZARAGOZA,Table 1,18,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00894
+ECI ZARAGOZA,Table 1,19,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081849942
+ECI ZARAGOZA,Table 1,20,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00910
+ECI ZARAGOZA,Miniwall,1,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084342806
+ECI ZARAGOZA,Miniwall,2,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UN12697
+ECI ZARAGOZA,Miniwall,3,Redmi Watch 5 Lite,NO,True,Redmi Watch 5 Lite,NO,59836&B6AFMN4VA05414
+ECI ZARAGOZA,Miniwall,4,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00706
+ECI CATALUÑA,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080434729
+ECI CATALUÑA,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070314686
+ECI CATALUÑA,Table 1,3,,,False,Xiaomi Watch 5,NO,65343/CRAG525ZK00481
+ECI CATALUÑA,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+ECI CATALUÑA,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177082163166
+ECI CATALUÑA,Table 1,6,Xiaomi Watch S5 45mm,NO,True,Xiaomi Watch S5 45mm,NO,70283-b6afmn6nz00670
+ECI CATALUÑA,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-b6afmn6qf03229
+ECI CATALUÑA,Table 1,8,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080726989
+ECI CATALUÑA,Table 1,9,Xiaomi 17T blue,SI,True,Xiaomi 17T blue,SI,
+ECI CATALUÑA,Table 1,10,Xiaomi Smart Band 11 Active,NO,True,Xiaomi Smart Band 11 Active,NO,77971/ATAA5G6US03226
+ECI CATALUÑA,Table 1,11,Redmi Note 17 Pro Max 5G Black,NO,True,Redmi Note 17 Pro Max 5G Black,NO,860081080835068
+ECI CATALUÑA,Table 1,12,Redmi Note 17 Pro Max 5G Green,SI,True,Redmi Note 17 Pro Max 5G Green,SI,
+ECI CATALUÑA,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qd01825
+ECI CATALUÑA,Table 1,14,Redmi Note 17 Pro 5G Black,NO,True,Redmi Note 17 Pro 5G Black,NO,864603083875480
+ECI CATALUÑA,Table 1,15,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+ECI CATALUÑA,Table 1,16,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UN09770
+ECI CATALUÑA,Table 1,17,Redmi Note 17 5G Black,NO,True,Redmi Note 17 5G Black,NO,862728081852728
+ECI CATALUÑA,Table 1,18,Redmi Note 17 5G Blue,NO,True,Redmi Note 17 5G Blue,NO,862728081753926
+ECI CATALUÑA,Table 1,19,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333084201607
+ECI CATALUÑA,Table 1,20,Redmi Buds 8 Pro,SI,True,Redmi Buds 8 Pro,SI,
+ECI CATALUÑA,Table 1,21,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+ECI CATALUÑA,Table 2,1,Xiaomi Pad 8 Pro,NO,True,Xiaomi Pad 8 Pro,NO,76419/05Z800025
+ECI CATALUÑA,Table 2,1.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+ECI CATALUÑA,Table 2,1.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,60272/X4XX03511
+ECI CATALUÑA,Table 2,2,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400449
+ECI CATALUÑA,Table 2,2.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+ECI CATALUÑA,Table 2,2.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,60272/X4XX02090
+ECI CATALUÑA,Table 2,3,Redmi 17 5G Orange,SI,True,Redmi 17 5G Orange,SI,
+ECI CATALUÑA,Table 2,4,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00886
+ECI CATALUÑA,Table 2,5,Redmi 17 4G Blue,SI,True,Redmi 17 4G Blue,SI,
+ECI CATALUÑA,Table 2,6,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00865
+ECI CATALUÑA,Table 2,7,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081083184969
+ECI CATALUÑA,Table 2,8,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+ECI CATALUÑA,Table 2,9,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qf00652
+ECI CATALUÑA,Table 2,10,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083642724
+ECI CATALUÑA,Table 2,11,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+ECI CATALUÑA,Table 2,12,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279/B6AFMN6UN12714
+ECI CATALUÑA,Table 2,13,Redmi Note 17 5G Purple,NO,True,Redmi Note 17 5G Purple,NO,862728081633664
+ECI CATALUÑA,Table 2,14,Redmi Note 17 5G Blue,SI,True,Redmi Note 17 5G Blue,SI,
+ECI CATALUÑA,Table 2,15,Redmi Watch 6 Lite,NO,True,Redmi Watch 6 Lite,NO,78276/B6AFMN6U115462
+ECI CATALUÑA,Table 2,16,"Redmi Pad 2 SE 9.7""",NO,True,"Redmi Pad 2 SE 9.7""",NO,76924-66r700277
+ECI CATALUÑA,Table 2,17,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081842269
+ECI CATALUÑA,Miniwall,1,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084366003
+ECI CATALUÑA,Miniwall,2,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78277/B6AFMN6UD05394
+ECI CATALUÑA,Miniwall,3,Redmi Watch 5 Active,NO,False,Redmi Watch 5 Lite,NO,59838/B6AFMN4V504057
+ECI CATALUÑA,Miniwall,4,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00693
+ECI SABADELL,Table 1,1,Xiaomi 17 Ultra Black,NO,True,Xiaomi 17 Ultra Black,NO,863142080431303
+ECI SABADELL,Table 1,2,Xiaomi 17 Black,NO,True,Xiaomi 17 Black,NO,860359070140966
+ECI SABADELL,Table 1,3,Xiaomi Watch 5,NO,True,Xiaomi Watch 5,NO,65343/CRAG525ZK00151
+ECI SABADELL,Table 1,4,Xiaomi Buds 6,SI,True,Xiaomi Buds 6,SI,
+ECI SABADELL,Table 1,5,Xiaomi 17T Pro Blue,NO,True,Xiaomi 17T Pro Blue,NO,862177082132369
+ECI SABADELL,Table 1,6,Xiaomi 17T Purple,NO,True,Xiaomi 17T Purple,NO,866072080703004
+ECI SABADELL,Table 1,7,Xiaomi Smart Band 10 Pro,NO,True,Xiaomi Smart Band 10 Pro,NO,74734-b6afmn6qf02086
+ECI SABADELL,Table 1,8,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084351005
+ECI SABADELL,Table 1,9,Redmi Note 17 Pro Max 5G White&Orange,SI,True,Redmi Note 17 Pro Max 5G White&Orange,SI,
+ECI SABADELL,Table 1,10,Redmi Note 17 Pro Max 5G Green,NO,True,Redmi Note 17 Pro Max 5G Green,NO,860081083466002
+ECI SABADELL,Table 1,11,Redmi Note 17 Pro 5G Blue,NO,True,Redmi Note 17 Pro 5G Blue,NO,864603083640728
+ECI SABADELL,Table 1,12,Redmi Note 17 Pro 5G Purple,SI,True,Redmi Note 17 Pro 5G Purple,SI,
+ECI SABADELL,Table 1,13,Redmi Watch 6,NO,True,Redmi Watch 6,NO,68707-efapbs6qf00649
+ECI SABADELL,Table 1,14,Redmi Buds 8,SI,True,Redmi Buds 8,SI,
+ECI SABADELL,Table 1,15,Redmi Note 17 5G Purple,NO,True,Redmi Note 17 5G Purple,NO,862728081648969
+ECI SABADELL,Table 1,16,Xiaomi Pad 8,NO,True,Xiaomi Pad 8,NO,75789/05Z400289
+ECI SABADELL,Table 1,16.1,Xiaomi Focus Keyboard,NO,True,Xiaomi Focus Keyboard,NO,
+ECI SABADELL,Table 1,16.2,Xiaomi Focus Pen,NO,True,Xiaomi Focus Pen,NO,
+ECI SABADELL,Table 1,17,Redmi 17 5G Orange,NO,True,Redmi 17 5G Orange,NO,864333082243668
+ECI SABADELL,Table 1,18,Redmi Pad 2 Pro,NO,True,Redmi Pad 2 Pro,NO,70399/Y5VW00876
+ECI SABADELL,Table 1,19,Redmi 17 4G Green,NO,True,Redmi 17 4G Green,NO,868506081847920
+ECI SABADELL,Table 1,20,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/E5RA00717
+ECI SABADELL,Miniwall,1,Redmi Note 17 Pro Max 5G White&Orange,NO,True,Redmi Note 17 Pro Max 5G White&Orange,NO,860081084316701
+ECI SABADELL,Miniwall,2,Redmi Watch 6 Active,NO,True,Redmi Watch 6 Active,NO,78279-B6AFMN6UK13742
+ECI SABADELL,Miniwall,3,Redmi Watch 5 Lite,NO,True,Redmi Watch 5 Lite,NO,59837/B6AFMN4V800827
+ECI SABADELL,Miniwall,4,Redmi Pad 2,NO,True,Redmi Pad 2,NO,65573/W5RA00604
