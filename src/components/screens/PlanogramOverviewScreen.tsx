@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { StoreCenter, PlanogramPosition, PositionAuditState } from '../../types';
+import { StoreCenter, PlanogramPosition, PositionAuditState, UserProfile } from '../../types';
 import { DbService } from '../../services/dbService';
 import { getPositionsForSpace } from '../../data/defaultData';
 import { PLANOGRAM_IMAGES } from '../../data/planogramImages';
@@ -27,6 +27,7 @@ import {
 
 interface PlanogramOverviewScreenProps {
   store: StoreCenter;
+  currentUser?: UserProfile;
   auditStates: Record<string, PositionAuditState>;
   onSelectPosition: (pos: PlanogramPosition) => void;
   onFinishAudit: () => void;
@@ -36,6 +37,7 @@ interface PlanogramOverviewScreenProps {
 
 export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = ({
   store,
+  currentUser,
   auditStates,
   onSelectPosition,
   onFinishAudit,
@@ -121,6 +123,7 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
     return Boolean(d && d.length > 0);
   }, [store.tiendaId]);
   const isVigenteActive = Boolean(latestAudit && !hasDraft && auditedCount > 0);
+  const isPromotor = (currentUser?.rol || '').toLowerCase().includes('promotor');
 
   return (
     <div className="w-full min-h-[92dvh] sm:min-h-[80vh] flex flex-col bg-white text-slate-800 rounded-none sm:rounded-3xl shadow-2xl overflow-hidden border border-slate-200/80 transition-all duration-300">
@@ -185,7 +188,7 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
               <strong>Reporte vigente ({latestAudit.fechaHora}):</strong> {auditedCount} puestos registrados. Pulsa en cualquier posición para actualizar datos o resolver incidencias.
             </span>
           </div>
-          {onResetAudit && (
+          {onResetAudit && !isPromotor && (
             <button
               onClick={() => {
                 if (window.confirm('¿Seguro que deseas reiniciar y comenzar una auditoría limpia desde cero para esta tienda?')) {

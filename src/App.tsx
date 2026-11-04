@@ -147,9 +147,10 @@ export const App: React.FC = () => {
   };
 
   const handleSelectStoreMode = (store: StoreCenter, mode: AuditWorkflowMode) => {
+    const isPromotor = (currentUser?.rol || '').toLowerCase().includes('promotor');
     if (mode === 'new_implantation') {
       loadImplantationStateForStore(store, false);
-    } else if (mode === 'clean_audit') {
+    } else if (mode === 'clean_audit' && !isPromotor) {
       setSelectedStore(store);
       DbService.clearStoreAudit(store.tiendaId);
       setAuditStates({});
@@ -160,6 +161,8 @@ export const App: React.FC = () => {
   };
 
   const handleResetAudit = () => {
+    const isPromotor = (currentUser?.rol || '').toLowerCase().includes('promotor');
+    if (isPromotor) return;
     if (!selectedStore) return;
     DbService.clearStoreAudit(selectedStore.tiendaId);
     setAuditStates({});
@@ -296,6 +299,7 @@ export const App: React.FC = () => {
           {currentStep === 'planogram_3d' && selectedStore && (
             <PlanogramOverviewScreen
               store={selectedStore}
+              currentUser={currentUser}
               auditStates={auditStates}
               onSelectPosition={(pos) => {
                 setSelectedPosition(pos);

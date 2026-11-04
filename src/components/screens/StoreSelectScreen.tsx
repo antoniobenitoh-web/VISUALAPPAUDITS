@@ -498,6 +498,8 @@ export const StoreSelectScreen: React.FC<StoreSelectScreenProps> = ({
                   DbService.getLatestAuditForStore(modalStore.tiendaId) ||
                   (DbService.getDraft(modalStore.tiendaId)?.length || 0) > 0
                 );
+                const isPromotor = (currentUser?.rol || '').toLowerCase().includes('promotor');
+                const canResetAudit = !isPromotor;
 
                 return (
                   <>
@@ -523,7 +525,7 @@ export const StoreSelectScreen: React.FC<StoreSelectScreenProps> = ({
                       </div>
                     </button>
 
-                    {hasExistingData && (
+                    {hasExistingData && canResetAudit && (
                       <button
                         type="button"
                         onClick={() => {
