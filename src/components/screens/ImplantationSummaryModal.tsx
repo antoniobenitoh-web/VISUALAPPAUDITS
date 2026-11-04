@@ -745,7 +745,7 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
                             </div>
                             <p className="text-[11px] opacity-80 font-semibold">
                               {ret.esDummy ? 'Maqueta / Dummy' : 'Terminal LDU'}
-                              {ret.imeiMemorizado ? ` · IMEI Memorizado: ${ret.imeiMemorizado}` : ''}
+                              {ret.imeiMemorizado ? ` · IMEI / S/N: ${ret.imeiMemorizado}` : ''}
                             </p>
                             {ret.motivoIncidencia && (
                               <p className="text-xs text-orange-800 font-bold mt-0.5">

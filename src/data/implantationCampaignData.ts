@@ -13,12 +13,17 @@ export const ACTIVE_IMPLANTATION_CAMPAIGN = 'Lanzamiento Xiaomi 18 Pro Max';
 export const EXCLUSIVE_DRIVE_TEST_EMAIL = '';
 
 /**
- * Determina si una tienda coincide en planograma con MediaMarkt Tarragona ("Table 2")
- * y por tanto tiene activa la campaña de Nueva Implantación ("Lanzamiento Xiaomi 18 Pro Max").
+ * Determina si una tienda tiene activa la campaña de Nueva Implantación ("Lanzamiento Xiaomi 18 Pro Max").
+ * Activa tanto para espacios de 1 Table (Table 1, FNAC, CRF, Alcampo) como de 2 Tables (Table 2, Table 3, MediaMarkt Tarragona).
  */
 export const hasActiveImplantationCampaign = (store: StoreCenter): boolean => {
   const spaceType = (store.tipoEspacioId || '').trim().toLowerCase();
-  return spaceType === 'table 2' || store.tiendaId.toUpperCase() === 'MIESO00043';
+  return (
+    spaceType.includes('table') ||
+    spaceType.includes('mesa') ||
+    store.tiendaId.toUpperCase() === 'MIESO00043' ||
+    Boolean(store.availableSpaces?.some((s) => s.toUpperCase().includes('MESA 1')))
+  );
 };
 
 /**

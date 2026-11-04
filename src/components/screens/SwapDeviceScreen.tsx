@@ -85,7 +85,13 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
 
   // PASO 2 · INSTALACIÓN (IN) - Selección progresiva LDU vs DUMMY
   const [tipoIn, setTipoIn] = useState<'LDU' | 'DUMMY' | null>(
-    currentState ? (currentState.esDummyNuevo ? 'DUMMY' : 'LDU') : null
+    currentState
+      ? currentState.esDummyNuevo
+        ? 'DUMMY'
+        : 'LDU'
+      : assignment.esDummyEntrante
+      ? 'DUMMY'
+      : 'LDU'
   );
   const esDummyNuevo = tipoIn === 'DUMMY';
   const [imeiIn, setImeiIn] = useState<string>(currentState?.imeiNuevo || '');
@@ -931,10 +937,9 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
     tipoIn !== null && (inValidation.valid || Boolean(motivoIncidenciaIn));
 
   const canSaveFinal =
-    (tipoOut === 'DUMMY' || Boolean(fotoOutUrl)) &&
     tipoIn !== null &&
     Boolean(fotoInUrl) &&
-    (inValidation.valid || Boolean(motivoIncidenciaIn));
+    (inValidation.valid || Boolean(motivoIncidenciaIn) || esDummyNuevo);
 
   // ---------------------------------------------------------------------------
   // PANTALLA PRINCIPAL DEL FLUJO DE DISPOSITIVOS (PROGRESIVO PASO A PASO)
@@ -952,11 +957,11 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
         </button>
 
         <div className="text-center">
-          <span className="text-[10px] font-black text-[#ff6900] uppercase tracking-wider block">
-            Cambio Puesto {String(position.posicionNumero).padStart(2, '0')}
+          <span className="text-[10px] font-black text-[#00c4cc] uppercase tracking-wider block">
+            Instalación · Puesto {String(position.posicionNumero).padStart(2, '0')}
           </span>
           <h2 className="text-sm sm:text-base font-black text-white">
-            {position.mesaId} • {store.nombreTienda}
+            {assignment.modeloEntrante} • {position.mesaId}
           </h2>
         </div>
 
@@ -969,249 +974,9 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
         </div>
       </div>
 
-      {/* PESTAÑAS DE FASE: 1. RETIRAR / 2. INSTALAR */}
-      <div className="px-4 sm:px-6 pt-3 bg-slate-50 border-b border-slate-200 flex gap-2">
-        <button
-          type="button"
-          onClick={() => setActivePhase('step1_out')}
-          className={`flex-1 py-2.5 px-3 rounded-t-2xl font-black text-xs sm:text-sm flex items-center justify-center gap-2 border-b-3 transition cursor-pointer ${
-            activePhase === 'step1_out'
-              ? 'bg-white text-[#104a60] border-[#009ca6] shadow-2xs'
-              : 'bg-slate-100/80 text-slate-500 border-transparent hover:text-slate-800'
-          }`}
-        >
-          <PackageMinus className="w-4 h-4 text-amber-600" />
-          <span>1. Retirar</span>
-          {isStep1Complete && <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />}
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setActivePhase('step2_in')}
-          className={`flex-1 py-2.5 px-3 rounded-t-2xl font-black text-xs sm:text-sm flex items-center justify-center gap-2 border-b-3 transition cursor-pointer ${
-            activePhase === 'step2_in'
-              ? 'bg-white text-[#104a60] border-[#009ca6] shadow-2xs'
-              : 'bg-slate-100/80 text-slate-500 border-transparent hover:text-slate-800'
-          }`}
-        >
-          <PackagePlus className="w-4 h-4 text-[#009ca6]" />
-          <span>2. Instalar</span>
-          {isStep2Complete && <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />}
-        </button>
-      </div>
-
-      {/* CONTENIDO PRINCIPAL PROGRESIVO */}
+      {/* CONTENIDO PRINCIPAL: INSTALACIÓN DEL NUEVO DISPOSITIVO */}
       <div className="p-4 sm:p-6 space-y-5 flex-1 overflow-y-auto">
-        {activePhase === 'step1_out' ? (
-          /* ================================================================
-             PASO 1 · RETIRAR DISPOSITIVO (PROGRESIVO)
-             ================================================================ */
-          <div className="space-y-4 animate-fadeIn">
-            {/* Tarjeta simple del modelo a retirar */}
-            <div className="p-4 bg-amber-50/70 border border-amber-200 rounded-2xl flex items-center gap-3">
-              <div className="w-11 h-11 rounded-2xl bg-white border border-amber-200 flex items-center justify-center text-amber-600 shrink-0">
-                <PackageMinus className="w-5 h-5" />
-              </div>
-              <div>
-                <span className="text-[10px] font-black uppercase tracking-wider text-amber-700 block">
-                  Dispositivo a retirar
-                </span>
-                <h3 className="text-base sm:text-lg font-black text-slate-900">
-                  {assignment.modeloSaliente}
-                </h3>
-              </div>
-            </div>
-
-            {/* PASO 1.1: Seleccionar primero LDU o DUMMY (Sin texto de relleno) */}
-            <div className="space-y-2">
-              <label className="block text-xs font-black text-slate-700 uppercase tracking-wider">
-                ¿Qué tipo de dispositivo retiras?
-              </label>
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setTipoOut('LDU');
-                    if (imeiOut === 'DUMMY' || imeiOut === 'MAQUETA-RETIRADA') {
-                      setImeiOut('');
-                    }
-                  }}
-                  className={`py-4 px-4 rounded-2xl font-black text-sm sm:text-base border-2 transition flex items-center justify-center gap-2 cursor-pointer ${
-                    tipoOut === 'LDU'
-                      ? 'bg-[#009ca6] text-white border-[#009ca6] shadow-md'
-                      : 'bg-white hover:bg-slate-50 text-slate-800 border-slate-200'
-                  }`}
-                >
-                  <span>LDU</span>
-                  {tipoOut === 'LDU' && <CheckCircle2 className="w-4 h-4 text-white" />}
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    setTipoOut('DUMMY');
-                    setImeiOut('DUMMY');
-                    // Al marcar DUMMY pasamos directamente al siguiente paso para instalar el nuevo dispositivo
-                    setActivePhase('step2_in');
-                  }}
-                  className={`py-4 px-4 rounded-2xl font-black text-sm sm:text-base border-2 transition flex items-center justify-center gap-2 cursor-pointer ${
-                    tipoOut === 'DUMMY'
-                      ? 'bg-orange-600 text-white border-orange-600 shadow-md'
-                      : 'bg-white hover:bg-slate-50 text-slate-800 border-slate-200'
-                  }`}
-                >
-                  <span>DUMMY</span>
-                  {tipoOut === 'DUMMY' && <CheckCircle2 className="w-4 h-4 text-white" />}
-                </button>
-              </div>
-            </div>
-
-            {/* Si marcó DUMMY y volvió atrás, le informamos que ya puede pasar al Paso 2 */}
-            {tipoOut === 'DUMMY' && (
-              <div className="p-3.5 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-center justify-between gap-2 animate-fadeIn">
-                <div className="flex items-center gap-2 text-emerald-800 text-xs font-bold">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span>DUMMY seleccionado (no requiere IMEI ni foto de retirada)</span>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setActivePhase('step2_in')}
-                  className="px-3 py-1.5 rounded-xl bg-[#009ca6] text-white text-xs font-black cursor-pointer shrink-0"
-                >
-                  Ir a Instalar →
-                </button>
-              </div>
-            )}
-
-            {/* PASO 1.2: Si es LDU, aparece automáticamente el espacio para escanear o introducir el IMEI */}
-            {showOutImeiStep && (
-              <div className="space-y-2.5 pt-2 border-t border-slate-100 animate-fadeIn">
-                <label className="block text-xs font-black text-slate-700 uppercase tracking-wider">
-                  IMEI del dispositivo retirado
-                </label>
-
-                <div className="grid grid-cols-2 gap-2.5">
-                  <button
-                    type="button"
-                    onClick={() => setScannerTarget('out')}
-                    className="bg-white hover:bg-slate-50 border border-slate-200/90 hover:border-[#009ca6] rounded-2xl p-3 text-left flex items-center gap-2.5 transition shadow-2xs cursor-pointer"
-                  >
-                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-500 to-[#009ca6] text-white flex items-center justify-center shrink-0">
-                      <Camera className="w-4 h-4" />
-                    </div>
-                    <span className="text-xs font-black text-slate-900">Escanear IMEI</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setKeypadTarget('out_imei')}
-                    className="bg-white hover:bg-slate-50 border border-slate-200/90 hover:border-[#009ca6] rounded-2xl p-3 text-left flex items-center gap-2.5 transition shadow-2xs cursor-pointer"
-                  >
-                    <div className="w-9 h-9 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0">
-                      <Edit3 className="w-4 h-4" />
-                    </div>
-                    <span className="text-xs font-black text-slate-900">Manual</span>
-                  </button>
-                </div>
-
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={imeiOut}
-                    onChange={(e) => setImeiOut(e.target.value)}
-                    placeholder="Escanea o escribe el IMEI aquí..."
-                    className={`w-full rounded-2xl px-4 py-3 text-sm font-mono font-black transition ${
-                      imeiOut
-                        ? 'bg-emerald-50/70 border-2 border-emerald-500/80 text-emerald-950'
-                        : 'bg-slate-50 border border-slate-300 text-slate-800'
-                    }`}
-                  />
-                  {imeiOut && (
-                    <button
-                      type="button"
-                      onClick={() => setImeiOut('')}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-rose-600 p-1.5 rounded-xl cursor-pointer"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {/* PASO 1.3: Tras rellenar el IMEI (o si hay incidencia), aparece la foto de evidencia con los marcos */}
-            {showOutPhotoStep && (
-              <div className="space-y-2 pt-2 border-t border-slate-100 animate-fadeIn">
-                <label className="block text-xs font-black text-slate-700 uppercase tracking-wider">
-                  {motivoIncidenciaOut === 'Terminal ausente / Posible robo'
-                    ? 'Foto de evidencia (Espacio vacío)'
-                    : 'Foto de evidencia con marco guía'}
-                </label>
-
-                {!fotoOutUrl ? (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setTempCapturedPhoto(null);
-                      setCameraTarget('out_photo');
-                    }}
-                    className={`w-full py-4 px-4 text-white font-black rounded-2xl text-xs sm:text-sm flex items-center justify-center gap-2.5 shadow-lg cursor-pointer transition ${
-                      motivoIncidenciaOut === 'Terminal ausente / Posible robo'
-                        ? 'bg-gradient-to-r from-rose-600 to-amber-600 hover:brightness-110'
-                        : 'bg-gradient-to-r from-[#104a60] to-[#009ca6] hover:brightness-110'
-                    }`}
-                  >
-                    <Camera className="w-5 h-5 text-white" />
-                    <span>
-                      {motivoIncidenciaOut === 'Terminal ausente / Posible robo'
-                        ? 'Hacer Foto del Espacio Vacío'
-                        : 'Hacer Foto de Evidencia (con Marcos)'}
-                    </span>
-                  </button>
-                ) : (
-                  <div className="p-3.5 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-14 h-18 rounded-xl overflow-hidden border border-emerald-300 bg-black shrink-0">
-                        <img
-                          src={fotoOutUrl}
-                          alt="Evidencia OUT"
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-1.5 text-emerald-800 font-black text-xs">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                          <span>Foto de evidencia guardada</span>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setTempCapturedPhoto(fotoOutUrl);
-                            setCameraTarget('out_photo');
-                          }}
-                          className="text-[11px] font-bold text-[#009ca6] hover:underline mt-1 cursor-pointer"
-                        >
-                          Ver / Repetir foto
-                        </button>
-                      </div>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setFotoOutUrl(undefined)}
-                      className="p-2 text-rose-500 hover:bg-rose-50 rounded-xl cursor-pointer"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        ) : (
-          /* ================================================================
-             PASO 2 · INSTALAR NUEVO DISPOSITIVO (PROGRESIVO)
-             ================================================================ */
-          <div className="space-y-4 animate-fadeIn">
+        <div className="space-y-4 animate-fadeIn">
             {/* Tarjeta simple del nuevo modelo a instalar */}
             <div className="p-4 bg-teal-50/70 border border-teal-200 rounded-2xl flex items-center gap-3">
               <div className="w-11 h-11 rounded-2xl bg-white border border-teal-200 flex items-center justify-center text-[#009ca6] shrink-0">
@@ -1384,7 +1149,6 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
               </div>
             )}
           </div>
-        )}
 
         {/* ================================================================
             SECCIÓN DE INCIDENCIAS (MANTENIDA TAL CUAL)
@@ -1534,55 +1298,33 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
         </div>
       </div>
 
-      {/* FOOTER PROGRESIVO (SOLO APARECE EL BOTÓN CUANDO TOCA AVANZAR O GUARDAR) */}
-      {(activePhase === 'step2_in' || isStep1Complete) && (
-        <div className="p-4 sm:p-5 bg-white border-t border-slate-200 flex items-center gap-3">
-          {activePhase === 'step1_out' ? (
-            <button
-              type="button"
-              onClick={handleContinueToStep2}
-              className="w-full py-4 px-6 bg-gradient-to-r from-[#104a60] to-[#009ca6] hover:brightness-110 active:scale-[0.99] text-white font-black rounded-2xl shadow-xl text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer transition"
-            >
-              <span>Siguiente: Instalar Nuevo Dispositivo</span>
-              <ChevronRight className="w-5 h-5" />
-            </button>
+      {/* FOOTER: CONFIRMAR INSTALACIÓN */}
+      <div className="p-4 sm:p-5 bg-white border-t border-slate-200">
+        <button
+          type="button"
+          onClick={handleSaveAndFinishPosition}
+          disabled={!canSaveFinal}
+          className={`w-full py-4 px-5 font-black rounded-2xl shadow-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition ${
+            !canSaveFinal
+              ? 'bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed'
+              : incidenciaActiva
+                ? 'bg-gradient-to-r from-amber-600 to-rose-600 text-white cursor-pointer hover:brightness-110'
+                : 'bg-gradient-to-r from-emerald-600 to-[#009ca6] text-white cursor-pointer hover:brightness-110'
+          }`}
+        >
+          {!canSaveFinal ? (
+            <>
+              <Lock className="w-4 h-4" />
+              <span>Introduce el IMEI nuevo y haz la foto para guardar</span>
+            </>
           ) : (
             <>
-              <button
-                type="button"
-                onClick={() => setActivePhase('step1_out')}
-                className="px-4 py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-2xl text-xs sm:text-sm cursor-pointer transition shrink-0"
-              >
-                ‹ Atrás
-              </button>
-              <button
-                type="button"
-                onClick={handleSaveAndFinishPosition}
-                disabled={!canSaveFinal}
-                className={`flex-1 py-4 px-5 font-black rounded-2xl shadow-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition ${
-                  !canSaveFinal
-                    ? 'bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed'
-                    : incidenciaActiva
-                      ? 'bg-gradient-to-r from-amber-600 to-rose-600 text-white cursor-pointer hover:brightness-110'
-                      : 'bg-gradient-to-r from-emerald-600 to-[#009ca6] text-white cursor-pointer hover:brightness-110'
-                }`}
-              >
-                {!canSaveFinal ? (
-                  <>
-                    <Lock className="w-4 h-4" />
-                    <span>Completa los pasos para guardar</span>
-                  </>
-                ) : (
-                  <>
-                    <ShieldCheck className="w-5 h-5" />
-                    <span>Confirmar y Guardar Cambio</span>
-                  </>
-                )}
-              </button>
+              <ShieldCheck className="w-5 h-5" />
+              <span>Confirmar Instalación del Dispositivo</span>
             </>
           )}
-        </div>
-      )}
+        </button>
+      </div>
 
       {/* ESCÁNER DE CÁMARA INTELIGENTE (BARCODE / OCR) */}
       <ScannerModal

@@ -24,6 +24,7 @@ import {
 import { DbService } from '../../services/dbService';
 import { ImageCompressionService } from '../../services/imageCompressionService';
 import { ImplantationSummaryModal } from './ImplantationSummaryModal';
+import { ScannerModal } from '../ScannerModal';
 import {
   AlertTriangle,
   ArrowDownToLine,
@@ -148,6 +149,33 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
       returnStates: returnStatesMap,
       updatedAt: new Date().toISOString()
     });
+  };
+
+  // Escáner inteligente para IMEI en material a retirar (Check-Out)
+  const [returnScannerTargetId, setReturnScannerTargetId] = useState<string | null>(null);
+  const activeReturnScannerDev = useMemo(() => {
+    if (!returnScannerTargetId) return null;
+    return returnDevices.find((d) => d.id === returnScannerTargetId) || null;
+  }, [returnScannerTargetId, returnDevices]);
+
+  const handleUpdateReturnImei = (id: string, newImei: string) => {
+    const updated = returnDevices.map((r) => {
+      if (r.id === id) {
+        return {
+          ...r,
+          imeiMemorizado: newImei.trim()
+        };
+      }
+      return r;
+    });
+    saveReturnDevicesDraft(updated);
+  };
+
+  const handleReturnScanSuccess = (scannedCode: string) => {
+    if (returnScannerTargetId) {
+      handleUpdateReturnImei(returnScannerTargetId, scannedCode);
+      setReturnScannerTargetId(null);
+    }
   };
 
   const handleConfirmReturn = (id: string) => {
@@ -1263,18 +1291,58 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                         </p>
                       </div>
 
-                      {/* Bloque de IMEI / Serial Memorizado */}
-                      <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2">
+                      {/* Bloque de IMEI / Serial del Dispositivo a Retirar (Editable y Escaneable) */}
+                      <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                        <div className="flex items-center justify-between">
+                          <label className="text-[11px] font-bold uppercase tracking-wider text-slate-600 flex items-center gap-1.5">
+                            <ShieldCheck className="w-3.5 h-3.5 text-[#009ca6]" />
+                            <span>IMEI / S/N a retirar</span>
+                          </label>
+                          {dev.imeiMemorizado ? (
+                            <span className="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-cyan-100 text-cyan-800 border border-cyan-200">
+                              Memorizado / Asignado
+                            </span>
+                          ) : (
+                            <span className="text-[9px] font-medium text-slate-400">
+                              {dev.esDummy ? 'Maqueta (sin electrónica)' : 'Introduce o escanea'}
+                            </span>
+                          )}
+                        </div>
+
                         <div className="flex items-center gap-2">
-                          <ShieldCheck className="w-4 h-4 text-[#009ca6] shrink-0" />
-                          <div className="text-xs">
-                            <span className="text-[10px] uppercase font-bold text-slate-400 block">
-                              IMEI / S/N Memorizado (Último Vigente)
-                            </span>
-                            <span className="font-mono font-black text-slate-900">
-                              {dev.imeiMemorizado || (dev.esDummy ? 'Sin IMEI (Maqueta sin electrónica)' : 'No registrado en auditoría previa')}
-                            </span>
+                          <div className="relative flex-1">
+                            <input
+                              type="text"
+                              value={dev.imeiMemorizado || ''}
+                              onChange={(e) => handleUpdateReturnImei(dev.id, e.target.value)}
+                              placeholder={
+                                dev.esDummy
+                                  ? 'Sin IMEI (Maqueta - opcional)'
+                                  : 'Introduce o escanea IMEI a retirar...'
+                              }
+                              className="w-full bg-white text-slate-900 font-mono text-xs sm:text-sm font-bold px-3 py-2 rounded-xl border border-slate-300 focus:outline-none focus:border-[#009ca6] focus:ring-2 focus:ring-[#009ca6]/20 transition"
+                            />
+                            {dev.imeiMemorizado && (
+                              <button
+                                type="button"
+                                onClick={() => handleUpdateReturnImei(dev.id, '')}
+                                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
+                                title="Limpiar IMEI"
+                              >
+                                <RotateCcw className="w-3 h-3" />
+                              </button>
+                            )}
                           </div>
+
+                          <button
+                            type="button"
+                            onClick={() => setReturnScannerTargetId(dev.id)}
+                            className="h-9 px-3 rounded-xl bg-gradient-to-r from-[#009ca6] to-[#072431] hover:opacity-90 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition shrink-0 cursor-pointer"
+                            title="Escanear IMEI / S/N con cámara (Código de barras u OCR)"
+                          >
+                            <Camera className="w-3.5 h-3.5" />
+                            <span className="hidden sm:inline">Escanear</span>
+                          </button>
                         </div>
                       </div>
 
@@ -2146,6 +2214,21 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
             setIsSummaryModalOpen(false);
             onFinishComplete();
           }}
+        />
+      )}
+
+      {/* MODAL DE ESCÁNER (CÓDIGO DE BARRAS U OCR) PARA IMEI DEL DISPOSITIVO A RETIRAR */}
+      {returnScannerTargetId && activeReturnScannerDev && (
+        <ScannerModal
+          isOpen={Boolean(returnScannerTargetId)}
+          onClose={() => setReturnScannerTargetId(null)}
+          onScanSuccess={handleReturnScanSuccess}
+          initialMode={
+            activeReturnScannerDev.categoria === 'Wearable' || activeReturnScannerDev.categoria === 'Tablet'
+              ? 'ocr'
+              : 'barcode'
+          }
+          deviceCategory={activeReturnScannerDev.categoria}
         />
       )}
     </div>
