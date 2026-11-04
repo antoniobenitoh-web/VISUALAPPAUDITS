@@ -181,9 +181,9 @@ export const ScannerModal: React.FC<ScannerModalProps> = ({
         const vw = video.videoWidth;
         const vh = video.videoHeight;
 
-        // Recortar la franja central guiada (85% ancho, 25% alto)
-        const cropW = Math.round(vw * 0.85);
-        const cropH = Math.round(vh * 0.26);
+        // Recortar un área central guiada más amplia (88% ancho, 45% alto) para abarcar pantallas circulares y múltiples líneas
+        const cropW = Math.round(vw * 0.88);
+        const cropH = Math.round(vh * 0.45);
         const cropX = Math.round((vw - cropW) / 2);
         const cropY = Math.round((vh - cropH) / 2);
 
@@ -195,14 +195,28 @@ export const ScannerModal: React.FC<ScannerModalProps> = ({
 
         ctx.drawImage(video, cropX, cropY, cropW, cropH, 0, 0, cropW, cropH);
 
-        // Preprocesamiento de imagen para pantallas (aumento de contraste para neutralizar reflejos y muaré)
+        // Preprocesamiento inteligente: detectar si la pantalla es oscura (OLED / Dark mode de relojes)
         const imgData = ctx.getImageData(0, 0, cropW, cropH);
         const d = imgData.data;
+        let totalLuminance = 0;
+        const totalPixels = d.length / 4;
+        for (let i = 0; i < d.length; i += 4) {
+          totalLuminance += 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
+        }
+        const isDarkDisplay = (totalLuminance / totalPixels) < 120;
+
         for (let i = 0; i < d.length; i += 4) {
           const gray = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
-          // Factor de contraste pronunciado
-          const contrast = 1.7;
-          const adjusted = Math.min(255, Math.max(0, ((gray - 128) * contrast) + 128));
+          // Aumento de contraste pronunciado
+          const contrast = 1.9;
+          let adjusted = ((gray - 128) * contrast) + 128;
+          adjusted = Math.min(255, Math.max(0, adjusted));
+
+          // Invertir si es pantalla oscura: Tesseract requiere texto oscuro sobre fondo blanco
+          if (isDarkDisplay) {
+            adjusted = 255 - adjusted;
+          }
+
           d[i] = adjusted;
           d[i + 1] = adjusted;
           d[i + 2] = adjusted;
@@ -345,17 +359,17 @@ export const ScannerModal: React.FC<ScannerModalProps> = ({
                 {/* Overlay Guía Central para OCR */}
                 <div className="absolute inset-0 pointer-events-none flex flex-col items-center justify-center">
                   
-                  {/* Recuadro de Enfoque */}
-                  <div className={`relative w-[88%] h-[68px] rounded-xl border-2 transition-all duration-300 flex items-center justify-center ${
+                  {/* Recuadro de Enfoque Adaptado a S/N en 1 o 2 líneas */}
+                  <div className={`relative w-[90%] h-[120px] sm:h-[135px] rounded-2xl border-2 transition-all duration-300 flex items-center justify-center ${
                     matchedCode
                       ? 'border-emerald-400 bg-emerald-500/25 shadow-[0_0_25px_rgba(52,211,153,0.6)]'
                       : 'border-teal-400/90 bg-teal-950/20 shadow-[0_0_15px_rgba(45,212,191,0.25)]'
                   }`}>
                     {/* Esquinas decorativas iluminadas */}
-                    <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-teal-300" />
-                    <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-teal-300" />
-                    <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-teal-300" />
-                    <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-teal-300" />
+                    <div className="absolute -top-1 -left-1 w-3.5 h-3.5 border-t-2 border-l-2 border-teal-300" />
+                    <div className="absolute -top-1 -right-1 w-3.5 h-3.5 border-t-2 border-r-2 border-teal-300" />
+                    <div className="absolute -bottom-1 -left-1 w-3.5 h-3.5 border-b-2 border-l-2 border-teal-300" />
+                    <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 border-b-2 border-r-2 border-teal-300" />
 
                     {/* Láser de Escaneo Animado (solo si no ha terminado) */}
                     {!matchedCode && (
@@ -364,14 +378,19 @@ export const ScannerModal: React.FC<ScannerModalProps> = ({
 
                     {/* Texto Detectado en Vivo si coincide */}
                     {matchedCode ? (
-                      <div className="flex items-center gap-1.5 px-3 py-1 bg-emerald-950/90 border border-emerald-400 rounded-lg text-emerald-300 font-mono font-black text-xs sm:text-sm animate-scaleUp">
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-950/95 border border-emerald-400 rounded-xl text-emerald-300 font-mono font-black text-xs sm:text-sm animate-scaleUp shadow-lg">
                         <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                         <span>{matchedCode}</span>
                       </div>
                     ) : (
-                      <span className="text-[11px] font-mono font-bold text-teal-200/70 tracking-wider">
-                        [ RECUADRO DE LECTURA S/N ]
-                      </span>
+                      <div className="flex flex-col items-center text-center px-2 pointer-events-none">
+                        <span className="text-[11px] font-mono font-bold text-teal-200/90 tracking-wider">
+                          [ ENCUADRA EL S/N O PANTALLA ]
+                        </span>
+                        <span className="text-[9px] text-teal-300/70 mt-1 font-medium">
+                          Detecta S/N cortado en 2 líneas (ej: 65343/CRAG...)
+                        </span>
+                      </div>
                     )}
                   </div>
 
