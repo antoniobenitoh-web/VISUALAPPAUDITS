@@ -18,7 +18,8 @@ import {
   getImplantationPositionsForMesa1Cara1,
   getReturnDevicesForStore,
   getSwapAssignmentForPosition,
-  getVisualElementsForStore
+  getVisualElementsForStore,
+  isTwoTableSpace
 } from '../../data/implantationCampaignData';
 import { DbService } from '../../services/dbService';
 import { ImageCompressionService } from '../../services/imageCompressionService';
@@ -245,7 +246,9 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
 
   let bgImage = PLANOGRAM_IMAGES.table1Cara1;
   if (isMesa1Cara1) {
-    bgImage = PLANOGRAM_IMAGES.table1Cara1Xiaomi18;
+    bgImage = isTwoTableSpace(store)
+      ? PLANOGRAM_IMAGES.table2Mesa1Cara1Xiaomi18
+      : PLANOGRAM_IMAGES.table1Cara1Xiaomi18;
   } else if (isLinealActive) {
     bgImage = PLANOGRAM_IMAGES.linealSmartwatchImg;
   } else if (isWallActive || isMiniWallActive) {
