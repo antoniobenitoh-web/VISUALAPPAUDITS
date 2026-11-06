@@ -58,6 +58,8 @@ interface ImplantationOverviewScreenProps {
   currentUser: UserProfile;
   swapStates: Record<string, PositionSwapState>;
   visualStates: Record<string, VisualElementAuditState>;
+  activeTab?: 'return_devices' | 'swap_devices' | 'visual_plv';
+  onTabChange?: (tab: 'return_devices' | 'swap_devices' | 'visual_plv') => void;
   initialOpenSummary?: boolean;
   onSelectSwapPosition: (pos: PlanogramPosition, assignment: SwapCampaignAssignment) => void;
   onUpdateVisualState: (state: VisualElementAuditState) => void;
@@ -78,6 +80,8 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
   currentUser,
   swapStates,
   visualStates,
+  activeTab,
+  onTabChange,
   initialOpenSummary = false,
   onSelectSwapPosition,
   onUpdateVisualState,
@@ -85,8 +89,13 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
   onBack
 }) => {
   // Subsecciones dentro de Nueva Implantación:
-  // 1. "Planograma Nuevo (11)" | 2. "Material a Retirar (7)" | 3. "Parte Visual POSM"
-  const [subModule, setSubModule] = useState<'swap_devices' | 'return_devices' | 'visual_plv'>('swap_devices');
+  // 1. "Material a Retirar (7)" | 2. "Planograma Nuevo (11)" | 3. "POSM"
+  const [internalSubModule, setInternalSubModule] = useState<'return_devices' | 'swap_devices' | 'visual_plv'>('return_devices');
+  const subModule = activeTab ?? internalSubModule;
+  const setSubModule = (next: 'return_devices' | 'swap_devices' | 'visual_plv') => {
+    setInternalSubModule(next);
+    if (onTabChange) onTabChange(next);
+  };
 
   // Pestañas superiores dentro de Dispositivos: "Vista Interactiva 3D" | "Lista de Dispositivos"
   const [viewMode, setViewMode] = useState<'visual' | 'list'>('visual');
@@ -553,30 +562,10 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
 
       {/* =====================================================================
           PESTAÑAS / SUBSECCIONES DENTRO DE NUEVA IMPLANTACIÓN:
-          1. "Planograma Nuevo (11)" | 2. "Material a Retirar (7)" | 3. "Parte Visual"
+          1. "Material a Retirar (7)" | 2. "Planograma Nuevo (11)" | 3. "POSM"
           ===================================================================== */}
       <div className="px-3.5 sm:px-6 py-2.5 bg-[#0a2e3d] text-white border-b border-white/10 flex flex-wrap items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={() => setSubModule('swap_devices')}
-            className={`px-3.5 py-2 rounded-xl text-xs font-black flex items-center gap-2 transition cursor-pointer ${
-              subModule === 'swap_devices'
-                ? 'bg-[#009ca6] text-white shadow-md ring-2 ring-teal-300/40'
-                : 'bg-white/10 text-slate-200 hover:bg-white/15'
-            }`}
-          >
-            <Smartphone className="w-3.5 h-3.5" />
-            <span>1. Planograma Nuevo</span>
-            <span
-              className={`px-1.5 py-0.2 rounded-full text-[10px] ${
-                subModule === 'swap_devices' ? 'bg-black/25 text-white' : 'bg-white/10 text-teal-200'
-              }`}
-            >
-              {completedSwapsCount}/{totalSwapsCount}
-            </span>
-          </button>
-
+        <div className="flex items-center gap-2 flex-wrap">
           <button
             type="button"
             onClick={() => setSubModule('return_devices')}
@@ -587,13 +576,33 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
             }`}
           >
             <PackageMinus className="w-3.5 h-3.5" />
-            <span>2. Material a Retirar</span>
+            <span>1. Material a Retirar</span>
             <span
               className={`px-1.5 py-0.2 rounded-full text-[10px] ${
                 subModule === 'return_devices' ? 'bg-black/25 text-white' : 'bg-white/10 text-amber-200'
               }`}
             >
               {completedReturnsCount}/{totalReturnsCount}
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setSubModule('swap_devices')}
+            className={`px-3.5 py-2 rounded-xl text-xs font-black flex items-center gap-2 transition cursor-pointer ${
+              subModule === 'swap_devices'
+                ? 'bg-[#009ca6] text-white shadow-md ring-2 ring-teal-300/40'
+                : 'bg-white/10 text-slate-200 hover:bg-white/15'
+            }`}
+          >
+            <Smartphone className="w-3.5 h-3.5" />
+            <span>2. Planograma Nuevo</span>
+            <span
+              className={`px-1.5 py-0.2 rounded-full text-[10px] ${
+                subModule === 'swap_devices' ? 'bg-black/25 text-white' : 'bg-white/10 text-teal-200'
+              }`}
+            >
+              {completedSwapsCount}/{totalSwapsCount}
             </span>
           </button>
 
@@ -705,11 +714,11 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
             <div className="bg-[#104a60]/10 border-b border-[#009ca6]/20 px-4 py-2 flex flex-wrap items-center justify-around text-xs font-bold text-slate-700 gap-2">
               <span className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded-full bg-rose-600 ring-2 ring-rose-400 animate-pulse" />
-                <span>Pendiente de Sustituir (Swap Activo)</span>
+                <span>Pendiente de Instalar</span>
               </span>
               <span className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded-full bg-emerald-500" />
-                <span>Sustituido OK (Sin Incidencias)</span>
+                <span>Instalado OK (Sin Incidencias)</span>
               </span>
               <span className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded-full bg-amber-500" />
@@ -830,7 +839,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                                   }`}
                                   title={
                                     assignment
-                                      ? `SWAP P${pos.posicionNumero}: ${assignment.modeloSaliente} → ${assignment.modeloEntrante}`
+                                      ? `Puesto ${pos.posicionNumero}: Instalar ${assignment.modeloEntrante}`
                                       : `Puesto ${pos.posicionNumero}: ${pos.modeloOficial} (No interviene en campaña)`
                                   }
                                 >
@@ -848,11 +857,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                                   <div className="absolute top-full mt-1.5 hidden lg:group-hover:block bg-slate-950/95 text-white text-[10px] font-bold px-2.5 py-1.5 rounded-lg whitespace-nowrap pointer-events-none shadow-xl border border-white/20 z-50">
                                     {assignment ? (
                                       <span>
-                                        SWAP P{String(pos.posicionNumero).padStart(2, '0')}:{' '}
-                                        <span className="text-amber-300">
-                                          {assignment.modeloSaliente}
-                                        </span>{' '}
-                                        →{' '}
+                                        P{String(pos.posicionNumero).padStart(2, '0')} · Instalar:{' '}
                                         <span className="text-teal-300">
                                           {assignment.modeloEntrante}
                                         </span>
@@ -947,14 +952,11 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                           <div className="min-w-0">
                             {asg ? (
                               <>
-                                <p className="text-xs sm:text-sm font-black truncate text-white">
-                                  <span className="text-amber-300 line-through mr-1.5 font-normal">
-                                    {asg.modeloSaliente}
-                                  </span>
-                                  → <span className="text-teal-300">{asg.modeloEntrante}</span>
+                                <p className="text-xs sm:text-sm font-black truncate text-teal-300">
+                                  {asg.modeloEntrante}
                                 </p>
                                 <p className="text-[10px] text-slate-300">
-                                  Campaña Swap Activa •{' '}
+                                  Planograma Nuevo •{' '}
                                   <strong className="text-white">
                                     {asg.esDummyEntrante ? 'Maqueta (DUMMY)' : 'LDU (Real)'}
                                   </strong>
@@ -980,7 +982,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                             </span>
                           ) : isOk ? (
                             <span className="text-[10px] font-black text-emerald-400 flex items-center gap-1">
-                              <CheckCircle2 className="w-3.5 h-3.5" /> Sustituido OK
+                              <CheckCircle2 className="w-3.5 h-3.5" /> Instalado OK
                             </span>
                           ) : isInc ? (
                             <span className="text-[10px] font-black text-amber-400 flex items-center gap-1">
@@ -988,7 +990,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                             </span>
                           ) : (
                             <span className="text-[10px] font-black text-rose-400 flex items-center gap-1">
-                              <Clock className="w-3.5 h-3.5" /> Pendiente Swap
+                              <Clock className="w-3.5 h-3.5" /> Pendiente Instalar
                             </span>
                           )}
                         </div>
@@ -1077,28 +1079,14 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                           </span>
                         </div>
 
-                        {/* Resumen limpio del cambio */}
+                        {/* Resumen limpio del dispositivo a instalar en el Planograma Nuevo */}
                         <div className="space-y-2 pt-1">
-                          <div className="p-3 bg-amber-50/80 border border-amber-200 rounded-xl flex items-center justify-between">
-                            <div className="flex items-center gap-2.5">
-                              <PackageMinus className="w-5 h-5 text-amber-600 shrink-0" />
-                              <div>
-                                <span className="text-[10px] font-black uppercase text-amber-700 block">
-                                  1. Retirar
-                                </span>
-                                <span className="text-xs sm:text-sm font-black text-slate-900">
-                                  {selectedPosAssignment.modeloSaliente}
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-
                           <div className="p-3 bg-teal-50/80 border border-teal-200 rounded-xl flex items-center justify-between">
                             <div className="flex items-center gap-2.5">
                               <PackagePlus className="w-5 h-5 text-[#009ca6] shrink-0" />
                               <div>
                                 <span className="text-[10px] font-black uppercase text-[#009ca6] block">
-                                  2. Instalar
+                                  Dispositivo a Instalar
                                 </span>
                                 <span className="text-xs sm:text-sm font-black text-slate-900">
                                   {selectedPosAssignment.modeloEntrante}
@@ -1108,12 +1096,12 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                           </div>
                         </div>
 
-                        {/* Estado actual del cambio */}
+                        {/* Estado actual del puesto */}
                         <div className="pt-1">
                           {selectedPosSwapState?.estadoSwap === 'OK' ? (
                             <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold flex items-center gap-2">
                               <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                              <span>Cambio completado OK</span>
+                              <span>Instalación completada OK</span>
                             </div>
                           ) : selectedPosSwapState?.estadoSwap === 'Incidencia' ? (
                             <div className="p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold flex items-center gap-2">
@@ -1125,7 +1113,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                           ) : (
                             <div className="p-2.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs font-bold flex items-center gap-2">
                               <Clock className="w-4 h-4 text-rose-600 shrink-0" />
-                              <span>Pendiente de realizar cambio</span>
+                              <span>Pendiente de instalar dispositivo</span>
                             </div>
                           )}
                         </div>
@@ -1137,11 +1125,11 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                           }
                           className="w-full py-3.5 bg-gradient-to-r from-[#009ca6] to-[#00b4bf] hover:from-[#008992] hover:to-[#00a3ad] active:scale-[0.98] text-white font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-[#009ca6]/20 transition flex items-center justify-center gap-2 cursor-pointer"
                         >
-                          <ArrowRightLeft className="w-4 h-4" />
+                          <PackagePlus className="w-4 h-4" />
                           <span>
                             {selectedPosSwapState
-                              ? `Editar cambio Puesto ${String(selectedPos.posicionNumero).padStart(2, '0')}`
-                              : `Realizar cambio Puesto ${String(selectedPos.posicionNumero).padStart(2, '0')}`}
+                              ? `Editar Puesto ${String(selectedPos.posicionNumero).padStart(2, '0')}`
+                              : `Instalar Puesto ${String(selectedPos.posicionNumero).padStart(2, '0')}`}
                           </span>
                           <ChevronRight className="w-4 h-4" />
                         </button>
@@ -1180,7 +1168,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                 >
                   <ImageIcon className="w-4 h-4" />
                   <span>
-                    Ir a 2. POSM ({completedVisualsCount}/{totalVisualsCount})
+                    Ir a 3. POSM ({completedVisualsCount}/{totalVisualsCount})
                   </span>
                 </button>
 
@@ -1190,7 +1178,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                   className="w-full py-3 bg-[#104a60] hover:bg-[#093545] text-white font-black text-xs sm:text-sm rounded-xl shadow-md transition flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <ShieldCheck className="w-4 h-4 text-[#00c4cc]" />
-                  <span>Finalizar Auditoría (Resumen y Excel)</span>
+                  <span>Finalizar Auditoría</span>
                 </button>
               </div>
             </div>
@@ -1394,6 +1382,21 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                   </div>
                 );
               })}
+            </div>
+
+            {/* Botón inferior para avanzar a 2. Planograma Nuevo */}
+            <div className="pt-2 flex justify-end">
+              <button
+                type="button"
+                onClick={() => setSubModule('swap_devices')}
+                className="w-full sm:w-auto px-6 py-3.5 bg-gradient-to-r from-[#009ca6] to-[#00b4bf] hover:brightness-110 text-white font-black text-xs sm:text-sm rounded-2xl shadow-lg flex items-center justify-center gap-2 transition cursor-pointer"
+              >
+                <Smartphone className="w-4 h-4" />
+                <span>
+                  Ir a 2. Planograma Nuevo ({completedSwapsCount}/{totalSwapsCount})
+                </span>
+                <ChevronRight className="w-4 h-4" />
+              </button>
             </div>
           </div>
         </div>

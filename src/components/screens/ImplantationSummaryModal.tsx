@@ -531,16 +531,84 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
         {stepMode === 'preview' ? (
           <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
             {/* =================================================================
-                1. LO PRIMERO AL ACCEDER: POSICIONES COMPLETADAS Y LEYENDA DE COLORES
+                1. BLOQUE 1: MATERIAL A RETIRAR (SEPARADO)
+                ================================================================= */}
+            {returnDevices && returnDevices.length > 0 && (
+              <div className="bg-slate-50 border border-slate-200 rounded-3xl p-4 sm:p-5 space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <PackageMinus className="w-4 h-4 text-amber-600" />
+                    <h3 className="text-xs sm:text-sm font-black uppercase tracking-wider text-slate-800">
+                      1. Material a Retirar ({returnDevices.filter((r) => r.estadoRetirada === 'Retirado').length} de {returnDevices.length} retirados)
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  {returnDevices.map((ret) => {
+                    const isOk = ret.estadoRetirada === 'Retirado';
+                    const isInc = ret.estadoRetirada === 'Incidencia';
+                    const cardBg = isOk
+                      ? 'bg-emerald-50/90 border-2 border-emerald-400 text-emerald-950'
+                      : isInc
+                        ? 'bg-orange-50/95 border-2 border-orange-400 text-orange-950'
+                        : 'bg-rose-50/90 border-2 border-rose-400 text-rose-950';
+
+                    const badgeBg = isOk
+                      ? 'bg-emerald-600 text-white'
+                      : isInc
+                        ? 'bg-orange-500 text-white'
+                        : 'bg-rose-600 text-white';
+
+                    return (
+                      <div
+                        key={ret.id}
+                        className={`p-3.5 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${cardBg}`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div
+                            className={`w-9 h-9 rounded-xl flex items-center justify-center font-black text-xs shrink-0 ${badgeBg}`}
+                          >
+                            P{ret.posicionAnterior}
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs sm:text-sm font-black">
+                                {ret.modeloSaliente}
+                              </span>
+                              <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase ${badgeBg}`}>
+                                {ret.estadoRetirada}
+                              </span>
+                            </div>
+                            <p className="text-[11px] opacity-80 font-semibold">
+                              {ret.esDummy ? 'Maqueta / Dummy' : 'Terminal LDU'}
+                              {ret.imeiMemorizado ? ` · IMEI / S/N: ${ret.imeiMemorizado}` : ''}
+                            </p>
+                            {ret.motivoIncidencia && (
+                              <p className="text-xs text-orange-800 font-bold mt-0.5">
+                                Motivo: {ret.motivoIncidencia}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* =================================================================
+                2. BLOQUE 2: PLANOGRAMA NUEVO (EXCLUSIVAMENTE INSTALACIÓN NUEVOS)
                 ================================================================= */}
             <div className="bg-slate-50 border border-slate-200 rounded-3xl p-4 sm:p-5 space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
                   <span className="text-[11px] font-black uppercase tracking-wider text-[#009ca6] block">
-                    Estado de los dispositivos
+                    2. Planograma Nuevo
                   </span>
                   <h2 className="text-lg sm:text-xl font-black text-slate-900">
-                    Posiciones completadas: {completedSwaps} de {totalSwaps}
+                    Posiciones instaladas: {completedSwaps} de {totalSwaps}
                   </h2>
                 </div>
                 <span
@@ -643,7 +711,7 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
                               </div>
 
                               <p className="text-xs opacity-85 font-semibold">
-                                Retirado: {sw.modeloRetirado} → Instalado: {sw.modeloNuevo}
+                                Dispositivo instalado: {sw.modeloNuevo}
                                 {sw.estadoSwap !== 'Pendiente' && (
                                   <span>
                                     {' '}
@@ -654,13 +722,13 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
 
                               {isOrange && (
                                 <p className="text-xs font-black text-orange-800 bg-orange-100/90 border border-orange-300 rounded-xl px-2.5 py-1 mt-1 inline-block">
-                                  ⚠ Incidencia: {sw.motivoIncidencia || 'Incidencia registrada'}
+                                  ⚠ Incidencia: {sw.motivoIncidenciaIn || sw.motivoIncidencia || 'Incidencia registrada'}
                                 </p>
                               )}
 
                               {!isGreen && !isOrange && (
                                 <p className="text-xs font-bold text-rose-700 mt-0.5">
-                                  ✕ Falta completar el cambio y la foto de evidencia de este puesto.
+                                  ✕ Falta completar la instalación de este puesto.
                                 </p>
                               )}
                             </div>
@@ -672,9 +740,9 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
                               onClick={() =>
                                 setPreviewPhotoModal({
                                   title: `Puesto ${String(sw.posicionNumero).padStart(2, '0')} · ${sw.modeloNuevo}`,
-                                  subtitle: `${sw.modeloRetirado} → ${sw.modeloNuevo}`,
+                                  subtitle: `Dispositivo instalado: ${sw.modeloNuevo}`,
                                   url1: sw.fotoOutUrl,
-                                  label1: `Evidencia Retirada: ${sw.modeloRetirado}`,
+                                  label1: `Evidencia Previa`,
                                   url2: sw.fotoInUrl,
                                   label2: `Evidencia Instalación: ${sw.modeloNuevo}`
                                 })
@@ -694,82 +762,14 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
             </div>
 
             {/* =================================================================
-                2. RESUMEN DE MATERIAL RETIRADO Y DEVOLUCIÓN DE STOCK
-                ================================================================= */}
-            {returnDevices && returnDevices.length > 0 && (
-              <div className="bg-slate-50 border border-slate-200 rounded-3xl p-4 sm:p-5 space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <PackageMinus className="w-4 h-4 text-amber-600" />
-                    <h3 className="text-xs sm:text-sm font-black uppercase tracking-wider text-slate-800">
-                      Material a Retirar ({returnDevices.filter((r) => r.estadoRetirada === 'Retirado').length} de {returnDevices.length} retirados)
-                    </h3>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  {returnDevices.map((ret) => {
-                    const isOk = ret.estadoRetirada === 'Retirado';
-                    const isInc = ret.estadoRetirada === 'Incidencia';
-                    const cardBg = isOk
-                      ? 'bg-emerald-50/90 border-2 border-emerald-400 text-emerald-950'
-                      : isInc
-                        ? 'bg-orange-50/95 border-2 border-orange-400 text-orange-950'
-                        : 'bg-rose-50/90 border-2 border-rose-400 text-rose-950';
-
-                    const badgeBg = isOk
-                      ? 'bg-emerald-600 text-white'
-                      : isInc
-                        ? 'bg-orange-500 text-white'
-                        : 'bg-rose-600 text-white';
-
-                    return (
-                      <div
-                        key={ret.id}
-                        className={`p-3.5 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${cardBg}`}
-                      >
-                        <div className="flex items-center gap-3">
-                          <div
-                            className={`w-9 h-9 rounded-xl flex items-center justify-center font-black text-xs shrink-0 ${badgeBg}`}
-                          >
-                            P{ret.posicionAnterior}
-                          </div>
-                          <div>
-                            <div className="flex items-center gap-2">
-                              <span className="text-xs sm:text-sm font-black">
-                                {ret.modeloSaliente}
-                              </span>
-                              <span className={`px-2 py-0.5 rounded-full text-[9px] font-black uppercase ${badgeBg}`}>
-                                {ret.estadoRetirada}
-                              </span>
-                            </div>
-                            <p className="text-[11px] opacity-80 font-semibold">
-                              {ret.esDummy ? 'Maqueta / Dummy' : 'Terminal LDU'}
-                              {ret.imeiMemorizado ? ` · IMEI / S/N: ${ret.imeiMemorizado}` : ''}
-                            </p>
-                            {ret.motivoIncidencia && (
-                              <p className="text-xs text-orange-800 font-bold mt-0.5">
-                                Motivo: {ret.motivoIncidencia}
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* =================================================================
-                3. RESUMEN LIMPIO DE ELEMENTOS POSM (MISMO CÓDIGO DE COLORES)
+                3. BLOQUE 3: ELEMENTOS POSM (SEPARADO)
                 ================================================================= */}
             <div className="bg-slate-50 border border-slate-200 rounded-3xl p-4 sm:p-5 space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <ImageIcon className="w-4 h-4 text-[#ff6900]" />
                   <h3 className="text-xs sm:text-sm font-black uppercase tracking-wider text-slate-800">
-                    Elementos POSM ({completedVisuals} de {totalVisuals} completados)
+                    3. Elementos POSM ({completedVisuals} de {totalVisuals} completados)
                   </h3>
                 </div>
               </div>

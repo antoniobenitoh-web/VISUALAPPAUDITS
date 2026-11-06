@@ -263,8 +263,7 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
 
   const handleSaveAndFinishPosition = () => {
     if (!esDummyNuevo && !motivoIncidenciaIn && !inValidation.valid) {
-      alert('En el Apartado 1, introduce el IMEI del nuevo dispositivo instalado.');
-      setActivePhase('step1_in');
+      alert('Introduce o escanea el IMEI del nuevo dispositivo instalado.');
       return;
     }
 
@@ -276,21 +275,7 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
       minute: '2-digit'
     });
 
-    const combinedMotivos = [
-      motivoIncidenciaIn ? `[Instalación IN] ${motivoIncidenciaIn}` : '',
-      motivoIncidenciaOut ? `[Retirada OUT] ${motivoIncidenciaOut}` : ''
-    ]
-      .filter(Boolean)
-      .join(' | ');
-
-    const defaultOutImei =
-      esDummyRetirado
-        ? 'DUMMY'
-        : motivoIncidenciaOut === 'Terminal ausente / Posible robo'
-        ? 'Ausente / Posible robo'
-        : motivoIncidenciaOut === 'Terminal bloqueado / Sin encendido (Imei ilegible)'
-        ? 'IMEI Ilegible (Sin encendido)'
-        : memorizedPreviousImei || 'No registrado';
+    const hasInstallIncident = Boolean(motivoIncidenciaIn);
 
     const swapState: PositionSwapState = {
       posicionId: position.id,
@@ -299,7 +284,7 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
       categoria: assignment.categoria,
       modeloRetirado: assignment.modeloSaliente,
       esDummyRetirado,
-      imeiRetirado: esDummyRetirado ? 'DUMMY' : imeiOut.trim() || defaultOutImei,
+      imeiRetirado: esDummyRetirado ? 'DUMMY' : imeiOut.trim() || memorizedPreviousImei || 'No registrado',
       fotoOutUrl,
       modeloNuevo: assignment.modeloEntrante,
       esDummyNuevo,
@@ -307,10 +292,10 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
         ? 'DUMMY'
         : imeiIn.trim() || (motivoIncidenciaIn ? `No instalado (${motivoIncidenciaIn})` : 'Pendiente'),
       fotoInUrl,
-      estadoSwap: incidenciaActiva ? 'Incidencia' : 'OK',
-      incidenciaActiva,
-      motivoIncidencia: combinedMotivos as any,
-      motivoIncidenciaOut,
+      estadoSwap: hasInstallIncident ? 'Incidencia' : 'OK',
+      incidenciaActiva: hasInstallIncident,
+      motivoIncidencia: motivoIncidenciaIn as any,
+      motivoIncidenciaOut: '',
       motivoIncidenciaIn,
       observacionesIncidencia: '',
       auditadoPor: currentUser.nombre,
@@ -567,9 +552,7 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
   }
 
   // ---------------------------------------------------------------------------
-  // PANTALLA PRINCIPAL: 2 APARTADOS
-  // 1. INSTALACIÓN (NUEVO IMEI)
-  // 2. RETIRADA (IMEI SALIENTE)
+  // PANTALLA PRINCIPAL: PLANOGRAMA NUEVO (INSTALACIÓN DEL NUEVO DISPOSITIVO)
   // ---------------------------------------------------------------------------
   return (
     <div className="w-full max-w-2xl mx-auto min-h-[92dvh] sm:min-h-[620px] flex flex-col bg-white text-slate-800 rounded-none sm:rounded-3xl shadow-2xl relative overflow-hidden border border-slate-200/80">
@@ -585,7 +568,7 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
 
         <div className="text-center">
           <span className="text-[10px] font-black text-[#00c4cc] uppercase tracking-wider block">
-            Implantación · Puesto {String(position.posicionNumero).padStart(2, '0')}
+            Planograma Nuevo · Puesto {String(position.posicionNumero).padStart(2, '0')}
           </span>
           <h2 className="text-sm sm:text-base font-black text-white">
             {assignment.modeloEntrante} • {position.mesaId}
@@ -601,307 +584,135 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
         </div>
       </div>
 
-      {/* SELECTOR DE LOS 2 APARTADOS */}
-      <div className="px-4 py-2 bg-slate-100/90 border-b border-slate-200 flex gap-2">
-        <button
-          type="button"
-          onClick={() => setActivePhase('step1_in')}
-          className={`flex-1 py-2.5 px-3 rounded-xl font-black text-xs sm:text-sm flex items-center justify-center gap-2 transition cursor-pointer ${
-            activePhase === 'step1_in'
-              ? 'bg-[#009ca6] text-white shadow-md'
-              : 'bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80'
-          }`}
-        >
-          <PackagePlus className="w-4 h-4" />
-          <span>1. Instalación (Nuevo)</span>
-          {isStep1Complete && (
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-300" />
-          )}
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setActivePhase('step2_out')}
-          className={`flex-1 py-2.5 px-3 rounded-xl font-black text-xs sm:text-sm flex items-center justify-center gap-2 transition cursor-pointer ${
-            activePhase === 'step2_out'
-              ? 'bg-[#009ca6] text-white shadow-md'
-              : 'bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/80'
-          }`}
-        >
-          <PackageMinus className="w-4 h-4" />
-          <span>2. Retirada (Anterior)</span>
-          {(esDummyRetirado || imeiOut.trim().length >= 4 || motivoIncidenciaOut) && (
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-300" />
-          )}
-        </button>
-      </div>
-
-      {/* CONTENIDO SEGÚN EL APARTADO ACTIVO */}
+      {/* CONTENIDO: EXCLUSIVAMENTE INSTALACIÓN DEL NUEVO DISPOSITIVO */}
       <div className="p-4 sm:p-6 space-y-5 flex-1 overflow-y-auto">
-        {activePhase === 'step1_in' ? (
-          /* ============================================================
-             APARTADO 1: SOLAMENTE METER EL IMEI NUEVO INSTALADO
-             ============================================================ */
-          <div className="space-y-4 animate-fadeIn">
-            {/* Tarjeta del nuevo modelo a instalar */}
-            <div className="p-4 bg-teal-50/70 border border-teal-200 rounded-2xl flex items-center gap-3">
-              <div className="w-11 h-11 rounded-2xl bg-white border border-teal-200 flex items-center justify-center text-[#009ca6] shrink-0">
-                <PackagePlus className="w-5 h-5" />
-              </div>
-              <div>
-                <span className="text-[10px] font-black uppercase tracking-wider text-[#009ca6] block">
-                  Nuevo dispositivo a instalar
-                </span>
-                <h3 className="text-base sm:text-lg font-black text-slate-900">
-                  {assignment.modeloEntrante}
-                </h3>
-              </div>
+        <div className="space-y-4 animate-fadeIn">
+          {/* Tarjeta del nuevo modelo a instalar */}
+          <div className="p-4 bg-teal-50/70 border border-teal-200 rounded-2xl flex items-center gap-3">
+            <div className="w-11 h-11 rounded-2xl bg-white border border-teal-200 flex items-center justify-center text-[#009ca6] shrink-0">
+              <PackagePlus className="w-5 h-5" />
             </div>
+            <div>
+              <span className="text-[10px] font-black uppercase tracking-wider text-[#009ca6] block">
+                Nuevo dispositivo a instalar
+              </span>
+              <h3 className="text-base sm:text-lg font-black text-slate-900">
+                {assignment.modeloEntrante}
+              </h3>
+            </div>
+          </div>
 
-            {/* Selección LDU vs DUMMY */}
-            <div className="space-y-2">
+          {/* Selección LDU vs DUMMY */}
+          <div className="space-y-2">
+            <label className="block text-xs font-black text-slate-700 uppercase tracking-wider">
+              Tipo de terminal nuevo
+            </label>
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => setTipoIn('LDU')}
+                className={`py-3 px-4 rounded-2xl font-black text-sm border-2 transition flex items-center justify-center gap-2 cursor-pointer ${
+                  tipoIn === 'LDU'
+                    ? 'bg-[#009ca6] text-white border-[#009ca6] shadow-md'
+                    : 'bg-white hover:bg-slate-50 text-slate-800 border-slate-200'
+                }`}
+              >
+                <span>LDU (Operativo)</span>
+                {tipoIn === 'LDU' && <CheckCircle2 className="w-4 h-4 text-white" />}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setTipoIn('DUMMY')}
+                className={`py-3 px-4 rounded-2xl font-black text-sm border-2 transition flex items-center justify-center gap-2 cursor-pointer ${
+                  tipoIn === 'DUMMY'
+                    ? 'bg-orange-600 text-white border-orange-600 shadow-md'
+                    : 'bg-white hover:bg-slate-50 text-slate-800 border-slate-200'
+                }`}
+              >
+                <span>DUMMY (Maqueta)</span>
+                {tipoIn === 'DUMMY' && <CheckCircle2 className="w-4 h-4 text-white" />}
+              </button>
+            </div>
+          </div>
+
+          {/* Entrada del nuevo IMEI instalado */}
+          {tipoIn === 'LDU' && (
+            <div className="space-y-2.5 pt-2 border-t border-slate-100 animate-fadeIn">
               <label className="block text-xs font-black text-slate-700 uppercase tracking-wider">
-                Tipo de terminal nuevo
+                IMEI del nuevo terminal instalado
               </label>
-              <div className="grid grid-cols-2 gap-3">
+
+              <div className="grid grid-cols-2 gap-2.5">
                 <button
                   type="button"
-                  onClick={() => setTipoIn('LDU')}
-                  className={`py-3 px-4 rounded-2xl font-black text-sm border-2 transition flex items-center justify-center gap-2 cursor-pointer ${
-                    tipoIn === 'LDU'
-                      ? 'bg-[#009ca6] text-white border-[#009ca6] shadow-md'
-                      : 'bg-white hover:bg-slate-50 text-slate-800 border-slate-200'
-                  }`}
+                  onClick={() => setScannerTarget('in')}
+                  className="bg-white hover:bg-slate-50 border border-slate-200 hover:border-[#009ca6] rounded-2xl p-3 text-left flex items-center gap-2.5 transition shadow-2xs cursor-pointer"
                 >
-                  <span>LDU (Operativo)</span>
-                  {tipoIn === 'LDU' && <CheckCircle2 className="w-4 h-4 text-white" />}
+                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-500 to-[#009ca6] text-white flex items-center justify-center shrink-0">
+                    <Camera className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs font-black text-slate-900">Escanear Cámara / OCR</span>
                 </button>
 
                 <button
                   type="button"
-                  onClick={() => setTipoIn('DUMMY')}
-                  className={`py-3 px-4 rounded-2xl font-black text-sm border-2 transition flex items-center justify-center gap-2 cursor-pointer ${
-                    tipoIn === 'DUMMY'
-                      ? 'bg-orange-600 text-white border-orange-600 shadow-md'
-                      : 'bg-white hover:bg-slate-50 text-slate-800 border-slate-200'
-                  }`}
+                  onClick={() => setKeypadTarget('in_imei')}
+                  className="bg-white hover:bg-slate-50 border border-slate-200 hover:border-[#009ca6] rounded-2xl p-3 text-left flex items-center gap-2.5 transition shadow-2xs cursor-pointer"
                 >
-                  <span>DUMMY (Maqueta)</span>
-                  {tipoIn === 'DUMMY' && <CheckCircle2 className="w-4 h-4 text-white" />}
+                  <div className="w-9 h-9 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0">
+                    <Edit3 className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs font-black text-slate-900">Teclado Manual</span>
                 </button>
               </div>
-            </div>
 
-            {/* Entrada del nuevo IMEI instalado */}
-            {tipoIn === 'LDU' && (
-              <div className="space-y-2.5 pt-2 border-t border-slate-100 animate-fadeIn">
-                <label className="block text-xs font-black text-slate-700 uppercase tracking-wider">
-                  IMEI del nuevo terminal instalado
-                </label>
-
-                <div className="grid grid-cols-2 gap-2.5">
+              <div className="relative">
+                <input
+                  type="text"
+                  value={imeiIn}
+                  onChange={(e) => setImeiIn(e.target.value.slice(0, 20))}
+                  placeholder="Escribe o escanea el nuevo IMEI aquí..."
+                  className={`w-full rounded-2xl px-4 py-3 text-sm font-mono font-black transition ${
+                    imeiIn && inValidation.valid
+                      ? 'bg-emerald-50/70 border-2 border-emerald-500/80 text-emerald-950'
+                      : 'bg-slate-50 border border-slate-300 text-slate-800'
+                  }`}
+                />
+                {imeiIn && (
                   <button
                     type="button"
-                    onClick={() => setScannerTarget('in')}
-                    className="bg-white hover:bg-slate-50 border border-slate-200 hover:border-[#009ca6] rounded-2xl p-3 text-left flex items-center gap-2.5 transition shadow-2xs cursor-pointer"
+                    onClick={() => setImeiIn('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-rose-600 p-1.5 rounded-xl cursor-pointer"
                   >
-                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-500 to-[#009ca6] text-white flex items-center justify-center shrink-0">
-                      <Camera className="w-4 h-4" />
-                    </div>
-                    <span className="text-xs font-black text-slate-900">Escanear Cámara / OCR</span>
+                    <Trash2 className="w-4 h-4" />
                   </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setKeypadTarget('in_imei')}
-                    className="bg-white hover:bg-slate-50 border border-slate-200 hover:border-[#009ca6] rounded-2xl p-3 text-left flex items-center gap-2.5 transition shadow-2xs cursor-pointer"
-                  >
-                    <div className="w-9 h-9 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0">
-                      <Edit3 className="w-4 h-4" />
-                    </div>
-                    <span className="text-xs font-black text-slate-900">Teclado Manual</span>
-                  </button>
-                </div>
-
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={imeiIn}
-                    onChange={(e) => setImeiIn(e.target.value.slice(0, 20))}
-                    placeholder="Escribe o escanea el nuevo IMEI aquí..."
-                    className={`w-full rounded-2xl px-4 py-3 text-sm font-mono font-black transition ${
-                      imeiIn && inValidation.valid
-                        ? 'bg-emerald-50/70 border-2 border-emerald-500/80 text-emerald-950'
-                        : 'bg-slate-50 border border-slate-300 text-slate-800'
-                    }`}
-                  />
-                  {imeiIn && (
-                    <button
-                      type="button"
-                      onClick={() => setImeiIn('')}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-rose-600 p-1.5 rounded-xl cursor-pointer"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  )}
-                </div>
-
-                {imeiIn && inValidation.valid && (
-                  <div className="text-[11px] flex items-center gap-1.5 text-emerald-700 font-bold">
-                    <Check className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>Nuevo IMEI registrado correctamente ({imeiIn})</span>
-                  </div>
                 )}
               </div>
-            )}
 
-            {tipoIn === 'DUMMY' && (
-              <div className="p-4 bg-orange-50/70 border border-orange-200 rounded-2xl text-xs text-orange-950 font-bold flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
-                <span>Posición configurada como Maqueta DUMMY oficial sin IMEI.</span>
-              </div>
-            )}
-          </div>
-        ) : (
-          /* ============================================================
-             APARTADO 2: RETIRADA CON OPCIÓN DE PONER EL IMEI RETIRADO
-             ============================================================ */
-          <div className="space-y-4 animate-fadeIn">
-            {/* Tarjeta del dispositivo a retirar */}
-            <div className="p-4 bg-amber-50/70 border border-amber-200 rounded-2xl flex items-center gap-3">
-              <div className="w-11 h-11 rounded-2xl bg-white border border-amber-200 flex items-center justify-center text-amber-600 shrink-0">
-                <PackageMinus className="w-5 h-5" />
-              </div>
-              <div>
-                <span className="text-[10px] font-black uppercase tracking-wider text-amber-700 block">
-                  Dispositivo retirado de la mesa
-                </span>
-                <h3 className="text-base sm:text-lg font-black text-slate-900">
-                  {assignment.modeloSaliente}
-                </h3>
-              </div>
+              {imeiIn && inValidation.valid && (
+                <div className="text-[11px] flex items-center gap-1.5 text-emerald-700 font-bold">
+                  <Check className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>Nuevo IMEI registrado correctamente ({imeiIn})</span>
+                </div>
+              )}
             </div>
+          )}
 
-            {/* Selección LDU vs DUMMY retirado */}
-            <div className="space-y-2">
-              <label className="block text-xs font-black text-slate-700 uppercase tracking-wider">
-                Tipo de terminal retirado
-              </label>
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  type="button"
-                  onClick={() => setTipoOut('LDU')}
-                  className={`py-3 px-4 rounded-2xl font-black text-sm border-2 transition flex items-center justify-center gap-2 cursor-pointer ${
-                    tipoOut === 'LDU'
-                      ? 'bg-amber-600 text-white border-amber-600 shadow-md'
-                      : 'bg-white hover:bg-slate-50 text-slate-800 border-slate-200'
-                  }`}
-                >
-                  <span>LDU (Retirado)</span>
-                  {tipoOut === 'LDU' && <CheckCircle2 className="w-4 h-4 text-white" />}
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setTipoOut('DUMMY')}
-                  className={`py-3 px-4 rounded-2xl font-black text-sm border-2 transition flex items-center justify-center gap-2 cursor-pointer ${
-                    tipoOut === 'DUMMY'
-                      ? 'bg-slate-700 text-white border-slate-700 shadow-md'
-                      : 'bg-white hover:bg-slate-50 text-slate-800 border-slate-200'
-                  }`}
-                >
-                  <span>DUMMY (Maqueta)</span>
-                  {tipoOut === 'DUMMY' && <CheckCircle2 className="w-4 h-4 text-white" />}
-                </button>
-              </div>
+          {tipoIn === 'DUMMY' && (
+            <div className="p-4 bg-orange-50/70 border border-orange-200 rounded-2xl text-xs text-orange-950 font-bold flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
+              <span>Posición configurada como Maqueta DUMMY oficial sin IMEI.</span>
             </div>
-
-            {/* Entrada del IMEI retirado */}
-            {tipoOut === 'LDU' && (
-              <div className="space-y-2.5 pt-2 border-t border-slate-100 animate-fadeIn">
-                <div className="flex items-center justify-between">
-                  <label className="block text-xs font-black text-slate-700 uppercase tracking-wider">
-                    IMEI del terminal retirado
-                  </label>
-                  {memorizedPreviousImei && (
-                    <button
-                      type="button"
-                      onClick={() => setImeiOut(memorizedPreviousImei)}
-                      className="text-[11px] font-bold text-[#009ca6] hover:underline cursor-pointer"
-                    >
-                      Usar IMEI auditado ({memorizedPreviousImei})
-                    </button>
-                  )}
-                </div>
-
-                <div className="grid grid-cols-2 gap-2.5">
-                  <button
-                    type="button"
-                    onClick={() => setScannerTarget('out')}
-                    className="bg-white hover:bg-slate-50 border border-slate-200 hover:border-amber-500 rounded-2xl p-3 text-left flex items-center gap-2.5 transition shadow-2xs cursor-pointer"
-                  >
-                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 text-white flex items-center justify-center shrink-0">
-                      <Camera className="w-4 h-4" />
-                    </div>
-                    <span className="text-xs font-black text-slate-900">Escanear Retirado</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setKeypadTarget('out_imei')}
-                    className="bg-white hover:bg-slate-50 border border-slate-200 hover:border-amber-500 rounded-2xl p-3 text-left flex items-center gap-2.5 transition shadow-2xs cursor-pointer"
-                  >
-                    <div className="w-9 h-9 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0">
-                      <Edit3 className="w-4 h-4" />
-                    </div>
-                    <span className="text-xs font-black text-slate-900">Teclado Manual</span>
-                  </button>
-                </div>
-
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={imeiOut}
-                    onChange={(e) => setImeiOut(e.target.value.slice(0, 20))}
-                    placeholder="Escribe o escanea el IMEI a retirar..."
-                    className="w-full rounded-2xl px-4 py-3 text-sm font-mono font-black bg-slate-50 border border-slate-300 text-slate-800 transition"
-                  />
-                  {imeiOut && (
-                    <button
-                      type="button"
-                      onClick={() => setImeiOut('')}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-rose-600 p-1.5 rounded-xl cursor-pointer"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  )}
-                </div>
-
-                {imeiOut && (
-                  <div className="text-[11px] flex items-center gap-1.5 text-amber-700 font-bold">
-                    <Check className="w-3.5 h-3.5 text-amber-600" />
-                    <span>IMEI de retirada asignado: {imeiOut}</span>
-                  </div>
-                )}
-              </div>
-            )}
-
-            {tipoOut === 'DUMMY' && (
-              <div className="p-4 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-700 font-bold flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-slate-600 shrink-0" />
-                <span>Dispositivo saliente marcado como Maqueta DUMMY retirada.</span>
-              </div>
-            )}
-          </div>
-        )}
+          )}
+        </div>
 
         {/* ================================================================
-            SECCIÓN DE INCIDENCIAS
+            SECCIÓN DE INCIDENCIAS DE INSTALACIÓN
             ================================================================ */}
         <div className="pt-3 border-t border-slate-200 space-y-3">
           {(() => {
-            const isInstalacion = activePhase === 'step1_in';
-            const currentMotivo = isInstalacion ? motivoIncidenciaIn : motivoIncidenciaOut;
+            const currentMotivo = motivoIncidenciaIn;
             const hasCurrentPhaseIncident = Boolean(currentMotivo);
 
             return (
@@ -924,9 +735,7 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
                     </div>
                     <div>
                       <h4 className="text-xs sm:text-sm font-black text-slate-900">
-                        {isInstalacion
-                          ? 'Reportar incidencia en Instalación'
-                          : 'Reportar incidencia en Retirada'}
+                        Reportar incidencia en Instalación
                       </h4>
                       <p className="text-[11px] text-slate-500">
                         {currentMotivo || 'Pulsa aquí si hay algún problema'}
@@ -940,11 +749,7 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
-                          if (isInstalacion) {
-                            setMotivoIncidenciaIn('');
-                          } else {
-                            setMotivoIncidenciaOut('');
-                          }
+                          setMotivoIncidenciaIn('');
                         }}
                         className="text-xs font-bold text-rose-600 hover:underline px-2 py-1"
                       >
@@ -960,38 +765,28 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
                 {showIncidentDrawer && (
                   <div className="p-3 bg-slate-50 border border-slate-200 rounded-2xl space-y-1.5 animate-fadeIn">
                     <span className="text-[10px] font-black uppercase tracking-wider text-slate-500 block mb-1">
-                      {isInstalacion
-                        ? 'Motivos oficiales de incidencia de entrada'
-                        : 'Motivos oficiales de incidencia de salida'}
+                      Motivos oficiales de incidencia de instalación
                     </span>
-                    {(isInstalacion ? SWAP_IN_INCIDENT_MOTIVOS : SWAP_OUT_INCIDENT_MOTIVOS).map(
-                      (motivo) => {
-                        const isSelected = isInstalacion
-                          ? motivoIncidenciaIn === motivo
-                          : motivoIncidenciaOut === motivo;
-                        return (
-                          <button
-                            key={motivo}
-                            type="button"
-                            onClick={() => {
-                              if (isInstalacion) {
-                                setMotivoIncidenciaIn(isSelected ? '' : (motivo as SwapInIncidentMotivo));
-                              } else {
-                                setMotivoIncidenciaOut(isSelected ? '' : (motivo as SwapOutIncidentMotivo));
-                              }
-                            }}
-                            className={`w-full text-left p-3 rounded-xl text-xs font-bold transition flex items-center justify-between cursor-pointer ${
-                              isSelected
-                                ? 'bg-rose-600 text-white shadow-sm'
-                                : 'bg-white hover:bg-slate-100 text-slate-800 border border-slate-200/80'
-                            }`}
-                          >
-                            <span>{motivo}</span>
-                            {isSelected && <Check className="w-4 h-4 text-white" />}
-                          </button>
-                        );
-                      }
-                    )}
+                    {SWAP_IN_INCIDENT_MOTIVOS.map((motivo) => {
+                      const isSelected = motivoIncidenciaIn === motivo;
+                      return (
+                        <button
+                          key={motivo}
+                          type="button"
+                          onClick={() => {
+                            setMotivoIncidenciaIn(isSelected ? '' : (motivo as SwapInIncidentMotivo));
+                          }}
+                          className={`w-full text-left p-3 rounded-xl text-xs font-bold transition flex items-center justify-between cursor-pointer ${
+                            isSelected
+                              ? 'bg-rose-600 text-white shadow-sm'
+                              : 'bg-white hover:bg-slate-100 text-slate-800 border border-slate-200/80'
+                          }`}
+                        >
+                          <span>{motivo}</span>
+                          {isSelected && <Check className="w-4 h-4 text-white" />}
+                        </button>
+                      );
+                    })}
                   </div>
                 )}
               </>
@@ -1000,39 +795,23 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
         </div>
       </div>
 
-      {/* FOOTER NAVEGACIÓN Y GUARDADO */}
+      {/* FOOTER GUARDADO DIRECTO */}
       <div className="p-4 sm:p-5 bg-white border-t border-slate-200">
-        {activePhase === 'step1_in' ? (
-          <button
-            type="button"
-            onClick={() => setActivePhase('step2_out')}
-            disabled={!isStep1Complete}
-            className={`w-full py-4 px-5 font-black rounded-2xl shadow-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition ${
-              !isStep1Complete
-                ? 'bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed'
-                : 'bg-gradient-to-r from-[#009ca6] to-[#00b4bf] text-white cursor-pointer hover:brightness-110'
-            }`}
-          >
-            <span>Continuar a 2. Retirada (Terminal Saliente)</span>
-            <ChevronRight className="w-4 h-4" />
-          </button>
-        ) : (
-          <button
-            type="button"
-            onClick={handleSaveAndFinishPosition}
-            disabled={!canSaveFinal}
-            className={`w-full py-4 px-5 font-black rounded-2xl shadow-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition ${
-              !canSaveFinal
-                ? 'bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed'
-                : incidenciaActiva
-                ? 'bg-gradient-to-r from-amber-600 to-rose-600 text-white cursor-pointer hover:brightness-110'
-                : 'bg-gradient-to-r from-emerald-600 to-[#009ca6] text-white cursor-pointer hover:brightness-110'
-            }`}
-          >
-            <ShieldCheck className="w-5 h-5" />
-            <span>Confirmar Instalación y Retirada</span>
-          </button>
-        )}
+        <button
+          type="button"
+          onClick={handleSaveAndFinishPosition}
+          disabled={!isStep1Complete}
+          className={`w-full py-4 px-5 font-black rounded-2xl shadow-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition ${
+            !isStep1Complete
+              ? 'bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed'
+              : Boolean(motivoIncidenciaIn)
+              ? 'bg-gradient-to-r from-amber-600 to-rose-600 text-white cursor-pointer hover:brightness-110'
+              : 'bg-gradient-to-r from-[#009ca6] to-[#00b4bf] text-white cursor-pointer hover:brightness-110'
+          }`}
+        >
+          <ShieldCheck className="w-5 h-5" />
+          <span>Confirmar Instalación Puesto {String(position.posicionNumero).padStart(2, '0')}</span>
+        </button>
       </div>
 
       {/* ESCÁNER DE CÁMARA INTELIGENTE (BARCODE / OCR) */}

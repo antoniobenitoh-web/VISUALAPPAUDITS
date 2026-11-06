@@ -47,6 +47,7 @@ export const App: React.FC = () => {
   const [auditStates, setAuditStates] = useState<Record<string, PositionAuditState>>({});
   const [swapStates, setSwapStates] = useState<Record<string, PositionSwapState>>({});
   const [visualStates, setVisualStates] = useState<Record<string, VisualElementAuditState>>({});
+  const [activeImplantationTab, setActiveImplantationTab] = useState<'return_devices' | 'swap_devices' | 'visual_plv'>('return_devices');
   const [openImplantationSummaryOnMount, setOpenImplantationSummaryOnMount] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isOnline, setIsOnline] = useState(navigator.onLine);
@@ -98,6 +99,7 @@ export const App: React.FC = () => {
 
     setSwapStates(sMap);
     setVisualStates(vMap);
+    setActiveImplantationTab('return_devices');
     setOpenImplantationSummaryOnMount(openSummary);
     setCurrentStep('implantation_overview');
   };
@@ -183,6 +185,7 @@ export const App: React.FC = () => {
 
   const handleConfirmSwapState = (state: PositionSwapState) => {
     if (!selectedStore) return;
+    const existingDraft = DbService.getImplantationDraft(selectedStore.tiendaId);
     const updatedSwaps = {
       ...swapStates,
       [state.posicionId]: state
@@ -193,8 +196,10 @@ export const App: React.FC = () => {
       campanaNombre: ACTIVE_IMPLANTATION_CAMPAIGN,
       swapStates: updatedSwaps,
       visualStates,
+      returnStates: existingDraft?.returnStates,
       updatedAt: new Date().toISOString()
     });
+    setActiveImplantationTab('swap_devices');
     setCurrentStep('implantation_overview');
     setSelectedPosition(null);
     setSelectedSwapAssignment(null);
@@ -202,6 +207,7 @@ export const App: React.FC = () => {
 
   const handleUpdateVisualState = (state: VisualElementAuditState) => {
     if (!selectedStore) return;
+    const existingDraft = DbService.getImplantationDraft(selectedStore.tiendaId);
     const updatedVisuals = {
       ...visualStates,
       [state.elementoId]: state
@@ -212,6 +218,7 @@ export const App: React.FC = () => {
       campanaNombre: ACTIVE_IMPLANTATION_CAMPAIGN,
       swapStates,
       visualStates: updatedVisuals,
+      returnStates: existingDraft?.returnStates,
       updatedAt: new Date().toISOString()
     });
   };
@@ -342,10 +349,13 @@ export const App: React.FC = () => {
               currentUser={currentUser}
               swapStates={swapStates}
               visualStates={visualStates}
+              activeTab={activeImplantationTab}
+              onTabChange={setActiveImplantationTab}
               initialOpenSummary={openImplantationSummaryOnMount}
               onSelectSwapPosition={(pos, assignment) => {
                 setSelectedPosition(pos);
                 setSelectedSwapAssignment(assignment);
+                setActiveImplantationTab('swap_devices');
                 setCurrentStep('implantation_swap_device');
               }}
               onUpdateVisualState={handleUpdateVisualState}
