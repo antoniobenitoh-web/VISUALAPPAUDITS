@@ -597,7 +597,7 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
                     validateSerialFormat(imei) ? (
                       <span className="text-emerald-700 font-bold flex items-center gap-1">
                         <Check className="w-3.5 h-3.5 text-emerald-600" />
-                        <span>S/N Xiaomi validado (20 caracteres exactos)</span>
+                        <span>Número de Serie Xiaomi validado ({imei})</span>
                       </span>
                     ) : validateImeiLuhn(imei) ? (
                       <span className="text-emerald-700 font-bold flex items-center gap-1">

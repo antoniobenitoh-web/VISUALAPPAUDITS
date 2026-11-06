@@ -636,11 +636,13 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
             </div>
           </div>
 
-          {/* Entrada del nuevo IMEI instalado */}
+          {/* Entrada del nuevo IMEI o Número de Serie instalado */}
           {tipoIn === 'LDU' && (
             <div className="space-y-2.5 pt-2 border-t border-slate-100 animate-fadeIn">
               <label className="block text-xs font-black text-slate-700 uppercase tracking-wider">
-                IMEI del nuevo terminal instalado
+                {isSmartphone
+                  ? 'IMEI del nuevo terminal instalado'
+                  : 'Número de Serie (S/N) / IMEI del dispositivo instalado'}
               </label>
 
               <div className="grid grid-cols-2 gap-2.5">
@@ -652,7 +654,9 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
                   <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-teal-500 to-[#009ca6] text-white flex items-center justify-center shrink-0">
                     <Camera className="w-4 h-4" />
                   </div>
-                  <span className="text-xs font-black text-slate-900">Escanear Cámara / OCR</span>
+                  <span className="text-xs font-black text-slate-900">
+                    {isSmartphone ? 'Escanear Cámara / OCR' : 'Escanear S/N en Pantalla'}
+                  </span>
                 </button>
 
                 <button
@@ -671,8 +675,12 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
                 <input
                   type="text"
                   value={imeiIn}
-                  onChange={(e) => setImeiIn(e.target.value.slice(0, 20))}
-                  placeholder="Escribe o escanea el nuevo IMEI aquí..."
+                  onChange={(e) => setImeiIn(e.target.value.slice(0, 24))}
+                  placeholder={
+                    isSmartphone
+                      ? 'Escribe o escanea el nuevo IMEI aquí...'
+                      : 'Escanea o escribe el Número de Serie (ej. 58891/DPAK6H5RH00440)...'
+                  }
                   className={`w-full rounded-2xl px-4 py-3 text-sm font-mono font-black transition ${
                     imeiIn && inValidation.valid
                       ? 'bg-emerald-50/70 border-2 border-emerald-500/80 text-emerald-950'
@@ -693,7 +701,9 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
               {imeiIn && inValidation.valid && (
                 <div className="text-[11px] flex items-center gap-1.5 text-emerald-700 font-bold">
                   <Check className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Nuevo IMEI registrado correctamente ({imeiIn})</span>
+                  <span>
+                    {isSmartphone ? 'Nuevo IMEI' : 'Número de Serie'} registrado correctamente ({imeiIn})
+                  </span>
                 </div>
               )}
             </div>
@@ -822,9 +832,9 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
         onClose={() => setScannerTarget(null)}
         onScanSuccess={(code) => {
           if (scannerTarget === 'out') {
-            setImeiOut(code.trim().slice(0, 20));
+            setImeiOut(code.trim().slice(0, 24));
           } else if (scannerTarget === 'in') {
-            setImeiIn(code.trim().slice(0, 20));
+            setImeiIn(code.trim().slice(0, 24));
           }
           setScannerTarget(null);
         }}
