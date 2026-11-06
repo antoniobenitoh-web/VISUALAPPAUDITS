@@ -57,12 +57,13 @@ export const InteractiveColumnCanvas: React.FC<InteractiveColumnCanvasProps> = (
     const width = container.clientWidth || 400;
     const height = container.clientHeight || 460;
 
-    // 1. Escena y Cámara
+        // 1. Escena y Cámara
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color('#071720');
+    // Fondo de tienda comercial sutilmente iluminado
+    scene.background = new THREE.Color('#0a1b24');
 
     const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 50);
-    camera.position.set(0, 0.4, 4.2);
+    camera.position.set(0, 0.35, 4.3);
     camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -72,126 +73,300 @@ export const InteractiveColumnCanvas: React.FC<InteractiveColumnCanvasProps> = (
     container.innerHTML = '';
     container.appendChild(renderer.domElement);
 
-    // 2. Luces
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.95);
+    // 2. Iluminación realista de tienda departamental
+    const ambientLight = new THREE.AmbientLight(0xfff8f0, 1.15);
     scene.add(ambientLight);
 
-    const frontLight = new THREE.DirectionalLight(0xffffff, 1.2);
-    frontLight.position.set(2, 4, 4);
-    scene.add(frontLight);
+    const mainLight = new THREE.DirectionalLight(0xffffff, 1.35);
+    mainLight.position.set(2.5, 5.0, 3.5);
+    mainLight.castShadow = true;
+    scene.add(mainLight);
 
-    const backLight = new THREE.DirectionalLight(0x00c4cc, 0.6);
-    backLight.position.set(-3, -2, -3);
-    scene.add(backLight);
+    const fillLight = new THREE.DirectionalLight(0xffffff, 0.9);
+    fillLight.position.set(-3.0, 3.0, -3.0);
+    scene.add(fillLight);
 
-    // Suelo con efecto parquet comercial oscuro
-    const floorGeo = new THREE.PlaneGeometry(8, 8);
+    const glowLight = new THREE.PointLight(0xff8833, 0.6, 6);
+    glowLight.position.set(0, 1.6, 0);
+    scene.add(glowLight);
+
+    // Suelo de tienda comercial con baldosas cerámicas claras
+    const floorGeo = new THREE.PlaneGeometry(10, 10);
     const floorMat = new THREE.MeshStandardMaterial({
-      color: 0x091c25,
-      roughness: 0.8,
-      metalness: 0.1
+      color: 0x223540,
+      roughness: 0.6,
+      metalness: 0.15
     });
     const floor = new THREE.Mesh(floorGeo, floorMat);
     floor.rotation.x = -Math.PI / 2;
-    floor.position.y = -1.6;
+    floor.position.y = -1.65;
     scene.add(floor);
 
     // 3. Grupo Columna Retail
     const columnGroup = new THREE.Group();
     scene.add(columnGroup);
 
-    // Dimensiones proporcionales reales de la columna
-    const colW = 1.35; // Ancho caras 1 y 3
-    const colD = 1.15; // Profundidad caras 2 y 4
-    const colH = 2.8;  // Altura total columna
+    // Dimensiones proporcionales reales de la columna oficial Xiaomi
+    const colW = 1.35; // Ancho caras 1 y 3 (Frontal y Trasera)
+    const colD = 1.15; // Profundidad caras 2 y 4 (Laterales)
+    const colH = 2.85; // Altura total de la columna
 
-    // Núcleo / Estructura metálica principal (gris oscuro titanio)
-    const bodyGeo = new THREE.BoxGeometry(colW, colH, colD);
-    const bodyMat = new THREE.MeshStandardMaterial({
-      color: 0x1e293b,
-      roughness: 0.4,
-      metalness: 0.7
+    // Material de estructura metálica champagne / titanio cálido oficial
+    const structureMat = new THREE.MeshStandardMaterial({
+      color: 0x9b958a, // Tono titanio champán anodizado de las fotos
+      roughness: 0.42,
+      metalness: 0.38
     });
-    const bodyMesh = new THREE.Mesh(bodyGeo, bodyMat);
+
+    // Material de zócalos y perfilerías de encastre oscuros
+    const darkTrimMat = new THREE.MeshStandardMaterial({
+      color: 0x1f2329,
+      roughness: 0.5,
+      metalness: 0.55
+    });
+
+    // Núcleo central de la columna
+    const bodyGeo = new THREE.BoxGeometry(colW, colH, colD);
+    const bodyMesh = new THREE.Mesh(bodyGeo, structureMat);
     columnGroup.add(bodyMesh);
 
-    // Zócalo inferior metálico negro
-    const baseGeo = new THREE.BoxGeometry(colW + 0.08, 0.15, colD + 0.08);
-    const baseMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.5 });
-    const baseMesh = new THREE.Mesh(baseGeo, baseMat);
-    baseMesh.position.y = -colH / 2 + 0.075;
+    // Zócalo inferior metálico
+    const baseGeo = new THREE.BoxGeometry(colW + 0.06, 0.14, colD + 0.06);
+    const baseMesh = new THREE.Mesh(baseGeo, darkTrimMat);
+    baseMesh.position.y = -colH / 2 + 0.07;
     columnGroup.add(baseMesh);
 
-    // Coronación superior con cajón de logotipos Xiaomi
-    const topCapGeo = new THREE.BoxGeometry(colW + 0.06, 0.35, colD + 0.06);
-    const topCapMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.4, metalness: 0.6 });
-    const topCapMesh = new THREE.Mesh(topCapGeo, topCapMat);
-    topCapMesh.position.y = colH / 2 - 0.175;
+    // Coronación superior biselada
+    const topCapGeo = new THREE.BoxGeometry(colW + 0.06, 0.42, colD + 0.06);
+    const topCapMesh = new THREE.Mesh(topCapGeo, structureMat);
+    topCapMesh.position.y = colH / 2 - 0.21;
     columnGroup.add(topCapMesh);
 
-    // Logotipos retroiluminados Xiaomi naranja en las 4 caras superiores
-    const logoMat = new THREE.MeshBasicMaterial({ color: 0xff6900 });
+    // 4 Pilastras angulares / chaflanes biselados en las 4 esquinas (perfilería oficial)
+    const cornerW = 0.12;
+    const cornerH = colH - 0.14;
+    const cornerGeo = new THREE.BoxGeometry(cornerW, cornerH, cornerW);
+    const cornerPositions = [
+      { x: colW / 2, z: colD / 2 },
+      { x: -colW / 2, z: colD / 2 },
+      { x: colW / 2, z: -colD / 2 },
+      { x: -colW / 2, z: -colD / 2 }
+    ];
+    cornerPositions.forEach((cp) => {
+      const cornerMesh = new THREE.Mesh(cornerGeo, structureMat);
+      cornerMesh.position.set(cp.x, 0, cp.z);
+      cornerMesh.rotation.y = Math.PI / 4;
+      columnGroup.add(cornerMesh);
+    });
+
+    // Emblemas oficiales Xiaomi retroiluminados en la parte superior de cada cara
+    const textureLoader = new THREE.TextureLoader();
+    const logoTexture = textureLoader.load('./images/xiaomi_logo.png');
+    const logoMat = new THREE.MeshStandardMaterial({
+      map: logoTexture,
+      roughness: 0.2,
+      metalness: 0.1,
+      emissive: 0xff6900,
+      emissiveIntensity: 0.45
+    });
+
     const logoPositions = [
-      { x: 0, y: colH / 2 - 0.175, z: colD / 2 + 0.04, rotY: 0 },
-      { x: colW / 2 + 0.04, y: colH / 2 - 0.175, z: 0, rotY: Math.PI / 2 },
-      { x: 0, y: colH / 2 - 0.175, z: -colD / 2 - 0.04, rotY: Math.PI },
-      { x: -colW / 2 - 0.04, y: colH / 2 - 0.175, z: 0, rotY: -Math.PI / 2 }
+      { x: 0, y: colH / 2 - 0.21, z: colD / 2 + 0.035, rotY: 0 },
+      { x: colW / 2 + 0.035, y: colH / 2 - 0.21, z: 0, rotY: Math.PI / 2 },
+      { x: 0, y: colH / 2 - 0.21, z: -colD / 2 - 0.035, rotY: Math.PI },
+      { x: -colW / 2 - 0.035, y: colH / 2 - 0.21, z: 0, rotY: -Math.PI / 2 }
     ];
 
     logoPositions.forEach((lp) => {
-      const logoBox = new THREE.Mesh(new THREE.BoxGeometry(0.24, 0.24, 0.03), logoMat);
+      // Caja de logotipo redondeado naranja con relieve
+      const logoBox = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.32, 0.035), logoMat);
       logoBox.position.set(lp.x, lp.y, lp.z);
       logoBox.rotation.y = lp.rotY;
       columnGroup.add(logoBox);
     });
 
-    // 4. Lonas Retroiluminadas / Paneles para cada una de las 4 Caras
-    // Cara 1 = Xiaomi 17 Ultra | Cara 2 = Xiaomi 17T | Cara 3 = Redmi Note 17 | Cara 4 = Pad 8
-    const textureLoader = new THREE.TextureLoader();
+    // 4. Lonas Retroiluminadas y Mueble de Tablets
     const texCara1 = textureLoader.load('./images/posm/cara1_xiaomi17ultra.jpg');
     const texCara2 = textureLoader.load('./images/posm/cara2_xiaomi17t.jpg');
     const texCara3 = textureLoader.load('./images/posm/cara3_redminote17.jpg');
     const texCara4 = textureLoader.load('./images/posm/cara4_xiaoipad8.jpg');
 
-    const lonaMatCara1 = new THREE.MeshBasicMaterial({ map: texCara1 });
-    const lonaMatCara2 = new THREE.MeshBasicMaterial({ map: texCara2 });
-    const lonaMatCara3 = new THREE.MeshBasicMaterial({ map: texCara3 });
-    const lonaMatCara4 = new THREE.MeshBasicMaterial({ map: texCara4 });
+    // Material de caja de luz textil retroiluminada (con suave resplandor blanco interno)
+    const createLonaMaterial = (tex: THREE.Texture) =>
+      new THREE.MeshStandardMaterial({
+        map: tex,
+        roughness: 0.25,
+        metalness: 0.05,
+        emissive: 0xffffff,
+        emissiveIntensity: 0.16
+      });
 
-    // Caras de lona (ligeramente sobresalientes para simular perfilería perimetral)
-    const lonaH = colH - 0.6;
-    const lonaW_Z = colW - 0.12;
-    const lonaW_X = colD - 0.12;
+    const lonaMatCara1 = createLonaMaterial(texCara1);
+    const lonaMatCara2 = createLonaMaterial(texCara2);
+    const lonaMatCara3 = createLonaMaterial(texCara3);
+    const lonaMatCara4 = createLonaMaterial(texCara4);
 
-    // Cara 1 (Frontal Z+) → Xiaomi 17 Ultra
-    const pCara1 = new THREE.Mesh(new THREE.PlaneGeometry(lonaW_Z, lonaH), lonaMatCara1);
-    pCara1.position.set(0, -0.05, colD / 2 + 0.015);
-    columnGroup.add(pCara1);
+    // Dimensiones de lonas verticales completas (Caras 1, 2 y 3)
+    const lonaFullH = colH - 0.72; // ~2.13m de altura
+    const lonaW_Z = colW - 0.16;   // ~1.19m de ancho para caras 1 y 3
+    const lonaW_X = colD - 0.16;   // ~0.99m de ancho para caras 2 y 4
 
-    // Cara 2 (Derecha X+) → Xiaomi 17T Series
-    const pCara2 = new THREE.Mesh(new THREE.PlaneGeometry(lonaW_X, lonaH), lonaMatCara2);
-    pCara2.rotation.y = Math.PI / 2;
-    pCara2.position.set(colW / 2 + 0.015, -0.05, 0);
-    columnGroup.add(pCara2);
+    // Marco biselado perimetral para cada lona (simulación de perfil de caja de luz)
+    const createLonaWithFrame = (
+      width: number,
+      height: number,
+      mat: THREE.Material,
+      posX: number,
+      posY: number,
+      posZ: number,
+      rotY: number
+    ) => {
+      const group = new THREE.Group();
+      // Fondo marco
+      const frameGeo = new THREE.BoxGeometry(width + 0.04, height + 0.04, 0.02);
+      const frameMesh = new THREE.Mesh(frameGeo, darkTrimMat);
+      group.add(frameMesh);
 
-    // Cara 3 (Trasera Z-) → Redmi Note 17 Series
-    const pCara3 = new THREE.Mesh(new THREE.PlaneGeometry(lonaW_Z, lonaH), lonaMatCara3);
-    pCara3.rotation.y = Math.PI;
-    pCara3.position.set(0, -0.05, -colD / 2 - 0.015);
-    columnGroup.add(pCara3);
+      // Lona
+      const lonaMesh = new THREE.Mesh(new THREE.PlaneGeometry(width, height), mat);
+      lonaMesh.position.z = 0.012;
+      group.add(lonaMesh);
 
-    // Cara 4 (Izquierda X-) → Xiaomi Pad 8 Series
-    const pCara4 = new THREE.Mesh(new THREE.PlaneGeometry(lonaW_X, lonaH), lonaMatCara4);
-    pCara4.rotation.y = -Math.PI / 2;
-    pCara4.position.set(-colW / 2 - 0.015, -0.05, 0);
-    columnGroup.add(pCara4);
+      group.position.set(posX, posY, posZ);
+      group.rotation.y = rotY;
+      columnGroup.add(group);
+      return group;
+    };
 
-    // Vectores 3D de referencia para proyectar hotspots HTML
+    // CARA 1 (Frontal Z+) → Xiaomi 17 Ultra (Lona vertical completa)
+    createLonaWithFrame(lonaW_Z, lonaFullH, lonaMatCara1, 0, -0.12, colD / 2 + 0.01, 0);
+
+    // CARA 2 (Derecha X+) → Xiaomi 17T Series (Lona vertical completa)
+    createLonaWithFrame(lonaW_X, lonaFullH, lonaMatCara2, colW / 2 + 0.01, -0.12, 0, Math.PI / 2);
+
+    // CARA 3 (Trasera Z-) → Redmi Note 17 Series MAX POWER (Lona vertical completa)
+    createLonaWithFrame(lonaW_Z, lonaFullH, lonaMatCara3, 0, -0.12, -colD / 2 - 0.01, Math.PI);
+
+    // CARA 4 (Izquierda X-) → ESTRUCTURA AUTÉNTICA DE LA TIENDA (FOTO 4):
+    // 1) Lona superior cuadrada: Xiaomi Pad 8 Series ("Powerfully productive")
+    const lonaPadH = 1.05; // Formato proporcionado a la lona real cuadrada
+    createLonaWithFrame(
+      lonaW_X,
+      lonaPadH,
+      lonaMatCara4,
+      -colW / 2 - 0.01,
+      0.46, // Posicionada en la parte superior
+      0,
+      -Math.PI / 2
+    );
+
+    // 2) Mueble expositor / Mostrador inferior de tablets (como se ve en la foto real)
+    const counterW = colD - 0.08;
+    const counterH = 0.94;
+    const counterD = 0.48;
+
+    const counterGroup = new THREE.Group();
+    // Cuerpo del mueble inferior (color titanio grafito)
+    const counterBodyGeo = new THREE.BoxGeometry(counterW, counterH, counterD);
+    const counterBodyMesh = new THREE.Mesh(counterBodyGeo, darkTrimMat);
+    counterBodyMesh.position.y = -colH / 2 + counterH / 2 + 0.07;
+    counterGroup.add(counterBodyMesh);
+
+    // Tapa de mostrador blanca con repisa
+    const tableTopGeo = new THREE.BoxGeometry(counterW + 0.04, 0.04, counterD + 0.04);
+    const tableTopMat = new THREE.MeshStandardMaterial({
+      color: 0xefede8,
+      roughness: 0.35,
+      metalness: 0.1
+    });
+    const tableTopMesh = new THREE.Mesh(tableTopGeo, tableTopMat);
+    tableTopMesh.position.y = -colH / 2 + counterH + 0.07;
+    counterGroup.add(tableTopMesh);
+
+    // Rótulo 3D frontal "xiaomi" en el frontal del mostrador
+    const logoStripGeo = new THREE.BoxGeometry(0.5, 0.08, 0.02);
+    const logoStripMat = new THREE.MeshStandardMaterial({
+      color: 0xffffff,
+      roughness: 0.3,
+      emissive: 0xffffff,
+      emissiveIntensity: 0.25
+    });
+    const logoStrip = new THREE.Mesh(logoStripGeo, logoStripMat);
+    logoStrip.position.set(0, -colH / 2 + counterH * 0.72, counterD / 2 + 0.012);
+    counterGroup.add(logoStrip);
+
+    // Tablet Xiaomi Pad 8 con teclado folio abierta sobre la repisa
+    const tabletScreenGeo = new THREE.BoxGeometry(0.32, 0.22, 0.01);
+    const tabletScreenMat = new THREE.MeshStandardMaterial({
+      color: 0x0f172a,
+      roughness: 0.2,
+      metalness: 0.8
+    });
+    const tabletScreen = new THREE.Mesh(tabletScreenGeo, tabletScreenMat);
+    tabletScreen.position.set(0, -colH / 2 + counterH + 0.18, 0.05);
+    tabletScreen.rotation.x = -0.3;
+    counterGroup.add(tabletScreen);
+
+    // Teclado plano sobre la mesa
+    const keyboardGeo = new THREE.BoxGeometry(0.32, 0.01, 0.2);
+    const keyboardMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.7 });
+    const keyboard = new THREE.Mesh(keyboardGeo, keyboardMat);
+    keyboard.position.set(0, -colH / 2 + counterH + 0.09, -0.06);
+    counterGroup.add(keyboard);
+
+    counterGroup.position.set(-colW / 2 - counterD / 2 + 0.02, 0, 0);
+    counterGroup.rotation.y = -Math.PI / 2;
+    columnGroup.add(counterGroup);
+
+    // 5) Plataforma del Patinete Xiaomi en el lateral (Fotos 1, 2 y 3)
+    const scooterPodiumGroup = new THREE.Group();
+    const podiumW = 0.42;
+    const podiumL = 1.15;
+    const podiumH = 0.09;
+
+    // Peana blanca de exposición
+    const podiumMesh = new THREE.Mesh(
+      new THREE.BoxGeometry(podiumW, podiumH, podiumL),
+      new THREE.MeshStandardMaterial({ color: 0xe8e6e1, roughness: 0.4 })
+    );
+    podiumMesh.position.y = -colH / 2 + podiumH / 2 + 0.01;
+    scooterPodiumGroup.add(podiumMesh);
+
+    // Silueta estilizada del patinete Xiaomi Electric Scooter
+    const deckMesh = new THREE.Mesh(
+      new THREE.BoxGeometry(0.16, 0.04, 0.85),
+      new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.6 })
+    );
+    deckMesh.position.set(0, -colH / 2 + podiumH + 0.04, 0);
+    scooterPodiumGroup.add(deckMesh);
+
+    // Mástil y manillar
+    const stemMesh = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.015, 0.015, 0.95),
+      new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.7 })
+    );
+    stemMesh.position.set(0, -colH / 2 + podiumH + 0.52, 0.38);
+    stemMesh.rotation.x = 0.12;
+    scooterPodiumGroup.add(stemMesh);
+
+    const handleMesh = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.014, 0.014, 0.42),
+      new THREE.MeshStandardMaterial({ color: 0x0f172a, metalness: 0.7 })
+    );
+    handleMesh.rotation.z = Math.PI / 2;
+    handleMesh.position.set(0, -colH / 2 + podiumH + 0.98, 0.44);
+    scooterPodiumGroup.add(handleMesh);
+
+    // Posicionar la peana al lado derecho de la columna
+    scooterPodiumGroup.position.set(colW / 2 + podiumW / 2 + 0.08, 0, 0.1);
+    columnGroup.add(scooterPodiumGroup);
+
+    // Vectores 3D de referencia para proyectar hotspots HTML interactivos
     const faceVectors: Array<{ cara: number; vec: THREE.Vector3 }> = [
-      { cara: 1, vec: new THREE.Vector3(0, 0.2, colD / 2 + 0.05) },
-      { cara: 2, vec: new THREE.Vector3(colW / 2 + 0.05, 0.2, 0) },
-      { cara: 3, vec: new THREE.Vector3(0, 0.2, -colD / 2 - 0.05) },
-      { cara: 4, vec: new THREE.Vector3(-colW / 2 - 0.05, 0.2, 0) }
+      { cara: 1, vec: new THREE.Vector3(0, 0.15, colD / 2 + 0.06) },
+      { cara: 2, vec: new THREE.Vector3(colW / 2 + 0.06, 0.15, 0) },
+      { cara: 3, vec: new THREE.Vector3(0, 0.15, -colD / 2 - 0.06) },
+      { cara: 4, vec: new THREE.Vector3(-colW / 2 - 0.06, 0.46, 0) }
     ];
 
     // 5. Interacción de Arrastre Orbital (Touch y Mouse)
