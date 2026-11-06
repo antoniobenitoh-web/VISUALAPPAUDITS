@@ -162,12 +162,13 @@ export const InteractiveColumnCanvas: React.FC<InteractiveColumnCanvasProps> = (
     // Emblemas oficiales Xiaomi retroiluminados en la parte superior de cada cara
     const textureLoader = new THREE.TextureLoader();
     const logoTexture = textureLoader.load('./images/xiaomi_logo.png');
+    logoTexture.colorSpace = THREE.SRGBColorSpace;
     const logoMat = new THREE.MeshStandardMaterial({
       map: logoTexture,
       roughness: 0.2,
       metalness: 0.1,
       emissive: 0xff6900,
-      emissiveIntensity: 0.45
+      emissiveIntensity: 0.5
     });
 
     const logoPositions = [
@@ -192,14 +193,18 @@ export const InteractiveColumnCanvas: React.FC<InteractiveColumnCanvasProps> = (
     const texCara4 = textureLoader.load('./images/posm/cara4_xiaoipad8.jpg');
 
     // Material de caja de luz textil retroiluminada (con suave resplandor blanco interno)
-    const createLonaMaterial = (tex: THREE.Texture) =>
-      new THREE.MeshStandardMaterial({
+    const createLonaMaterial = (tex: THREE.Texture) => {
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.minFilter = THREE.LinearFilter;
+      tex.magFilter = THREE.LinearFilter;
+      return new THREE.MeshStandardMaterial({
         map: tex,
-        roughness: 0.25,
+        roughness: 0.22,
         metalness: 0.05,
         emissive: 0xffffff,
-        emissiveIntensity: 0.16
+        emissiveIntensity: 0.18
       });
+    };
 
     const lonaMatCara1 = createLonaMaterial(texCara1);
     const lonaMatCara2 = createLonaMaterial(texCara2);
