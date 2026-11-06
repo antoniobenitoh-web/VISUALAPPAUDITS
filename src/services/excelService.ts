@@ -213,6 +213,73 @@ export class ExcelService {
       ];
     }
 
+    // -------------------------------------------------------------
+    // HOJA 3: ELEMENTOS POSM Y EXTRAVISIBILIDAD
+    // -------------------------------------------------------------
+    if (audit.posmElements && audit.posmElements.length > 0) {
+      const sheetPosm = workbook.addWorksheet('Auditoría POSM');
+      sheetPosm.mergeCells('A1:G1');
+      const posmTitle = sheetPosm.getCell('A1');
+      posmTitle.value = `REPORTE DE POSM Y EXTRAVISIBILIDAD · ${audit.nombreTienda}`;
+      posmTitle.font = { name: 'Calibri', size: 12, bold: true, color: { argb: 'FFFFFFFF' } };
+      posmTitle.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF0D3B4C' } };
+      posmTitle.alignment = { horizontal: 'center', vertical: 'middle' };
+      sheetPosm.getRow(1).height = 25;
+
+      const posmHeaders = ['Elemento POSM', 'Material', 'Medidas Oficiales', 'Estado Visual', 'Motivo Incidencia', 'Notas', 'Fecha / Hora'];
+      const pHeaderRow = sheetPosm.getRow(3);
+      pHeaderRow.values = posmHeaders;
+      pHeaderRow.height = 24;
+
+      pHeaderRow.eachCell(cell => {
+        cell.font = { name: 'Calibri', size: 10, bold: true, color: { argb: 'FFFFFFFF' } };
+        cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF104A60' } };
+        cell.alignment = { vertical: 'middle' };
+      });
+
+      let pRowIdx = 4;
+      audit.posmElements.forEach(item => {
+        const isOk = item.estadoVisual === 'OK';
+        const isInc = item.estadoVisual === 'Incidencia';
+        const row = sheetPosm.getRow(pRowIdx);
+        row.values = [
+          item.nombreElemento,
+          item.tipoMaterial,
+          item.medidasOficiales,
+          item.estadoVisual,
+          item.motivoIncidencia || (isOk ? '-' : 'Pendiente'),
+          item.notas || '',
+          item.fechaHora || audit.fechaHora
+        ];
+
+        row.eachCell((cell, colNum) => {
+          cell.font = { name: 'Calibri', size: 10 };
+          cell.border = { bottom: { style: 'thin', color: { argb: 'FFE5E7EB' } } };
+          if (colNum === 4) {
+            cell.font = { bold: true };
+            if (isOk) {
+              cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFD1FAE5' } };
+              cell.font = { bold: true, color: { argb: 'FF065F46' } };
+            } else if (isInc) {
+              cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFEE2E2' } };
+              cell.font = { bold: true, color: { argb: 'FF991B1B' } };
+            }
+          }
+        });
+        pRowIdx++;
+      });
+
+      sheetPosm.columns = [
+        { width: 32 },
+        { width: 22 },
+        { width: 18 },
+        { width: 16 },
+        { width: 26 },
+        { width: 32 },
+        { width: 18 }
+      ];
+    }
+
     return workbook;
   }
 

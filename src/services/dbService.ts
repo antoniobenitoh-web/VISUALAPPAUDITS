@@ -4,7 +4,8 @@ import {
   ImplantationRecord,
   PositionAuditState,
   StoreCenter,
-  UserProfile
+  UserProfile,
+  VisualElementAuditState
 } from '../types';
 import { INITIAL_STORES, INITIAL_USERS } from '../data/defaultData';
 import { SEED_AUDITS } from '../data/seedAudits';
@@ -122,6 +123,25 @@ export class DbService {
 
   static clearDraft(tiendaId: string) {
     localStorage.removeItem(`${DRAFTS_KEY}_${tiendaId}`);
+  }
+
+  // Borrador de POSM en Auditoría Regular
+  static getAuditPosmDraft(tiendaId: string): Record<string, VisualElementAuditState> | null {
+    const raw = localStorage.getItem(`AUDIT_POSM_DRAFT_${tiendaId}`);
+    if (!raw) return null;
+    try {
+      return JSON.parse(raw);
+    } catch {
+      return null;
+    }
+  }
+
+  static saveAuditPosmDraft(tiendaId: string, posmStates: Record<string, VisualElementAuditState>) {
+    localStorage.setItem(`AUDIT_POSM_DRAFT_${tiendaId}`, JSON.stringify(posmStates));
+  }
+
+  static clearAuditPosmDraft(tiendaId: string) {
+    localStorage.removeItem(`AUDIT_POSM_DRAFT_${tiendaId}`);
   }
 
   // Historial y Reporte Vigente de auditorías

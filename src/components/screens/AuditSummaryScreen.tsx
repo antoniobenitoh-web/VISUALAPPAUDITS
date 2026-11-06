@@ -4,6 +4,7 @@ import { ExcelService } from '../../services/excelService';
 import { DbService } from '../../services/dbService';
 import { SheetsService, SyncAuditResult } from '../../services/sheetsService';
 import { getPositionsForSpace } from '../../data/defaultData';
+import { getStorePosmConfig } from '../../data/storePosmData';
 import { SaleslandLogo, XiaomiLogo } from '../SaleslandBrandLogos';
 import { 
   ArrowLeft, 
@@ -78,6 +79,11 @@ export const AuditSummaryScreen: React.FC<AuditSummaryScreenProps> = ({
   const incidentList = auditedList.filter(p => p.estadoPosicion === 'Incidencia');
   const pendingCount = Math.max(0, total - count);
   const complianceScore = total > 0 ? Math.round((count / total) * 100) : 0;
+
+  const posmDraft = useMemo(() => DbService.getAuditPosmDraft(store.tiendaId) || {}, [store.tiendaId]);
+  const posmConfig = useMemo(() => getStorePosmConfig(store.tiendaId), [store.tiendaId]);
+  const storePosmItems = useMemo(() => posmConfig?.elementos || [], [posmConfig]);
+  const posmAuditedCount = storePosmItems.filter(it => posmDraft[it.id] && posmDraft[it.id].estadoVisual !== 'Pendiente').length;
 
   // Lista consolidada de posiciones para reporte oficial (incluye todas las del planograma)
   const fullStorePositionsList: PositionAuditState[] = useMemo(() => {
@@ -184,6 +190,7 @@ export const AuditSummaryScreen: React.FC<AuditSummaryScreenProps> = ({
       incidenciasCount: incidentList.length,
       pendientesCount: pendingCount,
       positions: fullStorePositionsList,
+      posmElements: Object.values(posmDraft),
       sincronizadoSheets: true
     };
   };
@@ -223,6 +230,7 @@ export const AuditSummaryScreen: React.FC<AuditSummaryScreenProps> = ({
       // Guardar auditoría localmente y vaciar borrador
       DbService.saveAuditRecord(record);
       DbService.clearDraft(store.tiendaId);
+      DbService.clearAuditPosmDraft(store.tiendaId);
 
       setSyncResult(result);
       setMode('drive_success');
@@ -232,6 +240,7 @@ export const AuditSummaryScreen: React.FC<AuditSummaryScreenProps> = ({
       record.sincronizadoSheets = false;
       DbService.saveAuditRecord(record);
       DbService.clearDraft(store.tiendaId);
+      DbService.clearAuditPosmDraft(store.tiendaId);
       alert('Se ha guardado el reporte vigente en la aplicación. Revisa la conexión de red para sincronizar las fotos con Google Drive.');
       setMode('drive_success');
     } finally {
@@ -418,6 +427,58 @@ export const AuditSummaryScreen: React.FC<AuditSummaryScreenProps> = ({
                 </div>
               </div>
             </div>
+
+            {/* Bloque de Cumplimiento POSM & Extravisibilidad */}
+            {storePosmItems.length > 0 && (
+              <div className="bg-slate-50 border border-slate-200/90 rounded-2xl p-4 sm:p-5 space-y-3 shadow-xs">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Building2 className="w-5 h-5 text-[#009ca6]" />
+                    <h4 className="text-xs sm:text-sm font-black text-slate-900">
+                      POSM & Extravisibilidad ({posmAuditedCount} de {storePosmItems.length} auditados)
+                    </h4>
+                  </div>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-teal-100 text-teal-800">
+                    Lonas & Duratrans
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                  {storePosmItems.map((item) => {
+                    const st = posmDraft[item.id];
+                    const isOk = st?.estadoVisual === 'OK';
+                    const isInc = st?.estadoVisual === 'Incidencia';
+
+                    return (
+                      <div
+                        key={item.id}
+                        className="p-3 rounded-xl border border-slate-200 bg-white flex items-center justify-between gap-2 shadow-2xs"
+                      >
+                        <div className="min-w-0">
+                          <span className="text-xs font-black text-slate-800 truncate block">
+                            {item.nombre}
+                          </span>
+                          <span className="text-[10px] text-slate-500 font-mono">
+                            {item.medida} · {item.material}
+                          </span>
+                        </div>
+                        <span
+                          className={`text-[10px] font-black px-2.5 py-0.5 rounded-full shrink-0 ${
+                            isOk
+                              ? 'bg-emerald-50 text-emerald-700 border border-emerald-300'
+                              : isInc
+                              ? 'bg-rose-50 text-rose-700 border border-rose-300'
+                              : 'bg-amber-50 text-amber-700 border border-amber-300'
+                          }`}
+                        >
+                          {st?.estadoVisual || 'Pendiente'}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
           </div>
 
@@ -776,6 +837,58 @@ export const AuditSummaryScreen: React.FC<AuditSummaryScreenProps> = ({
                 </button>
               </div>
             </div>
+
+            {/* Bloque de Cumplimiento POSM & Extravisibilidad */}
+            {storePosmItems.length > 0 && (
+              <div className="bg-slate-50 border border-slate-200/90 rounded-2xl p-4 sm:p-5 space-y-3 shadow-xs">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Building2 className="w-5 h-5 text-[#009ca6]" />
+                    <h4 className="text-xs sm:text-sm font-black text-slate-900">
+                      POSM & Extravisibilidad ({posmAuditedCount} de {storePosmItems.length} auditados)
+                    </h4>
+                  </div>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-teal-100 text-teal-800">
+                    Lonas & Duratrans
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                  {storePosmItems.map((item) => {
+                    const st = posmDraft[item.id];
+                    const isOk = st?.estadoVisual === 'OK';
+                    const isInc = st?.estadoVisual === 'Incidencia';
+
+                    return (
+                      <div
+                        key={item.id}
+                        className="p-3 rounded-xl border border-slate-200 bg-white flex items-center justify-between gap-2 shadow-2xs"
+                      >
+                        <div className="min-w-0">
+                          <span className="text-xs font-black text-slate-800 truncate block">
+                            {item.nombre}
+                          </span>
+                          <span className="text-[10px] text-slate-500 font-mono">
+                            {item.medida} · {item.material}
+                          </span>
+                        </div>
+                        <span
+                          className={`text-[10px] font-black px-2.5 py-0.5 rounded-full shrink-0 ${
+                            isOk
+                              ? 'bg-emerald-50 text-emerald-700 border border-emerald-300'
+                              : isInc
+                              ? 'bg-rose-50 text-rose-700 border border-rose-300'
+                              : 'bg-amber-50 text-amber-700 border border-amber-300'
+                          }`}
+                        >
+                          {st?.estadoVisual || 'Pendiente'}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
           </div>
 

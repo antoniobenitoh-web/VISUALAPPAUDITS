@@ -117,6 +117,7 @@ export interface AuditRecord {
   incidenciasCount: number;
   pendientesCount: number;
   positions: PositionAuditState[];
+  posmElements?: VisualElementAuditState[];
   sincronizadoSheets: boolean;
 }
 
@@ -189,6 +190,7 @@ export type VisualIncidentMotivo =
   | 'Medidas no coinciden'
   | 'Material roto o dañado de origen'
   | 'Falta perfilería/sujeción'
+  | 'Campaña desfasada'
   | 'Otro';
 
 export interface VisualElementDefinition {
@@ -199,7 +201,8 @@ export interface VisualElementDefinition {
     | 'Cartelería / Cabecero'
     | 'Merchandising / Metacrilato'
     | 'Pantalla Digital / Hanshow'
-    | 'Faldón Mesa / Vinilo';
+    | 'Faldón Mesa / Vinilo'
+    | 'Duratrans / Filmina';
   ubicacionEspacio: string;
   campanaOficial: string;
   medidasOficiales: string;
@@ -209,7 +212,9 @@ export interface VisualElementDefinition {
     | 'cabecero_wall'
     | 'stands_merch'
     | 'hanshow_screen'
-    | 'faldon_mesa';
+    | 'faldon_mesa'
+    | 'columna'
+    | 'top_table';
   imagenReferenciaAntes?: string;
   imagenReferenciaDespues?: string;
 }

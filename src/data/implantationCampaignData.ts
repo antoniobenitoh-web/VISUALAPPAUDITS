@@ -8,6 +8,7 @@ import {
   VisualElementDefinition
 } from '../types';
 import { getPositionsForSpace } from './defaultData';
+import { getDynamicPosmDefinitionsForImplantation } from './storePosmData';
 
 export const ACTIVE_IMPLANTATION_CAMPAIGN = 'Lanzamiento Xiaomi 18 Pro Max';
 export const EXCLUSIVE_DRIVE_TEST_EMAIL = '';
@@ -848,6 +849,11 @@ export const getAllSwapAssignmentsForStore = (store: StoreCenter): SwapCampaignA
  */
 export const getVisualElementsForStore = (store: StoreCenter): VisualElementDefinition[] => {
   if (hasActiveImplantationCampaign(store)) {
+    const dynamicDefs = getDynamicPosmDefinitionsForImplantation(store);
+    if (dynamicDefs && dynamicDefs.length > 0) {
+      return dynamicDefs;
+    }
+
     return [
       {
         id: `${store.tiendaId}-POSM-LONA-WALL`,

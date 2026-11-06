@@ -1624,6 +1624,46 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                             <span>Pulsa sobre cualquiera de las imágenes para verla en grande</span>
                           </p>
                         </div>
+                      ) : activeVisualDef.imagenReferenciaDespues && (activeVisualDef.guiaVisualTipo === 'columna' || activeVisualDef.guiaVisualTipo === 'top_table') ? (
+                        /* GUÍA OFICIAL PARA COLUMNAS Y TOP TABLES */
+                        <div className="rounded-2xl overflow-hidden border-2 border-teal-400/50 bg-slate-950/90 p-4 shadow-2xl space-y-3">
+                          <div className="flex items-center justify-between">
+                            <span className="text-[10px] font-black uppercase tracking-wider text-teal-300">
+                              {activeVisualDef.guiaVisualTipo === 'columna'
+                                ? `Referencia Oficial · ${activeVisualDef.nombreElemento}`
+                                : `Referencia Oficial · ${activeVisualDef.nombreElemento}`}
+                            </span>
+                            <span className="px-2 py-0.5 rounded bg-[#ff6900] text-white text-[9px] font-black uppercase">
+                              {activeVisualDef.tipoMaterial}
+                            </span>
+                          </div>
+                          <div
+                            onClick={() =>
+                              setPosmPreviewModal({
+                                src: activeVisualDef.imagenReferenciaDespues!,
+                                title: `${activeVisualDef.nombreElemento} — ${activeVisualDef.medidasOficiales}`,
+                                subtitle: `Campaña: ${activeVisualDef.campanaOficial}`
+                              })
+                            }
+                            className="relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-xl overflow-hidden bg-black border border-white/15 cursor-pointer group"
+                          >
+                            <img
+                              src={activeVisualDef.imagenReferenciaDespues}
+                              alt={activeVisualDef.nombreElemento}
+                              className="w-full h-full object-contain sm:object-cover group-hover:scale-102 transition-transform"
+                            />
+                            <div className="absolute top-2 left-2 px-2.5 py-1 rounded-lg bg-black/75 backdrop-blur-xs text-white text-[10px] font-bold border border-white/20">
+                              Cotas: <strong className="text-teal-300">{activeVisualDef.medidasOficiales}</strong>
+                            </div>
+                            <span className="absolute bottom-2 right-2 bg-black/80 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 border border-white/20">
+                              <ZoomIn className="w-3.5 h-3.5 text-teal-300" /> Ampliar imagen de referencia
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-teal-200/90 font-semibold text-center flex items-center justify-center gap-1.5">
+                            <ZoomIn className="w-3.5 h-3.5 text-teal-300" />
+                            <span>Pulsa sobre la imagen para verla en pantalla completa</span>
+                          </p>
+                        </div>
                       ) : isFaldon && activeVisualDef.imagenReferenciaDespues ? (
                         /* EJEMPLO REAL 2: FALDÓN MESA 1 CARA 1 CON FLECHAS SEÑALANDO LA TIRA DEL FALDÓN */
                         <div className="rounded-2xl overflow-hidden border-2 border-teal-400/50 bg-slate-950/90 p-4 shadow-2xl space-y-2.5">
