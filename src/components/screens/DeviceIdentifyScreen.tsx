@@ -366,7 +366,7 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
       posicionNumero: position.posicionNumero,
       modeloOficial: position.modeloOficial,
       modeloDetectado: finalDetectedModel,
-      imeiSerial: finalImei || (isDummy ? 'Maqueta (Exento)' : '-'),
+      imeiSerial: isDummy && incidentType !== 'robo' ? 'Maqueta (Exento)' : (finalImei || '-'),
       estadoPosicion: estadoPos,
       tipoIncidencia: tipoInc,
       esMaqueta: isDummy,
@@ -390,7 +390,7 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
   // Guarda automáticamente el estado en el borrador si hay un IMEI introducido antes de volver atrás
   const handleSafeBack = () => {
     const cleanImei = (imei || '').trim();
-    if (cleanImei && cleanImei !== '-') {
+    if (!isDummy && cleanImei && cleanImei !== '-') {
       const isIncident = incidentType !== null;
       const estadoPos: PositionStatus = photoUrl 
         ? (isIncident ? 'Incidencia' : 'OK') 
@@ -425,7 +425,7 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
       posicionNumero: position.posicionNumero,
       modeloOficial: position.modeloOficial,
       modeloDetectado: replacedModel.trim() || position.modeloOficial,
-      imeiSerial: cleanImei || (isDummy ? 'Maqueta (Exento)' : '-'),
+      imeiSerial: isDummy ? 'Maqueta (Exento)' : (cleanImei || '-'),
       estadoPosicion: 'Pendiente',
       tipoIncidencia: mapIncidentCategory(incidentType),
       esMaqueta: isDummy,
@@ -487,142 +487,6 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
               </div>
             </div>
 
-            {/* Opciones de Identificación */}
-            <div className="space-y-2.5">
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">
-                Método de Lectura
-              </label>
-
-              {/* Botón Unificado de Escaneo con Cámara Inteligente */}
-              <button
-                type="button"
-                onClick={() => {
-                  setScannerMode(isSmartphone ? 'barcode' : 'ocr');
-                  setShowScanner(true);
-                }}
-                className="w-full bg-white hover:bg-slate-50 border border-slate-200/90 hover:border-[#009ca6] rounded-2xl p-4 text-left flex items-center justify-between transition active:scale-[0.99] group shadow-xs cursor-pointer"
-              >
-                <div className="flex items-center gap-3.5">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-[#009ca6] text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition">
-                    <Camera className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <h4 className="text-xs sm:text-sm font-black text-slate-900 group-hover:text-[#104a60] transition-colors">
-                        Escanear con cámara
-                      </h4>
-                      <span className="text-[9px] font-black uppercase tracking-wider bg-teal-50 text-teal-800 px-2 py-0.5 rounded-full border border-teal-200/80">
-                        {isSmartphone ? 'Código de barras / OCR' : 'OCR Pantalla / Código'}
-                      </span>
-                    </div>
-                    <p className="text-[11px] text-slate-500">
-                      {isSmartphone 
-                        ? 'Lector de IMEI por código de barras o texto en pantalla' 
-                        : 'Lector automático de Número de Serie en pantalla o caja'}
-                    </p>
-                  </div>
-                </div>
-                <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-[#009ca6] group-hover:translate-x-0.5 transition" />
-              </button>
-
-              {/* Botón Entrada Manual */}
-              <button
-                type="button"
-                onClick={() => setSubStep('manual_keypad')}
-                className="w-full bg-white hover:bg-slate-50 border border-slate-200/90 hover:border-[#009ca6] rounded-2xl p-4 text-left flex items-center justify-between transition active:scale-[0.99] group shadow-xs cursor-pointer"
-              >
-                <div className="flex items-center gap-3.5">
-                  <div className="w-12 h-12 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 group-hover:bg-[#104a60] group-hover:text-white transition">
-                    <Edit3 className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs sm:text-sm font-black text-slate-900 group-hover:text-[#104a60] transition-colors">
-                      Teclado numérico táctil
-                    </h4>
-                    <p className="text-[11px] text-slate-500">Para terminales sin cámara o introducción manual</p>
-                  </div>
-                </div>
-                <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-[#009ca6] group-hover:translate-x-0.5 transition" />
-              </button>
-            </div>
-
-            {/* Visualizador Bloqueado de IMEI o Número de Serie (Solo Escaneo o Teclado) */}
-            <div className="pt-2">
-              <div className="flex items-center justify-between mb-1.5">
-                <div className="flex items-center gap-1.5">
-                  <Lock className="w-3.5 h-3.5 text-slate-500" />
-                  <label className="block text-xs font-bold text-slate-800">
-                    {isSmartphone ? 'IMEI / Serial Asignado' : 'Número de Serie (S/N)'}
-                  </label>
-                </div>
-                <span className="text-[10px] font-bold text-teal-800 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-200/80 flex items-center gap-1">
-                  <Lock className="w-2.5 h-2.5 text-teal-600" />
-                  <span>Solo Escáner / Teclado</span>
-                </span>
-              </div>
-              <div className="relative">
-                <input
-                  type="text"
-                  readOnly
-                  value={imei}
-                  placeholder={
-                    isSmartphone 
-                      ? 'Bloqueado · Usa "Escanear" o "Teclado táctil" arriba' 
-                      : 'Bloqueado · Usa "Escanear S/N" o "Teclado táctil"'
-                  }
-                  className={`w-full rounded-2xl px-4 py-3.5 text-sm font-mono font-black transition cursor-default select-all ${
-                    imei
-                      ? 'bg-emerald-50/80 border-2 border-emerald-500/80 text-emerald-950 shadow-xs'
-                      : 'bg-slate-100 border border-slate-300 text-slate-400 placeholder:text-slate-400/90 placeholder:text-xs placeholder:font-normal'
-                  }`}
-                />
-                {imei ? (
-                  <button
-                    type="button"
-                    onClick={() => setImei('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 p-1.5 rounded-xl transition cursor-pointer"
-                    title="Borrar para reescanear"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
-                ) : (
-                  <div className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
-                    <Lock className="w-4 h-4 text-slate-400" />
-                  </div>
-                )}
-              </div>
-              <div className="flex items-center justify-between mt-1 text-[10px]">
-                <div className="text-slate-500">
-                  {imei ? (
-                    validateSerialFormat(imei) ? (
-                      <span className="text-emerald-700 font-bold flex items-center gap-1">
-                        <Check className="w-3.5 h-3.5 text-emerald-600" />
-                        <span>Número de Serie Xiaomi validado ({imei})</span>
-                      </span>
-                    ) : validateImeiLuhn(imei) ? (
-                      <span className="text-emerald-700 font-bold flex items-center gap-1">
-                        <Check className="w-3.5 h-3.5 text-emerald-600" />
-                        <span>IMEI validado con algoritmo Luhn (15 dígitos)</span>
-                      </span>
-                    ) : (
-                      <span>✓ {isSmartphone ? 'IMEI' : 'Serial'} registrado ({imei.length} caracteres)</span>
-                    )
-                  ) : (
-                    'Campo de visualización. Para introducir valor pulsa Escanear o Teclado arriba.'
-                  )}
-                </div>
-                {imei && (
-                  <button
-                    type="button"
-                    onClick={() => setSubStep('manual_keypad')}
-                    className="text-[#009ca6] font-bold hover:underline cursor-pointer"
-                  >
-                    Editar con teclado
-                  </button>
-                )}
-              </div>
-            </div>
-
             {/* Selector de Tipo de Terminal: LDU o Maqueta */}
             <div className="flex items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-2xl">
               <div className="pr-2">
@@ -643,7 +507,10 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
                 </button>
                 <button
                   type="button"
-                  onClick={() => setIsDummy(true)}
+                  onClick={() => {
+                    setIsDummy(true);
+                    setShowScanner(false);
+                  }}
                   className={`px-3 py-1.5 text-xs font-black rounded-lg transition cursor-pointer ${
                     isDummy ? 'bg-orange-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'
                   }`}
@@ -652,6 +519,156 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
                 </button>
               </div>
             </div>
+
+            {!isDummy ? (
+              <>
+                {/* Opciones de Identificación (Solo cuando es LDU) */}
+                <div className="space-y-2.5 animate-fadeIn">
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">
+                    Método de Lectura
+                  </label>
+
+                  {/* Botón Unificado de Escaneo con Cámara Inteligente */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setScannerMode(isSmartphone ? 'barcode' : 'ocr');
+                      setShowScanner(true);
+                    }}
+                    className="w-full bg-white hover:bg-slate-50 border border-slate-200/90 hover:border-[#009ca6] rounded-2xl p-4 text-left flex items-center justify-between transition active:scale-[0.99] group shadow-xs cursor-pointer"
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-[#009ca6] text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition">
+                        <Camera className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <h4 className="text-xs sm:text-sm font-black text-slate-900 group-hover:text-[#104a60] transition-colors">
+                            Escanear con cámara
+                          </h4>
+                          <span className="text-[9px] font-black uppercase tracking-wider bg-teal-50 text-teal-800 px-2 py-0.5 rounded-full border border-teal-200/80">
+                            {isSmartphone ? 'Código de barras / OCR' : 'OCR Pantalla / Código'}
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-slate-500">
+                          {isSmartphone 
+                            ? 'Lector de IMEI por código de barras o texto en pantalla' 
+                            : 'Lector automático de Número de Serie en pantalla o caja'}
+                        </p>
+                      </div>
+                    </div>
+                    <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-[#009ca6] group-hover:translate-x-0.5 transition" />
+                  </button>
+
+                  {/* Botón Entrada Manual */}
+                  <button
+                    type="button"
+                    onClick={() => setSubStep('manual_keypad')}
+                    className="w-full bg-white hover:bg-slate-50 border border-slate-200/90 hover:border-[#009ca6] rounded-2xl p-4 text-left flex items-center justify-between transition active:scale-[0.99] group shadow-xs cursor-pointer"
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <div className="w-12 h-12 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 group-hover:bg-[#104a60] group-hover:text-white transition">
+                        <Edit3 className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h4 className="text-xs sm:text-sm font-black text-slate-900 group-hover:text-[#104a60] transition-colors">
+                          Teclado numérico táctil
+                        </h4>
+                        <p className="text-[11px] text-slate-500">Para terminales sin cámara o introducción manual</p>
+                      </div>
+                    </div>
+                    <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-[#009ca6] group-hover:translate-x-0.5 transition" />
+                  </button>
+                </div>
+
+                {/* Visualizador Bloqueado de IMEI o Número de Serie (Solo Escaneo o Teclado) */}
+                <div className="pt-2 animate-fadeIn">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <div className="flex items-center gap-1.5">
+                      <Lock className="w-3.5 h-3.5 text-slate-500" />
+                      <label className="block text-xs font-bold text-slate-800">
+                        {isSmartphone ? 'IMEI / Serial Asignado' : 'Número de Serie (S/N)'}
+                      </label>
+                    </div>
+                    <span className="text-[10px] font-bold text-teal-800 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-200/80 flex items-center gap-1">
+                      <Lock className="w-2.5 h-2.5 text-teal-600" />
+                      <span>Solo Escáner / Teclado</span>
+                    </span>
+                  </div>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      readOnly
+                      value={imei}
+                      placeholder={
+                        isSmartphone 
+                          ? 'Bloqueado · Usa "Escanear" o "Teclado táctil" arriba' 
+                          : 'Bloqueado · Usa "Escanear S/N" o "Teclado táctil"'
+                      }
+                      className={`w-full rounded-2xl px-4 py-3.5 text-sm font-mono font-black transition cursor-default select-all ${
+                        imei
+                          ? 'bg-emerald-50/80 border-2 border-emerald-500/80 text-emerald-950 shadow-xs'
+                          : 'bg-slate-100 border border-slate-300 text-slate-400 placeholder:text-slate-400/90 placeholder:text-xs placeholder:font-normal'
+                      }`}
+                    />
+                    {imei ? (
+                      <button
+                        type="button"
+                        onClick={() => setImei('')}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 p-1.5 rounded-xl transition cursor-pointer"
+                        title="Borrar para reescanear"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    ) : (
+                      <div className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+                        <Lock className="w-4 h-4 text-slate-400" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex items-center justify-between mt-1 text-[10px]">
+                    <div className="text-slate-500">
+                      {imei ? (
+                        validateSerialFormat(imei) ? (
+                          <span className="text-emerald-700 font-bold flex items-center gap-1">
+                            <Check className="w-3.5 h-3.5 text-emerald-600" />
+                            <span>Número de Serie Xiaomi validado ({imei})</span>
+                          </span>
+                        ) : validateImeiLuhn(imei) ? (
+                          <span className="text-emerald-700 font-bold flex items-center gap-1">
+                            <Check className="w-3.5 h-3.5 text-emerald-600" />
+                            <span>IMEI validado con algoritmo Luhn (15 dígitos)</span>
+                          </span>
+                        ) : (
+                          <span>✓ {isSmartphone ? 'IMEI' : 'Serial'} registrado ({imei.length} caracteres)</span>
+                        )
+                      ) : (
+                        'Campo de visualización. Para introducir valor pulsa Escanear o Teclado arriba.'
+                      )}
+                    </div>
+                    {imei && (
+                      <button
+                        type="button"
+                        onClick={() => setSubStep('manual_keypad')}
+                        className="text-[#009ca6] font-bold hover:underline cursor-pointer"
+                      >
+                        Editar con teclado
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="p-4 bg-orange-50/80 border border-orange-200 rounded-2xl flex items-center gap-3 text-xs text-orange-950 font-bold animate-fadeIn">
+                <CheckCircle2 className="w-5 h-5 text-orange-600 shrink-0" />
+                <div>
+                  <span className="block font-black">Maqueta seleccionada (Exenta de IMEI / Número de Serie)</span>
+                  <span className="text-[11px] font-medium text-orange-800">
+                    Las maquetas no requieren escanear ni introducir IMEI. Si es un dispositivo operativo, pulsa en "LDU" arriba para habilitar el escáner.
+                  </span>
+                </div>
+              </div>
+            )}
             {/* SECCIÓN DE INCIDENCIAS (Debajo del Tipo de Terminal) */}
             <div className="space-y-3 pt-2">
               <div className="flex items-center justify-between">
@@ -1351,10 +1368,10 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
                 </span>
               </div>
 
-              {!incidentType && (
+              {!incidentType && !isDummy && (
                 <div className="flex justify-between py-1 border-b border-slate-100">
                   <span className="text-slate-400 font-medium">{isSmartphone ? 'IMEI Registrado:' : 'Número de Serie:'}</span>
-                  <span className="font-mono font-bold text-slate-900">{imei || (isDummy ? 'Maqueta (Exento)' : 'LDU')}</span>
+                  <span className="font-mono font-bold text-slate-900">{imei || 'LDU'}</span>
                 </div>
               )}
 

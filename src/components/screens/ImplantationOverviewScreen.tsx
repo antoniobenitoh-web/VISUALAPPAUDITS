@@ -60,6 +60,12 @@ interface ImplantationOverviewScreenProps {
   visualStates: Record<string, VisualElementAuditState>;
   activeTab?: 'return_devices' | 'swap_devices' | 'visual_plv';
   onTabChange?: (tab: 'return_devices' | 'swap_devices' | 'visual_plv') => void;
+  initialActiveSpace?: string;
+  onActiveSpaceChange?: (space: string) => void;
+  initialSelectedPositionId?: string | null;
+  onSelectPositionIdChange?: (posId: string) => void;
+  initialViewMode?: 'visual' | 'list';
+  onViewModeChange?: (mode: 'visual' | 'list') => void;
   initialOpenSummary?: boolean;
   onSelectSwapPosition: (pos: PlanogramPosition, assignment: SwapCampaignAssignment) => void;
   onUpdateVisualState: (state: VisualElementAuditState) => void;
@@ -82,6 +88,12 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
   visualStates,
   activeTab,
   onTabChange,
+  initialActiveSpace,
+  onActiveSpaceChange,
+  initialSelectedPositionId,
+  onSelectPositionIdChange,
+  initialViewMode,
+  onViewModeChange,
   initialOpenSummary = false,
   onSelectSwapPosition,
   onUpdateVisualState,
@@ -98,7 +110,11 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
   };
 
   // Pestañas superiores dentro de Dispositivos: "Vista Interactiva 3D" | "Lista de Dispositivos"
-  const [viewMode, setViewMode] = useState<'visual' | 'list'>('visual');
+  const [viewMode, setViewModeState] = useState<'visual' | 'list'>(initialViewMode || 'visual');
+  const setViewMode = (mode: 'visual' | 'list') => {
+    setViewModeState(mode);
+    if (onViewModeChange) onViewModeChange(mode);
+  };
   const [showLegend, setShowLegend] = useState(true);
   const [zoomLevel, setZoomLevel] = useState<number>(1);
   const [isSummaryModalOpen, setIsSummaryModalOpen] = useState<boolean>(initialOpenSummary);
@@ -109,7 +125,16 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
       : ['MESA 1 · Cara 1', 'MESA 1 · Cara 2', 'WALL', 'LINEAL SMARTWATCH'];
   }, [store.availableSpaces]);
 
-  const [activeSpace, setActiveSpace] = useState<string>(availableSpaces[0]);
+  const [activeSpace, setActiveSpaceState] = useState<string>(() => {
+    if (initialActiveSpace && availableSpaces.includes(initialActiveSpace)) {
+      return initialActiveSpace;
+    }
+    return availableSpaces[0];
+  });
+  const setActiveSpace = (space: string) => {
+    setActiveSpaceState(space);
+    if (onActiveSpaceChange) onActiveSpaceChange(space);
+  };
 
   // Si estamos en Mesa 1 Cara 1 durante la Nueva Implantación, se usan las 11 posiciones oficiales de la campaña
   const isMesa1Cara1 =
@@ -173,6 +198,22 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
         return {
           ...r,
           imeiMemorizado: newImei.trim()
+        };
+      }
+      return r;
+    });
+    saveReturnDevicesDraft(updated);
+  };
+
+  const handleToggleReturnDummy = (id: string, nextDummy: boolean) => {
+    if (nextDummy && returnScannerTargetId === id) {
+      setReturnScannerTargetId(null);
+    }
+    const updated = returnDevices.map((r) => {
+      if (r.id === id) {
+        return {
+          ...r,
+          esDummy: nextDummy
         };
       }
       return r;
@@ -259,11 +300,19 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
     isFaldon?: boolean;
   } | null>(null);
 
-  // Selección de puesto en el mapa 3D (por defecto el primer puesto que interviene en el Swap)
-  const [selectedPos, setSelectedPos] = useState<PlanogramPosition>(() => {
+  // Selección de puesto en el mapa 3D (por defecto el puesto memorizado o el primero que interviene en el Swap)
+  const [selectedPos, setSelectedPosState] = useState<PlanogramPosition>(() => {
+    if (initialSelectedPositionId) {
+      const found = positions.find((p) => p.id === initialSelectedPositionId);
+      if (found) return found;
+    }
     const firstCampaignPos = positions.find((p) => Boolean(getSwapAssignmentForPosition(p)));
     return firstCampaignPos || positions[0];
   });
+  const setSelectedPos = (pos: PlanogramPosition) => {
+    setSelectedPosState(pos);
+    if (pos && onSelectPositionIdChange) onSelectPositionIdChange(pos.id);
+  };
 
   // Imagen de fondo del espacio 3D: en Mesa 1 Cara 1 se utiliza el nuevo render oficial de lanzamiento Xiaomi 18
   const hasWall =
@@ -1120,9 +1169,11 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
 
                         <button
                           type="button"
-                          onClick={() =>
-                            onSelectSwapPosition(selectedPos, selectedPosAssignment)
-                          }
+                          onClick={() => {
+                            if (onActiveSpaceChange) onActiveSpaceChange(activeSpace);
+                            if (onSelectPositionIdChange) onSelectPositionIdChange(selectedPos.id);
+                            onSelectSwapPosition(selectedPos, selectedPosAssignment);
+                          }}
                           className="w-full py-3.5 bg-gradient-to-r from-[#009ca6] to-[#00b4bf] hover:from-[#008992] hover:to-[#00a3ad] active:scale-[0.98] text-white font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-[#009ca6]/20 transition flex items-center justify-center gap-2 cursor-pointer"
                         >
                           <PackagePlus className="w-4 h-4" />
@@ -1247,15 +1298,30 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                           Puesto {dev.posicionAnterior} · {dev.mesaId}
                         </span>
                         <div className="flex items-center gap-1.5">
-                          <span
-                            className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider ${
-                              dev.esDummy
-                                ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
-                                : 'bg-[#ff6900]/15 text-[#ff6900] border border-[#ff6900]/30'
-                            }`}
-                          >
-                            {dev.esDummy ? 'Maqueta / Dummy' : 'LDU Operativo'}
-                          </span>
+                          <div className="flex items-center bg-slate-100 p-0.5 rounded-xl border border-slate-200">
+                            <button
+                              type="button"
+                              onClick={() => handleToggleReturnDummy(dev.id, false)}
+                              className={`px-2 py-0.5 rounded-lg text-[10px] font-black transition cursor-pointer ${
+                                !dev.esDummy
+                                  ? 'bg-[#009ca6] text-white shadow-2xs'
+                                  : 'text-slate-600 hover:text-slate-900'
+                              }`}
+                            >
+                              LDU
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => handleToggleReturnDummy(dev.id, true)}
+                              className={`px-2 py-0.5 rounded-lg text-[10px] font-black transition cursor-pointer ${
+                                dev.esDummy
+                                  ? 'bg-orange-600 text-white shadow-2xs'
+                                  : 'text-slate-600 hover:text-slate-900'
+                              }`}
+                            >
+                              Maqueta
+                            </button>
+                          </div>
                           {isRetirado && (
                             <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-emerald-600 text-white flex items-center gap-1 shadow-xs">
                               <Check className="w-3 h-3" /> Retirado
@@ -1279,60 +1345,63 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                         </p>
                       </div>
 
-                      {/* Bloque de IMEI / Serial del Dispositivo a Retirar (Editable y Escaneable) */}
-                      <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
-                        <div className="flex items-center justify-between">
-                          <label className="text-[11px] font-bold uppercase tracking-wider text-slate-600 flex items-center gap-1.5">
-                            <ShieldCheck className="w-3.5 h-3.5 text-[#009ca6]" />
-                            <span>IMEI / S/N a retirar</span>
-                          </label>
-                          {dev.imeiMemorizado ? (
-                            <span className="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-cyan-100 text-cyan-800 border border-cyan-200">
-                              Memorizado / Asignado
-                            </span>
-                          ) : (
-                            <span className="text-[9px] font-medium text-slate-400">
-                              {dev.esDummy ? 'Maqueta (sin electrónica)' : 'Introduce o escanea'}
-                            </span>
-                          )}
-                        </div>
-
-                        <div className="flex items-center gap-2">
-                          <div className="relative flex-1">
-                            <input
-                              type="text"
-                              value={dev.imeiMemorizado || ''}
-                              onChange={(e) => handleUpdateReturnImei(dev.id, e.target.value)}
-                              placeholder={
-                                dev.esDummy
-                                  ? 'Sin IMEI (Maqueta - opcional)'
-                                  : 'Introduce o escanea IMEI a retirar...'
-                              }
-                              className="w-full bg-white text-slate-900 font-mono text-xs sm:text-sm font-bold px-3 py-2 rounded-xl border border-slate-300 focus:outline-none focus:border-[#009ca6] focus:ring-2 focus:ring-[#009ca6]/20 transition"
-                            />
-                            {dev.imeiMemorizado && (
-                              <button
-                                type="button"
-                                onClick={() => handleUpdateReturnImei(dev.id, '')}
-                                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
-                                title="Limpiar IMEI"
-                              >
-                                <RotateCcw className="w-3 h-3" />
-                              </button>
+                      {/* Bloque de IMEI / Serial del Dispositivo a Retirar: Oculto cuando se marca Maqueta */}
+                      {!dev.esDummy ? (
+                        <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2 animate-fadeIn">
+                          <div className="flex items-center justify-between">
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-slate-600 flex items-center gap-1.5">
+                              <ShieldCheck className="w-3.5 h-3.5 text-[#009ca6]" />
+                              <span>IMEI / S/N a retirar</span>
+                            </label>
+                            {dev.imeiMemorizado ? (
+                              <span className="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-cyan-100 text-cyan-800 border border-cyan-200">
+                                Memorizado / Asignado
+                              </span>
+                            ) : (
+                              <span className="text-[9px] font-medium text-slate-400">
+                                Introduce o escanea
+                              </span>
                             )}
                           </div>
 
-                          <button
-                            type="button"
-                            onClick={() => setReturnScannerTargetId(dev.id)}
-                            className="h-9 px-3 rounded-xl bg-gradient-to-r from-[#009ca6] to-[#072431] hover:opacity-90 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition shrink-0 cursor-pointer"
-                            title="Escanear IMEI / S/N con cámara (Código de barras u OCR)"
-                          >
-                            <Camera className="w-3.5 h-3.5" />
-                            <span className="hidden sm:inline">Escanear</span>
-                          </button>
+                          <div className="flex items-center gap-2">
+                            <div className="relative flex-1">
+                              <input
+                                type="text"
+                                value={dev.imeiMemorizado || ''}
+                                onChange={(e) => handleUpdateReturnImei(dev.id, e.target.value)}
+                                placeholder="Introduce o escanea IMEI a retirar..."
+                                className="w-full bg-white text-slate-900 font-mono text-xs sm:text-sm font-bold px-3 py-2 rounded-xl border border-slate-300 focus:outline-none focus:border-[#009ca6] focus:ring-2 focus:ring-[#009ca6]/20 transition"
+                              />
+                              {dev.imeiMemorizado && (
+                                <button
+                                  type="button"
+                                  onClick={() => handleUpdateReturnImei(dev.id, '')}
+                                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
+                                  title="Limpiar IMEI"
+                                >
+                                  <RotateCcw className="w-3 h-3" />
+                                </button>
+                              )}
+                            </div>
+
+                            <button
+                              type="button"
+                              onClick={() => setReturnScannerTargetId(dev.id)}
+                              className="h-9 px-3 rounded-xl bg-gradient-to-r from-[#009ca6] to-[#072431] hover:opacity-90 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition shrink-0 cursor-pointer"
+                              title="Escanear IMEI / S/N con cámara (Código de barras u OCR)"
+                            >
+                              <Camera className="w-3.5 h-3.5" />
+                              <span className="hidden sm:inline">Escanear</span>
+                            </button>
+                          </div>
                         </div>
-                      </div>
+                      ) : (
+                        <div className="p-3 rounded-2xl bg-orange-50/80 border border-orange-200 text-orange-950 text-xs font-bold flex items-center gap-2 animate-fadeIn">
+                          <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
+                          <span>Maqueta seleccionada (exenta de IMEI). Pulsa en "LDU" arriba si necesitas escanear IMEI.</span>
+                        </div>
+                      )}
 
                       {isIncidencia && dev.motivoIncidencia && (
                         <div className="p-2.5 rounded-xl bg-amber-100/80 border border-amber-300 text-amber-900 text-xs font-bold flex items-center gap-2">

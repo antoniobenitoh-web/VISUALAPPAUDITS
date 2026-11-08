@@ -37,6 +37,12 @@ interface PlanogramOverviewScreenProps {
   store: StoreCenter;
   currentUser?: UserProfile;
   auditStates: Record<string, PositionAuditState>;
+  initialActiveSpace?: string;
+  onActiveSpaceChange?: (space: string) => void;
+  initialSelectedPositionId?: string | null;
+  onSelectPositionIdChange?: (posId: string) => void;
+  initialViewMode?: 'visual' | 'list';
+  onViewModeChange?: (mode: 'visual' | 'list') => void;
   onSelectPosition: (pos: PlanogramPosition) => void;
   onFinishAudit: () => void;
   onBack: () => void;
@@ -47,12 +53,22 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
   store,
   currentUser,
   auditStates,
+  initialActiveSpace,
+  onActiveSpaceChange,
+  initialSelectedPositionId,
+  onSelectPositionIdChange,
+  initialViewMode,
+  onViewModeChange,
   onSelectPosition,
   onFinishAudit,
   onBack,
   onResetAudit
 }) => {
-  const [viewMode, setViewMode] = useState<'visual' | 'list'>('visual');
+  const [viewMode, setViewModeState] = useState<'visual' | 'list'>(initialViewMode || 'visual');
+  const setViewMode = (mode: 'visual' | 'list') => {
+    setViewModeState(mode);
+    if (onViewModeChange) onViewModeChange(mode);
+  };
   const [showLegend, setShowLegend] = useState(false);
   const [zoomLevel, setZoomLevel] = useState<number>(1);
 
@@ -81,7 +97,16 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
     return list;
   }, [rawAvailableSpaces, posmConfig]);
 
-  const [activeSpace, setActiveSpace] = useState<string>(availableSpaces[0]);
+  const [activeSpace, setActiveSpaceState] = useState<string>(() => {
+    if (initialActiveSpace && availableSpaces.includes(initialActiveSpace)) {
+      return initialActiveSpace;
+    }
+    return availableSpaces[0];
+  });
+  const setActiveSpace = (space: string) => {
+    setActiveSpaceState(space);
+    if (onActiveSpaceChange) onActiveSpaceChange(space);
+  };
   const isColumnaActive = activeSpace.toUpperCase().includes('COLUMNA');
   const isPosmTabActive = activeSpace.toUpperCase() === 'POSM';
   const positions = (isColumnaActive || isPosmTabActive) ? [] : getPositionsForSpace(store.tipoEspacioId, activeSpace, store);
@@ -158,7 +183,17 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
 
   const containerBgColor = (isWallActive || isMiniWallActive) ? '#9c9b99' : isLinealActive ? '#ded6ca' : '#c5c6c8';
 
-  const [selectedPos, setSelectedPos] = useState<PlanogramPosition>(positions[0] || null);
+  const [selectedPos, setSelectedPosState] = useState<PlanogramPosition>(() => {
+    if (initialSelectedPositionId) {
+      const found = positions.find(p => p.id === initialSelectedPositionId);
+      if (found) return found;
+    }
+    return positions[0] || null;
+  });
+  const setSelectedPos = (pos: PlanogramPosition) => {
+    setSelectedPosState(pos);
+    if (pos && onSelectPositionIdChange) onSelectPositionIdChange(pos.id);
+  };
 
   const totalPositions = useMemo(() => {
     let sum = 0;
@@ -969,7 +1004,11 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
 
                 {/* Botón Principal para auditar este puesto */}
                 <button
-                  onClick={() => onSelectPosition(selectedPos)}
+                  onClick={() => {
+                    if (onActiveSpaceChange) onActiveSpaceChange(activeSpace);
+                    if (onSelectPositionIdChange) onSelectPositionIdChange(selectedPos.id);
+                    onSelectPosition(selectedPos);
+                  }}
                   className="w-full py-3.5 bg-gradient-to-r from-[#009ca6] to-[#00b4bf] hover:from-[#008992] hover:to-[#00a3ad] active:scale-[0.98] text-white font-black text-xs sm:text-sm rounded-xl shadow-lg shadow-[#009ca6]/20 transition flex items-center justify-center gap-2 cursor-pointer group"
                 >
                   <span>

@@ -623,7 +623,11 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
 
               <button
                 type="button"
-                onClick={() => setTipoIn('DUMMY')}
+                onClick={() => {
+                  setTipoIn('DUMMY');
+                  setScannerTarget(null);
+                  setKeypadTarget(null);
+                }}
                 className={`py-3 px-4 rounded-2xl font-black text-sm border-2 transition flex items-center justify-center gap-2 cursor-pointer ${
                   tipoIn === 'DUMMY'
                     ? 'bg-orange-600 text-white border-orange-600 shadow-md'
@@ -710,9 +714,14 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
           )}
 
           {tipoIn === 'DUMMY' && (
-            <div className="p-4 bg-orange-50/70 border border-orange-200 rounded-2xl text-xs text-orange-950 font-bold flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
-              <span>Posición configurada como Maqueta DUMMY oficial sin IMEI.</span>
+            <div className="p-4 bg-orange-50/80 border border-orange-200 rounded-2xl text-xs text-orange-950 font-bold flex items-center gap-3 animate-fadeIn">
+              <CheckCircle2 className="w-5 h-5 text-orange-600 shrink-0" />
+              <div>
+                <span className="block font-black">Maqueta DUMMY seleccionada (Exenta de IMEI)</span>
+                <span className="text-[11px] font-medium text-orange-800">
+                  Las maquetas no requieren escanear ni introducir IMEI. Si es un dispositivo funcional, pulsa en "LDU (Operativo)" arriba para habilitar el escáner.
+                </span>
+              </div>
             </div>
           )}
         </div>

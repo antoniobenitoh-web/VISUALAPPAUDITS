@@ -49,6 +49,12 @@ export const App: React.FC = () => {
   const [visualStates, setVisualStates] = useState<Record<string, VisualElementAuditState>>({});
   const [activeImplantationTab, setActiveImplantationTab] = useState<'return_devices' | 'swap_devices' | 'visual_plv'>('return_devices');
   const [openImplantationSummaryOnMount, setOpenImplantationSummaryOnMount] = useState(false);
+  const [activeAuditSpace, setActiveAuditSpace] = useState<string>('');
+  const [lastAuditPositionId, setLastAuditPositionId] = useState<string | null>(null);
+  const [auditViewMode, setAuditViewMode] = useState<'visual' | 'list'>('visual');
+  const [activeImplantationSpace, setActiveImplantationSpace] = useState<string>('');
+  const [lastImplantationPositionId, setLastImplantationPositionId] = useState<string | null>(null);
+  const [implantationViewMode, setImplantationViewMode] = useState<'visual' | 'list'>('visual');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isOnline, setIsOnline] = useState(navigator.onLine);
 
@@ -100,6 +106,9 @@ export const App: React.FC = () => {
     setSwapStates(sMap);
     setVisualStates(vMap);
     setActiveImplantationTab('return_devices');
+    setActiveImplantationSpace('');
+    setLastImplantationPositionId(null);
+    setImplantationViewMode('visual');
     setOpenImplantationSummaryOnMount(openSummary);
     setCurrentStep('implantation_overview');
   };
@@ -145,6 +154,9 @@ export const App: React.FC = () => {
     }
 
     setAuditStates(map);
+    setActiveAuditSpace('');
+    setLastAuditPositionId(null);
+    setAuditViewMode('visual');
     setCurrentStep('planogram_3d');
   };
 
@@ -156,6 +168,9 @@ export const App: React.FC = () => {
       setSelectedStore(store);
       DbService.clearStoreAudit(store.tiendaId);
       setAuditStates({});
+      setActiveAuditSpace('');
+      setLastAuditPositionId(null);
+      setAuditViewMode('visual');
       setCurrentStep('planogram_3d');
     } else {
       handleSelectStore(store);
@@ -308,7 +323,14 @@ export const App: React.FC = () => {
               store={selectedStore}
               currentUser={currentUser}
               auditStates={auditStates}
+              initialActiveSpace={activeAuditSpace}
+              onActiveSpaceChange={setActiveAuditSpace}
+              initialSelectedPositionId={lastAuditPositionId}
+              onSelectPositionIdChange={setLastAuditPositionId}
+              initialViewMode={auditViewMode}
+              onViewModeChange={setAuditViewMode}
               onSelectPosition={(pos) => {
+                setLastAuditPositionId(pos.id);
                 setSelectedPosition(pos);
                 setCurrentStep('device_identify');
               }}
@@ -351,8 +373,15 @@ export const App: React.FC = () => {
               visualStates={visualStates}
               activeTab={activeImplantationTab}
               onTabChange={setActiveImplantationTab}
+              initialActiveSpace={activeImplantationSpace}
+              onActiveSpaceChange={setActiveImplantationSpace}
+              initialSelectedPositionId={lastImplantationPositionId}
+              onSelectPositionIdChange={setLastImplantationPositionId}
+              initialViewMode={implantationViewMode}
+              onViewModeChange={setImplantationViewMode}
               initialOpenSummary={openImplantationSummaryOnMount}
               onSelectSwapPosition={(pos, assignment) => {
+                setLastImplantationPositionId(pos.id);
                 setSelectedPosition(pos);
                 setSelectedSwapAssignment(assignment);
                 setActiveImplantationTab('swap_devices');

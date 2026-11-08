@@ -105,7 +105,7 @@ export const PositionInspectModal: React.FC<PositionInspectModalProps> = ({
       posicionNumero: position.posicionNumero,
       modeloOficial: position.modeloOficial,
       modeloDetectado,
-      imeiSerial,
+      imeiSerial: esMaqueta ? 'Maqueta (Exento)' : imeiSerial,
       estadoPosicion: isIncident ? 'Incidencia' : 'OK',
       tipoIncidencia: isIncident ? resolvedIncidentType : '',
       esMaqueta,
