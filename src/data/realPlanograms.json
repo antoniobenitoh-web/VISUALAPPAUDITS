@@ -74,195 +74,69 @@
     },
     {
       "pos": 13,
-      "device": "Redmi Note 17 Pro Max 5G Black",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 14,
-      "device": "Redmi Note 17 Pro Max 5G Green",
-      "dummy": true,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 15,
-      "device": "Redmi Watch 6",
-      "dummy": false,
-      "category": "Wearable"
-    },
-    {
-      "pos": 16,
-      "device": "Redmi Note 17 Pro 5G Black",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 17,
-      "device": "Redmi Note 17 Pro 5G Purple",
-      "dummy": true,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 18,
-      "device": "Redmi Watch 6 Active",
-      "dummy": false,
-      "category": "Wearable"
-    },
-    {
-      "pos": 19,
-      "device": "Redmi Note 17 5G Black",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 20,
-      "device": "Redmi Note 17 5G Blue",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 21,
       "device": "Redmi 17 5G Orange",
       "dummy": false,
       "category": "Smartphone"
     },
     {
-      "pos": 22,
-      "device": "Redmi Buds 8 Pro",
-      "dummy": true,
-      "category": "Audio"
-    },
-    {
-      "pos": 23,
+      "pos": 14,
       "device": "Redmi Buds 8",
       "dummy": true,
       "category": "Audio"
     },
     {
-      "pos": 3,
-      "device": "Xiaomi 17 Ultra Black",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 4,
-      "device": "Xiaomi 17 Black",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 5,
-      "device": "Xiaomi Watch 5",
-      "dummy": false,
-      "category": "Wearable"
-    },
-    {
-      "pos": 6,
-      "device": "Xiaomi Buds 6",
+      "pos": 15,
+      "device": "Redmi Buds 8 Pro",
       "dummy": true,
       "category": "Audio"
     },
     {
-      "pos": 7,
-      "device": "Xiaomi 17T Pro Blue",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 8,
-      "device": "Xiaomi Watch S5 45mm",
-      "dummy": false,
-      "category": "Wearable"
-    },
-    {
-      "pos": 9,
-      "device": "Xiaomi Smart Band 10 Pro",
-      "dummy": false,
-      "category": "Wearable"
-    },
-    {
-      "pos": 10,
-      "device": "Xiaomi 17T Purple",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 11,
-      "device": "Xiaomi 17T blue",
-      "dummy": true,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 12,
-      "device": "Xiaomi Smart Band 11 Active",
-      "dummy": false,
-      "category": "Wearable"
-    },
-    {
-      "pos": 13,
-      "device": "Redmi Note 17 Pro Max 5G Black",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 14,
-      "device": "Redmi Note 17 Pro Max 5G Green",
-      "dummy": true,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 15,
-      "device": "Redmi Watch 6",
-      "dummy": false,
-      "category": "Wearable"
-    },
-    {
       "pos": 16,
-      "device": "Redmi Note 17 Pro 5G Black",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 17,
-      "device": "Redmi Note 17 Pro 5G Purple",
-      "dummy": true,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 18,
-      "device": "Redmi Watch 6 Active",
-      "dummy": false,
-      "category": "Wearable"
-    },
-    {
-      "pos": 19,
       "device": "Redmi Note 17 5G Black",
       "dummy": false,
       "category": "Smartphone"
     },
     {
-      "pos": 20,
-      "device": "Redmi Note 17 5G Blue",
+      "pos": 17,
+      "device": "Redmi Note 17 5G Sky Teal",
       "dummy": false,
       "category": "Smartphone"
     },
     {
+      "pos": 18,
+      "device": "Redmi Note 17 Pro 5G Black",
+      "dummy": false,
+      "category": "Smartphone"
+    },
+    {
+      "pos": 19,
+      "device": "Redmi Note 17 Pro 5G Purple",
+      "dummy": true,
+      "category": "Smartphone"
+    },
+    {
+      "pos": 20,
+      "device": "Redmi Watch 6 Active Black",
+      "dummy": false,
+      "category": "Wearable"
+    },
+    {
       "pos": 21,
-      "device": "Redmi 17 5G Orange",
+      "device": "Redmi Note 17 Pro Max 5G Black",
       "dummy": false,
       "category": "Smartphone"
     },
     {
       "pos": 22,
-      "device": "Redmi Buds 8 Pro",
+      "device": "Redmi Note 17 Pro Max 5G Green",
       "dummy": true,
-      "category": "Audio"
+      "category": "Smartphone"
     },
     {
       "pos": 23,
-      "device": "Redmi Buds 8",
-      "dummy": true,
-      "category": "Audio"
+      "device": "Redmi Watch 6 Black",
+      "dummy": false,
+      "category": "Wearable"
     }
   ],
   "Table 2_Table 2": [

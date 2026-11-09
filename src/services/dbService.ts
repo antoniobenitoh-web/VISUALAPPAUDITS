@@ -106,12 +106,52 @@ export class DbService {
     localStorage.setItem(STORES_KEY, JSON.stringify(sanitized));
   }
 
+  // Migra posiciones antiguas de Table 2 Mesa 1 Cara 2 (numeración antigua 11..21) a la oficial P13..P23
+  static migrateTable2Mesa1Cara2Positions(positions: PositionAuditState[]): PositionAuditState[] {
+    if (!Array.isArray(positions)) return positions;
+    const hasOldM1C2 = positions.some(
+      (p) => p.posicionId === 'Table 2-MESA_1_·_Cara_2-P11' || (p.mesaId === 'MESA 1 · Cara 2' && p.posicionNumero === 11 && p.posicionId?.startsWith('Table 2-'))
+    );
+    if (!hasOldM1C2) return positions;
+
+    const remap: Record<number, { pos: number; model: string; dummy: boolean }> = {
+      19: { pos: 13, model: 'Redmi 17 5G Orange', dummy: false },
+      21: { pos: 14, model: 'Redmi Buds 8', dummy: true },
+      20: { pos: 15, model: 'Redmi Buds 8 Pro', dummy: true },
+      17: { pos: 16, model: 'Redmi Note 17 5G Black', dummy: false },
+      18: { pos: 17, model: 'Redmi Note 17 5G Sky Teal', dummy: false },
+      14: { pos: 18, model: 'Redmi Note 17 Pro 5G Black', dummy: false },
+      15: { pos: 19, model: 'Redmi Note 17 Pro 5G Purple', dummy: true },
+      16: { pos: 20, model: 'Redmi Watch 6 Active Black', dummy: false },
+      11: { pos: 21, model: 'Redmi Note 17 Pro Max 5G Black', dummy: false },
+      12: { pos: 22, model: 'Redmi Note 17 Pro Max 5G Green', dummy: true },
+      13: { pos: 23, model: 'Redmi Watch 6 Black', dummy: false }
+    };
+
+    return positions.map((p) => {
+      if (p.posicionId?.startsWith('Table 2-MESA_1_·_Cara_2-P') && remap[p.posicionNumero]) {
+        const cfg = remap[p.posicionNumero];
+        const sameDetected = p.modeloDetectado === p.modeloOficial;
+        return {
+          ...p,
+          posicionId: `Table 2-MESA_1_·_Cara_2-P${cfg.pos}`,
+          posicionNumero: cfg.pos,
+          modeloOficial: cfg.model,
+          modeloDetectado: sameDetected ? cfg.model : p.modeloDetectado,
+          esMaqueta: cfg.dummy
+        };
+      }
+      return p;
+    });
+  }
+
   // Borrador actual de una tienda
   static getDraft(tiendaId: string): PositionAuditState[] | null {
     const raw = localStorage.getItem(`${DRAFTS_KEY}_${tiendaId}`);
     if (!raw) return null;
     try {
-      return JSON.parse(raw);
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? this.migrateTable2Mesa1Cara2Positions(parsed) : null;
     } catch {
       return null;
     }
@@ -165,14 +205,22 @@ export class DbService {
       try {
         const parsed = JSON.parse(rawDirect);
         if (parsed && parsed.tiendaId === tiendaId) {
-          return parsed;
+          return {
+            ...parsed,
+            positions: this.migrateTable2Mesa1Cara2Positions(parsed.positions || [])
+          };
         }
       } catch {}
     }
 
     const history = this.getHistory();
     const fromHistory = history.find(r => r.tiendaId === tiendaId);
-    if (fromHistory) return fromHistory;
+    if (fromHistory) {
+      return {
+        ...fromHistory,
+        positions: this.migrateTable2Mesa1Cara2Positions(fromHistory.positions || [])
+      };
+    }
 
     return SEED_AUDITS[tiendaId] || null;
   }
@@ -292,7 +340,7 @@ export class DbService {
 
   // Catálogo completo de dispositivos (Planogramas Columna D) sin duplicados
   static getCatalogDevices(): string[] {
-    const DEVICES_KEY = 'brand_audit_catalog_devices_v1';
+    const DEVICES_KEY = 'brand_audit_catalog_devices_v2';
     const raw = localStorage.getItem(DEVICES_KEY);
     if (raw) {
       try {
@@ -319,7 +367,7 @@ export class DbService {
   }
 
   static saveCatalogDevices(devices: string[]) {
-    const DEVICES_KEY = 'brand_audit_catalog_devices_v1';
+    const DEVICES_KEY = 'brand_audit_catalog_devices_v2';
     if (Array.isArray(devices) && devices.length > 0) {
       const current = this.getCatalogDevices();
       const set = new Set<string>([...devices, ...current]);

@@ -133,6 +133,7 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
 
   const hasWall = store.availableSpaces && store.availableSpaces.some(s => s.toUpperCase().includes('WALL') && !s.toUpperCase().includes('MINIWALL'));
   const isTable1 = store.tipoEspacioId.includes('Table 1');
+  const isTable2 = store.tipoEspacioId.includes('Table 2');
   const isTableCrf = store.tipoEspacioId.includes('Table CRF');
   const isLinealActive = activeSpace.toUpperCase().includes('LINEAL') || activeSpace.toUpperCase().includes('SMARTWATCH');
   const isMiniWallActive = activeSpace.toUpperCase().includes('MINIWALL');
@@ -171,6 +172,8 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
     bgImage = isCara2Active
       ? PLANOGRAM_IMAGES.table2Mesa2Cara2
       : PLANOGRAM_IMAGES.table2Mesa2Cara1;
+  } else if (isTable2 && isCara2Active) {
+    bgImage = PLANOGRAM_IMAGES.table2Mesa1Cara2;
   } else if (isTable1 && hasWall) {
     bgImage = isCara2Active
       ? PLANOGRAM_IMAGES.table1WallCara2

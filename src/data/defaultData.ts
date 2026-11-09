@@ -947,195 +947,69 @@ export const REAL_PLANOGRAMS_DATA: Record<string, Array<{ pos: number; device: s
     },
     {
       "pos": 13,
-      "device": "Redmi Note 17 Pro Max 5G Black",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 14,
-      "device": "Redmi Note 17 Pro Max 5G Green",
-      "dummy": true,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 15,
-      "device": "Redmi Watch 6",
-      "dummy": false,
-      "category": "Wearable"
-    },
-    {
-      "pos": 16,
-      "device": "Redmi Note 17 Pro 5G Black",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 17,
-      "device": "Redmi Note 17 Pro 5G Purple",
-      "dummy": true,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 18,
-      "device": "Redmi Watch 6 Active",
-      "dummy": false,
-      "category": "Wearable"
-    },
-    {
-      "pos": 19,
-      "device": "Redmi Note 17 5G Black",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 20,
-      "device": "Redmi Note 17 5G Blue",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 21,
       "device": "Redmi 17 5G Orange",
       "dummy": false,
       "category": "Smartphone"
     },
     {
-      "pos": 22,
-      "device": "Redmi Buds 8 Pro",
-      "dummy": true,
-      "category": "Audio"
-    },
-    {
-      "pos": 23,
+      "pos": 14,
       "device": "Redmi Buds 8",
       "dummy": true,
       "category": "Audio"
     },
     {
-      "pos": 3,
-      "device": "Xiaomi 17 Ultra Black",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 4,
-      "device": "Xiaomi 17 Black",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 5,
-      "device": "Xiaomi Watch 5",
-      "dummy": false,
-      "category": "Wearable"
-    },
-    {
-      "pos": 6,
-      "device": "Xiaomi Buds 6",
+      "pos": 15,
+      "device": "Redmi Buds 8 Pro",
       "dummy": true,
       "category": "Audio"
     },
     {
-      "pos": 7,
-      "device": "Xiaomi 17T Pro Blue",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 8,
-      "device": "Xiaomi Watch S5 45mm",
-      "dummy": false,
-      "category": "Wearable"
-    },
-    {
-      "pos": 9,
-      "device": "Xiaomi Smart Band 10 Pro",
-      "dummy": false,
-      "category": "Wearable"
-    },
-    {
-      "pos": 10,
-      "device": "Xiaomi 17T Purple",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 11,
-      "device": "Xiaomi 17T blue",
-      "dummy": true,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 12,
-      "device": "Xiaomi Smart Band 11 Active",
-      "dummy": false,
-      "category": "Wearable"
-    },
-    {
-      "pos": 13,
-      "device": "Redmi Note 17 Pro Max 5G Black",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 14,
-      "device": "Redmi Note 17 Pro Max 5G Green",
-      "dummy": true,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 15,
-      "device": "Redmi Watch 6",
-      "dummy": false,
-      "category": "Wearable"
-    },
-    {
       "pos": 16,
-      "device": "Redmi Note 17 Pro 5G Black",
-      "dummy": false,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 17,
-      "device": "Redmi Note 17 Pro 5G Purple",
-      "dummy": true,
-      "category": "Smartphone"
-    },
-    {
-      "pos": 18,
-      "device": "Redmi Watch 6 Active",
-      "dummy": false,
-      "category": "Wearable"
-    },
-    {
-      "pos": 19,
       "device": "Redmi Note 17 5G Black",
       "dummy": false,
       "category": "Smartphone"
     },
     {
-      "pos": 20,
-      "device": "Redmi Note 17 5G Blue",
+      "pos": 17,
+      "device": "Redmi Note 17 5G Sky Teal",
       "dummy": false,
       "category": "Smartphone"
     },
     {
+      "pos": 18,
+      "device": "Redmi Note 17 Pro 5G Black",
+      "dummy": false,
+      "category": "Smartphone"
+    },
+    {
+      "pos": 19,
+      "device": "Redmi Note 17 Pro 5G Purple",
+      "dummy": true,
+      "category": "Smartphone"
+    },
+    {
+      "pos": 20,
+      "device": "Redmi Watch 6 Active Black",
+      "dummy": false,
+      "category": "Wearable"
+    },
+    {
       "pos": 21,
-      "device": "Redmi 17 5G Orange",
+      "device": "Redmi Note 17 Pro Max 5G Black",
       "dummy": false,
       "category": "Smartphone"
     },
     {
       "pos": 22,
-      "device": "Redmi Buds 8 Pro",
+      "device": "Redmi Note 17 Pro Max 5G Green",
       "dummy": true,
-      "category": "Audio"
+      "category": "Smartphone"
     },
     {
       "pos": 23,
-      "device": "Redmi Buds 8",
-      "dummy": true,
-      "category": "Audio"
+      "device": "Redmi Watch 6 Black",
+      "dummy": false,
+      "category": "Wearable"
     }
   ],
   "Table 2_Table 2": [
@@ -3410,6 +3284,21 @@ export const getPositionsForSpace = (
     ]
   };
 
+  // Coordenadas y dispositivos calibrados para Table 2 Mesa 1 Cara B (Cara 2) - 11 puestos (P13 a P23)
+  const TABLE2_MESA1_CARA2_ITEMS = [
+    { pos: 13, device: 'Redmi 17 5G Orange', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 11.2, pinY: 53.5 },
+    { pos: 14, device: 'Redmi Buds 8', dummy: true, category: 'Audio' as ProductCategory, pinX: 16.5, pinY: 53.5 },
+    { pos: 15, device: 'Redmi Buds 8 Pro', dummy: true, category: 'Audio' as ProductCategory, pinX: 21.9, pinY: 53.5 },
+    { pos: 16, device: 'Redmi Note 17 5G Black', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 34.7, pinY: 53.5 },
+    { pos: 17, device: 'Redmi Note 17 5G Sky Teal', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 41.0, pinY: 53.5 },
+    { pos: 18, device: 'Redmi Note 17 Pro 5G Black', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 53.3, pinY: 53.5 },
+    { pos: 19, device: 'Redmi Note 17 Pro 5G Purple', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 59.8, pinY: 53.5 },
+    { pos: 20, device: 'Redmi Watch 6 Active Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 65.4, pinY: 53.5 },
+    { pos: 21, device: 'Redmi Note 17 Pro Max 5G Black', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 74.7, pinY: 53.5 },
+    { pos: 22, device: 'Redmi Note 17 Pro Max 5G Green', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 80.8, pinY: 53.5 },
+    { pos: 23, device: 'Redmi Watch 6 Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 86.2, pinY: 53.5 }
+  ];
+
   // Coordenadas y dispositivos calibrados para Table 2 Mesa 2 Cara A (Cara 1) - 6 puestos naturales (1 a 6)
   const TABLE2_MESA2_CARA1_ITEMS = [
     { pos: 1, device: 'Xiaomi Pad 8', dummy: false, category: 'Tablet' as ProductCategory, pinX: 16.4, pinY: 56.0 },
@@ -3435,6 +3324,31 @@ export const getPositionsForSpace = (
     { pos: 2,  device: 'Redmi Note 17 Pro Max 5G White&Orange', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 82.2, pinY: 56.0 },
     { pos: 3,  device: 'Redmi Watch 6', dummy: false, category: 'Wearable' as ProductCategory, pinX: 86.9, pinY: 56.0 }
   ];
+
+  const isTable2Mesa1Cara2 =
+    tipoEspacioId.includes('Table 2') &&
+    mesaId.includes('MESA 1') &&
+    (mesaId.includes('Cara 2') || mesaId.includes('Cara B'));
+
+  if (isTable2Mesa1Cara2) {
+    return TABLE2_MESA1_CARA2_ITEMS.map((item, index) => ({
+      id: `${tipoEspacioId}-${mesaId.replace(/\s+/g, '_')}-P${item.pos}`,
+      tipoEspacioId,
+      mesaId,
+      cara: 'Cara 2',
+      posicionNumero: item.pos,
+      categoria: item.category,
+      modeloOficial: item.device,
+      colorOficial: 'Estándar Oficial',
+      esDummy: item.dummy,
+      requiereImei: !item.dummy,
+      pinX: item.pinX,
+      pinY: item.pinY,
+      x: (index - TABLE2_MESA1_CARA2_ITEMS.length / 2) * 0.35,
+      y: 0.78,
+      z: 0.35
+    }));
+  }
 
   const isMesa2 = mesaId.includes('MESA 2');
   if (isMesa2) {
