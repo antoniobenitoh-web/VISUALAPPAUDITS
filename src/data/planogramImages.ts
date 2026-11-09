@@ -16,6 +16,7 @@ import linealSmartwatchImg from '../assets/tables/lineal_smartwatch.jpg?inline';
 export const PLANOGRAM_IMAGES = {
   table1Cara1,
   table1Cara1Xiaomi18,
+  table2Mesa1Cara1: table2Mesa1Cara1Xiaomi18,
   table2Mesa1Cara1Xiaomi18,
   table2Mesa1Cara2,
   table1Cara2,

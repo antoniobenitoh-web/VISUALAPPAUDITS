@@ -3284,19 +3284,35 @@ export const getPositionsForSpace = (
     ]
   };
 
-  // Coordenadas y dispositivos calibrados para Table 2 Mesa 1 Cara B (Cara 2) - 11 puestos (P13 a P23)
+  // Coordenadas calibradas para Table 2 Mesa 1 Cara 1 (Oficial Wall + MiniWall - 12 puestos: P01 a P12)
+  const TABLE2_MESA1_CARA1_PINS = [
+    { pinX: 18.8, pinY: 48.5 }, // 1. Xiaomi 17 Ultra Green (Dummy tumbada)
+    { pinX: 21.0, pinY: 48.5 }, // 2. Xiaomi 17 Blue (Dummy tumbada)
+    { pinX: 26.8, pinY: 48.5 }, // 3. Xiaomi 17 Ultra Black (Smartphone vertical)
+    { pinX: 31.0, pinY: 48.5 }, // 4. Xiaomi 17 Black (Smartphone vertical)
+    { pinX: 36.0, pinY: 48.5 }, // 5. Xiaomi Watch 5 (Reloj en soporte)
+    { pinX: 40.5, pinY: 48.5 }, // 6. Xiaomi Buds 6 (Audio estuche)
+    { pinX: 56.4, pinY: 48.5 }, // 7. Xiaomi 17T Pro Blue (Smartphone vertical)
+    { pinX: 60.6, pinY: 48.5 }, // 8. Xiaomi Watch S5 45mm (Reloj peana)
+    { pinX: 65.5, pinY: 48.5 }, // 9. Xiaomi Smart Band 10 Pro (Banda peana)
+    { pinX: 77.5, pinY: 48.5 }, // 10. Xiaomi 17T Purple (Smartphone vertical)
+    { pinX: 82.2, pinY: 48.5 }, // 11. Xiaomi 17T Blue (Smartphone vertical)
+    { pinX: 87.5, pinY: 48.5 }  // 12. Xiaomi Smart Band 11 Active (Banda peana)
+  ];
+
+  // Coordenadas y dispositivos calibrados para Table 2 Mesa 1 Cara 2 (Oficial Wall + MiniWall - 11 puestos: P13 a P23)
   const TABLE2_MESA1_CARA2_ITEMS = [
-    { pos: 13, device: 'Redmi 17 5G Orange', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 11.2, pinY: 53.5 },
-    { pos: 14, device: 'Redmi Buds 8', dummy: true, category: 'Audio' as ProductCategory, pinX: 16.5, pinY: 53.5 },
-    { pos: 15, device: 'Redmi Buds 8 Pro', dummy: true, category: 'Audio' as ProductCategory, pinX: 21.9, pinY: 53.5 },
-    { pos: 16, device: 'Redmi Note 17 5G Black', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 34.7, pinY: 53.5 },
-    { pos: 17, device: 'Redmi Note 17 5G Sky Teal', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 41.0, pinY: 53.5 },
-    { pos: 18, device: 'Redmi Note 17 Pro 5G Black', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 53.3, pinY: 53.5 },
-    { pos: 19, device: 'Redmi Note 17 Pro 5G Purple', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 59.8, pinY: 53.5 },
-    { pos: 20, device: 'Redmi Watch 6 Active Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 65.4, pinY: 53.5 },
-    { pos: 21, device: 'Redmi Note 17 Pro Max 5G Black', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 74.7, pinY: 53.5 },
-    { pos: 22, device: 'Redmi Note 17 Pro Max 5G Green', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 80.8, pinY: 53.5 },
-    { pos: 23, device: 'Redmi Watch 6 Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 86.2, pinY: 53.5 }
+    { pos: 13, device: 'Redmi 17 5G Orange', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 14.6, pinY: 48.5 },
+    { pos: 14, device: 'Redmi Buds 8', dummy: true, category: 'Audio' as ProductCategory, pinX: 17.6, pinY: 48.5 },
+    { pos: 15, device: 'Redmi Buds 8 Pro', dummy: true, category: 'Audio' as ProductCategory, pinX: 22.1, pinY: 48.5 },
+    { pos: 16, device: 'Redmi Note 17 5G Black', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 34.8, pinY: 48.5 },
+    { pos: 17, device: 'Redmi Note 17 5G Sky Teal', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 40.2, pinY: 48.5 },
+    { pos: 18, device: 'Redmi Note 17 Pro 5G Black', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 55.0, pinY: 48.5 },
+    { pos: 19, device: 'Redmi Note 17 Pro 5G Purple', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 59.5, pinY: 48.5 },
+    { pos: 20, device: 'Redmi Watch 6 Active Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 65.6, pinY: 48.5 },
+    { pos: 21, device: 'Redmi Note 17 Pro Max 5G Black', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 77.2, pinY: 48.5 },
+    { pos: 22, device: 'Redmi Note 17 Pro Max 5G Green', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 82.5, pinY: 48.5 },
+    { pos: 23, device: 'Redmi Watch 6 Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 87.6, pinY: 48.5 }
   ];
 
   // Coordenadas y dispositivos calibrados para Table 2 Mesa 2 Cara A (Cara 1) - 6 puestos naturales (1 a 6)
@@ -3359,7 +3375,7 @@ export const getPositionsForSpace = (
   if (isTable2Mesa1Unified) {
     const c1Items = items.slice(0, 12);
     const pCara1: PlanogramPosition[] = c1Items.map((item, index) => {
-      const coord = TABLE1_CARA1_PINS[index];
+      const coord = TABLE2_MESA1_CARA1_PINS[index] || TABLE1_CARA1_PINS[index];
       const posNum = item.pos || index + 1;
       return {
         id: `${tipoEspacioId}-${mesaId.replace(/\s+/g, '_')}-P${posNum}`,
