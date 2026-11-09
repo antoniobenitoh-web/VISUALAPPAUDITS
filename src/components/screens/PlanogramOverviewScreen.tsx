@@ -96,10 +96,14 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
       const u = s.toUpperCase();
       if (u.includes('MESA')) return; // Ya unificadas
       if (u.includes('COLUMNA')) return; // Se gestiona dentro de POSM
-      // Si la tienda tiene Columna + Miniwall, el miniwall es una cara de la columna (en POSM)
-      if (posmConfig?.hasColumnas && u.includes('MINIWALL')) return;
+      // En tiendas con Columna y Miniwall, el miniwall también debe auditarse en smartphones (balda)
       if (!list.includes(s)) list.push(s);
     });
+
+    // Si la tienda tiene Miniwall en su configuración y no está en la lista, añadirlo para auditar los productos de su balda
+    if (posmConfig?.hasMiniwall && !list.includes('MINIWALL')) {
+      list.push('MINIWALL');
+    }
 
     // 3. Pestaña unificada POSM para columnas, wall, miniwall o top tables
     const hasPosm = (posmItems && posmItems.length > 0) || posmConfig?.hasColumnas || posmConfig?.hasWall || posmConfig?.hasMiniwall;
@@ -155,6 +159,61 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
   const hasWall = Boolean(store.availableSpaces && store.availableSpaces.some(s => s.toUpperCase().includes('WALL') && !s.toUpperCase().includes('MINIWALL')));
   const hasMiniwall = Boolean(store.availableSpaces && store.availableSpaces.some(s => s.toUpperCase().includes('MINIWALL')));
   const hasWallOrMiniwall = Boolean(hasWall || hasMiniwall || posmConfig?.hasWall || posmConfig?.hasMiniwall);
+
+  // Clasificación de los 4 escenarios de tienda para la auditoría de POSM
+  const isColumnaStore = Boolean(posmConfig?.hasColumnas);
+  const isOnlyMiniwallStore = !isColumnaStore && Boolean(posmConfig?.hasMiniwall || hasMiniwall) && !hasWall && !posmConfig?.hasWall;
+  const isOnlyWallStore = !isColumnaStore && !posmConfig?.hasMiniwall && !hasMiniwall && (hasWall || Boolean(posmConfig?.hasWall));
+  const isOnlyTopTablesStore = !isColumnaStore && !isOnlyMiniwallStore && !isOnlyWallStore;
+
+  // Elementos Top Table (Duratrans / Filminas) para tiendas sin columna ni wall
+  const topTableItems = useMemo(() => {
+    return posmItems.filter(it => it.tipo === 'top_table');
+  }, [posmItems]);
+
+  const [selectedTopTableId, setSelectedTopTableId] = useState<string>(() => {
+    return topTableItems[0]?.id || '';
+  });
+
+  useEffect(() => {
+    if (topTableItems.length > 0 && (!selectedTopTableId || !topTableItems.some(it => it.id === selectedTopTableId))) {
+      setSelectedTopTableId(topTableItems[0].id);
+    }
+  }, [topTableItems, selectedTopTableId]);
+
+  const activeTopTableItem = useMemo(() => {
+    return topTableItems.find(it => it.id === selectedTopTableId) || topTableItems[0];
+  }, [topTableItems, selectedTopTableId]);
+
+  const getTopTableVisualImage = (item?: StorePosmItem) => {
+    if (!item) return PLANOGRAM_IMAGES.table2Mesa1Cara1NoWall;
+
+    const ubic = (item.ubicacion || '').toUpperCase();
+    const nom = (item.nombre || '').toUpperCase();
+    const caraNum = item.caraNumero || 1;
+
+    // Si es Mesa 2:
+    if (ubic.includes('MESA 2') || nom.includes('MESA 2') || caraNum === 3 || caraNum === 4) {
+      if (caraNum === 4 || ubic.includes('CARA B') || ubic.includes('CARA 2')) {
+        return PLANOGRAM_IMAGES.table2Mesa2Pad8ProCara2;
+      }
+      return PLANOGRAM_IMAGES.table2Mesa2Cara1NoWall;
+    }
+
+    // Si es Mesa 3 (ej. Media Girona):
+    if (ubic.includes('MESA 3') || nom.includes('MESA 3') || caraNum === 5 || caraNum === 6) {
+      if (caraNum === 6 || ubic.includes('CARA B') || ubic.includes('CARA 2')) {
+        return PLANOGRAM_IMAGES.table1Cara2;
+      }
+      return PLANOGRAM_IMAGES.table1Cara1;
+    }
+
+    // Mesa 1:
+    if (caraNum === 2 || ubic.includes('CARA B') || ubic.includes('CARA 2') || nom.includes('CARA 2') || nom.includes('CARA B')) {
+      return store.tipoEspacioId.includes('Table 1') ? PLANOGRAM_IMAGES.table1Cara2 : PLANOGRAM_IMAGES.table2Mesa1Cara2NoWall;
+    }
+    return store.tipoEspacioId.includes('Table 1') ? PLANOGRAM_IMAGES.table1Cara1 : PLANOGRAM_IMAGES.table2Mesa1Cara1NoWall;
+  };
   const isTable1 = store.tipoEspacioId.includes('Table 1');
   const isTable2 = store.tipoEspacioId.includes('Table 2');
   const isTableCrf = store.tipoEspacioId.includes('Table CRF');
@@ -425,25 +484,27 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
           })}
         </div>
 
-        {/* Switch Visual / Lista */}
-        <div className="bg-white border border-slate-200 p-0.5 rounded-xl flex text-xs font-bold shadow-2xs shrink-0">
-          <button
-            onClick={() => setViewMode('visual')}
-            className={`px-3 py-1 rounded-lg transition cursor-pointer ${
-              viewMode === 'visual' ? 'bg-[#009ca6] text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            Vista Mesa
-          </button>
-          <button
-            onClick={() => setViewMode('list')}
-            className={`px-3 py-1 rounded-lg transition cursor-pointer ${
-              viewMode === 'list' ? 'bg-[#009ca6] text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            Lista ({positions.length})
-          </button>
-        </div>
+        {/* Switch Visual / Lista — solo visible cuando NO estamos en POSM */}
+        {!isPosmActive && (
+          <div className="bg-white border border-slate-200 p-0.5 rounded-xl flex text-xs font-bold shadow-2xs shrink-0">
+            <button
+              onClick={() => setViewMode('visual')}
+              className={`px-3 py-1 rounded-lg transition cursor-pointer ${
+                viewMode === 'visual' ? 'bg-[#009ca6] text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              Vista Mesa
+            </button>
+            <button
+              onClick={() => setViewMode('list')}
+              className={`px-3 py-1 rounded-lg transition cursor-pointer ${
+                viewMode === 'list' ? 'bg-[#009ca6] text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              Lista ({positions.length})
+            </button>
+          </div>
+        )}
       </div>
 
       {/* LEYENDA DESPLEGABLE */}
@@ -481,7 +542,7 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
         >
           
           {isPosmActive ? (
-            posmConfig?.hasColumnas ? (
+            isColumnaStore ? (
               <div className="w-full h-full p-2 sm:p-4 flex flex-col justify-center items-center">
                 <InteractiveColumnCanvas
                   store={store}
@@ -491,8 +552,70 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                   onInspectElement={(item) => setInspectingPosmItem(item)}
                 />
               </div>
-            ) : (
-              /* Lona Oficial de Wall en centros con Wall */
+            ) : isOnlyMiniwallStore ? (
+              /* Caso Espacios de marca con solo Miniwall: Eliminar 3D y auditar cara Miniwall como Wall */
+              <div className="w-full h-full p-4 flex flex-col justify-center items-center bg-[#07111e]">
+                <div className="relative max-w-2xl w-full bg-slate-900 rounded-2xl p-4 sm:p-6 border border-teal-500/30 text-white shadow-2xl flex flex-col items-center gap-4 animate-scaleUp">
+                  <div className="flex items-center justify-between w-full">
+                    <div>
+                      <span className="text-[10px] font-black uppercase tracking-wider text-teal-400 bg-teal-950 px-2.5 py-0.5 rounded-full border border-teal-800">
+                        Lona de MiniWall · Bastidor Textil Lateral
+                      </span>
+                      <h3 className="text-base sm:text-lg font-black text-white mt-1">Lona Textil Oficial de MiniWall</h3>
+                      <p className="text-xs text-teal-300 font-semibold">
+                        Campaña vigente: {posmItems.find(it => it.tipo === 'miniwall')?.campanaOficial || 'Xiaomi Pad 8 Series'}
+                      </p>
+                    </div>
+                    <span className="text-xs font-mono font-bold text-slate-400">
+                      {posmItems.find(it => it.tipo === 'miniwall')?.medida || '1000x1100 mm'}
+                    </span>
+                  </div>
+
+                  <div className="relative rounded-xl overflow-hidden border border-slate-700 w-full bg-black shadow-inner flex justify-center">
+                    <img
+                      src="./images/posm/miniwall_render.jpg"
+                      alt="Render Oficial de MiniWall (Xiaomi Pad 8 Series)"
+                      className="w-full h-56 sm:h-72 object-contain"
+                    />
+                  </div>
+
+                  {(() => {
+                    const miniwallItem = posmItems.find(it => it.tipo === 'miniwall') || {
+                      id: `${store.tiendaId}-POSM-MINIWALL`,
+                      tipo: 'miniwall' as const,
+                      material: 'Lona / Textil' as const,
+                      nombre: 'Lona de MiniWall',
+                      ubicacion: 'MINIWALL · Bastidor Textil',
+                      caraNumero: 1,
+                      medida: '1000x1100 mm',
+                      campanaOficial: 'Xiaomi Pad 8 Series',
+                      activo: true
+                    };
+                    const st = posmStates[miniwallItem.id];
+                    return (
+                      <div className="w-full flex items-center justify-between pt-2 border-t border-slate-800">
+                        <span className={`text-xs font-black px-3 py-1 rounded-full ${
+                          st?.estadoVisual === 'OK' ? 'bg-emerald-500 text-white' :
+                          st?.estadoVisual === 'Incidencia' ? 'bg-rose-500 text-white' :
+                          'bg-amber-500 text-white'
+                        }`}>
+                          {st?.estadoVisual || 'Pendiente'}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => setInspectingPosmItem(miniwallItem)}
+                          className="px-4 py-2 rounded-xl bg-[#009ca6] hover:bg-[#008992] text-white font-black text-xs transition cursor-pointer flex items-center gap-1.5 shadow-md"
+                        >
+                          <Eye className="w-4 h-4" />
+                          <span>{st ? 'Editar Auditoría Lona' : 'Auditar Lona MiniWall'}</span>
+                        </button>
+                      </div>
+                    );
+                  })()}
+                </div>
+              </div>
+            ) : isOnlyWallStore ? (
+              /* Caso Espacios de marca con solamente Wall */
               <div className="w-full h-full p-4 flex flex-col justify-center items-center bg-[#07111e]">
                 <div className="relative max-w-2xl w-full bg-slate-900 rounded-2xl p-4 sm:p-6 border border-teal-500/30 text-white shadow-2xl flex flex-col items-center gap-4 animate-scaleUp">
                   <div className="flex items-center justify-between w-full">
@@ -540,6 +663,128 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                     );
                   })()}
                 </div>
+              </div>
+            ) : (
+              /* Caso Espacios sin columna ni wall (ej. Media Girona): Duratrans / Filminas de Mesa con Top Table */
+              <div className="relative w-full h-full flex flex-col justify-center items-center bg-[#07111e] p-2 sm:p-4 overflow-hidden">
+                {/* Selector superior de Caras de Top Table */}
+                <div className="absolute top-3 left-3 right-3 z-30 flex items-center justify-between gap-2 pointer-events-none">
+                  {topTableItems.length > 0 ? (
+                    <div className="bg-slate-950/85 backdrop-blur-md p-1 rounded-2xl border border-white/10 shadow-xl flex items-center gap-1 pointer-events-auto overflow-x-auto max-w-full scrollbar-none">
+                      {topTableItems.map((tt) => {
+                        const isSel = activeTopTableItem?.id === tt.id;
+                        const st = posmStates[tt.id];
+                        const isOk = st?.estadoVisual === 'OK';
+                        const isInc = st?.estadoVisual === 'Incidencia';
+                        const shortLabel = tt.nombre.replace('Top Table · ', '');
+
+                        return (
+                          <button
+                            key={tt.id}
+                            type="button"
+                            onClick={() => setSelectedTopTableId(tt.id)}
+                            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                              isSel
+                                ? 'bg-[#104a60] text-white ring-2 ring-[#009ca6]/60 shadow-md'
+                                : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+                            }`}
+                          >
+                            <span>{shortLabel}</span>
+                            <span className={`w-2 h-2 rounded-full ${
+                              isOk ? 'bg-emerald-400' : isInc ? 'bg-rose-400' : 'bg-amber-400'
+                            }`} />
+                          </button>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div />
+                  )}
+
+                  {/* Badge Flotante del Duratrans Seleccionado */}
+                  {activeTopTableItem && (
+                    <div className="bg-slate-950/85 backdrop-blur-md px-3.5 py-1.5 rounded-2xl border border-purple-500/30 shadow-xl text-white flex items-center gap-2 pointer-events-auto shrink-0">
+                      <span className="text-[9px] font-black uppercase tracking-wider bg-purple-600 text-white px-2 py-0.5 rounded shadow-sm shrink-0">
+                        Duratrans / Filmina
+                      </span>
+                      <span className="text-xs font-bold text-purple-200 truncate hidden sm:inline">
+                        {activeTopTableItem.campanaOficial}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Render Oficial de la Mesa Ampliando la Filmina de Top Table */}
+                <div className="relative inline-block max-w-full max-h-full">
+                  <img
+                    src={getTopTableVisualImage(activeTopTableItem)}
+                    alt={activeTopTableItem?.nombre || 'Top Table'}
+                    className="w-full h-auto max-h-[calc(100vh-220px)] object-contain select-none block rounded-2xl shadow-2xl"
+                  />
+
+                  {/* Hotspot Interactivo central sobre la filmina iluminada de la mesa */}
+                  {activeTopTableItem && (
+                    <div
+                      className="absolute z-20 pointer-events-auto"
+                      style={{ left: '50%', top: '38%', transform: 'translate(-50%, -50%)' }}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setInspectingPosmItem(activeTopTableItem)}
+                        className={`group px-3.5 py-2 rounded-xl border-2 shadow-2xl backdrop-blur-md transition-all cursor-pointer flex items-center gap-2 hover:scale-105 ${
+                          posmStates[activeTopTableItem.id]?.estadoVisual === 'OK'
+                            ? 'bg-emerald-800/90 hover:bg-emerald-700 text-white border-emerald-400 ring-2 ring-emerald-400/40'
+                            : posmStates[activeTopTableItem.id]?.estadoVisual === 'Incidencia'
+                            ? 'bg-rose-800/90 hover:bg-rose-700 text-white border-rose-400 ring-2 ring-rose-400/40'
+                            : 'bg-slate-900/90 hover:bg-slate-800 text-white border-purple-400 ring-2 ring-purple-400/40'
+                        }`}
+                        title="Auditar Filmina / Duratrans"
+                      >
+                        <Sparkles className="w-4 h-4 text-purple-300" />
+                        <div className="text-left">
+                          <span className="block text-[8px] font-medium text-purple-200 uppercase leading-none">
+                            Duratrans {activeTopTableItem.medida || '1150x275 mm'}
+                          </span>
+                          <span className="text-xs font-black leading-tight">
+                            {posmStates[activeTopTableItem.id]?.estadoVisual
+                              ? `Filmina: ${posmStates[activeTopTableItem.id]?.estadoVisual}`
+                              : 'Auditar Filmina'}
+                          </span>
+                        </div>
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {/* Barra inferior de estado y acción directa */}
+                {activeTopTableItem && (
+                  <div className="w-full max-w-xl bg-slate-900/90 backdrop-blur-md border border-purple-500/30 rounded-2xl p-3 px-4 mt-3 flex items-center justify-between shadow-xl">
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-black text-white truncate">{activeTopTableItem.nombre}</span>
+                        <span className="text-[10px] font-mono font-bold text-slate-400">{activeTopTableItem.medida}</span>
+                      </div>
+                      <p className="text-[11px] text-purple-300 truncate">Campaña: {activeTopTableItem.campanaOficial}</p>
+                    </div>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <span className={`text-[10px] font-black px-2.5 py-1 rounded-full ${
+                        posmStates[activeTopTableItem.id]?.estadoVisual === 'OK' ? 'bg-emerald-500 text-white' :
+                        posmStates[activeTopTableItem.id]?.estadoVisual === 'Incidencia' ? 'bg-rose-500 text-white' :
+                        'bg-amber-500 text-white'
+                      }`}>
+                        {posmStates[activeTopTableItem.id]?.estadoVisual || 'Pendiente'}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => setInspectingPosmItem(activeTopTableItem)}
+                        className="px-3.5 py-1.5 rounded-xl bg-[#009ca6] hover:bg-[#008992] text-white font-black text-xs transition cursor-pointer flex items-center gap-1.5 shadow-md"
+                      >
+                        <Eye className="w-3.5 h-3.5" />
+                        <span>{posmStates[activeTopTableItem.id] ? 'Editar' : 'Auditar Filmina'}</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             )
           ) : viewMode === 'visual' ? (
@@ -1037,10 +1282,19 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                     const isMW = item.tipo === 'miniwall';
                     const isWall = item.tipo === 'wall';
 
+                    const isSelectedTT = isTT && item.id === selectedTopTableId;
+
                     return (
                       <div
                         key={item.id}
-                        className="p-3.5 rounded-2xl border border-slate-200 bg-slate-50 space-y-2.5"
+                        onClick={() => {
+                          if (isTT) setSelectedTopTableId(item.id);
+                        }}
+                        className={`p-3.5 rounded-2xl border space-y-2.5 transition cursor-pointer ${
+                          isSelectedTT
+                            ? 'border-purple-500 bg-purple-50/60 ring-2 ring-purple-400/40 shadow-sm'
+                            : 'border-slate-200 bg-slate-50 hover:bg-slate-100/80'
+                        }`}
                       >
                         <div className="flex items-start justify-between gap-2">
                           <div className="space-y-1 min-w-0">

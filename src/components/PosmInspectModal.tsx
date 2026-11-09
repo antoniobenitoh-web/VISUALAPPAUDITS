@@ -49,16 +49,50 @@ export const PosmInspectModal: React.FC<PosmInspectModalProps> = ({
   const [isCompressing, setIsCompressing] = useState<boolean>(false);
   const [previewZoom, setPreviewZoom] = useState<string | null>(null);
 
+  // Helper para seleccionar la imagen oficial de referencia para Top Table / Filmina
+  const getTopTableRefImage = (posmItem: StorePosmItem): string => {
+    const ubic = (posmItem.ubicacion || '').toUpperCase();
+    const nom = (posmItem.nombre || '').toUpperCase();
+    const caraNum = posmItem.caraNumero || 1;
+
+    if (ubic.includes('MESA 2') || nom.includes('MESA 2') || caraNum === 3 || caraNum === 4) {
+      if (caraNum === 4 || ubic.includes('CARA B') || ubic.includes('CARA 2')) {
+        return './images/tables/table2_mesa2_pad8pro_cara2.jpg';
+      }
+      return './images/tables/table2_mesa2_cara1_no_wall.jpg';
+    }
+
+    if (ubic.includes('MESA 3') || nom.includes('MESA 3') || caraNum === 5 || caraNum === 6) {
+      if (caraNum === 6 || ubic.includes('CARA B') || ubic.includes('CARA 2')) {
+        return './images/tables/table1_cara2_render.jpg';
+      }
+      return './images/tables/table1_cara1_render.jpg';
+    }
+
+    if (caraNum === 2 || ubic.includes('CARA B') || ubic.includes('CARA 2') || nom.includes('CARA 2') || nom.includes('CARA B')) {
+      return './images/tables/table2_mesa1_cara2_no_wall.jpg';
+    }
+    return './images/tables/table2_mesa1_cara1_no_wall.jpg';
+  };
+
   // Imagen de referencia según tipo
   const refImage = item.tipo === 'columna'
-    ? (item.caraNumero === 1 || item.caraNumero === 4
-        ? './images/posm/columna_zaragoza_1.jpg'
-        : './images/posm/columna_zaragoza_2.jpg')
+    ? (item.esMiniwall
+        ? './images/posm/miniwall_render.jpg'
+        : item.caraNumero === 1
+        ? './images/posm/cara1_xiaomi17ultra.jpg'
+        : item.caraNumero === 2
+        ? './images/posm/cara2_xiaomi17t.jpg'
+        : item.caraNumero === 3
+        ? './images/posm/cara3_redminote17.jpg'
+        : item.caraNumero === 4
+        ? './images/posm/cara4_xiaoipad8.jpg'
+        : './images/posm/columna_zaragoza_1.jpg')
     : item.tipo === 'miniwall'
     ? './images/posm/miniwall_render.jpg'
     : item.tipo === 'wall'
     ? './images/tables/wall.jpg'
-    : './images/posm/faldon_mesa1.png';
+    : getTopTableRefImage(item);
 
   const handleCapturePhoto = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -167,7 +201,7 @@ export const PosmInspectModal: React.FC<PosmInspectModalProps> = ({
               <img
                 src={refImage}
                 alt={item.nombre}
-                className="w-full h-36 sm:h-44 object-cover group-hover:scale-102 transition-transform cursor-pointer"
+                className={`w-full ${item.tipo === 'top_table' ? 'h-40 sm:h-56 object-contain bg-slate-950 p-1' : 'h-36 sm:h-44 object-cover'} group-hover:scale-102 transition-transform cursor-pointer`}
                 onClick={() => setPreviewZoom(refImage)}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
