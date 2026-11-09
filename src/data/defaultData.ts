@@ -3417,7 +3417,7 @@ export const getPositionsForSpace = (
     // Si es Mesa 2 unificada (sin especificar cara) -> devolver ambas caras integradas
     if (!isCara1 && !isCara2) {
       const p1 = c1Items.map((item, index) => ({
-        id: `${tipoEspacioId}-${mesaId.replace(/\s+/g, '_')}-P${item.pos}`,
+        id: `${tipoEspacioId}-${mesaId.replace(/\s+/g, '_')}-C1-P${item.pos}`,
         tipoEspacioId,
         mesaId,
         cara: 'Cara 1',
@@ -3434,7 +3434,7 @@ export const getPositionsForSpace = (
         z: -0.35
       }));
       const p2 = TABLE2_MESA2_CARA2_ITEMS.map((item, index) => ({
-        id: `${tipoEspacioId}-${mesaId.replace(/\s+/g, '_')}-P${item.pos}`,
+        id: `${tipoEspacioId}-${mesaId.replace(/\s+/g, '_')}-C2-P${item.pos}`,
         tipoEspacioId,
         mesaId,
         cara: 'Cara 2',
