@@ -3350,19 +3350,110 @@ export const getPositionsForSpace = (
     }));
   }
 
+  // Soporte unificado para Table 2 Mesa 1 completa (Cara 1 + Cara 2 integradas: P01 a P23)
+  const isTable2Mesa1Unified =
+    tipoEspacioId.includes('Table 2') &&
+    mesaId.includes('MESA 1') &&
+    !mesaId.includes('Cara');
+
+  if (isTable2Mesa1Unified) {
+    const c1Items = items.slice(0, 12);
+    const pCara1: PlanogramPosition[] = c1Items.map((item, index) => {
+      const coord = TABLE1_CARA1_PINS[index];
+      const posNum = item.pos || index + 1;
+      return {
+        id: `${tipoEspacioId}-${mesaId.replace(/\s+/g, '_')}-P${posNum}`,
+        tipoEspacioId,
+        mesaId,
+        cara: 'Cara 1',
+        posicionNumero: posNum,
+        categoria: item.category as ProductCategory,
+        modeloOficial: item.device,
+        colorOficial: 'Estándar Oficial',
+        esDummy: item.dummy,
+        requiereImei: !item.dummy,
+        pinX: coord?.pinX,
+        pinY: coord?.pinY,
+        x: (index - c1Items.length / 2) * 0.35,
+        y: 0.78,
+        z: -0.35
+      };
+    });
+
+    const pCara2: PlanogramPosition[] = TABLE2_MESA1_CARA2_ITEMS.map((item, index) => ({
+      id: `${tipoEspacioId}-${mesaId.replace(/\s+/g, '_')}-P${item.pos}`,
+      tipoEspacioId,
+      mesaId,
+      cara: 'Cara 2',
+      posicionNumero: item.pos,
+      categoria: item.category,
+      modeloOficial: item.device,
+      colorOficial: 'Estándar Oficial',
+      esDummy: item.dummy,
+      requiereImei: !item.dummy,
+      pinX: item.pinX,
+      pinY: item.pinY,
+      x: (index - TABLE2_MESA1_CARA2_ITEMS.length / 2) * 0.35,
+      y: 0.78,
+      z: 0.35
+    }));
+
+    return [...pCara1, ...pCara2];
+  }
+
   const isMesa2 = mesaId.includes('MESA 2');
   if (isMesa2) {
     const isCara2 = mesaId.includes('Cara 2') || mesaId.includes('Cara B');
+    const isCara1 = mesaId.includes('Cara 1') || mesaId.includes('Cara A');
     const storeObj = typeof storeOrId === 'object' ? storeOrId : undefined;
     const isPad8ProStore = storeObj?.hasPad8Pro === true;
 
-    const tableItems = isCara2 ? TABLE2_MESA2_CARA2_ITEMS : (
-      isPad8ProStore ? TABLE2_MESA2_CARA1_ITEMS.map((item, idx) => {
-        if (idx === 0) return { ...item, device: 'Xiaomi Pad 8 Pro' };
-        if (idx === 1) return { ...item, device: 'Xiaomi Pad 8' };
-        return item;
-      }) : TABLE2_MESA2_CARA1_ITEMS
-    );
+    const c1Items = isPad8ProStore ? TABLE2_MESA2_CARA1_ITEMS.map((item, idx) => {
+      if (idx === 0) return { ...item, device: 'Xiaomi Pad 8 Pro' };
+      if (idx === 1) return { ...item, device: 'Xiaomi Pad 8' };
+      return item;
+    }) : TABLE2_MESA2_CARA1_ITEMS;
+
+    // Si es Mesa 2 unificada (sin especificar cara) -> devolver ambas caras integradas
+    if (!isCara1 && !isCara2) {
+      const p1 = c1Items.map((item, index) => ({
+        id: `${tipoEspacioId}-${mesaId.replace(/\s+/g, '_')}-P${item.pos}`,
+        tipoEspacioId,
+        mesaId,
+        cara: 'Cara 1',
+        posicionNumero: item.pos,
+        categoria: item.category,
+        modeloOficial: item.device,
+        colorOficial: 'Estándar Oficial',
+        esDummy: item.dummy,
+        requiereImei: !item.dummy,
+        pinX: item.pinX,
+        pinY: item.pinY,
+        x: (index - c1Items.length / 2) * 0.35,
+        y: 0.78,
+        z: -0.35
+      }));
+      const p2 = TABLE2_MESA2_CARA2_ITEMS.map((item, index) => ({
+        id: `${tipoEspacioId}-${mesaId.replace(/\s+/g, '_')}-P${item.pos}`,
+        tipoEspacioId,
+        mesaId,
+        cara: 'Cara 2',
+        posicionNumero: item.pos,
+        categoria: item.category,
+        modeloOficial: item.device,
+        colorOficial: 'Estándar Oficial',
+        esDummy: item.dummy,
+        requiereImei: !item.dummy,
+        pinX: item.pinX,
+        pinY: item.pinY,
+        x: (index - TABLE2_MESA2_CARA2_ITEMS.length / 2) * 0.35,
+        y: 0.78,
+        z: 0.35
+      }));
+      return [...p1, ...p2];
+    }
+
+    const tableItems = isCara2 ? TABLE2_MESA2_CARA2_ITEMS : c1Items;
 
     return tableItems.map((item, index) => ({
       id: `${tipoEspacioId}-${mesaId.replace(/\s+/g, '_')}-P${item.pos}`,
@@ -3385,6 +3476,56 @@ export const getPositionsForSpace = (
 
   // Si la mesa tiene caras (ej. Cara 2), tomar los puestos correspondientes
   const isCara2 = mesaId.includes('Cara 2');
+  const isCara1 = mesaId.includes('Cara 1');
+  const isUnifiedMesa = mesaId.toUpperCase().includes('MESA') && !isCara1 && !isCara2;
+
+  // Soporte para mesas unificadas completas (Cara 1 + Cara 2 integradas con numeración continua)
+  if (isUnifiedMesa) {
+    const isCrf = tipoEspacioId === 'Table CRF';
+    const splitIndex = isCrf ? 4 : (items.length >= 22 ? 12 : (items.length >= 20 ? 10 : Math.floor(items.length / 2)));
+
+    return items.map((item, idx) => {
+      const isItemCara2 = idx >= splitIndex;
+      const posNum = item.pos || (idx + 1);
+
+      let pinX: number | undefined;
+      let pinY: number | undefined;
+
+      if (isCrf) {
+        const coord = isItemCara2 ? TABLE_CRF_CARA2_PINS[idx - splitIndex] : TABLE_CRF_CARA1_PINS[idx];
+        if (coord) { pinX = coord.pinX; pinY = coord.pinY; }
+      } else if (isItemCara2) {
+        const coord = TABLE1_CARA2_PINS[idx - splitIndex];
+        if (coord) { pinX = coord.pinX; pinY = coord.pinY; }
+      } else {
+        const coord = TABLE1_CARA1_PINS[idx];
+        if (coord) { pinX = coord.pinX; pinY = coord.pinY; }
+      }
+
+      const caraTotal = isItemCara2 ? (items.length - splitIndex) : splitIndex;
+      const caraIdx = isItemCara2 ? (idx - splitIndex) : idx;
+      const xPos = -1.8 + (caraIdx + 1) * (3.6 / (caraTotal + 1));
+
+      return {
+        id: `${tipoEspacioId}-${mesaId.replace(/\s+/g, '_')}-P${posNum}`,
+        tipoEspacioId,
+        mesaId,
+        cara: isItemCara2 ? 'Cara 2' : 'Cara 1',
+        posicionNumero: posNum,
+        categoria: item.category as ProductCategory,
+        modeloOficial: item.device,
+        colorOficial: 'Estándar Oficial',
+        esDummy: item.dummy,
+        requiereImei: !item.dummy,
+        pinX,
+        pinY,
+        x: xPos,
+        y: 0.78,
+        z: isItemCara2 ? 0.35 : -0.35
+      };
+    });
+  }
+
   let selectedItems = items;
   if (isLineal) {
     selectedItems = items;

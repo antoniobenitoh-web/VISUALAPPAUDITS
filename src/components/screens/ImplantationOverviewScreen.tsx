@@ -120,14 +120,36 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
   const [isSummaryModalOpen, setIsSummaryModalOpen] = useState<boolean>(initialOpenSummary);
 
   const availableSpaces = useMemo(() => {
-    return store.availableSpaces && store.availableSpaces.length > 0
+    const raw = store.availableSpaces && store.availableSpaces.length > 0
       ? store.availableSpaces
       : ['MESA 1 · Cara 1', 'MESA 1 · Cara 2', 'WALL', 'LINEAL SMARTWATCH'];
+
+    const list: string[] = [];
+    const hasMesa1 = raw.some(s => s.toUpperCase().includes('MESA 1'));
+    const hasMesa2 = raw.some(s => s.toUpperCase().includes('MESA 2'));
+    const hasMesa3 = raw.some(s => s.toUpperCase().includes('MESA 3'));
+
+    if (hasMesa1) list.push('MESA 1');
+    if (hasMesa2) list.push('MESA 2');
+    if (hasMesa3) list.push('MESA 3');
+
+    raw.forEach(s => {
+      const u = s.toUpperCase();
+      if (u.includes('MESA')) return;
+      if (u.includes('COLUMNA')) return;
+      if (!list.includes(s)) list.push(s);
+    });
+
+    return list.length > 0 ? list : ['MESA 1'];
   }, [store.availableSpaces]);
 
   const [activeSpace, setActiveSpaceState] = useState<string>(() => {
-    if (initialActiveSpace && availableSpaces.includes(initialActiveSpace)) {
-      return initialActiveSpace;
+    if (initialActiveSpace) {
+      const normalized = initialActiveSpace.includes('MESA 1') ? 'MESA 1'
+        : initialActiveSpace.includes('MESA 2') ? 'MESA 2'
+        : initialActiveSpace.includes('MESA 3') ? 'MESA 3'
+        : initialActiveSpace;
+      if (availableSpaces.includes(normalized)) return normalized;
     }
     return availableSpaces[0];
   });
@@ -136,10 +158,9 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
     if (onActiveSpaceChange) onActiveSpaceChange(space);
   };
 
-  // Si estamos en Mesa 1 Cara 1 durante la Nueva Implantación, se usan las 11 posiciones oficiales de la campaña
-  const isMesa1Cara1 =
-    activeSpace.toUpperCase().includes('MESA 1') &&
-    (activeSpace.includes('Cara 1') || activeSpace.includes('Cara A'));
+  // En Mesa 1 durante la Nueva Implantación se aplican los puestos oficiales de la campaña
+  const isMesa1 = activeSpace.toUpperCase().includes('MESA 1');
+  const isMesa1Cara1 = isMesa1;
 
   const positions = useMemo(() => {
     if (isMesa1Cara1) {

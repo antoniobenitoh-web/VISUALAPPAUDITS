@@ -1,323 +1,609 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import * as THREE from 'three';
-import { PlanogramPosition, PositionAuditState } from '../../types';
+import { PlanogramPosition, PositionAuditState, StoreCenter, VisualElementAuditState } from '../../types';
+import { StorePosmItem } from '../../data/storePosmData';
+import { 
+  RotateCcw, 
+  Layers, 
+  ZoomIn, 
+  ZoomOut, 
+  CheckCircle2, 
+  AlertTriangle, 
+  Clock, 
+  Sparkles,
+  Maximize2,
+  ChevronRight
+} from 'lucide-react';
 
 interface InteractiveTableCanvasProps {
+  store?: StoreCenter;
+  mesaName?: string;
+  spaceName?: string;
   positions: PlanogramPosition[];
   auditStates: Record<string, PositionAuditState>;
   selectedPositionId: string | null;
   onSelectPosition: (position: PlanogramPosition) => void;
-  spaceName: string;
+  relevantTopTable?: StorePosmItem;
+  topTableState?: VisualElementAuditState;
+  onInspectTopTable?: (item: StorePosmItem) => void;
+}
+
+interface ScreenHotspot {
+  id: string;
+  posNum: number;
+  x: number;
+  y: number;
+  isFrontFacing: boolean;
+  cara: string;
+  status: 'OK' | 'Incidencia' | 'Pendiente';
+  device: string;
 }
 
 export const InteractiveTableCanvas: React.FC<InteractiveTableCanvasProps> = ({
+  store,
+  mesaName,
+  spaceName,
   positions,
   auditStates,
   selectedPositionId,
   onSelectPosition,
-  spaceName
+  relevantTopTable,
+  topTableState,
+  onInspectTopTable
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [screenCoords, setScreenCoords] = useState<Array<{ id: string; x: number; y: number; num: number; status: string }>>([]);
+  const [screenHotspots, setScreenHotspots] = useState<ScreenHotspot[]>([]);
+  const [activeSide, setActiveSide] = useState<'Cara 1' | 'Cara 2'>('Cara 1');
+  const [zoomLevel, setZoomLevel] = useState<number>(1);
+
+  const effectiveMesaName = mesaName || spaceName || 'MESA 1';
+  const effectiveStore: StoreCenter = store || {
+    tiendaId: 'GENERIC',
+    nombreTienda: 'Mesa Retail',
+    retailer: 'MediaMarkt',
+    tipoEspacioId: 'Table 1',
+    zona: 'Centro',
+    region: 'Nacional',
+    totalPuestos: positions.length || 22,
+    availableSpaces: [effectiveMesaName]
+  };
+
+  // Determinar texturas oficiales de Cara 1 y Cara 2 según la tipología de tienda y mesa
+  const tableTextures = useMemo(() => {
+    const isTable2 = effectiveStore.tipoEspacioId.includes('Table 2');
+    const isTableCrf = effectiveStore.tipoEspacioId.includes('Table CRF');
+    const isMesa2 = effectiveMesaName.toUpperCase().includes('MESA 2');
+    const hasWall = effectiveStore.availableSpaces?.some(
+      s => s.toUpperCase().includes('WALL') && !s.toUpperCase().includes('MINIWALL')
+    );
+
+    if (isTableCrf) {
+      return {
+        cara1: './images/tables/table_crf_cara1_render.jpg',
+        cara2: './images/tables/table_crf_cara2_render.jpg'
+      };
+    }
+    if (isTable2) {
+      if (isMesa2) {
+        return {
+          cara1: './images/tables/table2_mesa2_cara1.jpg',
+          cara2: './images/tables/table2_mesa2_cara2.jpg'
+        };
+      }
+      return {
+        cara1: './images/tables/table2_mesa1_cara1_xiaomi18_render.jpg',
+        cara2: './images/tables/table2_mesa1_cara2_render.jpg'
+      };
+    }
+    if (hasWall) {
+      return {
+        cara1: './images/tables/table1_wall_cara1_render.jpg',
+        cara2: './images/tables/table1_wall_cara2_render.jpg'
+      };
+    }
+    return {
+      cara1: './images/tables/table1_cara1_render.jpg',
+      cara2: './images/tables/table1_cara2_render.jpg'
+    };
+  }, [store, mesaName]);
+
+  // Separar posiciones de Cara 1 y Cara 2
+  const { cara1Positions, cara2Positions } = useMemo(() => {
+    const c1 = positions.filter(p => p.cara === 'Cara 1');
+    const c2 = positions.filter(p => p.cara === 'Cara 2');
+    return { cara1Positions: c1, cara2Positions: c2 };
+  }, [positions]);
+
+  // Referencias para control orbital
+  const targetRotationY = useRef<number>(0);
+  const targetRotationX = useRef<number>(0.35); // Inclinación inicial natural
+  const currentRotationY = useRef<number>(0);
+  const currentRotationX = useRef<number>(0.35);
+  const isDragging = useRef<boolean>(false);
+  const prevMouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+
+  // Si se selecciona una posición de Cara 2 desde fuera, girar automáticamente a Cara 2
+  useEffect(() => {
+    if (!selectedPositionId) return;
+    const pos = positions.find(p => p.id === selectedPositionId);
+    if (pos) {
+      if (pos.cara === 'Cara 2') {
+        targetRotationY.current = Math.PI;
+        setActiveSide('Cara 2');
+      } else if (pos.cara === 'Cara 1') {
+        targetRotationY.current = 0;
+        setActiveSide('Cara 1');
+      }
+    }
+  }, [selectedPositionId, positions]);
+
+  const handleRotateToSide = (side: 'Cara 1' | 'Cara 2') => {
+    setActiveSide(side);
+    if (side === 'Cara 1') {
+      targetRotationY.current = 0;
+    } else {
+      targetRotationY.current = Math.PI;
+    }
+  };
 
   useEffect(() => {
     if (!containerRef.current) return;
     const container = containerRef.current;
     const width = container.clientWidth;
-    const height = container.clientHeight || 360;
+    const height = container.clientHeight || 450;
 
-    // Escena, Cámara y Renderer
+    // 1. Escena, Cámara y Renderer
     const scene = new THREE.Scene();
     scene.background = new THREE.Color('#0b132b');
 
-    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-    camera.position.set(0, 3.2, 3.8);
+    const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 100);
+    camera.position.set(0, 3.4, 4.2);
     camera.lookAt(0, 0.5, 0);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.1;
+
     container.innerHTML = '';
     container.appendChild(renderer.domElement);
 
-    // Iluminación
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    // 2. Luces de Estudio Retail Xiaomi
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
     scene.add(ambientLight);
 
-    const spotLight = new THREE.SpotLight(0xffffff, 1.2);
-    spotLight.position.set(0, 5, 2);
-    spotLight.castShadow = true;
-    scene.add(spotLight);
+    const mainLight = new THREE.DirectionalLight(0xffffff, 1.5);
+    mainLight.position.set(2, 6, 4);
+    mainLight.castShadow = true;
+    mainLight.shadow.mapSize.width = 1024;
+    mainLight.shadow.mapSize.height = 1024;
+    scene.add(mainLight);
 
-    const floorLight = new THREE.DirectionalLight(0x0284c7, 0.3);
-    floorLight.position.set(0, -2, 2);
-    scene.add(floorLight);
+    const fillLight = new THREE.DirectionalLight(0x00c4cc, 0.4);
+    fillLight.position.set(-3, 3, -4);
+    scene.add(fillLight);
 
-    // Suelo de tienda
-    const floorGeo = new THREE.PlaneGeometry(12, 12);
+    // 3. Suelo de la tienda (Parquet / Suelo claro de boutique)
+    const floorGeo = new THREE.PlaneGeometry(16, 16);
     const floorMat = new THREE.MeshStandardMaterial({
-      color: 0x0f172a,
+      color: 0x07111e,
       roughness: 0.8,
-      metalness: 0.2
+      metalness: 0.1
     });
     const floor = new THREE.Mesh(floorGeo, floorMat);
     floor.rotation.x = -Math.PI / 2;
-    floor.position.y = -0.5;
+    floor.position.y = -0.55;
     floor.receiveShadow = true;
     scene.add(floor);
 
-    // Mesa de Experiencia Retail o Wall según el espacio
-    const isWall = spaceName.includes('WALL');
+    // 4. Grupo de la Mesa 3D
     const tableGroup = new THREE.Group();
+    scene.add(tableGroup);
 
-    if (!isWall) {
-      // Tablero de madera clara / acabado blanco retail
-      const topGeo = new THREE.BoxGeometry(4.2, 0.12, 1.4);
-      const topMat = new THREE.MeshStandardMaterial({
-        color: 0xe2e8f0,
-        roughness: 0.3,
-        metalness: 0.1
-      });
-      const topMesh = new THREE.Mesh(topGeo, topMat);
-      topMesh.position.y = 0.7;
-      topMesh.castShadow = true;
-      topMesh.receiveShadow = true;
-      tableGroup.add(topMesh);
+    const tableW = 4.2;
+    const tableH = 0.8;
+    const tableD = 1.5;
+    const caraDepth = (tableD - 0.16) / 2; // ~0.67m cada cara
 
-      // Borde frontal LED iluminado naranja Xiaomi
-      const ledGeo = new THREE.BoxGeometry(4.22, 0.03, 1.42);
-      const ledMat = new THREE.MeshBasicMaterial({ color: 0xff6900 });
-      const ledMesh = new THREE.Mesh(ledGeo, ledMat);
-      ledMesh.position.y = 0.65;
-      tableGroup.add(ledMesh);
+    // Cargar Texturas HD Oficiales
+    const textureLoader = new THREE.TextureLoader();
+    const texCara1 = textureLoader.load(tableTextures.cara1);
+    const texCara2 = textureLoader.load(tableTextures.cara2);
+    texCara1.colorSpace = THREE.SRGBColorSpace;
+    texCara2.colorSpace = THREE.SRGBColorSpace;
 
-      // Patas metálicas minimalistas
-      const legMat = new THREE.MeshStandardMaterial({ color: 0x334155, metalness: 0.8, roughness: 0.2 });
-      const legGeo = new THREE.CylinderGeometry(0.06, 0.06, 1.2);
+    // A) Tablero Cara 1 (Frontal Z+)
+    const matCara1 = new THREE.MeshBasicMaterial({ map: texCara1 });
+    const geoCara1 = new THREE.PlaneGeometry(tableW - 0.08, caraDepth);
+    const meshCara1 = new THREE.Mesh(geoCara1, matCara1);
+    meshCara1.rotation.x = -Math.PI / 2;
+    meshCara1.position.set(0, tableH + 0.005, caraDepth / 2 + 0.08);
+    tableGroup.add(meshCara1);
 
-      const legPositions = [
-        [-1.8, 0.1, -0.5],
-        [1.8, 0.1, -0.5],
-        [-1.8, 0.1, 0.5],
-        [1.8, 0.1, 0.5]
-      ];
-      legPositions.forEach(([lx, ly, lz]) => {
-        const leg = new THREE.Mesh(legGeo, legMat);
-        leg.position.set(lx, ly, lz);
-        leg.castShadow = true;
-        tableGroup.add(leg);
-      });
-    } else {
-      // Panel Wall Expositor Vertical
-      const wallGeo = new THREE.BoxGeometry(4.5, 2.4, 0.15);
-      const wallMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.5 });
-      const wallMesh = new THREE.Mesh(wallGeo, wallMat);
-      wallMesh.position.set(0, 1.5, -0.9);
-      tableGroup.add(wallMesh);
+    // B) Tablero Cara 2 (Trasero Z-)
+    const matCara2 = new THREE.MeshBasicMaterial({ map: texCara2 });
+    const geoCara2 = new THREE.PlaneGeometry(tableW - 0.08, caraDepth);
+    const meshCara2 = new THREE.Mesh(geoCara2, matCara2);
+    meshCara2.rotation.x = -Math.PI / 2;
+    meshCara2.rotation.z = Math.PI; // Invertir 180° para que quede bien orientada al rotar
+    meshCara2.position.set(0, tableH + 0.005, -caraDepth / 2 - 0.08);
+    tableGroup.add(meshCara2);
 
-      // Balda expositora
-      const shelfGeo = new THREE.BoxGeometry(4.2, 0.08, 0.4);
-      const shelfMat = new THREE.MeshStandardMaterial({ color: 0xff6900 });
-      const shelf = new THREE.Mesh(shelfGeo, shelfMat);
-      shelf.position.set(0, 1.1, -0.7);
-      tableGroup.add(shelf);
-    }
+    // C) Estructura Base del Tablero (Madera / Titanio blanco retail)
+    const baseTableGeo = new THREE.BoxGeometry(tableW, 0.08, tableD);
+    const baseTableMat = new THREE.MeshStandardMaterial({
+      color: 0xf1f5f9,
+      roughness: 0.3,
+      metalness: 0.1
+    });
+    const baseTableMesh = new THREE.Mesh(baseTableGeo, baseTableMat);
+    baseTableMesh.position.y = tableH - 0.04;
+    baseTableMesh.castShadow = true;
+    baseTableMesh.receiveShadow = true;
+    tableGroup.add(baseTableMesh);
 
-    // Modelos 3D representativos de los Smartphones/Wearables sobre la mesa
-    const hotspotVectors: Array<{ id: string; num: number; vector: THREE.Vector3; status: string }> = [];
+    // D) Borde LED Naranja Perimetral Xiaomi
+    const ledRimGeo = new THREE.BoxGeometry(tableW + 0.02, 0.015, tableD + 0.02);
+    const ledRimMat = new THREE.MeshBasicMaterial({ color: 0xff6900 });
+    const ledRimMesh = new THREE.Mesh(ledRimGeo, ledRimMat);
+    ledRimMesh.position.y = tableH - 0.075;
+    tableGroup.add(ledRimMesh);
 
-    positions.forEach((pos) => {
-      const px = pos.x ?? 0;
-      const py = pos.y ?? (isWall ? 1.2 : 0.76);
-      const pz = pos.z ?? (isWall ? -0.65 : 0);
+    // E) Franja Central Top Table (Elevación de Metacrilato / Duratrans)
+    const ridgeGeo = new THREE.BoxGeometry(tableW - 0.04, 0.09, 0.14);
+    const ridgeMat = new THREE.MeshStandardMaterial({
+      color: 0x0f172a,
+      roughness: 0.2,
+      metalness: 0.4
+    });
+    const ridgeMesh = new THREE.Mesh(ridgeGeo, ridgeMat);
+    ridgeMesh.position.set(0, tableH + 0.045, 0);
+    ridgeMesh.castShadow = true;
+    tableGroup.add(ridgeMesh);
 
-      // Peana / Stand acrílico
-      const standGeo = new THREE.CylinderGeometry(0.12, 0.14, 0.04, 16);
-      const standMat = new THREE.MeshStandardMaterial({
-        color: 0x64748b,
-        transparent: true,
-        opacity: 0.85
-      });
-      const stand = new THREE.Mesh(standGeo, standMat);
-      stand.position.set(px, py, pz);
-      tableGroup.add(stand);
+    // Placa gráfica central de Top Table (iluminada)
+    const ttPlateGeo = new THREE.BoxGeometry(tableW - 0.2, 0.07, 0.142);
+    const ttPlateMat = new THREE.MeshStandardMaterial({
+      color: 0xff6900,
+      emissive: 0xff4500,
+      emissiveIntensity: 0.35,
+      roughness: 0.3
+    });
+    const ttPlate = new THREE.Mesh(ttPlateGeo, ttPlateMat);
+    ttPlate.position.set(0, tableH + 0.05, 0);
+    tableGroup.add(ttPlate);
 
-      // Smartphone / Dispositivo estilizado
-      const isTablet = pos.categoria === 'Tablet';
-      const isWatch = pos.categoria === 'Wearable';
-      const phoneGeo = isTablet
-        ? new THREE.BoxGeometry(0.35, 0.02, 0.48)
-        : isWatch
-        ? new THREE.CylinderGeometry(0.1, 0.1, 0.04, 16)
-        : new THREE.BoxGeometry(0.2, 0.02, 0.38);
+    // Logos Mi iluminados en los extremos de la franja central
+    [-tableW / 2 + 0.15, tableW / 2 - 0.15].forEach((lx) => {
+      const logoBox = new THREE.Mesh(
+        new THREE.BoxGeometry(0.12, 0.08, 0.15),
+        new THREE.MeshBasicMaterial({ color: 0xff6900 })
+      );
+      logoBox.position.set(lx, tableH + 0.05, 0);
+      tableGroup.add(logoBox);
+    });
 
-      const auditState = auditStates[pos.id];
-      const statusColor = auditState?.estadoPosicion === 'OK'
-        ? 0x10b981 // Verde
-        : auditState?.estadoPosicion === 'Incidencia'
-        ? 0xef4444 // Rojo
-        : 0xf59e0b; // Ámbar/Naranja
+    // F) Faldones Metálicos y Patas Robustas
+    const legMat = new THREE.MeshStandardMaterial({
+      color: 0x1e293b,
+      metalness: 0.8,
+      roughness: 0.25
+    });
+    const legGeo = new THREE.CylinderGeometry(0.06, 0.06, tableH, 16);
 
-      const phoneMat = new THREE.MeshStandardMaterial({
-        color: statusColor,
-        roughness: 0.2,
-        metalness: 0.8
-      });
+    const legOffsets = [
+      [-tableW / 2 + 0.2, -tableD / 2 + 0.2],
+      [tableW / 2 - 0.2, -tableD / 2 + 0.2],
+      [-tableW / 2 + 0.2, tableD / 2 - 0.2],
+      [tableW / 2 - 0.2, tableD / 2 - 0.2]
+    ];
+    legOffsets.forEach(([lx, lz]) => {
+      const leg = new THREE.Mesh(legGeo, legMat);
+      leg.position.set(lx, tableH / 2 - 0.08, lz);
+      leg.castShadow = true;
+      tableGroup.add(leg);
+    });
 
-      const phoneMesh = new THREE.Mesh(phoneGeo, phoneMat);
-      phoneMesh.position.set(px, py + 0.04, pz);
-      phoneMesh.rotation.x = isWall ? 0 : 0.25; // Inclinación de exposición ergonómica
-      tableGroup.add(phoneMesh);
+    // 5. Vectores 3D para Proyección de Hotspots
+    // Mapear cada posición a su coordenada 3D real en la mesa
+    const hotspotVectors: Array<{
+      id: string;
+      posNum: number;
+      cara: string;
+      device: string;
+      vector: THREE.Vector3;
+    }> = [];
 
-      // Guardar vector 3D para proyectar hotspot HTML interactivo
+    // Cara 1
+    const c1Count = cara1Positions.length;
+    cara1Positions.forEach((pos, idx) => {
+      const xRatio = (idx + 0.5) / c1Count;
+      const xPos = -tableW / 2 + 0.2 + xRatio * (tableW - 0.4);
       hotspotVectors.push({
         id: pos.id,
-        num: pos.posicionNumero,
-        vector: new THREE.Vector3(px, py + 0.2, pz),
-        status: auditState?.estadoPosicion || 'Pendiente'
+        posNum: pos.posicionNumero,
+        cara: 'Cara 1',
+        device: pos.modeloOficial,
+        vector: new THREE.Vector3(xPos, tableH + 0.03, caraDepth / 2 + 0.08)
       });
     });
 
-    scene.add(tableGroup);
+    // Cara 2 (orientada hacia Z-)
+    const c2Count = cara2Positions.length;
+    cara2Positions.forEach((pos, idx) => {
+      const xRatio = (idx + 0.5) / c2Count;
+      // En Cara 2 invertimos X para que al girar 180° se lean de izquierda a derecha
+      const xPos = tableW / 2 - 0.2 - xRatio * (tableW - 0.4);
+      hotspotVectors.push({
+        id: pos.id,
+        posNum: pos.posicionNumero,
+        cara: 'Cara 2',
+        device: pos.modeloOficial,
+        vector: new THREE.Vector3(xPos, tableH + 0.03, -caraDepth / 2 - 0.08)
+      });
+    });
 
-    // Controles táctiles orbitales nativos
-    let isDragging = false;
-    let prevMouseX = 0;
-    let prevMouseY = 0;
-    let targetRotationY = 0;
-    let targetRotationX = 0;
-
+    // 6. Controles de Arrastre Orbital (Touch y Mouse)
     const onPointerDown = (e: MouseEvent | TouchEvent) => {
-      isDragging = true;
-      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-      const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-      prevMouseX = clientX;
-      prevMouseY = clientY;
+      isDragging.current = true;
+      const cx = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      const cy = 'touches' in e ? e.touches[0].clientY : e.clientY;
+      prevMouse.current = { x: cx, y: cy };
     };
 
     const onPointerMove = (e: MouseEvent | TouchEvent) => {
-      if (!isDragging) return;
-      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-      const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
-      const deltaX = clientX - prevMouseX;
-      const deltaY = clientY - prevMouseY;
+      if (!isDragging.current) return;
+      const cx = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      const cy = 'touches' in e ? e.touches[0].clientY : e.clientY;
+      const dx = cx - prevMouse.current.x;
+      const dy = cy - prevMouse.current.y;
 
-      targetRotationY += deltaX * 0.008;
-      targetRotationX = Math.max(-0.4, Math.min(0.5, targetRotationX + deltaY * 0.005));
+      targetRotationY.current += dx * 0.008;
+      targetRotationX.current = Math.max(0.15, Math.min(0.65, targetRotationX.current + dy * 0.005));
 
-      prevMouseX = clientX;
-      prevMouseY = clientY;
+      prevMouse.current = { x: cx, y: cy };
     };
 
     const onPointerUp = () => {
-      isDragging = false;
+      isDragging.current = false;
+      // Actualizar automáticamente qué cara queda de frente
+      const normRot = ((targetRotationY.current % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+      if (normRot > Math.PI * 0.5 && normRot < Math.PI * 1.5) {
+        setActiveSide('Cara 2');
+      } else {
+        setActiveSide('Cara 1');
+      }
     };
 
-    const domElement = renderer.domElement;
-    domElement.addEventListener('mousedown', onPointerDown);
-    domElement.addEventListener('mousemove', onPointerMove);
+    const dom = renderer.domElement;
+    dom.addEventListener('mousedown', onPointerDown);
+    dom.addEventListener('mousemove', onPointerMove);
     window.addEventListener('mouseup', onPointerUp);
-    domElement.addEventListener('touchstart', onPointerDown, { passive: true });
-    domElement.addEventListener('touchmove', onPointerMove, { passive: true });
+    dom.addEventListener('touchstart', onPointerDown, { passive: true });
+    dom.addEventListener('touchmove', onPointerMove, { passive: true });
     window.addEventListener('touchend', onPointerUp);
 
-    // Bucle de render y proyección de coordenadas a pantalla
+    // 7. Bucle de Render y Proyección de Hotspots a 2D
     let animId: number;
     const animate = () => {
       animId = requestAnimationFrame(animate);
 
-      // Suavizado de rotación
-      tableGroup.rotation.y += (targetRotationY - tableGroup.rotation.y) * 0.1;
-      tableGroup.rotation.x += (targetRotationX - tableGroup.rotation.x) * 0.1;
+      // Suavizado inercial de rotación
+      currentRotationY.current += (targetRotationY.current - currentRotationY.current) * 0.12;
+      currentRotationX.current += (targetRotationX.current - currentRotationX.current) * 0.12;
+
+      tableGroup.rotation.y = currentRotationY.current;
+      tableGroup.rotation.x = currentRotationX.current;
 
       renderer.render(scene, camera);
 
-      // Proyección de hotspots a 2D
-      const coords = hotspotVectors.map((h) => {
-        const v = h.vector.clone().applyMatrix4(tableGroup.matrixWorld);
-        v.project(camera);
-        const sx = ((v.x + 1) * width) / 2;
-        const sy = ((-v.y + 1) * height) / 2;
+      // Proyectar coordenadas 3D a pantalla
+      const projected = hotspotVectors.map((h) => {
+        const worldVec = h.vector.clone().applyMatrix4(tableGroup.matrixWorld);
+        worldVec.project(camera);
+
+        const sx = ((worldVec.x + 1) * width) / 2;
+        const sy = ((-worldVec.y + 1) * height) / 2;
+
+        // Normal de la cara respecto al ángulo actual para saber si mira a la cámara
+        const normRot = ((currentRotationY.current % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+        const isLookingAtCara2 = normRot > Math.PI * 0.5 && normRot < Math.PI * 1.5;
+        const isFrontFacing = (h.cara === 'Cara 2' && isLookingAtCara2) || (h.cara === 'Cara 1' && !isLookingAtCara2);
+
+        const st = auditStates[h.id];
+        let status: 'OK' | 'Incidencia' | 'Pendiente' = 'Pendiente';
+        if (st?.estadoPosicion === 'OK') status = 'OK';
+        else if (st?.estadoPosicion === 'Incidencia') status = 'Incidencia';
+
         return {
           id: h.id,
-          num: h.num,
+          posNum: h.posNum,
           x: sx,
           y: sy,
-          status: h.status
+          isFrontFacing,
+          cara: h.cara,
+          status,
+          device: h.device
         };
       });
 
-      setScreenCoords(coords);
+      setScreenHotspots(projected);
     };
 
     animate();
 
-    // Redimensionamiento
     const onResize = () => {
       if (!containerRef.current) return;
       const nw = containerRef.current.clientWidth;
-      const nh = containerRef.current.clientHeight || 360;
+      const nh = containerRef.current.clientHeight || 450;
       camera.aspect = nw / nh;
       camera.updateProjectionMatrix();
       renderer.setSize(nw, nh);
     };
-
     window.addEventListener('resize', onResize);
 
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener('resize', onResize);
-      domElement.removeEventListener('mousedown', onPointerDown);
-      domElement.removeEventListener('mousemove', onPointerMove);
+      dom.removeEventListener('mousedown', onPointerDown);
+      dom.removeEventListener('mousemove', onPointerMove);
       window.removeEventListener('mouseup', onPointerUp);
-      domElement.removeEventListener('touchstart', onPointerDown);
-      domElement.removeEventListener('touchmove', onPointerMove);
+      dom.removeEventListener('touchstart', onPointerDown);
+      dom.removeEventListener('touchmove', onPointerMove);
       window.removeEventListener('touchend', onPointerUp);
       renderer.dispose();
     };
-  }, [positions, auditStates, spaceName]);
+  }, [effectiveStore, effectiveMesaName, tableTextures, cara1Positions, cara2Positions, auditStates]);
 
   return (
-    <div className="relative w-full h-80 sm:h-96 rounded-2xl overflow-hidden border border-slate-700/60 bg-slate-950 shadow-2xl select-none">
-      {/* Canvas 3D */}
-      <div ref={containerRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
+    <div className="relative w-full h-[360px] xs:h-[420px] sm:h-[480px] lg:h-[calc(100vh-140px)] rounded-none lg:rounded-2xl overflow-hidden bg-gradient-to-b from-[#0b132b] via-[#07111e] to-[#040812] select-none shadow-2xl flex flex-col justify-center items-center">
+      {/* Canvas 3D Three.js */}
+      <div 
+        ref={containerRef} 
+        className="w-full h-full cursor-grab active:cursor-grabbing"
+        style={{ transform: `scale(${zoomLevel})`, transition: 'transform 0.2s ease-out' }}
+      />
 
-      {/* Indicador de ayuda táctil */}
-      <div className="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-700 text-[11px] font-semibold text-slate-300 flex items-center gap-1.5 pointer-events-none shadow-lg">
-        <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
-        <span>Arrastra para girar mesa 3D</span>
+      {/* HEADER FLOTANTE: Selector Rápido Cara 1 / Cara 2 y Top Table */}
+      <div className="absolute top-3 left-3 right-3 z-30 flex items-center justify-between gap-2 pointer-events-none">
+        
+        {/* Toggle Cara 1 / Cara 2 con Giro 180° Automático */}
+        <div className="bg-slate-950/85 backdrop-blur-md p-1 rounded-2xl border border-white/10 shadow-xl flex items-center gap-1 pointer-events-auto">
+          <button
+            type="button"
+            onClick={() => handleRotateToSide('Cara 1')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-black transition cursor-pointer flex items-center gap-1.5 ${
+              activeSide === 'Cara 1'
+                ? 'bg-gradient-to-r from-[#009ca6] to-[#00b4bf] text-white shadow-md'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            <span>Cara 1</span>
+            <span className="text-[10px] opacity-80">({cara1Positions.length} puestos)</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => handleRotateToSide('Cara 2')}
+            className={`px-3 py-1.5 rounded-xl text-xs font-black transition cursor-pointer flex items-center gap-1.5 ${
+              activeSide === 'Cara 2'
+                ? 'bg-gradient-to-r from-[#009ca6] to-[#00b4bf] text-white shadow-md'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            <span>Cara 2</span>
+            <span className="text-[10px] opacity-80">({cara2Positions.length} puestos)</span>
+          </button>
+        </div>
+
+        {/* Badge Flotante de Top Table (si la mesa dispone de él) */}
+        {relevantTopTable && (
+          <div className="bg-slate-950/85 backdrop-blur-md px-3.5 py-1.5 rounded-2xl border border-teal-500/30 shadow-xl text-white flex items-center gap-2 pointer-events-auto">
+            <div className="flex items-center gap-1.5 min-w-0">
+              <span className="text-[9px] font-black uppercase tracking-wider bg-[#ff6900] text-white px-2 py-0.5 rounded shadow-sm shrink-0">
+                Top Table
+              </span>
+              <span className="text-xs font-bold text-teal-200 truncate hidden sm:inline">
+                {relevantTopTable.campanaOficial}
+              </span>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => onInspectTopTable && onInspectTopTable(relevantTopTable)}
+              className="px-2.5 py-1 rounded-lg bg-[#009ca6] hover:bg-[#008992] text-white text-[11px] font-black transition cursor-pointer flex items-center gap-1 shadow-sm shrink-0"
+            >
+              <span>{topTableState?.estadoVisual || 'Auditar'}</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        )}
       </div>
 
-      {/* Hotspots interactivos HTML proyectados con coordenadas del modelo 3D */}
-      {screenCoords.map((hs) => {
-        const posObj = positions.find((p) => p.id === hs.id);
-        if (!posObj) return null;
-        const isSelected = selectedPositionId === hs.id;
+      {/* INDICADOR TÁCTIL Y AYUDA 360° */}
+      <div className="absolute bottom-3 right-3 bg-slate-950/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/10 text-[10px] font-bold text-slate-300 flex items-center gap-1.5 pointer-events-none shadow-lg">
+        <span className="w-2 h-2 rounded-full bg-[#00c4cc] animate-pulse"></span>
+        <span>Gira 360° para ver ambas caras de la mesa</span>
+      </div>
 
-        const colorClasses =
-          hs.status === 'OK'
-            ? 'bg-emerald-500 text-white border-emerald-300 ring-emerald-500/30'
-            : hs.status === 'Incidencia'
-            ? 'bg-rose-600 text-white border-rose-300 ring-rose-500/40 animate-pulse'
-            : 'bg-amber-500 text-white border-amber-300 ring-amber-500/30';
+      {/* CONTROLES DE ZOOM */}
+      <div className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-md border border-white/10 rounded-xl p-1 flex items-center gap-1 z-20 text-white text-xs shadow-lg">
+        <button
+          onClick={() => setZoomLevel(prev => Math.max(0.8, prev - 0.1))}
+          className="p-1 sm:p-1.5 hover:bg-white/20 rounded-lg cursor-pointer"
+          title="Reducir zoom"
+        >
+          <ZoomOut className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+        </button>
+        <span className="font-mono text-[10px] px-1">{Math.round(zoomLevel * 100)}%</span>
+        <button
+          onClick={() => setZoomLevel(prev => Math.min(1.5, prev + 0.1))}
+          className="p-1 sm:p-1.5 hover:bg-white/20 rounded-lg cursor-pointer"
+          title="Aumentar zoom"
+        >
+          <ZoomIn className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+        </button>
+        <button
+          onClick={() => setZoomLevel(1)}
+          className="p-1 sm:p-1.5 hover:bg-white/20 rounded-lg cursor-pointer text-teal-300"
+          title="Restablecer zoom"
+        >
+          <RotateCcw className="w-3.5 h-3.5" />
+        </button>
+      </div>
+
+      {/* HOTSPOTS INTERACTIVOS PROYECTADOS EN PANTALLA */}
+      {screenHotspots.map((hs) => {
+        const isSelected = selectedPositionId === hs.id;
+        const posObj = positions.find(p => p.id === hs.id);
+        if (!posObj) return null;
+
+        let statusColor = 'bg-[#104a60] text-white border-white ring-2 ring-[#009ca6]/60 shadow-lg';
+        if (hs.status === 'OK') {
+          statusColor = 'bg-emerald-500 text-white border-white ring-2 ring-emerald-500/40 shadow-emerald-500/30';
+        } else if (hs.status === 'Incidencia') {
+          statusColor = 'bg-rose-500 text-white border-white ring-2 ring-rose-500/40 shadow-rose-500/30 animate-pulse';
+        }
+
+        // Si la posición está en la cara oculta (atrás de la mesa), atenuarla suavemente
+        const opacityClass = hs.isFrontFacing
+          ? 'opacity-100 scale-100 z-20'
+          : 'opacity-35 scale-80 z-10 hover:opacity-90';
 
         return (
-          <button
+          <div
             key={hs.id}
-            onClick={() => onSelectPosition(posObj)}
             style={{
               position: 'absolute',
               left: `${hs.x}px`,
               top: `${hs.y}px`,
-              transform: 'translate(-50%, -50%)'
+              transform: 'translate(-50%, -50%)',
+              pointerEvents: 'auto'
             }}
-            className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full font-black text-xs border-2 shadow-xl flex items-center justify-center transition-all cursor-pointer ring-4 ${colorClasses} ${
-              isSelected ? 'scale-125 ring-8 ring-sky-400 border-white z-20' : 'hover:scale-110 z-10'
-            }`}
+            className={`transition-all duration-150 pointer-events-auto ${opacityClass}`}
           >
-            {String(hs.num).padStart(2, '0')}
-          </button>
+            <button
+              type="button"
+              onClick={() => onSelectPosition(posObj)}
+              className={`rounded-full font-black flex items-center justify-center transition-all cursor-pointer border-2 ${statusColor} ${
+                isSelected
+                  ? 'w-8 h-8 sm:w-9 sm:h-9 scale-120 ring-4 ring-[#00c4cc] z-30 shadow-[#009ca6]'
+                  : 'w-6 h-6 sm:w-7 sm:h-7 hover:scale-115'
+              }`}
+              title={`Puesto ${hs.posNum}: ${hs.device} (${hs.cara})`}
+            >
+              {hs.status === 'OK' ? (
+                <CheckCircle2 className="w-3.5 h-3.5 text-white" />
+              ) : hs.status === 'Incidencia' ? (
+                <AlertTriangle className="w-3.5 h-3.5 text-white" />
+              ) : (
+                <span className="text-[10px] sm:text-[11px] font-black">{String(hs.posNum).padStart(2, '0')}</span>
+              )}
+            </button>
+          </div>
         );
       })}
     </div>

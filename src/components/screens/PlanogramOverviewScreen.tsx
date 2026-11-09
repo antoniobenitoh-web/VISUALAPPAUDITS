@@ -5,6 +5,7 @@ import { getPositionsForSpace } from '../../data/defaultData';
 import { PLANOGRAM_IMAGES } from '../../data/planogramImages';
 import { getStorePosmConfig, StorePosmItem } from '../../data/storePosmData';
 import { InteractiveColumnCanvas } from '../3d/InteractiveColumnCanvas';
+import { InteractiveTableCanvas } from '../3d/InteractiveTableCanvas';
 import { PosmInspectModal } from '../PosmInspectModal';
 import { RetailerLogo } from '../RetailerLogos';
 import { 
@@ -75,31 +76,50 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
   const posmConfig = useMemo(() => getStorePosmConfig(store.tiendaId), [store.tiendaId]);
   const posmItems = useMemo(() => posmConfig?.elementos || [], [posmConfig]);
 
-  const rawAvailableSpaces = store.availableSpaces && store.availableSpaces.length > 0
-    ? store.availableSpaces
-    : ['MESA 1 · Cara 1', 'MESA 1 · Cara 2', 'WALL', 'LINEAL SMARTWATCH'];
-
   const availableSpaces = useMemo(() => {
-    const list = [...rawAvailableSpaces];
-    // Añadir tab COLUMNA si la tienda tiene columna
-    if (posmConfig?.hasColumnas && !list.some(s => s.toUpperCase().includes('COLUMNA'))) {
-      list.push('COLUMNA');
-    }
-    // Añadir tab POSM si hay wall, miniwall, o top_table (elementos sin tab propio)
-    const hasPosmExtras = posmConfig && (
-      posmConfig.hasWall ||
-      (posmConfig.hasMiniwall && !posmConfig.hasColumnas) || // miniwall solo (sin columna)
-      posmConfig.hasTopTables
-    );
-    if (hasPosmExtras && !list.some(s => s.toUpperCase() === 'POSM')) {
+    const raw = store.availableSpaces && store.availableSpaces.length > 0
+      ? store.availableSpaces
+      : ['MESA 1 · Cara 1', 'MESA 1 · Cara 2', 'WALL', 'LINEAL SMARTWATCH'];
+
+    const list: string[] = [];
+
+    // 1. Unificar mesas en pestañas limpias: MESA 1, MESA 2, MESA 3
+    const hasMesa1 = raw.some(s => s.toUpperCase().includes('MESA 1'));
+    const hasMesa2 = raw.some(s => s.toUpperCase().includes('MESA 2'));
+    const hasMesa3 = raw.some(s => s.toUpperCase().includes('MESA 3'));
+
+    if (hasMesa1) list.push('MESA 1');
+    if (hasMesa2) list.push('MESA 2');
+    if (hasMesa3) list.push('MESA 3');
+
+    // 2. Otros espacios (Wall, Lineal, Miniwall)
+    raw.forEach(s => {
+      const u = s.toUpperCase();
+      if (u.includes('MESA')) return; // Ya unificadas
+      if (u.includes('COLUMNA')) return; // Se gestiona dentro de POSM
+      // Si la tienda tiene Columna + Miniwall, el miniwall es una cara de la columna (en POSM)
+      if (posmConfig?.hasColumnas && u.includes('MINIWALL')) return;
+      if (!list.includes(s)) list.push(s);
+    });
+
+    // 3. Pestaña unificada POSM para columnas, wall, miniwall o top tables
+    const hasPosm = (posmItems && posmItems.length > 0) || posmConfig?.hasColumnas || posmConfig?.hasWall || posmConfig?.hasMiniwall;
+    if (hasPosm && !list.includes('POSM')) {
       list.push('POSM');
     }
-    return list;
-  }, [rawAvailableSpaces, posmConfig]);
+
+    return list.length > 0 ? list : ['MESA 1'];
+  }, [store.availableSpaces, posmConfig, posmItems]);
 
   const [activeSpace, setActiveSpaceState] = useState<string>(() => {
-    if (initialActiveSpace && availableSpaces.includes(initialActiveSpace)) {
-      return initialActiveSpace;
+    if (initialActiveSpace) {
+      // Normalizar si venía de un formato anterior con cara (ej. 'MESA 1 · Cara 1' -> 'MESA 1')
+      const normalized = initialActiveSpace.includes('MESA 1') ? 'MESA 1'
+        : initialActiveSpace.includes('MESA 2') ? 'MESA 2'
+        : initialActiveSpace.includes('MESA 3') ? 'MESA 3'
+        : initialActiveSpace.includes('COLUMNA') ? 'POSM'
+        : initialActiveSpace;
+      if (availableSpaces.includes(normalized)) return normalized;
     }
     return availableSpaces[0];
   });
@@ -107,9 +127,11 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
     setActiveSpaceState(space);
     if (onActiveSpaceChange) onActiveSpaceChange(space);
   };
-  const isColumnaActive = activeSpace.toUpperCase().includes('COLUMNA');
-  const isPosmTabActive = activeSpace.toUpperCase() === 'POSM';
-  const positions = (isColumnaActive || isPosmTabActive) ? [] : getPositionsForSpace(store.tipoEspacioId, activeSpace, store);
+  const isPosmActive = activeSpace.toUpperCase() === 'POSM' || activeSpace.toUpperCase().includes('COLUMNA');
+  const isColumnaActive = isPosmActive && Boolean(posmConfig?.hasColumnas);
+  const isMesaActive = activeSpace.toUpperCase().startsWith('MESA');
+  const isPosmTabActive = isPosmActive;
+  const positions = isPosmActive ? [] : getPositionsForSpace(store.tipoEspacioId, activeSpace, store);
 
   const [posmStates, setPosmStates] = useState<Record<string, VisualElementAuditState>>(() => {
     return DbService.getAuditPosmDraft(store.tiendaId) || {};
@@ -229,7 +251,9 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
     if (!pos) return undefined;
     if (auditStates[pos.id]) return auditStates[pos.id];
     return Object.values(auditStates).find(
-      a => a.posicionId === pos.id || (a.mesaId === pos.mesaId && a.posicionNumero === pos.posicionNumero)
+      a => a.posicionId === pos.id || 
+           a.posicionNumero === pos.posicionNumero ||
+           (a.mesaId?.startsWith(pos.mesaId) && a.posicionNumero === pos.posicionNumero)
     );
   };
 
@@ -423,14 +447,80 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
           style={{ backgroundColor: containerBgColor }}
         >
           
-          {isColumnaActive ? (
-            <div className="w-full h-full p-2 sm:p-4 flex flex-col justify-center items-center">
-              <InteractiveColumnCanvas
+          {isPosmActive ? (
+            posmConfig?.hasColumnas ? (
+              <div className="w-full h-full p-2 sm:p-4 flex flex-col justify-center items-center">
+                <InteractiveColumnCanvas
+                  store={store}
+                  selectedFace={selectedColumnFace}
+                  onSelectFace={setSelectedColumnFace}
+                  posmStates={posmStates}
+                  onInspectElement={(item) => setInspectingPosmItem(item)}
+                />
+              </div>
+            ) : (
+              /* Lona Oficial de Wall en centros con Wall */
+              <div className="w-full h-full p-4 flex flex-col justify-center items-center bg-[#07111e]">
+                <div className="relative max-w-2xl w-full bg-slate-900 rounded-2xl p-4 sm:p-6 border border-teal-500/30 text-white shadow-2xl flex flex-col items-center gap-4 animate-scaleUp">
+                  <div className="flex items-center justify-between w-full">
+                    <div>
+                      <span className="text-[10px] font-black uppercase tracking-wider text-teal-400 bg-teal-950 px-2.5 py-0.5 rounded-full border border-teal-800">
+                        Lona de Wall · Retroiluminada
+                      </span>
+                      <h3 className="text-base sm:text-lg font-black text-white mt-1">Lona Textil Oficial de Wall</h3>
+                    </div>
+                    <span className="text-xs font-mono font-bold text-slate-400">
+                      {posmItems.find(it => it.tipo === 'wall')?.medida || 'Gran Formato'}
+                    </span>
+                  </div>
+
+                  <div className="relative rounded-xl overflow-hidden border border-slate-700 w-full bg-black shadow-inner">
+                    <img
+                      src="./images/posm/lona_wall_despues.png"
+                      alt="Lona Oficial de Wall"
+                      className="w-full h-56 sm:h-72 object-contain"
+                    />
+                  </div>
+
+                  {(() => {
+                    const wallItem = posmItems.find(it => it.tipo === 'wall');
+                    const st = wallItem ? posmStates[wallItem.id] : undefined;
+                    return (
+                      <div className="w-full flex items-center justify-between pt-2 border-t border-slate-800">
+                        <span className={`text-xs font-black px-3 py-1 rounded-full ${
+                          st?.estadoVisual === 'OK' ? 'bg-emerald-500 text-white' :
+                          st?.estadoVisual === 'Incidencia' ? 'bg-rose-500 text-white' :
+                          'bg-amber-500 text-white'
+                        }`}>
+                          {st?.estadoVisual || 'Pendiente'}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => wallItem && setInspectingPosmItem(wallItem)}
+                          className="px-4 py-2 rounded-xl bg-[#009ca6] hover:bg-[#008992] text-white font-black text-xs transition cursor-pointer flex items-center gap-1.5 shadow-md"
+                        >
+                          <Eye className="w-4 h-4" />
+                          <span>{st ? 'Editar Auditoría Lona' : 'Auditar Lona Wall'}</span>
+                        </button>
+                      </div>
+                    );
+                  })()}
+                </div>
+              </div>
+            )
+          ) : isMesaActive && viewMode === 'visual' ? (
+            /* VISTA DE MESA 3D UNIFICADA (CARA 1 + CARA 2) */
+            <div className="w-full h-full flex items-center justify-center">
+              <InteractiveTableCanvas
                 store={store}
-                selectedFace={selectedColumnFace}
-                onSelectFace={setSelectedColumnFace}
-                posmStates={posmStates}
-                onInspectElement={(item) => setInspectingPosmItem(item)}
+                mesaName={activeSpace}
+                positions={positions}
+                auditStates={auditStates}
+                selectedPositionId={selectedPos?.id || null}
+                onSelectPosition={(pos) => setSelectedPos(pos)}
+                relevantTopTable={relevantTopTable}
+                topTableState={relevantTopTable ? posmStates[relevantTopTable.id] : undefined}
+                onInspectTopTable={(tt) => setInspectingPosmItem(tt)}
               />
             </div>
           ) : viewMode === 'visual' ? (
@@ -941,9 +1031,16 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
             <div className="space-y-3.5">
             {/* Header del inspector */}
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-black uppercase tracking-wider text-slate-400">
-                Puestos en {activeSpace}
-              </span>
+              <div>
+                <span className="text-[11px] font-black uppercase tracking-wider text-slate-400 block">
+                  Puestos en {activeSpace}
+                </span>
+                {isMesaActive && positions.length > 0 && (
+                  <span className="text-[10px] font-bold text-teal-700">
+                    Cara 1 (P01-P{String(positions.filter(p => p.cara === 'Cara 1').length).padStart(2, '0')}) · Cara 2 (P{String(positions.filter(p => p.cara === 'Cara 1').length + 1).padStart(2, '0')}-P{String(positions.length).padStart(2, '0')})
+                  </span>
+                )}
+              </div>
               <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-[#104a60]/10 text-[#104a60]">
                 {positions.length} posiciones
               </span>
@@ -961,14 +1058,16 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                 if (isOk) badgeClass = 'bg-emerald-50 text-emerald-700 border-emerald-300';
                 else if (isInc) badgeClass = 'bg-rose-50 text-rose-700 border-rose-300';
 
-                // Separadores visuales para los 3 sectores de Cara 1 (6 izq, 3 centro, 3 dcha)
-                const isCara1 = positions.length === 12;
-                const showSectorSeparator = isCara1 && (idx === 6 || idx === 9);
+                // Separador entre Cara 1 y Cara 2 en mesas unificadas
+                const c1Count = positions.filter(pos => pos.cara === 'Cara 1').length;
+                const isCaraChange = isMesaActive && idx === c1Count;
 
                 return (
                   <React.Fragment key={p.id}>
-                    {showSectorSeparator && (
-                      <div className="h-5 w-[1px] bg-slate-300 mx-0.5 shrink-0" />
+                    {isCaraChange && (
+                      <div className="h-6 px-1.5 flex items-center justify-center bg-teal-100/90 rounded-md border border-teal-300 text-[9px] font-black text-teal-900 shrink-0 select-none">
+                        Cara 2 ➔
+                      </div>
                     )}
                     <button
                       onClick={() => setSelectedPos(p)}
