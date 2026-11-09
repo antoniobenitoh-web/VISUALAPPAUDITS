@@ -3335,7 +3335,7 @@ export const getPositionsForSpace = (
     { pos: 6, device: 'Redmi 17 4G Blue', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 83.6, pinY: 48.5 }
   ];
 
-  // Coordenadas y dispositivos calibrados para Table 2 Mesa 2 Cara B (Cara 2) - 11 puestos en orden requerido:
+  // Coordenadas y dispositivos calibrados para Table 2 Mesa 2 Cara B (Cara 2) estándar - 11 puestos en orden requerido:
   // 10, 11, 7, 8, 9, 4, 5, 6, 1, 2, 3
   const TABLE2_MESA2_CARA2_ITEMS = [
     { pos: 10, device: 'Redmi Pad 2 SE 9.7"', dummy: false, category: 'Tablet' as ProductCategory, pinX: 12.9, pinY: 56.0 },
@@ -3349,6 +3349,21 @@ export const getPositionsForSpace = (
     { pos: 1,  device: 'Redmi Note 17 Pro Max 5G White&Orange', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 77.5, pinY: 56.0 },
     { pos: 2,  device: 'Redmi Note 17 Pro Max 5G White&Orange', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 82.2, pinY: 56.0 },
     { pos: 3,  device: 'Redmi Watch 6', dummy: false, category: 'Wearable' as ProductCategory, pinX: 86.9, pinY: 56.0 }
+  ];
+
+  // Coordenadas y dispositivos calibrados para Table 2 Mesa 2 Cara B (Cara 2) CON Pad 8 Pro - 11 puestos calibrados:
+  const TABLE2_MESA2_PAD8PRO_CARA2_ITEMS = [
+    { pos: 10, device: 'Redmi 17 4G Green', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 17.0, pinY: 48.5 },
+    { pos: 11, device: 'Redmi Pad 2 SE 9.7"', dummy: false, category: 'Tablet' as ProductCategory, pinX: 26.5, pinY: 48.5 },
+    { pos: 7,  device: 'Redmi 17 5G Purple', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 36.0, pinY: 48.5 },
+    { pos: 8,  device: 'Redmi 17 5G Blue', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 41.5, pinY: 48.5 },
+    { pos: 9,  device: 'Redmi Watch 6 Lite', dummy: false, category: 'Wearable' as ProductCategory, pinX: 45.7, pinY: 48.5 },
+    { pos: 4,  device: 'Redmi Note 17 Pro 5G Blue', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 55.5, pinY: 48.5 },
+    { pos: 5,  device: 'Redmi Note 17 Pro 5G Purple', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 60.0, pinY: 48.5 },
+    { pos: 6,  device: 'Redmi Watch 6 Active', dummy: false, category: 'Wearable' as ProductCategory, pinX: 64.5, pinY: 48.5 },
+    { pos: 1,  device: 'Redmi Note 17 Pro Max 5G White&Orange', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 74.5, pinY: 48.5 },
+    { pos: 2,  device: 'Redmi Note 17 Pro Max 5G White&Orange', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 79.5, pinY: 48.5 },
+    { pos: 3,  device: 'Redmi Watch 6', dummy: false, category: 'Wearable' as ProductCategory, pinX: 84.6, pinY: 48.5 }
   ];
 
   const isTable2Mesa1Cara2 =
@@ -3435,6 +3450,7 @@ export const getPositionsForSpace = (
     const isPad8ProStore = storeObj?.hasPad8Pro === true;
 
     const c1Items = isPad8ProStore ? TABLE2_MESA2_PAD8PRO_CARA1_ITEMS : TABLE2_MESA2_CARA1_ITEMS;
+    const c2Items = isPad8ProStore ? TABLE2_MESA2_PAD8PRO_CARA2_ITEMS : TABLE2_MESA2_CARA2_ITEMS;
 
     // Si es Mesa 2 unificada (sin especificar cara) -> devolver ambas caras integradas
     if (!isCara1 && !isCara2) {
@@ -3455,7 +3471,7 @@ export const getPositionsForSpace = (
         y: 0.78,
         z: -0.35
       }));
-      const p2 = TABLE2_MESA2_CARA2_ITEMS.map((item, index) => ({
+      const p2 = c2Items.map((item, index) => ({
         id: `${tipoEspacioId}-${mesaId.replace(/\s+/g, '_')}-C2-P${item.pos}`,
         tipoEspacioId,
         mesaId,
@@ -3468,14 +3484,14 @@ export const getPositionsForSpace = (
         requiereImei: !item.dummy,
         pinX: item.pinX,
         pinY: item.pinY,
-        x: (index - TABLE2_MESA2_CARA2_ITEMS.length / 2) * 0.35,
+        x: (index - c2Items.length / 2) * 0.35,
         y: 0.78,
         z: 0.35
       }));
       return [...p1, ...p2];
     }
 
-    const tableItems = isCara2 ? TABLE2_MESA2_CARA2_ITEMS : c1Items;
+    const tableItems = isCara2 ? c2Items : c1Items;
 
     return tableItems.map((item, index) => ({
       id: `${tipoEspacioId}-${mesaId.replace(/\s+/g, '_')}-P${item.pos}`,
