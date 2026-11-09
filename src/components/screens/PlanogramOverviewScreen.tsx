@@ -1,11 +1,10 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { StoreCenter, PlanogramPosition, PositionAuditState, UserProfile, VisualElementAuditState } from '../../types';
 import { DbService } from '../../services/dbService';
 import { getPositionsForSpace } from '../../data/defaultData';
 import { PLANOGRAM_IMAGES } from '../../data/planogramImages';
 import { getStorePosmConfig, StorePosmItem } from '../../data/storePosmData';
 import { InteractiveColumnCanvas } from '../3d/InteractiveColumnCanvas';
-import { InteractiveTableCanvas } from '../3d/InteractiveTableCanvas';
 import { PosmInspectModal } from '../PosmInspectModal';
 import { RetailerLogo } from '../RetailerLogos';
 import { 
@@ -161,14 +160,39 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
   const isMiniWallActive = activeSpace.toUpperCase().includes('MINIWALL');
   const isWallActive = activeSpace.toUpperCase().includes('WALL') && !isMiniWallActive;
   const isMesa2Active = activeSpace.toUpperCase().includes('MESA 2');
-  const isCara2Active = activeSpace.includes('Cara 2') || activeSpace.includes('Cara B');
+
+  // Sub-selector Cara 1 y Cara 2 en mesas unificadas con números correlativos
+  const [selectedCara, setSelectedCara] = useState<'Cara 1' | 'Cara 2'>('Cara 1');
+
+  useEffect(() => {
+    setSelectedCara('Cara 1');
+  }, [activeSpace]);
+
+  const isCara2Active = isMesaActive
+    ? selectedCara === 'Cara 2'
+    : (activeSpace.includes('Cara 2') || activeSpace.includes('Cara B'));
+
+  const cara1Positions = useMemo(() => {
+    return positions.filter(p => p.cara === 'Cara 1');
+  }, [positions]);
+
+  const cara2Positions = useMemo(() => {
+    return positions.filter(p => p.cara === 'Cara 2');
+  }, [positions]);
+
+  const hasMultipleCaras = isMesaActive && cara1Positions.length > 0 && cara2Positions.length > 0;
+
+  // En la vista visual de la mesa mostramos únicamente los puestos de la cara activa
+  const visiblePositions = hasMultipleCaras
+    ? (selectedCara === 'Cara 2' ? cara2Positions : cara1Positions)
+    : positions;
 
   const relevantTopTable = useMemo(() => {
     if (!posmItems || posmItems.length === 0) return undefined;
     const isMesa2 = activeSpace.toUpperCase().includes('MESA 2');
     const isMesa3 = activeSpace.toUpperCase().includes('MESA 3');
     const mesaNum = isMesa3 ? 3 : isMesa2 ? 2 : 1;
-    const isCaraB = activeSpace.toUpperCase().includes('CARA 2') || activeSpace.toUpperCase().includes('CARA B');
+    const isCaraB = isCara2Active;
     const caraLetra = isCaraB ? 'B' : 'A';
 
     return (
@@ -179,7 +203,7 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
         (it) => it.tipo === 'top_table' && (isCaraB ? it.caraNumero % 2 === 0 : it.caraNumero % 2 === 1)
       )
     );
-  }, [posmItems, activeSpace]);
+  }, [posmItems, activeSpace, isCara2Active]);
 
   const relevantMiniwallPosm = useMemo(() => {
     if (!isMiniWallActive) return undefined;
@@ -213,8 +237,10 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
     bgImage = isCara2Active
       ? PLANOGRAM_IMAGES.table2Mesa2Cara2
       : PLANOGRAM_IMAGES.table2Mesa2Cara1;
-  } else if (isTable2 && isCara2Active) {
-    bgImage = PLANOGRAM_IMAGES.table2Mesa1Cara2;
+  } else if (isTable2) {
+    bgImage = isCara2Active
+      ? PLANOGRAM_IMAGES.table2Mesa1Cara2
+      : PLANOGRAM_IMAGES.table2Mesa1Cara1Xiaomi18;
   } else if (isTable1 && hasWall) {
     bgImage = isCara2Active
       ? PLANOGRAM_IMAGES.table1WallCara2
@@ -236,6 +262,9 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
   });
   const setSelectedPos = (pos: PlanogramPosition) => {
     setSelectedPosState(pos);
+    if (pos?.cara && isMesaActive) {
+      setSelectedCara(pos.cara as 'Cara 1' | 'Cara 2');
+    }
     if (pos && onSelectPositionIdChange) onSelectPositionIdChange(pos.id);
   };
 
@@ -508,80 +537,118 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                 </div>
               </div>
             )
-          ) : isMesaActive && viewMode === 'visual' ? (
-            /* VISTA DE MESA 3D UNIFICADA (CARA 1 + CARA 2) */
-            <div className="w-full h-full flex items-center justify-center">
-              <InteractiveTableCanvas
-                store={store}
-                mesaName={activeSpace}
-                positions={positions}
-                auditStates={auditStates}
-                selectedPositionId={selectedPos?.id || null}
-                onSelectPosition={(pos) => setSelectedPos(pos)}
-                relevantTopTable={relevantTopTable}
-                topTableState={relevantTopTable ? posmStates[relevantTopTable.id] : undefined}
-                onInspectTopTable={(tt) => setInspectingPosmItem(tt)}
-              />
-            </div>
           ) : viewMode === 'visual' ? (
             <div 
               className="relative w-full lg:h-full flex items-center justify-center overflow-hidden transition-colors duration-300"
               style={{ backgroundColor: containerBgColor }}
             >
-              {/* Badge Flotante de Top Table si la mesa dispone de él */}
-              {relevantTopTable && (
-                <div className="absolute top-3 left-3 right-3 z-30 flex items-center justify-between bg-slate-950/85 backdrop-blur-md px-3.5 py-2 rounded-xl border border-teal-500/30 shadow-xl text-white">
-                  <div className="flex items-center gap-2 min-w-0">
-                    <span className="text-[10px] font-black uppercase tracking-wider bg-[#ff6900] text-white px-2 py-0.5 rounded shadow-sm shrink-0">
-                      Top Table
-                    </span>
-                    <span className="text-xs font-bold text-teal-200 truncate">
-                      {relevantTopTable.campanaOficial} · <strong className="text-white font-mono">{relevantTopTable.medida}</strong>
-                    </span>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setInspectingPosmItem(relevantTopTable)}
-                    className="px-2.5 py-1 rounded-lg bg-[#009ca6] hover:bg-[#008992] text-white text-[11px] font-black transition cursor-pointer flex items-center gap-1 shrink-0 shadow-sm"
-                  >
-                    <span>{posmStates[relevantTopTable.id]?.estadoVisual || 'Auditar'}</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              )}
-
-              {/* Badge Flotante de Lona de MiniWall si estamos en MINIWALL */}
-              {isMiniWallActive && relevantMiniwallPosm && (
-                <div className="absolute top-3 left-3 right-3 z-30 flex items-center justify-between bg-slate-950/85 backdrop-blur-md px-3.5 py-2 rounded-xl border border-teal-500/30 shadow-xl text-white">
-                  <div className="flex items-center gap-2 min-w-0">
-                    <span className="text-[10px] font-black uppercase tracking-wider bg-[#ff6900] text-white px-2 py-0.5 rounded shadow-sm shrink-0">
-                      Lona MiniWall
-                    </span>
-                    <span className="text-xs font-bold text-teal-200 truncate">
-                      {relevantMiniwallPosm.campanaOficial} · <strong className="text-white font-mono">{relevantMiniwallPosm.medida}</strong>
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 shrink-0">
-                    {posmStates[relevantMiniwallPosm.id]?.estadoVisual && (
-                      <span className={`text-[10px] font-black px-2 py-0.5 rounded-full ${
-                        posmStates[relevantMiniwallPosm.id]?.estadoVisual === 'OK'
-                          ? 'bg-emerald-500 text-white'
-                          : 'bg-rose-500 text-white'
-                      }`}>
-                        {posmStates[relevantMiniwallPosm.id]?.estadoVisual}
-                      </span>
-                    )}
+              {/* HEADER FLOTANTE: Selector Cara 1 / Cara 2 y Badges POSM */}
+              <div className="absolute top-3 left-3 right-3 z-30 flex items-center justify-between gap-2 pointer-events-none">
+                
+                {/* Selector Cara 1 / Cara 2 en mesas unificadas */}
+                {hasMultipleCaras ? (
+                  <div className="bg-slate-950/85 backdrop-blur-md p-1 rounded-2xl border border-white/10 shadow-xl flex items-center gap-1 pointer-events-auto">
                     <button
                       type="button"
-                      onClick={() => setInspectingPosmItem(relevantMiniwallPosm)}
-                      className="px-2.5 py-1 rounded-lg bg-[#009ca6] hover:bg-[#008992] text-white text-[11px] font-black transition cursor-pointer flex items-center gap-1 shadow-sm"
+                      onClick={() => {
+                        setSelectedCara('Cara 1');
+                        const firstC1 = cara1Positions[0];
+                        if (firstC1 && selectedPos?.cara !== 'Cara 1') {
+                          setSelectedPos(firstC1);
+                        }
+                      }}
+                      className={`px-3 py-1.5 rounded-xl text-xs font-black transition cursor-pointer flex items-center gap-1.5 ${
+                        selectedCara === 'Cara 1'
+                          ? 'bg-gradient-to-r from-[#009ca6] to-[#00b4bf] text-white shadow-md'
+                          : 'text-slate-400 hover:text-white'
+                      }`}
                     >
-                      <span>{posmStates[relevantMiniwallPosm.id]?.estadoVisual ? 'Editar Lona' : 'Auditar Lona'}</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
+                      <span>Cara 1</span>
+                      <span className="text-[10px] opacity-80 font-mono">
+                        (P{String(cara1Positions[0]?.posicionNumero || 1).padStart(2, '0')}-P{String(cara1Positions[cara1Positions.length - 1]?.posicionNumero || 12).padStart(2, '0')})
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelectedCara('Cara 2');
+                        const firstC2 = cara2Positions[0];
+                        if (firstC2 && selectedPos?.cara !== 'Cara 2') {
+                          setSelectedPos(firstC2);
+                        }
+                      }}
+                      className={`px-3 py-1.5 rounded-xl text-xs font-black transition cursor-pointer flex items-center gap-1.5 ${
+                        selectedCara === 'Cara 2'
+                          ? 'bg-gradient-to-r from-[#009ca6] to-[#00b4bf] text-white shadow-md'
+                          : 'text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      <span>Cara 2</span>
+                      <span className="text-[10px] opacity-80 font-mono">
+                        (P{String(cara2Positions[0]?.posicionNumero || 13).padStart(2, '0')}-P{String(cara2Positions[cara2Positions.length - 1]?.posicionNumero || 22).padStart(2, '0')})
+                      </span>
                     </button>
                   </div>
+                ) : <div />}
+
+                <div className="flex items-center gap-2 pointer-events-auto">
+                  {/* Badge Flotante de Top Table si la mesa dispone de él */}
+                  {relevantTopTable && (
+                    <div className="bg-slate-950/85 backdrop-blur-md px-3.5 py-1.5 rounded-2xl border border-teal-500/30 shadow-xl text-white flex items-center gap-2">
+                      <div className="flex items-center gap-1.5 min-w-0">
+                        <span className="text-[9px] font-black uppercase tracking-wider bg-[#ff6900] text-white px-2 py-0.5 rounded shadow-sm shrink-0">
+                          Top Table {isCara2Active ? 'Cara B' : 'Cara A'}
+                        </span>
+                        <span className="text-xs font-bold text-teal-200 truncate hidden sm:inline">
+                          {relevantTopTable.campanaOficial}
+                        </span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setInspectingPosmItem(relevantTopTable)}
+                        className="px-2.5 py-1 rounded-lg bg-[#009ca6] hover:bg-[#008992] text-white text-[11px] font-black transition cursor-pointer flex items-center gap-1 shrink-0 shadow-sm"
+                      >
+                        <span>{posmStates[relevantTopTable.id]?.estadoVisual || 'Auditar'}</span>
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Badge Flotante de Lona de MiniWall si estamos en MINIWALL */}
+                  {isMiniWallActive && relevantMiniwallPosm && (
+                    <div className="bg-slate-950/85 backdrop-blur-md px-3.5 py-1.5 rounded-2xl border border-teal-500/30 shadow-xl text-white flex items-center gap-2">
+                      <div className="flex items-center gap-1.5 min-w-0">
+                        <span className="text-[9px] font-black uppercase tracking-wider bg-[#ff6900] text-white px-2 py-0.5 rounded shadow-sm shrink-0">
+                          Lona MiniWall
+                        </span>
+                        <span className="text-xs font-bold text-teal-200 truncate hidden sm:inline">
+                          {relevantMiniwallPosm.campanaOficial}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        {posmStates[relevantMiniwallPosm.id]?.estadoVisual && (
+                          <span className={`text-[10px] font-black px-2 py-0.5 rounded-full ${
+                            posmStates[relevantMiniwallPosm.id]?.estadoVisual === 'OK'
+                              ? 'bg-emerald-500 text-white'
+                              : 'bg-rose-500 text-white'
+                          }`}>
+                            {posmStates[relevantMiniwallPosm.id]?.estadoVisual}
+                          </span>
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => setInspectingPosmItem(relevantMiniwallPosm)}
+                          className="px-2.5 py-1 rounded-lg bg-[#009ca6] hover:bg-[#008992] text-white text-[11px] font-black transition cursor-pointer flex items-center gap-1 shadow-sm"
+                        >
+                          <span>{posmStates[relevantMiniwallPosm.id]?.estadoVisual ? 'Editar Lona' : 'Auditar Lona'}</span>
+                          <ChevronRight className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
               {/* Imagen Real de la Mesa Oficial que se adapta al formato sin márgenes negros */}
               <div 
                 className="relative w-full lg:h-full flex items-center justify-center transition-transform duration-200 ease-out"
@@ -628,7 +695,7 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                     </div>
                   )}
 
-                  {positions.map((pos, idx) => {
+                  {visiblePositions.map((pos, idx) => {
                     const pState = getPosAuditState(pos);
                     const isOk = pState?.estadoPosicion === 'OK';
                     const isInc = pState?.estadoPosicion === 'Incidencia';
@@ -652,7 +719,7 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                         }
                       : {
                           position: 'absolute',
-                          left: `${((idx + 0.5) / positions.length) * 100}%`,
+                          left: `${((idx + 0.5) / visiblePositions.length) * 100}%`,
                           top: '52%',
                           transform: 'translate(-50%, -50%)',
                           pointerEvents: 'auto'

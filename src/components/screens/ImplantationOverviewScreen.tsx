@@ -330,10 +330,38 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
     const firstCampaignPos = positions.find((p) => Boolean(getSwapAssignmentForPosition(p)));
     return firstCampaignPos || positions[0];
   });
+  const isMesaActive = activeSpace.toUpperCase().startsWith('MESA');
+  const [selectedCara, setSelectedCara] = useState<'Cara 1' | 'Cara 2'>('Cara 1');
+
+  useEffect(() => {
+    setSelectedCara('Cara 1');
+  }, [activeSpace]);
+
   const setSelectedPos = (pos: PlanogramPosition) => {
     setSelectedPosState(pos);
+    if (pos?.cara && isMesaActive) {
+      setSelectedCara(pos.cara as 'Cara 1' | 'Cara 2');
+    }
     if (pos && onSelectPositionIdChange) onSelectPositionIdChange(pos.id);
   };
+
+  const isCara2Active = isMesaActive
+    ? selectedCara === 'Cara 2'
+    : (activeSpace.includes('Cara 2') || activeSpace.includes('Cara B'));
+
+  const cara1Positions = useMemo(() => {
+    return positions.filter(p => p.cara === 'Cara 1');
+  }, [positions]);
+
+  const cara2Positions = useMemo(() => {
+    return positions.filter(p => p.cara === 'Cara 2');
+  }, [positions]);
+
+  const hasMultipleCaras = isMesaActive && cara1Positions.length > 0 && cara2Positions.length > 0;
+
+  const visiblePositions = hasMultipleCaras
+    ? (selectedCara === 'Cara 2' ? cara2Positions : cara1Positions)
+    : positions;
 
   // Imagen de fondo del espacio 3D: en Mesa 1 Cara 1 se utiliza el nuevo render oficial de lanzamiento Xiaomi 18
   const hasWall =
@@ -350,14 +378,9 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
   const isMiniWallActive = activeSpace.toUpperCase().includes('MINIWALL');
   const isWallActive = activeSpace.toUpperCase().includes('WALL') && !isMiniWallActive;
   const isMesa2Active = activeSpace.toUpperCase().includes('MESA 2');
-  const isCara2Active = activeSpace.includes('Cara 2') || activeSpace.includes('Cara B');
 
   let bgImage = PLANOGRAM_IMAGES.table1Cara1;
-  if (isMesa1Cara1) {
-    bgImage = isTwoTableSpace(store)
-      ? PLANOGRAM_IMAGES.table2Mesa1Cara1Xiaomi18
-      : PLANOGRAM_IMAGES.table1Cara1Xiaomi18;
-  } else if (isLinealActive) {
+  if (isLinealActive) {
     bgImage = PLANOGRAM_IMAGES.linealSmartwatchImg;
   } else if (isMiniWallActive) {
     bgImage = PLANOGRAM_IMAGES.miniwallImg;
@@ -371,12 +394,16 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
     bgImage = isCara2Active
       ? PLANOGRAM_IMAGES.table2Mesa2Cara2
       : PLANOGRAM_IMAGES.table2Mesa2Cara1;
-  } else if (isTable2 && isCara2Active) {
-    bgImage = PLANOGRAM_IMAGES.table2Mesa1Cara2;
+  } else if (isTable2) {
+    bgImage = isCara2Active
+      ? PLANOGRAM_IMAGES.table2Mesa1Cara2
+      : PLANOGRAM_IMAGES.table2Mesa1Cara1Xiaomi18;
   } else if (isTable1 && hasWall) {
     bgImage = isCara2Active
       ? PLANOGRAM_IMAGES.table1WallCara2
       : PLANOGRAM_IMAGES.table1WallCara1;
+  } else if (isTable1 && !isCara2Active) {
+    bgImage = PLANOGRAM_IMAGES.table1Cara1Xiaomi18;
   } else {
     bgImage = isCara2Active
       ? PLANOGRAM_IMAGES.table1Cara2
@@ -821,6 +848,53 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                   className="relative w-full lg:h-full flex items-center justify-center overflow-hidden"
                   style={{ backgroundColor: containerBgColor }}
                 >
+                  {/* Selector Cara 1 / Cara 2 en mesas unificadas */}
+                  {hasMultipleCaras && (
+                    <div className="absolute top-3 left-3 z-30 flex items-center bg-slate-950/85 backdrop-blur-md p-1 rounded-2xl border border-white/10 shadow-xl pointer-events-auto">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSelectedCara('Cara 1');
+                          const firstC1 = cara1Positions[0];
+                          if (firstC1 && selectedPos?.cara !== 'Cara 1') {
+                            setSelectedPos(firstC1);
+                          }
+                        }}
+                        className={`px-3 py-1.5 rounded-xl text-xs font-black transition cursor-pointer flex items-center gap-1.5 ${
+                          selectedCara === 'Cara 1'
+                            ? 'bg-gradient-to-r from-[#009ca6] to-[#00b4bf] text-white shadow-md'
+                            : 'text-slate-400 hover:text-white'
+                        }`}
+                      >
+                        <span>Cara 1</span>
+                        <span className="text-[10px] opacity-80 font-mono">
+                          (P{String(cara1Positions[0]?.posicionNumero || 1).padStart(2, '0')}-P{String(cara1Positions[cara1Positions.length - 1]?.posicionNumero || 12).padStart(2, '0')})
+                        </span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSelectedCara('Cara 2');
+                          const firstC2 = cara2Positions[0];
+                          if (firstC2 && selectedPos?.cara !== 'Cara 2') {
+                            setSelectedPos(firstC2);
+                          }
+                        }}
+                        className={`px-3 py-1.5 rounded-xl text-xs font-black transition cursor-pointer flex items-center gap-1.5 ${
+                          selectedCara === 'Cara 2'
+                            ? 'bg-gradient-to-r from-[#009ca6] to-[#00b4bf] text-white shadow-md'
+                            : 'text-slate-400 hover:text-white'
+                        }`}
+                      >
+                        <span>Cara 2</span>
+                        <span className="text-[10px] opacity-80 font-mono">
+                          (P{String(cara2Positions[0]?.posicionNumero || 13).padStart(2, '0')}-P{String(cara2Positions[cara2Positions.length - 1]?.posicionNumero || 22).padStart(2, '0')})
+                        </span>
+                      </button>
+                    </div>
+                  )}
+
                   <div
                     className="relative w-full lg:h-full flex items-center justify-center transition-transform duration-200 ease-out"
                     style={{ transform: `scale(${zoomLevel})` }}
@@ -835,7 +909,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
 
                       {/* Pines en el Mapa 3D: Resaltados para campaña activa, atenuados para los demás */}
                       <div className="absolute inset-0 pointer-events-none">
-                        {positions.map((pos, idx) => {
+                        {visiblePositions.map((pos, idx) => {
                           const assignment = getSwapAssignmentForPosition(pos);
                           const isCampaignPos = Boolean(assignment);
                           const swapState = swapStates[pos.id];
@@ -855,7 +929,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                               }
                             : {
                                 position: 'absolute',
-                                left: `${((idx + 0.5) / positions.length) * 100}%`,
+                                left: `${((idx + 0.5) / visiblePositions.length) * 100}%`,
                                 top: '52%',
                                 transform: 'translate(-50%, -50%)',
                                 pointerEvents: 'auto'
