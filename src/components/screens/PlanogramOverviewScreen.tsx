@@ -152,7 +152,9 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
     }).length;
   }, [posmItems, posmStates]);
 
-  const hasWall = store.availableSpaces && store.availableSpaces.some(s => s.toUpperCase().includes('WALL') && !s.toUpperCase().includes('MINIWALL'));
+  const hasWall = Boolean(store.availableSpaces && store.availableSpaces.some(s => s.toUpperCase().includes('WALL') && !s.toUpperCase().includes('MINIWALL')));
+  const hasMiniwall = Boolean(store.availableSpaces && store.availableSpaces.some(s => s.toUpperCase().includes('MINIWALL')));
+  const hasWallOrMiniwall = Boolean(hasWall || hasMiniwall || posmConfig?.hasWall || posmConfig?.hasMiniwall);
   const isTable1 = store.tipoEspacioId.includes('Table 1');
   const isTable2 = store.tipoEspacioId.includes('Table 2');
   const isTableCrf = store.tipoEspacioId.includes('Table CRF');
@@ -240,7 +242,7 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
   } else if (isTable2) {
     bgImage = isCara2Active
       ? PLANOGRAM_IMAGES.table2Mesa1Cara2
-      : PLANOGRAM_IMAGES.table2Mesa1Cara1Xiaomi18;
+      : (hasWallOrMiniwall ? PLANOGRAM_IMAGES.table2Mesa1Cara1Xiaomi18 : PLANOGRAM_IMAGES.table2Mesa1Cara1NoWall);
   } else if (isTable1 && hasWall) {
     bgImage = isCara2Active
       ? PLANOGRAM_IMAGES.table1WallCara2
