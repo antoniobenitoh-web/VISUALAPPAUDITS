@@ -3315,7 +3315,7 @@ export const getPositionsForSpace = (
     { pos: 23, device: 'Redmi Watch 6 Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 87.6, pinY: 48.5 }
   ];
 
-  // Coordenadas y dispositivos calibrados para Table 2 Mesa 2 Cara A (Cara 1) - 6 puestos naturales (1 a 6)
+  // Coordenadas y dispositivos calibrados para Table 2 Mesa 2 Cara A (Cara 1) estándar - 6 puestos naturales (1 a 6)
   const TABLE2_MESA2_CARA1_ITEMS = [
     { pos: 1, device: 'Xiaomi Pad 8', dummy: false, category: 'Tablet' as ProductCategory, pinX: 16.4, pinY: 56.0 },
     { pos: 2, device: 'Redmi Pad 2 Pro', dummy: false, category: 'Tablet' as ProductCategory, pinX: 35.2, pinY: 56.0 },
@@ -3323,6 +3323,16 @@ export const getPositionsForSpace = (
     { pos: 4, device: 'Redmi 17 5G Orange', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 64.6, pinY: 56.0 },
     { pos: 5, device: 'Redmi Pad 2', dummy: false, category: 'Tablet' as ProductCategory, pinX: 77.9, pinY: 56.0 },
     { pos: 6, device: 'Redmi 17 4G Blue', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 86.4, pinY: 56.0 }
+  ];
+
+  // Coordenadas y dispositivos calibrados para Table 2 Mesa 2 Cara A (Cara 1) CON Xiaomi Pad 8 Pro - 6 puestos calibrados
+  const TABLE2_MESA2_PAD8PRO_CARA1_ITEMS = [
+    { pos: 1, device: 'Xiaomi Pad 8 Pro', dummy: false, category: 'Tablet' as ProductCategory, pinX: 23.5, pinY: 48.5 },
+    { pos: 2, device: 'Xiaomi Pad 8', dummy: false, category: 'Tablet' as ProductCategory, pinX: 40.5, pinY: 48.5 },
+    { pos: 3, device: 'Redmi Pad 2 Pro', dummy: false, category: 'Tablet' as ProductCategory, pinX: 54.8, pinY: 48.5 },
+    { pos: 4, device: 'Redmi 17 5G Orange', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 63.8, pinY: 48.5 },
+    { pos: 5, device: 'Redmi Pad 2', dummy: false, category: 'Tablet' as ProductCategory, pinX: 74.2, pinY: 48.5 },
+    { pos: 6, device: 'Redmi 17 4G Blue', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 83.6, pinY: 48.5 }
   ];
 
   // Coordenadas y dispositivos calibrados para Table 2 Mesa 2 Cara B (Cara 2) - 11 puestos en orden requerido:
@@ -3424,11 +3434,7 @@ export const getPositionsForSpace = (
     const storeObj = typeof storeOrId === 'object' ? storeOrId : undefined;
     const isPad8ProStore = storeObj?.hasPad8Pro === true;
 
-    const c1Items = isPad8ProStore ? TABLE2_MESA2_CARA1_ITEMS.map((item, idx) => {
-      if (idx === 0) return { ...item, device: 'Xiaomi Pad 8 Pro' };
-      if (idx === 1) return { ...item, device: 'Xiaomi Pad 8' };
-      return item;
-    }) : TABLE2_MESA2_CARA1_ITEMS;
+    const c1Items = isPad8ProStore ? TABLE2_MESA2_PAD8PRO_CARA1_ITEMS : TABLE2_MESA2_CARA1_ITEMS;
 
     // Si es Mesa 2 unificada (sin especificar cara) -> devolver ambas caras integradas
     if (!isCara1 && !isCara2) {

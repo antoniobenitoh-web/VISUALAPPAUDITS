@@ -236,7 +236,7 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
   } else if (isMesa2Active) {
     bgImage = isCara2Active
       ? PLANOGRAM_IMAGES.table2Mesa2Cara2
-      : PLANOGRAM_IMAGES.table2Mesa2Cara1;
+      : (store.hasPad8Pro ? PLANOGRAM_IMAGES.table2Mesa2Pad8ProCara1 : PLANOGRAM_IMAGES.table2Mesa2Cara1);
   } else if (isTable2) {
     bgImage = isCara2Active
       ? PLANOGRAM_IMAGES.table2Mesa1Cara2
