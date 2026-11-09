@@ -151,7 +151,20 @@ export class DbService {
     if (!raw) return null;
     try {
       const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? this.migrateTable2Mesa1Cara2Positions(parsed) : null;
+      if (!Array.isArray(parsed)) return null;
+
+      // Descartar borrador si tiene la numeración antigua desfasada donde P1 era Xiaomi 17 Ultra Black
+      const hasOldP1 = parsed.some(
+        (p) =>
+          (p.posicionNumero === 1 || p.posicionId?.endsWith('-P1')) &&
+          p.modeloOficial?.toLowerCase().includes('17 ultra black')
+      );
+      if (hasOldP1) {
+        localStorage.removeItem(`${DRAFTS_KEY}_${tiendaId}`);
+        return null;
+      }
+
+      return this.migrateTable2Mesa1Cara2Positions(parsed);
     } catch {
       return null;
     }
@@ -216,10 +229,17 @@ export class DbService {
     const history = this.getHistory();
     const fromHistory = history.find(r => r.tiendaId === tiendaId);
     if (fromHistory) {
-      return {
-        ...fromHistory,
-        positions: this.migrateTable2Mesa1Cara2Positions(fromHistory.positions || [])
-      };
+      const hasOldP1 = (fromHistory.positions || []).some(
+        (p) =>
+          (p.posicionNumero === 1 || p.posicionId?.endsWith('-P1')) &&
+          p.modeloOficial?.toLowerCase().includes('17 ultra black')
+      );
+      if (!hasOldP1) {
+        return {
+          ...fromHistory,
+          positions: this.migrateTable2Mesa1Cara2Positions(fromHistory.positions || [])
+        };
+      }
     }
 
     return SEED_AUDITS[tiendaId] || null;
