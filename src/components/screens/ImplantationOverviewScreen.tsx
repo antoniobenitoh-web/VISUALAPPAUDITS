@@ -399,7 +399,9 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
   } else if (isMesa2Active) {
     bgImage = isCara2Active
       ? (store.hasPad8Pro ? PLANOGRAM_IMAGES.table2Mesa2Pad8ProCara2 : PLANOGRAM_IMAGES.table2Mesa2Cara2)
-      : (store.hasPad8Pro ? PLANOGRAM_IMAGES.table2Mesa2Pad8ProCara1 : PLANOGRAM_IMAGES.table2Mesa2Cara1);
+      : (store.hasPad8Pro
+          ? PLANOGRAM_IMAGES.table2Mesa2Pad8ProCara1
+          : (hasWallOrMiniwall ? PLANOGRAM_IMAGES.table2Mesa2Cara1 : PLANOGRAM_IMAGES.table2Mesa2Cara1NoWall));
   } else if (isTable2) {
     bgImage = isCara2Active
       ? (hasWallOrMiniwall ? PLANOGRAM_IMAGES.table2Mesa1Cara2 : PLANOGRAM_IMAGES.table2Mesa1Cara2NoWall)

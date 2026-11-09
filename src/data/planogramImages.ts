@@ -8,6 +8,7 @@ import table1Cara2 from '../assets/tables/table1_cara2_render.jpg?inline';
 import table1WallCara1 from '../assets/tables/table1_wall_cara1_render.jpg?inline';
 import table1WallCara2 from '../assets/tables/table1_wall_cara2_render.jpg?inline';
 import table2Mesa2Cara1 from '../assets/tables/table2_mesa2_cara1.jpg?inline';
+import table2Mesa2Cara1NoWall from '../assets/tables/table2_mesa2_cara1_no_wall.jpg?inline';
 import table2Mesa2Pad8ProCara1 from '../assets/tables/table2_mesa2_pad8pro_cara1.jpg?inline';
 import table2Mesa2Cara2 from '../assets/tables/table2_mesa2_cara2.jpg?inline';
 import table2Mesa2Pad8ProCara2 from '../assets/tables/table2_mesa2_pad8pro_cara2.jpg?inline';
@@ -29,6 +30,7 @@ export const PLANOGRAM_IMAGES = {
   table1WallCara1,
   table1WallCara2,
   table2Mesa2Cara1,
+  table2Mesa2Cara1NoWall,
   table2Mesa2Pad8ProCara1,
   table2Mesa2Cara2,
   table2Mesa2Pad8ProCara2,
