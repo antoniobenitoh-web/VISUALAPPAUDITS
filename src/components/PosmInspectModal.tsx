@@ -75,10 +75,12 @@ export const PosmInspectModal: React.FC<PosmInspectModalProps> = ({
     return './images/tables/table2_mesa1_cara1_no_wall.jpg';
   };
 
+  const isMinilona = item.nombre.includes('Minilona') || item.ubicacion.includes('Minilona') || item.campanaOficial.toUpperCase().includes('17 ULTRA');
+
   // Imagen de referencia según tipo
   const refImage = item.tipo === 'columna'
     ? (item.esMiniwall
-        ? './images/posm/miniwall_render.jpg'
+        ? (item.campanaOficial.toUpperCase().includes('17 ULTRA') ? './images/posm/miniwall_x17_render.jpg' : './images/posm/miniwall_render.jpg')
         : item.caraNumero === 1
         ? './images/posm/cara1_xiaomi17ultra.jpg'
         : item.caraNumero === 2
@@ -89,7 +91,9 @@ export const PosmInspectModal: React.FC<PosmInspectModalProps> = ({
         ? './images/posm/cara4_xiaoipad8.jpg'
         : './images/posm/columna_zaragoza_1.jpg')
     : item.tipo === 'miniwall'
-    ? './images/posm/miniwall_render.jpg'
+    ? (isMinilona
+        ? './images/posm/miniwall_x17_render.jpg'
+        : './images/posm/miniwall_render.jpg')
     : item.tipo === 'wall'
     ? './images/tables/wall.jpg'
     : getTopTableRefImage(item);
@@ -221,15 +225,19 @@ export const PosmInspectModal: React.FC<PosmInspectModalProps> = ({
               1. Verificación en Tienda
             </span>
 
-            {/* Check Específico para MiniWall: Dispone o No de Lona */}
+            {/* Check Específico para MiniWall: Dispone o No de Lona / Minilona */}
             {item.tipo === 'miniwall' && (
               <div className="bg-amber-50 border border-amber-200 p-3.5 rounded-xl flex items-center justify-between gap-3">
                 <div>
                   <span className="text-xs font-extrabold text-amber-950 block">
-                    ¿El MiniWall dispone de lona instalada?
+                    {isMinilona
+                      ? '¿El MiniWall dispone de minilona instalada?'
+                      : '¿El MiniWall dispone de lona instalada?'}
                   </span>
                   <span className="text-[11px] text-amber-800">
-                    En la mayoría de tiendas sí la tienen, pero algunas unidades no disponen de ella
+                    {isMinilona
+                      ? 'En Diagonal Mar dispone de minilona oficial de Xiaomi 17 Ultra sobre el bastidor'
+                      : 'En la mayoría de tiendas sí la tienen, pero algunas unidades no disponen de ella'}
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5 shrink-0">

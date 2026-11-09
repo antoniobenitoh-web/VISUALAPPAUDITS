@@ -165,6 +165,11 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
   const isOnlyMiniwallStore = !isColumnaStore && Boolean(posmConfig?.hasMiniwall || hasMiniwall) && !hasWall && !posmConfig?.hasWall;
   const isOnlyWallStore = !isColumnaStore && !posmConfig?.hasMiniwall && !hasMiniwall && (hasWall || Boolean(posmConfig?.hasWall));
   const isOnlyTopTablesStore = !isColumnaStore && !isOnlyMiniwallStore && !isOnlyWallStore;
+  const isDiagonalMar = store.tiendaId === 'MIESS00026' || store.nombreTienda.toLowerCase().includes('diagonal mar');
+  const isMiniwallX17 = Boolean(
+    isDiagonalMar ||
+    posmItems.some(it => it.tipo === 'miniwall' && it.campanaOficial.toUpperCase().includes('17 ULTRA'))
+  );
 
   // Elementos Top Table (Duratrans / Filminas) para tiendas sin columna ni wall
   const topTableItems = useMemo(() => {
@@ -273,21 +278,21 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
         id: `${store.tiendaId}-POSM-MINIWALL`,
         tipo: 'miniwall' as const,
         material: 'Lona / Textil' as const,
-        nombre: 'Lona de MiniWall',
-        ubicacion: 'MINIWALL · Bastidor Textil',
+        nombre: isDiagonalMar ? 'Minilona (MiniWall)' : 'Lona de MiniWall',
+        ubicacion: isDiagonalMar ? 'MINIWALL · Minilona Bastidor Textil' : 'MINIWALL · Bastidor Textil',
         caraNumero: 1,
-        medida: '1000x1100 mm',
-        campanaOficial: 'Xiaomi Pad 8 Series',
+        medida: isDiagonalMar ? '650x460 mm' : '1000x1100 mm',
+        campanaOficial: isDiagonalMar ? 'Xiaomi 17 Ultra' : 'Xiaomi Pad 8 Series',
         activo: true
       }
     );
-  }, [isMiniWallActive, posmItems, store.tiendaId]);
+  }, [isMiniWallActive, posmItems, store.tiendaId, isDiagonalMar]);
 
   let bgImage = PLANOGRAM_IMAGES.table1Cara1;
   if (isLinealActive) {
     bgImage = PLANOGRAM_IMAGES.linealSmartwatchImg;
   } else if (isMiniWallActive) {
-    bgImage = PLANOGRAM_IMAGES.miniwallImg;
+    bgImage = isMiniwallX17 ? PLANOGRAM_IMAGES.miniwallX17Img : PLANOGRAM_IMAGES.miniwallImg;
   } else if (isWallActive) {
     bgImage = PLANOGRAM_IMAGES.wallImg;
   } else if (isTableCrf) {
@@ -559,22 +564,24 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                   <div className="flex items-center justify-between w-full">
                     <div>
                       <span className="text-[10px] font-black uppercase tracking-wider text-teal-400 bg-teal-950 px-2.5 py-0.5 rounded-full border border-teal-800">
-                        Lona de MiniWall · Bastidor Textil Lateral
+                        {isDiagonalMar ? 'Minilona · Bastidor Textil Lateral' : 'Lona de MiniWall · Bastidor Textil Lateral'}
                       </span>
-                      <h3 className="text-base sm:text-lg font-black text-white mt-1">Lona Textil Oficial de MiniWall</h3>
+                      <h3 className="text-base sm:text-lg font-black text-white mt-1">
+                        {isDiagonalMar ? 'Minilona Oficial de MiniWall' : 'Lona Textil Oficial de MiniWall'}
+                      </h3>
                       <p className="text-xs text-teal-300 font-semibold">
-                        Campaña vigente: {posmItems.find(it => it.tipo === 'miniwall')?.campanaOficial || 'Xiaomi Pad 8 Series'}
+                        Campaña vigente: {posmItems.find(it => it.tipo === 'miniwall')?.campanaOficial || (isDiagonalMar ? 'Xiaomi 17 Ultra' : 'Xiaomi Pad 8 Series')}
                       </p>
                     </div>
                     <span className="text-xs font-mono font-bold text-slate-400">
-                      {posmItems.find(it => it.tipo === 'miniwall')?.medida || '1000x1100 mm'}
+                      {posmItems.find(it => it.tipo === 'miniwall')?.medida || (isDiagonalMar ? '650x460 mm' : '1000x1100 mm')}
                     </span>
                   </div>
 
                   <div className="relative rounded-xl overflow-hidden border border-slate-700 w-full bg-black shadow-inner flex justify-center">
                     <img
-                      src="./images/posm/miniwall_render.jpg"
-                      alt="Render Oficial de MiniWall (Xiaomi Pad 8 Series)"
+                      src={isMiniwallX17 ? "./images/posm/miniwall_x17_render.jpg" : "./images/posm/miniwall_render.jpg"}
+                      alt={isDiagonalMar ? "Render Oficial Minilona MiniWall (Xiaomi 17 Ultra)" : "Render Oficial de MiniWall"}
                       className="w-full h-56 sm:h-72 object-contain"
                     />
                   </div>
@@ -584,11 +591,11 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                       id: `${store.tiendaId}-POSM-MINIWALL`,
                       tipo: 'miniwall' as const,
                       material: 'Lona / Textil' as const,
-                      nombre: 'Lona de MiniWall',
-                      ubicacion: 'MINIWALL · Bastidor Textil',
+                      nombre: isDiagonalMar ? 'Minilona (MiniWall)' : 'Lona de MiniWall',
+                      ubicacion: isDiagonalMar ? 'MINIWALL · Minilona Bastidor Textil' : 'MINIWALL · Bastidor Textil',
                       caraNumero: 1,
-                      medida: '1000x1100 mm',
-                      campanaOficial: 'Xiaomi Pad 8 Series',
+                      medida: isDiagonalMar ? '650x460 mm' : '1000x1100 mm',
+                      campanaOficial: isDiagonalMar ? 'Xiaomi 17 Ultra' : 'Xiaomi Pad 8 Series',
                       activo: true
                     };
                     const st = posmStates[miniwallItem.id];
@@ -607,7 +614,11 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                           className="px-4 py-2 rounded-xl bg-[#009ca6] hover:bg-[#008992] text-white font-black text-xs transition cursor-pointer flex items-center gap-1.5 shadow-md"
                         >
                           <Eye className="w-4 h-4" />
-                          <span>{st ? 'Editar Auditoría Lona' : 'Auditar Lona MiniWall'}</span>
+                          <span>
+                            {st
+                              ? (isDiagonalMar ? 'Editar Auditoría Minilona' : 'Editar Auditoría Lona')
+                              : (isDiagonalMar ? 'Auditar Minilona' : 'Auditar Lona MiniWall')}
+                          </span>
                         </button>
                       </div>
                     );
@@ -865,12 +876,12 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                     </div>
                   )}
 
-                  {/* Badge Flotante de Lona de MiniWall si estamos en MINIWALL */}
+                  {/* Badge Flotante de Lona / Minilona de MiniWall si estamos en MINIWALL */}
                   {isMiniWallActive && relevantMiniwallPosm && (
                     <div className="bg-slate-950/85 backdrop-blur-md px-3.5 py-1.5 rounded-2xl border border-teal-500/30 shadow-xl text-white flex items-center gap-2">
                       <div className="flex items-center gap-1.5 min-w-0">
                         <span className="text-[9px] font-black uppercase tracking-wider bg-[#ff6900] text-white px-2 py-0.5 rounded shadow-sm shrink-0">
-                          Lona MiniWall
+                          {isDiagonalMar ? 'Minilona' : 'Lona MiniWall'}
                         </span>
                         <span className="text-xs font-bold text-teal-200 truncate hidden sm:inline">
                           {relevantMiniwallPosm.campanaOficial}
@@ -891,7 +902,11 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                           onClick={() => setInspectingPosmItem(relevantMiniwallPosm)}
                           className="px-2.5 py-1 rounded-lg bg-[#009ca6] hover:bg-[#008992] text-white text-[11px] font-black transition cursor-pointer flex items-center gap-1 shadow-sm"
                         >
-                          <span>{posmStates[relevantMiniwallPosm.id]?.estadoVisual ? 'Editar Lona' : 'Auditar Lona'}</span>
+                          <span>
+                            {posmStates[relevantMiniwallPosm.id]?.estadoVisual
+                              ? (isDiagonalMar ? 'Editar Minilona' : 'Editar Lona')
+                              : (isDiagonalMar ? 'Auditar Minilona' : 'Auditar Lona')}
+                          </span>
                           <ChevronRight className="w-3.5 h-3.5" />
                         </button>
                       </div>
@@ -930,15 +945,15 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                             ? 'bg-rose-700/90 hover:bg-rose-600 text-white border-rose-400 ring-2 ring-rose-400/40'
                             : 'bg-slate-900/90 hover:bg-slate-900 text-white border-[#00c4cc] hover:scale-105'
                         }`}
-                        title="Auditar Lona de MiniWall"
+                        title={isDiagonalMar ? "Auditar Minilona de MiniWall" : "Auditar Lona de MiniWall"}
                       >
                         <Layers className="w-3.5 h-3.5 text-[#00c4cc]" />
                         <div className="text-left">
                           <span className="block text-[8px] font-medium text-slate-300 uppercase leading-none">
-                            Lona MiniWall
+                            {isDiagonalMar ? 'Minilona' : 'Lona MiniWall'}
                           </span>
                           <span className="text-xs font-black leading-tight">
-                            {posmStates[relevantMiniwallPosm.id]?.estadoVisual || 'Auditar'}
+                            {posmStates[relevantMiniwallPosm.id]?.estadoVisual || (isDiagonalMar ? 'Auditar Minilona' : 'Auditar')}
                           </span>
                         </div>
                       </button>

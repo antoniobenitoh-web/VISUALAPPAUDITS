@@ -16,6 +16,7 @@ import tableCrfCara1 from '../assets/tables/table_crf_cara1_render.jpg?inline';
 import tableCrfCara2 from '../assets/tables/table_crf_cara2_render.jpg?inline';
 import wallImg from '../assets/tables/wall.jpg?inline';
 import miniwallImg from '../assets/tables/miniwall_render.jpg?inline';
+import miniwallX17Img from '../assets/tables/miniwall_x17_render.jpg?inline';
 import linealSmartwatchImg from '../assets/tables/lineal_smartwatch.jpg?inline';
 
 export const PLANOGRAM_IMAGES = {
@@ -38,5 +39,6 @@ export const PLANOGRAM_IMAGES = {
   tableCrfCara2,
   wallImg,
   miniwallImg,
+  miniwallX17Img,
   linealSmartwatchImg
 };

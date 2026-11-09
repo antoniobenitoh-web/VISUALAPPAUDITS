@@ -171,7 +171,7 @@ export const STORE_POSM_DATA: Record<string, StorePosmConfig> = {
     "hasPad8Pro": false,
     "hasWall": false,
     "hasMiniwall": true,
-    "hasColumnas": true,
+    "hasColumnas": false,
     "hasTopTables": false,
     "columnMeasures": {
       "cara1": "650x460",
@@ -181,24 +181,13 @@ export const STORE_POSM_DATA: Record<string, StorePosmConfig> = {
     },
     "elementos": [
       {
-        "id": "MIESS00026-POSM-COL-C1",
-        "tipo": "columna",
-        "material": "Lona / Textil",
-        "nombre": "Columna · Cara 1",
-        "ubicacion": "COLUMNA · Cara 1",
-        "caraNumero": 1,
-        "medida": "650x460 mm",
-        "campanaOficial": "Xiaomi 17 Ultra",
-        "activo": true
-      },
-      {
         "id": "MIESS00026-POSM-MINIWALL",
         "tipo": "miniwall",
         "material": "Lona / Textil",
-        "nombre": "Lona de MiniWall",
-        "ubicacion": "MINIWALL · Bastidor Textil",
+        "nombre": "Minilona (MiniWall)",
+        "ubicacion": "MINIWALL · Minilona Bastidor Textil",
         "caraNumero": 1,
-        "medida": "1000x1100 mm",
+        "medida": "650x460 mm",
         "campanaOficial": "Xiaomi 17 Ultra",
         "activo": true
       }
