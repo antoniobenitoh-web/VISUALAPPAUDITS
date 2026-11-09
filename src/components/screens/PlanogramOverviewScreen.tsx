@@ -497,6 +497,7 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                         Lona de Wall · Retroiluminada
                       </span>
                       <h3 className="text-base sm:text-lg font-black text-white mt-1">Lona Textil Oficial de Wall</h3>
+                      <p className="text-xs text-teal-300 font-semibold">Campaña vigente: Xiaomi 17 Ultra</p>
                     </div>
                     <span className="text-xs font-mono font-bold text-slate-400">
                       {posmItems.find(it => it.tipo === 'wall')?.medida || 'Gran Formato'}
@@ -505,8 +506,8 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
 
                   <div className="relative rounded-xl overflow-hidden border border-slate-700 w-full bg-black shadow-inner">
                     <img
-                      src="./images/posm/lona_wall_despues.png"
-                      alt="Lona Oficial de Wall"
+                      src="./images/tables/wall.jpg"
+                      alt="Render Oficial de Wall (Xiaomi 17 Ultra)"
                       className="w-full h-56 sm:h-72 object-contain"
                     />
                   </div>

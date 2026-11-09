@@ -57,7 +57,7 @@ export const PosmInspectModal: React.FC<PosmInspectModalProps> = ({
     : item.tipo === 'miniwall'
     ? './images/posm/miniwall_render.jpg'
     : item.tipo === 'wall'
-    ? './images/posm/lona_wall_despues.png'
+    ? './images/tables/wall.jpg'
     : './images/posm/faldon_mesa1.png';
 
   const handleCapturePhoto = async (e: React.ChangeEvent<HTMLInputElement>) => {
