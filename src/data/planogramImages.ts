@@ -3,6 +3,7 @@ import table1Cara1Xiaomi18 from '../assets/tables/table1_cara1_xiaomi18_render.j
 import table2Mesa1Cara1Xiaomi18 from '../assets/tables/table2_mesa1_cara1_xiaomi18_render.jpg?inline';
 import table2Mesa1Cara1NoWall from '../assets/tables/table2_mesa1_cara1_no_wall.jpg?inline';
 import table2Mesa1Cara2 from '../assets/tables/table2_mesa1_cara2_render.jpg?inline';
+import table2Mesa1Cara2NoWall from '../assets/tables/table2_mesa1_cara2_no_wall.jpg?inline';
 import table1Cara2 from '../assets/tables/table1_cara2_render.jpg?inline';
 import table1WallCara1 from '../assets/tables/table1_wall_cara1_render.jpg?inline';
 import table1WallCara2 from '../assets/tables/table1_wall_cara2_render.jpg?inline';
@@ -23,6 +24,7 @@ export const PLANOGRAM_IMAGES = {
   table2Mesa1Cara1Xiaomi18,
   table2Mesa1Cara1NoWall,
   table2Mesa1Cara2,
+  table2Mesa1Cara2NoWall,
   table1Cara2,
   table1WallCara1,
   table1WallCara2,
