@@ -54,7 +54,9 @@ export const PosmInspectModal: React.FC<PosmInspectModalProps> = ({
     ? (item.caraNumero === 1 || item.caraNumero === 4
         ? './images/posm/columna_zaragoza_1.jpg'
         : './images/posm/columna_zaragoza_2.jpg')
-    : item.tipo === 'wall' || item.tipo === 'miniwall'
+    : item.tipo === 'miniwall'
+    ? './images/posm/miniwall_render.jpg'
+    : item.tipo === 'wall'
     ? './images/posm/lona_wall_despues.png'
     : './images/posm/faldon_mesa1.png';
 
@@ -184,6 +186,55 @@ export const PosmInspectModal: React.FC<PosmInspectModalProps> = ({
             <span className="text-xs font-black uppercase tracking-wider text-slate-600 block">
               1. Verificación en Tienda
             </span>
+
+            {/* Check Específico para MiniWall: Dispone o No de Lona */}
+            {item.tipo === 'miniwall' && (
+              <div className="bg-amber-50 border border-amber-200 p-3.5 rounded-xl flex items-center justify-between gap-3">
+                <div>
+                  <span className="text-xs font-extrabold text-amber-950 block">
+                    ¿El MiniWall dispone de lona instalada?
+                  </span>
+                  <span className="text-[11px] text-amber-800">
+                    En la mayoría de tiendas sí la tienen, pero algunas unidades no disponen de ella
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5 shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (motivoIncidencia === 'Sin lona instalada') {
+                        setMotivoIncidencia('');
+                        setEstadoVisual('Pendiente');
+                      }
+                    }}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
+                      motivoIncidencia !== 'Sin lona instalada'
+                        ? 'bg-[#104a60] text-white shadow-xs'
+                        : 'bg-white text-slate-600 hover:bg-slate-100 border border-amber-300'
+                    }`}
+                  >
+                    Sí tiene
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setCampanaCorrecta(false);
+                      setFijacionCorrecta(false);
+                      setEstadoVisual('Incidencia');
+                      setMotivoIncidencia('Sin lona instalada');
+                      setNotas(prev => prev ? `${prev} · Sin lona en tienda` : 'Sin lona instalada en este punto de venta');
+                    }}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
+                      motivoIncidencia === 'Sin lona instalada'
+                        ? 'bg-rose-600 text-white shadow-xs'
+                        : 'bg-white text-rose-700 hover:bg-rose-100 border border-amber-300'
+                    }`}
+                  >
+                    Sin lona
+                  </button>
+                </div>
+              </div>
+            )}
 
             {/* Check Campaña */}
             <div className="bg-white p-3.5 rounded-xl border border-slate-200 flex items-center justify-between gap-3">
@@ -362,6 +413,7 @@ export const PosmInspectModal: React.FC<PosmInspectModalProps> = ({
                   >
                     <option value="Medidas no coinciden">Medidas no coinciden</option>
                     <option value="Campaña desfasada">Campaña desfasada / No actualizada</option>
+                    <option value="Sin lona instalada">Sin lona instalada / No dispone</option>
                     <option value="Material roto o dañado de origen">Material roto o dañado</option>
                     <option value="Falta perfilería/sujeción">Falta perfilería / Mala sujeción</option>
                     <option value="Otro">Otro motivo</option>

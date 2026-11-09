@@ -338,7 +338,9 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
       : PLANOGRAM_IMAGES.table1Cara1Xiaomi18;
   } else if (isLinealActive) {
     bgImage = PLANOGRAM_IMAGES.linealSmartwatchImg;
-  } else if (isWallActive || isMiniWallActive) {
+  } else if (isMiniWallActive) {
+    bgImage = PLANOGRAM_IMAGES.miniwallImg;
+  } else if (isWallActive) {
     bgImage = PLANOGRAM_IMAGES.wallImg;
   } else if (isTableCrf) {
     bgImage = isCara2Active
@@ -361,7 +363,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
   }
 
   const containerBgColor =
-    isWallActive || isMiniWallActive ? '#9c9b99' : isLinealActive ? '#ded6ca' : '#c5c6c8';
+    isMiniWallActive ? '#c8cbcf' : isWallActive ? '#9c9b99' : isLinealActive ? '#ded6ca' : '#c5c6c8';
 
   // Métricas globales de avance de Nueva Implantación
   const completedSwapsCount = allStoreSwapAssignments.filter(

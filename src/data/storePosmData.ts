@@ -1961,7 +1961,7 @@ export const getDynamicPosmDefinitionsForImplantation = (store: StoreCenter): Vi
         medidasOficiales: item.medida,
         instruccionesFijacion: 'Extender y fijar la lona de miniwall tensa en el bastidor textil.',
         guiaVisualTipo: 'lona_mesa',
-        imagenReferenciaDespues: './images/posm/lona_wall_despues.png'
+        imagenReferenciaDespues: './images/posm/miniwall_render.jpg'
       });
     } else if (item.tipo === 'top_table') {
       defs.push({

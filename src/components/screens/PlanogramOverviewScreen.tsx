@@ -159,10 +159,29 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
     );
   }, [posmItems, activeSpace]);
 
+  const relevantMiniwallPosm = useMemo(() => {
+    if (!isMiniWallActive) return undefined;
+    return (
+      posmItems.find((it) => it.tipo === 'miniwall') || {
+        id: `${store.tiendaId}-POSM-MINIWALL`,
+        tipo: 'miniwall' as const,
+        material: 'Lona / Textil' as const,
+        nombre: 'Lona de MiniWall',
+        ubicacion: 'MINIWALL · Bastidor Textil',
+        caraNumero: 1,
+        medida: '1000x1100 mm',
+        campanaOficial: 'Xiaomi Pad 8 Series',
+        activo: true
+      }
+    );
+  }, [isMiniWallActive, posmItems, store.tiendaId]);
+
   let bgImage = PLANOGRAM_IMAGES.table1Cara1;
   if (isLinealActive) {
     bgImage = PLANOGRAM_IMAGES.linealSmartwatchImg;
-  } else if (isWallActive || isMiniWallActive) {
+  } else if (isMiniWallActive) {
+    bgImage = PLANOGRAM_IMAGES.miniwallImg;
+  } else if (isWallActive) {
     bgImage = PLANOGRAM_IMAGES.wallImg;
   } else if (isTableCrf) {
     bgImage = isCara2Active
@@ -184,7 +203,7 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
       : PLANOGRAM_IMAGES.table1Cara1;
   }
 
-  const containerBgColor = (isWallActive || isMiniWallActive) ? '#9c9b99' : isLinealActive ? '#ded6ca' : '#c5c6c8';
+  const containerBgColor = isMiniWallActive ? '#c8cbcf' : isWallActive ? '#9c9b99' : isLinealActive ? '#ded6ca' : '#c5c6c8';
 
   const [selectedPos, setSelectedPosState] = useState<PlanogramPosition>(() => {
     if (initialSelectedPositionId) {
@@ -440,6 +459,39 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                   </button>
                 </div>
               )}
+
+              {/* Badge Flotante de Lona de MiniWall si estamos en MINIWALL */}
+              {isMiniWallActive && relevantMiniwallPosm && (
+                <div className="absolute top-3 left-3 right-3 z-30 flex items-center justify-between bg-slate-950/85 backdrop-blur-md px-3.5 py-2 rounded-xl border border-teal-500/30 shadow-xl text-white">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span className="text-[10px] font-black uppercase tracking-wider bg-[#ff6900] text-white px-2 py-0.5 rounded shadow-sm shrink-0">
+                      Lona MiniWall
+                    </span>
+                    <span className="text-xs font-bold text-teal-200 truncate">
+                      {relevantMiniwallPosm.campanaOficial} · <strong className="text-white font-mono">{relevantMiniwallPosm.medida}</strong>
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    {posmStates[relevantMiniwallPosm.id]?.estadoVisual && (
+                      <span className={`text-[10px] font-black px-2 py-0.5 rounded-full ${
+                        posmStates[relevantMiniwallPosm.id]?.estadoVisual === 'OK'
+                          ? 'bg-emerald-500 text-white'
+                          : 'bg-rose-500 text-white'
+                      }`}>
+                        {posmStates[relevantMiniwallPosm.id]?.estadoVisual}
+                      </span>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => setInspectingPosmItem(relevantMiniwallPosm)}
+                      className="px-2.5 py-1 rounded-lg bg-[#009ca6] hover:bg-[#008992] text-white text-[11px] font-black transition cursor-pointer flex items-center gap-1 shadow-sm"
+                    >
+                      <span>{posmStates[relevantMiniwallPosm.id]?.estadoVisual ? 'Editar Lona' : 'Auditar Lona'}</span>
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              )}
               {/* Imagen Real de la Mesa Oficial que se adapta al formato sin márgenes negros */}
               <div 
                 className="relative w-full lg:h-full flex items-center justify-center transition-transform duration-200 ease-out"
@@ -455,6 +507,37 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
 
                   {/* Hotspots / Pines Interactivos Lineales que no tapan los dispositivos */}
                   <div className="absolute inset-0 pointer-events-none">
+                  {/* Hotspot de auditoría directa sobre la Lona del MiniWall */}
+                  {isMiniWallActive && relevantMiniwallPosm && (
+                    <div 
+                      className="absolute z-20 pointer-events-auto"
+                      style={{ left: '50%', top: '34%', transform: 'translate(-50%, -50%)' }}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setInspectingPosmItem(relevantMiniwallPosm)}
+                        className={`group px-3 py-1.5 rounded-xl border-2 shadow-2xl backdrop-blur-md transition-all cursor-pointer flex items-center gap-2 ${
+                          posmStates[relevantMiniwallPosm.id]?.estadoVisual === 'OK'
+                            ? 'bg-emerald-700/90 hover:bg-emerald-600 text-white border-emerald-400 ring-2 ring-emerald-400/40'
+                            : posmStates[relevantMiniwallPosm.id]?.estadoVisual === 'Incidencia'
+                            ? 'bg-rose-700/90 hover:bg-rose-600 text-white border-rose-400 ring-2 ring-rose-400/40'
+                            : 'bg-slate-900/90 hover:bg-slate-900 text-white border-[#00c4cc] hover:scale-105'
+                        }`}
+                        title="Auditar Lona de MiniWall"
+                      >
+                        <Layers className="w-3.5 h-3.5 text-[#00c4cc]" />
+                        <div className="text-left">
+                          <span className="block text-[8px] font-medium text-slate-300 uppercase leading-none">
+                            Lona MiniWall
+                          </span>
+                          <span className="text-xs font-black leading-tight">
+                            {posmStates[relevantMiniwallPosm.id]?.estadoVisual || 'Auditar'}
+                          </span>
+                        </div>
+                      </button>
+                    </div>
+                  )}
+
                   {positions.map((pos, idx) => {
                     const pState = getPosAuditState(pos);
                     const isOk = pState?.estadoPosicion === 'OK';

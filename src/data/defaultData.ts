@@ -3220,12 +3220,12 @@ export const getPositionsForSpace = (
     { pinX: 90.5, pinY: 73.5 }  // 11. Xiaomi Smart Band 9 active (Banda dcha 2)
   ];
 
-  // Coordenadas calibradas para MiniWall (4 puestos lineales sobre balda)
+  // Coordenadas calibradas para MiniWall Oficial Xiaomi (4 puestos sobre balda del mueble)
   const MINIWALL_PINS = [
-    { pinX: 20.0, pinY: 73.5 }, // 1. Redmi Note 17 Pro Max 5G White&Orange
-    { pinX: 40.0, pinY: 73.5 }, // 2. Redmi Watch 6 Active
-    { pinX: 60.0, pinY: 73.5 }, // 3. Redmi Watch 5 Lite
-    { pinX: 80.0, pinY: 73.5 }  // 4. Redmi Pad 2
+    { pinX: 40.8, pinY: 62.5 }, // 1. Redmi Note 17 Pro Max 5G White&Orange (Smartphone)
+    { pinX: 43.8, pinY: 66.5 }, // 2. Redmi Watch 6 Active (Wearable)
+    { pinX: 46.8, pinY: 62.5 }, // 3. Redmi Watch 5 Lite (Wearable)
+    { pinX: 55.5, pinY: 63.5 }  // 4. Redmi Pad 2 (Tablet)
   ];
 
   // Coordenadas calibradas alternas para Lineal Wearables:

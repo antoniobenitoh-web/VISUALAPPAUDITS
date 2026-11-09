@@ -191,6 +191,7 @@ export type VisualIncidentMotivo =
   | 'Material roto o dañado de origen'
   | 'Falta perfilería/sujeción'
   | 'Campaña desfasada'
+  | 'Sin lona instalada'
   | 'Otro';
 
 export interface VisualElementDefinition {
