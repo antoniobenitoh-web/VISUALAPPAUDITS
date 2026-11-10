@@ -307,7 +307,7 @@ export const getImplantationPositionsForMesa1Cara1 = (store: StoreCenter): Plano
       cara: 'Cara 1',
       posicionNumero: 7,
       categoria: 'Wearable',
-      modeloOficial: 'Xiaomi Band 11',
+      modeloOficial: 'Xiaomi Watch 5',
       colorOficial: 'Black',
       esDummy: false,
       requiereImei: true,
@@ -335,8 +335,8 @@ export const getImplantationPositionsForMesa1Cara1 = (store: StoreCenter): Plano
       cara: 'Cara 1',
       posicionNumero: 9,
       categoria: 'Smartphone',
-      modeloOficial: 'Redmi Note 17 Pro Max',
-      colorOficial: 'Black',
+      modeloOficial: 'Redmi Note 17 Pro Max 5G White&Orange',
+      colorOficial: 'White & Orange',
       esDummy: false,
       requiereImei: true,
       pinX: 74.5,
@@ -349,8 +349,8 @@ export const getImplantationPositionsForMesa1Cara1 = (store: StoreCenter): Plano
       cara: 'Cara 1',
       posicionNumero: 10,
       categoria: 'Smartphone',
-      modeloOficial: 'Redmi Note 17 Pro Max',
-      colorOficial: 'Green (Maqueta)',
+      modeloOficial: 'Redmi Note 17 Pro Max 5G White&Orange',
+      colorOficial: 'White & Orange (Maqueta)',
       esDummy: true,
       requiereImei: false,
       pinX: 81.0,
@@ -363,8 +363,8 @@ export const getImplantationPositionsForMesa1Cara1 = (store: StoreCenter): Plano
       cara: 'Cara 1',
       posicionNumero: 11,
       categoria: 'Smartphone',
-      modeloOficial: 'Redmi Note 17 Pro Max',
-      colorOficial: 'White & Orange',
+      modeloOficial: 'Redmi Note 17 Pro Max 5G Green',
+      colorOficial: 'Green',
       esDummy: false,
       requiereImei: true,
       pinX: 87.2,
@@ -502,7 +502,7 @@ export const RETURN_DEVICES_TABLE1_M1C1: DeviceReturnPlanItem[] = [
     modeloSaliente: 'Xiaomi 17 Ultra Green',
     esDummy: true,
     categoria: 'Smartphone',
-    motivoRetirada: 'Fin de campaña (Sustituido por nuevo flagship)',
+    motivoRetirada: 'Fin de campaña (Sustituido por Xiaomi 18 Pro Max Maqueta)',
     sustituidoPor: 'Xiaomi 18 Pro Max (Maqueta)'
   },
   {
@@ -513,7 +513,7 @@ export const RETURN_DEVICES_TABLE1_M1C1: DeviceReturnPlanItem[] = [
     modeloSaliente: 'Xiaomi 17 Blue',
     esDummy: true,
     categoria: 'Smartphone',
-    motivoRetirada: 'Fin de campaña (Sustituido por nuevo flagship)',
+    motivoRetirada: 'Fin de campaña (Sustituido por Xiaomi 18 Pro Maqueta)',
     sustituidoPor: 'Xiaomi 18 Pro (Maqueta)'
   },
   {
@@ -524,7 +524,7 @@ export const RETURN_DEVICES_TABLE1_M1C1: DeviceReturnPlanItem[] = [
     modeloSaliente: 'Xiaomi 17 Ultra Black',
     esDummy: false,
     categoria: 'Smartphone',
-    motivoRetirada: 'Fin de campaña (Sustituido por nuevo flagship)',
+    motivoRetirada: 'Fin de campaña (Sustituido por Xiaomi 18 Pro Max LDU)',
     sustituidoPor: 'Xiaomi 18 Pro Max (LDU)'
   },
   {
@@ -535,30 +535,8 @@ export const RETURN_DEVICES_TABLE1_M1C1: DeviceReturnPlanItem[] = [
     modeloSaliente: 'Xiaomi 17 Black',
     esDummy: false,
     categoria: 'Smartphone',
-    motivoRetirada: 'Fin de campaña (Sustituido por nuevo flagship)',
+    motivoRetirada: 'Fin de campaña (Sustituido por Xiaomi 18 Pro LDU)',
     sustituidoPor: 'Xiaomi 18 Pro (LDU)'
-  },
-  {
-    id: 'RET-T1-M1C1-P5',
-    posicionAnterior: 5,
-    mesaId: 'MESA 1',
-    cara: 'Cara 1',
-    modeloSaliente: 'Xiaomi Watch 5',
-    esDummy: false,
-    categoria: 'Wearable',
-    motivoRetirada: 'Desmontaje de mesa (No figura en nuevo planograma)',
-    sustituidoPor: 'Reconfiguración de mesa'
-  },
-  {
-    id: 'RET-T1-M1C1-P6',
-    posicionAnterior: 6,
-    mesaId: 'MESA 1',
-    cara: 'Cara 1',
-    modeloSaliente: 'Xiaomi Buds 6',
-    esDummy: true,
-    categoria: 'Audio',
-    motivoRetirada: 'Desmontaje de mesa (Sustituido por nuevos accesorios)',
-    sustituidoPor: 'Xiaomi Clip / Band 11'
   },
   {
     id: 'RET-T1-M1C1-P9',
@@ -568,8 +546,8 @@ export const RETURN_DEVICES_TABLE1_M1C1: DeviceReturnPlanItem[] = [
     modeloSaliente: 'Xiaomi Smart Band 10 Pro',
     esDummy: false,
     categoria: 'Wearable',
-    motivoRetirada: 'Fin de campaña de accesorio',
-    sustituidoPor: 'Xiaomi Band 11 (LDU)'
+    motivoRetirada: 'Fin de ciclo de accesorio (Sustituido por Xiaomi Clip)',
+    sustituidoPor: 'Xiaomi Clip (LDU)'
   }
 ];
 
@@ -711,7 +689,7 @@ export const getSwapAssignmentForPosition = (
         modeloSaliente:
           pos.modeloOficial.includes('Watch S5')
             ? 'Xiaomi Watch S5 45mm'
-            : 'Xiaomi Smart Band 10 Pro',
+            : 'Xiaomi Watch 5 (Recolocación desde P5)',
         esDummySaliente: false,
         modeloEntrante: pos.modeloOficial,
         esDummyEntrante: false
@@ -723,8 +701,8 @@ export const getSwapAssignmentForPosition = (
         mesaId: pos.mesaId,
         posicionNumero: 8,
         categoria: 'Audio',
-        modeloSaliente: 'Xiaomi Buds 6',
-        esDummySaliente: true,
+        modeloSaliente: 'Xiaomi Smart Band 10 Pro',
+        esDummySaliente: false,
         modeloEntrante: 'Xiaomi Clip',
         esDummyEntrante: false
       };
@@ -738,7 +716,7 @@ export const getSwapAssignmentForPosition = (
         modeloSaliente:
           pos.modeloOficial.includes('17T')
             ? 'Xiaomi 17T Purple (Recolocación)'
-            : 'Redmi Note 17 Pro Max',
+            : 'Redmi Note 17 Pro Max (Recolocación desde P10)',
         esDummySaliente: false,
         modeloEntrante: pos.modeloOficial,
         esDummyEntrante: false
@@ -753,7 +731,7 @@ export const getSwapAssignmentForPosition = (
         modeloSaliente:
           pos.modeloOficial.includes('Band 11')
             ? 'Xiaomi Smart Band 10 Pro'
-            : 'Redmi Note 17 Pro Max',
+            : 'Redmi Note 17 Pro Max Maqueta (Recolocación desde P11)',
         esDummySaliente: pos.esDummy,
         modeloEntrante: pos.modeloOficial,
         esDummyEntrante: pos.esDummy
@@ -768,7 +746,7 @@ export const getSwapAssignmentForPosition = (
         modeloSaliente:
           pos.modeloOficial.includes('Band')
             ? 'Xiaomi Smart Band 11 Active (Recolocación)'
-            : 'Redmi Note 17 Pro Max',
+            : 'Redmi Note 17 Pro Max (Recolocación desde P12)',
         esDummySaliente: false,
         modeloEntrante: pos.modeloOficial,
         esDummyEntrante: false
@@ -844,56 +822,17 @@ export const getAllSwapAssignmentsForStore = (store: StoreCenter): SwapCampaignA
 };
 
 /**
- * Obtiene los elementos de "POSM" (Lonas, Pantallas Hanshow, Faldón y Merchandising)
+ * Obtiene los elementos de "POSM" oficiales (Lonas, Duratrans y Columna)
  * que deben intervenirse en la tienda durante la Nueva Implantación.
+ * 
+ * Se limita exclusivamente según especificación oficial a:
+ * - Tiendas con lona Xiaomi 17 Ultra (Wall o Miniwall) -> cambio a Xiaomi 18 Series.
+ * - Tiendas con duratrans (Top Table) -> la franja que pertenece a Xiaomi 17 Ultra se modifica por Xiaomi 18 Series.
+ * - Tiendas con columna -> la cara de Xiaomi 17 Ultra se modifica a Xiaomi 18 Series.
  */
 export const getVisualElementsForStore = (store: StoreCenter): VisualElementDefinition[] => {
   if (hasActiveImplantationCampaign(store)) {
-    const dynamicDefs = getDynamicPosmDefinitionsForImplantation(store);
-    if (dynamicDefs && dynamicDefs.length > 0) {
-      return dynamicDefs;
-    }
-
-    return [
-      {
-        id: `${store.tiendaId}-POSM-LONA-WALL`,
-        nombreElemento: 'Lona de Wall',
-        tipoMaterial: 'Textil / Lona',
-        ubicacionEspacio: 'WALL · Bastidor Textil Retroiluminado',
-        campanaOficial: 'Cambio de lona: Xiaomi 17 Ultra → Xiaomi 18 Pro Max (Fotografía Leica)',
-        medidasOficiales: '200 x 110 cm (Perfil silicona perimetral)',
-        instruccionesFijacion: 'Extender lona de tal forma que quede tensa y sin arrugas.',
-        guiaVisualTipo: 'lona_mesa',
-        imagenReferenciaAntes: './images/posm/lona_wall_antes.png',
-        imagenReferenciaDespues: './images/posm/lona_wall_despues.png'
-      },
-      {
-        id: `${store.tiendaId}-POSM-HANSHOW`,
-        nombreElemento: 'Actualizar Pantalla de Hanshow',
-        tipoMaterial: 'Pantalla Digital / Hanshow',
-        ubicacionEspacio: 'MESA 1 · Pantalla Digital Hanshow',
-        campanaOficial: 'Cambio de cartel: Redmi Note 17 Series → Xiaomi 18 Pro & Pro Max',
-        medidasOficiales: 'Punto de acceso: Hanshow | Contraseña: 12345678',
-        instruccionesFijacion:
-          'Crear un punto de acceso desde un teléfono con el nombre "Hanshow" y la contraseña "12345678". Desconectar la pantalla y volverla a conectar para que se actualice.',
-        guiaVisualTipo: 'hanshow_screen',
-        imagenReferenciaAntes: './images/posm/hanshow_antes.png',
-        imagenReferenciaDespues: './images/posm/hanshow_despues.png'
-      },
-      {
-        id: `${store.tiendaId}-POSM-FALDON-M1C1`,
-        nombreElemento: 'Faldón 18 Pro Max — Mesa 1 Cara 1',
-        tipoMaterial: 'Faldón Mesa / Vinilo',
-        ubicacionEspacio: 'MESA 1 · Cara 1 (Lateral / Frontal de Mesa)',
-        campanaOficial: 'MAX POWER · Xiaomi 18 Pro Max · MAX POWER',
-        medidasOficiales: 'Lateral de Mesa 1 Cara 1',
-        instruccionesFijacion:
-          'Colocar el faldón de Xiaomi 18 Pro Max en el lateral de la Mesa 1 Cara 1 según la imagen de referencia.',
-        guiaVisualTipo: 'faldon_mesa',
-        imagenReferenciaDespues: './images/posm/faldon_mesa1.png'
-      }
-    ];
+    return getDynamicPosmDefinitionsForImplantation(store);
   }
-
   return [];
 };

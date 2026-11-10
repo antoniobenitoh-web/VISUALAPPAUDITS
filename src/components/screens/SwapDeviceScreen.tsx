@@ -77,6 +77,27 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
     try {
       const latest = DbService.getLatestAuditForStore(store.tiendaId);
       if (!latest || !latest.positions) return '';
+
+      // 1. Si hay un modelo saliente específico definido en la asignación, buscar por ese modelo en Mesa 1
+      if (assignment?.modeloSaliente) {
+        const cleanSaliente = assignment.modeloSaliente
+          .toLowerCase()
+          .replace(/\s*\(.*?\)/g, '')
+          .trim();
+        if (cleanSaliente) {
+          const modelMatch = latest.positions.find(
+            (p) =>
+              p.mesaId.toUpperCase().includes('MESA 1') &&
+              p.modeloOficial.toLowerCase().includes(cleanSaliente) &&
+              p.imeiSerial &&
+              p.imeiSerial !== '-' &&
+              !p.esMaqueta
+          );
+          if (modelMatch) return modelMatch.imeiSerial;
+        }
+      }
+
+      // 2. Fallback a coincidencia por número de posición directa
       const match = latest.positions.find(
         (p) =>
           p.posicionNumero === position.posicionNumero &&
@@ -87,7 +108,7 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
       }
     } catch {}
     return '';
-  }, [store.tiendaId, position]);
+  }, [store.tiendaId, position, assignment]);
 
   // APARTADO 1 · INSTALACIÓN (NUEVO DISPOSITIVO)
   const [tipoIn, setTipoIn] = useState<'LDU' | 'DUMMY'>(

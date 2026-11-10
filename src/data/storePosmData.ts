@@ -1902,96 +1902,90 @@ export const getPosmElementsForStore = (storeId?: string): StorePosmItem[] => {
 /**
  * Convierte los elementos POSM de una tienda en definiciones de elementos visuales
  * para el módulo de Nueva Implantación (lanzamiento oficial).
+ * 
+ * Se limita exclusivamente según especificación oficial a:
+ * 1. Tiendas con lona Xiaomi 17 Ultra (Wall o Miniwall) -> cambio a Xiaomi 18 Series.
+ * 2. Tiendas con duratrans (Top Table) -> la franja que pertenece a Xiaomi 17 Ultra (Cara 1 / Cara A) se modifica por Xiaomi 18 Series.
+ * 3. Tiendas con columna -> la cara de Xiaomi 17 Ultra (Cara 1) se modifica a Xiaomi 18 Series.
  */
 export const getDynamicPosmDefinitionsForImplantation = (store: StoreCenter): VisualElementDefinition[] => {
-  const posmItems = getPosmElementsForStore(store.tiendaId);
+  const config = getStorePosmConfig(store.tiendaId);
+  if (!config) return [];
+
   const defs: VisualElementDefinition[] = [];
 
-  posmItems.forEach((item) => {
-    if (item.tipo === 'columna') {
-      // Imagen de referencia por campaña de cara (Cara 1=Ultra, 2=17T, 3=Redmi, 4=Pad)
-      const faceImgMap: Record<number, string> = {
-        1: './images/posm/cara1_xiaomi17ultra.jpg',
-        2: './images/posm/cara2_xiaomi17t.jpg',
-        3: './images/posm/cara3_redminote17.jpg',
-        4: './images/posm/cara4_xiaoipad8.jpg',
-      };
-      const imgRef = faceImgMap[item.caraNumero] || './images/posm/cara1_xiaomi17ultra.jpg';
-      defs.push({
-        id: item.id,
-        nombreElemento: item.nombre,
-        tipoMaterial: 'Textil / Lona',
-        ubicacionEspacio: item.ubicacion,
-        campanaOficial: item.campanaOficial,
-        medidasOficiales: item.medida,
-        instruccionesFijacion: 'Colocar la nueva lona textil tensada en la perfilería de la columna, sin arrugas y alineada con el zócalo.',
-        guiaVisualTipo: 'columna',
-        imagenReferenciaDespues: imgRef
-      });
-    } else if (item.tipo === 'wall') {
-      defs.push({
-        id: item.id,
-        nombreElemento: item.nombre,
-        tipoMaterial: 'Textil / Lona',
-        ubicacionEspacio: item.ubicacion,
-        campanaOficial: item.campanaOficial || 'Lanzamiento Xiaomi 18 Series',
-        medidasOficiales: item.medida,
-        instruccionesFijacion: 'Insertar el perfil de silicona de la lona en el bastidor retroiluminado con la espátula perimetral.',
-        guiaVisualTipo: 'lona_mesa',
-        imagenReferenciaDespues: './images/posm/lona_wall_despues.png'
-      });
-    } else if (item.tipo === 'miniwall') {
-      defs.push({
-        id: item.id,
-        nombreElemento: item.nombre,
-        tipoMaterial: 'Textil / Lona',
-        ubicacionEspacio: item.ubicacion,
-        campanaOficial: item.campanaOficial || 'Lanzamiento Xiaomi 18 Series',
-        medidasOficiales: item.medida,
-        instruccionesFijacion: 'Extender y fijar la lona de miniwall tensa en el bastidor textil.',
-        guiaVisualTipo: 'lona_mesa',
-        imagenReferenciaDespues: './images/posm/miniwall_render.jpg'
-      });
-    } else if (item.tipo === 'top_table') {
-      defs.push({
-        id: item.id,
-        nombreElemento: item.nombre,
-        tipoMaterial: 'Duratrans / Filmina',
-        ubicacionEspacio: item.ubicacion,
-        campanaOficial: item.campanaOficial,
-        medidasOficiales: item.medida,
-        instruccionesFijacion: 'Insertar la filmina Duratrans en la guía central de la mesa, centrada y protegida bajo el metacrilato.',
-        guiaVisualTipo: 'top_table',
-        imagenReferenciaDespues: './images/posm/faldon_mesa1.png'
-      });
-    }
-  });
-
-  // Si la tienda tiene mesa 1: añadimos la pantalla Hanshow y el faldón de mesa
-  const hasMesa1 = Boolean(store.availableSpaces?.some(s => s.toUpperCase().includes('MESA 1')));
-  if (hasMesa1) {
+  // 1. Tiendas con lona Xiaomi 17 Ultra (Wall o Miniwall) -> cambio a Xiaomi 18 Series
+  if (config.hasWall) {
+    const wallItem = config.elementos.find((el) => el.tipo === 'wall');
     defs.push({
-      id: store.tiendaId + '-POSM-HANSHOW',
-      nombreElemento: 'Actualizar Pantalla de Hanshow',
-      tipoMaterial: 'Pantalla Digital / Hanshow',
-      ubicacionEspacio: 'MESA 1 · Pantalla Digital Hanshow',
-      campanaOficial: 'Cambio de cartel: Xiaomi 18 Pro & Pro Max',
-      medidasOficiales: 'Punto de acceso: Hanshow | Contraseña: 12345678',
-      instruccionesFijacion: 'Crear un punto de acceso desde un teléfono con el nombre "Hanshow" y la contraseña "12345678". Desconectar la pantalla y volverla a conectar para que se actualice.',
-      guiaVisualTipo: 'hanshow_screen',
-      imagenReferenciaDespues: './images/posm/hanshow_despues.png'
+      id: `${store.tiendaId}-POSM-WALL-X18`,
+      nombreElemento: 'Lona Wall · Xiaomi 18 Series',
+      tipoMaterial: 'Textil / Lona',
+      ubicacionEspacio: 'WALL (Muro retroiluminado)',
+      campanaOficial: 'Lanzamiento Xiaomi 18 Series',
+      medidasOficiales: wallItem?.medida || 'Muro retroiluminado',
+      instruccionesFijacion:
+        'Sustituir la lona anterior de Xiaomi 17 Ultra por la nueva lona de Xiaomi 18 Series, insertando el perfil de silicona perimetral en el bastidor con la espátula perimetral.',
+      guiaVisualTipo: 'lona_mesa',
+      imagenReferenciaAntes: './images/posm/lona_wall_antes.png',
+      imagenReferenciaDespues: './images/posm/lona_wall_despues.png'
     });
+  }
 
+  if (config.hasMiniwall) {
+    const miniwallItem = config.elementos.find((el) => el.tipo === 'miniwall');
     defs.push({
-      id: store.tiendaId + '-POSM-FALDON-M1C1',
-      nombreElemento: 'Faldón 18 Pro Max — Mesa 1 Cara 1',
-      tipoMaterial: 'Faldón Mesa / Vinilo',
-      ubicacionEspacio: 'MESA 1 · Cara 1 (Lateral / Frontal de Mesa)',
-      campanaOficial: 'MAX POWER · Xiaomi 18 Pro Max · MAX POWER',
-      medidasOficiales: 'Lateral de Mesa 1 Cara 1',
-      instruccionesFijacion: 'Colocar el faldón de Xiaomi 18 Pro Max en el lateral de la Mesa 1 Cara 1 según la imagen de referencia.',
-      guiaVisualTipo: 'faldon_mesa',
+      id: `${store.tiendaId}-POSM-MINIWALL-X18`,
+      nombreElemento: 'Lona Miniwall · Xiaomi 18 Series',
+      tipoMaterial: 'Textil / Lona',
+      ubicacionEspacio: 'MINIWALL (Bastidor textil)',
+      campanaOficial: 'Lanzamiento Xiaomi 18 Series',
+      medidasOficiales: miniwallItem?.medida || '650x460 mm',
+      instruccionesFijacion:
+        'Sustituir la minilona anterior de Xiaomi 17 Ultra por la nueva lona de Xiaomi 18 Series, extendiéndola tensa y sin arrugas en el bastidor textil.',
+      guiaVisualTipo: 'lona_mesa',
+      imagenReferenciaAntes: './images/posm/lona_miniwall_x17.jpg',
+      imagenReferenciaDespues: './images/posm/miniwall_render.jpg'
+    });
+  }
+
+  // 2. Tiendas con duratrans (Top Table) -> La cara perteneciente a Xiaomi 17 Ultra (Cara 1) se modifica por Xiaomi 18 Series
+  if (config.hasTopTables) {
+    const ttCara1 =
+      config.elementos.find((el) => el.tipo === 'top_table' && (el.caraNumero === 1 || el.campanaOficial.toLowerCase().includes('17 ultra'))) ||
+      config.elementos.find((el) => el.tipo === 'top_table');
+    defs.push({
+      id: `${store.tiendaId}-POSM-TT-C1-X18`,
+      nombreElemento: 'Duratrans Top Table · Xiaomi 18 Series (Mesa 1 Cara A)',
+      tipoMaterial: 'Duratrans / Filmina',
+      ubicacionEspacio: 'MESA 1 · Franja Central (Cara A)',
+      campanaOficial: 'Xiaomi 18 Series',
+      medidasOficiales: ttCara1?.medida || '1150X275 mm',
+      instruccionesFijacion:
+        'Sustituir la filmina Duratrans de Xiaomi 17 Ultra por el nuevo Duratrans de Xiaomi 18 Series en la guía central de la mesa, centrada y protegida bajo el metacrilato.',
+      guiaVisualTipo: 'top_table',
+      imagenReferenciaAntes: './images/tables/table2_mesa1_cara1.jpg',
       imagenReferenciaDespues: './images/posm/faldon_mesa1.png'
+    });
+  }
+
+  // 3. Tiendas con columna -> La cara de Xiaomi 17 Ultra (Cara 1) se modifica a Xiaomi 18 Series
+  if (config.hasColumnas) {
+    const colCara1 =
+      config.elementos.find((el) => el.tipo === 'columna' && (el.caraNumero === 1 || el.campanaOficial.toLowerCase().includes('17 ultra'))) ||
+      config.elementos.find((el) => el.tipo === 'columna');
+    defs.push({
+      id: `${store.tiendaId}-POSM-COL-C1-X18`,
+      nombreElemento: 'Lona Columna Cara 1 · Xiaomi 18 Series',
+      tipoMaterial: 'Textil / Lona',
+      ubicacionEspacio: 'Columna · Cara 1 (Frontal principal)',
+      campanaOficial: 'Xiaomi 18 Series',
+      medidasOficiales: config.columnMeasures?.cara1 || colCara1?.medida || 'Columna Cara 1',
+      instruccionesFijacion:
+        'Sustituir la lona anterior de Xiaomi 17 Ultra por la nueva lona textil de Xiaomi 18 Series tensada en la perfilería de la columna, sin arrugas y alineada con el zócalo.',
+      guiaVisualTipo: 'columna',
+      imagenReferenciaAntes: './images/posm/cara1_xiaomi17ultra.jpg',
+      imagenReferenciaDespues: './images/posm/cara1_xiaomi17ultra.jpg'
     });
   }
 
