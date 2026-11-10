@@ -203,7 +203,8 @@ export interface VisualElementDefinition {
     | 'Merchandising / Metacrilato'
     | 'Pantalla Digital / Hanshow'
     | 'Faldón Mesa / Vinilo'
-    | 'Duratrans / Filmina';
+    | 'Duratrans / Filmina'
+    | 'Luminoso / Metacrilato';
   ubicacionEspacio: string;
   campanaOficial: string;
   medidasOficiales: string;
@@ -215,7 +216,8 @@ export interface VisualElementDefinition {
     | 'hanshow_screen'
     | 'faldon_mesa'
     | 'columna'
-    | 'top_table';
+    | 'top_table'
+    | 'luminoso';
   imagenReferenciaAntes?: string;
   imagenReferenciaDespues?: string;
 }

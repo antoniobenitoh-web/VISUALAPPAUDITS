@@ -1710,6 +1710,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
               const curVState = getOrCreateVisualState(activeVisualDef);
               const isHanshow = activeVisualDef.guiaVisualTipo === 'hanshow_screen';
               const isFaldon = activeVisualDef.guiaVisualTipo === 'faldon_mesa';
+              const isLuminoso = activeVisualDef.guiaVisualTipo === 'luminoso';
 
               return (
                 <div className="bg-white border border-slate-200 rounded-3xl p-5 sm:p-7 shadow-sm space-y-6">
@@ -1764,7 +1765,11 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                             <span className="text-[10px] font-black uppercase tracking-wider text-teal-300">
                               {isHanshow
                                 ? 'Guía Visual de Cambio en Pantalla Hanshow'
-                                : 'Guía Visual de Cambio en Lona de Wall'}
+                                : isLuminoso
+                                ? 'Guía Visual de Cambio en Luminoso (17T ➔ 18 y Frontal)'
+                                : activeVisualDef.guiaVisualTipo === 'top_table'
+                                ? 'Guía Visual de Cambio en Top Table'
+                                : 'Guía Visual de Cambio en Lona'}
                             </span>
                             <span className="px-2 py-0.5 rounded bg-[#ff6900] text-white text-[9px] font-black uppercase">
                               Antes ➔ Después
@@ -1778,9 +1783,11 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                               onClick={() =>
                                 setPosmPreviewModal({
                                   src: activeVisualDef.imagenReferenciaAntes!,
-                                  title: 'ANTES (Retirar)',
+                                  title: 'ANTES (Retirar / Sustituir)',
                                   subtitle: activeVisualDef.guiaVisualTipo === 'top_table'
                                     ? 'Top Table Xiaomi 17 Ultra'
+                                    : isLuminoso
+                                    ? 'Luminoso Xiaomi 17T Series'
                                     : isHanshow
                                     ? 'Redmi Note 17 Series'
                                     : 'Lona Xiaomi 17 Ultra'
@@ -1793,13 +1800,17 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                               </span>
                               <div
                                 className={`relative w-full ${
-                                  isHanshow ? 'aspect-[3/4]' : 'aspect-[16/10]'
+                                  isHanshow
+                                    ? 'aspect-[3/4]'
+                                    : isLuminoso
+                                    ? 'aspect-[16/6] bg-white'
+                                    : 'aspect-[16/10]'
                                 } rounded-lg overflow-hidden bg-black border border-white/10`}
                               >
                                 <img
                                   src={activeVisualDef.imagenReferenciaAntes}
                                   alt="Antes"
-                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                  className={`w-full h-full ${isLuminoso ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform`}
                                 />
                                 <span className="absolute bottom-1.5 right-1.5 bg-black/75 backdrop-blur-xs text-white text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 border border-white/20">
                                   <ZoomIn className="w-3 h-3 text-teal-300" /> Ampliar
@@ -1808,6 +1819,8 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                               <span className="text-[10px] text-slate-300 font-bold mt-1.5 text-center">
                                 {activeVisualDef.guiaVisualTipo === 'top_table'
                                   ? 'Top Table Xiaomi 17 Ultra'
+                                  : isLuminoso
+                                  ? 'Luminoso Xiaomi 17T (17T + Frontal)'
                                   : isHanshow
                                   ? 'Redmi Note 17 Series'
                                   : 'Lona Xiaomi 17 Ultra'}
@@ -1827,9 +1840,11 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                               onClick={() =>
                                 setPosmPreviewModal({
                                   src: activeVisualDef.imagenReferenciaDespues!,
-                                  title: 'AHORA (Nuevo)',
+                                  title: 'AHORA (Nuevo Instalado)',
                                   subtitle: activeVisualDef.guiaVisualTipo === 'top_table'
                                     ? 'Top Table Xiaomi 18 Series'
+                                    : isLuminoso
+                                    ? 'Luminoso Xiaomi 18 Series'
                                     : isHanshow
                                     ? 'Xiaomi 18 Pro & Pro Max'
                                     : 'Lona Xiaomi 18 Series'
@@ -1842,13 +1857,17 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                               </span>
                               <div
                                 className={`relative w-full ${
-                                  isHanshow ? 'aspect-[3/4]' : 'aspect-[16/10]'
+                                  isHanshow
+                                    ? 'aspect-[3/4]'
+                                    : isLuminoso
+                                    ? 'aspect-[16/6] bg-white'
+                                    : 'aspect-[16/10]'
                                 } rounded-lg overflow-hidden bg-black border border-white/10`}
                               >
                                 <img
                                   src={activeVisualDef.imagenReferenciaDespues}
                                   alt="Después"
-                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                  className={`w-full h-full ${isLuminoso ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform`}
                                 />
                                 <span className="absolute bottom-1.5 right-1.5 bg-black/75 backdrop-blur-xs text-white text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 border border-white/20">
                                   <ZoomIn className="w-3 h-3 text-emerald-300" /> Ampliar
@@ -1857,6 +1876,8 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                               <span className="text-[10px] text-emerald-300 font-black mt-1.5 text-center">
                                 {activeVisualDef.guiaVisualTipo === 'top_table'
                                   ? 'Top Table Xiaomi 18 Series'
+                                  : isLuminoso
+                                  ? 'Luminoso Xiaomi 18 (18 + Frontal)'
                                   : isHanshow
                                   ? 'Xiaomi 18 Pro & Pro Max'
                                   : 'Lona Xiaomi 18 Series'}
@@ -2048,6 +2069,8 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                         <h4 className="text-sm sm:text-base font-black text-slate-900 mt-2">
                           {isHanshow
                             ? 'Captura de la pantalla Hanshow actualizada'
+                            : isLuminoso
+                            ? 'Captura del Luminoso Xiaomi 18 Series (frontal y números)'
                             : isFaldon
                               ? 'Captura del faldón instalado en Mesa 1 Cara 1'
                               : 'Captura de la nueva lona instalada'}
@@ -2119,6 +2142,8 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                         <span>
                           {isHanshow
                             ? 'Capturar Foto de Pantalla Hanshow Actualizada'
+                            : isLuminoso
+                            ? 'Capturar Foto del Luminoso Xiaomi 18 Series'
                             : isFaldon
                               ? 'Capturar Foto del Faldón Instalado'
                               : 'Capturar Foto de la Lona Nueva Instalada'}
@@ -2137,6 +2162,8 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                         <h4 className="text-sm sm:text-base font-black text-slate-900 mt-0.5">
                           {isHanshow
                             ? '¿La pantalla Hanshow se ha actualizado correctamente al nuevo cartel Xiaomi 18 Series?'
+                            : isLuminoso
+                            ? '¿Se ha cambiado el número superior de 17T por 18 y el frontal oficial por Xiaomi 18 Series?'
                             : '¿El elemento POSM queda bien fijado y la medida es la correcta?'}
                         </h4>
                       </div>

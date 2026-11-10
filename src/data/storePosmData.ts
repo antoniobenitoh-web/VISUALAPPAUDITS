@@ -1989,5 +1989,20 @@ export const getDynamicPosmDefinitionsForImplantation = (store: StoreCenter): Vi
     });
   }
 
+  // 4. Luminoso Xiaomi 18 Series -> Cambio de número 17T por 18 y frontal
+  defs.push({
+    id: `${store.tiendaId}-POSM-LUM-X18`,
+    nombreElemento: 'Luminoso · Xiaomi 18 Series',
+    tipoMaterial: 'Luminoso / Metacrilato',
+    ubicacionEspacio: 'MESA 1 · Lineal / Expositor',
+    campanaOficial: 'Xiaomi 18 Series',
+    medidasOficiales: 'Luminoso de sobremesa / lineal',
+    instruccionesFijacion:
+      'Sustituir el número superior acrílico de 17T por el número 18, y cambiar el frontal por el nuevo oficial de Xiaomi 18 Series (Leica + HyperOS). Comprobar que enciende correctamente.',
+    guiaVisualTipo: 'luminoso',
+    imagenReferenciaAntes: './images/posm/luminoso_xiaomi17t_antes.jpg',
+    imagenReferenciaDespues: './images/posm/luminoso_xiaomi18_despues.jpg'
+  });
+
   return defs;
 };
