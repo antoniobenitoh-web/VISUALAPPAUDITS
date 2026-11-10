@@ -1724,7 +1724,9 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                                 setPosmPreviewModal({
                                   src: activeVisualDef.imagenReferenciaAntes!,
                                   title: 'ANTES (Retirar)',
-                                  subtitle: isHanshow
+                                  subtitle: activeVisualDef.guiaVisualTipo === 'top_table'
+                                    ? 'Top Table Xiaomi 17 Ultra'
+                                    : isHanshow
                                     ? 'Redmi Note 17 Series'
                                     : 'Lona Xiaomi 17 Ultra'
                                 })
@@ -1749,7 +1751,11 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                                 </span>
                               </div>
                               <span className="text-[10px] text-slate-300 font-bold mt-1.5 text-center">
-                                {isHanshow ? 'Redmi Note 17 Series' : 'Lona Xiaomi 17 Ultra'}
+                                {activeVisualDef.guiaVisualTipo === 'top_table'
+                                  ? 'Top Table Xiaomi 17 Ultra'
+                                  : isHanshow
+                                  ? 'Redmi Note 17 Series'
+                                  : 'Lona Xiaomi 17 Ultra'}
                               </span>
                             </button>
 
@@ -1767,9 +1773,11 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                                 setPosmPreviewModal({
                                   src: activeVisualDef.imagenReferenciaDespues!,
                                   title: 'AHORA (Nuevo)',
-                                  subtitle: isHanshow
+                                  subtitle: activeVisualDef.guiaVisualTipo === 'top_table'
+                                    ? 'Top Table Xiaomi 18 Series'
+                                    : isHanshow
                                     ? 'Xiaomi 18 Pro & Pro Max'
-                                    : 'Lona Xiaomi 18 Pro Max'
+                                    : 'Lona Xiaomi 18 Series'
                                 })
                               }
                               className="col-span-5 bg-slate-900 hover:bg-slate-800/90 rounded-xl p-2 border-2 border-emerald-400/80 flex flex-col items-center shadow-lg cursor-pointer transition group text-left"
@@ -1792,7 +1800,11 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                                 </span>
                               </div>
                               <span className="text-[10px] text-emerald-300 font-black mt-1.5 text-center">
-                                {isHanshow ? 'Xiaomi 18 Pro & Pro Max' : 'Lona Xiaomi 18 Pro Max'}
+                                {activeVisualDef.guiaVisualTipo === 'top_table'
+                                  ? 'Top Table Xiaomi 18 Series'
+                                  : isHanshow
+                                  ? 'Xiaomi 18 Pro & Pro Max'
+                                  : 'Lona Xiaomi 18 Series'}
                               </span>
                             </button>
                           </div>

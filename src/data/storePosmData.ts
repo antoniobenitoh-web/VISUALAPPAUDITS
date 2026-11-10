@@ -1964,8 +1964,8 @@ export const getDynamicPosmDefinitionsForImplantation = (store: StoreCenter): Vi
       instruccionesFijacion:
         'Sustituir la filmina Duratrans de Xiaomi 17 Ultra por el nuevo Duratrans de Xiaomi 18 Series en la guía central de la mesa, centrada y protegida bajo el metacrilato.',
       guiaVisualTipo: 'top_table',
-      imagenReferenciaAntes: './images/tables/table2_mesa1_cara1.jpg',
-      imagenReferenciaDespues: './images/posm/faldon_mesa1.png'
+      imagenReferenciaAntes: './images/tables/table1_cara1_render.jpg',
+      imagenReferenciaDespues: './images/tables/table1_cara1_xiaomi18_render.jpg'
     });
   }
 
