@@ -3,13 +3,13 @@ import { AuditRecord } from "../types";
 
 export const SEED_AUDITS: Record<string, AuditRecord> = {
   "MIESD00575": {
-    "auditId": "seed-MIESD00575-20261104",
+    "auditId": "seed-MIESD00575-20261110",
     "tiendaId": "MIESD00575",
     "nombreTienda": "Media Sant Antoni",
     "retailer": "MediaMarkt",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 24,
     "okCount": 24,
     "incidenciasCount": 0,
@@ -27,7 +27,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P2",
@@ -41,7 +41,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P3",
@@ -55,7 +55,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P4",
@@ -69,7 +69,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P5",
@@ -83,7 +83,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P6",
@@ -97,7 +97,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P7",
@@ -111,7 +111,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P8",
@@ -125,7 +125,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P9",
@@ -139,7 +139,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P10",
@@ -153,7 +153,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P11",
@@ -167,7 +167,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P12",
@@ -181,63 +181,63 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P13",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 13,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083628863",
+        "modeloOficial": "Redmi 17 4G Green",
+        "modeloDetectado": "Redmi 17 4G Green",
+        "imeiSerial": "8685060818488840",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707/EFAPBS6QD00345",
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA01635",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "865610082792185",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P16",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 16,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW00838",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": true,
+        "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P17",
@@ -251,7 +251,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18",
@@ -265,7 +265,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.1",
@@ -279,7 +279,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.2",
@@ -293,78 +293,78 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P19",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 19,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "865610082792185",
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083628863",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/Y5VW00838",
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P21",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 21,
-        "modeloOficial": "Redmi 17 4G Green",
-        "modeloDetectado": "Redmi 17 4G Green",
-        "imeiSerial": "8685060818488840",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707/EFAPBS6QD00345",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P22",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 22,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5RA01635",
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESP00034": {
-    "auditId": "seed-MIESP00034-20261104",
+    "auditId": "seed-MIESP00034-20261110",
     "tiendaId": "MIESP00034",
     "nombreTienda": "Media Badalona",
     "retailer": "MediaMarkt",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 24,
-    "okCount": 23,
-    "incidenciasCount": 1,
+    "okCount": 24,
+    "incidenciasCount": 0,
     "pendientesCount": 0,
     "positions": [
       {
@@ -379,7 +379,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P2",
@@ -393,7 +393,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P3",
@@ -407,7 +407,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P4",
@@ -421,7 +421,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P5",
@@ -435,7 +435,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P6",
@@ -449,7 +449,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P7",
@@ -463,7 +463,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P8",
@@ -477,7 +477,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P9",
@@ -491,7 +491,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P10",
@@ -505,7 +505,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P11",
@@ -519,7 +519,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P12",
@@ -533,63 +533,63 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P13",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 13,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083642625",
+        "modeloOficial": "Redmi 17 4G Green",
+        "modeloDetectado": "Redmi 17 4G Green",
+        "imeiSerial": "868506081845940",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-EFAPBS6QD01608",
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA01602",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "864333084200260",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P16",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 16,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8 Pro",
-        "imeiSerial": "-",
-        "estadoPosicion": "Incidencia",
-        "tipoIncidencia": "Modelo incorrecto",
-        "esMaqueta": true,
-        "comentarios": "Detectado: Redmi Buds 8 Pro (Esperado: Redmi Buds 8)",
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW00968",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P17",
@@ -603,7 +603,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18",
@@ -617,7 +617,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.1",
@@ -631,7 +631,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.2",
@@ -645,75 +645,75 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P19",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 19,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "864333084200260",
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083642625",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/Y5VW00968",
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P21",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 21,
-        "modeloOficial": "Redmi 17 4G Green",
-        "modeloDetectado": "Redmi 17 4G Green",
-        "imeiSerial": "868506081845940",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-EFAPBS6QD01608",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P22",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 22,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5RA01602",
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESD00174": {
-    "auditId": "seed-MIESD00174-20261104",
+    "auditId": "seed-MIESD00174-20261110",
     "tiendaId": "MIESD00174",
     "nombreTienda": "Media Barcelona 5 Fontanella",
     "retailer": "MediaMarkt",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 55,
     "okCount": 55,
     "incidenciasCount": 0,
@@ -731,7 +731,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P2",
@@ -745,7 +745,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P3",
@@ -759,7 +759,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P4",
@@ -773,7 +773,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P5",
@@ -787,7 +787,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P6",
@@ -801,7 +801,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P7",
@@ -815,7 +815,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P8",
@@ -829,7 +829,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P9",
@@ -843,21 +843,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P10",
         "mesaId": "MESA 1 · Cara 1",
         "posicionNumero": 10,
         "modeloOficial": "Xiaomi 17T Purple",
-        "modeloDetectado": "Xiaomi 17T PURPLE",
+        "modeloDetectado": "Xiaomi 17T Purple",
         "imeiSerial": "866072080715602",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P11",
@@ -871,7 +871,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P12",
@@ -885,7 +885,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P13",
@@ -899,26 +899,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
         "modeloOficial": "Redmi Buds 8 Pro",
         "modeloDetectado": "Redmi Buds 8 Pro",
         "imeiSerial": "-",
@@ -927,7 +913,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P16",
@@ -941,21 +941,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P17",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 17,
-        "modeloOficial": "Redmi Note 17 5G Sky Teal",
-        "modeloDetectado": "Redmi Note 17 5G Sky Teal",
+        "modeloOficial": "Redmi Note 17 5G Blue",
+        "modeloDetectado": "Redmi Note 17 5G Blue",
         "imeiSerial": "862728081735261",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P18",
@@ -969,7 +969,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P19",
@@ -983,21 +983,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Watch 6 Active Black",
-        "modeloDetectado": "Redmi Watch 6 Active Black",
-        "imeiSerial": "78279/B6AFMN6UK14435",
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78279/B6AFMN6UK14854",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P21",
@@ -1011,7 +1011,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P22",
@@ -1025,21 +1025,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P23",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 23,
-        "modeloOficial": "Redmi Watch 6 Black",
-        "modeloDetectado": "Redmi Watch 6 Black",
-        "imeiSerial": "68707-efapbs6qd00085",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qd00237",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1",
@@ -1053,7 +1053,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1.1",
@@ -1067,7 +1067,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1.2",
@@ -1081,7 +1081,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P2",
@@ -1095,7 +1095,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P2.1",
@@ -1109,7 +1109,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P2.2",
@@ -1123,7 +1123,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P3",
@@ -1137,7 +1137,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P4",
@@ -1151,7 +1151,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P5",
@@ -1165,7 +1165,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P6",
@@ -1179,152 +1179,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_2-P7",
         "mesaId": "MESA 2 · Cara 2",
         "posicionNumero": 7,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "860081083186642",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 8,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 9,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-efapbs6qd00237",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 10,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083641940",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 11,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 12,
-        "modeloOficial": "Redmi Watch 6 Active",
-        "modeloDetectado": "Redmi Watch 6 Active",
-        "imeiSerial": "78279/B6AFMN6UK14854",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 13,
-        "modeloOficial": "Redmi Note 17 5G Purple",
-        "modeloDetectado": "Redmi Note 17 5G Purple",
-        "imeiSerial": "862728081657887",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 14,
-        "modeloOficial": "Redmi Note 17 5G Blue",
-        "modeloDetectado": "Redmi Note 17 5G Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6 Lite",
-        "modeloDetectado": "Redmi Watch 6 Lite",
-        "imeiSerial": "78276/B6AFMN6U108824",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 16,
-        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
-        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
-        "imeiSerial": "76924-66r700608",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 17,
         "modeloOficial": "Redmi 17 4G Green",
         "modeloDetectado": "Redmi 17 4G Green",
         "imeiSerial": "868506081848324",
@@ -1333,7 +1193,147 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 8,
+        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
+        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
+        "imeiSerial": "76924-66r700608",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 9,
+        "modeloOficial": "Redmi Note 17 5G Purple",
+        "modeloDetectado": "Redmi Note 17 5G Purple",
+        "imeiSerial": "862728081657887",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 10,
+        "modeloOficial": "Redmi Note 17 5G Blue",
+        "modeloDetectado": "Redmi Note 17 5G Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 11,
+        "modeloOficial": "Redmi Watch 6 Lite",
+        "modeloDetectado": "Redmi Watch 6 Lite",
+        "imeiSerial": "78276/B6AFMN6U108824",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 12,
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083641940",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 13,
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 14,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78279/B6AFMN6UK14854",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "860081083186642",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 16,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 17,
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qd00085",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P1",
@@ -1347,7 +1347,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P2",
@@ -1361,7 +1361,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P3",
@@ -1375,7 +1375,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P4",
@@ -1389,7 +1389,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P5",
@@ -1403,7 +1403,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P6",
@@ -1417,7 +1417,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P7",
@@ -1431,7 +1431,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P8",
@@ -1445,7 +1445,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P9",
@@ -1459,7 +1459,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P10",
@@ -1473,7 +1473,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P11",
@@ -1487,21 +1487,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESS00026": {
-    "auditId": "seed-MIESS00026-20261104",
+    "auditId": "seed-MIESS00026-20261110",
     "tiendaId": "MIESS00026",
     "nombreTienda": "Media Diagonal Mar-Barcelona",
     "retailer": "MediaMarkt",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
-    "totalPosiciones": 53,
-    "okCount": 50,
+    "fechaHora": "2026-11-10 12:00",
+    "totalPosiciones": 51,
+    "okCount": 48,
     "incidenciasCount": 3,
     "pendientesCount": 0,
     "positions": [
@@ -1509,34 +1509,6 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "posicionId": "Table 3-MESA_1_·_Cara_1-P1",
         "mesaId": "MESA 1 · Cara 1",
         "posicionNumero": 1,
-        "modeloOficial": "Xiaomi 17 Ultra Green",
-        "modeloDetectado": "Xiaomi 17 Ultra Green",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 3-MESA_1_·_Cara_1-P2",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 2,
-        "modeloOficial": "Xiaomi 17 Blue",
-        "modeloDetectado": "Xiaomi 17 Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 3-MESA_1_·_Cara_1-P3",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 3,
         "modeloOficial": "Xiaomi 17 Ultra Black",
         "modeloDetectado": "Xiaomi 17 Ultra Black",
         "imeiSerial": "863142080434703",
@@ -1545,12 +1517,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_1-P4",
+        "posicionId": "Table 3-MESA_1_·_Cara_1-P2",
         "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 4,
+        "posicionNumero": 2,
         "modeloOficial": "Xiaomi 17 Black",
         "modeloDetectado": "Xiaomi 17 Black",
         "imeiSerial": "860359070270805",
@@ -1559,12 +1531,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_1-P5",
+        "posicionId": "Table 3-MESA_1_·_Cara_1-P3",
         "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 5,
+        "posicionNumero": 3,
         "modeloOficial": "Xiaomi Watch 5",
         "modeloDetectado": "Xiaomi Watch 5",
         "imeiSerial": "65343/CRAG525ZK00240",
@@ -1573,12 +1545,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_1-P6",
+        "posicionId": "Table 3-MESA_1_·_Cara_1-P4",
         "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 6,
+        "posicionNumero": 4,
         "modeloOficial": "Xiaomi Buds 6",
         "modeloDetectado": "Xiaomi Buds 6",
         "imeiSerial": "-",
@@ -1587,12 +1559,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_1-P7",
+        "posicionId": "Table 3-MESA_1_·_Cara_1-P5",
         "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 7,
+        "posicionNumero": 5,
         "modeloOficial": "Xiaomi 17T Pro Blue",
         "modeloDetectado": "Xiaomi 17T Pro Blue",
         "imeiSerial": "862177081966908",
@@ -1601,12 +1573,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_1-P8",
+        "posicionId": "Table 3-MESA_1_·_Cara_1-P6",
         "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 8,
+        "posicionNumero": 6,
         "modeloOficial": "Xiaomi Watch S5 45mm",
         "modeloDetectado": "Xiaomi Watch S5 45mm",
         "imeiSerial": "70283/B6AFMN6NZ02534",
@@ -1615,12 +1587,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_1-P9",
+        "posicionId": "Table 3-MESA_1_·_Cara_1-P7",
         "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 9,
+        "posicionNumero": 7,
         "modeloOficial": "Xiaomi 17T Purple",
         "modeloDetectado": "Xiaomi 17T Purple",
         "imeiSerial": "866072080667308",
@@ -1629,12 +1601,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_1-P10",
+        "posicionId": "Table 3-MESA_1_·_Cara_1-P8",
         "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 10,
+        "posicionNumero": 8,
         "modeloOficial": "Xiaomi Watch S4 41mm",
         "modeloDetectado": "Xiaomi Watch S4 41mm",
         "imeiSerial": "67088/CRAG525U400722",
@@ -1643,12 +1615,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_2-P11",
+        "posicionId": "Table 3-MESA_1_·_Cara_2-P9",
         "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 11,
+        "posicionNumero": 9,
         "modeloOficial": "Xiaomi 17 Ultra Green",
         "modeloDetectado": "Xiaomi 17 Ultra Green",
         "imeiSerial": "863142080163286",
@@ -1657,12 +1629,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_2-P12",
+        "posicionId": "Table 3-MESA_1_·_Cara_2-P10",
         "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 12,
+        "posicionNumero": 10,
         "modeloOficial": "Xiaomi Watch S5 45mm",
         "modeloDetectado": "Xiaomi Watch S5 45mm",
         "imeiSerial": "70283/B6AFMN6NZ01507",
@@ -1671,12 +1643,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_2-P13",
+        "posicionId": "Table 3-MESA_1_·_Cara_2-P11",
         "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 13,
+        "posicionNumero": 11,
         "modeloOficial": "Xiaomi 17 Blue",
         "modeloDetectado": "Xiaomi 17 Blue",
         "imeiSerial": "860359070543029",
@@ -1685,12 +1657,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_2-P14",
+        "posicionId": "Table 3-MESA_1_·_Cara_2-P12",
         "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 14,
+        "posicionNumero": 12,
         "modeloOficial": "Xiaomi Smart Band 10 Pro",
         "modeloDetectado": "Xiaomi Smart Band 10 Pro",
         "imeiSerial": "74734/B6AFMN6QF03166",
@@ -1699,12 +1671,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_2-P15",
+        "posicionId": "Table 3-MESA_1_·_Cara_2-P13",
         "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
+        "posicionNumero": 13,
         "modeloOficial": "Xiaomi 17T Pro Purple",
         "modeloDetectado": "Xiaomi 17T Pro Purple",
         "imeiSerial": "862177084701443",
@@ -1713,12 +1685,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_2-P16",
+        "posicionId": "Table 3-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 16,
+        "posicionNumero": 14,
         "modeloOficial": "Xiaomi Smart Band 10",
         "modeloDetectado": "Xiaomi Smart Band 10",
         "imeiSerial": "65500/DYAMJQ5RQ05636",
@@ -1727,12 +1699,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_2-P17",
+        "posicionId": "Table 3-MESA_1_·_Cara_2-P15",
         "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 17,
+        "posicionNumero": 15,
         "modeloOficial": "Xiaomi 17T Blue",
         "modeloDetectado": "Xiaomi 17T Blue",
         "imeiSerial": "866072081433627",
@@ -1741,12 +1713,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_2-P18",
+        "posicionId": "Table 3-MESA_1_·_Cara_2-P16",
         "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 18,
+        "posicionNumero": 16,
         "modeloOficial": "Xiaomi Smart Band 11 Active",
         "modeloDetectado": "Xiaomi Smart Band 11 Active",
         "imeiSerial": "77971/ATTA5G6US01540",
@@ -1755,7 +1727,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_1-P1",
@@ -1769,7 +1741,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_1-P2",
@@ -1783,7 +1755,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_1-P3",
@@ -1797,7 +1769,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_1-P4",
@@ -1811,7 +1783,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_1-P5",
@@ -1825,7 +1797,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_1-P6",
@@ -1839,7 +1811,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_1-P7",
@@ -1853,7 +1825,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_1-P8",
@@ -1867,7 +1839,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P9",
@@ -1881,7 +1853,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P10",
@@ -1895,7 +1867,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P11",
@@ -1909,7 +1881,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P12",
@@ -1923,7 +1895,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P13",
@@ -1937,7 +1909,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P14",
@@ -1951,7 +1923,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P15",
@@ -1965,7 +1937,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Detectado: Redmi 15C 4G Blue (Esperado: Redmi 15C Black)",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P16",
@@ -1979,7 +1951,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P17",
@@ -1993,7 +1965,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Detectado: Redmi 15C 4G Green (Esperado: Redmi 15C Black)",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P18",
@@ -2007,7 +1979,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P19",
@@ -2021,7 +1993,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_1-P1",
@@ -2035,7 +2007,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_1-P1.1",
@@ -2049,7 +2021,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_1-P1.2",
@@ -2063,7 +2035,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_1-P2",
@@ -2077,7 +2049,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_1-P3",
@@ -2091,7 +2063,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_1-P4",
@@ -2105,7 +2077,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_1-P5",
@@ -2119,7 +2091,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_1-P6",
@@ -2133,7 +2105,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_2-P7",
@@ -2147,7 +2119,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_2-P8",
@@ -2161,7 +2133,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_2-P9",
@@ -2175,7 +2147,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_2-P10",
@@ -2189,7 +2161,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MINIWALL-P1",
@@ -2203,7 +2175,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Detectado: Redmi Note 17 Pro Max 5G Green (Esperado: Redmi Note 17 Pro Max 5G White&Orange)",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MINIWALL-P2",
@@ -2217,7 +2189,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MINIWALL-P3",
@@ -2231,7 +2203,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MINIWALL-P4",
@@ -2245,19 +2217,19 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESD00175": {
-    "auditId": "seed-MIESD00175-20261104",
+    "auditId": "seed-MIESD00175-20261110",
     "tiendaId": "MIESD00175",
     "nombreTienda": "Media El Prat",
     "retailer": "MediaMarkt",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 42,
     "okCount": 42,
     "incidenciasCount": 0,
@@ -2275,7 +2247,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P2",
@@ -2289,7 +2261,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P3",
@@ -2303,7 +2275,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P4",
@@ -2317,7 +2289,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P5",
@@ -2331,7 +2303,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P6",
@@ -2345,7 +2317,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P7",
@@ -2359,7 +2331,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P8",
@@ -2373,7 +2345,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P9",
@@ -2387,7 +2359,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P10",
@@ -2401,7 +2373,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P11",
@@ -2415,7 +2387,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P12",
@@ -2429,7 +2401,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P13",
@@ -2443,26 +2415,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
         "modeloOficial": "Redmi Buds 8 Pro",
         "modeloDetectado": "Redmi Buds 8 Pro",
         "imeiSerial": "-",
@@ -2471,7 +2429,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P16",
@@ -2485,21 +2457,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P17",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 17,
-        "modeloOficial": "Redmi Note 17 5G Sky Teal",
-        "modeloDetectado": "Redmi Note 17 5G Sky Teal",
+        "modeloOficial": "Redmi Note 17 5G Blue",
+        "modeloDetectado": "Redmi Note 17 5G Blue",
         "imeiSerial": "862728081783563",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P18",
@@ -2513,7 +2485,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P19",
@@ -2527,21 +2499,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Watch 6 Active Black",
-        "modeloDetectado": "Redmi Watch 6 Active Black",
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
         "imeiSerial": "78279/B6AFMN6UN14884",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P21",
@@ -2555,7 +2527,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P22",
@@ -2569,21 +2541,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P23",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 23,
-        "modeloOficial": "Redmi Watch 6 Black",
-        "modeloDetectado": "Redmi Watch 6 Black",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
         "imeiSerial": "68707/EFAPBS6QDO0270",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1",
@@ -2597,7 +2569,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1.1",
@@ -2611,7 +2583,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1.2",
@@ -2625,7 +2597,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P2",
@@ -2639,7 +2611,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P3",
@@ -2653,7 +2625,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P4",
@@ -2667,7 +2639,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P5",
@@ -2681,7 +2653,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P6",
@@ -2695,152 +2667,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_2-P7",
         "mesaId": "MESA 2 · Cara 2",
         "posicionNumero": 7,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "864603083869806",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 8,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 9,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-efapbs6qd00135",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 10,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083634622",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 11,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 12,
-        "modeloOficial": "Redmi Watch 6 Active",
-        "modeloDetectado": "Redmi Watch 6 Active",
-        "imeiSerial": "78277-b6afmn6ue00676",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 13,
-        "modeloOficial": "Redmi 17 5G Purple",
-        "modeloDetectado": "Redmi 17 5G Purple",
-        "imeiSerial": "862728081651021",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 14,
-        "modeloOficial": "Redmi 17 5G Blue",
-        "modeloDetectado": "Redmi 17 5G Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6 Lite",
-        "modeloDetectado": "Redmi Watch 6 Lite",
-        "imeiSerial": "78276-b6afmn6u100538",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 16,
-        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
-        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
-        "imeiSerial": "76924-66r700579",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 17,
         "modeloOficial": "Redmi 17 4G Green",
         "modeloDetectado": "Redmi 17 4G Green",
         "imeiSerial": "868506081846302",
@@ -2849,19 +2681,159 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 8,
+        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
+        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
+        "imeiSerial": "76924-66r700579",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 9,
+        "modeloOficial": "Redmi 17 5G Purple",
+        "modeloDetectado": "Redmi 17 5G Purple",
+        "imeiSerial": "862728081651021",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 10,
+        "modeloOficial": "Redmi 17 5G Blue",
+        "modeloDetectado": "Redmi 17 5G Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 11,
+        "modeloOficial": "Redmi Watch 6 Lite",
+        "modeloDetectado": "Redmi Watch 6 Lite",
+        "imeiSerial": "78276-b6afmn6u100538",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 12,
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083634622",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 13,
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 14,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78277-b6afmn6ue00676",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "864603083869806",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 16,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 17,
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qd00135",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESO00034": {
-    "auditId": "seed-MIESO00034-20261104",
+    "auditId": "seed-MIESO00034-20261110",
     "tiendaId": "MIESO00034",
     "nombreTienda": "Media Esplugues",
     "retailer": "MediaMarkt",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 24,
     "okCount": 24,
     "incidenciasCount": 0,
@@ -2879,7 +2851,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P2",
@@ -2893,7 +2865,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P3",
@@ -2907,7 +2879,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P4",
@@ -2921,7 +2893,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P5",
@@ -2935,7 +2907,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P6",
@@ -2949,7 +2921,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P7",
@@ -2963,7 +2935,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P8",
@@ -2977,7 +2949,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P9",
@@ -2991,7 +2963,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P10",
@@ -3005,7 +2977,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P11",
@@ -3019,7 +2991,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P12",
@@ -3033,63 +3005,63 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P13",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 13,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083634846",
+        "modeloOficial": "Redmi 17 4G Green",
+        "modeloDetectado": "Redmi 17 4G Green",
+        "imeiSerial": "868506081847987",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-efapbs6qd00515",
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573W/5RA00785",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "864333084203025",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P16",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 16,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW00109",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": true,
+        "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P17",
@@ -3103,7 +3075,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18",
@@ -3117,7 +3089,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.1",
@@ -3131,7 +3103,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.2",
@@ -3145,75 +3117,75 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P19",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 19,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "864333084203025",
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083634846",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/Y5VW00109",
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P21",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 21,
-        "modeloOficial": "Redmi 17 4G Green",
-        "modeloDetectado": "Redmi 17 4G Green",
-        "imeiSerial": "868506081847987",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qd00515",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P22",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 22,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573W/5RA00785",
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESO00033": {
-    "auditId": "seed-MIESO00033-20261104",
+    "auditId": "seed-MIESO00033-20261110",
     "tiendaId": "MIESO00033",
     "nombreTienda": "Media Gava",
     "retailer": "MediaMarkt",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 35,
     "okCount": 35,
     "incidenciasCount": 0,
@@ -3231,7 +3203,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P2",
@@ -3245,7 +3217,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P3",
@@ -3259,7 +3231,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P4",
@@ -3273,7 +3245,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P5",
@@ -3287,7 +3259,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P6",
@@ -3301,7 +3273,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P7",
@@ -3315,7 +3287,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P8",
@@ -3329,7 +3301,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P9",
@@ -3343,7 +3315,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P10",
@@ -3357,7 +3329,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P11",
@@ -3371,7 +3343,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P12",
@@ -3385,63 +3357,63 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P13",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 13,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083642161",
+        "modeloOficial": "Redmi 17 4G Green",
+        "modeloDetectado": "Redmi 17 4G Green",
+        "imeiSerial": "868506081847243",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-efapbs6qd01431",
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA01188",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "864333082243643",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P16",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 16,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/y5vw00235",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": true,
+        "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P17",
@@ -3455,7 +3427,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18",
@@ -3469,7 +3441,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.1",
@@ -3483,7 +3455,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.2",
@@ -3497,63 +3469,63 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P19",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 19,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "864333082243643",
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083642161",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/y5vw00235",
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P21",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 21,
-        "modeloOficial": "Redmi 17 4G Green",
-        "modeloDetectado": "Redmi 17 4G Green",
-        "imeiSerial": "868506081847243",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qd01431",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P22",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 22,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5RA01188",
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P1",
@@ -3567,7 +3539,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P2",
@@ -3581,7 +3553,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P3",
@@ -3595,7 +3567,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P4",
@@ -3609,7 +3581,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P5",
@@ -3623,7 +3595,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P6",
@@ -3637,7 +3609,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P7",
@@ -3651,7 +3623,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P8",
@@ -3665,7 +3637,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P9",
@@ -3679,7 +3651,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P10",
@@ -3693,7 +3665,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P11",
@@ -3707,21 +3679,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESD00182": {
-    "auditId": "seed-MIESD00182-20261104",
+    "auditId": "seed-MIESD00182-20261110",
     "tiendaId": "MIESD00182",
     "nombreTienda": "Media Girona",
     "retailer": "MediaMarkt",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
-    "totalPosiciones": 51,
-    "okCount": 49,
+    "fechaHora": "2026-11-10 12:00",
+    "totalPosiciones": 49,
+    "okCount": 47,
     "incidenciasCount": 2,
     "pendientesCount": 0,
     "positions": [
@@ -3729,34 +3701,6 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "posicionId": "Table 3-MESA_1_·_Cara_1-P1",
         "mesaId": "MESA 1 · Cara 1",
         "posicionNumero": 1,
-        "modeloOficial": "Xiaomi 17 Ultra Green",
-        "modeloDetectado": "Xiaomi 17 Ultra Green",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 3-MESA_1_·_Cara_1-P2",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 2,
-        "modeloOficial": "Xiaomi 17 Blue",
-        "modeloDetectado": "Xiaomi 17 Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 3-MESA_1_·_Cara_1-P3",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 3,
         "modeloOficial": "Xiaomi 17 Ultra Black",
         "modeloDetectado": "Xiaomi 17 Ultra Black",
         "imeiSerial": "863142080433606",
@@ -3765,12 +3709,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_1-P4",
+        "posicionId": "Table 3-MESA_1_·_Cara_1-P2",
         "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 4,
+        "posicionNumero": 2,
         "modeloOficial": "Xiaomi 17 Black",
         "modeloDetectado": "Xiaomi 17 Black",
         "imeiSerial": "860359070144505",
@@ -3779,12 +3723,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_1-P5",
+        "posicionId": "Table 3-MESA_1_·_Cara_1-P3",
         "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 5,
+        "posicionNumero": 3,
         "modeloOficial": "Xiaomi Watch 5",
         "modeloDetectado": "Xiaomi Watch 5",
         "imeiSerial": "65343/CRAG525ZK00907",
@@ -3793,12 +3737,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_1-P6",
+        "posicionId": "Table 3-MESA_1_·_Cara_1-P4",
         "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 6,
+        "posicionNumero": 4,
         "modeloOficial": "Xiaomi Buds 6",
         "modeloDetectado": "Xiaomi Buds 6",
         "imeiSerial": "-",
@@ -3807,12 +3751,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_1-P7",
+        "posicionId": "Table 3-MESA_1_·_Cara_1-P5",
         "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 7,
+        "posicionNumero": 5,
         "modeloOficial": "Xiaomi 17T Pro Blue",
         "modeloDetectado": "Xiaomi 17T Pro Blue",
         "imeiSerial": "862177082142269",
@@ -3821,12 +3765,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_1-P8",
+        "posicionId": "Table 3-MESA_1_·_Cara_1-P6",
         "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 8,
+        "posicionNumero": 6,
         "modeloOficial": "Xiaomi Watch S5 45mm",
         "modeloDetectado": "Xiaomi Watch S5 45mm",
         "imeiSerial": "70283/B6AFMN6NZ0602",
@@ -3835,12 +3779,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_1-P9",
+        "posicionId": "Table 3-MESA_1_·_Cara_1-P7",
         "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 9,
+        "posicionNumero": 7,
         "modeloOficial": "Xiaomi 17T Purple",
         "modeloDetectado": "Xiaomi 17T Purple",
         "imeiSerial": "866072080721048",
@@ -3849,12 +3793,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_1-P10",
+        "posicionId": "Table 3-MESA_1_·_Cara_1-P8",
         "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 10,
+        "posicionNumero": 8,
         "modeloOficial": "Xiaomi Watch S4 41mm",
         "modeloDetectado": "Xiaomi Watch S4 41mm",
         "imeiSerial": "67088/CRAG525Q400251",
@@ -3863,12 +3807,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_2-P11",
+        "posicionId": "Table 3-MESA_1_·_Cara_2-P9",
         "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 11,
+        "posicionNumero": 9,
         "modeloOficial": "Xiaomi 17 Ultra Green",
         "modeloDetectado": "Xiaomi 17 Ultra Green",
         "imeiSerial": "863142080163088",
@@ -3877,12 +3821,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_2-P12",
+        "posicionId": "Table 3-MESA_1_·_Cara_2-P10",
         "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 12,
+        "posicionNumero": 10,
         "modeloOficial": "Xiaomi Watch S5 45mm",
         "modeloDetectado": "Xiaomi Watch S5 45mm",
         "imeiSerial": "70283/B6AFMN6P400012",
@@ -3891,12 +3835,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_2-P13",
+        "posicionId": "Table 3-MESA_1_·_Cara_2-P11",
         "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 13,
+        "posicionNumero": 11,
         "modeloOficial": "Xiaomi 17 Blue",
         "modeloDetectado": "Xiaomi 17 Blue",
         "imeiSerial": "860359070587745",
@@ -3905,12 +3849,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_2-P14",
+        "posicionId": "Table 3-MESA_1_·_Cara_2-P12",
         "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 14,
+        "posicionNumero": 12,
         "modeloOficial": "Xiaomi Smart Band 10 Pro",
         "modeloDetectado": "Xiaomi Smart Band 10 Pro",
         "imeiSerial": "74734-B6AFMN6QF03839",
@@ -3919,12 +3863,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_2-P15",
+        "posicionId": "Table 3-MESA_1_·_Cara_2-P13",
         "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
+        "posicionNumero": 13,
         "modeloOficial": "Xiaomi 17T Pro Purple",
         "modeloDetectado": "Xiaomi 17T Pro Purple",
         "imeiSerial": "862177082359665",
@@ -3933,12 +3877,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_2-P16",
+        "posicionId": "Table 3-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 16,
+        "posicionNumero": 14,
         "modeloOficial": "Xiaomi Smart Band 10",
         "modeloDetectado": "Xiaomi Smart Band 10",
         "imeiSerial": "65500/DYAMJQ5RQ06226",
@@ -3947,12 +3891,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_2-P17",
+        "posicionId": "Table 3-MESA_1_·_Cara_2-P15",
         "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 17,
+        "posicionNumero": 15,
         "modeloOficial": "Xiaomi 17T Blue",
         "modeloDetectado": "Xiaomi 17T Blue",
         "imeiSerial": "866072081434286",
@@ -3961,12 +3905,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
-        "posicionId": "Table 3-MESA_1_·_Cara_2-P18",
+        "posicionId": "Table 3-MESA_1_·_Cara_2-P16",
         "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 18,
+        "posicionNumero": 16,
         "modeloOficial": "Xiaomi Smart Band 11 Active",
         "modeloDetectado": "Xiaomi Smart Band 11 Active",
         "imeiSerial": "77971-ATAA5G6US03385",
@@ -3975,7 +3919,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_1-P1",
@@ -3989,7 +3933,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_1-P2",
@@ -4003,7 +3947,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_1-P3",
@@ -4017,7 +3961,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_1-P4",
@@ -4031,7 +3975,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_1-P5",
@@ -4045,7 +3989,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_1-P6",
@@ -4059,7 +4003,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_1-P7",
@@ -4073,7 +4017,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_1-P8",
@@ -4087,7 +4031,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P9",
@@ -4101,7 +4045,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P10",
@@ -4115,7 +4059,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P11",
@@ -4129,7 +4073,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P12",
@@ -4143,7 +4087,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P13",
@@ -4157,7 +4101,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P14",
@@ -4171,7 +4115,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P15",
@@ -4185,7 +4129,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Detectado: Redmi 15C 4G Blue (Esperado: Redmi 15C Black)",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P16",
@@ -4199,7 +4143,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P17",
@@ -4213,7 +4157,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Detectado: Redmi 15C 4G Green (Esperado: Redmi 15C Black)",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P18",
@@ -4227,7 +4171,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_2_·_Cara_2-P19",
@@ -4241,7 +4185,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_1-P1",
@@ -4255,7 +4199,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_1-P1.1",
@@ -4269,7 +4213,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_1-P1.2",
@@ -4283,7 +4227,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_1-P2",
@@ -4297,7 +4241,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_1-P2.1",
@@ -4311,7 +4255,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_1-P2.2",
@@ -4325,7 +4269,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_1-P3",
@@ -4339,7 +4283,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_1-P4",
@@ -4353,7 +4297,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_1-P5",
@@ -4367,7 +4311,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_1-P6",
@@ -4381,7 +4325,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_2-P7",
@@ -4395,7 +4339,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_2-P8",
@@ -4409,7 +4353,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_2-P9",
@@ -4423,7 +4367,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 3-MESA_3_·_Cara_2-P10",
@@ -4437,19 +4381,19 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESP00037": {
-    "auditId": "seed-MIESP00037-20261104",
+    "auditId": "seed-MIESP00037-20261110",
     "tiendaId": "MIESP00037",
     "nombreTienda": "Media Girona 2",
     "retailer": "MediaMarkt",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 24,
     "okCount": 24,
     "incidenciasCount": 0,
@@ -4467,7 +4411,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P2",
@@ -4481,7 +4425,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P3",
@@ -4495,7 +4439,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P4",
@@ -4509,7 +4453,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P5",
@@ -4523,7 +4467,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P6",
@@ -4537,7 +4481,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P7",
@@ -4551,7 +4495,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P8",
@@ -4565,7 +4509,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P9",
@@ -4579,7 +4523,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P10",
@@ -4593,7 +4537,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P11",
@@ -4607,7 +4551,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P12",
@@ -4621,63 +4565,63 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P13",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 13,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083641106",
+        "modeloOficial": "Redmi 17 4G Green",
+        "modeloDetectado": "Redmi 17 4G Green",
+        "imeiSerial": "868506081851583",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-EFAPBS6QD01800",
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA00831",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "864333082243866",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P16",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 16,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW00923",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": true,
+        "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P17",
@@ -4691,7 +4635,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18",
@@ -4705,7 +4649,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.1",
@@ -4719,7 +4663,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.2",
@@ -4733,75 +4677,75 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P19",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 19,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "864333082243866",
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083641106",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/Y5VW00923",
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P21",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 21,
-        "modeloOficial": "Redmi 17 4G Green",
-        "modeloDetectado": "Redmi 17 4G Green",
-        "imeiSerial": "868506081851583",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-EFAPBS6QD01800",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P22",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 22,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5RA00831",
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESM00438": {
-    "auditId": "seed-MIESM00438-20261104",
+    "auditId": "seed-MIESM00438-20261110",
     "tiendaId": "MIESM00438",
     "nombreTienda": "Media Girona 3",
     "retailer": "MediaMarkt",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 24,
     "okCount": 24,
     "incidenciasCount": 0,
@@ -4819,7 +4763,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P2",
@@ -4833,7 +4777,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P3",
@@ -4847,7 +4791,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P4",
@@ -4861,7 +4805,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P5",
@@ -4875,7 +4819,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P6",
@@ -4889,7 +4833,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P7",
@@ -4903,7 +4847,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P8",
@@ -4917,7 +4861,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P9",
@@ -4931,7 +4875,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P10",
@@ -4945,7 +4889,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P11",
@@ -4959,7 +4903,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P12",
@@ -4973,63 +4917,63 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P13",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 13,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083636544",
+        "modeloOficial": "Redmi 17 4G Green",
+        "modeloDetectado": "Redmi 17 4G Green",
+        "imeiSerial": "868506081855766",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-EFAPBS6QD01624",
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5R900938",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "864333084200443",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P16",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 16,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW00916",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": true,
+        "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P17",
@@ -5043,7 +4987,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18",
@@ -5057,7 +5001,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.1",
@@ -5071,7 +5015,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.2",
@@ -5085,75 +5029,75 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P19",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 19,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "864333084200443",
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083636544",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/Y5VW00916",
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P21",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 21,
-        "modeloOficial": "Redmi 17 4G Green",
-        "modeloDetectado": "Redmi 17 4G Green",
-        "imeiSerial": "868506081855766",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-EFAPBS6QD01624",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P22",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 22,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5R900938",
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESD00176": {
-    "auditId": "seed-MIESD00176-20261104",
+    "auditId": "seed-MIESD00176-20261110",
     "tiendaId": "MIESD00176",
     "nombreTienda": "Media Maquinista",
     "retailer": "MediaMarkt",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 48,
     "okCount": 48,
     "incidenciasCount": 0,
@@ -5171,7 +5115,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P2",
@@ -5185,7 +5129,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P3",
@@ -5199,7 +5143,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P4",
@@ -5213,7 +5157,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P5",
@@ -5227,7 +5171,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P6",
@@ -5241,7 +5185,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P7",
@@ -5255,7 +5199,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P8",
@@ -5269,7 +5213,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P9",
@@ -5283,7 +5227,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P10",
@@ -5297,7 +5241,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P11",
@@ -5311,7 +5255,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P12",
@@ -5325,7 +5269,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P13",
@@ -5339,26 +5283,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
         "modeloOficial": "Redmi Buds 8 Pro",
         "modeloDetectado": "Redmi Buds 8 Pro",
         "imeiSerial": "-",
@@ -5367,7 +5297,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P16",
@@ -5381,21 +5325,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P17",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 17,
-        "modeloOficial": "Redmi Note 17 5G Sky Teal",
-        "modeloDetectado": "Redmi Note 17 5G Sky Teal",
+        "modeloOficial": "Redmi Note 17 5G Blue",
+        "modeloDetectado": "Redmi Note 17 5G Blue",
         "imeiSerial": "862728081755442",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P18",
@@ -5409,7 +5353,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P19",
@@ -5423,21 +5367,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Watch 6 Active Black",
-        "modeloDetectado": "Redmi Watch 6 Active Black",
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
         "imeiSerial": "78279/B6AFMN6UN15495",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P21",
@@ -5451,7 +5395,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P22",
@@ -5465,21 +5409,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P23",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 23,
-        "modeloOficial": "Redmi Watch 6 Black",
-        "modeloDetectado": "Redmi Watch 6 Black",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
         "imeiSerial": "68707-EFAPBS6QD00986",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1",
@@ -5493,7 +5437,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1.1",
@@ -5507,7 +5451,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1.2",
@@ -5521,7 +5465,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P2",
@@ -5535,7 +5479,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P2.1",
@@ -5549,7 +5493,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P2.2",
@@ -5563,7 +5507,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P3",
@@ -5577,7 +5521,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P4",
@@ -5591,7 +5535,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P5",
@@ -5605,7 +5549,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P6",
@@ -5619,152 +5563,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_2-P7",
         "mesaId": "MESA 2 · Cara 2",
         "posicionNumero": 7,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "860081084357226",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 8,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 9,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707/EFAPBS6QD01734",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 10,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083644886",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 11,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 12,
-        "modeloOficial": "Redmi Watch 6 Active",
-        "modeloDetectado": "Redmi Watch 6 Active",
-        "imeiSerial": "78279/B6AFMN6UK07463",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 13,
-        "modeloOficial": "Redmi Note 17 5G Purple",
-        "modeloDetectado": "Redmi Note 17 5G Purple",
-        "imeiSerial": "862728081656707",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 14,
-        "modeloOficial": "Redmi Note 17 5G Blue",
-        "modeloDetectado": "Redmi Note 17 5G Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6 Lite",
-        "modeloDetectado": "Redmi Watch 6 Lite",
-        "imeiSerial": "78276/B6AFMN6U108822",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 16,
-        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
-        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
-        "imeiSerial": "76924-66R700601",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 17,
         "modeloOficial": "Redmi 17 4G Green",
         "modeloDetectado": "Redmi 17 4G Green",
         "imeiSerial": "868506081851245",
@@ -5773,7 +5577,147 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 8,
+        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
+        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
+        "imeiSerial": "76924-66R700601",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 9,
+        "modeloOficial": "Redmi Note 17 5G Purple",
+        "modeloDetectado": "Redmi Note 17 5G Purple",
+        "imeiSerial": "862728081656707",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 10,
+        "modeloOficial": "Redmi Note 17 5G Blue",
+        "modeloDetectado": "Redmi Note 17 5G Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 11,
+        "modeloOficial": "Redmi Watch 6 Lite",
+        "modeloDetectado": "Redmi Watch 6 Lite",
+        "imeiSerial": "78276/B6AFMN6U108822",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 12,
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083644886",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 13,
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 14,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78279/B6AFMN6UK07463",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "860081084357226",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 16,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 17,
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707/EFAPBS6QD01734",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MINIWALL-P1",
@@ -5787,7 +5731,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MINIWALL-P2",
@@ -5801,7 +5745,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MINIWALL-P3",
@@ -5815,7 +5759,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MINIWALL-P4",
@@ -5829,19 +5773,19 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESD00177": {
-    "auditId": "seed-MIESD00177-20261104",
+    "auditId": "seed-MIESD00177-20261110",
     "tiendaId": "MIESD00177",
     "nombreTienda": "Media Mataro",
     "retailer": "MediaMarkt",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 24,
     "okCount": 24,
     "incidenciasCount": 0,
@@ -5859,7 +5803,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P2",
@@ -5873,7 +5817,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P3",
@@ -5887,7 +5831,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P4",
@@ -5901,7 +5845,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P5",
@@ -5915,7 +5859,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P6",
@@ -5929,7 +5873,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P7",
@@ -5943,7 +5887,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P8",
@@ -5957,7 +5901,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P9",
@@ -5971,7 +5915,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P10",
@@ -5985,7 +5929,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P11",
@@ -5999,7 +5943,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P12",
@@ -6013,63 +5957,63 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P13",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 13,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083644084",
+        "modeloOficial": "Redmi 17 4G Green",
+        "modeloDetectado": "Redmi 17 4G Green",
+        "imeiSerial": "868506081833789",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "869292078587709",
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA00868",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "864333084200500",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P16",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 16,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/y5vw00106",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": true,
+        "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P17",
@@ -6083,7 +6027,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18",
@@ -6097,7 +6041,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.1",
@@ -6111,7 +6055,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.2",
@@ -6125,75 +6069,75 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P19",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 19,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "864333084200500",
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083644084",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/y5vw00106",
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P21",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 21,
-        "modeloOficial": "Redmi 17 4G Green",
-        "modeloDetectado": "Redmi 17 4G Green",
-        "imeiSerial": "868506081833789",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "869292078587709",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P22",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 22,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5RA00868",
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESD00178": {
-    "auditId": "seed-MIESD00178-20261104",
+    "auditId": "seed-MIESD00178-20261110",
     "tiendaId": "MIESD00178",
     "nombreTienda": "Media Parets",
     "retailer": "MediaMarkt",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 24,
     "okCount": 24,
     "incidenciasCount": 0,
@@ -6211,7 +6155,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P2",
@@ -6225,7 +6169,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P3",
@@ -6239,7 +6183,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P4",
@@ -6253,7 +6197,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P5",
@@ -6267,7 +6211,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P6",
@@ -6281,7 +6225,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P7",
@@ -6295,7 +6239,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P8",
@@ -6309,7 +6253,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P9",
@@ -6323,7 +6267,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P10",
@@ -6337,7 +6281,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P11",
@@ -6351,7 +6295,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P12",
@@ -6365,63 +6309,63 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P13",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 13,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083257564",
+        "modeloOficial": "Redmi 17 4G Green",
+        "modeloDetectado": "Redmi 17 4G Green",
+        "imeiSerial": "868506081847532",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-efapbs6qd00021",
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA00501",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "864333082243825",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P16",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 16,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW00123",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": true,
+        "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P17",
@@ -6435,7 +6379,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18",
@@ -6449,7 +6393,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.1",
@@ -6463,7 +6407,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.2",
@@ -6477,3711 +6421,75 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P19",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 19,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "864333082243825",
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083257564",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/Y5VW00123",
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P21",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 21,
-        "modeloOficial": "Redmi 17 4G Green",
-        "modeloDetectado": "Redmi 17 4G Green",
-        "imeiSerial": "868506081847532",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qd00021",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P22",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 22,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5RA00501",
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESP03781": {
-    "auditId": "seed-MIESP03781-20261104",
+    "auditId": "seed-MIESP03781-20261110",
     "tiendaId": "MIESP03781",
     "nombreTienda": "Media Sabadell",
     "retailer": "MediaMarkt",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
-    "totalPosiciones": 42,
-    "okCount": 41,
-    "incidenciasCount": 1,
-    "pendientesCount": 0,
-    "positions": [
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P1",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 1,
-        "modeloOficial": "Xiaomi 17 Ultra Green",
-        "modeloDetectado": "Xiaomi 17 Ultra Green",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P2",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 2,
-        "modeloOficial": "Xiaomi 17 Blue",
-        "modeloDetectado": "Xiaomi 17 Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P3",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 3,
-        "modeloOficial": "Xiaomi 17 Ultra Black",
-        "modeloDetectado": "Xiaomi 17 Ultra Black",
-        "imeiSerial": "863142080431865",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P4",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 4,
-        "modeloOficial": "Xiaomi 17 Black",
-        "modeloDetectado": "Xiaomi 17 Black",
-        "imeiSerial": "860359070141808",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P5",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 5,
-        "modeloOficial": "Xiaomi Watch 5",
-        "modeloDetectado": "Xiaomi Watch 5",
-        "imeiSerial": "65343/CRAG525ZK00400",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P6",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 6,
-        "modeloOficial": "Xiaomi Buds 6",
-        "modeloDetectado": "Xiaomi Buds 6",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P7",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 7,
-        "modeloOficial": "Xiaomi 17T Pro Blue",
-        "modeloDetectado": "Xiaomi 17T Pro Blue",
-        "imeiSerial": "862177082129704",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P8",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 8,
-        "modeloOficial": "Xiaomi Watch S5 45mm",
-        "modeloDetectado": "Xiaomi Watch S5 45mm",
-        "imeiSerial": "70283-b6afmn6p400029",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P9",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 9,
-        "modeloOficial": "Xiaomi Smart Band 10 Pro",
-        "modeloDetectado": "Xiaomi Smart Band 10 Pro",
-        "imeiSerial": "74734-b6afmn6qf03100",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P10",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 10,
-        "modeloOficial": "Xiaomi 17T Purple",
-        "modeloDetectado": "Xiaomi 17T PURPLE",
-        "imeiSerial": "866072080754742",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P11",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 11,
-        "modeloOficial": "Xiaomi 17T blue",
-        "modeloDetectado": "Xiaomi 17T blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P12",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 12,
-        "modeloOficial": "Xiaomi Smart Band 11 Active",
-        "modeloDetectado": "Xiaomi Smart Band 11 Active",
-        "imeiSerial": "77971/ATAA5G6US03239",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P13",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 13,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "864333084203827",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P14",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 14,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Buds 8 Pro",
-        "modeloDetectado": "Redmi Buds 8 Pro",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P16",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 16,
-        "modeloOficial": "Redmi Note 17 5G Black",
-        "modeloDetectado": "Redmi Note 17 5G Black",
-        "imeiSerial": "862728081868187",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P17",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 17,
-        "modeloOficial": "Redmi Note 17 5G Sky Teal",
-        "modeloDetectado": "Redmi Note 17 5G Sky Teal",
-        "imeiSerial": "862728081735543",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P18",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 18,
-        "modeloOficial": "Redmi Note 17 Pro 5G Black",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Black",
-        "imeiSerial": "864603086782204",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P19",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 19,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P20",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 20,
-        "modeloOficial": "Redmi Watch 6 Active Black",
-        "modeloDetectado": "Redmi Watch 6 Active Black",
-        "imeiSerial": "78279/B6AFMN6UK17201",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P21",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 21,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G Black",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G Black",
-        "imeiSerial": "860081080736589",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P22",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 22,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G Green",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G Green",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P23",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 23,
-        "modeloOficial": "Redmi Watch 6 Black",
-        "modeloDetectado": "Redmi Watch 6 Black",
-        "imeiSerial": "68707-efapbs6qd00436",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P1",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 1,
-        "modeloOficial": "Xiaomi Pad 8",
-        "modeloDetectado": "Xiaomi Pad 8",
-        "imeiSerial": "75789/05z400126",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.1",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 1.1,
-        "modeloOficial": "Xiaomi Focus Keyboard",
-        "modeloDetectado": "Xiaomi Focus Keyboard",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.2",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 1.2,
-        "modeloOficial": "Xiaomi Focus Pen",
-        "modeloDetectado": "Xiaomi Focus Pen",
-        "imeiSerial": "60272/X4XX02027",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P2",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 2,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/y5vw00919",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P3",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 3,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P4",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 4,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/Y5VW01006",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P5",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 5,
-        "modeloOficial": "Redmi 17 4G Blue",
-        "modeloDetectado": "Redmi 17 4G Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P6",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 6,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5RA00179",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P7",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 7,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "860081083185503",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 8,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 9,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-efapbs6qf00103",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 10,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083628608",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 11,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 12,
-        "modeloOficial": "Redmi Watch 6 Active",
-        "modeloDetectado": "Redmi Watch 6 Active",
-        "imeiSerial": "78277/B6AFMN6UD00601",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 13,
-        "modeloOficial": "Redmi 17 5G Purple",
-        "modeloDetectado": "Redmi 17 5G Purple",
-        "imeiSerial": "862728081656384",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 14,
-        "modeloOficial": "Redmi 17 5G Blue",
-        "modeloDetectado": "-",
-        "imeiSerial": "-",
-        "estadoPosicion": "Incidencia",
-        "tipoIncidencia": "Material faltante",
-        "esMaqueta": true,
-        "comentarios": "Material faltante según planograma (Redmi 17 5G Blue)",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6 Lite",
-        "modeloDetectado": "Redmi Watch 6 Lite",
-        "imeiSerial": "78276/B6AFMN6U102121",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 16,
-        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
-        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
-        "imeiSerial": "76924-66r701187",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 17,
-        "modeloOficial": "Redmi 17 4G Green",
-        "modeloDetectado": "Redmi 17 4G Green",
-        "imeiSerial": "868506081830504",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      }
-    ],
-    "sincronizadoSheets": true
-  },
-  "MIESD00180": {
-    "auditId": "seed-MIESD00180-20261104",
-    "tiendaId": "MIESD00180",
-    "nombreTienda": "Media Sant Cugat (Barcelona)",
-    "retailer": "MediaMarkt",
-    "usuarioEmail": "auditoria.retail@salesland.net",
-    "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
-    "totalPosiciones": 53,
-    "okCount": 52,
-    "incidenciasCount": 1,
-    "pendientesCount": 0,
-    "positions": [
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P1",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 1,
-        "modeloOficial": "Xiaomi 17 Ultra Green",
-        "modeloDetectado": "Xiaomi 17 Ultra Green",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P2",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 2,
-        "modeloOficial": "Xiaomi 17 Blue",
-        "modeloDetectado": "Xiaomi 17 Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P3",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 3,
-        "modeloOficial": "Xiaomi 17 Ultra Black",
-        "modeloDetectado": "Xiaomi 17 Ultra Black",
-        "imeiSerial": "863142080442326",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P4",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 4,
-        "modeloOficial": "Xiaomi 17 Black",
-        "modeloDetectado": "Xiaomi 17 Black",
-        "imeiSerial": "860359070155923",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P5",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 5,
-        "modeloOficial": "Xiaomi Watch 5",
-        "modeloDetectado": "Xiaomi Watch 5",
-        "imeiSerial": "65343/CRAG525ZK00402",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P6",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 6,
-        "modeloOficial": "Xiaomi Buds 6",
-        "modeloDetectado": "Xiaomi Buds 6",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P7",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 7,
-        "modeloOficial": "Xiaomi 17T Pro Blue",
-        "modeloDetectado": "Xiaomi 17T Pro Blue",
-        "imeiSerial": "862177082100960",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P8",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 8,
-        "modeloOficial": "Xiaomi Watch S5 45mm",
-        "modeloDetectado": "Xiaomi Watch S5 45mm",
-        "imeiSerial": "70283-b6afmn6nz01033",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P9",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 9,
-        "modeloOficial": "Xiaomi Smart Band 10 Pro",
-        "modeloDetectado": "Xiaomi Smart Band 10 Pro",
-        "imeiSerial": "74734-b6afmn6qf03180",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P10",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 10,
-        "modeloOficial": "Xiaomi 17T Purple",
-        "modeloDetectado": "Xiaomi 17T Purple",
-        "imeiSerial": "866072080717269",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P11",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 11,
-        "modeloOficial": "Xiaomi 17T blue",
-        "modeloDetectado": "Xiaomi 17T blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P12",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 12,
-        "modeloOficial": "Xiaomi Smart Band 11 Active",
-        "modeloDetectado": "Xiaomi Smart Band 11 Active",
-        "imeiSerial": "77971/ATAA5G6US03368",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P13",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 13,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "864333084201920",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P14",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 14,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Buds 8 Pro",
-        "modeloDetectado": "Redmi Buds 8 Pro",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P16",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 16,
-        "modeloOficial": "Redmi Note 17 5G Black",
-        "modeloDetectado": "Redmi Note 17 5G Black",
-        "imeiSerial": "862728081873443",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P17",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 17,
-        "modeloOficial": "Redmi Note 17 5G Sky Teal",
-        "modeloDetectado": "Redmi Note 17 5G Sky Teal",
-        "imeiSerial": "862728081733522",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P18",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 18,
-        "modeloOficial": "Redmi Note 17 Pro 5G Black",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Black",
-        "imeiSerial": "864603086780364",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P19",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 19,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P20",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 20,
-        "modeloOficial": "Redmi Watch 6 Active Black",
-        "modeloDetectado": "Redmi Watch 6 Active Black",
-        "imeiSerial": "78277/B6AFMN6UE05067",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P21",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 21,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G Black",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G Black",
-        "imeiSerial": "860081080936148",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P22",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 22,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G Green",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G Green",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P23",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 23,
-        "modeloOficial": "Redmi Watch 6 Black",
-        "modeloDetectado": "Redmi Watch 6 Black",
-        "imeiSerial": "68707-efapbs6qd00619",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P1",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 1,
-        "modeloOficial": "Xiaomi Pad 8",
-        "modeloDetectado": "Xiaomi Pad 8",
-        "imeiSerial": "75789/05Z400338",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.1",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 1.1,
-        "modeloOficial": "Xiaomi Focus Keyboard",
-        "modeloDetectado": "Xiaomi Focus Keyboard",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.2",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 1.2,
-        "modeloOficial": "Xiaomi Focus Pen",
-        "modeloDetectado": "Xiaomi Focus Pen",
-        "imeiSerial": "60272/X4XX01308",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P2",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 2,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/Y5VW00762",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P3",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 3,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P4",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 4,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/Y5VW01042",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P5",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 5,
-        "modeloOficial": "Redmi 17 4G Blue",
-        "modeloDetectado": "Redmi 17 4G Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P6",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 6,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5RA00167",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P7",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 7,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "860081083186089",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 8,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 9,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-efapbs6qd01719",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 10,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083643045",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 11,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "REMI 15C",
-        "imeiSerial": "-",
-        "estadoPosicion": "Incidencia",
-        "tipoIncidencia": "Modelo incorrecto",
-        "esMaqueta": true,
-        "comentarios": "Detectado: REMI 15C (Esperado: Redmi Note 17 Pro 5G Purple)",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 12,
-        "modeloOficial": "Redmi Watch 6 Active",
-        "modeloDetectado": "Redmi Watch 6 Active",
-        "imeiSerial": "78279/B6AFMN6UK13680",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 13,
-        "modeloOficial": "Redmi 17 5G Purple",
-        "modeloDetectado": "Redmi 17 5G Purple",
-        "imeiSerial": "862728081656624",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 14,
-        "modeloOficial": "Redmi 17 5G Blue",
-        "modeloDetectado": "Redmi 17 5G Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6 Lite",
-        "modeloDetectado": "Redmi Watch 6 Lite",
-        "imeiSerial": "78276/B6AFMN6U402565",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 16,
-        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
-        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
-        "imeiSerial": "76924-66r700606",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 17,
-        "modeloOficial": "Redmi 17 4G Green",
-        "modeloDetectado": "Redmi 17 4G Green",
-        "imeiSerial": "868506081847862",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P1",
-        "mesaId": "WALL",
-        "posicionNumero": 1,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G Green",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G Green",
-        "imeiSerial": "860081083106988",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P2",
-        "mesaId": "WALL",
-        "posicionNumero": 2,
-        "modeloOficial": "Redmi Watch 6 Active",
-        "modeloDetectado": "Redmi Watch 6 Active",
-        "imeiSerial": "78279/B6AFMN6UN09830",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P3",
-        "mesaId": "WALL",
-        "posicionNumero": 3,
-        "modeloOficial": "Redmi Watch 6 Lite",
-        "modeloDetectado": "Redmi Watch 6 Lite",
-        "imeiSerial": "78275/B6AFMN6UD50031",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P4",
-        "mesaId": "WALL",
-        "posicionNumero": 4,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083641767",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P5",
-        "mesaId": "WALL",
-        "posicionNumero": 5,
-        "modeloOficial": "Redmi Watch 5 Active",
-        "modeloDetectado": "Redmi Watch 5 Active",
-        "imeiSerial": "59838/B6AFMN4V504888",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P6",
-        "mesaId": "WALL",
-        "posicionNumero": 6,
-        "modeloOficial": "Redmi Watch 5 Lite",
-        "modeloDetectado": "Redmi Watch 5 Lite",
-        "imeiSerial": "59836/B6AFMN4VA01406",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P7",
-        "mesaId": "WALL",
-        "posicionNumero": 7,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5RA00826",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P8",
-        "mesaId": "WALL",
-        "posicionNumero": 8,
-        "modeloOficial": "Xiaomi Smart Band 11 Active",
-        "modeloDetectado": "Xiaomi Smart Band 11 Active",
-        "imeiSerial": "77971/ATAA5G6US03392",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P9",
-        "mesaId": "WALL",
-        "posicionNumero": 9,
-        "modeloOficial": "Xiaomi Smart Band 9 active",
-        "modeloDetectado": "Xiaomi Smart Band 9 active",
-        "imeiSerial": "61790/ATAA5G4XS00239",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P10",
-        "mesaId": "WALL",
-        "posicionNumero": 10,
-        "modeloOficial": "Xiaomi Smart Band 11 Active",
-        "modeloDetectado": "Xiaomi Smart Band 11 Active",
-        "imeiSerial": "77971/ATAA5G6US03314",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P11",
-        "mesaId": "WALL",
-        "posicionNumero": 11,
-        "modeloOficial": "Xiaomi Smart Band 9 active",
-        "modeloDetectado": "Xiaomi Smart Band 9 active",
-        "imeiSerial": "61790/ATAA5G4XR01733",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      }
-    ],
-    "sincronizadoSheets": true
-  },
-  "MIESO00043": {
-    "auditId": "seed-MIESO00043-20261104",
-    "tiendaId": "MIESO00043",
-    "nombreTienda": "Media Tarragona",
-    "retailer": "MediaMarkt",
-    "usuarioEmail": "auditoria.retail@salesland.net",
-    "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
-    "totalPosiciones": 53,
-    "okCount": 53,
-    "incidenciasCount": 0,
-    "pendientesCount": 0,
-    "positions": [
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P1",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 1,
-        "modeloOficial": "Xiaomi 17 Ultra Green",
-        "modeloDetectado": "Xiaomi 17 Ultra Green",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P2",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 2,
-        "modeloOficial": "Xiaomi 17 Blue",
-        "modeloDetectado": "Xiaomi 17 Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P3",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 3,
-        "modeloOficial": "Xiaomi 17 Ultra Black",
-        "modeloDetectado": "Xiaomi 17 Ultra Black",
-        "imeiSerial": "863142080434844",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P4",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 4,
-        "modeloOficial": "Xiaomi 17 Black",
-        "modeloDetectado": "Xiaomi 17 Black",
-        "imeiSerial": "860359070157721",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P5",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 5,
-        "modeloOficial": "Xiaomi Watch 5",
-        "modeloDetectado": "Xiaomi Watch 5",
-        "imeiSerial": "65343/CRAG525ZK01322",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P6",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 6,
-        "modeloOficial": "Xiaomi Buds 6",
-        "modeloDetectado": "Xiaomi Buds 6",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P7",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 7,
-        "modeloOficial": "Xiaomi 17T Pro Blue",
-        "modeloDetectado": "Xiaomi 17T Pro Blue",
-        "imeiSerial": "862177082140404",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P8",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 8,
-        "modeloOficial": "Xiaomi Watch S5 45mm",
-        "modeloDetectado": "Xiaomi Watch S5 45mm",
-        "imeiSerial": "70283-b6afmn6p400028",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P9",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 9,
-        "modeloOficial": "Xiaomi Smart Band 10 Pro",
-        "modeloDetectado": "Xiaomi Smart Band 10 Pro",
-        "imeiSerial": "74734-b6afmn6qf03185",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P10",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 10,
-        "modeloOficial": "Xiaomi 17T Purple",
-        "modeloDetectado": "Xiaomi 17T Purple",
-        "imeiSerial": "866072080703640",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P11",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 11,
-        "modeloOficial": "Xiaomi 17T blue",
-        "modeloDetectado": "Xiaomi 17T blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P12",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 12,
-        "modeloOficial": "Xiaomi Smart Band 11 Active",
-        "modeloDetectado": "Xiaomi Smart Band 11 Active",
-        "imeiSerial": "77971/ATAA5G6US01241",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P13",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 13,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "864333084200427",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P14",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 14,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Buds 8 Pro",
-        "modeloDetectado": "Redmi Buds 8 Pro",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P16",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 16,
-        "modeloOficial": "Redmi Note 17 5G Black",
-        "modeloDetectado": "Redmi Note 17 5G Black",
-        "imeiSerial": "862728081852843",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P17",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 17,
-        "modeloOficial": "Redmi Note 17 5G Sky Teal",
-        "modeloDetectado": "Redmi Note 17 5G Sky Teal",
-        "imeiSerial": "862728081731088",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P18",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 18,
-        "modeloOficial": "Redmi Note 17 Pro 5G Black",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Black",
-        "imeiSerial": "864603086785868",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P19",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 19,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P20",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 20,
-        "modeloOficial": "Redmi Watch 6 Active Black",
-        "modeloDetectado": "Redmi Watch 6 Active Black",
-        "imeiSerial": "78279/B6AFMN6UK07465",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P21",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 21,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G Black",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G Black",
-        "imeiSerial": "860081080843286",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P22",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 22,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G Green",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G Green",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P23",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 23,
-        "modeloOficial": "Redmi Watch 6 Black",
-        "modeloDetectado": "Redmi Watch 6 Black",
-        "imeiSerial": "68707-efapbs6qd00210",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P1",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 1,
-        "modeloOficial": "Xiaomi Pad 8",
-        "modeloDetectado": "Xiaomi Pad 8",
-        "imeiSerial": "75789/05Z400400",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.1",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 1.1,
-        "modeloOficial": "Xiaomi Focus Keyboard",
-        "modeloDetectado": "Xiaomi Focus Keyboard",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.2",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 1.2,
-        "modeloOficial": "Xiaomi Focus Pen",
-        "modeloDetectado": "Xiaomi Focus Pen",
-        "imeiSerial": "47092/W3SR00144",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P2",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 2,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/Y5VW01036",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P3",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 3,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P4",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 4,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/Y5VW01045",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P5",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 5,
-        "modeloOficial": "Redmi 17 4G Blue",
-        "modeloDetectado": "Redmi 17 4G Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P6",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 6,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5RA00883",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P7",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 7,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "860081084329027",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 8,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 9,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-efapbs6qd00284",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 10,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083639001",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 11,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 12,
-        "modeloOficial": "Redmi Watch 6 Active",
-        "modeloDetectado": "Redmi Watch 6 Active",
-        "imeiSerial": "78279/B6AFMN6UK05340",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 13,
-        "modeloOficial": "Redmi 17 5G Purple",
-        "modeloDetectado": "Redmi 17 5G Purple",
-        "imeiSerial": "862728081652524",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 14,
-        "modeloOficial": "Redmi 17 5G Blue",
-        "modeloDetectado": "Redmi 17 5G Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6 Lite",
-        "modeloDetectado": "Redmi Watch 6 Lite",
-        "imeiSerial": "78276/B6AFMN6U102200",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 16,
-        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
-        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
-        "imeiSerial": "76924-66r700032",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 17,
-        "modeloOficial": "Redmi 17 4G Green",
-        "modeloDetectado": "Redmi 17 4G Green",
-        "imeiSerial": "868506081847284",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P1",
-        "mesaId": "WALL",
-        "posicionNumero": 1,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G Green",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G Green",
-        "imeiSerial": "860081083471762",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P2",
-        "mesaId": "WALL",
-        "posicionNumero": 2,
-        "modeloOficial": "Redmi Watch 6 Active",
-        "modeloDetectado": "Redmi Watch 6 Active",
-        "imeiSerial": "78279/B6AFMN6UK18884",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P3",
-        "mesaId": "WALL",
-        "posicionNumero": 3,
-        "modeloOficial": "Redmi Watch 6 Lite",
-        "modeloDetectado": "Redmi Watch 6 Lite",
-        "imeiSerial": "78276/B6AFMN6U120425",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P4",
-        "mesaId": "WALL",
-        "posicionNumero": 4,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083633608",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P5",
-        "mesaId": "WALL",
-        "posicionNumero": 5,
-        "modeloOficial": "Redmi Watch 5 Active",
-        "modeloDetectado": "Redmi Watch 5 Active",
-        "imeiSerial": "59833/B6AFMN4V803653",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P6",
-        "mesaId": "WALL",
-        "posicionNumero": 6,
-        "modeloOficial": "Redmi Watch 5 Lite",
-        "modeloDetectado": "Redmi Watch 5 Lite",
-        "imeiSerial": "59836/B6AFMN4VA05736",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P7",
-        "mesaId": "WALL",
-        "posicionNumero": 7,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5RA00833",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P8",
-        "mesaId": "WALL",
-        "posicionNumero": 8,
-        "modeloOficial": "Xiaomi Smart Band 11 Active",
-        "modeloDetectado": "Xiaomi Smart Band 11 Active",
-        "imeiSerial": "77971/ATAA5G6US01258",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P9",
-        "mesaId": "WALL",
-        "posicionNumero": 9,
-        "modeloOficial": "Xiaomi Smart Band 9 active",
-        "modeloDetectado": "Xiaomi Smart Band 9 active",
-        "imeiSerial": "61790/ATAA5G4XR01722",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P10",
-        "mesaId": "WALL",
-        "posicionNumero": 10,
-        "modeloOficial": "Xiaomi Smart Band 11 Active",
-        "modeloDetectado": "Xiaomi Smart Band 11 Active",
-        "imeiSerial": "77971/ATAA5G6US01246",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P11",
-        "mesaId": "WALL",
-        "posicionNumero": 11,
-        "modeloOficial": "Xiaomi Smart Band 9 active",
-        "modeloDetectado": "Xiaomi Smart Band 9 active",
-        "imeiSerial": "61790/ATAA5G4XR02063",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      }
-    ],
-    "sincronizadoSheets": true
-  },
-  "MIESD00179": {
-    "auditId": "seed-MIESD00179-20261104",
-    "tiendaId": "MIESD00179",
-    "nombreTienda": "Media Terrassa",
-    "retailer": "MediaMarkt",
-    "usuarioEmail": "auditoria.retail@salesland.net",
-    "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
-    "totalPosiciones": 53,
-    "okCount": 53,
-    "incidenciasCount": 0,
-    "pendientesCount": 0,
-    "positions": [
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P1",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 1,
-        "modeloOficial": "Xiaomi 17 Ultra Green",
-        "modeloDetectado": "Xiaomi 17 Ultra Green",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P2",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 2,
-        "modeloOficial": "Xiaomi 17 Blue",
-        "modeloDetectado": "Xiaomi 17 Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P3",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 3,
-        "modeloOficial": "Xiaomi 17 Ultra Black",
-        "modeloDetectado": "Xiaomi 17 Ultra Black",
-        "imeiSerial": "863142080441302",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P4",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 4,
-        "modeloOficial": "Xiaomi 17 Black",
-        "modeloDetectado": "Xiaomi 17 Black",
-        "imeiSerial": "860359070146740",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P5",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 5,
-        "modeloOficial": "Xiaomi Watch 5",
-        "modeloDetectado": "Xiaomi Watch 5",
-        "imeiSerial": "65343/CRAG525ZK01317",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P6",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 6,
-        "modeloOficial": "Xiaomi Buds 6",
-        "modeloDetectado": "Xiaomi Buds 6",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P7",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 7,
-        "modeloOficial": "Xiaomi 17T Pro Blue",
-        "modeloDetectado": "Xiaomi 17T Pro Blue",
-        "imeiSerial": "862177082134746",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P8",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 8,
-        "modeloOficial": "Xiaomi Watch S5 45mm",
-        "modeloDetectado": "Xiaomi Watch S5 45mm",
-        "imeiSerial": "70283-b6afmn6p400014",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P9",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 9,
-        "modeloOficial": "Xiaomi Smart Band 10 Pro",
-        "modeloDetectado": "Xiaomi Smart Band 10 Pro",
-        "imeiSerial": "74734-b6afmn6qf03193",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P10",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 10,
-        "modeloOficial": "Xiaomi 17T Purple",
-        "modeloDetectado": "Xiaomi 17T PURPLE",
-        "imeiSerial": "866072080717061",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P11",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 11,
-        "modeloOficial": "Xiaomi 17T blue",
-        "modeloDetectado": "Xiaomi 17T blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P12",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 12,
-        "modeloOficial": "Xiaomi Smart Band 11 Active",
-        "modeloDetectado": "Xiaomi Smart Band 11 Active",
-        "imeiSerial": "77971-ataa5g6us03328",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P13",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 13,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "864333084203900",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P14",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 14,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Buds 8 Pro",
-        "modeloDetectado": "Redmi Buds 8 Pro",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P16",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 16,
-        "modeloOficial": "Redmi Note 17 5G Black",
-        "modeloDetectado": "Redmi Note 17 5G Black",
-        "imeiSerial": "862728081862289",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P17",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 17,
-        "modeloOficial": "Redmi Note 17 5G Sky Teal",
-        "modeloDetectado": "Redmi Note 17 5G Sky Teal",
-        "imeiSerial": "862728081731047",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P18",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 18,
-        "modeloOficial": "Redmi Note 17 Pro 5G Black",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Black",
-        "imeiSerial": "864603086783822",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P19",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 19,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P20",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 20,
-        "modeloOficial": "Redmi Watch 6 Active Black",
-        "modeloDetectado": "Redmi Watch 6 Active Black",
-        "imeiSerial": "78277/B6AFMN6UE05542",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P21",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 21,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G Black",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G Black",
-        "imeiSerial": "86008108922346",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P22",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 22,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G Green",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G Green",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P23",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 23,
-        "modeloOficial": "Redmi Watch 6 Black",
-        "modeloDetectado": "Redmi Watch 6 Black",
-        "imeiSerial": "68707-efapbs6qd00638",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P1",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 1,
-        "modeloOficial": "Xiaomi Pad 8",
-        "modeloDetectado": "Xiaomi Pad 8",
-        "imeiSerial": "75789/05z400548",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.1",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 1.1,
-        "modeloOficial": "Xiaomi Focus Keyboard",
-        "modeloDetectado": "Xiaomi Focus Keyboard",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.2",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 1.2,
-        "modeloOficial": "Xiaomi Focus Pen",
-        "modeloDetectado": "Xiaomi Focus Pen",
-        "imeiSerial": "60272/X4XX02443",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P2",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 2,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/75VW01019",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P3",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 3,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P4",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 4,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/75VW01043",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P5",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 5,
-        "modeloOficial": "Redmi 17 4G Blue",
-        "modeloDetectado": "Redmi 17 4G Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P6",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 6,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5RA00100",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P7",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 7,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "860081083185545",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 8,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 9,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-efapbs6qd00268",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 10,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "8646030083646800",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 11,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 12,
-        "modeloOficial": "Redmi Watch 6 Active",
-        "modeloDetectado": "Redmi Watch 6 Active",
-        "imeiSerial": "78279/B6AFMN6UK10029",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 13,
-        "modeloOficial": "Redmi 17 5G Purple",
-        "modeloDetectado": "Redmi 17 5G Purple",
-        "imeiSerial": "862728081659487",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 14,
-        "modeloOficial": "Redmi 17 5G Blue",
-        "modeloDetectado": "Redmi 17 5G Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6 Lite",
-        "modeloDetectado": "Redmi Watch 6 Lite",
-        "imeiSerial": "78276/B6AFMN6U115472",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 16,
-        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
-        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
-        "imeiSerial": "76924-66r701192",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 17,
-        "modeloOficial": "Redmi 17 4G Green",
-        "modeloDetectado": "Redmi 17 4G Green",
-        "imeiSerial": "868506081853662",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P1",
-        "mesaId": "WALL",
-        "posicionNumero": 1,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G Green",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G Green",
-        "imeiSerial": "860081083096387",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P2",
-        "mesaId": "WALL",
-        "posicionNumero": 2,
-        "modeloOficial": "Redmi Watch 6 Active",
-        "modeloDetectado": "Redmi Watch 6 Active",
-        "imeiSerial": "78279/B6AFMN6UK16933",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P3",
-        "mesaId": "WALL",
-        "posicionNumero": 3,
-        "modeloOficial": "Redmi Watch 6 Lite",
-        "modeloDetectado": "Redmi Watch 6 Lite",
-        "imeiSerial": "78275/B6AFMN6UD48052",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P4",
-        "mesaId": "WALL",
-        "posicionNumero": 4,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083643003",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P5",
-        "mesaId": "WALL",
-        "posicionNumero": 5,
-        "modeloOficial": "Redmi Watch 5 Active",
-        "modeloDetectado": "Redmi Watch 5 Active",
-        "imeiSerial": "59836/B6AFMN4V504735",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P6",
-        "mesaId": "WALL",
-        "posicionNumero": 6,
-        "modeloOficial": "Redmi Watch 5 Lite",
-        "modeloDetectado": "Redmi Watch 5 Lite",
-        "imeiSerial": "59836/B6AFMN4VA00564",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P7",
-        "mesaId": "WALL",
-        "posicionNumero": 7,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5RA00814",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P8",
-        "mesaId": "WALL",
-        "posicionNumero": 8,
-        "modeloOficial": "Xiaomi Smart Band 11 Active",
-        "modeloDetectado": "Xiaomi Smart Band 11 Active",
-        "imeiSerial": "77971/ATAA5G6US03255",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P9",
-        "mesaId": "WALL",
-        "posicionNumero": 9,
-        "modeloOficial": "Xiaomi Smart Band 9 active",
-        "modeloDetectado": "Xiaomi Smart Band 9 active",
-        "imeiSerial": "61790/ATAA5G4XS00229",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P10",
-        "mesaId": "WALL",
-        "posicionNumero": 10,
-        "modeloOficial": "Xiaomi Smart Band 11 Active",
-        "modeloDetectado": "Xiaomi Smart Band 11 Active",
-        "imeiSerial": "77971/ATAA5G6US03379",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P11",
-        "mesaId": "WALL",
-        "posicionNumero": 11,
-        "modeloOficial": "Xiaomi Smart Band 9 active",
-        "modeloDetectado": "Xiaomi Smart Band 9 active",
-        "imeiSerial": "61790/ATAA5G4XR02490",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      }
-    ],
-    "sincronizadoSheets": true
-  },
-  "MIESD02181": {
-    "auditId": "seed-MIESD02181-20261104",
-    "tiendaId": "MIESD02181",
-    "nombreTienda": "Media Vilanova",
-    "retailer": "MediaMarkt",
-    "usuarioEmail": "auditoria.retail@salesland.net",
-    "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
-    "totalPosiciones": 53,
-    "okCount": 53,
-    "incidenciasCount": 0,
-    "pendientesCount": 0,
-    "positions": [
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P1",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 1,
-        "modeloOficial": "Xiaomi 17 Ultra Green",
-        "modeloDetectado": "Xiaomi 17 Ultra Green",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P2",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 2,
-        "modeloOficial": "Xiaomi 17 Blue",
-        "modeloDetectado": "Xiaomi 17 Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P3",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 3,
-        "modeloOficial": "Xiaomi 17 Ultra Black",
-        "modeloDetectado": "Xiaomi 17 Ultra Black",
-        "imeiSerial": "863142080442383",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P4",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 4,
-        "modeloOficial": "Xiaomi 17 Black",
-        "modeloDetectado": "Xiaomi 17 Black",
-        "imeiSerial": "860359070132989",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P5",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 5,
-        "modeloOficial": "Xiaomi Watch 5",
-        "modeloDetectado": "Xiaomi Watch 5",
-        "imeiSerial": "65343/CRAG525ZK00417",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P6",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 6,
-        "modeloOficial": "Xiaomi Buds 6",
-        "modeloDetectado": "Xiaomi Buds 6",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P7",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 7,
-        "modeloOficial": "Xiaomi 17T Pro Blue",
-        "modeloDetectado": "Xiaomi 17T Pro Blue",
-        "imeiSerial": "862177082142228",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P8",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 8,
-        "modeloOficial": "Xiaomi Watch S5 45mm",
-        "modeloDetectado": "Xiaomi Watch S5 45mm",
-        "imeiSerial": "70283-b6afmn6p400013",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P9",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 9,
-        "modeloOficial": "Xiaomi Smart Band 10 Pro",
-        "modeloDetectado": "Xiaomi Smart Band 10 Pro",
-        "imeiSerial": "74734-b6afmn6qf03181",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P10",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 10,
-        "modeloOficial": "Xiaomi 17T Purple",
-        "modeloDetectado": "Xiaomi 17T PURPLE",
-        "imeiSerial": "866072080729645",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P11",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 11,
-        "modeloOficial": "Xiaomi 17T blue",
-        "modeloDetectado": "Xiaomi 17T blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_1-P12",
-        "mesaId": "MESA 1 · Cara 1",
-        "posicionNumero": 12,
-        "modeloOficial": "Xiaomi Smart Band 11 Active",
-        "modeloDetectado": "Xiaomi Smart Band 11 Active",
-        "imeiSerial": "77971/ATAA5G6US03357",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P13",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 13,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "864333084203504",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P14",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 14,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Buds 8 Pro",
-        "modeloDetectado": "Redmi Buds 8 Pro",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P16",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 16,
-        "modeloOficial": "Redmi Note 17 5G Black",
-        "modeloDetectado": "Redmi Note 17 5G Black",
-        "imeiSerial": "862728081873922",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P17",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 17,
-        "modeloOficial": "Redmi Note 17 5G Sky Teal",
-        "modeloDetectado": "Redmi Note 17 5G Sky Teal",
-        "imeiSerial": "862728081745740",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P18",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 18,
-        "modeloOficial": "Redmi Note 17 Pro 5G Black",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Black",
-        "imeiSerial": "864603083875589",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P19",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 19,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P20",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 20,
-        "modeloOficial": "Redmi Watch 6 Active Black",
-        "modeloDetectado": "Redmi Watch 6 Active Black",
-        "imeiSerial": "78279/B6AFMN6UN12720",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P21",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 21,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G Black",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G Black",
-        "imeiSerial": "860081080817900",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P22",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 22,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G Green",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G Green",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P23",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 23,
-        "modeloOficial": "Redmi Watch 6 Black",
-        "modeloDetectado": "Redmi Watch 6 Black",
-        "imeiSerial": "68707-efapbs6qd01021",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P1",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 1,
-        "modeloOficial": "Xiaomi Pad 8",
-        "modeloDetectado": "Xiaomi Pad 8",
-        "imeiSerial": "75789/05Z400051",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.1",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 1.1,
-        "modeloOficial": "Xiaomi Focus Keyboard",
-        "modeloDetectado": "Xiaomi Focus Keyboard",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.2",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 1.2,
-        "modeloOficial": "Xiaomi Focus Pen",
-        "modeloDetectado": "Xiaomi Focus Pen",
-        "imeiSerial": "60272/X4XX02076",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P2",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 2,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/Y5VW00684",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P3",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 3,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P4",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 4,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/Y5VW00938",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P5",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 5,
-        "modeloOficial": "Redmi 17 4G Blue",
-        "modeloDetectado": "Redmi 17 4G Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_1-P6",
-        "mesaId": "MESA 2 · Cara 1",
-        "posicionNumero": 6,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5R900934",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P7",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 7,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "860081083185701",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 8,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 9,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-efapbs6qd00557",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 10,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083638409",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 11,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 12,
-        "modeloOficial": "Redmi Watch 6 Active",
-        "modeloDetectado": "Redmi Watch 6 Active",
-        "imeiSerial": "78279/B6AFMN6UN12718",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 13,
-        "modeloOficial": "Redmi 17 5G Purple",
-        "modeloDetectado": "Redmi 17 5G Purple",
-        "imeiSerial": "862728081656848",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 14,
-        "modeloOficial": "Redmi 17 5G Blue",
-        "modeloDetectado": "Redmi 17 5G Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6 Lite",
-        "modeloDetectado": "Redmi Watch 6 Lite",
-        "imeiSerial": "78276/ B6AFMN6U111875",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 16,
-        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
-        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
-        "imeiSerial": "76924-66r700029",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 17,
-        "modeloOficial": "Redmi 17 4G Green",
-        "modeloDetectado": "Redmi 17 4G Green",
-        "imeiSerial": "868506081841865",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P1",
-        "mesaId": "WALL",
-        "posicionNumero": 1,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G Green",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G Green",
-        "imeiSerial": "860081082210062",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P2",
-        "mesaId": "WALL",
-        "posicionNumero": 2,
-        "modeloOficial": "Redmi Watch 6 Active",
-        "modeloDetectado": "Redmi Watch 6 Active",
-        "imeiSerial": "78279/B6AFMN6UK185366",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P3",
-        "mesaId": "WALL",
-        "posicionNumero": 3,
-        "modeloOficial": "Redmi Watch 6 Lite",
-        "modeloDetectado": "Redmi Watch 6 Lite",
-        "imeiSerial": "78275/B6AFMN6D48027",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P4",
-        "mesaId": "WALL",
-        "posicionNumero": 4,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083637807",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P5",
-        "mesaId": "WALL",
-        "posicionNumero": 5,
-        "modeloOficial": "Redmi Watch 5 Active",
-        "modeloDetectado": "Redmi Watch 5 Active",
-        "imeiSerial": "59838/B6AFMN4V503472",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P6",
-        "mesaId": "WALL",
-        "posicionNumero": 6,
-        "modeloOficial": "Redmi Watch 5 Lite",
-        "modeloDetectado": "Redmi Watch 5 Lite",
-        "imeiSerial": "59836/B6AFMN4VA05818",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P7",
-        "mesaId": "WALL",
-        "posicionNumero": 7,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5RA00599",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P8",
-        "mesaId": "WALL",
-        "posicionNumero": 8,
-        "modeloOficial": "Xiaomi Smart Band 11 Active",
-        "modeloDetectado": "Xiaomi Smart Band 11 Active",
-        "imeiSerial": "77971 / ATAA5G6US03331",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P9",
-        "mesaId": "WALL",
-        "posicionNumero": 9,
-        "modeloOficial": "Xiaomi Smart Band 9 active",
-        "modeloDetectado": "Xiaomi Smart Band 9 active",
-        "imeiSerial": "61790/ATAA5G4XR02477",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P10",
-        "mesaId": "WALL",
-        "posicionNumero": 10,
-        "modeloOficial": "Xiaomi Smart Band 11 Active",
-        "modeloDetectado": "Xiaomi Smart Band 11 Active",
-        "imeiSerial": "77971/ATAA5G6US03316",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-WALL-P11",
-        "mesaId": "WALL",
-        "posicionNumero": 11,
-        "modeloOficial": "Xiaomi Smart Band 9 active",
-        "modeloDetectado": "Xiaomi Smart Band 9 active",
-        "imeiSerial": "61790/ATAA55G4XR01288",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      }
-    ],
-    "sincronizadoSheets": true
-  },
-  "MIESD00203": {
-    "auditId": "seed-MIESD00203-20261104",
-    "tiendaId": "MIESD00203",
-    "nombreTienda": "Media Zaragoza",
-    "retailer": "MediaMarkt",
-    "usuarioEmail": "auditoria.retail@salesland.net",
-    "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 42,
     "okCount": 42,
     "incidenciasCount": 0,
@@ -10199,7 +6507,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P2",
@@ -10213,7 +6521,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P3",
@@ -10221,13 +6529,13 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "posicionNumero": 3,
         "modeloOficial": "Xiaomi 17 Ultra Black",
         "modeloDetectado": "Xiaomi 17 Ultra Black",
-        "imeiSerial": "863142080434943",
+        "imeiSerial": "863142080431865",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P4",
@@ -10235,13 +6543,13 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "posicionNumero": 4,
         "modeloOficial": "Xiaomi 17 Black",
         "modeloDetectado": "Xiaomi 17 Black",
-        "imeiSerial": "860359070144745",
+        "imeiSerial": "860359070141808",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P5",
@@ -10249,13 +6557,13 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "posicionNumero": 5,
         "modeloOficial": "Xiaomi Watch 5",
         "modeloDetectado": "Xiaomi Watch 5",
-        "imeiSerial": "65343/crag525zk01306",
+        "imeiSerial": "65343/CRAG525ZK00400",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P6",
@@ -10269,7 +6577,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P7",
@@ -10277,13 +6585,13 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "posicionNumero": 7,
         "modeloOficial": "Xiaomi 17T Pro Blue",
         "modeloDetectado": "Xiaomi 17T Pro Blue",
-        "imeiSerial": "862177082097968",
+        "imeiSerial": "862177082129704",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P8",
@@ -10291,13 +6599,13 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "posicionNumero": 8,
         "modeloOficial": "Xiaomi Watch S5 45mm",
         "modeloDetectado": "Xiaomi Watch S5 45mm",
-        "imeiSerial": "70283-B6AFMN6NZ01637",
+        "imeiSerial": "70283-b6afmn6p400029",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P9",
@@ -10305,27 +6613,27 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "posicionNumero": 9,
         "modeloOficial": "Xiaomi Smart Band 10 Pro",
         "modeloDetectado": "Xiaomi Smart Band 10 Pro",
-        "imeiSerial": "74734-B6AFMN6QF00475",
+        "imeiSerial": "74734-b6afmn6qf03100",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P10",
         "mesaId": "MESA 1 · Cara 1",
         "posicionNumero": 10,
         "modeloOficial": "Xiaomi 17T Purple",
-        "modeloDetectado": "Xiaomi 17T Purple",
-        "imeiSerial": "866072080717087",
+        "modeloDetectado": "Xiaomi 17T PURPLE",
+        "imeiSerial": "866072080754742",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P11",
@@ -10339,7 +6647,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P12",
@@ -10347,13 +6655,13 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "posicionNumero": 12,
         "modeloOficial": "Xiaomi Smart Band 11 Active",
         "modeloDetectado": "Xiaomi Smart Band 11 Active",
-        "imeiSerial": "77971/ATAA5G6US01647",
+        "imeiSerial": "77971/ATAA5G6US03239",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P13",
@@ -10361,32 +6669,18 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "posicionNumero": 13,
         "modeloOficial": "Redmi 17 5G Orange",
         "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "864333084202043",
+        "imeiSerial": "864333084203827",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
         "modeloOficial": "Redmi Buds 8 Pro",
         "modeloDetectado": "Redmi Buds 8 Pro",
         "imeiSerial": "-",
@@ -10395,7 +6689,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P16",
@@ -10403,27 +6711,27 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "posicionNumero": 16,
         "modeloOficial": "Redmi Note 17 5G Black",
         "modeloDetectado": "Redmi Note 17 5G Black",
-        "imeiSerial": "862728081859889",
+        "imeiSerial": "862728081868187",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P17",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 17,
-        "modeloOficial": "Redmi Note 17 5G Sky Teal",
-        "modeloDetectado": "Redmi Note 17 5G Sky Teal",
-        "imeiSerial": "862728081757885",
+        "modeloOficial": "Redmi Note 17 5G Blue",
+        "modeloDetectado": "Redmi Note 17 5G Blue",
+        "imeiSerial": "862728081735543",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P18",
@@ -10431,13 +6739,13 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "posicionNumero": 18,
         "modeloOficial": "Redmi Note 17 Pro 5G Black",
         "modeloDetectado": "Redmi Note 17 Pro 5G Black",
-        "imeiSerial": "864603086771660",
+        "imeiSerial": "864603086782204",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P19",
@@ -10451,21 +6759,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Watch 6 Active Black",
-        "modeloDetectado": "Redmi Watch 6 Active Black",
-        "imeiSerial": "78279/b6afmn6un14892",
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78279/B6AFMN6UK17201",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P21",
@@ -10473,13 +6781,13 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "posicionNumero": 21,
         "modeloOficial": "Redmi Note 17 Pro Max 5G Black",
         "modeloDetectado": "Redmi Note 17 Pro Max 5G Black",
-        "imeiSerial": "860081081083866",
+        "imeiSerial": "860081080736589",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P22",
@@ -10493,21 +6801,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P23",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 23,
-        "modeloOficial": "Redmi Watch 6 Black",
-        "modeloDetectado": "Redmi Watch 6 Black",
-        "imeiSerial": "68707-EFAPBS6QD00820",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qd00436",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1",
@@ -10515,13 +6823,13 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "posicionNumero": 1,
         "modeloOficial": "Xiaomi Pad 8",
         "modeloDetectado": "Xiaomi Pad 8",
-        "imeiSerial": "75789/05z400199",
+        "imeiSerial": "75789/05z400126",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1.1",
@@ -10535,7 +6843,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1.2",
@@ -10543,13 +6851,13 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "posicionNumero": 1.2,
         "modeloOficial": "Xiaomi Focus Pen",
         "modeloDetectado": "Xiaomi Focus Pen",
-        "imeiSerial": "-",
+        "imeiSerial": "60272/X4XX02027",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P2",
@@ -10557,13 +6865,13 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "posicionNumero": 2,
         "modeloOficial": "Redmi Pad 2 Pro",
         "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/y5vw00867",
+        "imeiSerial": "70399/y5vw00919",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P3",
@@ -10577,7 +6885,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P4",
@@ -10585,13 +6893,13 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "posicionNumero": 4,
         "modeloOficial": "Redmi Pad 2 Pro",
         "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/Y5VW02540",
+        "imeiSerial": "70399/Y5VW01006",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P5",
@@ -10605,7 +6913,3643 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P6",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 6,
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA00179",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P7",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 7,
+        "modeloOficial": "Redmi 17 4G Green",
+        "modeloDetectado": "Redmi 17 4G Green",
+        "imeiSerial": "868506081830504",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 8,
+        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
+        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
+        "imeiSerial": "76924-66r701187",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 9,
+        "modeloOficial": "Redmi 17 5G Purple",
+        "modeloDetectado": "Redmi 17 5G Purple",
+        "imeiSerial": "862728081656384",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 10,
+        "modeloOficial": "Redmi 17 5G Blue",
+        "modeloDetectado": "Redmi 17 5G Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 11,
+        "modeloOficial": "Redmi Watch 6 Lite",
+        "modeloDetectado": "Redmi Watch 6 Lite",
+        "imeiSerial": "78276/B6AFMN6U102121",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 12,
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083628608",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 13,
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 14,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78277/B6AFMN6UD00601",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "860081083185503",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 16,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 17,
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qf00103",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      }
+    ],
+    "sincronizadoSheets": true
+  },
+  "MIESD00180": {
+    "auditId": "seed-MIESD00180-20261110",
+    "tiendaId": "MIESD00180",
+    "nombreTienda": "Media Sant Cugat (Barcelona)",
+    "retailer": "MediaMarkt",
+    "usuarioEmail": "auditoria.retail@salesland.net",
+    "usuarioNombre": "Equipo Auditoría Xiaomi",
+    "fechaHora": "2026-11-10 12:00",
+    "totalPosiciones": 53,
+    "okCount": 53,
+    "incidenciasCount": 0,
+    "pendientesCount": 0,
+    "positions": [
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P1",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 1,
+        "modeloOficial": "Xiaomi 17 Ultra Green",
+        "modeloDetectado": "Xiaomi 17 Ultra Green",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P2",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 2,
+        "modeloOficial": "Xiaomi 17 Blue",
+        "modeloDetectado": "Xiaomi 17 Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P3",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 3,
+        "modeloOficial": "Xiaomi 17 Ultra Black",
+        "modeloDetectado": "Xiaomi 17 Ultra Black",
+        "imeiSerial": "863142080442326",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P4",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 4,
+        "modeloOficial": "Xiaomi 17 Black",
+        "modeloDetectado": "Xiaomi 17 Black",
+        "imeiSerial": "860359070155923",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P5",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 5,
+        "modeloOficial": "Xiaomi Watch 5",
+        "modeloDetectado": "Xiaomi Watch 5",
+        "imeiSerial": "65343/CRAG525ZK00402",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P6",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 6,
+        "modeloOficial": "Xiaomi Buds 6",
+        "modeloDetectado": "Xiaomi Buds 6",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P7",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 7,
+        "modeloOficial": "Xiaomi 17T Pro Blue",
+        "modeloDetectado": "Xiaomi 17T Pro Blue",
+        "imeiSerial": "862177082100960",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P8",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 8,
+        "modeloOficial": "Xiaomi Watch S5 45mm",
+        "modeloDetectado": "Xiaomi Watch S5 45mm",
+        "imeiSerial": "70283-b6afmn6nz01033",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P9",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 9,
+        "modeloOficial": "Xiaomi Smart Band 10 Pro",
+        "modeloDetectado": "Xiaomi Smart Band 10 Pro",
+        "imeiSerial": "74734-b6afmn6qf03180",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P10",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 10,
+        "modeloOficial": "Xiaomi 17T Purple",
+        "modeloDetectado": "Xiaomi 17T Purple",
+        "imeiSerial": "866072080717269",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P11",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 11,
+        "modeloOficial": "Xiaomi 17T blue",
+        "modeloDetectado": "Xiaomi 17T blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P12",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 12,
+        "modeloOficial": "Xiaomi Smart Band 11 Active",
+        "modeloDetectado": "Xiaomi Smart Band 11 Active",
+        "imeiSerial": "77971/ATAA5G6US03368",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P13",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 13,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "864333084201920",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P14",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 14,
+        "modeloOficial": "Redmi Buds 8 Pro",
+        "modeloDetectado": "Redmi Buds 8 Pro",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P16",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 16,
+        "modeloOficial": "Redmi Note 17 5G Black",
+        "modeloDetectado": "Redmi Note 17 5G Black",
+        "imeiSerial": "862728081873443",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P17",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 17,
+        "modeloOficial": "Redmi Note 17 5G Blue",
+        "modeloDetectado": "Redmi Note 17 5G Blue",
+        "imeiSerial": "862728081733522",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P18",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 18,
+        "modeloOficial": "Redmi Note 17 Pro 5G Black",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Black",
+        "imeiSerial": "864603086780364",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P19",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 19,
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P20",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 20,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78277/B6AFMN6UE05067",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P21",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 21,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G Black",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G Black",
+        "imeiSerial": "860081080936148",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P22",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 22,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G Green",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G Green",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P23",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 23,
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qd00619",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P1",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 1,
+        "modeloOficial": "Xiaomi Pad 8",
+        "modeloDetectado": "Xiaomi Pad 8",
+        "imeiSerial": "75789/05Z400338",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.1",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 1.1,
+        "modeloOficial": "Xiaomi Focus Keyboard",
+        "modeloDetectado": "Xiaomi Focus Keyboard",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.2",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 1.2,
+        "modeloOficial": "Xiaomi Focus Pen",
+        "modeloDetectado": "Xiaomi Focus Pen",
+        "imeiSerial": "60272/X4XX01308",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P2",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 2,
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW00762",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P3",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 3,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P4",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 4,
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW01042",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P5",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 5,
+        "modeloOficial": "Redmi 17 4G Blue",
+        "modeloDetectado": "Redmi 17 4G Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P6",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 6,
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA00167",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P7",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 7,
+        "modeloOficial": "Redmi 17 4G Green",
+        "modeloDetectado": "Redmi 17 4G Green",
+        "imeiSerial": "868506081847862",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 8,
+        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
+        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
+        "imeiSerial": "76924-66r700606",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 9,
+        "modeloOficial": "Redmi 17 5G Purple",
+        "modeloDetectado": "Redmi 17 5G Purple",
+        "imeiSerial": "862728081656624",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 10,
+        "modeloOficial": "Redmi 17 5G Blue",
+        "modeloDetectado": "Redmi 17 5G Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 11,
+        "modeloOficial": "Redmi Watch 6 Lite",
+        "modeloDetectado": "Redmi Watch 6 Lite",
+        "imeiSerial": "78276/B6AFMN6U402565",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 12,
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083643045",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 13,
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 14,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78279/B6AFMN6UK13680",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "860081083186089",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 16,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 17,
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qd01719",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P1",
+        "mesaId": "WALL",
+        "posicionNumero": 1,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G Green",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G Green",
+        "imeiSerial": "860081083106988",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P2",
+        "mesaId": "WALL",
+        "posicionNumero": 2,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78279/B6AFMN6UN09830",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P3",
+        "mesaId": "WALL",
+        "posicionNumero": 3,
+        "modeloOficial": "Redmi Watch 6 Lite",
+        "modeloDetectado": "Redmi Watch 6 Lite",
+        "imeiSerial": "78275/B6AFMN6UD50031",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P4",
+        "mesaId": "WALL",
+        "posicionNumero": 4,
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083641767",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P5",
+        "mesaId": "WALL",
+        "posicionNumero": 5,
+        "modeloOficial": "Redmi Watch 5 Active",
+        "modeloDetectado": "Redmi Watch 5 Active",
+        "imeiSerial": "59838/B6AFMN4V504888",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P6",
+        "mesaId": "WALL",
+        "posicionNumero": 6,
+        "modeloOficial": "Redmi Watch 5 Lite",
+        "modeloDetectado": "Redmi Watch 5 Lite",
+        "imeiSerial": "59836/B6AFMN4VA01406",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P7",
+        "mesaId": "WALL",
+        "posicionNumero": 7,
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA00826",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P8",
+        "mesaId": "WALL",
+        "posicionNumero": 8,
+        "modeloOficial": "Xiaomi Smart Band 11 Active",
+        "modeloDetectado": "Xiaomi Smart Band 11 Active",
+        "imeiSerial": "77971/ATAA5G6US03392",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P9",
+        "mesaId": "WALL",
+        "posicionNumero": 9,
+        "modeloOficial": "Xiaomi Smart Band 9 active",
+        "modeloDetectado": "Xiaomi Smart Band 9 active",
+        "imeiSerial": "61790/ATAA5G4XS00239",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P10",
+        "mesaId": "WALL",
+        "posicionNumero": 10,
+        "modeloOficial": "Xiaomi Smart Band 11 Active",
+        "modeloDetectado": "Xiaomi Smart Band 11 Active",
+        "imeiSerial": "77971/ATAA5G6US03314",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P11",
+        "mesaId": "WALL",
+        "posicionNumero": 11,
+        "modeloOficial": "Xiaomi Smart Band 9 active",
+        "modeloDetectado": "Xiaomi Smart Band 9 active",
+        "imeiSerial": "61790/ATAA5G4XR01733",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      }
+    ],
+    "sincronizadoSheets": true
+  },
+  "MIESO00043": {
+    "auditId": "seed-MIESO00043-20261110",
+    "tiendaId": "MIESO00043",
+    "nombreTienda": "Media Tarragona",
+    "retailer": "MediaMarkt",
+    "usuarioEmail": "auditoria.retail@salesland.net",
+    "usuarioNombre": "Equipo Auditoría Xiaomi",
+    "fechaHora": "2026-11-10 12:00",
+    "totalPosiciones": 53,
+    "okCount": 53,
+    "incidenciasCount": 0,
+    "pendientesCount": 0,
+    "positions": [
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P1",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 1,
+        "modeloOficial": "Xiaomi 17 Ultra Green",
+        "modeloDetectado": "Xiaomi 17 Ultra Green",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P2",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 2,
+        "modeloOficial": "Xiaomi 17 Blue",
+        "modeloDetectado": "Xiaomi 17 Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P3",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 3,
+        "modeloOficial": "Xiaomi 17 Ultra Black",
+        "modeloDetectado": "Xiaomi 17 Ultra Black",
+        "imeiSerial": "863142080434844",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P4",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 4,
+        "modeloOficial": "Xiaomi 17 Black",
+        "modeloDetectado": "Xiaomi 17 Black",
+        "imeiSerial": "860359070157721",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P5",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 5,
+        "modeloOficial": "Xiaomi Watch 5",
+        "modeloDetectado": "Xiaomi Watch 5",
+        "imeiSerial": "65343/CRAG525ZK01322",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P6",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 6,
+        "modeloOficial": "Xiaomi Buds 6",
+        "modeloDetectado": "Xiaomi Buds 6",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P7",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 7,
+        "modeloOficial": "Xiaomi 17T Pro Blue",
+        "modeloDetectado": "Xiaomi 17T Pro Blue",
+        "imeiSerial": "862177082140404",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P8",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 8,
+        "modeloOficial": "Xiaomi Watch S5 45mm",
+        "modeloDetectado": "Xiaomi Watch S5 45mm",
+        "imeiSerial": "70283-b6afmn6p400028",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P9",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 9,
+        "modeloOficial": "Xiaomi Smart Band 10 Pro",
+        "modeloDetectado": "Xiaomi Smart Band 10 Pro",
+        "imeiSerial": "74734-b6afmn6qf03185",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P10",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 10,
+        "modeloOficial": "Xiaomi 17T Purple",
+        "modeloDetectado": "Xiaomi 17T Purple",
+        "imeiSerial": "866072080703640",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P11",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 11,
+        "modeloOficial": "Xiaomi 17T blue",
+        "modeloDetectado": "Xiaomi 17T blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P12",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 12,
+        "modeloOficial": "Xiaomi Smart Band 11 Active",
+        "modeloDetectado": "Xiaomi Smart Band 11 Active",
+        "imeiSerial": "77971/ATAA5G6US01241",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P13",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 13,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "864333084200427",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P14",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 14,
+        "modeloOficial": "Redmi Buds 8 Pro",
+        "modeloDetectado": "Redmi Buds 8 Pro",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P16",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 16,
+        "modeloOficial": "Redmi Note 17 5G Black",
+        "modeloDetectado": "Redmi Note 17 5G Black",
+        "imeiSerial": "862728081852843",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P17",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 17,
+        "modeloOficial": "Redmi Note 17 5G Blue",
+        "modeloDetectado": "Redmi Note 17 5G Blue",
+        "imeiSerial": "862728081731088",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P18",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 18,
+        "modeloOficial": "Redmi Note 17 Pro 5G Black",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Black",
+        "imeiSerial": "864603086785868",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P19",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 19,
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P20",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 20,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78279/B6AFMN6UK07465",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P21",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 21,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G Black",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G Black",
+        "imeiSerial": "860081080843286",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P22",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 22,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G Green",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G Green",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P23",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 23,
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qd00210",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P1",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 1,
+        "modeloOficial": "Xiaomi Pad 8",
+        "modeloDetectado": "Xiaomi Pad 8",
+        "imeiSerial": "75789/05Z400400",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.1",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 1.1,
+        "modeloOficial": "Xiaomi Focus Keyboard",
+        "modeloDetectado": "Xiaomi Focus Keyboard",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.2",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 1.2,
+        "modeloOficial": "Xiaomi Focus Pen",
+        "modeloDetectado": "Xiaomi Focus Pen",
+        "imeiSerial": "47092/W3SR00144",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P2",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 2,
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW01036",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P3",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 3,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P4",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 4,
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW01045",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P5",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 5,
+        "modeloOficial": "Redmi 17 4G Blue",
+        "modeloDetectado": "Redmi 17 4G Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P6",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 6,
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA00883",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P7",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 7,
+        "modeloOficial": "Redmi 17 4G Green",
+        "modeloDetectado": "Redmi 17 4G Green",
+        "imeiSerial": "868506081847284",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 8,
+        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
+        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
+        "imeiSerial": "76924-66r700032",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 9,
+        "modeloOficial": "Redmi 17 5G Purple",
+        "modeloDetectado": "Redmi 17 5G Purple",
+        "imeiSerial": "862728081652524",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 10,
+        "modeloOficial": "Redmi 17 5G Blue",
+        "modeloDetectado": "Redmi 17 5G Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 11,
+        "modeloOficial": "Redmi Watch 6 Lite",
+        "modeloDetectado": "Redmi Watch 6 Lite",
+        "imeiSerial": "78276/B6AFMN6U102200",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 12,
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083639001",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 13,
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 14,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78279/B6AFMN6UK05340",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "860081084329027",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 16,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 17,
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qd00284",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P1",
+        "mesaId": "WALL",
+        "posicionNumero": 1,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G Green",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G Green",
+        "imeiSerial": "860081083471762",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P2",
+        "mesaId": "WALL",
+        "posicionNumero": 2,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78279/B6AFMN6UK18884",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P3",
+        "mesaId": "WALL",
+        "posicionNumero": 3,
+        "modeloOficial": "Redmi Watch 6 Lite",
+        "modeloDetectado": "Redmi Watch 6 Lite",
+        "imeiSerial": "78276/B6AFMN6U120425",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P4",
+        "mesaId": "WALL",
+        "posicionNumero": 4,
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083633608",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P5",
+        "mesaId": "WALL",
+        "posicionNumero": 5,
+        "modeloOficial": "Redmi Watch 5 Active",
+        "modeloDetectado": "Redmi Watch 5 Active",
+        "imeiSerial": "59833/B6AFMN4V803653",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P6",
+        "mesaId": "WALL",
+        "posicionNumero": 6,
+        "modeloOficial": "Redmi Watch 5 Lite",
+        "modeloDetectado": "Redmi Watch 5 Lite",
+        "imeiSerial": "59836/B6AFMN4VA05736",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P7",
+        "mesaId": "WALL",
+        "posicionNumero": 7,
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA00833",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P8",
+        "mesaId": "WALL",
+        "posicionNumero": 8,
+        "modeloOficial": "Xiaomi Smart Band 11 Active",
+        "modeloDetectado": "Xiaomi Smart Band 11 Active",
+        "imeiSerial": "77971/ATAA5G6US01258",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P9",
+        "mesaId": "WALL",
+        "posicionNumero": 9,
+        "modeloOficial": "Xiaomi Smart Band 9 active",
+        "modeloDetectado": "Xiaomi Smart Band 9 active",
+        "imeiSerial": "61790/ATAA5G4XR01722",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P10",
+        "mesaId": "WALL",
+        "posicionNumero": 10,
+        "modeloOficial": "Xiaomi Smart Band 11 Active",
+        "modeloDetectado": "Xiaomi Smart Band 11 Active",
+        "imeiSerial": "77971/ATAA5G6US01246",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P11",
+        "mesaId": "WALL",
+        "posicionNumero": 11,
+        "modeloOficial": "Xiaomi Smart Band 9 active",
+        "modeloDetectado": "Xiaomi Smart Band 9 active",
+        "imeiSerial": "61790/ATAA5G4XR02063",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      }
+    ],
+    "sincronizadoSheets": true
+  },
+  "MIESD00179": {
+    "auditId": "seed-MIESD00179-20261110",
+    "tiendaId": "MIESD00179",
+    "nombreTienda": "Media Terrassa",
+    "retailer": "MediaMarkt",
+    "usuarioEmail": "auditoria.retail@salesland.net",
+    "usuarioNombre": "Equipo Auditoría Xiaomi",
+    "fechaHora": "2026-11-10 12:00",
+    "totalPosiciones": 53,
+    "okCount": 53,
+    "incidenciasCount": 0,
+    "pendientesCount": 0,
+    "positions": [
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P1",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 1,
+        "modeloOficial": "Xiaomi 17 Ultra Green",
+        "modeloDetectado": "Xiaomi 17 Ultra Green",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P2",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 2,
+        "modeloOficial": "Xiaomi 17 Blue",
+        "modeloDetectado": "Xiaomi 17 Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P3",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 3,
+        "modeloOficial": "Xiaomi 17 Ultra Black",
+        "modeloDetectado": "Xiaomi 17 Ultra Black",
+        "imeiSerial": "863142080441302",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P4",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 4,
+        "modeloOficial": "Xiaomi 17 Black",
+        "modeloDetectado": "Xiaomi 17 Black",
+        "imeiSerial": "860359070146740",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P5",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 5,
+        "modeloOficial": "Xiaomi Watch 5",
+        "modeloDetectado": "Xiaomi Watch 5",
+        "imeiSerial": "65343/CRAG525ZK01317",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P6",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 6,
+        "modeloOficial": "Xiaomi Buds 6",
+        "modeloDetectado": "Xiaomi Buds 6",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P7",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 7,
+        "modeloOficial": "Xiaomi 17T Pro Blue",
+        "modeloDetectado": "Xiaomi 17T Pro Blue",
+        "imeiSerial": "862177082134746",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P8",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 8,
+        "modeloOficial": "Xiaomi Watch S5 45mm",
+        "modeloDetectado": "Xiaomi Watch S5 45mm",
+        "imeiSerial": "70283-b6afmn6p400014",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P9",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 9,
+        "modeloOficial": "Xiaomi Smart Band 10 Pro",
+        "modeloDetectado": "Xiaomi Smart Band 10 Pro",
+        "imeiSerial": "74734-b6afmn6qf03193",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P10",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 10,
+        "modeloOficial": "Xiaomi 17T Purple",
+        "modeloDetectado": "Xiaomi 17T PURPLE",
+        "imeiSerial": "866072080717061",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P11",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 11,
+        "modeloOficial": "Xiaomi 17T blue",
+        "modeloDetectado": "Xiaomi 17T blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P12",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 12,
+        "modeloOficial": "Xiaomi Smart Band 11 Active",
+        "modeloDetectado": "Xiaomi Smart Band 11 Active",
+        "imeiSerial": "77971-ataa5g6us03328",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P13",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 13,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "864333084203900",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P14",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 14,
+        "modeloOficial": "Redmi Buds 8 Pro",
+        "modeloDetectado": "Redmi Buds 8 Pro",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P16",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 16,
+        "modeloOficial": "Redmi Note 17 5G Black",
+        "modeloDetectado": "Redmi Note 17 5G Black",
+        "imeiSerial": "862728081862289",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P17",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 17,
+        "modeloOficial": "Redmi Note 17 5G Blue",
+        "modeloDetectado": "Redmi Note 17 5G Blue",
+        "imeiSerial": "862728081731047",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P18",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 18,
+        "modeloOficial": "Redmi Note 17 Pro 5G Black",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Black",
+        "imeiSerial": "864603086783822",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P19",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 19,
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P20",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 20,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78277/B6AFMN6UE05542",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P21",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 21,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G Black",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G Black",
+        "imeiSerial": "86008108922346",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P22",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 22,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G Green",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G Green",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P23",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 23,
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qd00638",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P1",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 1,
+        "modeloOficial": "Xiaomi Pad 8",
+        "modeloDetectado": "Xiaomi Pad 8",
+        "imeiSerial": "75789/05z400548",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.1",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 1.1,
+        "modeloOficial": "Xiaomi Focus Keyboard",
+        "modeloDetectado": "Xiaomi Focus Keyboard",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.2",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 1.2,
+        "modeloOficial": "Xiaomi Focus Pen",
+        "modeloDetectado": "Xiaomi Focus Pen",
+        "imeiSerial": "60272/X4XX02443",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P2",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 2,
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/75VW01019",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P3",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 3,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P4",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 4,
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/75VW01043",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P5",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 5,
+        "modeloOficial": "Redmi 17 4G Blue",
+        "modeloDetectado": "Redmi 17 4G Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P6",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 6,
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA00100",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P7",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 7,
+        "modeloOficial": "Redmi 17 4G Green",
+        "modeloDetectado": "Redmi 17 4G Green",
+        "imeiSerial": "868506081853662",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 8,
+        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
+        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
+        "imeiSerial": "76924-66r701192",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 9,
+        "modeloOficial": "Redmi 17 5G Purple",
+        "modeloDetectado": "Redmi 17 5G Purple",
+        "imeiSerial": "862728081659487",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 10,
+        "modeloOficial": "Redmi 17 5G Blue",
+        "modeloDetectado": "Redmi 17 5G Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 11,
+        "modeloOficial": "Redmi Watch 6 Lite",
+        "modeloDetectado": "Redmi Watch 6 Lite",
+        "imeiSerial": "78276/B6AFMN6U115472",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 12,
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "8646030083646800",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 13,
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 14,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78279/B6AFMN6UK10029",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "860081083185545",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 16,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 17,
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qd00268",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P1",
+        "mesaId": "WALL",
+        "posicionNumero": 1,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G Green",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G Green",
+        "imeiSerial": "860081083096387",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P2",
+        "mesaId": "WALL",
+        "posicionNumero": 2,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78279/B6AFMN6UK16933",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P3",
+        "mesaId": "WALL",
+        "posicionNumero": 3,
+        "modeloOficial": "Redmi Watch 6 Lite",
+        "modeloDetectado": "Redmi Watch 6 Lite",
+        "imeiSerial": "78275/B6AFMN6UD48052",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P4",
+        "mesaId": "WALL",
+        "posicionNumero": 4,
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083643003",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P5",
+        "mesaId": "WALL",
+        "posicionNumero": 5,
+        "modeloOficial": "Redmi Watch 5 Active",
+        "modeloDetectado": "Redmi Watch 5 Active",
+        "imeiSerial": "59836/B6AFMN4V504735",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P6",
+        "mesaId": "WALL",
+        "posicionNumero": 6,
+        "modeloOficial": "Redmi Watch 5 Lite",
+        "modeloDetectado": "Redmi Watch 5 Lite",
+        "imeiSerial": "59836/B6AFMN4VA00564",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P7",
+        "mesaId": "WALL",
+        "posicionNumero": 7,
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA00814",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P8",
+        "mesaId": "WALL",
+        "posicionNumero": 8,
+        "modeloOficial": "Xiaomi Smart Band 11 Active",
+        "modeloDetectado": "Xiaomi Smart Band 11 Active",
+        "imeiSerial": "77971/ATAA5G6US03255",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P9",
+        "mesaId": "WALL",
+        "posicionNumero": 9,
+        "modeloOficial": "Xiaomi Smart Band 9 active",
+        "modeloDetectado": "Xiaomi Smart Band 9 active",
+        "imeiSerial": "61790/ATAA5G4XS00229",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P10",
+        "mesaId": "WALL",
+        "posicionNumero": 10,
+        "modeloOficial": "Xiaomi Smart Band 11 Active",
+        "modeloDetectado": "Xiaomi Smart Band 11 Active",
+        "imeiSerial": "77971/ATAA5G6US03379",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P11",
+        "mesaId": "WALL",
+        "posicionNumero": 11,
+        "modeloOficial": "Xiaomi Smart Band 9 active",
+        "modeloDetectado": "Xiaomi Smart Band 9 active",
+        "imeiSerial": "61790/ATAA5G4XR02490",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      }
+    ],
+    "sincronizadoSheets": true
+  },
+  "MIESD02181": {
+    "auditId": "seed-MIESD02181-20261110",
+    "tiendaId": "MIESD02181",
+    "nombreTienda": "Media Vilanova",
+    "retailer": "MediaMarkt",
+    "usuarioEmail": "auditoria.retail@salesland.net",
+    "usuarioNombre": "Equipo Auditoría Xiaomi",
+    "fechaHora": "2026-11-10 12:00",
+    "totalPosiciones": 53,
+    "okCount": 53,
+    "incidenciasCount": 0,
+    "pendientesCount": 0,
+    "positions": [
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P1",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 1,
+        "modeloOficial": "Xiaomi 17 Ultra Green",
+        "modeloDetectado": "Xiaomi 17 Ultra Green",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P2",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 2,
+        "modeloOficial": "Xiaomi 17 Blue",
+        "modeloDetectado": "Xiaomi 17 Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P3",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 3,
+        "modeloOficial": "Xiaomi 17 Ultra Black",
+        "modeloDetectado": "Xiaomi 17 Ultra Black",
+        "imeiSerial": "863142080442383",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P4",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 4,
+        "modeloOficial": "Xiaomi 17 Black",
+        "modeloDetectado": "Xiaomi 17 Black",
+        "imeiSerial": "860359070132989",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P5",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 5,
+        "modeloOficial": "Xiaomi Watch 5",
+        "modeloDetectado": "Xiaomi Watch 5",
+        "imeiSerial": "65343/CRAG525ZK00417",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P6",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 6,
+        "modeloOficial": "Xiaomi Buds 6",
+        "modeloDetectado": "Xiaomi Buds 6",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P7",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 7,
+        "modeloOficial": "Xiaomi 17T Pro Blue",
+        "modeloDetectado": "Xiaomi 17T Pro Blue",
+        "imeiSerial": "862177082142228",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P8",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 8,
+        "modeloOficial": "Xiaomi Watch S5 45mm",
+        "modeloDetectado": "Xiaomi Watch S5 45mm",
+        "imeiSerial": "70283-b6afmn6p400013",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P9",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 9,
+        "modeloOficial": "Xiaomi Smart Band 10 Pro",
+        "modeloDetectado": "Xiaomi Smart Band 10 Pro",
+        "imeiSerial": "74734-b6afmn6qf03181",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P10",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 10,
+        "modeloOficial": "Xiaomi 17T Purple",
+        "modeloDetectado": "Xiaomi 17T PURPLE",
+        "imeiSerial": "866072080729645",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P11",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 11,
+        "modeloOficial": "Xiaomi 17T blue",
+        "modeloDetectado": "Xiaomi 17T blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P12",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 12,
+        "modeloOficial": "Xiaomi Smart Band 11 Active",
+        "modeloDetectado": "Xiaomi Smart Band 11 Active",
+        "imeiSerial": "77971/ATAA5G6US03357",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P13",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 13,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "864333084203504",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P14",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 14,
+        "modeloOficial": "Redmi Buds 8 Pro",
+        "modeloDetectado": "Redmi Buds 8 Pro",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P16",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 16,
+        "modeloOficial": "Redmi Note 17 5G Black",
+        "modeloDetectado": "Redmi Note 17 5G Black",
+        "imeiSerial": "862728081873922",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P17",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 17,
+        "modeloOficial": "Redmi Note 17 5G Blue",
+        "modeloDetectado": "Redmi Note 17 5G Blue",
+        "imeiSerial": "862728081745740",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P18",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 18,
+        "modeloOficial": "Redmi Note 17 Pro 5G Black",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Black",
+        "imeiSerial": "864603083875589",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P19",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 19,
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P20",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 20,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78279/B6AFMN6UN12720",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P21",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 21,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G Black",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G Black",
+        "imeiSerial": "860081080817900",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P22",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 22,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G Green",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G Green",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P23",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 23,
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qd01021",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P1",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 1,
+        "modeloOficial": "Xiaomi Pad 8",
+        "modeloDetectado": "Xiaomi Pad 8",
+        "imeiSerial": "75789/05Z400051",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.1",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 1.1,
+        "modeloOficial": "Xiaomi Focus Keyboard",
+        "modeloDetectado": "Xiaomi Focus Keyboard",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.2",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 1.2,
+        "modeloOficial": "Xiaomi Focus Pen",
+        "modeloDetectado": "Xiaomi Focus Pen",
+        "imeiSerial": "60272/X4XX02076",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P2",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 2,
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW00684",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P3",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 3,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P4",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 4,
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW00938",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P5",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 5,
+        "modeloOficial": "Redmi 17 4G Blue",
+        "modeloDetectado": "Redmi 17 4G Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P6",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 6,
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5R900934",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P7",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 7,
+        "modeloOficial": "Redmi 17 4G Green",
+        "modeloDetectado": "Redmi 17 4G Green",
+        "imeiSerial": "868506081841865",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 8,
+        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
+        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
+        "imeiSerial": "76924-66r700029",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 9,
+        "modeloOficial": "Redmi 17 5G Purple",
+        "modeloDetectado": "Redmi 17 5G Purple",
+        "imeiSerial": "862728081656848",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 10,
+        "modeloOficial": "Redmi 17 5G Blue",
+        "modeloDetectado": "Redmi 17 5G Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 11,
+        "modeloOficial": "Redmi Watch 6 Lite",
+        "modeloDetectado": "Redmi Watch 6 Lite",
+        "imeiSerial": "78276/ B6AFMN6U111875",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 12,
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083638409",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 13,
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 14,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78279/B6AFMN6UN12718",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "860081083185701",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 16,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 17,
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qd00557",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P1",
+        "mesaId": "WALL",
+        "posicionNumero": 1,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G Green",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G Green",
+        "imeiSerial": "860081082210062",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P2",
+        "mesaId": "WALL",
+        "posicionNumero": 2,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78279/B6AFMN6UK185366",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P3",
+        "mesaId": "WALL",
+        "posicionNumero": 3,
+        "modeloOficial": "Redmi Watch 6 Lite",
+        "modeloDetectado": "Redmi Watch 6 Lite",
+        "imeiSerial": "78275/B6AFMN6D48027",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P4",
+        "mesaId": "WALL",
+        "posicionNumero": 4,
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083637807",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P5",
+        "mesaId": "WALL",
+        "posicionNumero": 5,
+        "modeloOficial": "Redmi Watch 5 Active",
+        "modeloDetectado": "Redmi Watch 5 Active",
+        "imeiSerial": "59838/B6AFMN4V503472",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P6",
+        "mesaId": "WALL",
+        "posicionNumero": 6,
+        "modeloOficial": "Redmi Watch 5 Lite",
+        "modeloDetectado": "Redmi Watch 5 Lite",
+        "imeiSerial": "59836/B6AFMN4VA05818",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P7",
+        "mesaId": "WALL",
+        "posicionNumero": 7,
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA00599",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P8",
+        "mesaId": "WALL",
+        "posicionNumero": 8,
+        "modeloOficial": "Xiaomi Smart Band 11 Active",
+        "modeloDetectado": "Xiaomi Smart Band 11 Active",
+        "imeiSerial": "77971 / ATAA5G6US03331",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P9",
+        "mesaId": "WALL",
+        "posicionNumero": 9,
+        "modeloOficial": "Xiaomi Smart Band 9 active",
+        "modeloDetectado": "Xiaomi Smart Band 9 active",
+        "imeiSerial": "61790/ATAA5G4XR02477",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P10",
+        "mesaId": "WALL",
+        "posicionNumero": 10,
+        "modeloOficial": "Xiaomi Smart Band 11 Active",
+        "modeloDetectado": "Xiaomi Smart Band 11 Active",
+        "imeiSerial": "77971/ATAA5G6US03316",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-WALL-P11",
+        "mesaId": "WALL",
+        "posicionNumero": 11,
+        "modeloOficial": "Xiaomi Smart Band 9 active",
+        "modeloDetectado": "Xiaomi Smart Band 9 active",
+        "imeiSerial": "61790/ATAA55G4XR01288",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      }
+    ],
+    "sincronizadoSheets": true
+  },
+  "MIESD00203": {
+    "auditId": "seed-MIESD00203-20261110",
+    "tiendaId": "MIESD00203",
+    "nombreTienda": "Media Zaragoza",
+    "retailer": "MediaMarkt",
+    "usuarioEmail": "auditoria.retail@salesland.net",
+    "usuarioNombre": "Equipo Auditoría Xiaomi",
+    "fechaHora": "2026-11-10 12:00",
+    "totalPosiciones": 42,
+    "okCount": 42,
+    "incidenciasCount": 0,
+    "pendientesCount": 0,
+    "positions": [
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P1",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 1,
+        "modeloOficial": "Xiaomi 17 Ultra Green",
+        "modeloDetectado": "Xiaomi 17 Ultra Green",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P2",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 2,
+        "modeloOficial": "Xiaomi 17 Blue",
+        "modeloDetectado": "Xiaomi 17 Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P3",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 3,
+        "modeloOficial": "Xiaomi 17 Ultra Black",
+        "modeloDetectado": "Xiaomi 17 Ultra Black",
+        "imeiSerial": "863142080434943",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P4",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 4,
+        "modeloOficial": "Xiaomi 17 Black",
+        "modeloDetectado": "Xiaomi 17 Black",
+        "imeiSerial": "860359070144745",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P5",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 5,
+        "modeloOficial": "Xiaomi Watch 5",
+        "modeloDetectado": "Xiaomi Watch 5",
+        "imeiSerial": "65343/crag525zk01306",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P6",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 6,
+        "modeloOficial": "Xiaomi Buds 6",
+        "modeloDetectado": "Xiaomi Buds 6",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P7",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 7,
+        "modeloOficial": "Xiaomi 17T Pro Blue",
+        "modeloDetectado": "Xiaomi 17T Pro Blue",
+        "imeiSerial": "862177082097968",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P8",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 8,
+        "modeloOficial": "Xiaomi Watch S5 45mm",
+        "modeloDetectado": "Xiaomi Watch S5 45mm",
+        "imeiSerial": "70283-B6AFMN6NZ01637",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P9",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 9,
+        "modeloOficial": "Xiaomi Smart Band 10 Pro",
+        "modeloDetectado": "Xiaomi Smart Band 10 Pro",
+        "imeiSerial": "74734-B6AFMN6QF00475",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P10",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 10,
+        "modeloOficial": "Xiaomi 17T Purple",
+        "modeloDetectado": "Xiaomi 17T Purple",
+        "imeiSerial": "866072080717087",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P11",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 11,
+        "modeloOficial": "Xiaomi 17T blue",
+        "modeloDetectado": "Xiaomi 17T blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_1-P12",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 12,
+        "modeloOficial": "Xiaomi Smart Band 11 Active",
+        "modeloDetectado": "Xiaomi Smart Band 11 Active",
+        "imeiSerial": "77971/ATAA5G6US01647",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P13",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 13,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "864333084202043",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P14",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 14,
+        "modeloOficial": "Redmi Buds 8 Pro",
+        "modeloDetectado": "Redmi Buds 8 Pro",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P16",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 16,
+        "modeloOficial": "Redmi Note 17 5G Black",
+        "modeloDetectado": "Redmi Note 17 5G Black",
+        "imeiSerial": "862728081859889",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P17",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 17,
+        "modeloOficial": "Redmi Note 17 5G Blue",
+        "modeloDetectado": "Redmi Note 17 5G Blue",
+        "imeiSerial": "862728081757885",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P18",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 18,
+        "modeloOficial": "Redmi Note 17 Pro 5G Black",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Black",
+        "imeiSerial": "864603086771660",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P19",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 19,
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P20",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 20,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78279/b6afmn6un14892",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P21",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 21,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G Black",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G Black",
+        "imeiSerial": "860081081083866",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P22",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 22,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G Green",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G Green",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P23",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 23,
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-EFAPBS6QD00820",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P1",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 1,
+        "modeloOficial": "Xiaomi Pad 8",
+        "modeloDetectado": "Xiaomi Pad 8",
+        "imeiSerial": "75789/05z400199",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.1",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 1.1,
+        "modeloOficial": "Xiaomi Focus Keyboard",
+        "modeloDetectado": "Xiaomi Focus Keyboard",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P1.2",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 1.2,
+        "modeloOficial": "Xiaomi Focus Pen",
+        "modeloDetectado": "Xiaomi Focus Pen",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P2",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 2,
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/y5vw00867",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P3",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 3,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P4",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 4,
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW02540",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_1-P5",
+        "mesaId": "MESA 2 · Cara 1",
+        "posicionNumero": 5,
+        "modeloOficial": "Redmi 17 4G Blue",
+        "modeloDetectado": "Redmi 17 4G Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P6",
@@ -10619,152 +10563,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_2-P7",
         "mesaId": "MESA 2 · Cara 2",
         "posicionNumero": 7,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "860081083184282",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 8,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 9,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-EFAPBS6QD00032",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 10,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083633624",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 11,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 12,
-        "modeloOficial": "Redmi Watch 6 Active",
-        "modeloDetectado": "Redmi Watch 6 Active",
-        "imeiSerial": "68277/b6afmn6ve05189",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 13,
-        "modeloOficial": "Redmi 17 5G Purple",
-        "modeloDetectado": "Redmi 17 5G Purple",
-        "imeiSerial": "862728081651047",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 14,
-        "modeloOficial": "Redmi 17 5G Blue",
-        "modeloDetectado": "Redmi 17 5G Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6 Lite",
-        "modeloDetectado": "Redmi Watch 6 Lite",
-        "imeiSerial": "78276/b6afmn6u414003",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 16,
-        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
-        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
-        "imeiSerial": "76924-66R701162",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 17,
         "modeloOficial": "Redmi 17 4G Green",
         "modeloDetectado": "Redmi 17 4G Green",
         "imeiSerial": "86856081845163",
@@ -10773,19 +10577,159 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 8,
+        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
+        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
+        "imeiSerial": "76924-66R701162",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 9,
+        "modeloOficial": "Redmi 17 5G Purple",
+        "modeloDetectado": "Redmi 17 5G Purple",
+        "imeiSerial": "862728081651047",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 10,
+        "modeloOficial": "Redmi 17 5G Blue",
+        "modeloDetectado": "Redmi 17 5G Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 11,
+        "modeloOficial": "Redmi Watch 6 Lite",
+        "modeloDetectado": "Redmi Watch 6 Lite",
+        "imeiSerial": "78276/b6afmn6u414003",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 12,
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083633624",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 13,
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 14,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "68277/b6afmn6ve05189",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "860081083184282",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 16,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 17,
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-EFAPBS6QD00032",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESD00204": {
-    "auditId": "seed-MIESD00204-20261104",
+    "auditId": "seed-MIESD00204-20261110",
     "tiendaId": "MIESD00204",
     "nombreTienda": "Media Zaragoza 2",
     "retailer": "MediaMarkt",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 53,
     "okCount": 50,
     "incidenciasCount": 3,
@@ -10803,7 +10747,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P2",
@@ -10817,7 +10761,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P3",
@@ -10831,7 +10775,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P4",
@@ -10845,7 +10789,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P5",
@@ -10859,7 +10803,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P6",
@@ -10873,7 +10817,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P7",
@@ -10887,7 +10831,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P8",
@@ -10901,7 +10845,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Detectado: Xiaomi Watch S5 45mm (Esperado: Xiaomi Watch S5 45mm)",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P9",
@@ -10915,7 +10859,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P10",
@@ -10929,7 +10873,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P11",
@@ -10943,7 +10887,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P12",
@@ -10957,7 +10901,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P13",
@@ -10971,26 +10915,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Detectado: Redmi 15C (Esperado: Redmi 17 5G Orange)",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
         "modeloOficial": "Redmi Buds 8 Pro",
         "modeloDetectado": "Redmi Buds 8 Pro",
         "imeiSerial": "-",
@@ -10999,7 +10929,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P16",
@@ -11013,21 +10957,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P17",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 17,
-        "modeloOficial": "Redmi Note 17 5G Sky Teal",
-        "modeloDetectado": "Redmi Note 17 5G Sky Teal",
+        "modeloOficial": "Redmi Note 17 5G Blue",
+        "modeloDetectado": "Redmi Note 17 5G Blue",
         "imeiSerial": "862728081752662",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P18",
@@ -11041,7 +10985,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P19",
@@ -11055,21 +10999,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Watch 6 Active Black",
-        "modeloDetectado": "Redmi Watch 6 Active Black",
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
         "imeiSerial": "78279/B6AFMN6UK16415",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P21",
@@ -11083,7 +11027,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P22",
@@ -11097,21 +11041,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P23",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 23,
-        "modeloOficial": "Redmi Watch 6 Black",
-        "modeloDetectado": "Redmi Watch 6 Black",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
         "imeiSerial": "68707-efapbs6qd00127",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1",
@@ -11125,7 +11069,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1.1",
@@ -11139,7 +11083,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1.2",
@@ -11153,7 +11097,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P2",
@@ -11167,7 +11111,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P3",
@@ -11181,7 +11125,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P4",
@@ -11195,7 +11139,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P5",
@@ -11209,7 +11153,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P6",
@@ -11223,152 +11167,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_2-P7",
         "mesaId": "MESA 2 · Cara 2",
         "posicionNumero": 7,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "860081084361665",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 8,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 9,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-efapbs6qd00375",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 10,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083632766",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 11,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 12,
-        "modeloOficial": "Redmi Watch 6 Active",
-        "modeloDetectado": "Redmi Watch 6 Active",
-        "imeiSerial": "78279/B6AFMN6UK11168",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 13,
-        "modeloOficial": "Redmi 17 5G Purple",
-        "modeloDetectado": "Redmi 17 5G Purple",
-        "imeiSerial": "862728081651088",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 14,
-        "modeloOficial": "Redmi 17 5G Blue",
-        "modeloDetectado": "Redmi 17 5G Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6 Lite",
-        "modeloDetectado": "Redmi Watch 6 Lite",
-        "imeiSerial": "78276/B6AFMN6U405182",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 16,
-        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
-        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
-        "imeiSerial": "76924-66r701145",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 17,
         "modeloOficial": "Redmi 17 4G Green",
         "modeloDetectado": "Redmi 15C",
         "imeiSerial": "869292076045163",
@@ -11377,7 +11181,147 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Detectado: Redmi 15C (Esperado: Redmi 17 4G Green)",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 8,
+        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
+        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
+        "imeiSerial": "76924-66r701145",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 9,
+        "modeloOficial": "Redmi 17 5G Purple",
+        "modeloDetectado": "Redmi 17 5G Purple",
+        "imeiSerial": "862728081651088",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 10,
+        "modeloOficial": "Redmi 17 5G Blue",
+        "modeloDetectado": "Redmi 17 5G Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 11,
+        "modeloOficial": "Redmi Watch 6 Lite",
+        "modeloDetectado": "Redmi Watch 6 Lite",
+        "imeiSerial": "78276/B6AFMN6U405182",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 12,
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083632766",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 13,
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 14,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78279/B6AFMN6UK11168",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "860081084361665",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 16,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 17,
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qd00375",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P1",
@@ -11391,7 +11335,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P2",
@@ -11405,7 +11349,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P3",
@@ -11419,7 +11363,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P4",
@@ -11433,7 +11377,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P5",
@@ -11447,7 +11391,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P6",
@@ -11461,7 +11405,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P7",
@@ -11475,7 +11419,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P8",
@@ -11489,7 +11433,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P9",
@@ -11503,7 +11447,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P10",
@@ -11517,7 +11461,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-WALL-P11",
@@ -11531,19 +11475,19 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESD00114": {
-    "auditId": "seed-MIESD00114-20261104",
+    "auditId": "seed-MIESD00114-20261110",
     "tiendaId": "MIESD00114",
     "nombreTienda": "ECI CAN DRAGO",
     "retailer": "El Corte Inglés",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 35,
     "okCount": 35,
     "incidenciasCount": 0,
@@ -11561,7 +11505,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P2",
@@ -11575,7 +11519,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P3",
@@ -11589,7 +11533,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P4",
@@ -11603,7 +11547,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P5",
@@ -11617,7 +11561,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P6",
@@ -11631,7 +11575,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P7",
@@ -11645,7 +11589,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P8",
@@ -11659,7 +11603,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P9",
@@ -11673,7 +11617,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P10",
@@ -11687,7 +11631,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P11",
@@ -11701,7 +11645,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P12",
@@ -11715,63 +11659,63 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P13",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 13,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083643441",
+        "modeloOficial": "Redmi 17 4G Green",
+        "modeloDetectado": "Redmi 17 4G Green",
+        "imeiSerial": "868506081849082",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-EFAPBS6QF00229",
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA00758",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "864333084201946",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P16",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 16,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW00969",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": true,
+        "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P17",
@@ -11785,7 +11729,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18",
@@ -11799,7 +11743,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.1",
@@ -11813,7 +11757,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.2",
@@ -11827,63 +11771,63 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P19",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 19,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "864333084201946",
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083643441",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/Y5VW00969",
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P21",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 21,
-        "modeloOficial": "Redmi 17 4G Green",
-        "modeloDetectado": "Redmi 17 4G Green",
-        "imeiSerial": "868506081849082",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-EFAPBS6QF00229",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P22",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 22,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5RA00758",
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P1",
@@ -11897,7 +11841,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P2",
@@ -11911,7 +11855,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P3",
@@ -11925,7 +11869,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P4",
@@ -11939,7 +11883,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P5",
@@ -11953,7 +11897,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P6",
@@ -11967,7 +11911,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P7",
@@ -11981,7 +11925,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P8",
@@ -11995,7 +11939,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P9",
@@ -12009,7 +11953,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P10",
@@ -12023,7 +11967,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-WALL-P11",
@@ -12037,19 +11981,19 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESD00121": {
-    "auditId": "seed-MIESD00121-20261104",
+    "auditId": "seed-MIESD00121-20261110",
     "tiendaId": "MIESD00121",
     "nombreTienda": "ECI CORNELLA",
     "retailer": "El Corte Inglés",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 28,
     "okCount": 28,
     "incidenciasCount": 0,
@@ -12067,7 +12011,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P2",
@@ -12081,7 +12025,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P3",
@@ -12095,7 +12039,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P4",
@@ -12109,7 +12053,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P5",
@@ -12123,7 +12067,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P6",
@@ -12137,7 +12081,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P7",
@@ -12151,7 +12095,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P8",
@@ -12165,7 +12109,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P9",
@@ -12179,7 +12123,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P10",
@@ -12193,7 +12137,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P11",
@@ -12207,7 +12151,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P12",
@@ -12221,63 +12165,63 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P13",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 13,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083641429",
+        "modeloOficial": "Redmi 17 4G Green",
+        "modeloDetectado": "Redmi 17 4G Green",
+        "imeiSerial": "868506081847268",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-efapbs6qd01935",
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA01000",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "864333084201086",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P16",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 16,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW02226",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": true,
+        "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P17",
@@ -12291,7 +12235,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18",
@@ -12305,7 +12249,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.1",
@@ -12319,7 +12263,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.2",
@@ -12333,63 +12277,63 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P19",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 19,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "864333084201086",
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083641429",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/Y5VW02226",
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P21",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 21,
-        "modeloOficial": "Redmi 17 4G Green",
-        "modeloDetectado": "Redmi 17 4G Green",
-        "imeiSerial": "868506081847268",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qd01935",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P22",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 22,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5RA01000",
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MINIWALL-P1",
@@ -12403,7 +12347,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MINIWALL-P2",
@@ -12417,7 +12361,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MINIWALL-P3",
@@ -12431,7 +12375,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MINIWALL-P4",
@@ -12445,19 +12389,19 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESD00113": {
-    "auditId": "seed-MIESD00113-20261104",
+    "auditId": "seed-MIESD00113-20261110",
     "tiendaId": "MIESD00113",
     "nombreTienda": "ECI MERIDIANA",
     "retailer": "El Corte Inglés",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 24,
     "okCount": 24,
     "incidenciasCount": 0,
@@ -12475,7 +12419,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P2",
@@ -12489,7 +12433,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P3",
@@ -12503,7 +12447,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P4",
@@ -12517,7 +12461,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P5",
@@ -12531,7 +12475,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P6",
@@ -12545,7 +12489,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P7",
@@ -12559,7 +12503,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P8",
@@ -12573,7 +12517,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P9",
@@ -12587,7 +12531,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P10",
@@ -12601,7 +12545,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P11",
@@ -12615,7 +12559,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P12",
@@ -12629,63 +12573,63 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P13",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 13,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083645784",
+        "modeloOficial": "Redmi 17 4G Green",
+        "modeloDetectado": "Redmi 17 4G Green",
+        "imeiSerial": "868506081849223",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-EFAPBS6QE03581",
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA00994",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "864333084203843",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P16",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 16,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW00680",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": true,
+        "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P17",
@@ -12699,7 +12643,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18",
@@ -12713,7 +12657,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.1",
@@ -12727,7 +12671,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.2",
@@ -12741,75 +12685,75 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P19",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 19,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "864333084203843",
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083645784",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/Y5VW00680",
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P21",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 21,
-        "modeloOficial": "Redmi 17 4G Green",
-        "modeloDetectado": "Redmi 17 4G Green",
-        "imeiSerial": "868506081849223",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-EFAPBS6QE03581",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P22",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 22,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5RA00994",
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESS00003": {
-    "auditId": "seed-MIESS00003-20261104",
+    "auditId": "seed-MIESS00003-20261110",
     "tiendaId": "MIESS00003",
     "nombreTienda": "ECI DIAGONAL",
     "retailer": "El Corte Inglés",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 44,
     "okCount": 44,
     "incidenciasCount": 0,
@@ -12827,7 +12771,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P2",
@@ -12841,7 +12785,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P3",
@@ -12855,7 +12799,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P4",
@@ -12869,7 +12813,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P5",
@@ -12883,7 +12827,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P6",
@@ -12897,7 +12841,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P7",
@@ -12911,7 +12855,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P8",
@@ -12925,7 +12869,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P9",
@@ -12939,7 +12883,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P10",
@@ -12953,7 +12897,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P11",
@@ -12967,7 +12911,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P12",
@@ -12981,7 +12925,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P13",
@@ -12995,26 +12939,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
         "modeloOficial": "Redmi Buds 8 Pro",
         "modeloDetectado": "Redmi Buds 8 Pro",
         "imeiSerial": "-",
@@ -13023,7 +12953,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P16",
@@ -13037,21 +12981,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P17",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 17,
-        "modeloOficial": "Redmi Note 17 5G Sky Teal",
-        "modeloDetectado": "Redmi Note 17 5G Sky Teal",
+        "modeloOficial": "Redmi Note 17 5G Blue",
+        "modeloDetectado": "Redmi Note 17 5G Blue",
         "imeiSerial": "862728081751706",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P18",
@@ -13065,7 +13009,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P19",
@@ -13079,21 +13023,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Watch 6 Active Black",
-        "modeloDetectado": "Redmi Watch 6 Active Black",
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
         "imeiSerial": "78279/B6AFMN6UN13994",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P21",
@@ -13107,7 +13051,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P22",
@@ -13121,21 +13065,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P23",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 23,
-        "modeloOficial": "Redmi Watch 6 Black",
-        "modeloDetectado": "Redmi Watch 6 Black",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
         "imeiSerial": "68707-efapbs6qf00239",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1",
@@ -13149,7 +13093,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1.1",
@@ -13163,7 +13107,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1.2",
@@ -13177,7 +13121,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P2",
@@ -13191,7 +13135,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P2.1",
@@ -13205,7 +13149,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P2.2",
@@ -13219,7 +13163,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P3",
@@ -13233,7 +13177,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P4",
@@ -13247,7 +13191,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P5",
@@ -13261,7 +13205,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P6",
@@ -13275,152 +13219,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_2-P7",
         "mesaId": "MESA 2 · Cara 2",
         "posicionNumero": 7,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "860081084363828",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 8,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 9,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-efapbs6qe00268",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 10,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083642120",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 11,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 12,
-        "modeloOficial": "Redmi Watch 6 Active",
-        "modeloDetectado": "Redmi Watch 6 Active",
-        "imeiSerial": "78277/B6AFMN6UF05487",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 13,
-        "modeloOficial": "Redmi Note 17 5G Purple",
-        "modeloDetectado": "Redmi Note 17 5G Purple",
-        "imeiSerial": "862728081656749",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 14,
-        "modeloOficial": "Redmi Note 17 5G Blue",
-        "modeloDetectado": "Redmi Note 17 5G Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6 Lite",
-        "modeloDetectado": "Redmi Watch 6 Lite",
-        "imeiSerial": "78276/B6AFMN6U102465",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 16,
-        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
-        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
-        "imeiSerial": "76924-66r700006",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 17,
         "modeloOficial": "Redmi 17 4G Green",
         "modeloDetectado": "Redmi 17 4G Green",
         "imeiSerial": "868506081840602",
@@ -13429,19 +13233,159 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 8,
+        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
+        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
+        "imeiSerial": "76924-66r700006",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 9,
+        "modeloOficial": "Redmi Note 17 5G Purple",
+        "modeloDetectado": "Redmi Note 17 5G Purple",
+        "imeiSerial": "862728081656749",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 10,
+        "modeloOficial": "Redmi Note 17 5G Blue",
+        "modeloDetectado": "Redmi Note 17 5G Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 11,
+        "modeloOficial": "Redmi Watch 6 Lite",
+        "modeloDetectado": "Redmi Watch 6 Lite",
+        "imeiSerial": "78276/B6AFMN6U102465",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 12,
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083642120",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 13,
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 14,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78277/B6AFMN6UF05487",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "860081084363828",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 16,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 17,
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qe00268",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESD00104": {
-    "auditId": "seed-MIESD00104-20261104",
+    "auditId": "seed-MIESD00104-20261110",
     "tiendaId": "MIESD00104",
     "nombreTienda": "ECI ZARAGOZA",
     "retailer": "El Corte Inglés",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 28,
     "okCount": 27,
     "incidenciasCount": 1,
@@ -13459,7 +13403,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P2",
@@ -13473,7 +13417,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P3",
@@ -13487,7 +13431,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P4",
@@ -13501,7 +13445,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P5",
@@ -13515,7 +13459,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P6",
@@ -13529,7 +13473,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P7",
@@ -13543,7 +13487,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P8",
@@ -13557,7 +13501,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P9",
@@ -13571,7 +13515,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P10",
@@ -13585,7 +13529,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P11",
@@ -13599,7 +13543,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Material faltante según planograma (Redmi Note 17 Pro Max 5G White&Orange)",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P12",
@@ -13613,63 +13557,63 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P13",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 13,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083630968",
+        "modeloOficial": "Redmi 17 4G Green",
+        "modeloDetectado": "Redmi 17 4G Green",
+        "imeiSerial": "868506081849942",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707/EFAPBS6QD00337",
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA00910",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "864333082243841",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P16",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 16,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW00894",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": true,
+        "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P17",
@@ -13683,7 +13627,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18",
@@ -13697,7 +13641,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.1",
@@ -13711,7 +13655,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.2",
@@ -13725,63 +13669,63 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P19",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 19,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "864333082243841",
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083630968",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/Y5VW00894",
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P21",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 21,
-        "modeloOficial": "Redmi 17 4G Green",
-        "modeloDetectado": "Redmi 17 4G Green",
-        "imeiSerial": "868506081849942",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707/EFAPBS6QD00337",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P22",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 22,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/W5RA00910",
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MINIWALL-P1",
@@ -13795,7 +13739,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MINIWALL-P2",
@@ -13809,7 +13753,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MINIWALL-P3",
@@ -13823,7 +13767,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MINIWALL-P4",
@@ -13837,22 +13781,22 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESS00002": {
-    "auditId": "seed-MIESS00002-20261104",
+    "auditId": "seed-MIESS00002-20261110",
     "tiendaId": "MIESS00002",
     "nombreTienda": "ECI CATALUÑA",
     "retailer": "El Corte Inglés",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 48,
-    "okCount": 46,
-    "incidenciasCount": 2,
+    "okCount": 47,
+    "incidenciasCount": 1,
     "pendientesCount": 0,
     "positions": [
       {
@@ -13867,7 +13811,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P2",
@@ -13881,7 +13825,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P3",
@@ -13895,7 +13839,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P4",
@@ -13909,21 +13853,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P5",
         "mesaId": "MESA 1 · Cara 1",
         "posicionNumero": 5,
         "modeloOficial": "Xiaomi Watch 5",
-        "modeloDetectado": "-",
+        "modeloDetectado": "Xiaomi Watch 5",
         "imeiSerial": "65343/CRAG525ZK00481",
-        "estadoPosicion": "Incidencia",
-        "tipoIncidencia": "Material faltante",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
         "esMaqueta": false,
-        "comentarios": "Material faltante según planograma (Xiaomi Watch 5)",
+        "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P6",
@@ -13937,7 +13881,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P7",
@@ -13951,7 +13895,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P8",
@@ -13965,7 +13909,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P9",
@@ -13979,7 +13923,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P10",
@@ -13993,7 +13937,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P11",
@@ -14007,7 +13951,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_1-P12",
@@ -14021,7 +13965,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P13",
@@ -14035,26 +13979,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
         "modeloOficial": "Redmi Buds 8 Pro",
         "modeloDetectado": "Redmi Buds 8 Pro",
         "imeiSerial": "-",
@@ -14063,7 +13993,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P16",
@@ -14077,21 +14021,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P17",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 17,
-        "modeloOficial": "Redmi Note 17 5G Sky Teal",
-        "modeloDetectado": "Redmi Note 17 5G Sky Teal",
+        "modeloOficial": "Redmi Note 17 5G Blue",
+        "modeloDetectado": "Redmi Note 17 5G Blue",
         "imeiSerial": "862728081753926",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P18",
@@ -14105,7 +14049,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P19",
@@ -14119,21 +14063,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Watch 6 Active Black",
-        "modeloDetectado": "Redmi Watch 6 Active Black",
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
         "imeiSerial": "78279/B6AFMN6UN09770",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P21",
@@ -14147,7 +14091,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P22",
@@ -14161,21 +14105,21 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_1_·_Cara_2-P23",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 23,
-        "modeloOficial": "Redmi Watch 6 Black",
-        "modeloDetectado": "Redmi Watch 6 Black",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
         "imeiSerial": "68707-efapbs6qd01825",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1",
@@ -14189,7 +14133,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1.1",
@@ -14203,7 +14147,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P1.2",
@@ -14217,7 +14161,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P2",
@@ -14231,7 +14175,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P2.1",
@@ -14245,7 +14189,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P2.2",
@@ -14259,7 +14203,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P3",
@@ -14273,7 +14217,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P4",
@@ -14287,7 +14231,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P5",
@@ -14301,7 +14245,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_1-P6",
@@ -14315,152 +14259,12 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MESA_2_·_Cara_2-P7",
         "mesaId": "MESA 2 · Cara 2",
         "posicionNumero": 7,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "860081083184969",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 8,
-        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
-        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 9,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-efapbs6qf00652",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 10,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083642724",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 11,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 12,
-        "modeloOficial": "Redmi Watch 6 Active",
-        "modeloDetectado": "Redmi Watch 6 Active",
-        "imeiSerial": "78279/B6AFMN6UN12714",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 13,
-        "modeloOficial": "Redmi Note 17 5G Purple",
-        "modeloDetectado": "Redmi Note 17 5G Purple",
-        "imeiSerial": "862728081633664",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 14,
-        "modeloOficial": "Redmi Note 17 5G Blue",
-        "modeloDetectado": "Redmi Note 17 5G Blue",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6 Lite",
-        "modeloDetectado": "Redmi Watch 6 Lite",
-        "imeiSerial": "78276/B6AFMN6U115462",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 16,
-        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
-        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
-        "imeiSerial": "76924-66r700277",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": false,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
-        "mesaId": "MESA 2 · Cara 2",
-        "posicionNumero": 17,
         "modeloOficial": "Redmi 17 4G Green",
         "modeloDetectado": "Redmi 17 4G Green",
         "imeiSerial": "868506081842269",
@@ -14469,7 +14273,147 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P8",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 8,
+        "modeloOficial": "Redmi Pad 2 SE 9.7\"",
+        "modeloDetectado": "Redmi Pad 2 SE 9.7\"",
+        "imeiSerial": "76924-66r700277",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P9",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 9,
+        "modeloOficial": "Redmi Note 17 5G Purple",
+        "modeloDetectado": "Redmi Note 17 5G Purple",
+        "imeiSerial": "862728081633664",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P10",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 10,
+        "modeloOficial": "Redmi Note 17 5G Blue",
+        "modeloDetectado": "Redmi Note 17 5G Blue",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P11",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 11,
+        "modeloOficial": "Redmi Watch 6 Lite",
+        "modeloDetectado": "Redmi Watch 6 Lite",
+        "imeiSerial": "78276/B6AFMN6U115462",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P12",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 12,
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083642724",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P13",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 13,
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P14",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 14,
+        "modeloOficial": "Redmi Watch 6 Active",
+        "modeloDetectado": "Redmi Watch 6 Active",
+        "imeiSerial": "78279/B6AFMN6UN12714",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P15",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "860081083184969",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P16",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 16,
+        "modeloOficial": "Redmi Note 17 Pro Max 5G White&Orange",
+        "modeloDetectado": "Redmi Note 17 Pro Max 5G White&Orange",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 2-MESA_2_·_Cara_2-P17",
+        "mesaId": "MESA 2 · Cara 2",
+        "posicionNumero": 17,
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qf00652",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MINIWALL-P1",
@@ -14483,7 +14427,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MINIWALL-P2",
@@ -14497,7 +14441,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MINIWALL-P3",
@@ -14511,7 +14455,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Detectado: Redmi Watch 5 Active (Esperado: Redmi Watch 5 Lite)",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 2-MINIWALL-P4",
@@ -14525,19 +14469,19 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true
   },
   "MIESD00076": {
-    "auditId": "seed-MIESD00076-20261104",
+    "auditId": "seed-MIESD00076-20261110",
     "tiendaId": "MIESD00076",
     "nombreTienda": "ECI SABADELL",
     "retailer": "El Corte Inglés",
     "usuarioEmail": "auditoria.retail@salesland.net",
     "usuarioNombre": "Equipo Auditoría Xiaomi",
-    "fechaHora": "2026-11-04 18:00",
+    "fechaHora": "2026-11-10 12:00",
     "totalPosiciones": 28,
     "okCount": 28,
     "incidenciasCount": 0,
@@ -14555,7 +14499,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P2",
@@ -14569,7 +14513,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P3",
@@ -14583,7 +14527,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P4",
@@ -14597,7 +14541,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P5",
@@ -14611,7 +14555,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P6",
@@ -14625,7 +14569,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P7",
@@ -14639,7 +14583,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P8",
@@ -14653,7 +14597,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P9",
@@ -14667,7 +14611,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P10",
@@ -14681,7 +14625,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P11",
@@ -14695,7 +14639,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_1-P12",
@@ -14709,63 +14653,63 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P13",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 13,
-        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
-        "imeiSerial": "864603083640728",
+        "modeloOficial": "Redmi 17 4G Green",
+        "modeloDetectado": "Redmi 17 4G Green",
+        "imeiSerial": "868506081847920",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P14",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 14,
-        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
-        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
-        "imeiSerial": "-",
-        "estadoPosicion": "OK",
-        "tipoIncidencia": "",
-        "esMaqueta": true,
-        "comentarios": "Conforme a planograma oficial",
-        "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
-      },
-      {
-        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
-        "mesaId": "MESA 1 · Cara 2",
-        "posicionNumero": 15,
-        "modeloOficial": "Redmi Watch 6",
-        "modeloDetectado": "Redmi Watch 6",
-        "imeiSerial": "68707-efapbs6qf00649",
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/E5RA00717",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table 1-MESA_1_·_Cara_2-P15",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 15,
+        "modeloOficial": "Redmi 17 5G Orange",
+        "modeloDetectado": "Redmi 17 5G Orange",
+        "imeiSerial": "864333082243668",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P16",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 16,
-        "modeloOficial": "Redmi Buds 8",
-        "modeloDetectado": "Redmi Buds 8",
-        "imeiSerial": "-",
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW00876",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": true,
+        "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P17",
@@ -14779,7 +14723,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18",
@@ -14793,7 +14737,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.1",
@@ -14807,7 +14751,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P18.2",
@@ -14821,63 +14765,63 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P19",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 19,
-        "modeloOficial": "Redmi 17 5G Orange",
-        "modeloDetectado": "Redmi 17 5G Orange",
-        "imeiSerial": "864333082243668",
+        "modeloOficial": "Redmi Note 17 Pro 5G Blue",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Blue",
+        "imeiSerial": "864603083640728",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P20",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 20,
-        "modeloOficial": "Redmi Pad 2 Pro",
-        "modeloDetectado": "Redmi Pad 2 Pro",
-        "imeiSerial": "70399/Y5VW00876",
+        "modeloOficial": "Redmi Note 17 Pro 5G Purple",
+        "modeloDetectado": "Redmi Note 17 Pro 5G Purple",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P21",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 21,
-        "modeloOficial": "Redmi 17 4G Green",
-        "modeloDetectado": "Redmi 17 4G Green",
-        "imeiSerial": "868506081847920",
+        "modeloOficial": "Redmi Watch 6",
+        "modeloDetectado": "Redmi Watch 6",
+        "imeiSerial": "68707-efapbs6qf00649",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MESA_1_·_Cara_2-P22",
         "mesaId": "MESA 1 · Cara 2",
         "posicionNumero": 22,
-        "modeloOficial": "Redmi Pad 2",
-        "modeloDetectado": "Redmi Pad 2",
-        "imeiSerial": "65573/E5RA00717",
+        "modeloOficial": "Redmi Buds 8",
+        "modeloDetectado": "Redmi Buds 8",
+        "imeiSerial": "-",
         "estadoPosicion": "OK",
         "tipoIncidencia": "",
-        "esMaqueta": false,
+        "esMaqueta": true,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MINIWALL-P1",
@@ -14891,7 +14835,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MINIWALL-P2",
@@ -14905,7 +14849,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MINIWALL-P3",
@@ -14919,7 +14863,7 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
       },
       {
         "posicionId": "Table 1-MINIWALL-P4",
@@ -14933,7 +14877,647 @@ export const SEED_AUDITS: Record<string, AuditRecord> = {
         "esMaqueta": false,
         "comentarios": "Conforme a planograma oficial",
         "auditadoPor": "Auditor Oficial Retail",
-        "fechaHora": "2026-11-04 18:00"
+        "fechaHora": "2026-11-10 12:00"
+      }
+    ],
+    "sincronizadoSheets": true
+  },
+  "MIESP00031": {
+    "auditId": "seed-MIESP00031-20261110",
+    "tiendaId": "MIESP00031",
+    "nombreTienda": "CRF Maquinista",
+    "retailer": "Carrefour",
+    "usuarioEmail": "auditoria.retail@salesland.net",
+    "usuarioNombre": "Equipo Auditoría Xiaomi",
+    "fechaHora": "2026-11-10 12:00",
+    "totalPosiciones": 8,
+    "okCount": 8,
+    "incidenciasCount": 0,
+    "pendientesCount": 0,
+    "positions": [
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_1-P1",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 1,
+        "modeloOficial": "Redmi Note 15 Pro 5G",
+        "modeloDetectado": "Redmi Note 15 Pro 5G",
+        "imeiSerial": "862542074756022",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_1-P2",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 2,
+        "modeloOficial": "Redmi Note 17 5G",
+        "modeloDetectado": "Redmi Note 17 5G",
+        "imeiSerial": "862728081860663",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_1-P3",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 3,
+        "modeloOficial": "Redmi 17 4G",
+        "modeloDetectado": "Redmi 17 4G",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_1-P4",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 4,
+        "modeloOficial": "Redmi 17 4G",
+        "modeloDetectado": "Redmi 17 4G",
+        "imeiSerial": "868506082107944",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_2-P5",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 5,
+        "modeloOficial": "Redmi 15C 4G",
+        "modeloDetectado": "Redmi 15C 4G",
+        "imeiSerial": "869292076044208",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_2-P6",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 6,
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_2-P7",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 7,
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA01591",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_2-P8",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 8,
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573-W5RA00769",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      }
+    ],
+    "sincronizadoSheets": true
+  },
+  "MIESD00638": {
+    "auditId": "seed-MIESD00638-20261110",
+    "tiendaId": "MIESD00638",
+    "nombreTienda": "CRF Cabrera",
+    "retailer": "Carrefour",
+    "usuarioEmail": "auditoria.retail@salesland.net",
+    "usuarioNombre": "Equipo Auditoría Xiaomi",
+    "fechaHora": "2026-11-10 12:00",
+    "totalPosiciones": 8,
+    "okCount": 8,
+    "incidenciasCount": 0,
+    "pendientesCount": 0,
+    "positions": [
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_1-P1",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 1,
+        "modeloOficial": "Redmi Note 15 Pro 5G",
+        "modeloDetectado": "Redmi Note 15 Pro 5G",
+        "imeiSerial": "862542074512888",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_1-P2",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 2,
+        "modeloOficial": "Redmi Note 17 5G",
+        "modeloDetectado": "Redmi Note 17 5G",
+        "imeiSerial": "862728081870621",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_1-P3",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 3,
+        "modeloOficial": "Redmi 17 4G",
+        "modeloDetectado": "Redmi 17 4G",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_1-P4",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 4,
+        "modeloOficial": "Redmi 17 4G",
+        "modeloDetectado": "Redmi 17 4G",
+        "imeiSerial": "868506082104644",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_2-P5",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 5,
+        "modeloOficial": "Redmi 15C 4G",
+        "modeloDetectado": "Redmi 15C 4G",
+        "imeiSerial": "869292075965148",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_2-P6",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 6,
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/y5vw01035",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_2-P7",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 7,
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/w5ra00915",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_2-P8",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 8,
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573-W5RA00610",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      }
+    ],
+    "sincronizadoSheets": true
+  },
+  "MIESD00069": {
+    "auditId": "seed-MIESD00069-20261110",
+    "tiendaId": "MIESD00069",
+    "nombreTienda": "CRF Augusta",
+    "retailer": "Carrefour",
+    "usuarioEmail": "auditoria.retail@salesland.net",
+    "usuarioNombre": "Equipo Auditoría Xiaomi",
+    "fechaHora": "2026-11-10 12:00",
+    "totalPosiciones": 8,
+    "okCount": 8,
+    "incidenciasCount": 0,
+    "pendientesCount": 0,
+    "positions": [
+      {
+        "posicionId": "Table Premium-MESA_1_·_Cara_1-P1",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 1,
+        "modeloOficial": "Redmi 17 4G",
+        "modeloDetectado": "Redmi 17 4G",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table Premium-MESA_1_·_Cara_1-P2",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 2,
+        "modeloOficial": "Redmi 17 4G",
+        "modeloDetectado": "Redmi 17 4G",
+        "imeiSerial": "868506082108967",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table Premium-MESA_1_·_Cara_1-P3",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 3,
+        "modeloOficial": "Redmi 15C",
+        "modeloDetectado": "Redmi 15C",
+        "imeiSerial": "869292075982267",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table Premium-MESA_1_·_Cara_1-P4",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 4,
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW00966",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table Premium-MESA_1_·_Cara_1-P5",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 5,
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA00642",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table Premium-MESA_1_·_Cara_1-P6",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 6,
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573-w5ra00685",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table Premium-MESA_1_·_Cara_1-PCab_1",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 7,
+        "modeloOficial": "Redmi Note 15 Pro 5G",
+        "modeloDetectado": "Redmi Note 15 Pro 5G",
+        "imeiSerial": "862542074619428",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table Premium-MESA_1_·_Cara_1-PCab_2",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 8,
+        "modeloOficial": "Redmi Note 17 5G",
+        "modeloDetectado": "Redmi Note 17 5G",
+        "imeiSerial": "862728081849369",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      }
+    ],
+    "sincronizadoSheets": true
+  },
+  "MIESO00023": {
+    "auditId": "seed-MIESO00023-20261110",
+    "tiendaId": "MIESO00023",
+    "nombreTienda": "CRF Tarragona",
+    "retailer": "Carrefour",
+    "usuarioEmail": "auditoria.retail@salesland.net",
+    "usuarioNombre": "Equipo Auditoría Xiaomi",
+    "fechaHora": "2026-11-10 12:00",
+    "totalPosiciones": 8,
+    "okCount": 8,
+    "incidenciasCount": 0,
+    "pendientesCount": 0,
+    "positions": [
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_1-P1",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 1,
+        "modeloOficial": "Redmi Note 15 Pro 5G",
+        "modeloDetectado": "Redmi Note 15 Pro 5G",
+        "imeiSerial": "862542074756345",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_1-P2",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 2,
+        "modeloOficial": "Redmi Note 17 5G",
+        "modeloDetectado": "Redmi Note 17 5G",
+        "imeiSerial": "862728081875067",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_1-P3",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 3,
+        "modeloOficial": "Redmi 17 4G",
+        "modeloDetectado": "Redmi 17 4G",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_1-P4",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 4,
+        "modeloOficial": "Redmi 17 4G",
+        "modeloDetectado": "Redmi 17 4G",
+        "imeiSerial": "868506082107480",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_2-P5",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 5,
+        "modeloOficial": "Redmi 15C 4G",
+        "modeloDetectado": "Redmi 15C 4G",
+        "imeiSerial": "869292076047300",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_2-P6",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 6,
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW01080",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_2-P7",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 7,
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA00997",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_2-P8",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 8,
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573-w5ra00774",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      }
+    ],
+    "sincronizadoSheets": true
+  },
+  "MIESO00015": {
+    "auditId": "seed-MIESO00015-20261110",
+    "tiendaId": "MIESO00015",
+    "nombreTienda": "CRF Manresa",
+    "retailer": "Carrefour",
+    "usuarioEmail": "auditoria.retail@salesland.net",
+    "usuarioNombre": "Equipo Auditoría Xiaomi",
+    "fechaHora": "2026-11-10 12:00",
+    "totalPosiciones": 8,
+    "okCount": 8,
+    "incidenciasCount": 0,
+    "pendientesCount": 0,
+    "positions": [
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_1-P1",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 1,
+        "modeloOficial": "Redmi Note 15 Pro 5G",
+        "modeloDetectado": "Redmi Note 15 Pro 5G",
+        "imeiSerial": "862542074758606",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_1-P2",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 2,
+        "modeloOficial": "Redmi Note 17 5G",
+        "modeloDetectado": "Redmi Note 17 5G",
+        "imeiSerial": "862728081872320",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_1-P3",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 3,
+        "modeloOficial": "Redmi 17 4G",
+        "modeloDetectado": "Redmi 17 4G",
+        "imeiSerial": "-",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": true,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_1-P4",
+        "mesaId": "MESA 1 · Cara 1",
+        "posicionNumero": 4,
+        "modeloOficial": "Redmi 17 4G",
+        "modeloDetectado": "Redmi 17 4G",
+        "imeiSerial": "868506082108769",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_2-P5",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 5,
+        "modeloOficial": "Redmi 15C 4G",
+        "modeloDetectado": "Redmi 15C 4G",
+        "imeiSerial": "869292076042780",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_2-P6",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 6,
+        "modeloOficial": "Redmi Pad 2 Pro",
+        "modeloDetectado": "Redmi Pad 2 Pro",
+        "imeiSerial": "70399/Y5VW00908",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_2-P7",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 7,
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573/W5RA01586",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
+      },
+      {
+        "posicionId": "Table CRF-MESA_1_·_Cara_2-P8",
+        "mesaId": "MESA 1 · Cara 2",
+        "posicionNumero": 8,
+        "modeloOficial": "Redmi Pad 2",
+        "modeloDetectado": "Redmi Pad 2",
+        "imeiSerial": "65573-W5RA00752",
+        "estadoPosicion": "OK",
+        "tipoIncidencia": "",
+        "esMaqueta": false,
+        "comentarios": "Conforme a planograma oficial",
+        "auditadoPor": "Auditor Oficial Retail",
+        "fechaHora": "2026-11-10 12:00"
       }
     ],
     "sincronizadoSheets": true

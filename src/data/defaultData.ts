@@ -85,14 +85,14 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 1",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 22,
+    "totalPuestos": 24,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2"
     ],
     "auditStatus": "Auditada",
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESP00034",
@@ -101,14 +101,14 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 1",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 22,
+    "totalPuestos": 24,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2"
     ],
-    "auditStatus": "Con Incidencias",
+    "auditStatus": "Auditada",
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESD00174",
@@ -117,7 +117,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 2",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 24,
+    "totalPuestos": 55,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -130,7 +130,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "linealWearablesPlanogram": "L. Wearables_9.0",
     "linealWearablesCount": 9,
     "hasPad8Pro": true,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESO00036",
@@ -154,7 +154,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 3",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 32,
+    "totalPuestos": 51,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -169,7 +169,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "linealWearablesPlanogram": "L. Wearables_8.0",
     "linealWearablesCount": 8,
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESD00175",
@@ -178,7 +178,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 2",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 20,
+    "totalPuestos": 42,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -190,7 +190,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "linealWearablesPlanogram": "L. Wearables_9.0",
     "linealWearablesCount": 9,
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESO00034",
@@ -199,7 +199,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 1",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 12,
+    "totalPuestos": 24,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -209,7 +209,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "linealWearablesPlanogram": "L. Wearables_7.0",
     "linealWearablesCount": 7,
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESO00033",
@@ -218,7 +218,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 1",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 16,
+    "totalPuestos": 35,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -229,7 +229,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "linealWearablesPlanogram": "L. Wearables_7.0",
     "linealWearablesCount": 7,
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESD00182",
@@ -238,7 +238,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 3",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 28,
+    "totalPuestos": 49,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -252,7 +252,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "linealWearablesPlanogram": "L. Wearables_9.0",
     "linealWearablesCount": 9,
     "hasPad8Pro": true,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESP00037",
@@ -261,14 +261,14 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 1",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 22,
+    "totalPuestos": 24,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2"
     ],
     "auditStatus": "Auditada",
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESM00438",
@@ -277,14 +277,14 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 1",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 22,
+    "totalPuestos": 24,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2"
     ],
     "auditStatus": "Auditada",
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESD00187",
@@ -313,7 +313,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 2",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 24,
+    "totalPuestos": 48,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -326,7 +326,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "linealWearablesPlanogram": "L. Wearables_8.0",
     "linealWearablesCount": 8,
     "hasPad8Pro": true,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESD00177",
@@ -335,7 +335,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 1",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 12,
+    "totalPuestos": 24,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -345,7 +345,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "linealWearablesPlanogram": "L. Wearables_8.0",
     "linealWearablesCount": 8,
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESD00178",
@@ -354,7 +354,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 1",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 12,
+    "totalPuestos": 24,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -364,7 +364,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "linealWearablesPlanogram": "L. Wearables_9.0",
     "linealWearablesCount": 9,
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESP03781",
@@ -373,7 +373,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 2",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 20,
+    "totalPuestos": 42,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -381,11 +381,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 2 · Cara 2",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Con Incidencias",
+    "auditStatus": "Auditada",
     "linealWearablesPlanogram": "L. Wearables_7.0",
     "linealWearablesCount": 7,
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESD00180",
@@ -394,7 +394,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 2",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 24,
+    "totalPuestos": 53,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -403,11 +403,11 @@ export const INITIAL_STORES: StoreCenter[] = [
       "WALL",
       "LINEAL SMARTWATCH"
     ],
-    "auditStatus": "Con Incidencias",
+    "auditStatus": "Auditada",
     "linealWearablesPlanogram": "L. Wearables_9.0",
     "linealWearablesCount": 9,
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESO00043",
@@ -416,7 +416,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 2",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 24,
+    "totalPuestos": 53,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -429,7 +429,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "linealWearablesPlanogram": "L. Wearables_9.0",
     "linealWearablesCount": 9,
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESD00179",
@@ -438,7 +438,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 2",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 24,
+    "totalPuestos": 53,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -451,7 +451,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "linealWearablesPlanogram": "L. Wearables_9.0",
     "linealWearablesCount": 9,
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESD02181",
@@ -460,7 +460,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 2",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 24,
+    "totalPuestos": 53,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -473,7 +473,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "linealWearablesPlanogram": "L. Wearables_7.0",
     "linealWearablesCount": 7,
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESD00203",
@@ -482,7 +482,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 2",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 20,
+    "totalPuestos": 42,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -494,7 +494,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "linealWearablesPlanogram": "L. Wearables_8.0",
     "linealWearablesCount": 8,
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESD00204",
@@ -503,7 +503,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 2",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 24,
+    "totalPuestos": 53,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -516,7 +516,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "linealWearablesPlanogram": "L. Wearables_6.0",
     "linealWearablesCount": 6,
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESD00077",
@@ -540,7 +540,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 1",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 12,
+    "totalPuestos": 35,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -548,7 +548,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     ],
     "auditStatus": "Auditada",
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESS00002",
@@ -557,7 +557,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 2",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 24,
+    "totalPuestos": 48,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -570,7 +570,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "linealWearablesPlanogram": "L. Wearables_ECI 6",
     "linealWearablesCount": 6,
     "hasPad8Pro": true,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESD00121",
@@ -579,7 +579,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 1",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 12,
+    "totalPuestos": 28,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -587,7 +587,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     ],
     "auditStatus": "Auditada",
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESS00003",
@@ -596,7 +596,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 2",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 16,
+    "totalPuestos": 44,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -605,7 +605,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     ],
     "auditStatus": "Auditada",
     "hasPad8Pro": true,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESD00103",
@@ -629,14 +629,14 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 1",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 22,
+    "totalPuestos": 24,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2"
     ],
     "auditStatus": "Auditada",
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESD00105",
@@ -660,7 +660,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 1",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 16,
+    "totalPuestos": 28,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -671,7 +671,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "linealWearablesPlanogram": "L. Wearables_ECI 6",
     "linealWearablesCount": 6,
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESD00088",
@@ -695,7 +695,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table 1",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 12,
+    "totalPuestos": 28,
     "availableSpaces": [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2",
@@ -703,7 +703,7 @@ export const INITIAL_STORES: StoreCenter[] = [
     ],
     "auditStatus": "Con Incidencias",
     "hasPad8Pro": false,
-    "lastAuditDate": "2026-11-04"
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESS00018",
@@ -777,8 +777,9 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2"
     ],
-    "auditStatus": "Pendiente",
-    "hasPad8Pro": false
+    "auditStatus": "Auditada",
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESO00015",
@@ -792,8 +793,9 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2"
     ],
-    "auditStatus": "Pendiente",
-    "hasPad8Pro": false
+    "auditStatus": "Auditada",
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESP00031",
@@ -807,8 +809,9 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2"
     ],
-    "auditStatus": "Pendiente",
-    "hasPad8Pro": false
+    "auditStatus": "Auditada",
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESO00009",
@@ -832,12 +835,13 @@ export const INITIAL_STORES: StoreCenter[] = [
     "tipoEspacioId": "Table Premium",
     "zona": "Cataluña",
     "region": "Noreste",
-    "totalPuestos": 4,
+    "totalPuestos": 8,
     "availableSpaces": [
       "MESA 1 · Cara 1"
     ],
-    "auditStatus": "Pendiente",
-    "hasPad8Pro": false
+    "auditStatus": "Auditada",
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "MIESO00023",
@@ -851,8 +855,9 @@ export const INITIAL_STORES: StoreCenter[] = [
       "MESA 1 · Cara 1",
       "MESA 1 · Cara 2"
     ],
-    "auditStatus": "Pendiente",
-    "hasPad8Pro": false
+    "auditStatus": "Auditada",
+    "hasPad8Pro": false,
+    "lastAuditDate": "2026-11-10"
   },
   {
     "tiendaId": "ALCP00012",
@@ -3076,6 +3081,18 @@ export const REAL_PLANOGRAMS_DATA: Record<string, Array<{ pos: number; device: s
       "device": "Redmi Pad 2",
       "dummy": false,
       "category": "Tablet"
+    },
+    {
+      "pos": 7,
+      "device": "Redmi Note 15 Pro 5G",
+      "dummy": false,
+      "category": "Smartphone"
+    },
+    {
+      "pos": 8,
+      "device": "Redmi Note 17 5G",
+      "dummy": false,
+      "category": "Smartphone"
     }
   ]
 };
@@ -3570,6 +3587,8 @@ export const getPositionsForSpace = (
   } else if (isMiniWall) {
     selectedItems = items;
   } else if (isWall) {
+    selectedItems = items;
+  } else if (tipoEspacioId === 'Table Premium') {
     selectedItems = items;
   } else if (items.length >= 22) {
     selectedItems = isCara2 ? items.slice(12, 22) : items.slice(0, 12);

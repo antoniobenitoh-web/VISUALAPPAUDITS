@@ -2203,6 +2203,18 @@
       "device": "Redmi Pad 2",
       "dummy": false,
       "category": "Tablet"
+    },
+    {
+      "pos": 7,
+      "device": "Redmi Note 15 Pro 5G",
+      "dummy": false,
+      "category": "Smartphone"
+    },
+    {
+      "pos": 8,
+      "device": "Redmi Note 17 5G",
+      "dummy": false,
+      "category": "Smartphone"
     }
   ]
 }
