@@ -50,6 +50,25 @@ function testAutorizacionDrive() {
   }
 }
 
+/**
+ * Función de prueba para verificar conexión con la hoja oficial de Retiradas
+ * ID: 1GrtUs9aKfUhGmb1-HlfDAXaAwtnr4OPO0Ifpp2g7Cl8
+ */
+function testConexionHojaRetiradas() {
+  try {
+    const ss = SpreadsheetApp.openById(SPREADSHEET_RETURNS_ID);
+    const sheet = ss.getSheets()[0];
+    Logger.log("✅ CONEXIÓN EXITOSA CON HOJA DE RETIRADAS:");
+    Logger.log("Nombre Documento: " + ss.getName());
+    Logger.log("Nombre Pestaña: " + sheet.getName());
+    Logger.log("Fila de cabecera detectada: " + sheet.getLastRow());
+    return "OK: " + ss.getName() + " (Filas actuales: " + sheet.getLastRow() + ")";
+  } catch (e) {
+    Logger.log("❌ ERROR AL ACCEDER A HOJA DE RETIRADAS: " + e.toString());
+    throw new Error("No se pudo abrir la hoja de cálculo con ID: " + SPREADSHEET_RETURNS_ID + ". Asegúrate de que el script tenga permisos de acceso a esa hoja.");
+  }
+}
+
 function getSpacesSpreadsheet() {
   try {
     return SpreadsheetApp.openById(SPREADSHEET_SPACES_ID);
@@ -379,6 +398,25 @@ function doGet(e) {
     }
   }
 
+  if (action === "TEST_RETURNS") {
+    try {
+      const returnsSS = SpreadsheetApp.openById(SPREADSHEET_RETURNS_ID);
+      const sheet = returnsSS.getSheets()[0];
+      return ContentService.createTextOutput(JSON.stringify({ 
+        success: true, 
+        sheetName: returnsSS.getName(),
+        tabName: sheet.getName(),
+        lastRow: sheet.getLastRow(),
+        spreadsheetId: SPREADSHEET_RETURNS_ID
+      })).setMimeType(ContentService.MimeType.JSON);
+    } catch (err) {
+      return ContentService.createTextOutput(JSON.stringify({ 
+        success: false, 
+        error: err.toString() 
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+  }
+
   return ContentService.createTextOutput(JSON.stringify({ status: "OK", spacesSheetId: SPREADSHEET_SPACES_ID, usersSheetId: SPREADSHEET_USERS_ID }))
     .setMimeType(ContentService.MimeType.JSON);
 }
@@ -483,23 +521,16 @@ function doPost(e) {
       
       const rowsToAdd = data.rows || (data.payload && data.payload.rows) || [];
       if (rowsToAdd && rowsToAdd.length > 0) {
-        // Si la hoja está totalmente vacía, crear cabeceras oficiales
-        if (sheet.getLastRow() === 0) {
-          sheet.appendRow([
-            "Fecha de reporte",
-            "Nombre del GPV",
-            "Nombre de la tienda",
-            "LDU / Maqueta",
-            "Descripción del modelo",
-            "",
-            "IMEI (Smartphone)",
-            "Número de serie (No smartphone)",
-            "Contiene caja"
-          ]);
-        }
+        // La hoja ya contiene los encabezados en la fila 1.
+        // Se introducen los datos a partir de la fila 2 hacia abajo, añadiendo registros sin sobreescribir.
+        const currentLastRow = sheet.getLastRow();
+        const startRow = currentLastRow < 1 ? 2 : currentLastRow + 1;
         
-        // Añadir cada fila secuencialmente al final sin sobreescribir registros existentes
-        sheet.getRange(sheet.getLastRow() + 1, 1, rowsToAdd.length, rowsToAdd[0].length).setValues(rowsToAdd);
+        // Formatear columnas G y H (IMEI y Serial) como texto plano para evitar notación científica
+        sheet.getRange(startRow, 7, rowsToAdd.length, 2).setNumberFormat("@");
+        
+        // Escribir todas las filas en el rango exacto (Columnas A a I)
+        sheet.getRange(startRow, 1, rowsToAdd.length, rowsToAdd[0].length).setValues(rowsToAdd);
       }
 
       return ContentService.createTextOutput(JSON.stringify({ 

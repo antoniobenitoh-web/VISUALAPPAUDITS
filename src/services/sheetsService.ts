@@ -192,6 +192,35 @@ export class SheetsService {
   }
 
   /**
+   * Diagnóstico específico de conexión con la hoja oficial de Retiradas de Materiales
+   * ID: 1GrtUs9aKfUhGmb1-HlfDAXaAwtnr4OPO0Ifpp2g7Cl8
+   */
+  static async testReturnsSheetConnection(): Promise<{ ok: boolean; message: string; sheetName?: string; lastRow?: number }> {
+    const webhookUrl = DbService.getSheetsWebhookUrl();
+    if (!webhookUrl) return { ok: false, message: 'No hay URL de Webhook configurada.' };
+
+    try {
+      const res = await fetch(`${webhookUrl}?action=TEST_RETURNS`);
+      if (!res.ok) return { ok: false, message: `Error HTTP: ${res.status}` };
+      const data = await res.json();
+      if (data && data.success) {
+        return {
+          ok: true,
+          sheetName: data.sheetName,
+          lastRow: data.lastRow,
+          message: `Conectado a la hoja "${data.sheetName}". Filas actuales: ${data.lastRow}.`
+        };
+      }
+      return {
+        ok: false,
+        message: data?.error || 'El Webhook en Apps Script aún no tiene implementada la acción TEST_RETURNS (requiere desplegar Nueva Versión).'
+      };
+    } catch (e: any) {
+      return { ok: false, message: 'No se pudo conectar: ' + (e?.message || e) };
+    }
+  }
+
+  /**
    * Genera y sincroniza la retirada de materiales hacia la hoja de cálculo de Google Sheets oficial:
    * ID: 1GrtUs9aKfUhGmb1-HlfDAXaAwtnr4OPO0Ifpp2g7Cl8
    * 

@@ -19,6 +19,7 @@ import {
   Camera,
   Check,
   CheckCircle2,
+  Code,
   Copy,
   ExternalLink,
   FileSpreadsheet,
@@ -69,6 +70,10 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
     url2?: string;
     label2?: string;
   } | null>(null);
+
+  const [isScriptModalOpen, setIsScriptModalOpen] = useState(false);
+  const [testingWebhook, setTestingWebhook] = useState(false);
+  const [testWebhookResult, setTestWebhookResult] = useState<{ ok: boolean; message: string } | null>(null);
 
   // Estado de la foto obligatoria de toda la mesa completa (vista alzada)
   const [tablePhotoUrl, setTablePhotoUrl] = useState<string | null>(null);
@@ -1145,6 +1150,15 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
                     <Copy className="w-4 h-4" />
                     <span>Copiar {returnDevices.length} Filas al Portapapeles</span>
                   </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setIsScriptModalOpen(true)}
+                    className="px-3.5 py-2.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 font-bold text-xs flex items-center gap-1.5 border border-amber-500/30 transition cursor-pointer ml-auto"
+                  >
+                    <Code className="w-4 h-4 text-amber-400" />
+                    <span>Ayuda / Estado Webhook</span>
+                  </button>
                 </div>
               </div>
             )}
@@ -1399,6 +1413,139 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
                   </div>
                 )}
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* MODAL: ACTIVACIÓN VOLCADO AUTOMÁTICO GOOGLE SHEETS */}
+      {isScriptModalOpen && (
+        <div
+          className="fixed inset-0 z-60 bg-black/85 flex items-center justify-center p-4 backdrop-blur-sm"
+          onClick={() => setIsScriptModalOpen(false)}
+        >
+          <div
+            className="bg-slate-900 border border-slate-700 rounded-3xl max-w-2xl w-full p-6 text-white space-y-5 shadow-2xl overflow-y-auto max-h-[90vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 rounded-2xl bg-amber-500/20 text-amber-400">
+                  <Code className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-black text-base sm:text-lg">Volcado Automático a Google Sheets</h4>
+                  <p className="text-xs text-slate-400">Hoja Oficial de Retiradas: 1GrtUs9aKfUhGmb1-HlfDAXaAwtnr4OPO0Ifpp2g7Cl8</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsScriptModalOpen(false)}
+                className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Test de conexión directo */}
+            <div className="p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80 space-y-3">
+              <div className="flex items-center justify-between flex-wrap gap-2">
+                <span className="text-xs font-bold text-slate-300">Diagnóstico del Webhook en vivo:</span>
+                <button
+                  type="button"
+                  disabled={testingWebhook}
+                  onClick={async () => {
+                    setTestingWebhook(true);
+                    setTestWebhookResult(null);
+                    try {
+                      const res = await SheetsService.testReturnsSheetConnection();
+                      setTestWebhookResult(res);
+                    } catch (err: any) {
+                      setTestWebhookResult({ ok: false, message: 'Error al probar: ' + err.message });
+                    } finally {
+                      setTestingWebhook(false);
+                    }
+                  }}
+                  className="px-3.5 py-1.5 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-black text-xs flex items-center gap-1.5 transition cursor-pointer"
+                >
+                  {testingWebhook ? (
+                    <>
+                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      <span>Comprobando...</span>
+                    </>
+                  ) : (
+                    <>
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      <span>Comprobar Estado del Webhook</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {testWebhookResult && (
+                <div
+                  className={`p-3 rounded-xl text-xs font-semibold border ${
+                    testWebhookResult.ok
+                      ? 'bg-emerald-950/60 border-emerald-500/40 text-emerald-200'
+                      : 'bg-amber-950/60 border-amber-500/40 text-amber-200'
+                  }`}
+                >
+                  {testWebhookResult.ok ? '✅ ' : '⚠️ '}
+                  {testWebhookResult.message}
+                </div>
+              )}
+            </div>
+
+            {/* Guía de activación en 3 pasos */}
+            <div className="space-y-3 text-xs text-slate-300">
+              <p className="leading-relaxed">
+                El volcado automático ya está programado en la app: al finalizar cada auditoría de nueva implementación, se envía la lista de retiradas para insertarla en filas nuevas a partir de la fila 2 (respetando los encabezados).
+              </p>
+              <p className="leading-relaxed text-amber-300/90 font-medium">
+                Para que Google Apps Script acepte la acción de guardado, solo necesitas publicar la nueva versión del script en tu consola de Google una sola vez:
+              </p>
+
+              <ol className="list-decimal list-inside space-y-2.5 p-3 rounded-2xl bg-black/40 border border-slate-800">
+                <li className="leading-relaxed">
+                  Abre tu proyecto en{' '}
+                  <a
+                    href="https://script.google.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-teal-400 hover:underline font-bold inline-flex items-center gap-1"
+                  >
+                    script.google.com <ExternalLink className="w-3 h-3" />
+                  </a>
+                </li>
+                <li className="leading-relaxed">
+                  Copia y reemplaza el contenido del editor con el archivo <strong className="text-white">GOOGLE_SHEETS_SCRIPT.js</strong> del repositorio.
+                </li>
+                <li className="leading-relaxed">
+                  Pulsa arriba a la derecha en: <strong className="text-teal-300">Implementar &gt; Gestionar implementaciones</strong>.
+                </li>
+                <li className="leading-relaxed">
+                  Haz clic en el icono del <strong className="text-amber-300">lápiz (Editar ✏️)</strong>, cambia el selector de Versión a <strong className="text-teal-300">«Nueva versión»</strong> y pulsa <strong className="text-teal-300">«Implementar»</strong>.
+                </li>
+              </ol>
+            </div>
+
+            <div className="flex items-center justify-between gap-3 pt-2">
+              <a
+                href={SPREADSHEET_RETURNS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-teal-400 font-bold text-xs flex items-center gap-1.5 transition"
+              >
+                <ExternalLink className="w-4 h-4" />
+                <span>Abrir Hoja de Retiradas</span>
+              </a>
+
+              <button
+                type="button"
+                onClick={() => setIsScriptModalOpen(false)}
+                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-teal-600 to-teal-500 hover:brightness-110 text-white font-black text-xs transition cursor-pointer"
+              >
+                Entendido
+              </button>
             </div>
           </div>
         </div>
