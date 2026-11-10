@@ -212,4 +212,27 @@ export class AuthService {
         return { bg: 'bg-sky-500/10', text: 'text-sky-400', border: 'border-sky-500/30' };
     }
   }
+
+  /**
+   * Obtiene el nombre del GPV responsable del centro
+   */
+  static getGpvForStore(store: StoreCenter, currentUser?: UserProfile): string {
+    if (currentUser && this.normalizeRole(currentUser.rol) === 'GPV') {
+      return currentUser.nombre;
+    }
+    if (currentUser?.gpv) {
+      return currentUser.gpv;
+    }
+    const users = DbService.getUsers();
+    const gpvs = users.filter(u => this.normalizeRole(u.rol) === 'GPV');
+    const matched = gpvs.find(g =>
+      (g.centrosAsignados || []).some(c => this.isStoreMatch(c, store))
+    );
+    if (matched) return matched.nombre;
+    const matchedByZone = gpvs.find(g =>
+      Boolean(g.zona && store.zona && g.zona.toLowerCase().includes(store.zona.toLowerCase()))
+    );
+    if (matchedByZone) return matchedByZone.nombre;
+    return currentUser?.nombre || 'Ricardo Dahdah';
+  }
 }

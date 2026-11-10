@@ -15,6 +15,7 @@
 
 const SPREADSHEET_SPACES_ID = "1s9hGfmS7tqvD3hP-QktLyDsTo_fRn7q8r0IMc1Dy-uo";
 const SPREADSHEET_USERS_ID = "1HgC4qVTZYbD17pQSiunxptck4C_VIv3_8DCgrYAfAGw";
+const SPREADSHEET_RETURNS_ID = "1GrtUs9aKfUhGmb1-HlfDAXaAwtnr4OPO0Ifpp2g7Cl8";
 const GDRIVE_ROOT_FOLDER_ID = "1RNmY0KnIqtOV6zU0mu080bJKAFFEhRyD";
 
 /**
@@ -469,6 +470,42 @@ function doPost(e) {
         count: positions.length,
         driveFolderUrl: driveUrl || `https://drive.google.com/drive/folders/${GDRIVE_ROOT_FOLDER_ID}`,
         driveError: driveError || undefined
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    // ==============================================================
+    // 2. REGISTRO DE RETIRADA DE MATERIALES (NUEVA IMPLANTACIÓN)
+    // ==============================================================
+    if (data.action === "POST_IMPLANTATION_RETURNS" || data.action === "RECORD_RETURN_DEVICES") {
+      const targetSheetId = data.spreadsheetId || SPREADSHEET_RETURNS_ID;
+      const returnsSS = SpreadsheetApp.openById(targetSheetId);
+      const sheet = returnsSS.getSheets()[0]; // Primera hoja del documento
+      
+      const rowsToAdd = data.rows || (data.payload && data.payload.rows) || [];
+      if (rowsToAdd && rowsToAdd.length > 0) {
+        // Si la hoja está totalmente vacía, crear cabeceras oficiales
+        if (sheet.getLastRow() === 0) {
+          sheet.appendRow([
+            "Fecha de reporte",
+            "Nombre del GPV",
+            "Nombre de la tienda",
+            "LDU / Maqueta",
+            "Descripción del modelo",
+            "",
+            "IMEI (Smartphone)",
+            "Número de serie (No smartphone)",
+            "Contiene caja"
+          ]);
+        }
+        
+        // Añadir cada fila secuencialmente al final sin sobreescribir registros existentes
+        sheet.getRange(sheet.getLastRow() + 1, 1, rowsToAdd.length, rowsToAdd[0].length).setValues(rowsToAdd);
+      }
+
+      return ContentService.createTextOutput(JSON.stringify({ 
+        success: true, 
+        count: rowsToAdd.length,
+        spreadsheetId: targetSheetId
       })).setMimeType(ContentService.MimeType.JSON);
     }
 

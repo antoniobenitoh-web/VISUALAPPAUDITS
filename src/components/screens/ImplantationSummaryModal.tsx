@@ -10,12 +10,18 @@ import {
   VisualElementDefinition
 } from '../../types';
 import { DbService } from '../../services/dbService';
+import { SheetsService, SPREADSHEET_RETURNS_URL } from '../../services/sheetsService';
+import { AuthService } from '../../services/authService';
 import { ACTIVE_IMPLANTATION_CAMPAIGN } from '../../data/implantationCampaignData';
 import {
   AlertTriangle,
   ArrowLeft,
   Camera,
+  Check,
   CheckCircle2,
+  Copy,
+  ExternalLink,
+  FileSpreadsheet,
   Image as ImageIcon,
   Loader2,
   Lock,
@@ -486,6 +492,22 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
         });
       } catch (e) {
         console.warn('No se pudo actualizar el reporte vigente automático tras la implantación:', e);
+      }
+
+      // Sincronizar automáticamente la retirada de materiales hacia Google Sheets (1GrtUs9aKfUhGmb1-HlfDAXaAwtnr4OPO0Ifpp2g7Cl8)
+      if (returnDevices && returnDevices.length > 0) {
+        try {
+          await SheetsService.syncImplantationReturnsToSheets(
+            store,
+            returnDevices,
+            currentUser,
+            record.fechaHora
+          );
+          record.sincronizadoSheets = true;
+          DbService.saveImplantationRecord(record);
+        } catch (sheetErr) {
+          console.warn('Aviso al sincronizar retiradas con Google Sheets:', sheetErr);
+        }
       }
 
       setSealedRecord(record);
@@ -987,7 +1009,147 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3">
+            {/* TARJETA DE REPORTE Y SINCRONIZACIÓN DE RETIRADA EN GOOGLE SHEETS */}
+            {returnDevices && returnDevices.length > 0 && (
+              <div className="p-5 bg-gradient-to-br from-[#072431] via-[#104a60] to-[#0a3343] text-white border border-white/10 rounded-3xl space-y-4 shadow-xl">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 flex items-center gap-1">
+                      <Check className="w-3 h-3 text-emerald-400" /> Sincronizado en Google Sheets
+                    </span>
+                    <span className="text-xs text-slate-300 font-semibold">
+                      Apartado: Retirada de Materiales
+                    </span>
+                  </div>
+                  <span className="text-[11px] font-extrabold text-teal-300">
+                    {returnDevices.length} productos registrados ({returnDevices.length} filas añadidas)
+                  </span>
+                </div>
+
+                <p className="text-xs text-slate-200 leading-relaxed">
+                  Se ha generado y enviado el reporte fila por fila al Google Sheets oficial de devoluciones (ID:{' '}
+                  <code className="text-teal-300 font-mono text-[11px] bg-black/30 px-1.5 py-0.5 rounded">
+                    1GrtUs9aKfUhGmb1-HlfDAXaAwtnr4OPO0Ifpp2g7Cl8
+                  </code>
+                  ) sin sobreescribir ningún registro previo.
+                </p>
+
+                {/* Previsualización en tabla de las filas generadas */}
+                <div className="overflow-x-auto rounded-2xl border border-white/10 bg-black/40">
+                  <table className="w-full text-[11px] text-left">
+                    <thead>
+                      <tr className="border-b border-white/10 text-slate-300 text-[10px] uppercase font-bold bg-white/5">
+                        <th className="px-3 py-2">Col A: Fecha</th>
+                        <th className="px-3 py-2">Col B: GPV</th>
+                        <th className="px-3 py-2">Col C: Tienda</th>
+                        <th className="px-3 py-2">Col D: Tipo</th>
+                        <th className="px-3 py-2">Col E: Modelo</th>
+                        <th className="px-3 py-2">Col G: IMEI (Smartphones)</th>
+                        <th className="px-3 py-2">Col H: Serial (Otros)</th>
+                        <th className="px-3 py-2">Col I: Caja</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5 font-medium text-slate-200">
+                      {returnDevices.map((dev) => {
+                        const isSmartphone = dev.categoria === 'Smartphone';
+                        const imei = isSmartphone ? (dev.imeiMemorizado || '') : '';
+                        const serial = !isSmartphone ? (dev.imeiMemorizado || '') : '';
+                        const gpvName = AuthService.getGpvForStore(store, currentUser);
+                        const fecha = new Date().toLocaleDateString('es-ES', {
+                          day: '2-digit',
+                          month: '2-digit',
+                          year: 'numeric'
+                        });
+
+                        return (
+                          <tr key={dev.id} className="hover:bg-white/5">
+                            <td className="px-3 py-2 text-slate-400 whitespace-nowrap">{fecha}</td>
+                            <td className="px-3 py-2 whitespace-nowrap text-amber-300">{gpvName}</td>
+                            <td className="px-3 py-2 whitespace-nowrap">{store.nombreTienda}</td>
+                            <td className="px-3 py-2 whitespace-nowrap">
+                              <span
+                                className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${
+                                  dev.esDummy
+                                    ? 'bg-orange-500/20 text-orange-300'
+                                    : 'bg-teal-500/20 text-teal-300'
+                                }`}
+                              >
+                                {dev.esDummy ? 'Maqueta' : 'LDU'}
+                              </span>
+                            </td>
+                            <td className="px-3 py-2 font-bold text-white whitespace-nowrap">
+                              {dev.modeloSaliente}
+                            </td>
+                            <td className="px-3 py-2 font-mono text-cyan-300 whitespace-nowrap">
+                              {imei || '-'}
+                            </td>
+                            <td className="px-3 py-2 font-mono text-purple-300 whitespace-nowrap">
+                              {serial || '-'}
+                            </td>
+                            <td className="px-3 py-2 font-bold text-rose-300 whitespace-nowrap">NO</td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Acciones directas: Abrir Google Sheets y Copiar filas */}
+                <div className="flex flex-wrap items-center gap-2 pt-1">
+                  <a
+                    href={SPREADSHEET_RETURNS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:brightness-110 text-white font-bold text-xs flex items-center gap-2 shadow-md transition"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Abrir Google Sheets de Retiradas</span>
+                  </a>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const tsv = [
+                        [
+                          'Fecha de reporte',
+                          'Nombre del GPV responsable del centro',
+                          'Nombre de la tienda',
+                          'LDU o Maqueta',
+                          'Descripción del modelo',
+                          '',
+                          'IMEI',
+                          'Serial Number',
+                          'Contiene caja'
+                        ].join('\t'),
+                        ...returnDevices.map((dev) => [
+                          new Date().toLocaleDateString('es-ES', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric'
+                          }),
+                          AuthService.getGpvForStore(store, currentUser),
+                          store.nombreTienda,
+                          dev.esDummy ? 'Maqueta' : 'LDU',
+                          dev.modeloSaliente,
+                          '',
+                          dev.categoria === 'Smartphone' ? (dev.imeiMemorizado || '') : '',
+                          dev.categoria !== 'Smartphone' ? (dev.imeiMemorizado || '') : '',
+                          'NO'
+                        ].join('\t'))
+                      ].join('\n');
+                      navigator.clipboard.writeText(tsv);
+                      alert('¡Filas copiadas al portapapeles! Puedes pegarlas directamente en Google Sheets o Excel.');
+                    }}
+                    className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 font-bold text-xs flex items-center gap-2 transition cursor-pointer"
+                  >
+                    <Copy className="w-4 h-4" />
+                    <span>Copiar {returnDevices.length} Filas al Portapapeles</span>
+                  </button>
+                </div>
+              </div>
+            )}
+
+            <div className="flex flex-col sm:flex-row gap-3 pt-2">
               <button
                 type="button"
                 onClick={onFinishComplete}

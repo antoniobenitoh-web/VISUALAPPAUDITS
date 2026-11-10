@@ -1,5 +1,9 @@
-import { AuditRecord, StoreCenter, UserProfile } from '../types';
+import { AuditRecord, DeviceReturnState, StoreCenter, UserProfile } from '../types';
 import { DbService } from './dbService';
+import { AuthService } from './authService';
+
+export const SPREADSHEET_RETURNS_ID = '1GrtUs9aKfUhGmb1-HlfDAXaAwtnr4OPO0Ifpp2g7Cl8';
+export const SPREADSHEET_RETURNS_URL = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_RETURNS_ID}/edit`;
 
 export interface SyncAuditOptions {
   excelBase64?: string;
@@ -12,6 +16,14 @@ export interface SyncAuditResult {
   driveFolderUrl?: string;
   driveFileCount?: number;
   message?: string;
+}
+
+export interface SyncReturnsResult {
+  success: boolean;
+  rowsCount: number;
+  message: string;
+  rows: (string | number)[][];
+  spreadsheetUrl: string;
 }
 
 export class SheetsService {
@@ -176,6 +188,108 @@ export class SheetsService {
       }
     } catch (e: any) {
       return { ok: false, message: 'No se pudo conectar con el Webhook: ' + (e?.message || e) };
+    }
+  }
+
+  /**
+   * Genera y sincroniza la retirada de materiales hacia la hoja de cálculo de Google Sheets oficial:
+   * ID: 1GrtUs9aKfUhGmb1-HlfDAXaAwtnr4OPO0Ifpp2g7Cl8
+   * 
+   * Formato oficial de Columnas (A - I):
+   * Columna A: Fecha de reporte
+   * Columna B: Nombre del GPV responsable del centro
+   * Columna C: Nombre de la tienda
+   * Columna D: LDU o Maqueta
+   * Columna E: Descripción del modelo, osea el nombre del modelo que se retira
+   * Columna F: Vacía
+   * Columna G: Si smartphone -> IMEI
+   * Columna H: Si no smartphone -> Serial number
+   * Columna I: Contiene caja -> NO (al ser devolución nunca tendrá caja)
+   */
+  static async syncImplantationReturnsToSheets(
+    store: StoreCenter,
+    returnDevices: DeviceReturnState[],
+    currentUser: UserProfile,
+    fechaHora?: string
+  ): Promise<SyncReturnsResult> {
+    const gpvName = AuthService.getGpvForStore(store, currentUser);
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const year = String(now.getFullYear());
+    const fechaReporte = `${day}/${month}/${year}`;
+
+    const rawRows: (string | number)[][] = (returnDevices || []).map((dev) => {
+      const isSmartphone = dev.categoria === 'Smartphone';
+      const imei = isSmartphone ? (dev.imeiMemorizado && dev.imeiMemorizado !== '-' ? dev.imeiMemorizado : '') : '';
+      const serial = !isSmartphone ? (dev.imeiMemorizado && dev.imeiMemorizado !== '-' ? dev.imeiMemorizado : '') : '';
+      const tipoMaterial = dev.esDummy ? 'Maqueta' : 'LDU';
+      const descripcionModelo = dev.modeloSaliente || '';
+      const vacia = '';
+      const contieneCaja = 'NO';
+
+      return [
+        fechaReporte,
+        gpvName,
+        store.nombreTienda,
+        tipoMaterial,
+        descripcionModelo,
+        vacia,
+        imei,
+        serial,
+        contieneCaja
+      ];
+    });
+
+    const webhookUrl = DbService.getSheetsWebhookUrl();
+    if (!webhookUrl) {
+      console.warn('No hay URL de Webhook configurada para sincronizar retiradas.');
+      return {
+        success: true,
+        rowsCount: rawRows.length,
+        rows: rawRows,
+        spreadsheetUrl: SPREADSHEET_RETURNS_URL,
+        message: 'Filas generadas en local (modo offline).'
+      };
+    }
+
+    try {
+      await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify({
+          action: 'POST_IMPLANTATION_RETURNS',
+          spreadsheetId: SPREADSHEET_RETURNS_ID,
+          payload: {
+            tiendaId: store.tiendaId,
+            nombreTienda: store.nombreTienda,
+            gpvNombre: gpvName,
+            fechaReporte: fechaReporte,
+            rows: rawRows
+          },
+          rows: rawRows
+        }),
+        mode: 'no-cors'
+      });
+
+      return {
+        success: true,
+        rowsCount: rawRows.length,
+        rows: rawRows,
+        spreadsheetUrl: SPREADSHEET_RETURNS_URL,
+        message: `Se han registrado ${rawRows.length} filas en Google Sheets.`
+      };
+    } catch (err: any) {
+      console.error('Error al sincronizar retiradas con Google Sheets:', err);
+      return {
+        success: false,
+        rowsCount: rawRows.length,
+        rows: rawRows,
+        spreadsheetUrl: SPREADSHEET_RETURNS_URL,
+        message: 'Error de red al conectar con Google Sheets.'
+      };
     }
   }
 }
