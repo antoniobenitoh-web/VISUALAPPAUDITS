@@ -181,14 +181,37 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
     [store.tiendaId]
   );
 
-  // Lista de 7 dispositivos que deben retirarse de la mesa (Check-Out) con sus IMEIs memorizados
+  // Lista de dispositivos que deben retirarse de la mesa (Check-Out) con sus IMEIs memorizados
   const [returnDevices, setReturnDevices] = useState<DeviceReturnState[]>(() => {
+    const officialBase = getReturnDevicesForStore(store, latestAudit);
     const draft = DbService.getImplantationDraft(store.tiendaId);
     if (draft?.returnStates && Object.keys(draft.returnStates).length > 0) {
-      return Object.values(draft.returnStates);
+      // Reconciliar con la base oficial para no arrastrar borradores con estados 'Pendiente' obsoletos
+      return officialBase.map((official) => {
+        const saved = draft.returnStates?.[official.id];
+        // Si el usuario reportó incidencia o editó manualmente el IMEI en una sesión anterior, respetarlo
+        if (
+          saved &&
+          (saved.estadoRetirada === 'Incidencia' ||
+            (saved.imeiMemorizado && saved.imeiMemorizado !== official.imeiMemorizado))
+        ) {
+          return { ...official, ...saved };
+        }
+        return official;
+      });
     }
-    return getReturnDevicesForStore(store, latestAudit);
+    return officialBase;
   });
+
+  // Estado para desplegar el formulario de discrepancia de IMEI (escanear/editar) por dispositivo
+  const [editingImeiDiscrepancy, setEditingImeiDiscrepancy] = useState<Record<string, boolean>>({});
+
+  const toggleDiscrepancyMode = (devId: string) => {
+    setEditingImeiDiscrepancy((prev) => ({
+      ...prev,
+      [devId]: !prev[devId]
+    }));
+  };
 
   const saveReturnDevicesDraft = (updated: DeviceReturnState[]) => {
     setReturnDevices(updated);
@@ -283,7 +306,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
   const handleQuickReturnAll = () => {
     if (
       window.confirm(
-        '¿Confirmas que has retirado de la mesa los 7 dispositivos a devolver y los tienes en sus respectivas cajas?'
+        `¿Confirmas que has retirado de la mesa los ${totalReturnsCount} dispositivos a devolver y los tienes en sus respectivas cajas?`
       )
     ) {
       const updated = returnDevices.map((r) => ({
@@ -1366,7 +1389,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                   Dispositivos a Retirar y Devolver ({completedReturnsCount} de {totalReturnsCount} procesados)
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-200/90 font-medium max-w-2xl">
-                  Estos 7 modelos salen del planograma para dar paso al nuevo Xiaomi 18 Series. La app precarga los <strong>IMEIs y números de serie memorizados</strong> de la última auditoría vigente de esta tienda.
+                  Estos {totalReturnsCount} modelos salen del planograma para dar paso al nuevo Xiaomi 18 Series. Los <strong>IMEIs y números de serie auditados se marcan automáticamente</strong>. Solo se requiere escanear o modificar en caso de que el IMEI físico en tienda no coincida con el registrado.
                 </p>
               </div>
 
@@ -1382,11 +1405,12 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
               </div>
             </div>
 
-            {/* Listado de las 7 tarjetas de dispositivos a devolver */}
+            {/* Listado de las tarjetas de dispositivos a devolver */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {returnDevices.map((dev) => {
                 const isRetirado = dev.estadoRetirada === 'Retirado';
                 const isIncidencia = dev.estadoRetirada === 'Incidencia';
+                const isEditingDiscrepancy = Boolean(editingImeiDiscrepancy[dev.id]);
 
                 return (
                   <div
@@ -1453,61 +1477,92 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                         </p>
                       </div>
 
-                      {/* Bloque de IMEI / Serial del Dispositivo a Retirar: Oculto cuando se marca Maqueta */}
+                      {/* Bloque de IMEI / Serial del Dispositivo a Retirar */}
                       {!dev.esDummy ? (
-                        <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2 animate-fadeIn">
-                          <div className="flex items-center justify-between">
-                            <label className="text-[11px] font-bold uppercase tracking-wider text-slate-600 flex items-center gap-1.5">
-                              <ShieldCheck className="w-3.5 h-3.5 text-[#009ca6]" />
-                              <span>IMEI / S/N a retirar</span>
-                            </label>
-                            {dev.imeiMemorizado ? (
-                              <span className="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-cyan-100 text-cyan-800 border border-cyan-200">
-                                Memorizado / Asignado
+                        !isEditingDiscrepancy ? (
+                          <div className="p-3 sm:p-3.5 rounded-2xl bg-white border border-emerald-200/90 shadow-2xs space-y-2">
+                            <div className="flex items-center justify-between">
+                              <span className="text-[10px] font-black uppercase tracking-wider text-emerald-800 flex items-center gap-1.5">
+                                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                                IMEI Auditado Registrado
                               </span>
-                            ) : (
-                              <span className="text-[9px] font-medium text-slate-400">
-                                Introduce o escanea
+                              <span className="text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+                                Auto-Verificado
                               </span>
-                            )}
-                          </div>
-
-                          <div className="flex items-center gap-2">
-                            <div className="relative flex-1">
-                              <input
-                                type="text"
-                                value={dev.imeiMemorizado || ''}
-                                onChange={(e) => handleUpdateReturnImei(dev.id, e.target.value)}
-                                placeholder="Introduce o escanea IMEI a retirar..."
-                                className="w-full bg-white text-slate-900 font-mono text-xs sm:text-sm font-bold px-3 py-2 rounded-xl border border-slate-300 focus:outline-none focus:border-[#009ca6] focus:ring-2 focus:ring-[#009ca6]/20 transition"
-                              />
-                              {dev.imeiMemorizado && (
-                                <button
-                                  type="button"
-                                  onClick={() => handleUpdateReturnImei(dev.id, '')}
-                                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
-                                  title="Limpiar IMEI"
-                                >
-                                  <RotateCcw className="w-3 h-3" />
-                                </button>
-                              )}
                             </div>
 
-                            <button
-                              type="button"
-                              onClick={() => setReturnScannerTargetId(dev.id)}
-                              className="h-9 px-3 rounded-xl bg-gradient-to-r from-[#009ca6] to-[#072431] hover:opacity-90 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition shrink-0 cursor-pointer"
-                              title="Escanear IMEI / S/N con cámara (Código de barras u OCR)"
-                            >
-                              <Camera className="w-3.5 h-3.5" />
-                              <span className="hidden sm:inline">Escanear</span>
-                            </button>
+                            <div className="flex items-center justify-between gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                              <span className="font-mono text-xs sm:text-sm font-black text-slate-800 tracking-wide select-all">
+                                {dev.imeiMemorizado || 'Sin IMEI registrado'}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => toggleDiscrepancyMode(dev.id)}
+                                className="px-2.5 py-1 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 text-[10px] font-bold flex items-center gap-1 shadow-2xs transition cursor-pointer shrink-0"
+                                title="Si el IMEI físico no coincide, pulsa para escanear o escribirlo"
+                              >
+                                <Camera className="w-3 h-3 text-[#009ca6]" />
+                                <span>¿No coincide? Escanear</span>
+                              </button>
+                            </div>
                           </div>
-                        </div>
+                        ) : (
+                          <div className="p-3.5 rounded-2xl bg-amber-50/80 border border-amber-300 space-y-2.5 animate-fadeIn">
+                            <div className="flex items-center justify-between">
+                              <label className="text-[11px] font-bold uppercase tracking-wider text-amber-900 flex items-center gap-1.5">
+                                <ShieldCheck className="w-3.5 h-3.5 text-amber-700" />
+                                <span>Modificar IMEI / Escanear Discrepancia</span>
+                              </label>
+                              <button
+                                type="button"
+                                onClick={() => toggleDiscrepancyMode(dev.id)}
+                                className="text-[10px] font-bold text-slate-500 hover:text-slate-800 underline cursor-pointer"
+                              >
+                                Ocultar
+                              </button>
+                            </div>
+
+                            <div className="flex items-center gap-2">
+                              <div className="relative flex-1">
+                                <input
+                                  type="text"
+                                  value={dev.imeiMemorizado || ''}
+                                  onChange={(e) => handleUpdateReturnImei(dev.id, e.target.value)}
+                                  placeholder="Introduce o escanea IMEI físico a retirar..."
+                                  className="w-full bg-white text-slate-900 font-mono text-xs sm:text-sm font-bold px-3 py-2 rounded-xl border border-amber-400 focus:outline-none focus:border-[#009ca6] focus:ring-2 focus:ring-[#009ca6]/20 transition"
+                                  autoFocus
+                                />
+                                {dev.imeiMemorizado && (
+                                  <button
+                                    type="button"
+                                    onClick={() => handleUpdateReturnImei(dev.id, '')}
+                                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
+                                    title="Limpiar IMEI"
+                                  >
+                                    <RotateCcw className="w-3 h-3" />
+                                  </button>
+                                )}
+                              </div>
+
+                              <button
+                                type="button"
+                                onClick={() => setReturnScannerTargetId(dev.id)}
+                                className="h-9 px-3 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:opacity-90 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition shrink-0 cursor-pointer"
+                                title="Escanear IMEI / S/N con cámara (Código de barras u OCR)"
+                              >
+                                <Camera className="w-3.5 h-3.5" />
+                                <span className="hidden sm:inline">Escanear</span>
+                              </button>
+                            </div>
+                            <p className="text-[10px] text-amber-800 font-medium">
+                              Introduce el IMEI físico si no coincide con el auditado originalmente.
+                            </p>
+                          </div>
+                        )
                       ) : (
                         <div className="p-3 rounded-2xl bg-orange-50/80 border border-orange-200 text-orange-950 text-xs font-bold flex items-center gap-2 animate-fadeIn">
                           <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
-                          <span>Maqueta seleccionada (exenta de IMEI). Pulsa en "LDU" arriba si necesitas escanear IMEI.</span>
+                          <span>Maqueta oficial verificada (exenta de IMEI).</span>
                         </div>
                       )}
 
@@ -1531,7 +1586,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                         }`}
                       >
                         <Check className="w-4 h-4" />
-                        <span>{isRetirado ? 'Retirado (Volver a confirmar)' : 'Confirmar Retirado'}</span>
+                        <span>{isRetirado ? 'Retirado (Auditado ✓)' : 'Confirmar Retirado'}</span>
                       </button>
 
                       <button

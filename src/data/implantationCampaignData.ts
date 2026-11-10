@@ -585,6 +585,7 @@ export const getReturnDevicesForStore = (
     );
 
     const imei = prevPos?.imeiSerial && prevPos.imeiSerial !== '-' ? prevPos.imeiSerial : undefined;
+    const isAutoConfirmed = Boolean(item.esDummy || (imei && imei !== '-'));
 
     return {
       id: item.id,
@@ -596,7 +597,8 @@ export const getReturnDevicesForStore = (
       motivoRetirada: item.motivoRetirada,
       sustituidoPor: item.sustituidoPor,
       imeiMemorizado: imei,
-      estadoRetirada: 'Pendiente'
+      estadoRetirada: isAutoConfirmed ? 'Retirado' : 'Pendiente',
+      confirmadoPor: isAutoConfirmed ? 'Auditoría Registrada' : undefined
     };
   });
 };
