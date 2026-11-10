@@ -521,6 +521,36 @@ function doPost(e) {
       
       const rowsToAdd = data.rows || (data.payload && data.payload.rows) || [];
       if (rowsToAdd && rowsToAdd.length > 0) {
+        // Validación y autocompletado de seguridad para Columna B (Nombre del GPV responsable):
+        // Si no viniera informado, se cruza la tienda (Columna C) con la Columna F de la hoja de usuarios
+        try {
+          let storeGpvLookup = null;
+          for (let r = 0; r < rowsToAdd.length; r++) {
+            if (!rowsToAdd[r][1] || String(rowsToAdd[r][1]).trim() === "") {
+              if (!storeGpvLookup) {
+                storeGpvLookup = {};
+                const uList = getUsersFromExternalSheet();
+                uList.forEach(function(u) {
+                  if (u.gpv) {
+                    (u.centrosAsignados || []).forEach(function(c) {
+                      storeGpvLookup[String(c).toLowerCase().trim()] = u.gpv;
+                    });
+                  }
+                });
+              }
+              const storeName = String(rowsToAdd[r][2] || "").toLowerCase().trim();
+              for (const cKey in storeGpvLookup) {
+                if (storeName.indexOf(cKey) !== -1 || cKey.indexOf(storeName) !== -1) {
+                  rowsToAdd[r][1] = storeGpvLookup[cKey];
+                  break;
+                }
+              }
+            }
+          }
+        } catch (errGpv) {
+          Logger.log("Aviso al autocompletar GPV en Apps Script: " + errGpv.toString());
+        }
+
         // La hoja ya contiene los encabezados en la fila 1.
         // Se introducen los datos a partir de la fila 2 hacia abajo, añadiendo registros sin sobreescribir.
         const currentLastRow = sheet.getLastRow();

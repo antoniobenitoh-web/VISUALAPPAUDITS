@@ -214,25 +214,89 @@ export class AuthService {
   }
 
   /**
-   * Obtiene el nombre del GPV responsable del centro
+   * Obtiene el nombre del GPV responsable del centro para los reportes oficiales.
+   * Regla de negocio oficial:
+   * El GPV responsable es aquel que en la data de usuarios aparece en la Columna F
+   * de cada usuario de promotor. Se cruza cada store con su promotor asignado en la hoja de usuarios.
    */
   static getGpvForStore(store: StoreCenter, currentUser?: UserProfile): string {
-    if (currentUser && this.normalizeRole(currentUser.rol) === 'GPV') {
-      return currentUser.nombre;
-    }
-    if (currentUser?.gpv) {
-      return currentUser.gpv;
-    }
     const users = DbService.getUsers();
+
+    // 1. Filtrar los usuarios de rol Promotor (o cualquier usuario que tenga Columna F / gpv cargado)
+    const promotersWithGpv = users.filter(u => u.gpv && u.gpv.trim() !== '');
+
+    // 1.1 Cruce directo: comprobar si el centro asignado al promotor (Columna K) coincide con la tienda
+    for (const p of promotersWithGpv) {
+      const assignedCenters = (p.centrosAsignados || []).concat(
+        p.tiendaAsignadaId ? p.tiendaAsignadaId.split(',').map(s => s.trim()) : []
+      );
+      for (const assigned of assignedCenters) {
+        if (this.isStoreMatch(assigned, store)) {
+          return p.gpv!.trim();
+        }
+      }
+    }
+
+    // 1.2 Cruce por coincidencia de tiendaId o nombre en el email/nombre del promotor
+    const cleanStoreId = this.normalizeText(store.tiendaId);
+    if (cleanStoreId) {
+      for (const p of promotersWithGpv) {
+        const cleanEmail = this.normalizeText(p.email || '');
+        const cleanName = this.normalizeText(p.nombre || '');
+        if (cleanEmail.includes(cleanStoreId) || cleanName.includes(cleanStoreId)) {
+          return p.gpv!.trim();
+        }
+      }
+    }
+
+    // 2. Si el usuario actual tiene su gpv definido en su perfil y su tienda coincide con store
+    if (currentUser?.gpv) {
+      const currentCenters = (currentUser.centrosAsignados || []).concat(
+        currentUser.tiendaAsignadaId ? currentUser.tiendaAsignadaId.split(',').map(s => s.trim()) : []
+      );
+      if (currentCenters.some(c => this.isStoreMatch(c, store))) {
+        return currentUser.gpv.trim();
+      }
+    }
+
+    // 3. Centros de otros retailers o sin promotor exclusivo directo:
+    // Buscar si hay promotor en la misma localidad/ciudad para heredar el GPV de esa zona
+    const storeWords = this.normalizeText(store.nombreTienda)
+      .split(' ')
+      .filter(w => !['media', 'markt', 'el', 'corte', 'ingles', 'eci', 'crf', 'carrefour', 'fnac', 'alcampo', 'c', 'cc'].includes(w) && w.length >= 4);
+
+    for (const word of storeWords) {
+      const localPromoter = promotersWithGpv.find(p => {
+        const sameZone = !p.zona || !store.zona || this.normalizeText(p.zona).includes(this.normalizeText(store.zona)) || this.normalizeText(store.zona).includes(this.normalizeText(p.zona));
+        if (!sameZone) return false;
+        const centers = (p.centrosAsignados || []).concat(
+          p.tiendaAsignadaId ? p.tiendaAsignadaId.split(',').map(s => s.trim()) : []
+        );
+        return centers.some(c => this.normalizeText(c).includes(word));
+      });
+      if (localPromoter?.gpv) {
+        return localPromoter.gpv.trim();
+      }
+    }
+
+    // 4. Si hay un usuario con rol 'GPV' cuyos centros asignados incluyan este centro
     const gpvs = users.filter(u => this.normalizeRole(u.rol) === 'GPV');
-    const matched = gpvs.find(g =>
+    const matchedGpv = gpvs.find(g =>
       (g.centrosAsignados || []).some(c => this.isStoreMatch(c, store))
     );
-    if (matched) return matched.nombre;
+    if (matchedGpv) return matchedGpv.nombre.trim();
+
+    // 5. Fallback por coincidencia de zona de GPV
     const matchedByZone = gpvs.find(g =>
       Boolean(g.zona && store.zona && g.zona.toLowerCase().includes(store.zona.toLowerCase()))
     );
-    if (matchedByZone) return matchedByZone.nombre;
-    return currentUser?.nombre || 'Ricardo Dahdah';
+    if (matchedByZone) return matchedByZone.nombre.trim();
+
+    // 6. Si currentUser es GPV y pertenece a la zona
+    if (currentUser && this.normalizeRole(currentUser.rol) === 'GPV') {
+      return currentUser.nombre.trim();
+    }
+
+    return (currentUser?.gpv || 'Ricardo Dahdah').trim();
   }
 }

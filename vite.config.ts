@@ -12,7 +12,7 @@ export default defineConfig({
       hour: '2-digit', 
       minute: '2-digit'
     })),
-    __APP_VERSION__: JSON.stringify('1.3.4')
+    __APP_VERSION__: JSON.stringify('1.3.5')
   },
   plugins: [
     react(),
