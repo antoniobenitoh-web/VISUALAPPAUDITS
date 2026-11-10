@@ -539,6 +539,17 @@ export const RETURN_DEVICES_TABLE1_M1C1: DeviceReturnPlanItem[] = [
     sustituidoPor: 'Xiaomi 18 Pro (LDU)'
   },
   {
+    id: 'RET-T1-M1C1-P6',
+    posicionAnterior: 6,
+    mesaId: 'MESA 1',
+    cara: 'Cara 1',
+    modeloSaliente: 'Xiaomi Buds 6',
+    esDummy: true,
+    categoria: 'Audio',
+    motivoRetirada: 'Desmontaje de mesa (Sustituido por Xiaomi Clip)',
+    sustituidoPor: 'Xiaomi Clip (LDU)'
+  },
+  {
     id: 'RET-T1-M1C1-P9',
     posicionAnterior: 9,
     mesaId: 'MESA 1',
