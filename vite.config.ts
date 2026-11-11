@@ -12,13 +12,13 @@ export default defineConfig({
       hour: '2-digit', 
       minute: '2-digit'
     })),
-    __APP_VERSION__: JSON.stringify('1.3.5')
+    __APP_VERSION__: JSON.stringify('1.3.6')
   },
   plugins: [
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['apple-touch-icon.png', 'pwa-192x192.png', 'pwa-512x512.png', 'images/xiaomi_logo.png', 'images/salesland_logo.png'],
+      includeAssets: ['apple-touch-icon.png', 'pwa-192x192.png', 'pwa-512x512.png', 'images/app-icon-1024.png', 'images/xiaomi_logo.png', 'images/salesland_logo.png'],
       manifest: {
         name: 'Brand Spaces Retail Audit PWA',
         short_name: 'BrandAudit',
