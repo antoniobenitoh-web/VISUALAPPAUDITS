@@ -317,7 +317,10 @@ export const PositionInspectModal: React.FC<PositionInspectModalProps> = ({
                 className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:ring-2 focus:ring-rose-500"
               >
                 <option value="">-- Sin incidencia (OK) --</option>
-                {INCIDENT_CATEGORIES.map((cat) => (
+                {(position.categoria === 'Wearable' || /watch|reloj|band/i.test(position.modeloOficial || '')
+                  ? ([...INCIDENT_CATEGORIES.slice(0, -1), 'Correa robada o rota', 'Otro'] as IncidentCategory[])
+                  : INCIDENT_CATEGORIES
+                ).map((cat) => (
                   <option key={cat} value={cat}>
                     {cat}
                   </option>

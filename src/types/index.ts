@@ -86,6 +86,7 @@ export type IncidentCategory =
   | 'No coincide'
   | 'Robo'
   | 'Fallo alarmado'
+  | 'Correa robada o rota'
   | 'Otro';
 
 export interface PositionAuditState {
@@ -139,7 +140,8 @@ export type SwapOutIncidentMotivo =
   | 'Terminal ausente / Posible robo'
   | 'Terminal bloqueado / Sin encendido (Imei ilegible)'
   | 'Daño físico estético o funcional'
-  | 'Alarma dañada';
+  | 'Alarma dañada'
+  | 'Correa robada o rota';
 
 export type SwapInIncidentMotivo =
   | 'Material no recibido en tienda'
@@ -147,7 +149,8 @@ export type SwapInIncidentMotivo =
   | 'Fallo en alarmado'
   | 'Falta Cartela especificaciones'
   | 'Falta ficha energética'
-  | 'Modo demo / Mi show no responde';
+  | 'Modo demo / Mi show no responde'
+  | 'Correa robada o rota';
 
 export type SwapIncidentMotivo = SwapOutIncidentMotivo | SwapInIncidentMotivo | string;
 

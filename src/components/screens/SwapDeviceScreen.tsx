@@ -754,6 +754,13 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
           {(() => {
             const currentMotivo = motivoIncidenciaIn;
             const hasCurrentPhaseIncident = Boolean(currentMotivo);
+            const isWatchPosition =
+              assignment.categoria === 'Wearable' ||
+              position.categoria === 'Wearable' ||
+              /watch|reloj|band/i.test(assignment.modeloEntrante || position.modeloOficial || '');
+            const incidentMotivosList: SwapInIncidentMotivo[] = isWatchPosition
+              ? [...SWAP_IN_INCIDENT_MOTIVOS, 'Correa robada o rota']
+              : SWAP_IN_INCIDENT_MOTIVOS;
 
             return (
               <>
@@ -807,7 +814,7 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
                     <span className="text-[10px] font-black uppercase tracking-wider text-slate-500 block mb-1">
                       Motivos oficiales de incidencia de instalación
                     </span>
-                    {SWAP_IN_INCIDENT_MOTIVOS.map((motivo) => {
+                    {incidentMotivosList.map((motivo) => {
                       const isSelected = motivoIncidenciaIn === motivo;
                       return (
                         <button

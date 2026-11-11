@@ -73,7 +73,7 @@ const highlightModelMatch = (text: string, query: string) => {
   }
 };
 
-export type IncidentType = 'no_coincide' | 'robo' | 'fallo_alarmado' | null;
+export type IncidentType = 'no_coincide' | 'robo' | 'fallo_alarmado' | 'correa_rota' | null;
 
 interface DeviceIdentifyScreenProps {
   position: PlanogramPosition;
@@ -110,6 +110,7 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
     ? (currentState.tipoIncidencia === 'No coincide' || currentState.tipoIncidencia === 'Modelo incorrecto' ? 'no_coincide'
       : currentState.tipoIncidencia === 'Robo' || currentState.tipoIncidencia === 'Material faltante' ? 'robo'
       : currentState.tipoIncidencia === 'Fallo alarmado' || currentState.tipoIncidencia === 'Alarma defectuosa' ? 'fallo_alarmado'
+      : currentState.tipoIncidencia === 'Correa robada o rota' ? 'correa_rota'
       : null)
     : null;
 
@@ -170,6 +171,9 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
   const streamRef = useRef<MediaStream | null>(null);
 
   const isSmartphone = position.categoria === 'Smartphone';
+  const isWatch =
+    position.categoria === 'Wearable' ||
+    /watch|reloj|band/i.test(position.modeloOficial || '');
 
   const attachStreamToVideo = (videoEl: HTMLVideoElement | null, stream: MediaStream | null) => {
     if (!videoEl || !stream) return;
@@ -281,6 +285,12 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
           return;
         }
       }
+    } else if (incidentType === 'correa_rota') {
+      // Para correa robada o rota en reloj, si es LDU y se ha escrito serial se acepta, o permite avanzar a foto de evidencia
+      if (!isDummy && imei.trim().length > 0 && imei.trim().length < 6) {
+        alert('Por favor introduce un número de serie válido (ej. 68707/EFAPBS6QD00345) o déjalo vacío si solo reportas la correa.');
+        return;
+      }
     } else {
       // Sin incidencia: validación estándar según directriz
       if (!isDummy) {
@@ -358,6 +368,10 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
         finalDetectedModel = '(Falta terminal por fallo de alarma)';
         comments = 'FALLO ALARMADO: Dispositivo ausente. Acción: Enviar alarmado nuevo + dispositivo de reposición.';
       }
+    } else if (incidentType === 'correa_rota') {
+      tipoInc = 'Correa robada o rota';
+      finalDetectedModel = position.modeloOficial;
+      comments = 'CORREA ROBADA O ROTA: Reloj con correa deteriorada o sustraída. Acción: Enviar correa de reposición.';
     }
 
     const state: PositionAuditState = {
@@ -384,6 +398,7 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
     if (type === 'no_coincide') return 'No coincide';
     if (type === 'robo') return 'Robo';
     if (type === 'fallo_alarmado') return 'Fallo alarmado';
+    if (type === 'correa_rota') return 'Correa robada o rota';
     return '';
   };
 
@@ -678,7 +693,13 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
                 {incidentType && (
                   <span className="text-[10px] font-black text-rose-700 bg-rose-100 px-2.5 py-0.5 rounded-full border border-rose-300 uppercase tracking-tight flex items-center gap-1">
                     <AlertTriangle className="w-3 h-3 text-rose-600" />
-                    {incidentType === 'no_coincide' ? 'No coincide' : incidentType === 'robo' ? 'Robo' : 'Fallo alarmado'}
+                    {incidentType === 'no_coincide'
+                      ? 'No coincide'
+                      : incidentType === 'robo'
+                      ? 'Robo'
+                      : incidentType === 'correa_rota'
+                      ? 'Correa robada o rota'
+                      : 'Fallo alarmado'}
                   </span>
                 )}
               </div>
@@ -710,6 +731,10 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
                         ? `Robo detectado ${previousImei ? `(IMEI previo: ${previousImei})` : ''}`
                         : incidentType === 'fallo_alarmado'
                         ? `Fallo de alarma (${hasDeviceWithAlarmFault ? 'Dispositivo presente' : 'Dispositivo ausente'})`
+                        : incidentType === 'correa_rota'
+                        ? 'Correa robada o rota en reloj'
+                        : isWatch
+                        ? 'No coincide, robo, fallo de alarmado o correa robada/rota'
                         : 'No coincide, robo o fallo de alarmado'}
                     </p>
                   </div>
@@ -739,8 +764,8 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
                     Selecciona el tipo de incidencia:
                   </span>
 
-                  {/* 3 Selector Cards */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  {/* Selector Cards */}
+                  <div className={`grid grid-cols-1 ${isWatch ? 'sm:grid-cols-2' : 'sm:grid-cols-3'} gap-2.5`}>
                     {/* Opción 1: No coincide */}
                     <button
                       type="button"
@@ -797,6 +822,27 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
                         Alarma rota / cable dañado
                       </p>
                     </button>
+
+                    {/* Opción 4 (Exclusiva Relojes / Wearables): Correa robada o rota */}
+                    {isWatch && (
+                      <button
+                        type="button"
+                        onClick={() => setIncidentType('correa_rota')}
+                        className={`p-3 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ${
+                          incidentType === 'correa_rota'
+                            ? 'bg-white border-rose-500 ring-2 ring-rose-300 shadow-xs'
+                            : 'bg-white/80 border-slate-200 hover:bg-white text-slate-700'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-xs font-black text-slate-900">4. Correa robada o rota</span>
+                          {incidentType === 'correa_rota' && <Check className="w-3.5 h-3.5 text-rose-600" />}
+                        </div>
+                        <p className="text-[10px] text-slate-500 leading-tight">
+                          Correa del reloj sustraída, rota o deteriorada
+                        </p>
+                      </button>
+                    )}
                   </div>
 
                   {/* DETALLE SEGÚN OPCIÓN SELECCIONADA */}
@@ -1023,6 +1069,19 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
                           </p>
                         </button>
                       </div>
+                    </div>
+                  )}
+
+                  {/* 4. DETALLE: CORREA ROBADA O ROTA (RELOJES) */}
+                  {incidentType === 'correa_rota' && (
+                    <div className="p-3.5 bg-amber-50 border border-amber-200 rounded-xl space-y-2">
+                      <div className="flex items-center gap-2 text-amber-950 font-black text-xs">
+                        <Watch className="w-4 h-4 text-amber-700 shrink-0" />
+                        <span>Incidencia: Correa robada o rota</span>
+                      </div>
+                      <p className="text-[11px] text-amber-900 leading-snug">
+                        Se registrará que el reloj <strong>{position.modeloOficial}</strong> presenta la correa rota o sustraída para gestionar el envío del recambio.
+                      </p>
                     </div>
                   )}
 
@@ -1306,6 +1365,8 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
                   ? 'Incidencia: Terminal Sustraído (Robo)'
                   : incidentType === 'fallo_alarmado'
                   ? 'Incidencia: Fallo en Sistema de Alarma'
+                  : incidentType === 'correa_rota'
+                  ? 'Incidencia: Correa Robada o Rota'
                   : 'Puesto Validado Correctamente'}
               </h2>
             </div>
@@ -1359,6 +1420,13 @@ export const DeviceIdentifyScreen: React.FC<DeviceIdentifyScreenProps> = ({
                     </span>
                   </div>
                 </>
+              )}
+
+              {incidentType === 'correa_rota' && (
+                <div className="flex justify-between py-1 border-b border-slate-100 bg-amber-50/60 px-2 rounded-lg">
+                  <span className="text-amber-800 font-bold">Incidencia Reloj:</span>
+                  <span className="font-black text-amber-950">Correa robada o rota</span>
+                </div>
               )}
 
               <div className="flex justify-between py-1 border-b border-slate-100">

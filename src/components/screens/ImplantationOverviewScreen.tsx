@@ -186,28 +186,30 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
     const officialBase = getReturnDevicesForStore(store, latestAudit);
     const draft = DbService.getImplantationDraft(store.tiendaId);
     if (draft?.returnStates && Object.keys(draft.returnStates).length > 0) {
-      // Reconciliar con la base oficial para no arrastrar borradores con estados 'Pendiente' obsoletos
       return officialBase.map((official) => {
         const saved = draft.returnStates?.[official.id];
-        // Si el usuario reportó incidencia o editó manualmente el IMEI en una sesión anterior, respetarlo
-        if (
-          saved &&
-          (saved.estadoRetirada === 'Incidencia' ||
-            (saved.imeiMemorizado && saved.imeiMemorizado !== official.imeiMemorizado))
-        ) {
-          return { ...official, ...saved };
+        if (!saved) return official;
+        // Ignorar auto-confirmaciones antiguas ('Auditoría Registrada') para obligar a verificar uno a uno
+        if (saved.confirmadoPor === 'Auditoría Registrada' && saved.estadoRetirada === 'Retirado') {
+          return {
+            ...official,
+            imeiMemorizado: saved.imeiMemorizado || official.imeiMemorizado,
+            estadoRetirada: 'Pendiente',
+            confirmadoPor: undefined
+          };
         }
-        return official;
+        return { ...official, ...saved };
       });
     }
     return officialBase;
   });
 
-  // Estado para desplegar el formulario de discrepancia de IMEI (escanear/editar) por dispositivo
+  // Estado de verificación explícita por dispositivo ('yes' = Sí es correcto, 'no' = No coincide / escanear o manual)
   const [editingImeiDiscrepancy, setEditingImeiDiscrepancy] = useState<Record<string, boolean>>({});
+  const [openReturnIncidentDrawer, setOpenReturnIncidentDrawer] = useState<Record<string, boolean>>({});
 
-  const toggleDiscrepancyMode = (devId: string) => {
-    setEditingImeiDiscrepancy((prev) => ({
+  const toggleReturnIncidentDrawer = (devId: string) => {
+    setOpenReturnIncidentDrawer((prev) => ({
       ...prev,
       [devId]: !prev[devId]
     }));
@@ -253,6 +255,9 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
     if (nextDummy && returnScannerTargetId === id) {
       setReturnScannerTargetId(null);
     }
+    if (nextDummy) {
+      setEditingImeiDiscrepancy((prev) => ({ ...prev, [id]: false }));
+    }
     const updated = returnDevices.map((r) => {
       if (r.id === id) {
         return {
@@ -267,7 +272,20 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
 
   const handleReturnScanSuccess = (scannedCode: string) => {
     if (returnScannerTargetId) {
-      handleUpdateReturnImei(returnScannerTargetId, scannedCode);
+      const targetId = returnScannerTargetId;
+      const updated = returnDevices.map((r) => {
+        if (r.id === targetId) {
+          return {
+            ...r,
+            imeiMemorizado: scannedCode.trim(),
+            estadoRetirada: r.estadoRetirada === 'Incidencia' ? ('Incidencia' as const) : ('Retirado' as const),
+            confirmadoPor: currentUser.nombre,
+            fechaHora: new Date().toLocaleString('es-ES')
+          };
+        }
+        return r;
+      });
+      saveReturnDevicesDraft(updated);
       setReturnScannerTargetId(null);
     }
   };
@@ -278,6 +296,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
         return {
           ...r,
           estadoRetirada: 'Retirado' as const,
+          motivoIncidencia: undefined,
           confirmadoPor: currentUser.nombre,
           fechaHora: new Date().toLocaleString('es-ES')
         };
@@ -290,6 +309,14 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
   const handleIncidentReturn = (id: string, motivo: string) => {
     const updated = returnDevices.map((r) => {
       if (r.id === id) {
+        const isSameMotivo = r.estadoRetirada === 'Incidencia' && r.motivoIncidencia === motivo;
+        if (isSameMotivo) {
+          return {
+            ...r,
+            estadoRetirada: 'Pendiente' as const,
+            motivoIncidencia: undefined
+          };
+        }
         return {
           ...r,
           estadoRetirada: 'Incidencia' as const,
@@ -301,23 +328,6 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
       return r;
     });
     saveReturnDevicesDraft(updated);
-  };
-
-  const handleQuickReturnAll = () => {
-    if (
-      window.confirm(
-        `¿Confirmas que has retirado de la mesa los ${totalReturnsCount} dispositivos a devolver y los tienes en sus respectivas cajas?`
-      )
-    ) {
-      const updated = returnDevices.map((r) => ({
-        ...r,
-        estadoRetirada:
-          r.estadoRetirada === 'Incidencia' ? ('Incidencia' as const) : ('Retirado' as const),
-        confirmadoPor: currentUser.nombre,
-        fechaHora: new Date().toLocaleString('es-ES')
-      }));
-      saveReturnDevicesDraft(updated);
-    }
   };
 
   // Elementos de Parte Visual (Lonas, Cartelería y Merchandising)
@@ -1374,7 +1384,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
       {subModule === 'return_devices' && (
         <div className="flex-1 bg-slate-100/70 p-4 sm:p-6 overflow-y-auto">
           <div className="max-w-5xl mx-auto space-y-5">
-            {/* Banner superior con resumen y acción rápida */}
+            {/* Banner superior con resumen (sin botón de marcado masivo para obligar verificación individual) */}
             <div className="bg-gradient-to-r from-[#072431] via-[#104a60] to-[#0a3343] text-white p-5 sm:p-6 rounded-3xl shadow-xl border border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="space-y-1.5">
                 <div className="flex items-center gap-2">
@@ -1386,22 +1396,11 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                   </span>
                 </div>
                 <h2 className="text-lg sm:text-xl font-black tracking-tight text-white">
-                  Dispositivos a Retirar y Devolver ({completedReturnsCount} de {totalReturnsCount} procesados)
+                  Dispositivos a Retirar y Devolver ({completedReturnsCount} de {totalReturnsCount} verificados)
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-200/90 font-medium max-w-2xl">
-                  Estos {totalReturnsCount} modelos salen del planograma para dar paso al nuevo Xiaomi 18 Series. Los <strong>IMEIs y números de serie auditados se marcan automáticamente</strong>. Solo se requiere escanear o modificar en caso de que el IMEI físico en tienda no coincida con el registrado.
+                <p className="text-xs sm:text-sm text-slate-200/90 font-medium max-w-3xl">
+                  Verifica uno a uno el <strong>IMEI y modelo</strong> de cada dispositivo que retiras de la mesa. Indica si <strong>Sí es correcto</strong> para avanzar o <strong>No coincide</strong> para volver a escanearlo con la cámara o introducirlo manualmente.
                 </p>
-              </div>
-
-              <div className="flex items-center gap-2 shrink-0">
-                <button
-                  type="button"
-                  onClick={handleQuickReturnAll}
-                  className="px-4 py-2.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm shadow-lg flex items-center gap-2 transition cursor-pointer"
-                >
-                  <PackageCheck className="w-4 h-4" />
-                  <span>Marcar todos como retirados</span>
-                </button>
               </div>
             </div>
 
@@ -1411,6 +1410,17 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                 const isRetirado = dev.estadoRetirada === 'Retirado';
                 const isIncidencia = dev.estadoRetirada === 'Incidencia';
                 const isEditingDiscrepancy = Boolean(editingImeiDiscrepancy[dev.id]);
+                const isIncidentDrawerOpen = Boolean(openReturnIncidentDrawer[dev.id]);
+                const isWatchDevice =
+                  dev.categoria === 'Wearable' || /watch|reloj|band/i.test(dev.modeloSaliente);
+
+                const returnIncidentOptions: string[] = [
+                  'Terminal ausente / Posible robo',
+                  'Terminal bloqueado / Sin encendido (Imei ilegible)',
+                  'Daño físico estético o funcional',
+                  'Alarma dañada',
+                  ...(isWatchDevice ? ['Correa robada o rota'] : [])
+                ];
 
                 return (
                   <div
@@ -1456,12 +1466,17 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                           </div>
                           {isRetirado && (
                             <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-emerald-600 text-white flex items-center gap-1 shadow-xs">
-                              <Check className="w-3 h-3" /> Retirado
+                              <Check className="w-3 h-3" /> Verificado
                             </span>
                           )}
                           {isIncidencia && (
                             <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-amber-600 text-white flex items-center gap-1 shadow-xs">
                               <AlertTriangle className="w-3 h-3" /> Incidencia
+                            </span>
+                          )}
+                          {!isRetirado && !isIncidencia && (
+                            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-slate-200 text-slate-700">
+                              Pendiente verificar
                             </span>
                           )}
                         </div>
@@ -1477,139 +1492,222 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                         </p>
                       </div>
 
-                      {/* Bloque de IMEI / Serial del Dispositivo a Retirar */}
+                      {/* Bloque de Verificación de IMEI / Serial del Dispositivo a Retirar */}
                       {!dev.esDummy ? (
-                        !isEditingDiscrepancy ? (
-                          <div className="p-3 sm:p-3.5 rounded-2xl bg-white border border-emerald-200/90 shadow-2xs space-y-2">
-                            <div className="flex items-center justify-between">
-                              <span className="text-[10px] font-black uppercase tracking-wider text-emerald-800 flex items-center gap-1.5">
-                                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                                IMEI Auditado Registrado
-                              </span>
+                        <div className="p-3.5 rounded-2xl bg-white border border-slate-200 shadow-2xs space-y-3">
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="text-[10px] font-black uppercase tracking-wider text-slate-600 flex items-center gap-1.5">
+                              <ShieldCheck className="w-3.5 h-3.5 text-[#009ca6] shrink-0" />
+                              IMEI registrado a verificar
+                            </span>
+                            {isRetirado && !isEditingDiscrepancy && (
                               <span className="text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
-                                Auto-Verificado
+                                IMEI Confirmado ✓
                               </span>
-                            </div>
+                            )}
+                          </div>
 
-                            <div className="flex items-center justify-between gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                              <span className="font-mono text-xs sm:text-sm font-black text-slate-800 tracking-wide select-all">
-                                {dev.imeiMemorizado || 'Sin IMEI registrado'}
-                              </span>
+                          <div className="flex items-center justify-between gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                            <span className="font-mono text-xs sm:text-sm font-black text-slate-800 tracking-wide select-all">
+                              {dev.imeiMemorizado || 'Sin IMEI previo registrado'}
+                            </span>
+                          </div>
+
+                          {/* Pregunta obligatoria: ¿Es correcto el dispositivo e IMEI que estás eliminando? */}
+                          <div className="space-y-2 pt-1">
+                            <span className="block text-[11px] font-black text-slate-800">
+                              ¿Es correcto el dispositivo e IMEI que estás retirando?
+                            </span>
+                            <div className="grid grid-cols-2 gap-2">
                               <button
                                 type="button"
-                                onClick={() => toggleDiscrepancyMode(dev.id)}
-                                className="px-2.5 py-1 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 text-[10px] font-bold flex items-center gap-1 shadow-2xs transition cursor-pointer shrink-0"
-                                title="Si el IMEI físico no coincide, pulsa para escanear o escribirlo"
+                                onClick={() => {
+                                  setEditingImeiDiscrepancy((prev) => ({ ...prev, [dev.id]: false }));
+                                  handleConfirmReturn(dev.id);
+                                }}
+                                className={`py-2.5 px-3 rounded-xl font-black text-xs flex items-center justify-center gap-1.5 border transition cursor-pointer ${
+                                  isRetirado && !isEditingDiscrepancy
+                                    ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm'
+                                    : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border-emerald-300'
+                                }`}
                               >
-                                <Camera className="w-3 h-3 text-[#009ca6]" />
-                                <span>¿No coincide? Escanear</span>
+                                <Check className="w-4 h-4 shrink-0" />
+                                <span>Sí, es correcto</span>
+                              </button>
+
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setEditingImeiDiscrepancy((prev) => ({ ...prev, [dev.id]: true }));
+                                }}
+                                className={`py-2.5 px-3 rounded-xl font-black text-xs flex items-center justify-center gap-1.5 border transition cursor-pointer ${
+                                  isEditingDiscrepancy
+                                    ? 'bg-amber-600 text-white border-amber-600 shadow-sm'
+                                    : 'bg-amber-50 hover:bg-amber-100 text-amber-900 border-amber-300'
+                                }`}
+                              >
+                                <Camera className="w-3.5 h-3.5 shrink-0" />
+                                <span>No, escanear / manual</span>
                               </button>
                             </div>
                           </div>
-                        ) : (
-                          <div className="p-3.5 rounded-2xl bg-amber-50/80 border border-amber-300 space-y-2.5 animate-fadeIn">
-                            <div className="flex items-center justify-between">
-                              <label className="text-[11px] font-bold uppercase tracking-wider text-amber-900 flex items-center gap-1.5">
-                                <ShieldCheck className="w-3.5 h-3.5 text-amber-700" />
-                                <span>Modificar IMEI / Escanear Discrepancia</span>
-                              </label>
-                              <button
-                                type="button"
-                                onClick={() => toggleDiscrepancyMode(dev.id)}
-                                className="text-[10px] font-bold text-slate-500 hover:text-slate-800 underline cursor-pointer"
-                              >
-                                Ocultar
-                              </button>
-                            </div>
 
-                            <div className="flex items-center gap-2">
-                              <div className="relative flex-1">
-                                <input
-                                  type="text"
-                                  value={dev.imeiMemorizado || ''}
-                                  onChange={(e) => handleUpdateReturnImei(dev.id, e.target.value)}
-                                  placeholder="Introduce o escanea IMEI físico a retirar..."
-                                  className="w-full bg-white text-slate-900 font-mono text-xs sm:text-sm font-bold px-3 py-2 rounded-xl border border-amber-400 focus:outline-none focus:border-[#009ca6] focus:ring-2 focus:ring-[#009ca6]/20 transition"
-                                  autoFocus
-                                />
-                                {dev.imeiMemorizado && (
-                                  <button
-                                    type="button"
-                                    onClick={() => handleUpdateReturnImei(dev.id, '')}
-                                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
-                                    title="Limpiar IMEI"
-                                  >
-                                    <RotateCcw className="w-3 h-3" />
-                                  </button>
-                                )}
+                          {/* Si elige "No", desplegar escáner por cámara + entrada manual */}
+                          {isEditingDiscrepancy && (
+                            <div className="p-3 rounded-2xl bg-amber-50/90 border border-amber-300 space-y-2.5 animate-fadeIn">
+                              <div className="flex items-center justify-between">
+                                <span className="text-[11px] font-black uppercase tracking-wider text-amber-950 flex items-center gap-1.5">
+                                  <Camera className="w-3.5 h-3.5 text-amber-700" />
+                                  <span>Escanear con cámara o escribir manualmente</span>
+                                </span>
                               </div>
 
                               <button
                                 type="button"
                                 onClick={() => setReturnScannerTargetId(dev.id)}
-                                className="h-9 px-3 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:opacity-90 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition shrink-0 cursor-pointer"
-                                title="Escanear IMEI / S/N con cámara (Código de barras u OCR)"
+                                className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#009ca6] to-[#00b4bf] hover:opacity-95 text-white font-black text-xs flex items-center justify-center gap-2 shadow-sm transition cursor-pointer"
                               >
-                                <Camera className="w-3.5 h-3.5" />
-                                <span className="hidden sm:inline">Escanear</span>
+                                <Camera className="w-4 h-4" />
+                                <span>Escanear IMEI / S/N con la Cámara</span>
                               </button>
+
+                              <div className="space-y-1.5">
+                                <label className="block text-[10px] font-bold text-amber-900">
+                                  ¿No funciona con la cámara? Introdúcelo manualmente:
+                                </label>
+                                <div className="flex items-center gap-2">
+                                  <div className="relative flex-1">
+                                    <input
+                                      type="text"
+                                      value={dev.imeiMemorizado || ''}
+                                      onChange={(e) => handleUpdateReturnImei(dev.id, e.target.value)}
+                                      placeholder="Escribe el IMEI o N.º de Serie..."
+                                      className="w-full bg-white text-slate-900 font-mono text-xs sm:text-sm font-bold px-3 py-2 rounded-xl border border-amber-400 focus:outline-none focus:border-[#009ca6] focus:ring-2 focus:ring-[#009ca6]/20 transition"
+                                    />
+                                    {dev.imeiMemorizado && (
+                                      <button
+                                        type="button"
+                                        onClick={() => handleUpdateReturnImei(dev.id, '')}
+                                        className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
+                                        title="Limpiar IMEI"
+                                      >
+                                        <RotateCcw className="w-3 h-3" />
+                                      </button>
+                                    )}
+                                  </div>
+
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      if (!dev.imeiMemorizado || !dev.imeiMemorizado.trim()) {
+                                        alert('Por favor escanea o escribe el IMEI antes de confirmar, o marca la incidencia correspondiente.');
+                                        return;
+                                      }
+                                      setEditingImeiDiscrepancy((prev) => ({ ...prev, [dev.id]: false }));
+                                      handleConfirmReturn(dev.id);
+                                    }}
+                                    className="h-9 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs flex items-center gap-1 shadow-xs transition shrink-0 cursor-pointer"
+                                  >
+                                    <Check className="w-3.5 h-3.5" />
+                                    <span>Confirmar</span>
+                                  </button>
+                                </div>
+                              </div>
                             </div>
-                            <p className="text-[10px] text-amber-800 font-medium">
-                              Introduce el IMEI físico si no coincide con el auditado originalmente.
-                            </p>
-                          </div>
-                        )
+                          )}
+                        </div>
                       ) : (
-                        <div className="p-3 rounded-2xl bg-orange-50/80 border border-orange-200 text-orange-950 text-xs font-bold flex items-center gap-2 animate-fadeIn">
-                          <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
-                          <span>Maqueta oficial verificada (exenta de IMEI).</span>
+                        <div className="p-3.5 rounded-2xl bg-orange-50/80 border border-orange-200 space-y-2.5 animate-fadeIn">
+                          <div className="text-orange-950 text-xs font-bold flex items-center gap-2">
+                            <CheckCircle2 className="w-4 h-4 text-orange-600 shrink-0" />
+                            <span>Maqueta seleccionada (exenta de IMEI).</span>
+                          </div>
+                          <div className="flex items-center justify-between gap-2 pt-1">
+                            <span className="text-[11px] font-black text-orange-950">
+                              ¿Confirmas la retirada de esta maqueta?
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => handleConfirmReturn(dev.id)}
+                              className={`py-2 px-3 rounded-xl font-black text-xs flex items-center gap-1.5 transition cursor-pointer ${
+                                isRetirado
+                                  ? 'bg-emerald-600 text-white shadow-xs'
+                                  : 'bg-emerald-500 hover:bg-emerald-600 text-white shadow-sm'
+                              }`}
+                            >
+                              <Check className="w-3.5 h-3.5" />
+                              <span>{isRetirado ? 'Maqueta Verificada ✓' : 'Sí, confirmar retirada'}</span>
+                            </button>
+                          </div>
                         </div>
                       )}
 
                       {isIncidencia && dev.motivoIncidencia && (
-                        <div className="p-2.5 rounded-xl bg-amber-100/80 border border-amber-300 text-amber-900 text-xs font-bold flex items-center gap-2">
-                          <AlertTriangle className="w-4 h-4 shrink-0 text-amber-700" />
-                          <span>Incidencia: {dev.motivoIncidencia}</span>
+                        <div className="p-2.5 rounded-xl bg-amber-100/90 border border-amber-300 text-amber-950 text-xs font-bold flex items-center justify-between gap-2">
+                          <div className="flex items-center gap-2">
+                            <AlertTriangle className="w-4 h-4 shrink-0 text-amber-700" />
+                            <span>Incidencia: {dev.motivoIncidencia}</span>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => handleIncidentReturn(dev.id, dev.motivoIncidencia || '')}
+                            className="text-[10px] font-black text-amber-800 hover:text-amber-950 underline shrink-0 cursor-pointer"
+                          >
+                            Quitar
+                          </button>
                         </div>
                       )}
                     </div>
 
-                    {/* Botones de acción */}
-                    <div className="pt-2 border-t border-slate-100 flex items-center gap-2">
+                    {/* Selector de incidencias predefinidas (disponible tanto en opción Sí como en No) */}
+                    <div className="pt-2 border-t border-slate-100 space-y-2">
                       <button
                         type="button"
-                        onClick={() => handleConfirmReturn(dev.id)}
-                        className={`flex-1 py-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition cursor-pointer ${
-                          isRetirado
-                            ? 'bg-emerald-600 text-white shadow-xs hover:bg-emerald-700'
-                            : 'bg-emerald-500 hover:bg-emerald-600 text-white shadow-md'
+                        onClick={() => toggleReturnIncidentDrawer(dev.id)}
+                        className={`w-full py-2 px-3 rounded-xl font-bold text-xs flex items-center justify-between transition cursor-pointer ${
+                          isIncidencia
+                            ? 'bg-amber-600 text-white shadow-xs'
+                            : 'bg-amber-100/80 hover:bg-amber-200/80 text-amber-900 border border-amber-200'
                         }`}
                       >
-                        <Check className="w-4 h-4" />
-                        <span>{isRetirado ? 'Retirado (Auditado ✓)' : 'Confirmar Retirado'}</span>
+                        <span className="flex items-center gap-1.5">
+                          <AlertTriangle className="w-3.5 h-3.5" />
+                          <span>
+                            {isIncidencia
+                              ? `Incidencia marcada: ${dev.motivoIncidencia}`
+                              : 'Marcar incidencia al retirar'}
+                          </span>
+                        </span>
+                        <span className="text-[10px] font-black uppercase">
+                          {isIncidentDrawerOpen ? 'Ocultar ▲' : 'Seleccionar ▼'}
+                        </span>
                       </button>
 
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const motivo = window.prompt(
-                            'Indica el motivo de incidencia al retirar el terminal (ej. Terminal no encontrado, Roto, etc.):',
-                            'Terminal no encontrado en tienda'
-                          );
-                          if (motivo) {
-                            handleIncidentReturn(dev.id, motivo);
-                          }
-                        }}
-                        className={`py-2.5 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-1 transition cursor-pointer ${
-                          isIncidencia
-                            ? 'bg-amber-600 text-white'
-                            : 'bg-amber-100 hover:bg-amber-200 text-amber-800'
-                        }`}
-                        title="Reportar incidencia con este terminal"
-                      >
-                        <AlertTriangle className="w-4 h-4" />
-                        <span className="hidden sm:inline">Incidencia</span>
-                      </button>
+                      {isIncidentDrawerOpen && (
+                        <div className="p-2.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1.5 animate-fadeIn">
+                          <span className="block text-[10px] font-black uppercase tracking-wider text-slate-500 px-1">
+                            Selecciona la incidencia correspondiente:
+                          </span>
+                          {returnIncidentOptions.map((motivo) => {
+                            const selected = isIncidencia && dev.motivoIncidencia === motivo;
+                            return (
+                              <button
+                                key={motivo}
+                                type="button"
+                                onClick={() => handleIncidentReturn(dev.id, motivo)}
+                                className={`w-full text-left px-3 py-2 rounded-xl text-xs font-bold flex items-center justify-between transition cursor-pointer ${
+                                  selected
+                                    ? 'bg-amber-600 text-white shadow-xs'
+                                    : 'bg-white hover:bg-amber-50 text-slate-800 border border-slate-200'
+                                }`}
+                              >
+                                <span>{motivo}</span>
+                                {selected && <Check className="w-3.5 h-3.5 text-white shrink-0" />}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      )}
                     </div>
                   </div>
                 );
