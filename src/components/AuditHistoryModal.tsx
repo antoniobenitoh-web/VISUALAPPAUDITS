@@ -15,7 +15,7 @@ export const AuditHistoryModal: React.FC<AuditHistoryModalProps> = ({ store, isO
   if (!isOpen) return null;
 
   const history = DbService.getHistory().filter((h) => h.tiendaId === store.tiendaId);
-  const currentUser = AuthService.getCurrentUser();
+  const currentUser = AuthService.getActiveUser();
   const normalizedRole = AuthService.normalizeRole(currentUser?.rol);
   const canDownloadExcel = normalizedRole === 'GPV' || normalizedRole === 'AM';
 
