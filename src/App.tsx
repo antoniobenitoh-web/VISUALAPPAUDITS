@@ -59,6 +59,9 @@ export const App: React.FC = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
 
   useEffect(() => {
+    // Limpiar cualquier borrador antiguo almacenado en caché persistente
+    DbService.purgeLegacyLocalStorageDrafts();
+
     const handleOnline = () => setIsOnline(true);
     const handleOffline = () => setIsOnline(false);
     window.addEventListener('online', handleOnline);
@@ -85,20 +88,14 @@ export const App: React.FC = () => {
 
   const loadImplantationStateForStore = (store: StoreCenter, openSummary = false) => {
     setSelectedStore(store);
-    const impDraft = DbService.getImplantationDraft(store.tiendaId);
+    // Descartar cualquier borrador previo no finalizado al abrir la tienda
+    DbService.clearImplantationDraft(store.tiendaId);
     const latestRec = DbService.getLatestImplantationForStore(store.tiendaId);
 
-    let sMap: Record<string, PositionSwapState> = {};
-    let vMap: Record<string, VisualElementAuditState> = {};
+    const sMap: Record<string, PositionSwapState> = {};
+    const vMap: Record<string, VisualElementAuditState> = {};
 
-    if (
-      impDraft &&
-      (Object.keys(impDraft.swapStates || {}).length > 0 ||
-        Object.keys(impDraft.visualStates || {}).length > 0)
-    ) {
-      sMap = { ...impDraft.swapStates };
-      vMap = { ...impDraft.visualStates };
-    } else if (latestRec) {
+    if (latestRec) {
       latestRec.swapPositions.forEach(s => { sMap[s.posicionId] = s; });
       latestRec.visualElements.forEach(v => { vMap[v.elementoId] = v; });
     }
@@ -133,23 +130,19 @@ export const App: React.FC = () => {
 
   const handleSelectStore = (store: StoreCenter) => {
     setSelectedStore(store);
+    // Descartar cualquier borrador previo no finalizado: solo se conservan auditorías completadas
+    DbService.clearDraft(store.tiendaId);
+    DbService.clearAuditPosmDraft(store.tiendaId);
+
     const map: Record<string, PositionAuditState> = {};
 
-    // 1. Cargar como base el último reporte vigente guardado en la app
+    // Cargar únicamente el último reporte vigente completado y guardado en la app
     const latestAudit = DbService.getLatestAuditForStore(store.tiendaId);
     if (latestAudit && latestAudit.positions && latestAudit.positions.length > 0) {
       latestAudit.positions.forEach(p => {
         if (p.estadoPosicion !== 'Pendiente' || (p.modeloDetectado && p.modeloDetectado !== '-') || (p.imeiSerial && p.imeiSerial !== '-')) {
           map[p.posicionId] = p;
         }
-      });
-    }
-
-    // 2. Superponer las modificaciones del borrador temporal en curso
-    const draft = DbService.getDraft(store.tiendaId);
-    if (draft && draft.length > 0) {
-      draft.forEach(p => {
-        map[p.posicionId] = p;
       });
     }
 
@@ -248,7 +241,14 @@ export const App: React.FC = () => {
               src="./images/salesland_logo.png"
               alt="Salesland"
               className="h-6 sm:h-7 w-auto object-contain cursor-pointer"
-              onClick={() => setCurrentStep('welcome')}
+              onClick={() => {
+                if (selectedStore) {
+                  DbService.clearDraft(selectedStore.tiendaId);
+                  DbService.clearAuditPosmDraft(selectedStore.tiendaId);
+                  DbService.clearImplantationDraft(selectedStore.tiendaId);
+                }
+                setCurrentStep('welcome');
+              }}
             />
             <div className="h-4 w-px bg-white/20 hidden sm:block" />
             <div className="flex items-center gap-1.5 bg-black/20 px-2 py-1 rounded-xl border border-white/10">
@@ -336,7 +336,13 @@ export const App: React.FC = () => {
               }}
               onFinishAudit={() => setCurrentStep('audit_summary')}
               onResetAudit={handleResetAudit}
-              onBack={() => setCurrentStep('store_select')}
+              onBack={() => {
+                // Si el usuario sale de la auditoría sin finalizarla, descartar los cambios en borrador
+                DbService.clearDraft(selectedStore.tiendaId);
+                DbService.clearAuditPosmDraft(selectedStore.tiendaId);
+                setAuditStates({});
+                setCurrentStep('store_select');
+              }}
             />
           )}
 
@@ -394,6 +400,9 @@ export const App: React.FC = () => {
                 setSelectedStore(null);
               }}
               onBack={() => {
+                DbService.clearImplantationDraft(selectedStore.tiendaId);
+                setSwapStates({});
+                setVisualStates({});
                 setOpenImplantationSummaryOnMount(false);
                 setCurrentStep('store_select');
               }}

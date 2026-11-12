@@ -145,9 +145,31 @@ export class DbService {
     });
   }
 
-  // Borrador actual de una tienda
+  // Limpia cualquier borrador antiguo que haya quedado en localStorage de sesiones previas
+  static purgeLegacyLocalStorageDrafts() {
+    try {
+      const keysToRemove: string[] = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (
+          k &&
+          (k.startsWith(`${DRAFTS_KEY}_`) ||
+            k.startsWith('AUDIT_POSM_DRAFT_') ||
+            k.startsWith(`${IMPLANTATION_DRAFTS_KEY}_`))
+        ) {
+          keysToRemove.push(k);
+        }
+      }
+      keysToRemove.forEach((k) => localStorage.removeItem(k));
+    } catch {
+      // ignore storage errors
+    }
+  }
+
+  // Borrador actual de una tienda (en sessionStorage: se mantiene al cambiar de pestaña, pero se borra al cerrar la app/pestaña por completo)
   static getDraft(tiendaId: string): PositionAuditState[] | null {
-    const raw = localStorage.getItem(`${DRAFTS_KEY}_${tiendaId}`);
+    this.purgeLegacyLocalStorageDrafts();
+    const raw = sessionStorage.getItem(`${DRAFTS_KEY}_${tiendaId}`);
     if (!raw) return null;
     try {
       const parsed = JSON.parse(raw);
@@ -160,7 +182,7 @@ export class DbService {
           p.modeloOficial?.toLowerCase().includes('17 ultra black')
       );
       if (hasOldP1) {
-        localStorage.removeItem(`${DRAFTS_KEY}_${tiendaId}`);
+        sessionStorage.removeItem(`${DRAFTS_KEY}_${tiendaId}`);
         return null;
       }
 
@@ -171,16 +193,17 @@ export class DbService {
   }
 
   static saveDraft(tiendaId: string, positions: PositionAuditState[]) {
-    localStorage.setItem(`${DRAFTS_KEY}_${tiendaId}`, JSON.stringify(positions));
+    sessionStorage.setItem(`${DRAFTS_KEY}_${tiendaId}`, JSON.stringify(positions));
   }
 
   static clearDraft(tiendaId: string) {
+    sessionStorage.removeItem(`${DRAFTS_KEY}_${tiendaId}`);
     localStorage.removeItem(`${DRAFTS_KEY}_${tiendaId}`);
   }
 
-  // Borrador de POSM en Auditoría Regular
+  // Borrador de POSM en Auditoría Regular (en sessionStorage: solo dura mientras la pestaña/sesión esté abierta)
   static getAuditPosmDraft(tiendaId: string): Record<string, VisualElementAuditState> | null {
-    const raw = localStorage.getItem(`AUDIT_POSM_DRAFT_${tiendaId}`);
+    const raw = sessionStorage.getItem(`AUDIT_POSM_DRAFT_${tiendaId}`);
     if (!raw) return null;
     try {
       return JSON.parse(raw);
@@ -190,10 +213,11 @@ export class DbService {
   }
 
   static saveAuditPosmDraft(tiendaId: string, posmStates: Record<string, VisualElementAuditState>) {
-    localStorage.setItem(`AUDIT_POSM_DRAFT_${tiendaId}`, JSON.stringify(posmStates));
+    sessionStorage.setItem(`AUDIT_POSM_DRAFT_${tiendaId}`, JSON.stringify(posmStates));
   }
 
   static clearAuditPosmDraft(tiendaId: string) {
+    sessionStorage.removeItem(`AUDIT_POSM_DRAFT_${tiendaId}`);
     localStorage.removeItem(`AUDIT_POSM_DRAFT_${tiendaId}`);
   }
 
@@ -423,7 +447,8 @@ export class DbService {
   // =========================================================================
 
   static getImplantationDraft(tiendaId: string): ImplantationDraft | null {
-    const raw = localStorage.getItem(`${IMPLANTATION_DRAFTS_KEY}_${tiendaId}`);
+    this.purgeLegacyLocalStorageDrafts();
+    const raw = sessionStorage.getItem(`${IMPLANTATION_DRAFTS_KEY}_${tiendaId}`);
     if (!raw) return null;
     try {
       return JSON.parse(raw);
@@ -433,10 +458,11 @@ export class DbService {
   }
 
   static saveImplantationDraft(draft: ImplantationDraft) {
-    localStorage.setItem(`${IMPLANTATION_DRAFTS_KEY}_${draft.tiendaId}`, JSON.stringify(draft));
+    sessionStorage.setItem(`${IMPLANTATION_DRAFTS_KEY}_${draft.tiendaId}`, JSON.stringify(draft));
   }
 
   static clearImplantationDraft(tiendaId: string) {
+    sessionStorage.removeItem(`${IMPLANTATION_DRAFTS_KEY}_${tiendaId}`);
     localStorage.removeItem(`${IMPLANTATION_DRAFTS_KEY}_${tiendaId}`);
   }
 
