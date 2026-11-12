@@ -3,6 +3,7 @@ import { StoreCenter, PositionAuditState, UserProfile, PlanogramPosition, AuditR
 import { ExcelService } from '../../services/excelService';
 import { DbService } from '../../services/dbService';
 import { SheetsService, SyncAuditResult } from '../../services/sheetsService';
+import { AuthService } from '../../services/authService';
 import { getPositionsForSpace } from '../../data/defaultData';
 import { getStorePosmConfig } from '../../data/storePosmData';
 import { SaleslandLogo, XiaomiLogo } from '../SaleslandBrandLogos';
@@ -55,6 +56,9 @@ export const AuditSummaryScreen: React.FC<AuditSummaryScreenProps> = ({
   const [isExporting, setIsExporting] = useState(false);
   const [syncResult, setSyncResult] = useState<SyncAuditResult | null>(null);
   const [syncStatusMsg, setSyncStatusMsg] = useState<string>('');
+
+  const normalizedRole = AuthService.normalizeRole(currentUser?.rol);
+  const canDownloadExcel = normalizedRole === 'GPV' || normalizedRole === 'AM';
 
   const availableSpaces = useMemo(() => {
     return store.availableSpaces && store.availableSpaces.length > 0
@@ -195,8 +199,9 @@ export const AuditSummaryScreen: React.FC<AuditSummaryScreenProps> = ({
     };
   };
 
-  // 1. Descarga directa de Excel al dispositivo
+  // 1. Descarga directa de Excel al dispositivo (Exclusivo GPV y AM)
   const handleDownloadExcel = async () => {
+    if (!canDownloadExcel) return;
     setIsExporting(true);
     try {
       const record = buildAuditRecord();
@@ -208,18 +213,17 @@ export const AuditSummaryScreen: React.FC<AuditSummaryScreenProps> = ({
     }
   };
 
-  // 2. Finalizar, generar Excel, subir fotos y Excel a Google Drive, sincronizar Google Sheets
+  // 2. Finalizar, generar Excel en segundo plano, subir fotos y Excel a Google Drive, sincronizar Google Sheets
   const handleFinalizeAndSyncDrive = async () => {
     setIsExporting(true);
-    setSyncStatusMsg('Generando Excel oficial corporativo...');
+    setSyncStatusMsg('Guardando auditoría...');
     try {
       const record = buildAuditRecord();
 
-      // Generar Excel en memoria y disparar descarga directa al navegador
+      // Generar Excel en memoria para sincronizar con Google Drive (sin forzar descarga en el navegador)
       const { base64: excelBase64, filename: excelFilename } = await ExcelService.generateAuditExcelBase64(record);
-      await ExcelService.exportAuditReport(record);
 
-      setSyncStatusMsg('Sincronizando con Google Drive y Google Sheets...');
+      setSyncStatusMsg('Sincronizando y guardando...');
       const driveFolderId = DbService.getGoogleDriveFolderId(); // '1RNmY0KnIqtOV6zU0mu080bJKAFFEhRyD'
       const result = await SheetsService.syncAuditToSheets(record, {
         excelBase64,
@@ -596,7 +600,7 @@ export const AuditSummaryScreen: React.FC<AuditSummaryScreenProps> = ({
               </div>
             )}
 
-            {/* Botones de Finalización y Almacenamiento en Google Drive */}
+            {/* Botones de Finalización */}
             <div className="pt-2 space-y-2.5">
               <button
                 type="button"
@@ -607,25 +611,27 @@ export const AuditSummaryScreen: React.FC<AuditSummaryScreenProps> = ({
                 {isExporting ? (
                   <>
                     <Loader2 className="w-5 h-5 animate-spin" />
-                    <span>{syncStatusMsg || 'Sincronizando con Google Drive...'}</span>
+                    <span>{syncStatusMsg || 'Guardando...'}</span>
                   </>
                 ) : (
                   <>
-                    <FolderTree className="w-5 h-5 text-teal-300" />
-                    <span>Finalizar y Guardar en Google Drive (Excel + Fotos)</span>
+                    <CheckCircle2 className="w-5 h-5 text-teal-300" />
+                    <span>Finalizar y guardar</span>
                   </>
                 )}
               </button>
 
-              <button
-                type="button"
-                onClick={handleDownloadExcel}
-                disabled={isExporting}
-                className="w-full bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 font-bold py-3 px-4 rounded-2xl transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm"
-              >
-                <FileSpreadsheet className="w-4 h-4 text-emerald-600" />
-                <span>Descargar copia de archivo Excel (.xlsx)</span>
-              </button>
+              {canDownloadExcel && (
+                <button
+                  type="button"
+                  onClick={handleDownloadExcel}
+                  disabled={isExporting}
+                  className="w-full bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 font-bold py-3 px-4 rounded-2xl transition flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-sm"
+                >
+                  <FileSpreadsheet className="w-4 h-4 text-emerald-600" />
+                  <span>Descargar copia de archivo Excel (.xlsx)</span>
+                </button>
+              )}
             </div>
 
           </div>
@@ -817,15 +823,17 @@ export const AuditSummaryScreen: React.FC<AuditSummaryScreenProps> = ({
                 <span>Finalizar y Volver a Tiendas</span>
               </button>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                <button
-                  type="button"
-                  onClick={handleDownloadExcel}
-                  className="w-full bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 font-bold py-3 px-3 rounded-xl transition flex items-center justify-center gap-2 cursor-pointer text-xs"
-                >
-                  <FileSpreadsheet className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span>Descargar Copia Excel (.xlsx)</span>
-                </button>
+              <div className={`grid grid-cols-1 ${canDownloadExcel ? 'sm:grid-cols-2' : ''} gap-2`}>
+                {canDownloadExcel && (
+                  <button
+                    type="button"
+                    onClick={handleDownloadExcel}
+                    className="w-full bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 font-bold py-3 px-3 rounded-xl transition flex items-center justify-center gap-2 cursor-pointer text-xs"
+                  >
+                    <FileSpreadsheet className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>Descargar Copia Excel (.xlsx)</span>
+                  </button>
+                )}
 
                 <button
                   type="button"

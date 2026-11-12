@@ -75,6 +75,9 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
   const [testingWebhook, setTestingWebhook] = useState(false);
   const [testWebhookResult, setTestWebhookResult] = useState<{ ok: boolean; message: string } | null>(null);
 
+  const normalizedRole = AuthService.normalizeRole(currentUser?.rol);
+  const canAccessReturnsSheet = normalizedRole === 'GPV' || normalizedRole === 'AM';
+
   // Estado de la foto obligatoria de toda la mesa completa (vista alzada)
   const [tablePhotoUrl, setTablePhotoUrl] = useState<string | null>(null);
   const [tablePhotoError, setTablePhotoError] = useState<string | null>(null);
@@ -1031,13 +1034,19 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
                   </span>
                 </div>
 
-                <p className="text-xs text-slate-200 leading-relaxed">
-                  Se ha generado y enviado el reporte fila por fila al Google Sheets oficial de devoluciones (ID:{' '}
-                  <code className="text-teal-300 font-mono text-[11px] bg-black/30 px-1.5 py-0.5 rounded">
-                    1GrtUs9aKfUhGmb1-HlfDAXaAwtnr4OPO0Ifpp2g7Cl8
-                  </code>
-                  ) sin sobreescribir ningún registro previo.
-                </p>
+                {canAccessReturnsSheet ? (
+                  <p className="text-xs text-slate-200 leading-relaxed">
+                    Se ha generado y enviado el reporte fila por fila al Google Sheets oficial de devoluciones (ID:{' '}
+                    <code className="text-teal-300 font-mono text-[11px] bg-black/30 px-1.5 py-0.5 rounded">
+                      1GrtUs9aKfUhGmb1-HlfDAXaAwtnr4OPO0Ifpp2g7Cl8
+                    </code>
+                    ) sin sobreescribir ningún registro previo.
+                  </p>
+                ) : (
+                  <p className="text-xs text-slate-200 leading-relaxed">
+                    La información de recogida de material antiguo ha quedado registrada correctamente en el sistema central.
+                  </p>
+                )}
 
                 {/* Previsualización en tabla de las filas generadas */}
                 <div className="overflow-x-auto rounded-2xl border border-white/10 bg-black/40">
@@ -1099,67 +1108,69 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
                   </table>
                 </div>
 
-                {/* Acciones directas: Abrir Google Sheets y Copiar filas */}
-                <div className="flex flex-wrap items-center gap-2 pt-1">
-                  <a
-                    href={SPREADSHEET_RETURNS_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:brightness-110 text-white font-bold text-xs flex items-center gap-2 shadow-md transition"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    <span>Abrir Google Sheets de Retiradas</span>
-                  </a>
+                {/* Acciones directas: Abrir Google Sheets y Copiar filas (Solo GPV y AM) */}
+                {canAccessReturnsSheet && (
+                  <div className="flex flex-wrap items-center gap-2 pt-1">
+                    <a
+                      href={SPREADSHEET_RETURNS_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:brightness-110 text-white font-bold text-xs flex items-center gap-2 shadow-md transition"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      <span>Abrir Google Sheets de Retiradas</span>
+                    </a>
 
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const tsv = [
-                        [
-                          'Fecha de reporte',
-                          'Nombre del GPV responsable del centro',
-                          'Nombre de la tienda',
-                          'LDU o Maqueta',
-                          'Descripción del modelo',
-                          '',
-                          'IMEI',
-                          'Serial Number',
-                          'Contiene caja'
-                        ].join('\t'),
-                        ...returnDevices.map((dev) => [
-                          new Date().toLocaleDateString('es-ES', {
-                            day: '2-digit',
-                            month: '2-digit',
-                            year: 'numeric'
-                          }),
-                          AuthService.getGpvForStore(store, currentUser),
-                          store.nombreTienda,
-                          dev.esDummy ? 'Maqueta' : 'LDU',
-                          dev.modeloSaliente,
-                          '',
-                          dev.categoria === 'Smartphone' ? (dev.imeiMemorizado || '') : '',
-                          dev.categoria !== 'Smartphone' ? (dev.imeiMemorizado || '') : '',
-                          'NO'
-                        ].join('\t'))
-                      ].join('\n');
-                      navigator.clipboard.writeText(tsv);
-                      alert('¡Filas copiadas al portapapeles! Puedes pegarlas directamente en Google Sheets o Excel.');
-                    }}
-                    className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 font-bold text-xs flex items-center gap-2 transition cursor-pointer"
-                  >
-                    <Copy className="w-4 h-4" />
-                    <span>Copiar {returnDevices.length} Filas al Portapapeles</span>
-                  </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const tsv = [
+                          [
+                            'Fecha de reporte',
+                            'Nombre del GPV responsable del centro',
+                            'Nombre de la tienda',
+                            'LDU o Maqueta',
+                            'Descripción del modelo',
+                            '',
+                            'IMEI',
+                            'Serial Number',
+                            'Contiene caja'
+                          ].join('\t'),
+                          ...returnDevices.map((dev) => [
+                            new Date().toLocaleDateString('es-ES', {
+                              day: '2-digit',
+                              month: '2-digit',
+                              year: 'numeric'
+                            }),
+                            AuthService.getGpvForStore(store, currentUser),
+                            store.nombreTienda,
+                            dev.esDummy ? 'Maqueta' : 'LDU',
+                            dev.modeloSaliente,
+                            '',
+                            dev.categoria === 'Smartphone' ? (dev.imeiMemorizado || '') : '',
+                            dev.categoria !== 'Smartphone' ? (dev.imeiMemorizado || '') : '',
+                            'NO'
+                          ].join('\t'))
+                        ].join('\n');
+                        navigator.clipboard.writeText(tsv);
+                        alert('¡Filas copiadas al portapapeles! Puedes pegarlas directamente en Google Sheets o Excel.');
+                      }}
+                      className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 font-bold text-xs flex items-center gap-2 transition cursor-pointer"
+                    >
+                      <Copy className="w-4 h-4" />
+                      <span>Copiar {returnDevices.length} Filas al Portapapeles</span>
+                    </button>
 
-                  <button
-                    type="button"
-                    onClick={() => setIsScriptModalOpen(true)}
-                    className="px-3.5 py-2.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 font-bold text-xs flex items-center gap-1.5 border border-amber-500/30 transition cursor-pointer ml-auto"
-                  >
-                    <Code className="w-4 h-4 text-amber-400" />
-                    <span>Ayuda / Estado Webhook</span>
-                  </button>
-                </div>
+                    <button
+                      type="button"
+                      onClick={() => setIsScriptModalOpen(true)}
+                      className="px-3.5 py-2.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 font-bold text-xs flex items-center gap-1.5 border border-amber-500/30 transition cursor-pointer ml-auto"
+                    >
+                      <Code className="w-4 h-4 text-amber-400" />
+                      <span>Ayuda / Estado Webhook</span>
+                    </button>
+                  </div>
+                )}
               </div>
             )}
 
@@ -1210,7 +1221,7 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
               ) : (
                 <>
                   <ShieldCheck className="w-5 h-5 text-teal-200" />
-                  <span>Confirmar y Finalizar Auditoría</span>
+                  <span>Finalizar y guardar</span>
                 </>
               )}
             </button>
@@ -1417,8 +1428,8 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
           </div>
         </div>
       )}
-      {/* MODAL: ACTIVACIÓN VOLCADO AUTOMÁTICO GOOGLE SHEETS */}
-      {isScriptModalOpen && (
+      {/* MODAL: ACTIVACIÓN VOLCADO AUTOMÁTICO GOOGLE SHEETS (SOLO GPV Y AM) */}
+      {isScriptModalOpen && canAccessReturnsSheet && (
         <div
           className="fixed inset-0 z-60 bg-black/85 flex items-center justify-center p-4 backdrop-blur-sm"
           onClick={() => setIsScriptModalOpen(false)}

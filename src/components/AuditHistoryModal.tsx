@@ -2,6 +2,7 @@ import React from "react";
 import { AuditRecord, StoreCenter } from "../types";
 import { DbService } from "../services/dbService";
 import { ExcelService } from "../services/excelService";
+import { AuthService } from "../services/authService";
 import { X, History, FileSpreadsheet, CheckCircle2, AlertTriangle, Calendar, User } from "lucide-react";
 
 interface AuditHistoryModalProps {
@@ -14,6 +15,9 @@ export const AuditHistoryModal: React.FC<AuditHistoryModalProps> = ({ store, isO
   if (!isOpen) return null;
 
   const history = DbService.getHistory().filter((h) => h.tiendaId === store.tiendaId);
+  const currentUser = AuthService.getCurrentUser();
+  const normalizedRole = AuthService.normalizeRole(currentUser?.rol);
+  const canDownloadExcel = normalizedRole === 'GPV' || normalizedRole === 'AM';
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fadeIn">
@@ -64,13 +68,15 @@ export const AuditHistoryModal: React.FC<AuditHistoryModalProps> = ({ store, isO
                   </div>
                 </div>
 
-                <button
-                  onClick={() => ExcelService.exportAuditReport(record)}
-                  className="px-3 py-2 bg-emerald-600/15 hover:bg-emerald-600/25 border border-emerald-500/30 text-emerald-400 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 shrink-0"
-                >
-                  <FileSpreadsheet className="w-4 h-4" />
-                  <span>Descargar Excel</span>
-                </button>
+                {canDownloadExcel && (
+                  <button
+                    onClick={() => ExcelService.exportAuditReport(record)}
+                    className="px-3 py-2 bg-emerald-600/15 hover:bg-emerald-600/25 border border-emerald-500/30 text-emerald-400 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 shrink-0"
+                  >
+                    <FileSpreadsheet className="w-4 h-4" />
+                    <span>Descargar Excel</span>
+                  </button>
+                )}
               </div>
             ))
           )}

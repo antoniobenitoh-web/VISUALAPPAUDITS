@@ -574,24 +574,56 @@ export const getReturnDevicesForStore = (
   const isTable2 = isTwoTableSpace(store);
   const baseList = isTable2 ? RETURN_DEVICES_TABLE2_M1C1 : RETURN_DEVICES_TABLE1_M1C1;
 
+  // Filtrar las posiciones correspondientes a Mesa 1 Cara 1 del último reporte de auditoría completa
+  const mesa1Cara1Positions = (latestAudit?.positions || []).filter((p) => {
+    const m = (p.mesaId || '').toUpperCase();
+    const id = (p.posicionId || '').toUpperCase();
+    const isMesa1 = m.includes('MESA 1') || m.includes('TABLE 1') || id.includes('MESA_1');
+    const isCara2 = m.includes('CARA 2') || id.includes('CARA_2');
+    return isMesa1 && !isCara2;
+  });
+
   return baseList.map((item) => {
-    // Buscar si en la última auditoría existía esta posición anterior
-    const prevPos = latestAudit?.positions?.find(
+    // 1. Prioridad absoluta: coincidencia exacta por número de posición anterior en Mesa 1 Cara 1
+    let prevPos = mesa1Cara1Positions.find(
       (p) =>
-        (p.mesaId.toUpperCase().includes('MESA 1') || p.mesaId.toUpperCase().includes('TABLE 1')) &&
-        (p.posicionNumero === item.posicionAnterior ||
-          p.posicionId?.endsWith(`-P${item.posicionAnterior}`) ||
-          p.modeloOficial.toLowerCase().includes(item.modeloSaliente.toLowerCase().slice(0, 10)))
+        p.posicionNumero === item.posicionAnterior ||
+        p.posicionId?.toUpperCase().endsWith(`-P${item.posicionAnterior}`)
     );
 
-    const imei = prevPos?.imeiSerial && prevPos.imeiSerial !== '-' ? prevPos.imeiSerial : undefined;
+    // 2. Fallback: coincidencia exacta de nombre de modelo completo en Mesa 1 Cara 1
+    if (!prevPos) {
+      const targetModel = item.modeloSaliente.trim().toLowerCase();
+      prevPos = mesa1Cara1Positions.find(
+        (p) => (p.modeloOficial || '').trim().toLowerCase() === targetModel
+      );
+    }
+
+    const rawImei = prevPos?.imeiSerial ? prevPos.imeiSerial.trim() : '';
+    const hasRealImei =
+      Boolean(rawImei) &&
+      rawImei !== '-' &&
+      !rawImei.toLowerCase().includes('maqueta') &&
+      !rawImei.toLowerCase().includes('exento');
+
+    // Recordar si era Maqueta o LDU según el reporte de auditoría completa más reciente
+    let rememberedDummy = item.esDummy;
+    if (prevPos) {
+      if (rawImei.toLowerCase().includes('maqueta') || prevPos.esMaqueta === true) {
+        rememberedDummy = true;
+      } else if (hasRealImei || prevPos.esMaqueta === false) {
+        rememberedDummy = false;
+      }
+    }
+
+    const imei = !rememberedDummy && hasRealImei ? rawImei : undefined;
 
     return {
       id: item.id,
       posicionAnterior: item.posicionAnterior,
       mesaId: item.mesaId,
       modeloSaliente: item.modeloSaliente,
-      esDummy: item.esDummy,
+      esDummy: rememberedDummy,
       categoria: item.categoria,
       motivoRetirada: item.motivoRetirada,
       sustituidoPor: item.sustituidoPor,

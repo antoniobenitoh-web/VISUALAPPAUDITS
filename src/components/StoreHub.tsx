@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StoreCenter, UserProfile, AuditRecord, PositionAuditState } from '../types';
 import { DbService } from '../services/dbService';
 import { ExcelService } from '../services/excelService';
+import { AuthService } from '../services/authService';
 import { RetailerLogo } from './RetailerLogos';
 import { 
   ArrowLeft, 
@@ -34,6 +35,9 @@ export const StoreHub: React.FC<StoreHubProps> = ({
 }) => {
   const [isExporting, setIsExporting] = useState(false);
 
+  const normalizedRole = AuthService.normalizeRole(currentUser?.rol);
+  const canDownloadExcel = normalizedRole === 'GPV' || normalizedRole === 'AM';
+
   const draft = DbService.getDraft(store.tiendaId);
   const history = DbService.getHistory().filter((h) => h.tiendaId === store.tiendaId);
   const lastRecord = history[0];
@@ -49,6 +53,7 @@ export const StoreHub: React.FC<StoreHubProps> = ({
     : 0;
 
   const handleDownloadExcel = async () => {
+    if (!canDownloadExcel) return;
     try {
       setIsExporting(true);
 
@@ -97,15 +102,17 @@ export const StoreHub: React.FC<StoreHubProps> = ({
           </div>
         </div>
 
-        {/* Botón Descargar Excel Corporativo */}
-        <button
-          onClick={handleDownloadExcel}
-          disabled={isExporting}
-          className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-extrabold text-xs rounded-2xl shadow-lg shadow-emerald-600/20 transition flex items-center justify-center gap-2 shrink-0"
-        >
-          <FileSpreadsheet className="w-4 h-4" />
-          <span>{isExporting ? 'Generando Excel...' : 'Descargar Reporte Excel (.xlsx)'}</span>
-        </button>
+        {/* Botón Descargar Excel Corporativo (Solo GPV y AM) */}
+        {canDownloadExcel && (
+          <button
+            onClick={handleDownloadExcel}
+            disabled={isExporting}
+            className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-extrabold text-xs rounded-2xl shadow-lg shadow-emerald-600/20 transition flex items-center justify-center gap-2 shrink-0"
+          >
+            <FileSpreadsheet className="w-4 h-4" />
+            <span>{isExporting ? 'Generando Excel...' : 'Descargar Reporte Excel (.xlsx)'}</span>
+          </button>
+        )}
       </div>
 
       {/* Hero del Portal de Tienda con Logotipo Oficial */}

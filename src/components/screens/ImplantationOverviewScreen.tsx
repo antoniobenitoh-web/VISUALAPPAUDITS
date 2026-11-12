@@ -175,13 +175,46 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
     [store]
   );
 
-  // Última auditoría previa para recuperar los IMEIs memorizados del material saliente
-  const latestAudit = useMemo(
-    () => DbService.getLatestAuditForStore(store.tiendaId),
-    [store.tiendaId]
-  );
+  // Última auditoría completa previa (fusionando borrador en curso si existe) para recuperar los IMEIs y estado LDU/Maqueta del material saliente
+  const latestAudit = useMemo(() => {
+    const baseAudit = DbService.getLatestAuditForStore(store.tiendaId);
+    const activeDraft = DbService.getDraft(store.tiendaId);
+    if (!activeDraft || activeDraft.length === 0) return baseAudit;
 
-  // Lista de dispositivos que deben retirarse de la mesa (Check-Out) con sus IMEIs memorizados
+    const mergedMap = new Map<string, (typeof activeDraft)[number]>();
+    (baseAudit?.positions || []).forEach((p) => {
+      mergedMap.set(p.posicionId || `${p.mesaId}-${p.posicionNumero}`, p);
+    });
+    activeDraft.forEach((d) => {
+      if (d.estadoPosicion !== 'Pendiente' || (d.imeiSerial && d.imeiSerial !== '-')) {
+        mergedMap.set(d.posicionId || `${d.mesaId}-${d.posicionNumero}`, d);
+      }
+    });
+
+    if (baseAudit) {
+      return {
+        ...baseAudit,
+        positions: Array.from(mergedMap.values())
+      };
+    }
+    return {
+      auditId: `DRAFT_${store.tiendaId}`,
+      tiendaId: store.tiendaId,
+      nombreTienda: store.nombreTienda,
+      retailer: store.retailer,
+      usuarioEmail: currentUser.email,
+      usuarioNombre: currentUser.nombre,
+      fechaHora: new Date().toISOString(),
+      totalPosiciones: mergedMap.size,
+      okCount: 0,
+      incidenciasCount: 0,
+      pendientesCount: 0,
+      positions: Array.from(mergedMap.values()),
+      sincronizadoSheets: false
+    };
+  }, [store, currentUser.email, currentUser.nombre]);
+
+  // Lista de dispositivos que deben retirarse de la mesa (Check-Out) con sus IMEIs y tipo LDU/Maqueta memorizados
   const [returnDevices, setReturnDevices] = useState<DeviceReturnState[]>(() => {
     const officialBase = getReturnDevicesForStore(store, latestAudit);
     const draft = DbService.getImplantationDraft(store.tiendaId);
@@ -189,16 +222,31 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
       return officialBase.map((official) => {
         const saved = draft.returnStates?.[official.id];
         if (!saved) return official;
-        // Ignorar auto-confirmaciones antiguas ('Auditoría Registrada') para obligar a verificar uno a uno
-        if (saved.confirmadoPor === 'Auditoría Registrada' && saved.estadoRetirada === 'Retirado') {
+        // Ignorar auto-confirmaciones antiguas ('Auditoría Registrada') o estados aún pendientes para refrescar IMEI y LDU/Maqueta desde la última auditoría
+        if (
+          saved.estadoRetirada === 'Pendiente' ||
+          (saved.confirmadoPor === 'Auditoría Registrada' && saved.estadoRetirada === 'Retirado')
+        ) {
           return {
             ...official,
-            imeiMemorizado: saved.imeiMemorizado || official.imeiMemorizado,
+            esDummy: official.esDummy,
+            imeiMemorizado: official.esDummy
+              ? undefined
+              : saved.imeiMemorizado && saved.imeiMemorizado !== '-'
+              ? saved.imeiMemorizado
+              : official.imeiMemorizado,
             estadoRetirada: 'Pendiente',
             confirmadoPor: undefined
           };
         }
-        return { ...official, ...saved };
+        return {
+          ...official,
+          ...saved,
+          imeiMemorizado:
+            saved.imeiMemorizado && saved.imeiMemorizado !== '-'
+              ? saved.imeiMemorizado
+              : official.imeiMemorizado
+        };
       });
     }
     return officialBase;

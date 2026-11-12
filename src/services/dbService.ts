@@ -213,12 +213,28 @@ export class DbService {
 
   // Obtiene el último reporte vigente completado de una tienda específica
   static getLatestAuditForStore(tiendaId: string): AuditRecord | null {
+    const history = this.getHistory();
+    // Buscar la última auditoría completa (que no sea un registro parcial POST_IMP de solo 11 posiciones)
+    const latestFullFromHistory = history.find(
+      (r) =>
+        r.tiendaId === tiendaId &&
+        !r.auditId?.includes('_POST_IMP_') &&
+        !(r.positions || []).some(
+          (p) =>
+            (p.posicionNumero === 1 || p.posicionId?.endsWith('-P1')) &&
+            p.modeloOficial?.toLowerCase().includes('17 ultra black')
+        )
+    );
+    const seedRecord = SEED_AUDITS[tiendaId] || null;
+    const baseFullAudit = latestFullFromHistory || seedRecord;
+
+    let directRecord: AuditRecord | null = null;
     const rawDirect = localStorage.getItem(`${LATEST_AUDIT_KEY_PREFIX}${tiendaId}`);
     if (rawDirect) {
       try {
         const parsed = JSON.parse(rawDirect);
         if (parsed && parsed.tiendaId === tiendaId) {
-          return {
+          directRecord = {
             ...parsed,
             positions: this.migrateTable2Mesa1Cara2Positions(parsed.positions || [])
           };
@@ -226,23 +242,26 @@ export class DbService {
       } catch {}
     }
 
-    const history = this.getHistory();
-    const fromHistory = history.find(r => r.tiendaId === tiendaId);
-    if (fromHistory) {
-      const hasOldP1 = (fromHistory.positions || []).some(
-        (p) =>
-          (p.posicionNumero === 1 || p.posicionId?.endsWith('-P1')) &&
-          p.modeloOficial?.toLowerCase().includes('17 ultra black')
-      );
-      if (!hasOldP1) {
-        return {
-          ...fromHistory,
-          positions: this.migrateTable2Mesa1Cara2Positions(fromHistory.positions || [])
-        };
-      }
+    // Si directRecord es un registro parcial POST_IMP, conservar las posiciones de la última auditoría completa como base
+    if (directRecord && directRecord.auditId?.includes('_POST_IMP_') && baseFullAudit) {
+      return {
+        ...baseFullAudit,
+        positions: this.migrateTable2Mesa1Cara2Positions(baseFullAudit.positions || [])
+      };
     }
 
-    return SEED_AUDITS[tiendaId] || null;
+    if (directRecord) {
+      return directRecord;
+    }
+
+    if (baseFullAudit) {
+      return {
+        ...baseFullAudit,
+        positions: this.migrateTable2Mesa1Cara2Positions(baseFullAudit.positions || [])
+      };
+    }
+
+    return null;
   }
 
   // Guarda el registro de auditoría en la aplicación optimizando el almacenamiento:
