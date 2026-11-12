@@ -166,9 +166,13 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
   const isOnlyWallStore = !isColumnaStore && !posmConfig?.hasMiniwall && !hasMiniwall && (hasWall || Boolean(posmConfig?.hasWall));
   const isOnlyTopTablesStore = !isColumnaStore && !isOnlyMiniwallStore && !isOnlyWallStore;
   const isDiagonalMar = store.tiendaId === 'MIESS00026' || store.nombreTienda.toLowerCase().includes('diagonal mar');
+  // Si la tienda NO tiene columna de 4 lados, solo tiene 1 lado y la lona de Xiaomi 17 Ultra es la minilona del MiniWall
   const isMiniwallX17 = Boolean(
-    isDiagonalMar ||
-    posmItems.some(it => it.tipo === 'miniwall' && it.campanaOficial.toUpperCase().includes('17 ULTRA'))
+    !isColumnaStore && (
+      isDiagonalMar ||
+      isOnlyMiniwallStore ||
+      posmItems.some(it => it.tipo === 'miniwall' && it.campanaOficial.toUpperCase().includes('17 ULTRA'))
+    )
   );
 
   // Elementos Top Table (Duratrans / Filminas) para tiendas sin columna ni wall
@@ -273,20 +277,26 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
 
   const relevantMiniwallPosm = useMemo(() => {
     if (!isMiniWallActive) return undefined;
+    // En tiendas con columna de 4 lados, la lona de Xiaomi 17 Ultra es Columna Cara 1 y las 4 caras ya se auditan en Columna;
+    // si se muestra referencia POSM en la pestaña MiniWall, corresponde a la cara de columna donde apoya el MiniWall (esMiniwall).
+    // En tiendas sin columna de 4 lados (solo 1 lado), la lona de Xiaomi 17 Ultra es la minilona del MiniWall.
+    if (isColumnaStore) {
+      return posmItems.find((it) => it.esMiniwall);
+    }
     return (
       posmItems.find((it) => it.tipo === 'miniwall') || {
         id: `${store.tiendaId}-POSM-MINIWALL`,
         tipo: 'miniwall' as const,
         material: 'Lona / Textil' as const,
-        nombre: isDiagonalMar ? 'Minilona (MiniWall)' : 'Lona de MiniWall',
-        ubicacion: isDiagonalMar ? 'MINIWALL · Minilona Bastidor Textil' : 'MINIWALL · Bastidor Textil',
+        nombre: 'Minilona (MiniWall)',
+        ubicacion: 'MINIWALL · Minilona Bastidor Textil',
         caraNumero: 1,
-        medida: isDiagonalMar ? '650x460 mm' : '1000x1100 mm',
-        campanaOficial: isDiagonalMar ? 'Xiaomi 17 Ultra' : 'Xiaomi Pad 8 Series',
+        medida: '650x460 mm',
+        campanaOficial: 'Xiaomi 17 Ultra',
         activo: true
       }
     );
-  }, [isMiniWallActive, posmItems, store.tiendaId, isDiagonalMar]);
+  }, [isMiniWallActive, isColumnaStore, posmItems, store.tiendaId]);
 
   let bgImage = PLANOGRAM_IMAGES.table1Cara1;
   if (isLinealActive) {

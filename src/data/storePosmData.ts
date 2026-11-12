@@ -609,17 +609,6 @@ export const STORE_POSM_DATA: Record<string, StorePosmConfig> = {
         "medida": "905X465 mm",
         "campanaOficial": "Xiaomi Pad 8 series",
         "activo": true
-      },
-      {
-        "id": "MIESD00176-POSM-MINIWALL",
-        "tipo": "miniwall",
-        "material": "Lona / Textil",
-        "nombre": "Lona de MiniWall",
-        "ubicacion": "MINIWALL · Bastidor Textil",
-        "caraNumero": 1,
-        "medida": "1000x1100 mm",
-        "campanaOficial": "Xiaomi 17 Ultra",
-        "activo": true
       }
     ]
   },
@@ -1077,17 +1066,6 @@ export const STORE_POSM_DATA: Record<string, StorePosmConfig> = {
         "medida": "Medida estándar",
         "campanaOficial": "Pantalla",
         "activo": true
-      },
-      {
-        "id": "MIESS00002-POSM-MINIWALL",
-        "tipo": "miniwall",
-        "material": "Lona / Textil",
-        "nombre": "Lona de MiniWall",
-        "ubicacion": "MINIWALL · Bastidor Textil",
-        "caraNumero": 1,
-        "medida": "1000x1100 mm",
-        "campanaOficial": "Xiaomi 17 Ultra",
-        "activo": true
       }
     ]
   },
@@ -1149,17 +1127,6 @@ export const STORE_POSM_DATA: Record<string, StorePosmConfig> = {
         "caraNumero": 4,
         "medida": "920x795 mm",
         "campanaOficial": "XIAOMI PAD 8 series",
-        "activo": true
-      },
-      {
-        "id": "MIESD00121-POSM-MINIWALL",
-        "tipo": "miniwall",
-        "material": "Lona / Textil",
-        "nombre": "Lona de MiniWall",
-        "ubicacion": "MINIWALL · Bastidor Textil",
-        "caraNumero": 1,
-        "medida": "1000x1100 mm",
-        "campanaOficial": "XIAOMI 17 ULTRA",
         "activo": true
       }
     ]
@@ -1359,17 +1326,6 @@ export const STORE_POSM_DATA: Record<string, StorePosmConfig> = {
         "medida": "1105x2300 mm",
         "campanaOficial": "Redmi Note 17 series",
         "activo": true
-      },
-      {
-        "id": "MIESD00076-POSM-MINIWALL",
-        "tipo": "miniwall",
-        "material": "Lona / Textil",
-        "nombre": "Lona de MiniWall",
-        "ubicacion": "MINIWALL · Bastidor Textil",
-        "caraNumero": 1,
-        "medida": "1000x1100 mm",
-        "campanaOficial": "Xiaomi 17 Ultra",
-        "activo": true
       }
     ]
   },
@@ -1448,17 +1404,6 @@ export const STORE_POSM_DATA: Record<string, StorePosmConfig> = {
         "caraNumero": 4,
         "medida": "695x2295 mm",
         "campanaOficial": "Xiaomi 17T series",
-        "activo": true
-      },
-      {
-        "id": "MIESD00104-POSM-MINIWALL",
-        "tipo": "miniwall",
-        "material": "Lona / Textil",
-        "nombre": "Lona de MiniWall",
-        "ubicacion": "MINIWALL · Bastidor Textil",
-        "caraNumero": 1,
-        "medida": "1000x1100 mm",
-        "campanaOficial": "Xiaomi 17 Ultra",
         "activo": true
       }
     ]
@@ -1932,7 +1877,9 @@ export const getDynamicPosmDefinitionsForImplantation = (store: StoreCenter): Vi
     });
   }
 
-  if (config.hasMiniwall) {
+  // Solo mostrar la lona de Miniwall cuando la tienda NO tiene columna de 4 lados (solo tiene 1 lado / MiniWall).
+  // Cuando tiene columna de 4 lados, la lona de Xiaomi 17 Ultra -> Xiaomi 18 Series es la Cara 1 de la Columna.
+  if (config.hasMiniwall && !config.hasColumnas) {
     const miniwallItem = config.elementos.find((el) => el.tipo === 'miniwall');
     defs.push({
       id: `${store.tiendaId}-POSM-MINIWALL-X18`,
