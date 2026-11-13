@@ -195,7 +195,22 @@ export type VisualIncidentMotivo =
   | 'Falta perfilería/sujeción'
   | 'Campaña desfasada'
   | 'Sin lona instalada'
-  | 'Otro';
+  | 'Instalado fuera de la 2.ª posición oficial asignada'
+  | 'Material instalado con desperfectos o deterioro estético visible'
+  | 'Material recibido en mal estado de origen (instalado provisionalmente)'
+  | 'Estructura o soporte de la cesta en mal estado / desencajado'
+  | 'Medidas o formato no ajustan correctamente al mobiliario de tienda'
+  | 'Otra incidencia en la colocación (detallar en observaciones)'
+  | 'Material no recibido en el centro (pendiente de recepción logística)'
+  | 'Material recibido con daños graves de origen (imposible su instalación)'
+  | 'Instalación no autorizada por dirección / responsables del centro'
+  | 'Ausencia de línea de cestas o mobiliario compatible en el centro'
+  | 'Segunda posición ocupada por otra campaña prioritaria del retailer'
+  | 'Mobiliario o soporte de cesta deteriorado (impide fijar el cubrecestas)'
+  | 'Extraviado o no localizado en almacén del punto de venta'
+  | 'Otro motivo justificado (detallar en observaciones)'
+  | 'Otro'
+  | string;
 
 export interface VisualElementDefinition {
   id: string;
@@ -207,7 +222,9 @@ export interface VisualElementDefinition {
     | 'Pantalla Digital / Hanshow'
     | 'Faldón Mesa / Vinilo'
     | 'Duratrans / Filmina'
-    | 'Luminoso / Metacrilato';
+    | 'Luminoso / Metacrilato'
+    | 'Cubrecestas'
+    | 'Cubrecestas / Cartelería';
   ubicacionEspacio: string;
   campanaOficial: string;
   medidasOficiales: string;
@@ -220,7 +237,8 @@ export interface VisualElementDefinition {
     | 'faldon_mesa'
     | 'columna'
     | 'top_table'
-    | 'luminoso';
+    | 'luminoso'
+    | 'cubrecestas';
   imagenReferenciaAntes?: string;
   imagenReferenciaDespues?: string;
 }

@@ -80,6 +80,26 @@ const VISUAL_INCIDENT_MOTIVOS: VisualIncidentMotivo[] = [
   'Otro'
 ];
 
+const CUBRECESTAS_PLACED_INCIDENT_MOTIVOS: VisualIncidentMotivo[] = [
+  'Instalado fuera de la 2.ª posición oficial asignada',
+  'Material instalado con desperfectos o deterioro estético visible',
+  'Material recibido en mal estado de origen (instalado provisionalmente)',
+  'Estructura o soporte de la cesta en mal estado / desencajado',
+  'Medidas o formato no ajustan correctamente al mobiliario de tienda',
+  'Otra incidencia en la colocación (detallar en observaciones)'
+];
+
+const CUBRECESTAS_NOT_PLACED_MOTIVOS: VisualIncidentMotivo[] = [
+  'Material no recibido en el centro (pendiente de recepción logística)',
+  'Material recibido con daños graves de origen (imposible su instalación)',
+  'Instalación no autorizada por dirección / responsables del centro',
+  'Ausencia de línea de cestas o mobiliario compatible en el centro',
+  'Segunda posición ocupada por otra campaña prioritaria del retailer',
+  'Mobiliario o soporte de cesta deteriorado (impide fijar el cubrecestas)',
+  'Extraviado o no localizado en almacén del punto de venta',
+  'Otro motivo justificado (detallar en observaciones)'
+];
+
 export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProps> = ({
   store,
   allStores,
@@ -574,8 +594,19 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
   const computeVisualStatus = (
     _fotoAntigua?: string,
     fotoNueva?: string,
-    medidasOk?: boolean | null
+    medidasOk?: boolean | null,
+    isCubrecestasItem?: boolean,
+    motivoIncidencia?: string
   ): 'Pendiente' | 'OK' | 'Incidencia' => {
+    if (isCubrecestasItem) {
+      if (medidasOk === true) {
+        return motivoIncidencia && motivoIncidencia.trim() !== '' ? 'Incidencia' : 'OK';
+      }
+      if (medidasOk === false) {
+        return motivoIncidencia && motivoIncidencia.trim() !== '' ? 'Incidencia' : 'Pendiente';
+      }
+      return 'Pendiente';
+    }
     if (medidasOk === false) return 'Incidencia';
     if (fotoNueva && medidasOk === true) return 'OK';
     return 'Pendiente';
@@ -584,13 +615,16 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
   const handleSaveVisualPhoto = (photoDataUrl: string) => {
     if (!visualCameraTarget || !activeVisualDef) return;
     const base = getOrCreateVisualState(activeVisualDef);
+    const isCubrecestasItem = activeVisualDef.guiaVisualTipo === 'cubrecestas';
     const nextAntigua =
       visualCameraTarget.step === 'antigua' ? photoDataUrl : base.fotoAntiguaUrl;
     const nextNueva = visualCameraTarget.step === 'nueva' ? photoDataUrl : base.fotoNuevaUrl;
     const nextEstado = computeVisualStatus(
       nextAntigua,
       nextNueva,
-      base.fijacionYMedidaCorrecta
+      base.fijacionYMedidaCorrecta,
+      isCubrecestasItem,
+      base.motivoIncidencia
     );
 
     onUpdateVisualState({
@@ -1857,6 +1891,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
               const isHanshow = activeVisualDef.guiaVisualTipo === 'hanshow_screen';
               const isFaldon = activeVisualDef.guiaVisualTipo === 'faldon_mesa';
               const isLuminoso = activeVisualDef.guiaVisualTipo === 'luminoso';
+              const isCubrecestas = activeVisualDef.guiaVisualTipo === 'cubrecestas';
 
               return (
                 <div className="bg-white border border-slate-200 rounded-3xl p-5 sm:p-7 shadow-sm space-y-6">
@@ -1872,6 +1907,21 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                       <p className="text-xs text-teal-200 font-semibold">
                         {activeVisualDef.campanaOficial}
                       </p>
+
+                      {isCubrecestas && (
+                        <div className="bg-[#ff6900]/25 border-2 border-[#ff6900] rounded-xl p-3 space-y-1 shadow-lg">
+                          <span className="text-[10px] font-black uppercase tracking-wider text-amber-300 block">
+                            ⚠ ESPECIFICACIÓN DE UBICACIÓN OBLIGATORIA
+                          </span>
+                          <p className="text-xs sm:text-sm font-black text-white leading-snug">
+                            El cubrecestas de Xiaomi 18 Pro se coloca obligatoriamente en la{' '}
+                            <span className="underline decoration-[#ff6900] decoration-2 text-amber-200">
+                              SEGUNDA POSICIÓN (2.ª posición)
+                            </span>
+                            .
+                          </p>
+                        </div>
+                      )}
 
                       {isHanshow ? (
                         <div className="bg-black/30 p-3.5 rounded-xl border border-teal-400/30 space-y-1.5 text-xs">
@@ -1903,7 +1953,45 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
 
                     {/* Visualización derecha según tipo de POSM */}
                     <div className="lg:col-span-7">
-                      {activeVisualDef.imagenReferenciaAntes &&
+                      {isCubrecestas && activeVisualDef.imagenReferenciaDespues ? (
+                        /* GUÍA OFICIAL AMPLIABLE PARA CUBRECESTAS XIAOMI 18 PRO (2.ª POSICIÓN) */
+                        <div className="rounded-2xl overflow-hidden border-2 border-teal-400/50 bg-slate-950/90 p-4 shadow-2xl space-y-3">
+                          <div className="flex items-center justify-between gap-2 flex-wrap">
+                            <span className="text-[10px] font-black uppercase tracking-wider text-teal-300">
+                              Referencia Oficial · Cubrecestas Xiaomi 18 Pro
+                            </span>
+                            <span className="px-2.5 py-0.5 rounded-full bg-[#ff6900] text-white text-[10px] font-black uppercase shadow-sm">
+                              Colocar en 2.ª Posición
+                            </span>
+                          </div>
+                          <div
+                            onClick={() =>
+                              setPosmPreviewModal({
+                                src: activeVisualDef.imagenReferenciaDespues!,
+                                title: 'Cubrecestas · Xiaomi 18 Pro (Colocar en 2.ª Posición)',
+                                subtitle: 'Especificación oficial: Colocación obligatoria en la segunda posición'
+                              })
+                            }
+                            className="relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-xl overflow-hidden bg-black border-2 border-emerald-400/60 cursor-pointer group"
+                          >
+                            <img
+                              src={activeVisualDef.imagenReferenciaDespues}
+                              alt="Cubrecestas Xiaomi 18 Pro"
+                              className="w-full h-full object-contain bg-slate-950 group-hover:scale-103 transition-transform"
+                            />
+                            <div className="absolute top-2 left-2 px-3 py-1 rounded-lg bg-[#ff6900] text-white text-[10px] sm:text-xs font-black border border-white/30 shadow-lg">
+                              📍 UBICACIÓN: 2.ª POSICIÓN
+                            </div>
+                            <span className="absolute bottom-2 right-2 bg-black/80 backdrop-blur-xs text-white text-[10px] font-bold px-3 py-1 rounded-full flex items-center gap-1.5 border border-white/20 shadow-md">
+                              <ZoomIn className="w-3.5 h-3.5 text-teal-300" /> Ampliar imagen
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-teal-200/90 font-semibold text-center flex items-center justify-center gap-1.5">
+                            <ZoomIn className="w-3.5 h-3.5 text-teal-300" />
+                            <span>Pulsa sobre la imagen del cubrecestas para verla ampliada en grande</span>
+                          </p>
+                        </div>
+                      ) : activeVisualDef.imagenReferenciaAntes &&
                       activeVisualDef.imagenReferenciaDespues ? (
                         /* FORMATO ANTES ➔ DESPUÉS CON FLECHA GUÍA (LONA DE WALL Y PANTALLA HANSHOW) */
                         <div className="rounded-2xl overflow-hidden border-2 border-teal-400/50 bg-slate-950/90 p-4 shadow-2xl">
@@ -1912,10 +2000,10 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                               {isHanshow
                                 ? 'Guía Visual de Cambio en Pantalla Hanshow'
                                 : isLuminoso
-                                ? 'Guía Visual de Cambio en Luminoso (17T ➔ 18 y Frontal)'
+                                ? 'Guía Visual de Cambio en Luminoso (Xiaomi 17T ➔ Xiaomi 18 Pro)'
                                 : activeVisualDef.guiaVisualTipo === 'top_table'
                                 ? 'Guía Visual de Cambio en Top Table'
-                                : 'Guía Visual de Cambio en Lona'}
+                                : 'Guía Visual de Cambio en Lona (Xiaomi 17 Ultra ➔ Xiaomi 18 Pro)'}
                             </span>
                             <span className="px-2 py-0.5 rounded bg-[#ff6900] text-white text-[9px] font-black uppercase">
                               Antes ➔ Después
@@ -1933,7 +2021,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                                   subtitle: activeVisualDef.guiaVisualTipo === 'top_table'
                                     ? 'Top Table Xiaomi 17 Ultra'
                                     : isLuminoso
-                                    ? 'Luminoso Xiaomi 17T Series'
+                                    ? 'Luminoso Xiaomi 17T'
                                     : isHanshow
                                     ? 'Redmi Note 17 Series'
                                     : 'Lona Xiaomi 17 Ultra'
@@ -1949,7 +2037,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                                   isHanshow
                                     ? 'aspect-[3/4]'
                                     : isLuminoso
-                                    ? 'aspect-[16/6] bg-white'
+                                    ? 'aspect-[16/10] bg-slate-950'
                                     : 'aspect-[16/10]'
                                 } rounded-lg overflow-hidden bg-black border border-white/10`}
                               >
@@ -1966,7 +2054,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                                 {activeVisualDef.guiaVisualTipo === 'top_table'
                                   ? 'Top Table Xiaomi 17 Ultra'
                                   : isLuminoso
-                                  ? 'Luminoso Xiaomi 17T (17T + Frontal)'
+                                  ? 'Luminoso Xiaomi 17T'
                                   : isHanshow
                                   ? 'Redmi Note 17 Series'
                                   : 'Lona Xiaomi 17 Ultra'}
@@ -1990,10 +2078,10 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                                   subtitle: activeVisualDef.guiaVisualTipo === 'top_table'
                                     ? 'Top Table Xiaomi 18 Series'
                                     : isLuminoso
-                                    ? 'Luminoso Xiaomi 18 Series'
+                                    ? 'Luminoso Xiaomi 18 Pro'
                                     : isHanshow
                                     ? 'Xiaomi 18 Pro & Pro Max'
-                                    : 'Lona Xiaomi 18 Series'
+                                    : 'Lona Xiaomi 18 Pro'
                                 })
                               }
                               className="col-span-5 bg-slate-900 hover:bg-slate-800/90 rounded-xl p-2 border-2 border-emerald-400/80 flex flex-col items-center shadow-lg cursor-pointer transition group text-left"
@@ -2006,14 +2094,14 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                                   isHanshow
                                     ? 'aspect-[3/4]'
                                     : isLuminoso
-                                    ? 'aspect-[16/6] bg-white'
+                                    ? 'aspect-[16/10] bg-slate-950'
                                     : 'aspect-[16/10]'
                                 } rounded-lg overflow-hidden bg-black border border-white/10`}
                               >
                                 <img
                                   src={activeVisualDef.imagenReferenciaDespues}
                                   alt="Después"
-                                  className={`w-full h-full ${isLuminoso ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform`}
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                                 />
                                 <span className="absolute bottom-1.5 right-1.5 bg-black/75 backdrop-blur-xs text-white text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 border border-white/20">
                                   <ZoomIn className="w-3 h-3 text-emerald-300" /> Ampliar
@@ -2023,10 +2111,10 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                                 {activeVisualDef.guiaVisualTipo === 'top_table'
                                   ? 'Top Table Xiaomi 18 Series'
                                   : isLuminoso
-                                  ? 'Luminoso Xiaomi 18 (18 + Frontal)'
+                                  ? 'Luminoso Xiaomi 18 Pro'
                                   : isHanshow
                                   ? 'Xiaomi 18 Pro & Pro Max'
-                                  : 'Lona Xiaomi 18 Series'}
+                                  : 'Lona Xiaomi 18 Pro'}
                               </span>
                             </button>
                           </div>
@@ -2205,41 +2293,290 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                     </div>
                   </div>
 
-                  {/* CAPTURA DE FOTO ÚNICA DEL ELEMENTO NUEVO / ACTUALIZADO (SIN PEDIR FOTO ANTIGUA) */}
-                  <div className="p-4 sm:p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 flex flex-col justify-between">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                      <div>
-                        <span className="text-[10px] font-black uppercase tracking-wider text-teal-800 bg-teal-100 px-2.5 py-0.5 rounded-full">
-                          PASO 1 · Evidencia Fotográfica POSM Instalado
-                        </span>
-                        <h4 className="text-sm sm:text-base font-black text-slate-900 mt-2">
-                          {isHanshow
-                            ? 'Captura de la pantalla Hanshow actualizada'
-                            : isLuminoso
-                            ? 'Captura del Luminoso Xiaomi 18 Series (frontal y números)'
-                            : isFaldon
-                              ? 'Captura del faldón instalado en Mesa 1 Cara 1'
-                              : 'Captura de la nueva lona instalada'}
-                        </h4>
-                        <p className="text-xs text-slate-500">
-                          Fotografía únicamente el nuevo elemento ya colocado o actualizado en tienda.
-                        </p>
-                      </div>
-                    </div>
+                  {isCubrecestas ? (
+                    /* FLUJO ESPECÍFICO PARA CUBRECESTAS XIAOMI 18 PRO (2.ª POSICIÓN) */
+                    <div className="space-y-5">
+                      {/* PASO 1 CUBRECESTAS: CONFIRMACIÓN DE COLOCACIÓN E INCIDENCIAS */}
+                      <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                          <div>
+                            <span className="text-[10px] font-black uppercase tracking-wider text-white bg-[#ff6900] px-2.5 py-0.5 rounded-full inline-block">
+                              REPORTE DE COLOCACIÓN · 2.ª POSICIÓN OBLIGATORIA
+                            </span>
+                            <h4 className="text-sm sm:text-base font-black text-slate-900 mt-2">
+                              ¿Se ha colocado el cubrecestas de Xiaomi 18 Pro en la 2.ª posición?
+                            </h4>
+                            <p className="text-xs text-slate-600 mt-0.5">
+                              Indica si se ha instalado en tienda. Si lo has colocado podrás avanzar directamente (y añadir una incidencia opcional si aplica); si no se ha colocado, deberás indicar obligatoriamente el motivo.
+                            </p>
+                          </div>
 
-                    {curVState.fotoNuevaUrl ? (
-                      <div className="space-y-2">
-                        <div className="relative h-52 rounded-xl overflow-hidden border border-emerald-300 bg-black">
-                          <img
-                            src={curVState.fotoNuevaUrl}
-                            alt="Evidencia POSM Nueva"
-                            className="w-full h-full object-cover"
-                          />
-                          <span className="absolute top-2 left-2 px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-[10px] font-black shadow-sm">
-                            ✓ Foto de Evidencia POSM Adjuntada
-                          </span>
+                          <div className="flex items-center gap-2.5 shrink-0">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const keepPlacedMotivo =
+                                  curVState.fijacionYMedidaCorrecta === true &&
+                                  curVState.motivoIncidencia &&
+                                  CUBRECESTAS_PLACED_INCIDENT_MOTIVOS.includes(curVState.motivoIncidencia)
+                                    ? curVState.motivoIncidencia
+                                    : '';
+                                onUpdateVisualState({
+                                  ...curVState,
+                                  fijacionYMedidaCorrecta: true,
+                                  motivoIncidencia: keepPlacedMotivo,
+                                  estadoVisual: keepPlacedMotivo ? 'Incidencia' : 'OK',
+                                  fechaHora: new Date().toLocaleString('es-ES')
+                                });
+                              }}
+                              className={`px-5 py-3 rounded-xl font-black text-xs sm:text-sm flex items-center gap-1.5 border transition cursor-pointer ${
+                                curVState.fijacionYMedidaCorrecta === true
+                                  ? 'bg-emerald-600 text-white border-emerald-600 shadow-md'
+                                  : 'bg-white text-slate-700 border-slate-300 hover:bg-emerald-50'
+                              }`}
+                            >
+                              <Check className="w-4 h-4" />
+                              <span>Sí, colocado</span>
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const existingNotPlacedMotivo =
+                                  curVState.fijacionYMedidaCorrecta === false &&
+                                  curVState.motivoIncidencia &&
+                                  CUBRECESTAS_NOT_PLACED_MOTIVOS.includes(curVState.motivoIncidencia)
+                                    ? curVState.motivoIncidencia
+                                    : '';
+                                onUpdateVisualState({
+                                  ...curVState,
+                                  fijacionYMedidaCorrecta: false,
+                                  motivoIncidencia: existingNotPlacedMotivo,
+                                  estadoVisual: existingNotPlacedMotivo ? 'Incidencia' : 'Pendiente',
+                                  fechaHora: new Date().toLocaleString('es-ES')
+                                });
+                              }}
+                              className={`px-5 py-3 rounded-xl font-black text-xs sm:text-sm flex items-center gap-1.5 border transition cursor-pointer ${
+                                curVState.fijacionYMedidaCorrecta === false
+                                  ? 'bg-rose-600 text-white border-rose-600 shadow-md'
+                                  : 'bg-white text-slate-700 border-slate-300 hover:bg-rose-50'
+                              }`}
+                            >
+                              <AlertTriangle className="w-4 h-4" />
+                              <span>No colocado</span>
+                            </button>
+                          </div>
                         </div>
-                        <div className="flex justify-between pt-1">
+
+                        {/* OPCIÓN A: SÍ SE HA COLOCADO -> PERMITE AVANZAR Y PERMITE AÑADIR INCIDENCIA OPCIONAL */}
+                        {curVState.fijacionYMedidaCorrecta === true && (
+                          <div className="p-4 bg-emerald-50/80 border border-emerald-300 rounded-2xl space-y-3.5 animate-fadeIn">
+                            <div className="flex items-center justify-between gap-2 flex-wrap">
+                              <div className="flex items-center gap-2">
+                                <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                                <span className="text-xs sm:text-sm font-black text-emerald-950">
+                                  {curVState.motivoIncidencia
+                                    ? 'Cubrecestas colocado con observación / incidencia registrada — Listo para avanzar'
+                                    : 'Cubrecestas colocado correctamente en 2.ª posición — Listo para avanzar'}
+                                </span>
+                              </div>
+                            </div>
+
+                            <div className="bg-white border border-emerald-200 rounded-xl p-3.5 space-y-2.5">
+                              <label className="block text-xs font-black text-slate-800 uppercase">
+                                ¿Deseas registrar alguna incidencia sobre el cubrecestas colocado? (Opcional):
+                              </label>
+                              <select
+                                value={curVState.motivoIncidencia || ''}
+                                onChange={(e) => {
+                                  const val = e.target.value as VisualIncidentMotivo | '';
+                                  onUpdateVisualState({
+                                    ...curVState,
+                                    fijacionYMedidaCorrecta: true,
+                                    motivoIncidencia: val,
+                                    estadoVisual: val ? 'Incidencia' : 'OK',
+                                    fechaHora: new Date().toLocaleString('es-ES')
+                                  });
+                                }}
+                                className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs sm:text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                              >
+                                <option value="">
+                                  ✓ Sin incidencia (Instalado en 2.ª posición y en perfecto estado)
+                                </option>
+                                {CUBRECESTAS_PLACED_INCIDENT_MOTIVOS.map((m) => (
+                                  <option key={m} value={m}>
+                                    ⚠ {m}
+                                  </option>
+                                ))}
+                              </select>
+
+                              <div>
+                                <label className="block text-[11px] font-bold text-slate-600 mb-1">
+                                  Observaciones adicionales (opcional):
+                                </label>
+                                <textarea
+                                  rows={2}
+                                  value={curVState.notas || ''}
+                                  onChange={(e) =>
+                                    onUpdateVisualState({
+                                      ...curVState,
+                                      notas: e.target.value
+                                    })
+                                  }
+                                  placeholder="Añade cualquier detalle sobre la ubicación o estado del cubrecestas instalado..."
+                                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* OPCIÓN B: NO SE HA COLOCADO -> OBLIGA SÍ O SÍ A INDICAR EL MOTIVO */}
+                        {curVState.fijacionYMedidaCorrecta === false && (
+                          <div className="p-4 bg-rose-50/85 border-2 border-rose-300 rounded-2xl space-y-3.5 animate-fadeIn">
+                            {!curVState.motivoIncidencia ? (
+                              <div className="p-3 bg-rose-600 text-white rounded-xl flex items-center gap-2.5 shadow-sm">
+                                <AlertTriangle className="w-5 h-5 shrink-0" />
+                                <span className="text-xs font-black">
+                                  Obligatorio: Selecciona el motivo por el cual no se ha podido colocar el cubrecestas para poder avanzar.
+                                </span>
+                              </div>
+                            ) : (
+                              <div className="p-3 bg-amber-100 border border-amber-300 text-amber-950 rounded-xl flex items-center gap-2">
+                                <CheckCircle2 className="w-4 h-4 text-amber-700 shrink-0" />
+                                <span className="text-xs font-black">
+                                  Motivo de no colocación registrado: "{curVState.motivoIncidencia}" — Ya puedes avanzar.
+                                </span>
+                              </div>
+                            )}
+
+                            <div>
+                              <label className="block text-xs font-black text-rose-950 uppercase mb-2">
+                                Selecciona el motivo de no instalación (Obligatorio):
+                              </label>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                {CUBRECESTAS_NOT_PLACED_MOTIVOS.map((m) => {
+                                  const isSelectedMotivo = curVState.motivoIncidencia === m;
+                                  return (
+                                    <button
+                                      key={m}
+                                      type="button"
+                                      onClick={() =>
+                                        onUpdateVisualState({
+                                          ...curVState,
+                                          fijacionYMedidaCorrecta: false,
+                                          motivoIncidencia: m,
+                                          estadoVisual: 'Incidencia',
+                                          fechaHora: new Date().toLocaleString('es-ES')
+                                        })
+                                      }
+                                      className={`p-3 rounded-xl border text-left text-xs font-bold transition cursor-pointer flex items-start gap-2 ${
+                                        isSelectedMotivo
+                                          ? 'bg-rose-600 text-white border-rose-700 shadow-md'
+                                          : 'bg-white text-slate-800 border-rose-200 hover:border-rose-400 hover:bg-rose-50/40'
+                                      }`}
+                                    >
+                                      <div
+                                        className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 mt-0.5 ${
+                                          isSelectedMotivo
+                                            ? 'border-white bg-white text-rose-600'
+                                            : 'border-slate-400'
+                                        }`}
+                                      >
+                                        {isSelectedMotivo && <Check className="w-3 h-3 stroke-[3]" />}
+                                      </div>
+                                      <span className="leading-snug">{m}</span>
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            </div>
+
+                            <div>
+                              <label className="block text-xs font-black text-rose-900 uppercase mb-1">
+                                Observaciones / Detalles adicionales:
+                              </label>
+                              <textarea
+                                rows={2}
+                                value={curVState.notas || ''}
+                                onChange={(e) =>
+                                  onUpdateVisualState({
+                                    ...curVState,
+                                    notas: e.target.value
+                                  })
+                                }
+                                placeholder="Detalla cualquier información relevante (n.º de incidencia logística, persona de contacto en tienda, etc.)..."
+                                className="w-full bg-white border border-rose-200 rounded-xl px-3 py-2 text-xs text-slate-800"
+                              />
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* EVIDENCIA FOTOGRÁFICA OPCIONAL DEL CUBRECESTAS */}
+                      <div className="p-4 sm:p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 flex flex-col justify-between">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                          <div>
+                            <span className="text-[10px] font-black uppercase tracking-wider text-teal-800 bg-teal-100 px-2.5 py-0.5 rounded-full">
+                              Evidencia Fotográfica · Cubrecestas en 2.ª Posición (Opcional)
+                            </span>
+                            <h4 className="text-sm sm:text-base font-black text-slate-900 mt-2">
+                              Fotografía del Cubrecestas Xiaomi 18 Pro instalado
+                            </h4>
+                            <p className="text-xs text-slate-500">
+                              Si has colocado el cubrecestas en la 2.ª posición, puedes adjuntar una fotografía de evidencia.
+                            </p>
+                          </div>
+                        </div>
+
+                        {curVState.fotoNuevaUrl ? (
+                          <div className="space-y-2">
+                            <div className="relative h-52 rounded-xl overflow-hidden border border-emerald-300 bg-black">
+                              <img
+                                src={curVState.fotoNuevaUrl}
+                                alt="Evidencia Cubrecestas"
+                                className="w-full h-full object-cover"
+                              />
+                              <span className="absolute top-2 left-2 px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-[10px] font-black shadow-sm">
+                                ✓ Foto de Evidencia Adjuntada
+                              </span>
+                            </div>
+                            <div className="flex justify-between pt-1">
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setTempVisualPhoto(null);
+                                  setVisualCameraTarget({
+                                    elementoId: activeVisualDef.id,
+                                    step: 'nueva'
+                                  });
+                                }}
+                                className="text-xs font-bold text-[#009ca6] hover:underline cursor-pointer"
+                              >
+                                Cambiar fotografía de evidencia
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  onUpdateVisualState({
+                                    ...curVState,
+                                    fotoNuevaUrl: undefined,
+                                    estadoVisual: computeVisualStatus(
+                                      curVState.fotoAntiguaUrl,
+                                      undefined,
+                                      curVState.fijacionYMedidaCorrecta,
+                                      true,
+                                      curVState.motivoIncidencia
+                                    )
+                                  })
+                                }
+                                className="text-xs font-bold text-rose-600 hover:underline cursor-pointer"
+                              >
+                                Eliminar
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
                           <button
                             type="button"
                             onClick={() => {
@@ -2249,167 +2586,223 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                                 step: 'nueva'
                               });
                             }}
-                            className="text-xs font-bold text-[#009ca6] hover:underline cursor-pointer"
+                            className="w-full py-3.5 bg-gradient-to-r from-[#009ca6] to-[#00b4bf] hover:brightness-110 text-white font-black rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-md"
                           >
-                            Cambiar fotografía de evidencia
+                            <Camera className="w-4 h-4" />
+                            <span>Capturar Foto del Cubrecestas en 2.ª Posición</span>
                           </button>
-                          <button
-                            type="button"
-                            onClick={() =>
-                              onUpdateVisualState({
-                                ...curVState,
-                                fotoNuevaUrl: undefined,
-                                estadoVisual: computeVisualStatus(
-                                  curVState.fotoAntiguaUrl,
-                                  undefined,
-                                  curVState.fijacionYMedidaCorrecta
-                                )
-                              })
-                            }
-                            className="text-xs font-bold text-rose-600 hover:underline cursor-pointer"
-                          >
-                            Eliminar
-                          </button>
-                        </div>
-                      </div>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setTempVisualPhoto(null);
-                          setVisualCameraTarget({
-                            elementoId: activeVisualDef.id,
-                            step: 'nueva'
-                          });
-                        }}
-                        className="w-full py-3.5 bg-gradient-to-r from-[#009ca6] to-[#00b4bf] hover:brightness-110 text-white font-black rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-md"
-                      >
-                        <Camera className="w-4 h-4" />
-                        <span>
-                          {isHanshow
-                            ? 'Capturar Foto de Pantalla Hanshow Actualizada'
-                            : isLuminoso
-                            ? 'Capturar Foto del Luminoso Xiaomi 18 Series'
-                            : isFaldon
-                              ? 'Capturar Foto del Faldón Instalado'
-                              : 'Capturar Foto de la Lona Nueva Instalada'}
-                        </span>
-                      </button>
-                    )}
-                  </div>
-
-                  {/* PASO 2: CUESTIONARIO DE VERIFICACIÓN RÁPIDA */}
-                  <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                      <div>
-                        <span className="text-[10px] font-black uppercase tracking-wider text-[#104a60] block">
-                          PASO 2 · Cuestionario de Verificación Rápida
-                        </span>
-                        <h4 className="text-sm sm:text-base font-black text-slate-900 mt-0.5">
-                          {isHanshow
-                            ? '¿La pantalla Hanshow se ha actualizado correctamente al nuevo cartel Xiaomi 18 Series?'
-                            : isLuminoso
-                            ? '¿Se ha cambiado el número superior de 17T por 18 y el frontal oficial por Xiaomi 18 Series?'
-                            : '¿El elemento POSM queda bien fijado y la medida es la correcta?'}
-                        </h4>
-                      </div>
-
-                      <div className="flex items-center gap-2 shrink-0">
-                        <button
-                          type="button"
-                          onClick={() => {
-                            onUpdateVisualState({
-                              ...curVState,
-                              fijacionYMedidaCorrecta: true,
-                              motivoIncidencia: '',
-                              estadoVisual: computeVisualStatus(
-                                curVState.fotoAntiguaUrl,
-                                curVState.fotoNuevaUrl,
-                                true
-                              ),
-                              fechaHora: new Date().toLocaleString('es-ES')
-                            });
-                          }}
-                          className={`px-5 py-2.5 rounded-xl font-black text-xs sm:text-sm flex items-center gap-1.5 border transition cursor-pointer ${
-                            curVState.fijacionYMedidaCorrecta === true
-                              ? 'bg-emerald-600 text-white border-emerald-600 shadow-md'
-                              : 'bg-white text-slate-700 border-slate-300 hover:bg-emerald-50'
-                          }`}
-                        >
-                          <Check className="w-4 h-4" />
-                          <span>Sí</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => {
-                            onUpdateVisualState({
-                              ...curVState,
-                              fijacionYMedidaCorrecta: false,
-                              motivoIncidencia:
-                                curVState.motivoIncidencia || 'Medidas no coinciden',
-                              estadoVisual: 'Incidencia',
-                              fechaHora: new Date().toLocaleString('es-ES')
-                            });
-                          }}
-                          className={`px-5 py-2.5 rounded-xl font-black text-xs sm:text-sm flex items-center gap-1.5 border transition cursor-pointer ${
-                            curVState.fijacionYMedidaCorrecta === false
-                              ? 'bg-rose-600 text-white border-rose-600 shadow-md'
-                              : 'bg-white text-slate-700 border-slate-300 hover:bg-rose-50'
-                          }`}
-                        >
-                          <AlertTriangle className="w-4 h-4" />
-                          <span>No</span>
-                        </button>
+                        )}
                       </div>
                     </div>
+                  ) : (
+                    <>
+                      {/* CAPTURA DE FOTO ÚNICA DEL ELEMENTO NUEVO / ACTUALIZADO (SIN PEDIR FOTO ANTIGUA) */}
+                      <div className="p-4 sm:p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 flex flex-col justify-between">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                          <div>
+                            <span className="text-[10px] font-black uppercase tracking-wider text-teal-800 bg-teal-100 px-2.5 py-0.5 rounded-full">
+                              PASO 1 · Evidencia Fotográfica POSM Instalado
+                            </span>
+                            <h4 className="text-sm sm:text-base font-black text-slate-900 mt-2">
+                              {isHanshow
+                                ? 'Captura de la pantalla Hanshow actualizada'
+                                : isLuminoso
+                                ? 'Captura del Luminoso Xiaomi 18 Pro instalado'
+                                : isFaldon
+                                  ? 'Captura del faldón instalado en Mesa 1 Cara 1'
+                                  : 'Captura de la nueva lona instalada'}
+                            </h4>
+                            <p className="text-xs text-slate-500">
+                              Fotografía únicamente el nuevo elemento ya colocado o actualizado en tienda.
+                            </p>
+                          </div>
+                        </div>
 
-                    {/* Si se marca "No": desplegable de motivos de incidencia y campo para observaciones */}
-                    {curVState.fijacionYMedidaCorrecta === false && (
-                      <div className="p-4 bg-rose-50/70 border border-rose-200 rounded-2xl space-y-3 animate-fadeIn">
-                        <div>
-                          <label className="block text-xs font-black text-rose-900 uppercase mb-1">
-                            Motivo de la incidencia en Parte Visual / PLV:
-                          </label>
-                          <select
-                            value={curVState.motivoIncidencia || 'Medidas no coinciden'}
-                            onChange={(e) =>
-                              onUpdateVisualState({
-                                ...curVState,
-                                motivoIncidencia: e.target.value as VisualIncidentMotivo,
-                                estadoVisual: 'Incidencia'
-                              })
-                            }
-                            className="w-full bg-white border border-rose-300 rounded-xl px-3 py-2.5 text-xs sm:text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-rose-400"
+                        {curVState.fotoNuevaUrl ? (
+                          <div className="space-y-2">
+                            <div className="relative h-52 rounded-xl overflow-hidden border border-emerald-300 bg-black">
+                              <img
+                                src={curVState.fotoNuevaUrl}
+                                alt="Evidencia POSM Nueva"
+                                className="w-full h-full object-cover"
+                              />
+                              <span className="absolute top-2 left-2 px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-[10px] font-black shadow-sm">
+                                ✓ Foto de Evidencia POSM Adjuntada
+                              </span>
+                            </div>
+                            <div className="flex justify-between pt-1">
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setTempVisualPhoto(null);
+                                  setVisualCameraTarget({
+                                    elementoId: activeVisualDef.id,
+                                    step: 'nueva'
+                                  });
+                                }}
+                                className="text-xs font-bold text-[#009ca6] hover:underline cursor-pointer"
+                              >
+                                Cambiar fotografía de evidencia
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  onUpdateVisualState({
+                                    ...curVState,
+                                    fotoNuevaUrl: undefined,
+                                    estadoVisual: computeVisualStatus(
+                                      curVState.fotoAntiguaUrl,
+                                      undefined,
+                                      curVState.fijacionYMedidaCorrecta
+                                    )
+                                  })
+                                }
+                                className="text-xs font-bold text-rose-600 hover:underline cursor-pointer"
+                              >
+                                Eliminar
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setTempVisualPhoto(null);
+                              setVisualCameraTarget({
+                                elementoId: activeVisualDef.id,
+                                step: 'nueva'
+                              });
+                            }}
+                            className="w-full py-3.5 bg-gradient-to-r from-[#009ca6] to-[#00b4bf] hover:brightness-110 text-white font-black rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-md"
                           >
-                            {VISUAL_INCIDENT_MOTIVOS.map((m) => (
-                              <option key={m} value={m}>
-                                {m}
-                              </option>
-                            ))}
-                          </select>
+                            <Camera className="w-4 h-4" />
+                            <span>
+                              {isHanshow
+                                ? 'Capturar Foto de Pantalla Hanshow Actualizada'
+                                : isLuminoso
+                                ? 'Capturar Foto del Luminoso Xiaomi 18 Pro'
+                                : isFaldon
+                                  ? 'Capturar Foto del Faldón Instalado'
+                                  : 'Capturar Foto de la Lona Nueva Instalada'}
+                            </span>
+                          </button>
+                        )}
+                      </div>
+
+                      {/* PASO 2: CUESTIONARIO DE VERIFICACIÓN RÁPIDA */}
+                      <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                          <div>
+                            <span className="text-[10px] font-black uppercase tracking-wider text-[#104a60] block">
+                              PASO 2 · Cuestionario de Verificación Rápida
+                            </span>
+                            <h4 className="text-sm sm:text-base font-black text-slate-900 mt-0.5">
+                              {isHanshow
+                                ? '¿La pantalla Hanshow se ha actualizado correctamente al nuevo cartel Xiaomi 18 Series?'
+                                : isLuminoso
+                                ? '¿Se ha retirado el luminoso de Xiaomi 17T e instalado el nuevo de Xiaomi 18 Pro correctamente?'
+                                : '¿El elemento POSM queda bien fijado y la medida es la correcta?'}
+                            </h4>
+                          </div>
+
+                          <div className="flex items-center gap-2 shrink-0">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                onUpdateVisualState({
+                                  ...curVState,
+                                  fijacionYMedidaCorrecta: true,
+                                  motivoIncidencia: '',
+                                  estadoVisual: computeVisualStatus(
+                                    curVState.fotoAntiguaUrl,
+                                    curVState.fotoNuevaUrl,
+                                    true
+                                  ),
+                                  fechaHora: new Date().toLocaleString('es-ES')
+                                });
+                              }}
+                              className={`px-5 py-2.5 rounded-xl font-black text-xs sm:text-sm flex items-center gap-1.5 border transition cursor-pointer ${
+                                curVState.fijacionYMedidaCorrecta === true
+                                  ? 'bg-emerald-600 text-white border-emerald-600 shadow-md'
+                                  : 'bg-white text-slate-700 border-slate-300 hover:bg-emerald-50'
+                              }`}
+                            >
+                              <Check className="w-4 h-4" />
+                              <span>Sí</span>
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => {
+                                onUpdateVisualState({
+                                  ...curVState,
+                                  fijacionYMedidaCorrecta: false,
+                                  motivoIncidencia:
+                                    curVState.motivoIncidencia || 'Medidas no coinciden',
+                                  estadoVisual: 'Incidencia',
+                                  fechaHora: new Date().toLocaleString('es-ES')
+                                });
+                              }}
+                              className={`px-5 py-2.5 rounded-xl font-black text-xs sm:text-sm flex items-center gap-1.5 border transition cursor-pointer ${
+                                curVState.fijacionYMedidaCorrecta === false
+                                  ? 'bg-rose-600 text-white border-rose-600 shadow-md'
+                                  : 'bg-white text-slate-700 border-slate-300 hover:bg-rose-50'
+                              }`}
+                            >
+                              <AlertTriangle className="w-4 h-4" />
+                              <span>No</span>
+                            </button>
+                          </div>
                         </div>
 
-                        <div>
-                          <label className="block text-xs font-black text-rose-900 uppercase mb-1">
-                            Observaciones / Notas adicionales:
-                          </label>
-                          <textarea
-                            rows={2}
-                            value={curVState.notas || ''}
-                            onChange={(e) =>
-                              onUpdateVisualState({
-                                ...curVState,
-                                notas: e.target.value
-                              })
-                            }
-                            placeholder="Especifica medidas reales medidas en tienda, estado de perfilería o detalles..."
-                            className="w-full bg-white border border-rose-200 rounded-xl px-3 py-2 text-xs text-slate-800"
-                          />
-                        </div>
+                        {/* Si se marca "No": desplegable de motivos de incidencia y campo para observaciones */}
+                        {curVState.fijacionYMedidaCorrecta === false && (
+                          <div className="p-4 bg-rose-50/70 border border-rose-200 rounded-2xl space-y-3 animate-fadeIn">
+                            <div>
+                              <label className="block text-xs font-black text-rose-900 uppercase mb-1">
+                                Motivo de la incidencia en Parte Visual / PLV:
+                              </label>
+                              <select
+                                value={curVState.motivoIncidencia || 'Medidas no coinciden'}
+                                onChange={(e) =>
+                                  onUpdateVisualState({
+                                    ...curVState,
+                                    motivoIncidencia: e.target.value as VisualIncidentMotivo,
+                                    estadoVisual: 'Incidencia'
+                                  })
+                                }
+                                className="w-full bg-white border border-rose-300 rounded-xl px-3 py-2.5 text-xs sm:text-sm font-bold text-slate-900 focus:outline-none focus:ring-2 focus:ring-rose-400"
+                              >
+                                {VISUAL_INCIDENT_MOTIVOS.map((m) => (
+                                  <option key={m} value={m}>
+                                    {m}
+                                  </option>
+                                ))}
+                              </select>
+                            </div>
+
+                            <div>
+                              <label className="block text-xs font-black text-rose-900 uppercase mb-1">
+                                Observaciones / Notas adicionales:
+                              </label>
+                              <textarea
+                                rows={2}
+                                value={curVState.notas || ''}
+                                onChange={(e) =>
+                                  onUpdateVisualState({
+                                    ...curVState,
+                                    notas: e.target.value
+                                  })
+                                }
+                                placeholder="Especifica medidas reales medidas en tienda, estado de perfilería o detalles..."
+                                className="w-full bg-white border border-rose-200 rounded-xl px-3 py-2 text-xs text-slate-800"
+                              />
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
+                    </>
+                  )}
                 </div>
               );
             })()}

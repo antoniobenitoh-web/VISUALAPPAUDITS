@@ -1845,48 +1845,133 @@ export const getPosmElementsForStore = (storeId?: string): StorePosmItem[] => {
 };
 
 /**
+ * Determina si una tienda pertenece al listado exclusivo de centros MediaMarkt
+ * que llevan el apartado "Cubrecestas" de Xiaomi 18 Pro en POSM:
+ * - Media Barcelona (Media Badalona / Media Barcelona)
+ * - Media Girona
+ * - Media Barcelona 5 Fontanella
+ * - Media Tarragona
+ * - Media El Prat
+ * - Media Diagonal Mar
+ * - Media Sant Cugat
+ * - Media Mataro
+ * - Media Lleida
+ * - Media Zaragoza Puerto Venecia (Media Zaragoza 2 / PTO Venecia)
+ * - Media Parets
+ * - Media Terrassa
+ */
+const CUBRECESTAS_EXCLUSIVE_STORE_IDS = new Set<string>([
+  'MIESP00034', // Media Badalona / Media Barcelona
+  'MIESD00182', // Media Girona
+  'MIESD00174', // Media Barcelona 5 Fontanella
+  'MIESO00043', // Media Tarragona
+  'MIESD00175', // Media El Prat
+  'MIESS00026', // Media Diagonal Mar-Barcelona
+  'MIESD00180', // Media Sant Cugat (Barcelona)
+  'MIESD00177', // Media Mataro
+  'MIESD00187', // Media Lleida
+  'MIESD00204', // Media Zaragoza 2 (Puerto Venecia)
+  'MIESD00178', // Media Parets
+  'MIESD00179'  // Media Terrassa
+]);
+
+const CUBRECESTAS_EXCLUSIVE_STORE_NAMES = new Set<string>([
+  'media barcelona',
+  'media badalona',
+  'media girona',
+  'media barcelona 5 fontanella',
+  'media fontanella',
+  'media tarragona',
+  'mediamarkt tarragona',
+  'media el prat',
+  'media diagonal mar',
+  'media diagonal mar-barcelona',
+  'media sant cugat',
+  'media sant cugat (barcelona)',
+  'media mataro',
+  'media lleida',
+  'media zaragoza puerto venecia',
+  'media zaragoza pto venecia',
+  'media zaragoza 2',
+  'media parets',
+  'media terrassa'
+]);
+
+export const hasCubrecestasForStore = (store: StoreCenter): boolean => {
+  const storeId = (store.tiendaId || '').trim().toUpperCase();
+  if (CUBRECESTAS_EXCLUSIVE_STORE_IDS.has(storeId)) {
+    return true;
+  }
+  const normalizedName = (store.nombreTienda || '')
+    .trim()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/^mediamarkt\s+/i, 'media ')
+    .replace(/\s+/g, ' ');
+  return CUBRECESTAS_EXCLUSIVE_STORE_NAMES.has(normalizedName);
+};
+
+/**
  * Convierte los elementos POSM de una tienda en definiciones de elementos visuales
  * para el módulo de Nueva Implantación (lanzamiento oficial).
  * 
  * Se limita exclusivamente según especificación oficial a:
- * 1. Tiendas con lona Xiaomi 17 Ultra (Wall o Miniwall) -> cambio a Xiaomi 18 Series.
+ * 1. Tiendas con lona Xiaomi 17 Ultra (Wall o Miniwall) -> cambio a Xiaomi 18 Pro / 18 Series.
  * 2. Tiendas con duratrans (Top Table) -> la franja que pertenece a Xiaomi 17 Ultra (Cara 1 / Cara A) se modifica por Xiaomi 18 Series.
  * 3. Tiendas con columna -> la cara de Xiaomi 17 Ultra (Cara 1) se modifica a Xiaomi 18 Series.
+ * 4. Luminoso -> se mantiene referencia de retirada Xiaomi 17T y se instala el nuevo de Xiaomi 18 Pro.
+ * 5. Cubrecestas -> exclusivo en las 12 tiendas seleccionadas de MediaMarkt (colocación obligatoria en 2.ª posición).
  */
 export const getDynamicPosmDefinitionsForImplantation = (store: StoreCenter): VisualElementDefinition[] => {
   const config = getStorePosmConfig(store.tiendaId);
-  if (!config) return [];
-
   const defs: VisualElementDefinition[] = [];
 
-  // 1. Tiendas con lona Xiaomi 17 Ultra (Wall o Miniwall) -> cambio a Xiaomi 18 Series
-  if (config.hasWall) {
-    const wallItem = config.elementos.find((el) => el.tipo === 'wall');
+  const isMediaMarktStore =
+    (store.retailer || '').toLowerCase().includes('mediamarkt') ||
+    (store.nombreTienda || '').toLowerCase().startsWith('media');
+
+  const hasWallSpace = Boolean(
+    config?.hasWall ||
+      store.availableSpaces?.some((s) => {
+        const u = s.toUpperCase().trim();
+        return u === 'WALL' || (u.includes('WALL') && !u.includes('MINIWALL'));
+      })
+  );
+
+  // 1. Tiendas con lona Xiaomi 17 Ultra (Wall o Miniwall) -> cambio a Xiaomi 18 Pro / Series
+  if (hasWallSpace) {
+    const wallItem = config?.elementos.find((el) => el.tipo === 'wall');
     defs.push({
       id: `${store.tiendaId}-POSM-WALL-X18`,
-      nombreElemento: 'Lona Wall · Xiaomi 18 Series',
+      nombreElemento: isMediaMarktStore ? 'Lona Wall · Xiaomi 18 Pro' : 'Lona Wall · Xiaomi 18 Series',
       tipoMaterial: 'Textil / Lona',
       ubicacionEspacio: 'WALL (Muro retroiluminado)',
-      campanaOficial: 'Lanzamiento Xiaomi 18 Series',
+      campanaOficial: 'Lanzamiento Xiaomi 18 Pro Max',
       medidasOficiales: wallItem?.medida || 'Muro retroiluminado',
-      instruccionesFijacion:
-        'Sustituir la lona anterior de Xiaomi 17 Ultra por la nueva lona de Xiaomi 18 Series, insertando el perfil de silicona perimetral en el bastidor con la espátula perimetral.',
+      instruccionesFijacion: isMediaMarktStore
+        ? 'Retirar la lona actual de Xiaomi 17 Ultra e instalar la nueva lona oficial de Xiaomi 18 Pro en el bastidor retroiluminado del Wall, insertando el perfil de silicona perimetral de forma tensa y sin arrugas.'
+        : 'Sustituir la lona anterior de Xiaomi 17 Ultra por la nueva lona de Xiaomi 18 Series, insertando el perfil de silicona perimetral en el bastidor con la espátula perimetral.',
       guiaVisualTipo: 'lona_mesa',
-      imagenReferenciaAntes: './images/posm/lona_wall_antes.png',
-      imagenReferenciaDespues: './images/posm/lona_wall_despues.png'
+      imagenReferenciaAntes: isMediaMarktStore
+        ? './images/posm/lona_wall_mm_antes.jpg'
+        : './images/posm/lona_wall_antes.png',
+      imagenReferenciaDespues: isMediaMarktStore
+        ? './images/posm/lona_wall_mm_despues.jpg'
+        : './images/posm/lona_wall_despues.png'
     });
   }
 
   // Solo mostrar la lona de Miniwall cuando la tienda NO tiene columna de 4 lados (solo tiene 1 lado / MiniWall).
   // Cuando tiene columna de 4 lados, la lona de Xiaomi 17 Ultra -> Xiaomi 18 Series es la Cara 1 de la Columna.
-  if (config.hasMiniwall && !config.hasColumnas) {
+  if (config?.hasMiniwall && !config?.hasColumnas) {
     const miniwallItem = config.elementos.find((el) => el.tipo === 'miniwall');
     defs.push({
       id: `${store.tiendaId}-POSM-MINIWALL-X18`,
       nombreElemento: 'Lona Miniwall · Xiaomi 18 Series',
       tipoMaterial: 'Textil / Lona',
       ubicacionEspacio: 'MINIWALL (Bastidor textil)',
-      campanaOficial: 'Lanzamiento Xiaomi 18 Series',
+      campanaOficial: 'Lanzamiento Xiaomi 18 Pro Max',
       medidasOficiales: miniwallItem?.medida || '650x460 mm',
       instruccionesFijacion:
         'Sustituir la minilona anterior de Xiaomi 17 Ultra por la nueva lona de Xiaomi 18 Series, extendiéndola tensa y sin arrugas en el bastidor textil.',
@@ -1897,7 +1982,7 @@ export const getDynamicPosmDefinitionsForImplantation = (store: StoreCenter): Vi
   }
 
   // 2. Tiendas con duratrans (Top Table) -> La cara perteneciente a Xiaomi 17 Ultra (Cara 1) se modifica por Xiaomi 18 Series
-  if (config.hasTopTables) {
+  if (config?.hasTopTables) {
     const ttCara1 =
       config.elementos.find((el) => el.tipo === 'top_table' && (el.caraNumero === 1 || el.campanaOficial.toLowerCase().includes('17 ultra'))) ||
       config.elementos.find((el) => el.tipo === 'top_table');
@@ -1906,7 +1991,7 @@ export const getDynamicPosmDefinitionsForImplantation = (store: StoreCenter): Vi
       nombreElemento: 'Duratrans Top Table · Xiaomi 18 Series (Mesa 1 Cara A)',
       tipoMaterial: 'Duratrans / Filmina',
       ubicacionEspacio: 'MESA 1 · Franja Central (Cara A)',
-      campanaOficial: 'Xiaomi 18 Series',
+      campanaOficial: 'Lanzamiento Xiaomi 18 Pro Max',
       medidasOficiales: ttCara1?.medida || '1150X275 mm',
       instruccionesFijacion:
         'Sustituir la filmina Duratrans de Xiaomi 17 Ultra por el nuevo Duratrans de Xiaomi 18 Series en la guía central de la mesa, centrada y protegida bajo el metacrilato.',
@@ -1917,7 +2002,7 @@ export const getDynamicPosmDefinitionsForImplantation = (store: StoreCenter): Vi
   }
 
   // 3. Tiendas con columna -> La cara de Xiaomi 17 Ultra (Cara 1) se modifica a Xiaomi 18 Series
-  if (config.hasColumnas) {
+  if (config?.hasColumnas) {
     const colCara1 =
       config.elementos.find((el) => el.tipo === 'columna' && (el.caraNumero === 1 || el.campanaOficial.toLowerCase().includes('17 ultra'))) ||
       config.elementos.find((el) => el.tipo === 'columna');
@@ -1926,7 +2011,7 @@ export const getDynamicPosmDefinitionsForImplantation = (store: StoreCenter): Vi
       nombreElemento: 'Lona Columna Cara 1 · Xiaomi 18 Series',
       tipoMaterial: 'Textil / Lona',
       ubicacionEspacio: 'Columna · Cara 1 (Frontal principal)',
-      campanaOficial: 'Xiaomi 18 Series',
+      campanaOficial: 'Lanzamiento Xiaomi 18 Pro Max',
       medidasOficiales: config.columnMeasures?.cara1 || colCara1?.medida || 'Columna Cara 1',
       instruccionesFijacion:
         'Sustituir la lona anterior de Xiaomi 17 Ultra por la nueva lona textil de Xiaomi 18 Series tensada en la perfilería de la columna, sin arrugas y alineada con el zócalo.',
@@ -1936,20 +2021,36 @@ export const getDynamicPosmDefinitionsForImplantation = (store: StoreCenter): Vi
     });
   }
 
-  // 4. Luminoso Xiaomi 18 Series -> Cambio de número 17T por 18 y frontal
+  // 4. Luminoso Xiaomi 18 Pro -> Mantiene retirada de Xiaomi 17T y añade el nuevo de Xiaomi 18 Pro
   defs.push({
     id: `${store.tiendaId}-POSM-LUM-X18`,
-    nombreElemento: 'Luminoso · Xiaomi 18 Series',
+    nombreElemento: 'Luminoso · Xiaomi 18 Pro',
     tipoMaterial: 'Luminoso / Metacrilato',
     ubicacionEspacio: 'MESA 1 · Lineal / Expositor',
-    campanaOficial: 'Xiaomi 18 Series',
+    campanaOficial: 'Lanzamiento Xiaomi 18 Pro Max',
     medidasOficiales: 'Luminoso de sobremesa / lineal',
     instruccionesFijacion:
-      'Sustituir el número superior acrílico de 17T por el número 18, y cambiar el frontal por el nuevo oficial de Xiaomi 18 Series (Leica + HyperOS). Comprobar que enciende correctamente.',
+      'Retirar el luminoso anterior de Xiaomi 17T e instalar el nuevo luminoso oficial de Xiaomi 18 Pro Series (Mi | Leica). Comprobar que queda correctamente fijado y encendido.',
     guiaVisualTipo: 'luminoso',
     imagenReferenciaAntes: './images/posm/luminoso_xiaomi17t_antes.jpg',
-    imagenReferenciaDespues: './images/posm/luminoso_xiaomi18_despues.jpg'
+    imagenReferenciaDespues: './images/posm/luminoso_xiaomi18pro_despues.jpg'
   });
+
+  // 5. Cubrecestas Xiaomi 18 Pro -> Exclusivamente en las 12 tiendas seleccionadas de MediaMarkt (2.ª posición)
+  if (hasCubrecestasForStore(store)) {
+    defs.push({
+      id: `${store.tiendaId}-POSM-CUBRECESTAS-X18`,
+      nombreElemento: 'Cubrecestas · Xiaomi 18 Pro',
+      tipoMaterial: 'Cubrecestas',
+      ubicacionEspacio: 'Línea de Cestas · 2.ª Posición (Obligatorio)',
+      campanaOficial: 'Lanzamiento Xiaomi 18 Pro Max',
+      medidasOficiales: 'Ubicación obligatoria: 2.ª Posición',
+      instruccionesFijacion:
+        'IMPORTANTE: El cubrecestas de Xiaomi 18 Pro debe colocarse obligatoriamente en la SEGUNDA POSICIÓN (2.ª posición). Verifica que quede correctamente encajado y visible en el lineal de cestas.',
+      guiaVisualTipo: 'cubrecestas',
+      imagenReferenciaDespues: './images/posm/cubrecestas_xiaomi18pro.jpg'
+    });
+  }
 
   return defs;
 };

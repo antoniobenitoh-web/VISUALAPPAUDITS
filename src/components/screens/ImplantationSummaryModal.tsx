@@ -835,15 +835,21 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
                             className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase ${badgeColor}`}
                           >
                             {isGreen
-                              ? 'Correcto'
+                              ? vis.tipoMaterial.toLowerCase().includes('cubrecestas')
+                                ? 'Colocado (2.ª Posición)'
+                                : 'Correcto'
                               : isOrange
-                                ? 'Con incidencia'
+                                ? vis.tipoMaterial.toLowerCase().includes('cubrecestas')
+                                  ? vis.fijacionYMedidaCorrecta === true
+                                    ? 'Colocado con incidencia'
+                                    : 'No colocado'
+                                  : 'Con incidencia'
                                 : 'Falta por reportar'}
                           </span>
                         </div>
                         {isOrange && (
                           <p className="text-xs font-bold text-orange-800">
-                            ⚠ Incidencia: {vis.motivoIncidencia || 'Incidencia POSM'}
+                            ⚠ {vis.fijacionYMedidaCorrecta === false && vis.tipoMaterial.toLowerCase().includes('cubrecestas') ? 'Motivo no colocación' : 'Incidencia'}: {vis.motivoIncidencia || 'Incidencia POSM'}
                           </p>
                         )}
                       </div>
