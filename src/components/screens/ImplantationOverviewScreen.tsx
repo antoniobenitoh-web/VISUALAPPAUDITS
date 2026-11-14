@@ -93,9 +93,6 @@ const CUBRECESTAS_NOT_PLACED_MOTIVOS: VisualIncidentMotivo[] = [
   'Material no recibido en el centro (pendiente de recepción logística)',
   'Material recibido con daños graves de origen (imposible su instalación)',
   'Instalación no autorizada por dirección / responsables del centro',
-  'Ausencia de línea de cestas o mobiliario compatible en el centro',
-  'Segunda posición ocupada por otra campaña prioritaria del retailer',
-  'Mobiliario o soporte de cesta deteriorado (impide fijar el cubrecestas)',
   'Extraviado o no localizado en almacén del punto de venta',
   'Otro motivo justificado (detallar en observaciones)'
 ];
