@@ -3457,8 +3457,8 @@ export const getPositionsForSpace = (
     const pCara2Post: PlanogramPosition[] = c2RawItems.map((item, index) => {
       // Al pasar Cara 1 de 12 puestos a 11 puestos, los puestos de Cara 2 ajustan su posición (-1: de P13..P23 a P12..P22)
       const adjustedPos = 12 + index;
-      const coord = 'pinX' in item && typeof item.pinX === 'number'
-        ? { pinX: item.pinX, pinY: item.pinY }
+      const coord = isTable2Format
+        ? TABLE2_MESA1_CARA2_ITEMS[index]
         : TABLE1_CARA2_PINS[index];
       return {
         id: `${tipoEspacioId}-${mesaId.replace(/\s+/g, '_')}-P${adjustedPos}`,
