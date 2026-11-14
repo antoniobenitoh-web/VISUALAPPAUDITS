@@ -18,10 +18,12 @@ import wallImg from '../assets/tables/wall.jpg?inline';
 import miniwallImg from '../assets/tables/miniwall_render.jpg?inline';
 import miniwallX17Img from '../assets/tables/miniwall_x17_render.jpg?inline';
 import linealSmartwatchImg from '../assets/tables/lineal_smartwatch.jpg?inline';
+import mesa1Cara1X18Implantacion from '../assets/tables/mesa1_cara1_x18_implantacion.jpg?inline';
 
 export const PLANOGRAM_IMAGES = {
   table1Cara1,
   table1Cara1Xiaomi18,
+  mesa1Cara1X18Implantacion,
   table2Mesa1Cara1: table2Mesa1Cara1Xiaomi18,
   table2Mesa1Cara1Xiaomi18,
   table2Mesa1Cara1NoWall,

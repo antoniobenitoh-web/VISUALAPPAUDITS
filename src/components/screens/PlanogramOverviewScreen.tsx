@@ -298,6 +298,12 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
     );
   }, [isMiniWallActive, isColumnaStore, posmItems, store.tiendaId]);
 
+  const hasCompletedImplantation = useMemo(
+    () => DbService.hasCompletedImplantation(store.tiendaId),
+    [store.tiendaId, auditStates]
+  );
+  const isMesa1Active = activeSpace.toUpperCase().includes('MESA 1');
+
   let bgImage = PLANOGRAM_IMAGES.table1Cara1;
   if (isLinealActive) {
     bgImage = PLANOGRAM_IMAGES.linealSmartwatchImg;
@@ -315,6 +321,8 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
       : (store.hasPad8Pro
           ? PLANOGRAM_IMAGES.table2Mesa2Pad8ProCara1
           : (hasWallOrMiniwall ? PLANOGRAM_IMAGES.table2Mesa2Cara1 : PLANOGRAM_IMAGES.table2Mesa2Cara1NoWall));
+  } else if (isMesa1Active && !isCara2Active && hasCompletedImplantation) {
+    bgImage = PLANOGRAM_IMAGES.mesa1Cara1X18Implantacion;
   } else if (isTable2) {
     bgImage = isCara2Active
       ? (hasWallOrMiniwall ? PLANOGRAM_IMAGES.table2Mesa1Cara2 : PLANOGRAM_IMAGES.table2Mesa1Cara2NoWall)
@@ -349,17 +357,17 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
   const totalPositions = useMemo(() => {
     let sum = 0;
     availableSpaces.forEach(sp => {
+      if (sp.toUpperCase() === 'POSM' || sp.toUpperCase().includes('COLUMNA')) return;
       const p = getPositionsForSpace(store.tipoEspacioId, sp, store);
       sum += p.length;
     });
     return sum > 0 ? sum : (store.totalPuestos || positions.length);
-  }, [availableSpaces, store, positions.length]);
+  }, [availableSpaces, store, positions.length, hasCompletedImplantation]);
   const getPosAuditState = (pos: PlanogramPosition | null): PositionAuditState | undefined => {
     if (!pos) return undefined;
     if (auditStates[pos.id]) return auditStates[pos.id];
     return Object.values(auditStates).find(
-      a => a.posicionId === pos.id || 
-           a.posicionNumero === pos.posicionNumero ||
+      a => a.posicionId === pos.id ||
            (a.mesaId?.startsWith(pos.mesaId) && a.posicionNumero === pos.posicionNumero)
     );
   };

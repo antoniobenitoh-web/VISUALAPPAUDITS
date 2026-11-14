@@ -109,6 +109,13 @@ export class DbService {
   // Migra posiciones antiguas de Table 2 Mesa 1 Cara 2 (numeración antigua 11..21) a la oficial P13..P23
   static migrateTable2Mesa1Cara2Positions(positions: PositionAuditState[]): PositionAuditState[] {
     if (!Array.isArray(positions)) return positions;
+    const isPostImplantationX18 = positions.some(
+      (p) =>
+        (p.posicionNumero === 1 || p.posicionId?.endsWith('-P1')) &&
+        p.modeloOficial?.toLowerCase().includes('18 pro max')
+    );
+    if (isPostImplantationX18) return positions;
+
     const hasOldM1C2 = positions.some(
       (p) => p.posicionId === 'Table 2-MESA_1_·_Cara_2-P11' || (p.mesaId === 'MESA 1 · Cara 2' && p.posicionNumero === 11 && p.posicionId?.startsWith('Table 2-'))
     );
@@ -235,10 +242,56 @@ export class DbService {
     return [...localHistory, ...seedRecords];
   }
 
+  // Obtiene la última auditoría completa previa a la Nueva Implantación (para conservar IMEIs de material saliente y posiciones que se mantienen)
+  static getPreImplantationAuditForStore(tiendaId: string): AuditRecord | null {
+    const history = this.getHistory();
+    const preImpFromHistory = history.find(
+      (r) =>
+        r.tiendaId === tiendaId &&
+        !r.auditId?.includes('_POST_IMP_') &&
+        !r.auditId?.includes('_IMP_FULL_') &&
+        !(r.positions || []).some(
+          (p) =>
+            (p.posicionNumero === 1 || p.posicionId?.endsWith('-P1')) &&
+            p.modeloOficial?.toLowerCase().includes('18 pro max')
+        )
+    );
+    const seedRecord = SEED_AUDITS[tiendaId] || null;
+    const baseRecord = preImpFromHistory || seedRecord;
+    if (!baseRecord) return null;
+    return {
+      ...baseRecord,
+      positions: this.migrateTable2Mesa1Cara2Positions(baseRecord.positions || [])
+    };
+  }
+
+  // Indica si la tienda ya ha completado y guardado su reporte de Nueva Implantación
+  static hasCompletedImplantation(tiendaId: string): boolean {
+    if (!tiendaId) return false;
+    if (this.getLatestImplantationForStore(tiendaId)) return true;
+    const rawDirect = localStorage.getItem(`${LATEST_AUDIT_KEY_PREFIX}${tiendaId}`);
+    if (rawDirect) {
+      try {
+        const parsed = JSON.parse(rawDirect);
+        if (
+          parsed?.auditId?.includes('_IMP_FULL_') ||
+          (parsed?.positions || []).some(
+            (p: PositionAuditState) =>
+              (p.posicionNumero === 1 || p.posicionId?.endsWith('-P1')) &&
+              p.modeloOficial?.toLowerCase().includes('18 pro max')
+          )
+        ) {
+          return true;
+        }
+      } catch {}
+    }
+    return false;
+  }
+
   // Obtiene el último reporte vigente completado de una tienda específica
   static getLatestAuditForStore(tiendaId: string): AuditRecord | null {
     const history = this.getHistory();
-    // Buscar la última auditoría completa (que no sea un registro parcial POST_IMP de solo 11 posiciones)
+    // Buscar la última auditoría completa (que no sea un registro parcial antiguo POST_IMP de solo 11 posiciones)
     const latestFullFromHistory = history.find(
       (r) =>
         r.tiendaId === tiendaId &&
@@ -246,7 +299,9 @@ export class DbService {
         !(r.positions || []).some(
           (p) =>
             (p.posicionNumero === 1 || p.posicionId?.endsWith('-P1')) &&
-            p.modeloOficial?.toLowerCase().includes('17 ultra black')
+            p.modeloOficial?.toLowerCase().includes('17 ultra black') &&
+            tiendaId !== 'MIESS00026' &&
+            tiendaId !== 'MIESD00182'
         )
     );
     const seedRecord = SEED_AUDITS[tiendaId] || null;
@@ -266,7 +321,7 @@ export class DbService {
       } catch {}
     }
 
-    // Si directRecord es un registro parcial POST_IMP, conservar las posiciones de la última auditoría completa como base
+    // Si directRecord es un registro parcial antiguo POST_IMP, conservar las posiciones de la última auditoría completa como base
     if (directRecord && directRecord.auditId?.includes('_POST_IMP_') && baseFullAudit) {
       return {
         ...baseFullAudit,

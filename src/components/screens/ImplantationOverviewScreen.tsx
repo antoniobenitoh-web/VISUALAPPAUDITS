@@ -14,12 +14,12 @@ import { getPositionsForSpace } from '../../data/defaultData';
 import { PLANOGRAM_IMAGES } from '../../data/planogramImages';
 import {
   ACTIVE_IMPLANTATION_CAMPAIGN,
+  findKeptDeviceStateFromAudit,
   getAllSwapAssignmentsForStore,
   getImplantationPositionsForMesa1Cara1,
   getReturnDevicesForStore,
   getSwapAssignmentForPosition,
-  getVisualElementsForStore,
-  isTwoTableSpace
+  getVisualElementsForStore
 } from '../../data/implantationCampaignData';
 import { DbService } from '../../services/dbService';
 import { ImageCompressionService } from '../../services/imageCompressionService';
@@ -136,65 +136,36 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
   const [zoomLevel, setZoomLevel] = useState<number>(1);
   const [isSummaryModalOpen, setIsSummaryModalOpen] = useState<boolean>(initialOpenSummary);
 
+  // Limitado exclusivamente a MESA 1 · Cara 1 para el nuevo planograma de Nueva Implantación
   const availableSpaces = useMemo(() => {
-    const raw = store.availableSpaces && store.availableSpaces.length > 0
-      ? store.availableSpaces
-      : ['MESA 1 · Cara 1', 'MESA 1 · Cara 2', 'WALL', 'LINEAL SMARTWATCH'];
+    return ['MESA 1 · Cara 1'];
+  }, []);
 
-    const list: string[] = [];
-    const hasMesa1 = raw.some(s => s.toUpperCase().includes('MESA 1'));
-    const hasMesa2 = raw.some(s => s.toUpperCase().includes('MESA 2'));
-    const hasMesa3 = raw.some(s => s.toUpperCase().includes('MESA 3'));
-
-    if (hasMesa1) list.push('MESA 1');
-    if (hasMesa2) list.push('MESA 2');
-    if (hasMesa3) list.push('MESA 3');
-
-    raw.forEach(s => {
-      const u = s.toUpperCase();
-      if (u.includes('MESA')) return;
-      if (u.includes('COLUMNA')) return;
-      if (!list.includes(s)) list.push(s);
-    });
-
-    return list.length > 0 ? list : ['MESA 1'];
-  }, [store.availableSpaces]);
-
-  const [activeSpace, setActiveSpaceState] = useState<string>(() => {
-    if (initialActiveSpace) {
-      const normalized = initialActiveSpace.includes('MESA 1') ? 'MESA 1'
-        : initialActiveSpace.includes('MESA 2') ? 'MESA 2'
-        : initialActiveSpace.includes('MESA 3') ? 'MESA 3'
-        : initialActiveSpace;
-      if (availableSpaces.includes(normalized)) return normalized;
-    }
-    return availableSpaces[0];
-  });
+  const [activeSpace, setActiveSpaceState] = useState<string>('MESA 1 · Cara 1');
   const setActiveSpace = (space: string) => {
     setActiveSpaceState(space);
     if (onActiveSpaceChange) onActiveSpaceChange(space);
   };
 
-  // En Mesa 1 durante la Nueva Implantación se aplican los puestos oficiales de la campaña
-  const isMesa1 = activeSpace.toUpperCase().includes('MESA 1');
-  const isMesa1Cara1 = isMesa1;
+  // En Mesa 1 · Cara 1 durante la Nueva Implantación se aplican los 11 puestos oficiales de la campaña
+  const isMesa1 = true;
+  const isMesa1Cara1 = true;
 
   const positions = useMemo(() => {
-    if (isMesa1Cara1) {
-      return getImplantationPositionsForMesa1Cara1(store);
-    }
-    return getPositionsForSpace(store.tipoEspacioId, activeSpace, store);
-  }, [store, activeSpace, isMesa1Cara1]);
+    return getImplantationPositionsForMesa1Cara1(store);
+  }, [store]);
 
-  // Todas las posiciones asignadas a la campaña de lanzamiento en esta tienda
+  // Todas las posiciones asignadas a la campaña de lanzamiento en esta tienda (P01 a P05 de Mesa 1 Cara 1)
   const allStoreSwapAssignments = useMemo(
     () => getAllSwapAssignmentsForStore(store),
     [store]
   );
 
-  // Última auditoría completa previa (fusionando borrador en curso si existe) para recuperar los IMEIs y estado LDU/Maqueta del material saliente
+  // Última auditoría completa previa (fusionando borrador en curso si existe) para recuperar los IMEIs y estado LDU/Maqueta del material saliente y de los puestos que se mantienen
   const latestAudit = useMemo(() => {
-    const baseAudit = DbService.getLatestAuditForStore(store.tiendaId);
+    const baseAudit =
+      DbService.getPreImplantationAuditForStore(store.tiendaId) ||
+      DbService.getLatestAuditForStore(store.tiendaId);
     const activeDraft = DbService.getDraft(store.tiendaId);
     if (!activeDraft || activeDraft.length === 0) return baseAudit;
 
@@ -461,63 +432,9 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
     ? (selectedCara === 'Cara 2' ? cara2Positions : cara1Positions)
     : positions;
 
-  // Imagen de fondo del espacio 3D: en Mesa 1 Cara 1 se utiliza el nuevo render oficial de lanzamiento Xiaomi 18
-  const hasWall = Boolean(
-    store.availableSpaces &&
-    store.availableSpaces.some(
-      (s) => s.toUpperCase().includes('WALL') && !s.toUpperCase().includes('MINIWALL')
-    )
-  );
-  const hasMiniwall = Boolean(
-    store.availableSpaces &&
-    store.availableSpaces.some((s) => s.toUpperCase().includes('MINIWALL'))
-  );
-  const hasWallOrMiniwall = hasWall || hasMiniwall;
-  const isTable1 = store.tipoEspacioId.includes('Table 1');
-  const isTable2 = store.tipoEspacioId.includes('Table 2');
-  const isTableCrf = store.tipoEspacioId.includes('Table CRF');
-  const isLinealActive =
-    activeSpace.toUpperCase().includes('LINEAL') ||
-    activeSpace.toUpperCase().includes('SMARTWATCH');
-  const isMiniWallActive = activeSpace.toUpperCase().includes('MINIWALL');
-  const isWallActive = activeSpace.toUpperCase().includes('WALL') && !isMiniWallActive;
-  const isMesa2Active = activeSpace.toUpperCase().includes('MESA 2');
-
-  let bgImage = PLANOGRAM_IMAGES.table1Cara1;
-  if (isLinealActive) {
-    bgImage = PLANOGRAM_IMAGES.linealSmartwatchImg;
-  } else if (isMiniWallActive) {
-    bgImage = PLANOGRAM_IMAGES.miniwallImg;
-  } else if (isWallActive) {
-    bgImage = PLANOGRAM_IMAGES.wallImg;
-  } else if (isTableCrf) {
-    bgImage = isCara2Active
-      ? PLANOGRAM_IMAGES.tableCrfCara2
-      : PLANOGRAM_IMAGES.tableCrfCara1;
-  } else if (isMesa2Active) {
-    bgImage = isCara2Active
-      ? (store.hasPad8Pro ? PLANOGRAM_IMAGES.table2Mesa2Pad8ProCara2 : PLANOGRAM_IMAGES.table2Mesa2Cara2)
-      : (store.hasPad8Pro
-          ? PLANOGRAM_IMAGES.table2Mesa2Pad8ProCara1
-          : (hasWallOrMiniwall ? PLANOGRAM_IMAGES.table2Mesa2Cara1 : PLANOGRAM_IMAGES.table2Mesa2Cara1NoWall));
-  } else if (isTable2) {
-    bgImage = isCara2Active
-      ? (hasWallOrMiniwall ? PLANOGRAM_IMAGES.table2Mesa1Cara2 : PLANOGRAM_IMAGES.table2Mesa1Cara2NoWall)
-      : (hasWallOrMiniwall ? PLANOGRAM_IMAGES.table2Mesa1Cara1Xiaomi18 : PLANOGRAM_IMAGES.table2Mesa1Cara1NoWall);
-  } else if (isTable1 && hasWall) {
-    bgImage = isCara2Active
-      ? PLANOGRAM_IMAGES.table1WallCara2
-      : PLANOGRAM_IMAGES.table1WallCara1;
-  } else if (isTable1 && !isCara2Active) {
-    bgImage = PLANOGRAM_IMAGES.table1Cara1Xiaomi18;
-  } else {
-    bgImage = isCara2Active
-      ? PLANOGRAM_IMAGES.table1Cara2
-      : PLANOGRAM_IMAGES.table1Cara1;
-  }
-
-  const containerBgColor =
-    isMiniWallActive ? '#c8cbcf' : isWallActive ? '#9c9b99' : isLinealActive ? '#ded6ca' : '#c5c6c8';
+  // Imagen oficial de referencia para Mesa 1 Cara 1 en la Nueva Implantación ("Lanzamiento Xiaomi 18 Pro Max")
+  const bgImage = PLANOGRAM_IMAGES.mesa1Cara1X18Implantacion;
+  const containerBgColor = '#c5c6c8';
 
   // Métricas globales de avance de Nueva Implantación
   const completedSwapsCount = allStoreSwapAssignments.filter(
@@ -883,51 +800,19 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
           ===================================================================== */}
       {subModule === 'swap_devices' && (
         <>
-          {/* Barra de superficies / muebles de la tienda */}
+          {/* Barra exclusiva de MESA 1 · Cara 1 */}
           <div className="px-3.5 sm:px-6 py-2 bg-slate-50 border-b border-slate-200 flex items-center justify-between gap-2 overflow-x-auto scrollbar-none">
-            <div className="flex items-center gap-1.5">
-              {availableSpaces.map((space) => {
-                const isSelected = activeSpace === space;
-                const spacePositions = getPositionsForSpace(store.tipoEspacioId, space, store);
-                const spaceCampaignCount = spacePositions.filter((p) =>
-                  Boolean(getSwapAssignmentForPosition(p))
-                ).length;
-
-                return (
-                  <button
-                    key={space}
-                    type="button"
-                    onClick={() => {
-                      setActiveSpace(space);
-                      const newPositions = getPositionsForSpace(store.tipoEspacioId, space, store);
-                      const firstCamp = newPositions.find((p) =>
-                        Boolean(getSwapAssignmentForPosition(p))
-                      );
-                      if (firstCamp) setSelectedPos(firstCamp);
-                      else if (newPositions.length > 0) setSelectedPos(newPositions[0]);
-                    }}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 shrink-0 ${
-                      isSelected
-                        ? 'bg-[#104a60] text-white shadow-xs ring-2 ring-[#009ca6]/40'
-                        : 'bg-white text-slate-600 hover:bg-slate-200/70 border border-slate-200'
-                    }`}
-                  >
-                    <Layers
-                      className={`w-3.5 h-3.5 ${isSelected ? 'text-[#00c4cc]' : 'text-slate-400'}`}
-                    />
-                    <span>{space}</span>
-                    {spaceCampaignCount > 0 && (
-                      <span
-                        className={`text-[10px] px-1.5 py-0.2 rounded-full font-black ${
-                          isSelected ? 'bg-rose-500 text-white' : 'bg-rose-100 text-rose-700'
-                        }`}
-                      >
-                        {spaceCampaignCount} Swap
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
+            <div className="flex items-center gap-2">
+              <div className="px-3.5 py-1.5 rounded-xl text-xs font-black bg-[#104a60] text-white shadow-xs ring-2 ring-[#009ca6]/40 flex items-center gap-2 shrink-0">
+                <Layers className="w-3.5 h-3.5 text-[#00c4cc]" />
+                <span>MESA 1 · Cara 1</span>
+                <span className="text-[10px] px-2 py-0.5 rounded-full font-black bg-rose-500 text-white">
+                  5 Nuevos a Instalar (P01-P05)
+                </span>
+                <span className="text-[10px] px-2 py-0.5 rounded-full font-black bg-teal-600 text-white hidden sm:inline">
+                  6 Mantenidos (P06-P11)
+                </span>
+              </div>
             </div>
           </div>
 
@@ -936,7 +821,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
             <div className="bg-[#104a60]/10 border-b border-[#009ca6]/20 px-4 py-2 flex flex-wrap items-center justify-around text-xs font-bold text-slate-700 gap-2">
               <span className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded-full bg-rose-600 ring-2 ring-rose-400 animate-pulse" />
-                <span>Pendiente de Instalar</span>
+                <span>Nuevo Dispositivo Pendiente de Instalar (P01-P05)</span>
               </span>
               <span className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded-full bg-emerald-500" />
@@ -946,9 +831,9 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                 <span className="w-3 h-3 rounded-full bg-amber-500" />
                 <span>Con Incidencia</span>
               </span>
-              <span className="flex items-center gap-1.5 text-slate-400">
-                <span className="w-3 h-3 rounded-full bg-slate-400 opacity-50" />
-                <span>Posición Atenuada (No interviene en campaña)</span>
+              <span className="flex items-center gap-1.5 text-slate-600">
+                <span className="w-3 h-3 rounded-full bg-slate-600 border border-white" />
+                <span>Mantenido de Auditoría Completa (P06-P11 · Posición reajustada)</span>
               </span>
             </div>
           )}
@@ -1233,11 +1118,14 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                               </>
                             ) : (
                               <>
-                                <p className="text-xs sm:text-sm font-bold truncate">
-                                  {p.modeloOficial}
+                                <p className="text-xs sm:text-sm font-bold truncate text-slate-200">
+                                  {p.modeloOficial}{' '}
+                                  <span className="text-[10px] font-black px-1.5 py-0.5 rounded bg-slate-700 text-teal-300 ml-1">
+                                    {p.esDummy ? 'DUMMY' : 'LDU'}
+                                  </span>
                                 </p>
-                                <p className="text-[10px] text-slate-500">
-                                  No interviene en esta campaña ({p.esDummy ? 'Maqueta' : 'LDU'})
+                                <p className="text-[10px] text-slate-400">
+                                  Se mantiene de Auditoría Completa (Antes P{String(p.posicionNumero + 1).padStart(2, '0')} ➔ Ahora P{String(p.posicionNumero).padStart(2, '0')} · Sin meter IMEI)
                                 </p>
                               </>
                             )}
@@ -1246,8 +1134,8 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
 
                         <div className="shrink-0 ml-2">
                           {!asg ? (
-                            <span className="text-[10px] font-semibold text-slate-500">
-                              Sin cambio
+                            <span className="text-[10px] font-bold text-teal-300 bg-teal-950/60 border border-teal-700/40 px-2 py-1 rounded-lg">
+                              Mantenido (P{String(p.posicionNumero).padStart(2, '0')})
                             </span>
                           ) : isOk ? (
                             <span className="text-[10px] font-black text-emerald-400 flex items-center gap-1">
@@ -1406,25 +1294,41 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                         </button>
                       </>
                     ) : (
-                      /* Puesto atenuado que no interviene en la campaña */
-                      <div className="space-y-2.5 text-xs">
-                        <div className="flex items-center justify-between">
-                          <span className="font-mono text-xs font-bold text-slate-600 bg-slate-200 px-2 py-0.5 rounded">
-                            Puesto {String(selectedPos.posicionNumero).padStart(2, '0')}
-                          </span>
-                          <span className="text-[10px] font-bold text-slate-400 uppercase">
-                            Posición Atenuada
-                          </span>
-                        </div>
-                        <h3 className="text-sm font-black text-slate-800">
-                          {selectedPos.modeloOficial}
-                        </h3>
-                        <p className="text-slate-500 leading-relaxed">
-                          Esta posición <strong>no interviene</strong> en la campaña activa{' '}
-                          <strong>"{ACTIVE_IMPLANTATION_CAMPAIGN}"</strong>. El dispositivo actual
-                          permanece expuesto sin cambios.
-                        </p>
-                      </div>
+                      /* Puesto P06..P11 que se mantiene igual respecto a la Auditoría Completa (solo reajusta posición) */
+                      (() => {
+                        const keptState = findKeptDeviceStateFromAudit(selectedPos, latestAudit);
+                        const rememberedImei = selectedPos.esDummy
+                          ? 'DUMMY (Exento de IMEI)'
+                          : keptState?.imeiSerial && keptState.imeiSerial !== '-'
+                          ? keptState.imeiSerial
+                          : 'Conservado de Auditoría Completa';
+                        return (
+                          <div className="space-y-2.5 text-xs">
+                            <div className="flex items-center justify-between">
+                              <span className="font-mono text-xs font-black text-white bg-slate-700 px-2.5 py-0.5 rounded-lg">
+                                Puesto {String(selectedPos.posicionNumero).padStart(2, '0')} (Antes P{String(selectedPos.posicionNumero + 1).padStart(2, '0')})
+                              </span>
+                              <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-teal-100 text-teal-800 uppercase">
+                                {selectedPos.esDummy ? 'DUMMY' : 'LDU'} · Se mantiene
+                              </span>
+                            </div>
+                            <h3 className="text-sm font-black text-slate-900">
+                              {selectedPos.modeloOficial}
+                            </h3>
+                            <div className="p-2.5 rounded-xl bg-white border border-slate-200 flex items-center justify-between">
+                              <span className="text-[10px] font-bold uppercase text-slate-500">
+                                IMEI / Estado en Auditoría Completa:
+                              </span>
+                              <span className="font-mono text-xs font-black text-slate-800">
+                                {rememberedImei}
+                              </span>
+                            </div>
+                            <p className="text-slate-600 leading-relaxed text-[11px]">
+                              Este dispositivo <strong>se mantiene igual</strong> respecto a la Auditoría Completa. No hace falta volver a escanear su IMEI: al finalizar la Nueva Implantación se traspasa automáticamente a la Auditoría Completa con su nuevo número de posición <strong>P{String(selectedPos.posicionNumero).padStart(2, '0')}</strong>.
+                            </p>
+                          </div>
+                        );
+                      })()
                     )}
                   </div>
                 )}

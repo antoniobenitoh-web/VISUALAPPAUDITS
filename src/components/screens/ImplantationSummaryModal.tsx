@@ -12,7 +12,10 @@ import {
 import { DbService } from '../../services/dbService';
 import { SheetsService, SPREADSHEET_RETURNS_URL } from '../../services/sheetsService';
 import { AuthService } from '../../services/authService';
-import { ACTIVE_IMPLANTATION_CAMPAIGN } from '../../data/implantationCampaignData';
+import {
+  ACTIVE_IMPLANTATION_CAMPAIGN,
+  buildFullAuditRecordFromImplantation
+} from '../../data/implantationCampaignData';
 import {
   AlertTriangle,
   ArrowLeft,
@@ -462,42 +465,22 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
       DbService.saveImplantationRecord(record);
       DbService.clearImplantationDraft(store.tiendaId);
 
-      // Actualizar automáticamente el Reporte Vigente de la tienda con los nuevos dispositivos e IMEIs instalados
+      // Actualizar automáticamente la Auditoría Completa de la tienda:
+      // - Guarda esta Mesa 1 Cara 1 (P01..P05 nuevos + P06..P11 mantenidos con posición reajustada)
+      // - Ajusta los números de posición de Mesa 1 Cara 2 (P12..P22 / P12..P21)
+      // - Mantiene intactos el resto de espacios de la Auditoría Completa
       try {
-        const updatedPositions = consolidatedSwaps.map((sw) => ({
-          posicionId: sw.posicionId,
-          mesaId: sw.mesaId,
-          posicionNumero: sw.posicionNumero,
-          modeloOficial: sw.modeloNuevo,
-          modeloDetectado: sw.modeloNuevo,
-          imeiSerial: sw.imeiNuevo || '-',
-          estadoPosicion: sw.estadoSwap === 'Incidencia' ? ('Incidencia' as const) : ('OK' as const),
-          tipoIncidencia: sw.motivoIncidencia ? ('Otro' as const) : undefined,
-          esMaqueta: sw.esDummyNuevo,
-          fotoEvidenciaUrl: sw.fotoInUrl,
-          auditadoPor: currentUser.nombre,
-          fechaHora: record.fechaHora
-        }));
-
-        const okCount = updatedPositions.filter((p) => p.estadoPosicion === 'OK').length;
-        const incidenciasCount = updatedPositions.filter((p) => p.estadoPosicion === 'Incidencia').length;
-        const pendientesCount = updatedPositions.length - okCount - incidenciasCount;
-
-        DbService.saveAuditRecord({
-          auditId: `AUD_${store.tiendaId}_POST_IMP_${Date.now()}`,
-          tiendaId: store.tiendaId,
-          nombreTienda: store.nombreTienda,
-          retailer: store.retailer,
-          usuarioEmail: currentUser.email,
-          usuarioNombre: currentUser.nombre,
-          fechaHora: record.fechaHora,
-          totalPosiciones: updatedPositions.length,
-          okCount,
-          incidenciasCount,
-          pendientesCount,
-          positions: updatedPositions,
-          sincronizadoSheets: false
-        });
+        const preAudit =
+          DbService.getPreImplantationAuditForStore(store.tiendaId) ||
+          DbService.getLatestAuditForStore(store.tiendaId);
+        const fullAuditRecord = buildFullAuditRecordFromImplantation(
+          store,
+          currentUser,
+          consolidatedSwaps,
+          record.fechaHora,
+          preAudit
+        );
+        DbService.saveAuditRecord(fullAuditRecord);
       } catch (e) {
         console.warn('No se pudo actualizar el reporte vigente automático tras la implantación:', e);
       }

@@ -3119,6 +3119,38 @@ export const STORE_LINEAL_PLANOGRAMS: Record<string, { planogram: string; count:
   'MIESD00076': { planogram: 'L. Wearables_ECI 6', count: 6 }, // ECI SABADELL
 };
 
+export const hasStoreCompletedImplantation = (storeOrId?: StoreCenter | string): boolean => {
+  if (typeof window === 'undefined' || !storeOrId) return false;
+  const storeId = (typeof storeOrId === 'string' ? storeOrId : storeOrId.tiendaId || '').trim();
+  if (!storeId) return false;
+  try {
+    const rawImpHistory = localStorage.getItem('brand_implantation_history');
+    if (rawImpHistory) {
+      const impList = JSON.parse(rawImpHistory);
+      if (Array.isArray(impList) && impList.some((r) => r && r.tiendaId === storeId)) {
+        return true;
+      }
+    }
+    const rawLatest = localStorage.getItem(`brand_audit_latest_${storeId}`);
+    if (rawLatest) {
+      const latest = JSON.parse(rawLatest);
+      if (
+        latest?.auditId?.includes('_IMP_FULL_') ||
+        (latest?.positions || []).some(
+          (p: { posicionNumero?: number; posicionId?: string; modeloOficial?: string }) =>
+            (p.posicionNumero === 1 || p.posicionId?.endsWith('-P1')) &&
+            p.modeloOficial?.toLowerCase().includes('18 pro max')
+        )
+      ) {
+        return true;
+      }
+    }
+  } catch {
+    // ignore storage errors
+  }
+  return false;
+};
+
 export const getPositionsForSpace = (
   tipoEspacioId: string, 
   mesaId: string, 
@@ -3382,6 +3414,77 @@ export const getPositionsForSpace = (
     { pos: 2,  device: 'Redmi Note 17 Pro Max 5G White&Orange', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 79.5, pinY: 48.5 },
     { pos: 3,  device: 'Redmi Watch 6', dummy: false, category: 'Wearable' as ProductCategory, pinX: 84.6, pinY: 48.5 }
   ];
+
+  const isMesa1Space = mesaId.toUpperCase().includes('MESA 1');
+  if (isMesa1Space && hasStoreCompletedImplantation(storeOrId)) {
+    const POST_IMP_M1_CARA1_ITEMS = [
+      { pos: 1, device: 'Xiaomi 18 Pro Max', color: 'Red / Burgundy', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 16.5, pinY: 45.5 },
+      { pos: 2, device: 'Xiaomi 18 Pro Max', color: 'Red / Burgundy', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 21.0, pinY: 45.5 },
+      { pos: 3, device: 'Xiaomi 18 Pro', color: 'Purple / Blue', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 29.5, pinY: 45.5 },
+      { pos: 4, device: 'Xiaomi 18 Pro', color: 'Purple / Blue', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 34.0, pinY: 45.5 },
+      { pos: 5, device: 'Xiaomi Clip', color: 'Black (Maqueta)', dummy: true, category: 'Audio' as ProductCategory, pinX: 43.5, pinY: 45.5 },
+      { pos: 6, device: 'Xiaomi 17T Pro Blue', color: 'Blue', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 54.4, pinY: 45.5 },
+      { pos: 7, device: 'Xiaomi Watch S5 46mm', color: 'Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 59.3, pinY: 45.5 },
+      { pos: 8, device: 'Xiaomi Smart Band 10 Pro', color: 'Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 63.8, pinY: 45.5 },
+      { pos: 9, device: 'Xiaomi 17T Purple', color: 'Purple', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 75.0, pinY: 45.5 },
+      { pos: 10, device: 'Xiaomi 17T Blue', color: 'Blue (Maqueta)', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 79.8, pinY: 45.5 },
+      { pos: 11, device: 'Xiaomi Smart Band 11 Active', color: 'Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 84.8, pinY: 45.5 }
+    ];
+
+    const pCara1Post: PlanogramPosition[] = POST_IMP_M1_CARA1_ITEMS.map((item, index) => ({
+      id: `${tipoEspacioId}-${mesaId.replace(/\s+/g, '_')}-P${item.pos}`,
+      tipoEspacioId,
+      mesaId,
+      cara: 'Cara 1',
+      posicionNumero: item.pos,
+      categoria: item.category,
+      modeloOficial: item.device,
+      colorOficial: item.color,
+      esDummy: item.dummy,
+      requiereImei: !item.dummy,
+      pinX: item.pinX,
+      pinY: item.pinY,
+      x: (index - POST_IMP_M1_CARA1_ITEMS.length / 2) * 0.35,
+      y: 0.78,
+      z: -0.35
+    }));
+
+    const isTable2Format = tipoEspacioId.includes('Table 2');
+    const c2RawItems = isTable2Format
+      ? TABLE2_MESA1_CARA2_ITEMS
+      : (items.length >= 22 ? items.slice(12, 22) : items.slice(Math.floor(items.length / 2)));
+
+    const pCara2Post: PlanogramPosition[] = c2RawItems.map((item, index) => {
+      // Al pasar Cara 1 de 12 puestos a 11 puestos, los puestos de Cara 2 ajustan su posición (-1: de P13..P23 a P12..P22)
+      const adjustedPos = 12 + index;
+      const coord = 'pinX' in item && typeof item.pinX === 'number'
+        ? { pinX: item.pinX, pinY: item.pinY }
+        : TABLE1_CARA2_PINS[index];
+      return {
+        id: `${tipoEspacioId}-${mesaId.replace(/\s+/g, '_')}-P${adjustedPos}`,
+        tipoEspacioId,
+        mesaId,
+        cara: 'Cara 2',
+        posicionNumero: adjustedPos,
+        categoria: item.category as ProductCategory,
+        modeloOficial: item.device,
+        colorOficial: 'Estándar Oficial',
+        esDummy: item.dummy,
+        requiereImei: !item.dummy,
+        pinX: coord?.pinX,
+        pinY: coord?.pinY,
+        x: (index - c2RawItems.length / 2) * 0.35,
+        y: 0.78,
+        z: 0.35
+      };
+    });
+
+    const isC2Only = mesaId.includes('Cara 2') || mesaId.includes('Cara B');
+    const isC1Only = mesaId.includes('Cara 1') || mesaId.includes('Cara A');
+    if (isC1Only) return pCara1Post;
+    if (isC2Only) return pCara2Post;
+    return [...pCara1Post, ...pCara2Post];
+  }
 
   const isTable2Mesa1Cara2 =
     tipoEspacioId.includes('Table 2') &&
