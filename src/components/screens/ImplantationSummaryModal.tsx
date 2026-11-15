@@ -725,6 +725,8 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
 
                               <p className="text-xs opacity-85 font-semibold">
                                 Dispositivo instalado: {sw.modeloNuevo}
+                                {(sw.modeloRetirado || '').toLowerCase().includes('smart band 10 pro') &&
+                                  ' (Mismo Watch 5 reubicado de P05)'}
                                 {sw.estadoSwap !== 'Pendiente' && (
                                   <span>
                                     {' '}
@@ -732,6 +734,15 @@ export const ImplantationSummaryModal: React.FC<ImplantationSummaryModalProps> =
                                   </span>
                                 )}
                               </p>
+
+                              {(sw.modeloRetirado || '').toLowerCase().includes('smart band 10 pro') && (
+                                <p className="text-[11px] opacity-80 font-semibold">
+                                  Dispositivo retirado del puesto: {sw.modeloRetirado}
+                                  {sw.imeiRetirado && sw.imeiRetirado !== '-'
+                                    ? ` · (IMEI verificado: ${sw.imeiRetirado})`
+                                    : ''}
+                                </p>
+                              )}
 
                               {isOrange && (
                                 <p className="text-xs font-black text-orange-800 bg-orange-100/90 border border-orange-300 rounded-xl px-2.5 py-1 mt-1 inline-block">

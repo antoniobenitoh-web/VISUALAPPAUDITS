@@ -198,13 +198,44 @@ export const App: React.FC = () => {
       ...swapStates,
       [state.posicionId]: state
     };
+
+    // Si es la sustitución en Table 1 (retirada de Xiaomi Smart Band 10 Pro por Xiaomi Watch 5),
+    // sincronizar también su estado de retirada en "1. Material a Retirar" (RET-T1-M1C1-P9)
+    const updatedReturnStates = { ...(existingDraft?.returnStates || {}) };
+    if ((state.modeloRetirado || '').toLowerCase().includes('smart band 10 pro')) {
+      const existingRet = updatedReturnStates['RET-T1-M1C1-P9'];
+      updatedReturnStates['RET-T1-M1C1-P9'] = {
+        id: 'RET-T1-M1C1-P9',
+        posicionAnterior: 9,
+        mesaId: 'MESA 1',
+        modeloSaliente: 'Xiaomi Smart Band 10 Pro',
+        esDummy: Boolean(state.esDummyRetirado),
+        categoria: 'Wearable',
+        motivoRetirada:
+          existingRet?.motivoRetirada ||
+          'Sustitución en bloque central: Retirar Smart Band 10 Pro para colocar el mismo Xiaomi Watch 5 del otro display (Puesto 05)',
+        sustituidoPor:
+          existingRet?.sustituidoPor ||
+          'Xiaomi Watch 5 (Mismo reloj reubicado del Puesto 05)',
+        imeiMemorizado: state.esDummyRetirado
+          ? undefined
+          : state.imeiRetirado && state.imeiRetirado !== 'DUMMY' && state.imeiRetirado !== 'No registrado'
+          ? state.imeiRetirado
+          : existingRet?.imeiMemorizado,
+        estadoRetirada: state.motivoIncidenciaOut ? 'Incidencia' : 'Retirado',
+        motivoIncidencia: state.motivoIncidenciaOut || undefined,
+        confirmadoPor: currentUser.nombre,
+        fechaHora: state.fechaHora
+      };
+    }
+
     setSwapStates(updatedSwaps);
     DbService.saveImplantationDraft({
       tiendaId: selectedStore.tiendaId,
       campanaNombre: ACTIVE_IMPLANTATION_CAMPAIGN,
       swapStates: updatedSwaps,
       visualStates,
-      returnStates: existingDraft?.returnStates,
+      returnStates: updatedReturnStates,
       updatedAt: new Date().toISOString()
     });
     setActiveImplantationTab('swap_devices');

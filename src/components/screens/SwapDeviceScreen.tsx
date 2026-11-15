@@ -11,6 +11,7 @@ import {
 import { ScannerModal } from '../ScannerModal';
 import { ImageCompressionService } from '../../services/imageCompressionService';
 import { DbService } from '../../services/dbService';
+import { getStoreModelMemorizedImei } from '../../data/implantationCampaignData';
 import {
   ArrowLeft,
   Camera,
@@ -72,30 +73,25 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
   // Apartado activo: 1. Instalación (Nuevo IMEI) | 2. Retirada (IMEI Saliente)
   const [activePhase, setActivePhase] = useState<'step1_in' | 'step2_out'>('step1_in');
 
-  // Buscar IMEI previo memorizado en la última auditoría de la tienda
+  // Detectar si estamos en la sustitución de Table 1: quitar Xiaomi Smart Band 10 Pro e instalar el mismo Xiaomi Watch 5 del otro display (P05)
+  const isSmartBandToWatch5Swap =
+    (assignment?.modeloSaliente || '').toLowerCase().includes('smart band 10 pro') &&
+    (assignment?.modeloEntrante || '').toLowerCase().includes('watch 5');
+
+  // Buscar IMEI previo memorizado en la última auditoría previa de la tienda (o en SEED_AUDITS)
   const memorizedPreviousImei = React.useMemo(() => {
     try {
-      const latest = DbService.getLatestAuditForStore(store.tiendaId);
-      if (!latest || !latest.positions) return '';
+      const latest =
+        DbService.getPreImplantationAuditForStore(store.tiendaId) ||
+        DbService.getLatestAuditForStore(store.tiendaId);
 
       // 1. Si hay un modelo saliente específico definido en la asignación, buscar por ese modelo en Mesa 1
       if (assignment?.modeloSaliente) {
-        const cleanSaliente = assignment.modeloSaliente
-          .toLowerCase()
-          .replace(/\s*\(.*?\)/g, '')
-          .trim();
-        if (cleanSaliente) {
-          const modelMatch = latest.positions.find(
-            (p) =>
-              p.mesaId.toUpperCase().includes('MESA 1') &&
-              p.modeloOficial.toLowerCase().includes(cleanSaliente) &&
-              p.imeiSerial &&
-              p.imeiSerial !== '-' &&
-              !p.esMaqueta
-          );
-          if (modelMatch) return modelMatch.imeiSerial;
-        }
+        const fromHelper = getStoreModelMemorizedImei(store, assignment.modeloSaliente, latest);
+        if (fromHelper) return fromHelper;
       }
+
+      if (!latest || !latest.positions) return '';
 
       // 2. Fallback a coincidencia por número de posición directa
       const match = latest.positions.find(
@@ -108,27 +104,31 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
       }
     } catch {}
     return '';
-  }, [store.tiendaId, position, assignment]);
+  }, [store, position, assignment]);
 
-  // Si el modelo entrante se reubica dentro de la misma mesa (p.ej. Xiaomi Watch 5 en Table 1), recuperar su IMEI de la última auditoría
+  // Si el modelo entrante se reubica dentro de la misma mesa (Xiaomi Watch 5 en Table 1 desde el otro display P05), recuperar su IMEI
   const memorizedRelocatedInImei = React.useMemo(() => {
     try {
       if ((assignment?.modeloEntrante || '').trim().toLowerCase() !== 'xiaomi watch 5') return '';
-      const latest = DbService.getLatestAuditForStore(store.tiendaId);
-      if (!latest || !latest.positions) return '';
-      const watchMatch = latest.positions.find(
-        (p) =>
-          p.mesaId.toUpperCase().includes('MESA 1') &&
-          p.modeloOficial.toLowerCase().includes('xiaomi watch 5') &&
-          p.imeiSerial &&
-          p.imeiSerial !== '-' &&
-          !p.esMaqueta
-      );
-      return watchMatch?.imeiSerial || '';
+      const latest =
+        DbService.getPreImplantationAuditForStore(store.tiendaId) ||
+        DbService.getLatestAuditForStore(store.tiendaId);
+      return getStoreModelMemorizedImei(store, 'Xiaomi Watch 5', latest);
     } catch {
       return '';
     }
-  }, [store.tiendaId, assignment]);
+  }, [store, assignment]);
+
+  // Estado previo de retirada de la Smart Band 10 Pro (por si ya la verificó en "1. Material a Retirar")
+  const existingSmartBandReturnState = React.useMemo(() => {
+    if (!isSmartBandToWatch5Swap) return undefined;
+    try {
+      const draft = DbService.getImplantationDraft(store.tiendaId);
+      return draft?.returnStates?.['RET-T1-M1C1-P9'];
+    } catch {
+      return undefined;
+    }
+  }, [isSmartBandToWatch5Swap, store.tiendaId]);
 
   // APARTADO 1 · INSTALACIÓN (NUEVO DISPOSITIVO)
   const [tipoIn, setTipoIn] = useState<'LDU' | 'DUMMY'>(
@@ -142,14 +142,20 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
   );
   const esDummyNuevo = tipoIn === 'DUMMY';
   const [imeiIn, setImeiIn] = useState<string>(
-    currentState?.imeiNuevo || memorizedRelocatedInImei || ''
+    currentState?.imeiNuevo && currentState.imeiNuevo !== '-' && currentState.imeiNuevo !== 'Pendiente'
+      ? currentState.imeiNuevo
+      : memorizedRelocatedInImei || ''
   );
   const [fotoInUrl, setFotoInUrl] = useState<string | undefined>(currentState?.fotoInUrl);
 
-  // APARTADO 2 · RETIRADA (DISPOSITIVO ANTERIOR)
+  // APARTADO 2 · RETIRADA (DISPOSITIVO ANTERIOR: p. ej. Xiaomi Smart Band 10 Pro en Table 1)
   const [tipoOut, setTipoOut] = useState<'LDU' | 'DUMMY'>(
     currentState
       ? currentState.esDummyRetirado
+        ? 'DUMMY'
+        : 'LDU'
+      : existingSmartBandReturnState
+      ? existingSmartBandReturnState.esDummy
         ? 'DUMMY'
         : 'LDU'
       : assignment.esDummySaliente
@@ -158,9 +164,25 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
   );
   const esDummyRetirado = tipoOut === 'DUMMY';
   const [imeiOut, setImeiOut] = useState<string>(
-    currentState?.imeiRetirado || memorizedPreviousImei || ''
+    (currentState?.imeiRetirado &&
+      currentState.imeiRetirado !== '-' &&
+      currentState.imeiRetirado !== 'No registrado'
+      ? currentState.imeiRetirado
+      : existingSmartBandReturnState?.imeiMemorizado || memorizedPreviousImei) || ''
   );
   const [fotoOutUrl, setFotoOutUrl] = useState<string | undefined>(currentState?.fotoOutUrl);
+  const [outRetiradaConfirmed, setOutRetiradaConfirmed] = useState<boolean>(
+    Boolean(
+      currentState?.estadoSwap === 'OK' ||
+        currentState?.estadoSwap === 'Incidencia' ||
+        existingSmartBandReturnState?.estadoRetirada === 'Retirado' ||
+        existingSmartBandReturnState?.estadoRetirada === 'Incidencia'
+    )
+  );
+  const [editingOutDiscrepancy, setEditingOutDiscrepancy] = useState<boolean>(false);
+  const [showOutIncidentDrawer, setShowOutIncidentDrawer] = useState<boolean>(
+    Boolean(currentState?.motivoIncidenciaOut)
+  );
 
   // INCIDENCIAS
   const [motivoIncidenciaIn, setMotivoIncidenciaIn] = useState<SwapInIncidentMotivo | ''>(
@@ -294,19 +316,29 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
   const inValidation = validateNewImeiFormat(imeiIn);
   const isStep1Complete = esDummyNuevo || inValidation.valid || Boolean(motivoIncidenciaIn);
 
-  // Validación de retirada
+  // Validación de retirada (obligatoria cuando sustituimos la Smart Band 10 Pro por el Xiaomi Watch 5 en Table 1)
   const isOutExemptFromImei =
     esDummyRetirado ||
     motivoIncidenciaOut === 'Terminal ausente / Posible robo' ||
     motivoIncidenciaOut === 'Terminal bloqueado / Sin encendido (Imei ilegible)';
 
-  const canSaveFinal =
-    isStep1Complete &&
-    (isOutExemptFromImei || imeiOut.trim().length >= 4 || Boolean(motivoIncidenciaOut) || true);
+  const isOutStepComplete = !isSmartBandToWatch5Swap
+    ? true
+    : Boolean(motivoIncidenciaOut) ||
+      (outRetiradaConfirmed && (isOutExemptFromImei || imeiOut.trim().length >= 4));
+
+  const canSaveFinal = isStep1Complete && isOutStepComplete;
 
   const handleSaveAndFinishPosition = () => {
+    if (isSmartBandToWatch5Swap && !isOutStepComplete) {
+      alert(
+        'Primero comprueba el IMEI de la Xiaomi Smart Band 10 Pro y confirma que la retiras (o indica la incidencia correspondiente).'
+      );
+      return;
+    }
+
     if (!esDummyNuevo && !motivoIncidenciaIn && !inValidation.valid) {
-      alert('Introduce o escanea el IMEI del nuevo dispositivo instalado.');
+      alert('Introduce, escanea o confirma el IMEI del Xiaomi Watch 5 / dispositivo instalado.');
       return;
     }
 
@@ -319,6 +351,8 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
     });
 
     const hasInstallIncident = Boolean(motivoIncidenciaIn);
+    const hasOutIncident = Boolean(motivoIncidenciaOut);
+    const combinedIncident = motivoIncidenciaIn || motivoIncidenciaOut || '';
 
     const swapState: PositionSwapState = {
       posicionId: position.id,
@@ -336,9 +370,9 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
         : imeiIn.trim() || (motivoIncidenciaIn ? `No instalado (${motivoIncidenciaIn})` : 'Pendiente'),
       fotoInUrl,
       estadoSwap: hasInstallIncident ? 'Incidencia' : 'OK',
-      incidenciaActiva: hasInstallIncident,
-      motivoIncidencia: motivoIncidenciaIn as any,
-      motivoIncidenciaOut: '',
+      incidenciaActiva: hasInstallIncident || hasOutIncident,
+      motivoIncidencia: combinedIncident as any,
+      motivoIncidenciaOut: motivoIncidenciaOut || '',
       motivoIncidenciaIn,
       observacionesIncidencia: '',
       auditadoPor: currentUser.nombre,
@@ -627,23 +661,302 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
         </div>
       </div>
 
-      {/* CONTENIDO: EXCLUSIVAMENTE INSTALACIÓN DEL NUEVO DISPOSITIVO */}
+      {/* CONTENIDO: SUSTITUCIÓN (PASO 1 RETIRADA SMART BAND 10 PRO + PASO 2 INSTALACIÓN WATCH 5) O INSTALACIÓN DIRECTA */}
       <div className="p-4 sm:p-6 space-y-5 flex-1 overflow-y-auto">
-        <div className="space-y-4 animate-fadeIn">
-          {/* Tarjeta del nuevo modelo a instalar */}
-          <div className="p-4 bg-teal-50/70 border border-teal-200 rounded-2xl flex items-center gap-3">
-            <div className="w-11 h-11 rounded-2xl bg-white border border-teal-200 flex items-center justify-center text-[#009ca6] shrink-0">
-              <PackagePlus className="w-5 h-5" />
+        {isSmartBandToWatch5Swap && (
+          <div className="p-4 sm:p-5 rounded-3xl border-2 border-amber-300 bg-amber-50/60 space-y-4 animate-fadeIn">
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-amber-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+                  <PackageMinus className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-amber-800 block">
+                    Paso 1 de 2 · Dispositivo a retirar de este soporte
+                  </span>
+                  <h3 className="text-sm sm:text-base font-black text-slate-900">
+                    {assignment.modeloSaliente}
+                  </h3>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-1.5">
+                <div className="flex items-center bg-white p-0.5 rounded-xl border border-amber-300">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setTipoOut('LDU');
+                    }}
+                    className={`px-2 py-0.5 rounded-lg text-[10px] font-black transition cursor-pointer ${
+                      !esDummyRetirado
+                        ? 'bg-[#009ca6] text-white shadow-2xs'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    LDU
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setTipoOut('DUMMY');
+                      setEditingOutDiscrepancy(false);
+                    }}
+                    className={`px-2 py-0.5 rounded-lg text-[10px] font-black transition cursor-pointer ${
+                      esDummyRetirado
+                        ? 'bg-orange-600 text-white shadow-2xs'
+                        : 'text-slate-600 hover:text-slate-900'
+                    }`}
+                  >
+                    Maqueta
+                  </button>
+                </div>
+              </div>
             </div>
-            <div>
-              <span className="text-[10px] font-black uppercase tracking-wider text-[#009ca6] block">
-                Nuevo dispositivo a instalar
-              </span>
-              <h3 className="text-base sm:text-lg font-black text-slate-900">
-                {assignment.modeloEntrante}
-              </h3>
+
+            {!esDummyRetirado ? (
+              <div className="p-3.5 rounded-2xl bg-white border border-amber-200 shadow-2xs space-y-3">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-[10px] font-black uppercase tracking-wider text-slate-600 flex items-center gap-1.5">
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#009ca6] shrink-0" />
+                    IMEI registrado de la {assignment.modeloSaliente} a comprobar
+                  </span>
+                  {outRetiradaConfirmed && !editingOutDiscrepancy && (
+                    <span className="text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+                      Retirada Confirmada ✓
+                    </span>
+                  )}
+                </div>
+
+                <div className="flex items-center justify-between gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                  <span className="font-mono text-xs sm:text-sm font-black text-slate-800 tracking-wide select-all">
+                    {imeiOut || memorizedPreviousImei || 'Sin IMEI previo registrado'}
+                  </span>
+                </div>
+
+                <div className="space-y-2 pt-0.5">
+                  <span className="block text-[11px] font-black text-slate-800">
+                    ¿Es correcto el IMEI de la {assignment.modeloSaliente} que estás retirando?
+                  </span>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (!imeiOut && memorizedPreviousImei) {
+                          setImeiOut(memorizedPreviousImei);
+                        }
+                        setEditingOutDiscrepancy(false);
+                        setMotivoIncidenciaOut('');
+                        setOutRetiradaConfirmed(true);
+                      }}
+                      className={`py-2.5 px-3 rounded-xl font-black text-xs flex items-center justify-center gap-1.5 border transition cursor-pointer ${
+                        outRetiradaConfirmed && !editingOutDiscrepancy && !motivoIncidenciaOut
+                          ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm'
+                          : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border-emerald-300'
+                      }`}
+                    >
+                      <Check className="w-4 h-4 shrink-0" />
+                      <span>Sí, confirmar retirada</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setEditingOutDiscrepancy(true);
+                      }}
+                      className={`py-2.5 px-3 rounded-xl font-black text-xs flex items-center justify-center gap-1.5 border transition cursor-pointer ${
+                        editingOutDiscrepancy
+                          ? 'bg-amber-600 text-white border-amber-600 shadow-sm'
+                          : 'bg-amber-50 hover:bg-amber-100 text-amber-900 border-amber-300'
+                      }`}
+                    >
+                      <Camera className="w-3.5 h-3.5 shrink-0" />
+                      <span>No, escanear / manual</span>
+                    </button>
+                  </div>
+                </div>
+
+                {editingOutDiscrepancy && (
+                  <div className="p-3 rounded-2xl bg-amber-50/90 border border-amber-300 space-y-2.5 animate-fadeIn">
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setScannerTarget('out')}
+                        className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#009ca6] to-[#00b4bf] text-white font-black text-xs flex items-center justify-center gap-1.5 shadow-sm cursor-pointer"
+                      >
+                        <Camera className="w-3.5 h-3.5" />
+                        <span>Escanear Cámara</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setKeypadTarget('out_imei')}
+                        className="py-2.5 px-3 rounded-xl bg-white border border-amber-400 text-slate-900 font-black text-xs flex items-center justify-center gap-1.5 cursor-pointer"
+                      >
+                        <Edit3 className="w-3.5 h-3.5" />
+                        <span>Teclado Manual</span>
+                      </button>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="text"
+                        value={imeiOut}
+                        onChange={(e) => setImeiOut(e.target.value.slice(0, 24))}
+                        placeholder="Escribe el IMEI o N.º de Serie de la Smart Band 10 Pro..."
+                        className="flex-1 bg-white text-slate-900 font-mono text-xs sm:text-sm font-bold px-3 py-2 rounded-xl border border-amber-400 focus:outline-none focus:border-[#009ca6]"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (imeiOut.trim().length < 4) {
+                            alert('Introduce o escanea el IMEI de la Smart Band 10 Pro antes de confirmar.');
+                            return;
+                          }
+                          setEditingOutDiscrepancy(false);
+                          setMotivoIncidenciaOut('');
+                          setOutRetiradaConfirmed(true);
+                        }}
+                        className="h-9 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs flex items-center gap-1 shadow-xs cursor-pointer shrink-0"
+                      >
+                        <Check className="w-3.5 h-3.5" />
+                        <span>Confirmar</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="p-3.5 rounded-2xl bg-orange-50/90 border border-orange-200 flex items-center justify-between gap-2">
+                <span className="text-xs font-bold text-orange-950">
+                  Maqueta seleccionada (exenta de IMEI)
+                </span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMotivoIncidenciaOut('');
+                    setOutRetiradaConfirmed(true);
+                  }}
+                  className={`py-2 px-3 rounded-xl font-black text-xs flex items-center gap-1.5 transition cursor-pointer ${
+                    outRetiradaConfirmed
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-emerald-500 hover:bg-emerald-600 text-white'
+                  }`}
+                >
+                  <Check className="w-3.5 h-3.5" />
+                  <span>{outRetiradaConfirmed ? 'Retirada Confirmada ✓' : 'Confirmar retirada'}</span>
+                </button>
+              </div>
+            )}
+
+            {/* Incidencia opcional en la retirada de la Smart Band 10 Pro */}
+            <div className="pt-1">
+              <button
+                type="button"
+                onClick={() => setShowOutIncidentDrawer(!showOutIncidentDrawer)}
+                className={`w-full rounded-xl p-2.5 border text-left flex items-center justify-between transition cursor-pointer ${
+                  motivoIncidenciaOut
+                    ? 'bg-rose-50 border-rose-400 text-rose-900'
+                    : 'bg-white/80 hover:bg-white border-amber-200 text-slate-700'
+                }`}
+              >
+                <span className="text-[11px] font-black flex items-center gap-1.5">
+                  <AlertTriangle className="w-3.5 h-3.5 text-amber-600" />
+                  <span>
+                    {motivoIncidenciaOut
+                      ? `Incidencia en retirada: ${motivoIncidenciaOut}`
+                      : `¿Incidencia al retirar la ${assignment.modeloSaliente}?`}
+                  </span>
+                </span>
+                <span className="text-[10px] font-bold underline">
+                  {showOutIncidentDrawer ? 'Ocultar' : 'Elegir'}
+                </span>
+              </button>
+
+              {showOutIncidentDrawer && (
+                <div className="mt-2 p-2.5 bg-white border border-amber-200 rounded-xl space-y-1">
+                  {([...SWAP_OUT_INCIDENT_MOTIVOS, 'Correa robada o rota'] as SwapOutIncidentMotivo[]).map(
+                    (motivo) => {
+                      const isSel = motivoIncidenciaOut === motivo;
+                      return (
+                        <button
+                          key={motivo}
+                          type="button"
+                          onClick={() => {
+                            const next = isSel ? '' : motivo;
+                            setMotivoIncidenciaOut(next);
+                            if (next) setOutRetiradaConfirmed(true);
+                          }}
+                          className={`w-full text-left px-3 py-2 rounded-lg text-xs font-bold flex items-center justify-between cursor-pointer ${
+                            isSel
+                              ? 'bg-rose-600 text-white'
+                              : 'hover:bg-slate-100 text-slate-800'
+                          }`}
+                        >
+                          <span>{motivo}</span>
+                          {isSel && <Check className="w-3.5 h-3.5 text-white" />}
+                        </button>
+                      );
+                    }
+                  )}
+                </div>
+              )}
             </div>
           </div>
+        )}
+
+        <div className="space-y-4 animate-fadeIn">
+          {/* Tarjeta del nuevo modelo a instalar */}
+          <div className="p-4 bg-teal-50/70 border border-teal-200 rounded-2xl flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 rounded-2xl bg-white border border-teal-200 flex items-center justify-center text-[#009ca6] shrink-0">
+                <PackagePlus className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="text-[10px] font-black uppercase tracking-wider text-[#009ca6] block">
+                  {isSmartBandToWatch5Swap
+                    ? 'Paso 2 de 2 · Instalar el mismo Watch 5 sacado del otro display (P05)'
+                    : 'Nuevo dispositivo a instalar'}
+                </span>
+                <h3 className="text-base sm:text-lg font-black text-slate-900">
+                  {assignment.modeloEntrante}
+                </h3>
+                {isSmartBandToWatch5Swap && (
+                  <p className="text-[11px] font-bold text-teal-900 mt-0.5">
+                    Coloca en esta posición el mismo <strong>Xiaomi Watch 5</strong> retirado del otro display (Puesto 05).
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Si es el Xiaomi Watch 5 reubicado del P05, mostrar su IMEI memorizado para confirmar o editar */}
+          {isSmartBandToWatch5Swap && memorizedRelocatedInImei && tipoIn === 'LDU' && (
+            <div className="p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-300 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+              <div>
+                <span className="text-[10px] font-black uppercase tracking-wider text-emerald-800 block">
+                  IMEI / S.N. del Xiaomi Watch 5 del otro display (Puesto 05)
+                </span>
+                <span className="font-mono text-xs sm:text-sm font-black text-emerald-950">
+                  {memorizedRelocatedInImei}
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setImeiIn(memorizedRelocatedInImei)}
+                className={`px-3 py-2 rounded-xl text-xs font-black flex items-center gap-1.5 transition cursor-pointer shrink-0 ${
+                  imeiIn.trim() === memorizedRelocatedInImei
+                    ? 'bg-emerald-600 text-white shadow-xs'
+                    : 'bg-white hover:bg-emerald-100 text-emerald-900 border border-emerald-400'
+                }`}
+              >
+                <Check className="w-3.5 h-3.5" />
+                <span>
+                  {imeiIn.trim() === memorizedRelocatedInImei
+                    ? 'Mismo Watch 5 aplicado ✓'
+                    : 'Usar este Watch 5'}
+                </span>
+              </button>
+            </div>
+          )}
 
           {/* Selección LDU vs DUMMY */}
           <div className="space-y-2">
@@ -869,17 +1182,21 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
         <button
           type="button"
           onClick={handleSaveAndFinishPosition}
-          disabled={!isStep1Complete}
+          disabled={!canSaveFinal}
           className={`w-full py-4 px-5 font-black rounded-2xl shadow-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition ${
-            !isStep1Complete
+            !canSaveFinal
               ? 'bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed'
-              : Boolean(motivoIncidenciaIn)
+              : Boolean(motivoIncidenciaIn || motivoIncidenciaOut)
               ? 'bg-gradient-to-r from-amber-600 to-rose-600 text-white cursor-pointer hover:brightness-110'
               : 'bg-gradient-to-r from-[#009ca6] to-[#00b4bf] text-white cursor-pointer hover:brightness-110'
           }`}
         >
           <ShieldCheck className="w-5 h-5" />
-          <span>Confirmar Instalación Puesto {String(position.posicionNumero).padStart(2, '0')}</span>
+          <span>
+            {isSmartBandToWatch5Swap
+              ? `Confirmar Retirada de Smart Band 10 Pro e Instalación de Watch 5 (P${String(position.posicionNumero).padStart(2, '0')})`
+              : `Confirmar Instalación Puesto ${String(position.posicionNumero).padStart(2, '0')}`}
+          </span>
         </button>
       </div>
 
@@ -892,6 +1209,8 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
         onScanSuccess={(code) => {
           if (scannerTarget === 'out') {
             setImeiOut(code.trim().slice(0, 24));
+            setEditingOutDiscrepancy(false);
+            setOutRetiradaConfirmed(true);
           } else if (scannerTarget === 'in') {
             setImeiIn(code.trim().slice(0, 24));
           }

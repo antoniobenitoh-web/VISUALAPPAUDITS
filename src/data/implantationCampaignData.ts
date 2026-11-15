@@ -11,6 +11,7 @@ import {
   VisualElementDefinition
 } from '../types';
 import { getDynamicPosmDefinitionsForImplantation } from './storePosmData';
+import { SEED_AUDITS } from './seedAudits';
 
 export const ACTIVE_IMPLANTATION_CAMPAIGN = 'Lanzamiento Xiaomi 18 Pro Max';
 export const EXCLUSIVE_DRIVE_TEST_EMAIL = '';
@@ -600,7 +601,10 @@ export const isTable1CampaignStore = (storeOrId?: StoreCenter | string): boolean
     return cfg.planogram === 'Table 1';
   }
   if (typeof storeOrId === 'object' && storeOrId?.tipoEspacioId) {
-    return storeOrId.tipoEspacioId.trim().toLowerCase() === 'table 1';
+    return storeOrId.tipoEspacioId.trim().toLowerCase().includes('table 1');
+  }
+  if (typeof storeOrId === 'string') {
+    return storeOrId.trim().toLowerCase().includes('table 1');
   }
   return false;
 };
@@ -1397,12 +1401,52 @@ export const RETURN_DEVICES_TABLE1_M1C1: DeviceReturnPlanItem[] = [
     modeloSaliente: 'Xiaomi Smart Band 10 Pro',
     esDummy: false,
     categoria: 'Wearable',
-    motivoRetirada: 'Sustituida en el bloque central por Xiaomi Watch 5',
-    sustituidoPor: 'Xiaomi Watch 5 (Reubicado en bloque central)'
+    motivoRetirada: 'Sustitución en bloque central: Retirar Smart Band 10 Pro para colocar el mismo Xiaomi Watch 5 del otro display (Puesto 05)',
+    sustituidoPor: 'Xiaomi Watch 5 (Mismo reloj reubicado del Puesto 05)'
   }
 ];
 
 export const BASE_RETURN_DEVICES_M1C1 = RETURN_DEVICES_TABLE2_M1C1;
+
+/**
+ * Obtiene el IMEI memorizado de un modelo específico en Mesa 1 (p. ej. Xiaomi Smart Band 10 Pro en P09
+ * o Xiaomi Watch 5 en P05) a partir de la auditoría previa de la tienda o del SEED_AUDITS oficial.
+ */
+export const getStoreModelMemorizedImei = (
+  store: StoreCenter,
+  modelName: string,
+  latestAudit?: AuditRecord | null
+): string => {
+  const cleanTarget = (modelName || '')
+    .toLowerCase()
+    .replace(/\s*\(.*?\)/g, '')
+    .trim();
+  if (!cleanTarget) return '';
+
+  const seedAudit = SEED_AUDITS[store.tiendaId];
+  const candidatePositions = [
+    ...(latestAudit?.positions || []),
+    ...(seedAudit?.positions || [])
+  ];
+
+  const match = candidatePositions.find((p) => {
+    const m = (p.mesaId || '').toUpperCase();
+    const id = (p.posicionId || '').toUpperCase();
+    const isMesa1 = m.includes('MESA 1') || m.includes('TABLE 1') || id.includes('MESA_1');
+    if (!isMesa1) return false;
+    const mod = (p.modeloOficial || '').toLowerCase().trim();
+    const rawImei = (p.imeiSerial || '').trim();
+    const hasValidImei =
+      Boolean(rawImei) &&
+      rawImei !== '-' &&
+      rawImei !== 'DUMMY' &&
+      !rawImei.toLowerCase().includes('maqueta') &&
+      !rawImei.toLowerCase().includes('exento');
+    return (mod === cleanTarget || mod.includes(cleanTarget)) && hasValidImei && !p.esMaqueta;
+  });
+
+  return match?.imeiSerial?.trim() || '';
+};
 
 /**
  * Obtiene los dispositivos a retirar según si la tienda es Table 1 o Table 2/3,
@@ -1414,9 +1458,15 @@ export const getReturnDevicesForStore = (
 ): DeviceReturnState[] => {
   const isT1 = isTable1CampaignStore(store);
   const baseList = isT1 ? RETURN_DEVICES_TABLE1_M1C1 : RETURN_DEVICES_TABLE2_M1C1;
+  const seedAudit = SEED_AUDITS[store.tiendaId];
 
-  // Posiciones correspondientes a Mesa 1 del último reporte de auditoría completa previa
-  const mesa1Positions = (latestAudit?.positions || []).filter((p) => {
+  // Posiciones correspondientes a Mesa 1 del último reporte de auditoría completa previa (con respaldo de SEED_AUDITS)
+  const combinedSourcePositions = [
+    ...(latestAudit?.positions || []),
+    ...(seedAudit?.positions || [])
+  ];
+
+  const mesa1Positions = combinedSourcePositions.filter((p) => {
     const m = (p.mesaId || '').toUpperCase();
     const id = (p.posicionId || '').toUpperCase();
     return m.includes('MESA 1') || m.includes('TABLE 1') || id.includes('MESA_1');

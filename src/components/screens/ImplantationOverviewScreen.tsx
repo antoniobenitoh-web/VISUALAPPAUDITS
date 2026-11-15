@@ -20,6 +20,7 @@ import {
   getImplantationPositionsForMesa1Cara1,
   getImplantationPositionSpecsForStore,
   getReturnDevicesForStore,
+  getStoreModelMemorizedImei,
   getSwapAssignmentForPosition,
   getVisualElementsForStore
 } from '../../data/implantationCampaignData';
@@ -1111,12 +1112,20 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                                 <p className="text-xs sm:text-sm font-black truncate text-teal-300">
                                   {asg.modeloEntrante}
                                 </p>
-                                <p className="text-[10px] text-slate-300">
-                                  Planograma Nuevo •{' '}
-                                  <strong className="text-white">
-                                    {asg.esDummyEntrante ? 'Maqueta (DUMMY)' : 'LDU (Real)'}
-                                  </strong>
-                                </p>
+                                {(asg.modeloSaliente || '').toLowerCase().includes('smart band 10 pro') &&
+                                (asg.modeloEntrante || '').toLowerCase().includes('watch 5') ? (
+                                  <p className="text-[10px] text-amber-200">
+                                    Sustituye a <strong>{asg.modeloSaliente}</strong> • Se coloca el mismo{' '}
+                                    <strong className="text-white">Xiaomi Watch 5 (de P05)</strong>
+                                  </p>
+                                ) : (
+                                  <p className="text-[10px] text-slate-300">
+                                    Planograma Nuevo •{' '}
+                                    <strong className="text-white">
+                                      {asg.esDummyEntrante ? 'Maqueta (DUMMY)' : 'LDU (Real)'}
+                                    </strong>
+                                  </p>
+                                )}
                               </>
                             ) : (
                               <>
@@ -1238,21 +1247,70 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                           </span>
                         </div>
 
-                        {/* Resumen limpio del dispositivo a instalar en el Planograma Nuevo */}
+                        {/* Resumen del dispositivo a instalar (y retirada de Smart Band 10 Pro en Table 1) */}
                         <div className="space-y-2 pt-1">
-                          <div className="p-3 bg-teal-50/80 border border-teal-200 rounded-xl flex items-center justify-between">
-                            <div className="flex items-center gap-2.5">
-                              <PackagePlus className="w-5 h-5 text-[#009ca6] shrink-0" />
-                              <div>
-                                <span className="text-[10px] font-black uppercase text-[#009ca6] block">
-                                  Dispositivo a Instalar
-                                </span>
-                                <span className="text-xs sm:text-sm font-black text-slate-900">
+                          {(selectedPosAssignment.modeloSaliente || '')
+                            .toLowerCase()
+                            .includes('smart band 10 pro') &&
+                          (selectedPosAssignment.modeloEntrante || '')
+                            .toLowerCase()
+                            .includes('watch 5') ? (
+                            <>
+                              <div className="p-3 bg-amber-50/90 border border-amber-300 rounded-xl space-y-1">
+                                <div className="flex items-center justify-between gap-2">
+                                  <div className="flex items-center gap-2">
+                                    <PackageMinus className="w-4 h-4 text-amber-700 shrink-0" />
+                                    <span className="text-[10px] font-black uppercase text-amber-800">
+                                      1. Retirar y Comprobar IMEI
+                                    </span>
+                                  </div>
+                                  <span className="text-[9px] font-black px-2 py-0.5 rounded-full bg-amber-200/80 text-amber-950">
+                                    Antes P09
+                                  </span>
+                                </div>
+                                <p className="text-xs sm:text-sm font-black text-slate-900">
+                                  {selectedPosAssignment.modeloSaliente}
+                                </p>
+                                <p className="text-[11px] font-mono font-bold text-slate-700">
+                                  IMEI: {getStoreModelMemorizedImei(store, 'Xiaomi Smart Band 10 Pro', latestAudit) || 'Comprobar en tienda'}
+                                </p>
+                              </div>
+
+                              <div className="p-3 bg-teal-50/80 border border-teal-200 rounded-xl space-y-1">
+                                <div className="flex items-center justify-between gap-2">
+                                  <div className="flex items-center gap-2">
+                                    <PackagePlus className="w-4 h-4 text-[#009ca6] shrink-0" />
+                                    <span className="text-[10px] font-black uppercase text-[#009ca6]">
+                                      2. Instalar (Mismo Watch 5 del Puesto 05)
+                                    </span>
+                                  </div>
+                                  <span className="text-[9px] font-black px-2 py-0.5 rounded-full bg-teal-100 text-teal-900">
+                                    Reubicado de P05
+                                  </span>
+                                </div>
+                                <p className="text-xs sm:text-sm font-black text-slate-900">
                                   {selectedPosAssignment.modeloEntrante}
-                                </span>
+                                </p>
+                                <p className="text-[11px] font-mono font-bold text-teal-900">
+                                  IMEI / S.N. P05: {getStoreModelMemorizedImei(store, 'Xiaomi Watch 5', latestAudit) || 'Pendiente'}
+                                </p>
+                              </div>
+                            </>
+                          ) : (
+                            <div className="p-3 bg-teal-50/80 border border-teal-200 rounded-xl flex items-center justify-between">
+                              <div className="flex items-center gap-2.5">
+                                <PackagePlus className="w-5 h-5 text-[#009ca6] shrink-0" />
+                                <div>
+                                  <span className="text-[10px] font-black uppercase text-[#009ca6] block">
+                                    Dispositivo a Instalar
+                                  </span>
+                                  <span className="text-xs sm:text-sm font-black text-slate-900">
+                                    {selectedPosAssignment.modeloEntrante}
+                                  </span>
+                                </div>
                               </div>
                             </div>
-                          </div>
+                          )}
                         </div>
 
                         {/* Estado actual del puesto */}
