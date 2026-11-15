@@ -16,7 +16,9 @@ import {
   ACTIVE_IMPLANTATION_CAMPAIGN,
   findKeptDeviceStateFromAudit,
   getAllSwapAssignmentsForStore,
+  getImplantationPlanogramImageKeyForStore,
   getImplantationPositionsForMesa1Cara1,
+  getImplantationPositionSpecsForStore,
   getReturnDevicesForStore,
   getSwapAssignmentForPosition,
   getVisualElementsForStore
@@ -433,7 +435,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
     : positions;
 
   // Imagen oficial de referencia para Mesa 1 Cara 1 en la Nueva Implantación ("Lanzamiento Xiaomi 18 Pro Max")
-  const bgImage = PLANOGRAM_IMAGES.mesa1Cara1X18Implantacion;
+  const bgImage = PLANOGRAM_IMAGES[getImplantationPlanogramImageKeyForStore(store)];
   const containerBgColor = '#c5c6c8';
 
   // Métricas globales de avance de Nueva Implantación
@@ -807,10 +809,10 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                 <Layers className="w-3.5 h-3.5 text-[#00c4cc]" />
                 <span>MESA 1 · Cara 1</span>
                 <span className="text-[10px] px-2 py-0.5 rounded-full font-black bg-rose-500 text-white">
-                  5 Nuevos a Instalar (P01-P05)
+                  {totalSwapsCount} A Instalar
                 </span>
                 <span className="text-[10px] px-2 py-0.5 rounded-full font-black bg-teal-600 text-white hidden sm:inline">
-                  6 Mantenidos (P06-P11)
+                  {Math.max(0, positions.length - totalSwapsCount)} Mantenidos
                 </span>
               </div>
             </div>
@@ -1294,9 +1296,12 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                         </button>
                       </>
                     ) : (
-                      /* Puesto P06..P11 que se mantiene igual respecto a la Auditoría Completa (solo reajusta posición) */
+                      /* Puesto que se mantiene igual respecto a la Auditoría Completa (solo reajusta posición) */
                       (() => {
                         const keptState = findKeptDeviceStateFromAudit(selectedPos, latestAudit);
+                        const specs = getImplantationPositionSpecsForStore(store);
+                        const specItem = specs.find((s) => s.pos === selectedPos.posicionNumero);
+                        const prevPosNum = specItem?.previousPosNum || selectedPos.posicionNumero + 1;
                         const rememberedImei = selectedPos.esDummy
                           ? 'DUMMY (Exento de IMEI)'
                           : keptState?.imeiSerial && keptState.imeiSerial !== '-'
@@ -1306,7 +1311,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                           <div className="space-y-2.5 text-xs">
                             <div className="flex items-center justify-between">
                               <span className="font-mono text-xs font-black text-white bg-slate-700 px-2.5 py-0.5 rounded-lg">
-                                Puesto {String(selectedPos.posicionNumero).padStart(2, '0')} (Antes P{String(selectedPos.posicionNumero + 1).padStart(2, '0')})
+                                Puesto {String(selectedPos.posicionNumero).padStart(2, '0')} (Antes P{String(prevPosNum).padStart(2, '0')})
                               </span>
                               <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-teal-100 text-teal-800 uppercase">
                                 {selectedPos.esDummy ? 'DUMMY' : 'LDU'} · Se mantiene
@@ -1935,8 +1940,8 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                               </span>
                               <div
                                 className={`relative w-full ${
-                                  isHanshow
-                                    ? 'aspect-[3/4]'
+                                  isHanshow || activeVisualDef.guiaVisualTipo === 'columna'
+                                    ? 'aspect-[3/4] bg-slate-950'
                                     : isLuminoso
                                     ? 'aspect-[16/10] bg-slate-950'
                                     : 'aspect-[16/10]'
@@ -1945,7 +1950,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                                 <img
                                   src={activeVisualDef.imagenReferenciaAntes}
                                   alt="Antes"
-                                  className={`w-full h-full ${isLuminoso ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform`}
+                                  className={`w-full h-full ${isLuminoso || activeVisualDef.guiaVisualTipo === 'columna' ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform`}
                                 />
                                 <span className="absolute bottom-1.5 right-1.5 bg-black/75 backdrop-blur-xs text-white text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 border border-white/20">
                                   <ZoomIn className="w-3 h-3 text-teal-300" /> Ampliar
@@ -1954,6 +1959,8 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                               <span className="text-[10px] text-slate-300 font-bold mt-1.5 text-center">
                                 {activeVisualDef.guiaVisualTipo === 'top_table'
                                   ? 'Top Table Xiaomi 17 Ultra'
+                                  : activeVisualDef.guiaVisualTipo === 'columna'
+                                  ? 'Columna Cara 1 Xiaomi 17 Ultra'
                                   : isLuminoso
                                   ? 'Luminoso Xiaomi 17T'
                                   : isHanshow
@@ -1978,6 +1985,8 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                                   title: 'AHORA (Nuevo Instalado)',
                                   subtitle: activeVisualDef.guiaVisualTipo === 'top_table'
                                     ? 'Top Table Xiaomi 18 Series'
+                                    : activeVisualDef.guiaVisualTipo === 'columna'
+                                    ? 'Columna Cara 1 Xiaomi 18 Pro Series'
                                     : isLuminoso
                                     ? 'Luminoso Xiaomi 18 Pro'
                                     : isHanshow
@@ -1992,8 +2001,8 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                               </span>
                               <div
                                 className={`relative w-full ${
-                                  isHanshow
-                                    ? 'aspect-[3/4]'
+                                  isHanshow || activeVisualDef.guiaVisualTipo === 'columna'
+                                    ? 'aspect-[3/4] bg-slate-950'
                                     : isLuminoso
                                     ? 'aspect-[16/10] bg-slate-950'
                                     : 'aspect-[16/10]'
@@ -2002,7 +2011,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                                 <img
                                   src={activeVisualDef.imagenReferenciaDespues}
                                   alt="Después"
-                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                  className={`w-full h-full ${activeVisualDef.guiaVisualTipo === 'columna' ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform`}
                                 />
                                 <span className="absolute bottom-1.5 right-1.5 bg-black/75 backdrop-blur-xs text-white text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 border border-white/20">
                                   <ZoomIn className="w-3 h-3 text-emerald-300" /> Ampliar
@@ -2011,6 +2020,8 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                               <span className="text-[10px] text-emerald-300 font-black mt-1.5 text-center">
                                 {activeVisualDef.guiaVisualTipo === 'top_table'
                                   ? 'Top Table Xiaomi 18 Series'
+                                  : activeVisualDef.guiaVisualTipo === 'columna'
+                                  ? 'Columna Cara 1 Xiaomi 18 Pro Series'
                                   : isLuminoso
                                   ? 'Luminoso Xiaomi 18 Pro'
                                   : isHanshow

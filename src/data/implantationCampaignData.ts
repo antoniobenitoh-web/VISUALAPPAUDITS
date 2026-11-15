@@ -10,112 +10,610 @@ import {
   UserProfile,
   VisualElementDefinition
 } from '../types';
-import { getPositionsForSpace } from './defaultData';
 import { getDynamicPosmDefinitionsForImplantation } from './storePosmData';
 
 export const ACTIVE_IMPLANTATION_CAMPAIGN = 'Lanzamiento Xiaomi 18 Pro Max';
 export const EXCLUSIVE_DRIVE_TEST_EMAIL = '';
 
-/**
- * 12 Tiendas asignadas al nuevo planograma oficial de Mesa 1 Cara 1 ("Lanzamiento Xiaomi 18 Pro Max"):
- * - Media Barcelona 5 Fontanella (MIESD00174)
- * - Media Diagonal Mar (MIESS00026)
- * - Media El Prat (MIESD00175)
- * - Media Girona (MIESD00182)
- * - Media Lleida (MIESD00187)
- * - Media Maquinista (MIESD00176)
- * - Media Manresa
- * - Media Mataro (MIESD00177)
- * - Media Parets (MIESD00178)
- * - Media Sant Cugat (MIESD00180)
- * - Media Tarragona (MIESO00043)
- * - Media Vilanova (MIESD02181)
- */
-export const TARGET_X18_M1C1_STORE_IDS = new Set([
-  'MIESD00174', // Media Barcelona 5 Fontanella
-  'MIESS00026', // Media Diagonal Mar-Barcelona
-  'MIESD00175', // Media El Prat
-  'MIESD00182', // Media Girona
-  'MIESD00187', // Media Lleida
-  'MIESD00176', // Media Maquinista
-  'MIESD00177', // Media Mataro
-  'MIESD00178', // Media Parets
-  'MIESD00180', // Media Sant Cugat (Barcelona)
-  'MIESO00043', // Media Tarragona
-  'MIESD02181'  // Media Vilanova
-]);
+export interface X18StoreCampaignConfig {
+  storeId: string;
+  storeName: string;
+  active: boolean;
+  planogram: 'Table 1' | 'Table 2' | 'Table 3' | '';
+  posmWall: boolean;
+  posmMiniWall: boolean;
+  posmColumnaCara1: boolean;
+  posmTopTableCara1: boolean;
+  hasXiaomiClip: boolean;
+  x18ProLdu: number;
+  x18ProMaxLdu: number;
+  x18ProDummy: number;
+  x18ProMaxDummy: number;
+}
 
-export const isTargetX18Mesa1Cara1Store = (storeOrId?: StoreCenter | string): boolean => {
-  if (!storeOrId) return false;
+/**
+ * Configuración oficial por tienda según Excel maestro de "Nueva Implantación" (Lanzamiento Xiaomi 18 Pro Max)
+ */
+export const X18_STORE_CAMPAIGN_CONFIG: Record<string, X18StoreCampaignConfig> = {
+  MIESD00575: {
+    storeId: 'MIESD00575',
+    storeName: 'Media Sant Antoni',
+    active: true,
+    planogram: 'Table 1',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: true,
+    hasXiaomiClip: false,
+    x18ProLdu: 0,
+    x18ProMaxLdu: 0,
+    x18ProDummy: 2,
+    x18ProMaxDummy: 2
+  },
+  MIESP00034: {
+    storeId: 'MIESP00034',
+    storeName: 'Media Badalona',
+    active: true,
+    planogram: 'Table 1',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: true,
+    hasXiaomiClip: false,
+    x18ProLdu: 0,
+    x18ProMaxLdu: 0,
+    x18ProDummy: 2,
+    x18ProMaxDummy: 2
+  },
+  MIESD00174: {
+    storeId: 'MIESD00174',
+    storeName: 'Media Barcelona 5 Fontanella',
+    active: true,
+    planogram: 'Table 2',
+    posmWall: true,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: false,
+    hasXiaomiClip: true,
+    x18ProLdu: 2,
+    x18ProMaxLdu: 2,
+    x18ProDummy: 0,
+    x18ProMaxDummy: 0
+  },
+  MIESO00036: {
+    storeId: 'MIESO00036',
+    storeName: 'Media Diagonal Digital 1',
+    active: false,
+    planogram: '',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: false,
+    hasXiaomiClip: false,
+    x18ProLdu: 0,
+    x18ProMaxLdu: 0,
+    x18ProDummy: 0,
+    x18ProMaxDummy: 0
+  },
+  MIESS00026: {
+    storeId: 'MIESS00026',
+    storeName: 'Media Diagonal Mar-Barcelona',
+    active: true,
+    planogram: 'Table 3',
+    posmWall: false,
+    posmMiniWall: true,
+    posmColumnaCara1: false,
+    posmTopTableCara1: false,
+    hasXiaomiClip: true,
+    x18ProLdu: 1,
+    x18ProMaxLdu: 1,
+    x18ProDummy: 1,
+    x18ProMaxDummy: 1
+  },
+  MIESD00175: {
+    storeId: 'MIESD00175',
+    storeName: 'Media El Prat',
+    active: true,
+    planogram: 'Table 2',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: true,
+    hasXiaomiClip: true,
+    x18ProLdu: 1,
+    x18ProMaxLdu: 1,
+    x18ProDummy: 1,
+    x18ProMaxDummy: 1
+  },
+  MIESO00034: {
+    storeId: 'MIESO00034',
+    storeName: 'Media Esplugues',
+    active: true,
+    planogram: 'Table 1',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: true,
+    hasXiaomiClip: false,
+    x18ProLdu: 1,
+    x18ProMaxLdu: 1,
+    x18ProDummy: 1,
+    x18ProMaxDummy: 1
+  },
+  MIESO00033: {
+    storeId: 'MIESO00033',
+    storeName: 'Media Gava',
+    active: true,
+    planogram: 'Table 1',
+    posmWall: true,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: false,
+    hasXiaomiClip: false,
+    x18ProLdu: 1,
+    x18ProMaxLdu: 1,
+    x18ProDummy: 1,
+    x18ProMaxDummy: 1
+  },
+  MIESD00182: {
+    storeId: 'MIESD00182',
+    storeName: 'Media Girona',
+    active: true,
+    planogram: 'Table 3',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: true,
+    hasXiaomiClip: true,
+    x18ProLdu: 2,
+    x18ProMaxLdu: 2,
+    x18ProDummy: 0,
+    x18ProMaxDummy: 0
+  },
+  MIESP00037: {
+    storeId: 'MIESP00037',
+    storeName: 'Media Girona 2',
+    active: true,
+    planogram: 'Table 1',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: true,
+    hasXiaomiClip: false,
+    x18ProLdu: 0,
+    x18ProMaxLdu: 0,
+    x18ProDummy: 2,
+    x18ProMaxDummy: 2
+  },
+  MIESM00438: {
+    storeId: 'MIESM00438',
+    storeName: 'Media Girona 3',
+    active: true,
+    planogram: 'Table 1',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: true,
+    hasXiaomiClip: false,
+    x18ProLdu: 0,
+    x18ProMaxLdu: 0,
+    x18ProDummy: 2,
+    x18ProMaxDummy: 2
+  },
+  MIESD00187: {
+    storeId: 'MIESD00187',
+    storeName: 'Media Lleida',
+    active: true,
+    planogram: 'Table 2',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: true,
+    hasXiaomiClip: true,
+    x18ProLdu: 2,
+    x18ProMaxLdu: 2,
+    x18ProDummy: 0,
+    x18ProMaxDummy: 0
+  },
+  MIESD00176: {
+    storeId: 'MIESD00176',
+    storeName: 'Media Maquinista',
+    active: true,
+    planogram: 'Table 2',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: true,
+    posmTopTableCara1: false,
+    hasXiaomiClip: true,
+    x18ProLdu: 2,
+    x18ProMaxLdu: 2,
+    x18ProDummy: 0,
+    x18ProMaxDummy: 0
+  },
+  MIESD00177: {
+    storeId: 'MIESD00177',
+    storeName: 'Media Mataro',
+    active: true,
+    planogram: 'Table 1',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: true,
+    hasXiaomiClip: true,
+    x18ProLdu: 1,
+    x18ProMaxLdu: 1,
+    x18ProDummy: 1,
+    x18ProMaxDummy: 1
+  },
+  MIESD00178: {
+    storeId: 'MIESD00178',
+    storeName: 'Media Parets',
+    active: true,
+    planogram: 'Table 1',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: true,
+    hasXiaomiClip: true,
+    x18ProLdu: 1,
+    x18ProMaxLdu: 1,
+    x18ProDummy: 1,
+    x18ProMaxDummy: 1
+  },
+  MIESP03781: {
+    storeId: 'MIESP03781',
+    storeName: 'Media Sabadell',
+    active: true,
+    planogram: 'Table 2',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: true,
+    hasXiaomiClip: false,
+    x18ProLdu: 1,
+    x18ProMaxLdu: 1,
+    x18ProDummy: 1,
+    x18ProMaxDummy: 1
+  },
+  MIESD00180: {
+    storeId: 'MIESD00180',
+    storeName: 'Media Sant Cugat (Barcelona)',
+    active: true,
+    planogram: 'Table 2',
+    posmWall: true,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: false,
+    hasXiaomiClip: true,
+    x18ProLdu: 1,
+    x18ProMaxLdu: 1,
+    x18ProDummy: 1,
+    x18ProMaxDummy: 1
+  },
+  MIESO00043: {
+    storeId: 'MIESO00043',
+    storeName: 'Media Tarragona',
+    active: true,
+    planogram: 'Table 2',
+    posmWall: true,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: false,
+    hasXiaomiClip: true,
+    x18ProLdu: 1,
+    x18ProMaxLdu: 1,
+    x18ProDummy: 1,
+    x18ProMaxDummy: 1
+  },
+  MIESD00179: {
+    storeId: 'MIESD00179',
+    storeName: 'Media Terrassa',
+    active: true,
+    planogram: 'Table 2',
+    posmWall: true,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: false,
+    hasXiaomiClip: true,
+    x18ProLdu: 1,
+    x18ProMaxLdu: 1,
+    x18ProDummy: 1,
+    x18ProMaxDummy: 1
+  },
+  MIESD02181: {
+    storeId: 'MIESD02181',
+    storeName: 'Media Vilanova',
+    active: true,
+    planogram: 'Table 2',
+    posmWall: true,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: false,
+    hasXiaomiClip: true,
+    x18ProLdu: 1,
+    x18ProMaxLdu: 1,
+    x18ProDummy: 1,
+    x18ProMaxDummy: 1
+  },
+  MIESD00203: {
+    storeId: 'MIESD00203',
+    storeName: 'Media Zaragoza',
+    active: true,
+    planogram: 'Table 2',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: true,
+    hasXiaomiClip: false,
+    x18ProLdu: 1,
+    x18ProMaxLdu: 1,
+    x18ProDummy: 1,
+    x18ProMaxDummy: 1
+  },
+  MIESD00204: {
+    storeId: 'MIESD00204',
+    storeName: 'Media Zaragoza 2',
+    active: true,
+    planogram: 'Table 2',
+    posmWall: true,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: false,
+    hasXiaomiClip: true,
+    x18ProLdu: 1,
+    x18ProMaxLdu: 1,
+    x18ProDummy: 1,
+    x18ProMaxDummy: 1
+  },
+  MIESD00077: {
+    storeId: 'MIESD00077',
+    storeName: 'ECI C.C. GIROCENTRE',
+    active: false,
+    planogram: '',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: false,
+    hasXiaomiClip: false,
+    x18ProLdu: 0,
+    x18ProMaxLdu: 0,
+    x18ProDummy: 0,
+    x18ProMaxDummy: 0
+  },
+  MIESD00114: {
+    storeId: 'MIESD00114',
+    storeName: 'ECI CAN DRAGO',
+    active: true,
+    planogram: 'Table 1',
+    posmWall: true,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: false,
+    hasXiaomiClip: true,
+    x18ProLdu: 1,
+    x18ProMaxLdu: 1,
+    x18ProDummy: 1,
+    x18ProMaxDummy: 1
+  },
+  MIESS00002: {
+    storeId: 'MIESS00002',
+    storeName: 'ECI CATALUÑA',
+    active: true,
+    planogram: 'Table 2',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: true,
+    posmTopTableCara1: false,
+    hasXiaomiClip: true,
+    x18ProLdu: 2,
+    x18ProMaxLdu: 2,
+    x18ProDummy: 0,
+    x18ProMaxDummy: 0
+  },
+  MIESD00121: {
+    storeId: 'MIESD00121',
+    storeName: 'ECI CORNELLA',
+    active: true,
+    planogram: 'Table 1',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: true,
+    posmTopTableCara1: false,
+    hasXiaomiClip: true,
+    x18ProLdu: 1,
+    x18ProMaxLdu: 1,
+    x18ProDummy: 1,
+    x18ProMaxDummy: 1
+  },
+  MIESS00003: {
+    storeId: 'MIESS00003',
+    storeName: 'ECI DIAGONAL',
+    active: true,
+    planogram: 'Table 2',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: true,
+    hasXiaomiClip: true,
+    x18ProLdu: 2,
+    x18ProMaxLdu: 2,
+    x18ProDummy: 0,
+    x18ProMaxDummy: 0
+  },
+  MIESD00103: {
+    storeId: 'MIESD00103',
+    storeName: 'ECI INDEPENDENCIA',
+    active: false,
+    planogram: '',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: false,
+    hasXiaomiClip: false,
+    x18ProLdu: 0,
+    x18ProMaxLdu: 0,
+    x18ProDummy: 0,
+    x18ProMaxDummy: 0
+  },
+  MIESD00113: {
+    storeId: 'MIESD00113',
+    storeName: 'ECI MERIDIANA',
+    active: true,
+    planogram: 'Table 1',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: true,
+    hasXiaomiClip: true,
+    x18ProLdu: 0,
+    x18ProMaxLdu: 0,
+    x18ProDummy: 2,
+    x18ProMaxDummy: 2
+  },
+  MIESD00105: {
+    storeId: 'MIESD00105',
+    storeName: 'ECI PUERTO VENECIA',
+    active: false,
+    planogram: '',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: false,
+    hasXiaomiClip: false,
+    x18ProLdu: 0,
+    x18ProMaxLdu: 0,
+    x18ProDummy: 0,
+    x18ProMaxDummy: 0
+  },
+  MIESD00076: {
+    storeId: 'MIESD00076',
+    storeName: 'ECI SABADELL',
+    active: true,
+    planogram: 'Table 1',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: true,
+    posmTopTableCara1: false,
+    hasXiaomiClip: true,
+    x18ProLdu: 1,
+    x18ProMaxLdu: 1,
+    x18ProDummy: 1,
+    x18ProMaxDummy: 1
+  },
+  MIESD00088: {
+    storeId: 'MIESD00088',
+    storeName: 'ECI TARRAGONA',
+    active: false,
+    planogram: '',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: false,
+    posmTopTableCara1: false,
+    hasXiaomiClip: false,
+    x18ProLdu: 0,
+    x18ProMaxLdu: 0,
+    x18ProDummy: 0,
+    x18ProMaxDummy: 0
+  },
+  MIESD00104: {
+    storeId: 'MIESD00104',
+    storeName: 'ECI ZARAGOZA',
+    active: true,
+    planogram: 'Table 1',
+    posmWall: false,
+    posmMiniWall: false,
+    posmColumnaCara1: true,
+    posmTopTableCara1: false,
+    hasXiaomiClip: true,
+    x18ProLdu: 1,
+    x18ProMaxLdu: 1,
+    x18ProDummy: 1,
+    x18ProMaxDummy: 1
+  }
+};
+
+const normalizeStoreName = (val: string): string =>
+  val
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/^mediamarkt\s+/i, 'media ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+export const getX18StoreCampaignConfig = (
+  storeOrId?: StoreCenter | string
+): X18StoreCampaignConfig | undefined => {
+  if (!storeOrId) return undefined;
+
   if (typeof storeOrId === 'string') {
     const cleanId = storeOrId.trim().toUpperCase();
-    if (TARGET_X18_M1C1_STORE_IDS.has(cleanId)) return true;
-    const norm = storeOrId
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .trim();
-    return (
-      norm.includes('fontanella') ||
-      norm.includes('diagonal mar') ||
-      norm.includes('el prat') ||
-      (norm.includes('media girona') && !norm.includes('girona 2') && !norm.includes('girona 3')) ||
-      norm.includes('lleida') ||
-      norm.includes('maquinista') ||
-      norm.includes('manresa') ||
-      norm.includes('mataro') ||
-      norm.includes('parets') ||
-      norm.includes('sant cugat') ||
-      norm.includes('tarragona') ||
-      norm.includes('vilanova')
+    if (X18_STORE_CAMPAIGN_CONFIG[cleanId]) {
+      return X18_STORE_CAMPAIGN_CONFIG[cleanId];
+    }
+    const norm = normalizeStoreName(storeOrId);
+    return Object.values(X18_STORE_CAMPAIGN_CONFIG).find(
+      (cfg) => normalizeStoreName(cfg.storeName) === norm
     );
   }
 
   const cleanId = (storeOrId.tiendaId || '').trim().toUpperCase();
-  if (TARGET_X18_M1C1_STORE_IDS.has(cleanId)) return true;
+  if (X18_STORE_CAMPAIGN_CONFIG[cleanId]) {
+    return X18_STORE_CAMPAIGN_CONFIG[cleanId];
+  }
 
-  const normName = (storeOrId.nombreTienda || '')
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .trim();
-
-  return (
-    normName.includes('fontanella') ||
-    normName.includes('diagonal mar') ||
-    normName.includes('el prat') ||
-    (normName.includes('media girona') && !normName.includes('girona 2') && !normName.includes('girona 3')) ||
-    normName.includes('lleida') ||
-    normName.includes('maquinista') ||
-    normName.includes('manresa') ||
-    normName.includes('mataro') ||
-    normName.includes('parets') ||
-    normName.includes('sant cugat') ||
-    normName.includes('tarragona') ||
-    normName.includes('vilanova')
+  const normName = normalizeStoreName(storeOrId.nombreTienda || '');
+  return Object.values(X18_STORE_CAMPAIGN_CONFIG).find(
+    (cfg) => normalizeStoreName(cfg.storeName) === normName
   );
+};
+
+export const isTargetX18Mesa1Cara1Store = (storeOrId?: StoreCenter | string): boolean => {
+  const cfg = getX18StoreCampaignConfig(storeOrId);
+  if (cfg) return cfg.active;
+  return false;
 };
 
 /**
  * Determina si una tienda tiene activa la campaña de Nueva Implantación ("Lanzamiento Xiaomi 18 Pro Max").
- * Activa tanto para espacios de 1 Table (Table 1, FNAC, CRF, Alcampo) como de 2 Tables (Table 2, Table 3, MediaMarkt Tarragona).
+ * Se rige estrictamente por el Excel maestro (las 28 tiendas activas).
  */
 export const hasActiveImplantationCampaign = (store: StoreCenter): boolean => {
+  const cfg = getX18StoreCampaignConfig(store);
+  if (cfg !== undefined) {
+    return cfg.active;
+  }
   const spaceType = (store.tipoEspacioId || '').trim().toLowerCase();
   return (
-    isTargetX18Mesa1Cara1Store(store) ||
-    spaceType.includes('table') ||
-    spaceType.includes('mesa') ||
-    store.tiendaId.toUpperCase() === 'MIESO00043' ||
-    Boolean(store.availableSpaces?.some((s) => s.toUpperCase().includes('MESA 1')))
+    spaceType.includes('table 1') ||
+    spaceType.includes('table 2') ||
+    spaceType.includes('table 3')
   );
 };
 
 /**
- * Determina si una tienda es de formato 2 mesas (Table 2 / Table 3 / MediaMarkt Tarragona)
+ * Determina si una tienda es de formato Table 1 (1 mesa) en la campaña X18
+ */
+export const isTable1CampaignStore = (storeOrId?: StoreCenter | string): boolean => {
+  const cfg = getX18StoreCampaignConfig(storeOrId);
+  if (cfg && cfg.planogram) {
+    return cfg.planogram === 'Table 1';
+  }
+  if (typeof storeOrId === 'object' && storeOrId?.tipoEspacioId) {
+    return storeOrId.tipoEspacioId.trim().toLowerCase() === 'table 1';
+  }
+  return false;
+};
+
+/**
+ * Determina si una tienda es de formato 2 o 3 mesas (Table 2 / Table 3)
  */
 export const isTwoTableSpace = (storeOrSpace?: StoreCenter | string): boolean => {
   if (!storeOrSpace) return false;
+  const cfg = getX18StoreCampaignConfig(storeOrSpace);
+  if (cfg && cfg.planogram) {
+    return cfg.planogram === 'Table 2' || cfg.planogram === 'Table 3';
+  }
   if (typeof storeOrSpace === 'string') {
     const s = storeOrSpace.trim().toLowerCase();
     return s.includes('table 2') || s.includes('table 3') || s.toUpperCase() === 'MIESO00043';
@@ -132,21 +630,35 @@ export const isTwoTableSpace = (storeOrSpace?: StoreCenter | string): boolean =>
 };
 
 /**
- * 11 Posiciones oficiales de la nueva implantación para Mesa 1 Cara 1 ("Lanzamiento Xiaomi 18 Pro Max")
- * Según guía visual oficial:
- * - P01: Xiaomi 18 Pro Max (LDU) [Nuevo]
- * - P02: Xiaomi 18 Pro Max (LDU) [Nuevo]
- * - P03: Xiaomi 18 Pro (LDU) [Nuevo]
- * - P04: Xiaomi 18 Pro (LDU) [Nuevo]
- * - P05: Xiaomi Clip (DUMMY) [Nuevo]
- * - P06: Xiaomi 17T Pro Blue (LDU) [Se mantiene de Auditoría Completa, antes P07]
- * - P07: Xiaomi Watch S5 46mm (LDU) [Se mantiene de Auditoría Completa, antes P08]
- * - P08: Xiaomi Smart Band 10 Pro (LDU) [Se mantiene de Auditoría Completa, antes P09]
- * - P09: Xiaomi 17T Purple (LDU) [Se mantiene de Auditoría Completa, antes P10]
- * - P10: Xiaomi 17T Blue (DUMMY) [Se mantiene de Auditoría Completa, antes P11]
- * - P11: Xiaomi Smart Band 11 Active (LDU) [Se mantiene de Auditoría Completa, antes P12]
+ * Devuelve la clave de imagen en PLANOGRAM_IMAGES que corresponde a la Mesa 1 Cara 1
+ * de la tienda según su formato en el Excel (Table 1 vs Table 2/3, con o sin Xiaomi Clip, con o sin Top Table).
  */
-export const X18_IMPLANTATION_M1_C1_ITEMS: Array<{
+export type ImplantationPlanogramImageKey =
+  | 'mesa1Cara1T1X18WithClip'
+  | 'mesa1Cara1T1X18NoClip'
+  | 'mesa1Cara1X18Implantacion'
+  | 'mesa1Cara1T2X18NoClipTt'
+  | 'mesa1Cara1T2X18NoClipNoTt';
+
+export const getImplantationPlanogramImageKeyForStore = (
+  storeOrId?: StoreCenter | string
+): ImplantationPlanogramImageKey => {
+  const cfg = getX18StoreCampaignConfig(storeOrId);
+  const isT1 = isTable1CampaignStore(storeOrId);
+  const hasClip = cfg ? cfg.hasXiaomiClip : true;
+
+  if (isT1) {
+    return hasClip ? 'mesa1Cara1T1X18WithClip' : 'mesa1Cara1T1X18NoClip';
+  }
+
+  if (hasClip) {
+    return 'mesa1Cara1X18Implantacion';
+  }
+
+  return cfg?.posmTopTableCara1 ? 'mesa1Cara1T2X18NoClipTt' : 'mesa1Cara1T2X18NoClipNoTt';
+};
+
+export interface ImplantationPositionSpec {
   pos: number;
   device: string;
   color: string;
@@ -156,22 +668,566 @@ export const X18_IMPLANTATION_M1_C1_ITEMS: Array<{
   pinY: number;
   isNewInstall: boolean;
   previousPosNum?: number;
-}> = [
-  { pos: 1, device: 'Xiaomi 18 Pro Max', color: 'Red / Burgundy', dummy: false, category: 'Smartphone', pinX: 15.8, pinY: 52.5, isNewInstall: true },
-  { pos: 2, device: 'Xiaomi 18 Pro Max', color: 'Red / Burgundy', dummy: false, category: 'Smartphone', pinX: 21.2, pinY: 52.5, isNewInstall: true },
-  { pos: 3, device: 'Xiaomi 18 Pro', color: 'Purple / Blue', dummy: false, category: 'Smartphone', pinX: 28.8, pinY: 52.5, isNewInstall: true },
-  { pos: 4, device: 'Xiaomi 18 Pro', color: 'Purple / Blue', dummy: false, category: 'Smartphone', pinX: 34.2, pinY: 52.5, isNewInstall: true },
-  { pos: 5, device: 'Xiaomi Clip', color: 'Black (Maqueta)', dummy: true, category: 'Audio', pinX: 43.5, pinY: 52.5, isNewInstall: true },
-  { pos: 6, device: 'Xiaomi 17T Pro Blue', color: 'Blue', dummy: false, category: 'Smartphone', pinX: 54.0, pinY: 52.5, isNewInstall: false, previousPosNum: 7 },
-  { pos: 7, device: 'Xiaomi Watch S5 46mm', color: 'Black', dummy: false, category: 'Wearable', pinX: 59.3, pinY: 52.5, isNewInstall: false, previousPosNum: 8 },
-  { pos: 8, device: 'Xiaomi Smart Band 10 Pro', color: 'Black', dummy: false, category: 'Wearable', pinX: 64.5, pinY: 52.5, isNewInstall: false, previousPosNum: 9 },
-  { pos: 9, device: 'Xiaomi 17T Purple', color: 'Purple', dummy: false, category: 'Smartphone', pinX: 74.6, pinY: 52.5, isNewInstall: false, previousPosNum: 10 },
-  { pos: 10, device: 'Xiaomi 17T Blue', color: 'Blue (Maqueta)', dummy: true, category: 'Smartphone', pinX: 79.8, pinY: 52.5, isNewInstall: false, previousPosNum: 11 },
-  { pos: 11, device: 'Xiaomi Smart Band 11 Active', color: 'Black', dummy: false, category: 'Wearable', pinX: 85.2, pinY: 52.5, isNewInstall: false, previousPosNum: 12 }
-];
+  modeloSaliente?: string;
+  esDummySaliente?: boolean;
+}
+
+/**
+ * Genera la lista exacta de posiciones de Mesa 1 Cara 1 para una tienda según el Excel maestro:
+ * - Determina para P01..P04 si cada unidad de Xiaomi 18 Pro Max y Xiaomi 18 Pro es LDU o Dummy:
+ *   · Cuando hay 1 LDU y 1 Dummy: P01 = Xiaomi 18 Pro Max (LDU), P02 = Xiaomi 18 Pro Max (Dummy), P03 = Xiaomi 18 Pro (LDU), P04 = Xiaomi 18 Pro (Dummy).
+ *   · Cuando hay 2 LDU: P01..P04 son todos LDU.
+ *   · Cuando hay 2 Dummy: P01..P04 son todos Dummy.
+ * - Si la tienda lleva Xiaomi Clip (`hasXiaomiClip = true`), P05 es Xiaomi Clip (Dummy). Si no lo lleva, no existe ese puesto y los siguientes dispositivos suben una posición (quedando 10 puestos en la cara).
+ * - En tiendas Table 1: el bloque central tiene Xiaomi 17T Pro Blue, Xiaomi 17T Purple y Xiaomi Watch 5 (que se instala/reubica en lugar de la Smart Band 10 Pro), seguidos de los 3 Redmi Note 17 Pro Max 5G.
+ * - En tiendas Table 2 / Table 3: el bloque central y derecho mantienen del Xiaomi 17T Pro Blue al Xiaomi Smart Band 11 Active.
+ */
+export const getImplantationPositionSpecsForStore = (
+  storeOrId?: StoreCenter | string
+): ImplantationPositionSpec[] => {
+  const cfg = getX18StoreCampaignConfig(storeOrId);
+  const isT1 = isTable1CampaignStore(storeOrId);
+  const hasClip = cfg ? cfg.hasXiaomiClip : true;
+
+  // Regla oficial LDU vs Dummy en P01..P04:
+  // - P01 Xiaomi 18 Pro Max: LDU si x18ProMaxLdu >= 1, Dummy si x18ProMaxLdu === 0
+  // - P02 Xiaomi 18 Pro Max: LDU si x18ProMaxLdu >= 2, Dummy en caso contrario
+  // - P03 Xiaomi 18 Pro: LDU si x18ProLdu >= 1, Dummy si x18ProLdu === 0
+  // - P04 Xiaomi 18 Pro: LDU si x18ProLdu >= 2, Dummy en caso contrario
+  const p1Dummy = cfg ? cfg.x18ProMaxLdu < 1 : false;
+  const p2Dummy = cfg ? cfg.x18ProMaxLdu < 2 : false;
+  const p3Dummy = cfg ? cfg.x18ProLdu < 1 : false;
+  const p4Dummy = cfg ? cfg.x18ProLdu < 2 : false;
+
+  if (isT1) {
+    if (hasClip) {
+      // Table 1 CON Xiaomi Clip (11 posiciones)
+      return [
+        {
+          pos: 1,
+          device: 'Xiaomi 18 Pro Max',
+          color: p1Dummy ? 'Red / Burgundy (Maqueta)' : 'Red / Burgundy',
+          dummy: p1Dummy,
+          category: 'Smartphone',
+          pinX: 14.5,
+          pinY: 53.5,
+          isNewInstall: true,
+          previousPosNum: 1,
+          modeloSaliente: 'Xiaomi 17 Ultra Green',
+          esDummySaliente: true
+        },
+        {
+          pos: 2,
+          device: 'Xiaomi 18 Pro Max',
+          color: p2Dummy ? 'Red / Burgundy (Maqueta)' : 'Red / Burgundy',
+          dummy: p2Dummy,
+          category: 'Smartphone',
+          pinX: 19.3,
+          pinY: 53.5,
+          isNewInstall: true,
+          previousPosNum: 2,
+          modeloSaliente: 'Xiaomi 17 Blue',
+          esDummySaliente: true
+        },
+        {
+          pos: 3,
+          device: 'Xiaomi 18 Pro',
+          color: p3Dummy ? 'Purple / Blue (Maqueta)' : 'Purple / Blue',
+          dummy: p3Dummy,
+          category: 'Smartphone',
+          pinX: 30.2,
+          pinY: 53.5,
+          isNewInstall: true,
+          previousPosNum: 3,
+          modeloSaliente: 'Xiaomi 17 Ultra Black',
+          esDummySaliente: false
+        },
+        {
+          pos: 4,
+          device: 'Xiaomi 18 Pro',
+          color: p4Dummy ? 'Purple / Blue (Maqueta)' : 'Purple / Blue',
+          dummy: p4Dummy,
+          category: 'Smartphone',
+          pinX: 35.2,
+          pinY: 53.5,
+          isNewInstall: true,
+          previousPosNum: 4,
+          modeloSaliente: 'Xiaomi 17 Black',
+          esDummySaliente: false
+        },
+        {
+          pos: 5,
+          device: 'Xiaomi Clip',
+          color: 'Black (Maqueta)',
+          dummy: true,
+          category: 'Audio',
+          pinX: 43.8,
+          pinY: 53.5,
+          isNewInstall: true,
+          previousPosNum: 6,
+          modeloSaliente: 'Xiaomi Buds 6',
+          esDummySaliente: true
+        },
+        {
+          pos: 6,
+          device: 'Xiaomi 17T Pro Blue',
+          color: 'Blue',
+          dummy: false,
+          category: 'Smartphone',
+          pinX: 51.0,
+          pinY: 53.5,
+          isNewInstall: false,
+          previousPosNum: 7
+        },
+        {
+          pos: 7,
+          device: 'Xiaomi 17T Purple',
+          color: 'Purple',
+          dummy: false,
+          category: 'Smartphone',
+          pinX: 56.0,
+          pinY: 53.5,
+          isNewInstall: false,
+          previousPosNum: 8
+        },
+        {
+          pos: 8,
+          device: 'Xiaomi Watch 5',
+          color: 'Black',
+          dummy: false,
+          category: 'Wearable',
+          pinX: 64.5,
+          pinY: 53.5,
+          isNewInstall: true,
+          previousPosNum: 5,
+          modeloSaliente: 'Xiaomi Smart Band 10 Pro',
+          esDummySaliente: false
+        },
+        {
+          pos: 9,
+          device: 'Redmi Note 17 Pro Max 5G White&Orange',
+          color: 'White & Orange',
+          dummy: false,
+          category: 'Smartphone',
+          pinX: 76.2,
+          pinY: 53.5,
+          isNewInstall: false,
+          previousPosNum: 10
+        },
+        {
+          pos: 10,
+          device: 'Redmi Note 17 Pro Max 5G White&Orange',
+          color: 'White & Orange (Maqueta)',
+          dummy: true,
+          category: 'Smartphone',
+          pinX: 81.8,
+          pinY: 53.5,
+          isNewInstall: false,
+          previousPosNum: 11
+        },
+        {
+          pos: 11,
+          device: 'Redmi Note 17 Pro Max 5G Green',
+          color: 'Green',
+          dummy: false,
+          category: 'Smartphone',
+          pinX: 87.5,
+          pinY: 53.5,
+          isNewInstall: false,
+          previousPosNum: 12
+        }
+      ];
+    } else {
+      // Table 1 SIN Xiaomi Clip (10 posiciones)
+      return [
+        {
+          pos: 1,
+          device: 'Xiaomi 18 Pro Max',
+          color: p1Dummy ? 'Red / Burgundy (Maqueta)' : 'Red / Burgundy',
+          dummy: p1Dummy,
+          category: 'Smartphone',
+          pinX: 19.5,
+          pinY: 53.5,
+          isNewInstall: true,
+          previousPosNum: 1,
+          modeloSaliente: 'Xiaomi 17 Ultra Green',
+          esDummySaliente: true
+        },
+        {
+          pos: 2,
+          device: 'Xiaomi 18 Pro Max',
+          color: p2Dummy ? 'Red / Burgundy (Maqueta)' : 'Red / Burgundy',
+          dummy: p2Dummy,
+          category: 'Smartphone',
+          pinX: 24.5,
+          pinY: 53.5,
+          isNewInstall: true,
+          previousPosNum: 2,
+          modeloSaliente: 'Xiaomi 17 Blue',
+          esDummySaliente: true
+        },
+        {
+          pos: 3,
+          device: 'Xiaomi 18 Pro',
+          color: p3Dummy ? 'Purple / Blue (Maqueta)' : 'Purple / Blue',
+          dummy: p3Dummy,
+          category: 'Smartphone',
+          pinX: 34.5,
+          pinY: 53.5,
+          isNewInstall: true,
+          previousPosNum: 3,
+          modeloSaliente: 'Xiaomi 17 Ultra Black',
+          esDummySaliente: false
+        },
+        {
+          pos: 4,
+          device: 'Xiaomi 18 Pro',
+          color: p4Dummy ? 'Purple / Blue (Maqueta)' : 'Purple / Blue',
+          dummy: p4Dummy,
+          category: 'Smartphone',
+          pinX: 39.5,
+          pinY: 53.5,
+          isNewInstall: true,
+          previousPosNum: 4,
+          modeloSaliente: 'Xiaomi 17 Black',
+          esDummySaliente: false
+        },
+        {
+          pos: 5,
+          device: 'Xiaomi 17T Pro Blue',
+          color: 'Blue',
+          dummy: false,
+          category: 'Smartphone',
+          pinX: 50.2,
+          pinY: 53.5,
+          isNewInstall: false,
+          previousPosNum: 7
+        },
+        {
+          pos: 6,
+          device: 'Xiaomi 17T Purple',
+          color: 'Purple',
+          dummy: false,
+          category: 'Smartphone',
+          pinX: 55.2,
+          pinY: 53.5,
+          isNewInstall: false,
+          previousPosNum: 8
+        },
+        {
+          pos: 7,
+          device: 'Xiaomi Watch 5',
+          color: 'Black',
+          dummy: false,
+          category: 'Wearable',
+          pinX: 63.8,
+          pinY: 53.5,
+          isNewInstall: true,
+          previousPosNum: 5,
+          modeloSaliente: 'Xiaomi Smart Band 10 Pro',
+          esDummySaliente: false
+        },
+        {
+          pos: 8,
+          device: 'Redmi Note 17 Pro Max 5G White&Orange',
+          color: 'White & Orange',
+          dummy: false,
+          category: 'Smartphone',
+          pinX: 74.8,
+          pinY: 53.5,
+          isNewInstall: false,
+          previousPosNum: 10
+        },
+        {
+          pos: 9,
+          device: 'Redmi Note 17 Pro Max 5G White&Orange',
+          color: 'White & Orange (Maqueta)',
+          dummy: true,
+          category: 'Smartphone',
+          pinX: 80.2,
+          pinY: 53.5,
+          isNewInstall: false,
+          previousPosNum: 11
+        },
+        {
+          pos: 10,
+          device: 'Redmi Note 17 Pro Max 5G Green',
+          color: 'Green',
+          dummy: false,
+          category: 'Smartphone',
+          pinX: 85.8,
+          pinY: 53.5,
+          isNewInstall: false,
+          previousPosNum: 12
+        }
+      ];
+    }
+  }
+
+  // Table 2 / Table 3
+  if (hasClip) {
+    // Table 2 / Table 3 CON Xiaomi Clip (11 posiciones)
+    return [
+      {
+        pos: 1,
+        device: 'Xiaomi 18 Pro Max',
+        color: p1Dummy ? 'Red / Burgundy (Maqueta)' : 'Red / Burgundy',
+        dummy: p1Dummy,
+        category: 'Smartphone',
+        pinX: 15.8,
+        pinY: 52.5,
+        isNewInstall: true,
+        previousPosNum: 1,
+        modeloSaliente: 'Xiaomi 17 Ultra Green',
+        esDummySaliente: true
+      },
+      {
+        pos: 2,
+        device: 'Xiaomi 18 Pro Max',
+        color: p2Dummy ? 'Red / Burgundy (Maqueta)' : 'Red / Burgundy',
+        dummy: p2Dummy,
+        category: 'Smartphone',
+        pinX: 21.2,
+        pinY: 52.5,
+        isNewInstall: true,
+        previousPosNum: 2,
+        modeloSaliente: 'Xiaomi 17 Blue',
+        esDummySaliente: true
+      },
+      {
+        pos: 3,
+        device: 'Xiaomi 18 Pro',
+        color: p3Dummy ? 'Purple / Blue (Maqueta)' : 'Purple / Blue',
+        dummy: p3Dummy,
+        category: 'Smartphone',
+        pinX: 28.8,
+        pinY: 52.5,
+        isNewInstall: true,
+        previousPosNum: 3,
+        modeloSaliente: 'Xiaomi 17 Ultra Black',
+        esDummySaliente: false
+      },
+      {
+        pos: 4,
+        device: 'Xiaomi 18 Pro',
+        color: p4Dummy ? 'Purple / Blue (Maqueta)' : 'Purple / Blue',
+        dummy: p4Dummy,
+        category: 'Smartphone',
+        pinX: 34.2,
+        pinY: 52.5,
+        isNewInstall: true,
+        previousPosNum: 4,
+        modeloSaliente: 'Xiaomi 17 Black',
+        esDummySaliente: false
+      },
+      {
+        pos: 5,
+        device: 'Xiaomi Clip',
+        color: 'Black (Maqueta)',
+        dummy: true,
+        category: 'Audio',
+        pinX: 43.5,
+        pinY: 52.5,
+        isNewInstall: true,
+        previousPosNum: 6,
+        modeloSaliente: 'Xiaomi Buds 6',
+        esDummySaliente: true
+      },
+      {
+        pos: 6,
+        device: 'Xiaomi 17T Pro Blue',
+        color: 'Blue',
+        dummy: false,
+        category: 'Smartphone',
+        pinX: 54.0,
+        pinY: 52.5,
+        isNewInstall: false,
+        previousPosNum: 7
+      },
+      {
+        pos: 7,
+        device: 'Xiaomi Watch S5 46mm',
+        color: 'Black',
+        dummy: false,
+        category: 'Wearable',
+        pinX: 59.3,
+        pinY: 52.5,
+        isNewInstall: false,
+        previousPosNum: 8
+      },
+      {
+        pos: 8,
+        device: 'Xiaomi Smart Band 10 Pro',
+        color: 'Black',
+        dummy: false,
+        category: 'Wearable',
+        pinX: 64.5,
+        pinY: 52.5,
+        isNewInstall: false,
+        previousPosNum: 9
+      },
+      {
+        pos: 9,
+        device: 'Xiaomi 17T Purple',
+        color: 'Purple',
+        dummy: false,
+        category: 'Smartphone',
+        pinX: 74.6,
+        pinY: 52.5,
+        isNewInstall: false,
+        previousPosNum: 10
+      },
+      {
+        pos: 10,
+        device: 'Xiaomi 17T Blue',
+        color: 'Blue (Maqueta)',
+        dummy: true,
+        category: 'Smartphone',
+        pinX: 79.8,
+        pinY: 52.5,
+        isNewInstall: false,
+        previousPosNum: 11
+      },
+      {
+        pos: 11,
+        device: 'Xiaomi Smart Band 11 Active',
+        color: 'Black',
+        dummy: false,
+        category: 'Wearable',
+        pinX: 85.2,
+        pinY: 52.5,
+        isNewInstall: false,
+        previousPosNum: 12
+      }
+    ];
+  } else {
+    // Table 2 SIN Xiaomi Clip (10 posiciones: Media Sabadell y Media Zaragoza)
+    return [
+      {
+        pos: 1,
+        device: 'Xiaomi 18 Pro Max',
+        color: p1Dummy ? 'Red / Burgundy (Maqueta)' : 'Red / Burgundy',
+        dummy: p1Dummy,
+        category: 'Smartphone',
+        pinX: 19.5,
+        pinY: 52.5,
+        isNewInstall: true,
+        previousPosNum: 1,
+        modeloSaliente: 'Xiaomi 17 Ultra Green',
+        esDummySaliente: true
+      },
+      {
+        pos: 2,
+        device: 'Xiaomi 18 Pro Max',
+        color: p2Dummy ? 'Red / Burgundy (Maqueta)' : 'Red / Burgundy',
+        dummy: p2Dummy,
+        category: 'Smartphone',
+        pinX: 24.5,
+        pinY: 52.5,
+        isNewInstall: true,
+        previousPosNum: 2,
+        modeloSaliente: 'Xiaomi 17 Blue',
+        esDummySaliente: true
+      },
+      {
+        pos: 3,
+        device: 'Xiaomi 18 Pro',
+        color: p3Dummy ? 'Purple / Blue (Maqueta)' : 'Purple / Blue',
+        dummy: p3Dummy,
+        category: 'Smartphone',
+        pinX: 38.2,
+        pinY: 52.5,
+        isNewInstall: true,
+        previousPosNum: 3,
+        modeloSaliente: 'Xiaomi 17 Ultra Black',
+        esDummySaliente: false
+      },
+      {
+        pos: 4,
+        device: 'Xiaomi 18 Pro',
+        color: p4Dummy ? 'Purple / Blue (Maqueta)' : 'Purple / Blue',
+        dummy: p4Dummy,
+        category: 'Smartphone',
+        pinX: 43.2,
+        pinY: 52.5,
+        isNewInstall: true,
+        previousPosNum: 4,
+        modeloSaliente: 'Xiaomi 17 Black',
+        esDummySaliente: false
+      },
+      {
+        pos: 5,
+        device: 'Xiaomi 17T Pro Blue',
+        color: 'Blue',
+        dummy: false,
+        category: 'Smartphone',
+        pinX: 54.2,
+        pinY: 52.5,
+        isNewInstall: false,
+        previousPosNum: 7
+      },
+      {
+        pos: 6,
+        device: 'Xiaomi Watch S5 46mm',
+        color: 'Black',
+        dummy: false,
+        category: 'Wearable',
+        pinX: 59.3,
+        pinY: 52.5,
+        isNewInstall: false,
+        previousPosNum: 8
+      },
+      {
+        pos: 7,
+        device: 'Xiaomi Smart Band 10 Pro',
+        color: 'Black',
+        dummy: false,
+        category: 'Wearable',
+        pinX: 64.2,
+        pinY: 52.5,
+        isNewInstall: false,
+        previousPosNum: 9
+      },
+      {
+        pos: 8,
+        device: 'Xiaomi 17T Purple',
+        color: 'Purple',
+        dummy: false,
+        category: 'Smartphone',
+        pinX: 75.0,
+        pinY: 52.5,
+        isNewInstall: false,
+        previousPosNum: 10
+      },
+      {
+        pos: 9,
+        device: 'Xiaomi 17T Blue',
+        color: 'Blue (Maqueta)',
+        dummy: true,
+        category: 'Smartphone',
+        pinX: 80.0,
+        pinY: 52.5,
+        isNewInstall: false,
+        previousPosNum: 11
+      },
+      {
+        pos: 10,
+        device: 'Xiaomi Smart Band 11 Active',
+        color: 'Black',
+        dummy: false,
+        category: 'Wearable',
+        pinX: 85.2,
+        pinY: 52.5,
+        isNewInstall: false,
+        previousPosNum: 12
+      }
+    ];
+  }
+};
 
 export const getImplantationPositionsForMesa1Cara1 = (store: StoreCenter): PlanogramPosition[] => {
-  return X18_IMPLANTATION_M1_C1_ITEMS.map((item) => ({
+  const specs = getImplantationPositionSpecsForStore(store);
+  return specs.map((item) => ({
     id: `${store.tiendaId}-M1-C1-P${item.pos}`,
     tipoEspacioId: store.tipoEspacioId,
     mesaId: 'MESA 1',
@@ -200,8 +1256,8 @@ export interface DeviceReturnPlanItem {
 }
 
 /**
- * 6 Dispositivos a retirar de Mesa 1 Cara 1 (desde Xiaomi 17 Ultra Green hasta Xiaomi Buds 6)
- * El resto de dispositivos (P07 a P12 del planograma anterior) se mantiene en la mesa actualizando su posición a P06..P11.
+ * 6 Dispositivos a retirar de Mesa 1 Cara 1 para tiendas Table 2 y Table 3
+ * (desde Xiaomi 17 Ultra Green hasta Xiaomi Buds 6, incluido Xiaomi Watch 5)
  */
 export const RETURN_DEVICES_TABLE2_M1C1: DeviceReturnPlanItem[] = [
   {
@@ -213,7 +1269,7 @@ export const RETURN_DEVICES_TABLE2_M1C1: DeviceReturnPlanItem[] = [
     esDummy: true,
     categoria: 'Smartphone',
     motivoRetirada: 'Fin de campaña (Sustituido por Xiaomi 18 Pro Max)',
-    sustituidoPor: 'Xiaomi 18 Pro Max (LDU P01)'
+    sustituidoPor: 'Xiaomi 18 Pro Max (P01)'
   },
   {
     id: 'RET-T2-M1C1-P2',
@@ -224,7 +1280,7 @@ export const RETURN_DEVICES_TABLE2_M1C1: DeviceReturnPlanItem[] = [
     esDummy: true,
     categoria: 'Smartphone',
     motivoRetirada: 'Fin de campaña (Sustituido por Xiaomi 18 Pro Max)',
-    sustituidoPor: 'Xiaomi 18 Pro Max (LDU P02)'
+    sustituidoPor: 'Xiaomi 18 Pro Max (P02)'
   },
   {
     id: 'RET-T2-M1C1-P3',
@@ -235,7 +1291,7 @@ export const RETURN_DEVICES_TABLE2_M1C1: DeviceReturnPlanItem[] = [
     esDummy: false,
     categoria: 'Smartphone',
     motivoRetirada: 'Fin de campaña (Sustituido por Xiaomi 18 Pro)',
-    sustituidoPor: 'Xiaomi 18 Pro (LDU P03)'
+    sustituidoPor: 'Xiaomi 18 Pro (P03)'
   },
   {
     id: 'RET-T2-M1C1-P4',
@@ -246,7 +1302,7 @@ export const RETURN_DEVICES_TABLE2_M1C1: DeviceReturnPlanItem[] = [
     esDummy: false,
     categoria: 'Smartphone',
     motivoRetirada: 'Fin de campaña (Sustituido por Xiaomi 18 Pro)',
-    sustituidoPor: 'Xiaomi 18 Pro (LDU P04)'
+    sustituidoPor: 'Xiaomi 18 Pro (P04)'
   },
   {
     id: 'RET-T2-M1C1-P5',
@@ -257,7 +1313,7 @@ export const RETURN_DEVICES_TABLE2_M1C1: DeviceReturnPlanItem[] = [
     esDummy: false,
     categoria: 'Wearable',
     motivoRetirada: 'Fin de campaña (Reestructuración de Mesa 1 Cara 1)',
-    sustituidoPor: 'Xiaomi Clip (DUMMY P05)'
+    sustituidoPor: 'Reestructuración Mesa 1 Cara 1'
   },
   {
     id: 'RET-T2-M1C1-P6',
@@ -267,26 +1323,97 @@ export const RETURN_DEVICES_TABLE2_M1C1: DeviceReturnPlanItem[] = [
     modeloSaliente: 'Xiaomi Buds 6',
     esDummy: true,
     categoria: 'Audio',
-    motivoRetirada: 'Fin de campaña (Sustituido por Xiaomi Clip)',
-    sustituidoPor: 'Xiaomi Clip (DUMMY P05)'
+    motivoRetirada: 'Fin de campaña (Retirada de audio campaña anterior)',
+    sustituidoPor: 'Xiaomi Clip / Reestructuración Mesa 1'
   }
 ];
 
 /**
- * Dispositivos a devolver para espacios de 1 TABLE (Table 1)
+ * 6 Dispositivos a retirar de Mesa 1 Cara 1 para tiendas Table 1 (1 mesa):
+ * - No se retira el Xiaomi Watch 5 porque se reubica al bloque central.
+ * - En su lugar se retira la Xiaomi Smart Band 10 Pro (P09 anterior) para colocar ahí el Xiaomi Watch 5.
  */
-export const RETURN_DEVICES_TABLE1_M1C1: DeviceReturnPlanItem[] = RETURN_DEVICES_TABLE2_M1C1;
+export const RETURN_DEVICES_TABLE1_M1C1: DeviceReturnPlanItem[] = [
+  {
+    id: 'RET-T1-M1C1-P1',
+    posicionAnterior: 1,
+    mesaId: 'MESA 1',
+    cara: 'Cara 1',
+    modeloSaliente: 'Xiaomi 17 Ultra Green',
+    esDummy: true,
+    categoria: 'Smartphone',
+    motivoRetirada: 'Fin de campaña (Sustituido por Xiaomi 18 Pro Max)',
+    sustituidoPor: 'Xiaomi 18 Pro Max (P01)'
+  },
+  {
+    id: 'RET-T1-M1C1-P2',
+    posicionAnterior: 2,
+    mesaId: 'MESA 1',
+    cara: 'Cara 1',
+    modeloSaliente: 'Xiaomi 17 Blue',
+    esDummy: true,
+    categoria: 'Smartphone',
+    motivoRetirada: 'Fin de campaña (Sustituido por Xiaomi 18 Pro Max)',
+    sustituidoPor: 'Xiaomi 18 Pro Max (P02)'
+  },
+  {
+    id: 'RET-T1-M1C1-P3',
+    posicionAnterior: 3,
+    mesaId: 'MESA 1',
+    cara: 'Cara 1',
+    modeloSaliente: 'Xiaomi 17 Ultra Black',
+    esDummy: false,
+    categoria: 'Smartphone',
+    motivoRetirada: 'Fin de campaña (Sustituido por Xiaomi 18 Pro)',
+    sustituidoPor: 'Xiaomi 18 Pro (P03)'
+  },
+  {
+    id: 'RET-T1-M1C1-P4',
+    posicionAnterior: 4,
+    mesaId: 'MESA 1',
+    cara: 'Cara 1',
+    modeloSaliente: 'Xiaomi 17 Black',
+    esDummy: false,
+    categoria: 'Smartphone',
+    motivoRetirada: 'Fin de campaña (Sustituido por Xiaomi 18 Pro)',
+    sustituidoPor: 'Xiaomi 18 Pro (P04)'
+  },
+  {
+    id: 'RET-T1-M1C1-P6',
+    posicionAnterior: 6,
+    mesaId: 'MESA 1',
+    cara: 'Cara 1',
+    modeloSaliente: 'Xiaomi Buds 6',
+    esDummy: true,
+    categoria: 'Audio',
+    motivoRetirada: 'Fin de campaña (Retirada de audio campaña anterior)',
+    sustituidoPor: 'Xiaomi Clip / Reestructuración Mesa 1'
+  },
+  {
+    id: 'RET-T1-M1C1-P9',
+    posicionAnterior: 9,
+    mesaId: 'MESA 1',
+    cara: 'Cara 1',
+    modeloSaliente: 'Xiaomi Smart Band 10 Pro',
+    esDummy: false,
+    categoria: 'Wearable',
+    motivoRetirada: 'Sustituida en el bloque central por Xiaomi Watch 5',
+    sustituidoPor: 'Xiaomi Watch 5 (Reubicado en bloque central)'
+  }
+];
 
 export const BASE_RETURN_DEVICES_M1C1 = RETURN_DEVICES_TABLE2_M1C1;
 
 /**
- * Obtiene los dispositivos a retirar, enlazando los IMEIs memorizados de la última auditoría completa previa
+ * Obtiene los dispositivos a retirar según si la tienda es Table 1 o Table 2/3,
+ * enlazando los IMEIs memorizados y si era Maqueta o LDU desde la última auditoría completa previa.
  */
 export const getReturnDevicesForStore = (
   store: StoreCenter,
   latestAudit?: AuditRecord | null
 ): DeviceReturnState[] => {
-  const baseList = RETURN_DEVICES_TABLE2_M1C1;
+  const isT1 = isTable1CampaignStore(store);
+  const baseList = isT1 ? RETURN_DEVICES_TABLE1_M1C1 : RETURN_DEVICES_TABLE2_M1C1;
 
   // Posiciones correspondientes a Mesa 1 del último reporte de auditoría completa previa
   const mesa1Positions = (latestAudit?.positions || []).filter((p) => {
@@ -312,7 +1439,7 @@ export const getReturnDevicesForStore = (
           p.posicionId?.toUpperCase().endsWith(`-P${item.posicionAnterior}`))
     );
 
-    // 2. Coincidencia exacta de nombre de modelo en Mesa 1 Cara 1 o en Mesa 1 (p.ej. Table 3 Diagonal Mar / Girona)
+    // 2. Coincidencia exacta de nombre de modelo en Mesa 1 Cara 1 o en Mesa 1
     if (!prevPos) {
       prevPos =
         mesa1Cara1Positions.find(
@@ -368,7 +1495,7 @@ export const getReturnDevicesForStore = (
 
 /**
  * Busca el estado e IMEI guardado en la Auditoría Completa previa para los dispositivos que se mantienen
- * en Mesa 1 Cara 1 (P06 a P11, que antes eran P07 a P12).
+ * en Mesa 1 Cara 1 (y para el Xiaomi Watch 5 cuando se reubica en Table 1).
  */
 export const findKeptDeviceStateFromAudit = (
   pos: PlanogramPosition,
@@ -384,18 +1511,18 @@ export const findKeptDeviceStateFromAudit = (
 
   const targetModel = (pos.modeloOficial || '').trim().toLowerCase();
   const isWatchS5 = targetModel.includes('watch s5');
+  const isRedmiWhiteOrange = targetModel.includes('white&orange');
 
-  // 1. Buscar en la posición anterior equivalente (pos.posicionNumero + 1, p.ej. P06 era P07, P11 era P12)
-  const expectedOldPos = pos.posicionNumero + 1;
-  const byOldPosAndModel = mesa1Positions.find((p) => {
-    const m = (p.modeloOficial || '').trim().toLowerCase();
-    const matchesModel =
-      m === targetModel ||
-      (isWatchS5 && m.includes('watch s5')) ||
-      (targetModel.includes('17t pro') && m.includes('17t pro'));
-    return p.posicionNumero === expectedOldPos && matchesModel;
-  });
-  if (byOldPosAndModel) return byOldPosAndModel;
+  // 1. Para los Redmi Note 17 Pro Max 5G White&Orange (donde uno es LDU y otro es Dummy), distinguir por esDummy
+  if (isRedmiWhiteOrange) {
+    const matchByDummy = mesa1Positions.find((p) => {
+      const m = (p.modeloOficial || '').trim().toLowerCase();
+      if (!m.includes('white&orange')) return false;
+      const pIsDummy = Boolean(p.esMaqueta) || p.imeiSerial === '-' || (p.imeiSerial || '').toLowerCase().includes('maqueta');
+      return pIsDummy === Boolean(pos.esDummy);
+    });
+    if (matchByDummy) return matchByDummy;
+  }
 
   // 2. Buscar por nombre de modelo en toda la Mesa 1
   const byModel = mesa1Positions.find((p) => {
@@ -408,7 +1535,7 @@ export const findKeptDeviceStateFromAudit = (
   });
   if (byModel) return byModel;
 
-  // 3. Si la auditoría ya tenía las posiciones reajustadas (P06..P11)
+  // 3. Si la auditoría ya tenía las posiciones reajustadas
   const bySamePos = mesa1Positions.find((p) => {
     const m = (p.modeloOficial || '').trim().toLowerCase();
     return (
@@ -420,10 +1547,12 @@ export const findKeptDeviceStateFromAudit = (
 };
 
 /**
- * Determina si una posición del planograma requiere instalar un nuevo dispositivo en "Nueva Implantación"
- * para la campaña activa "Lanzamiento Xiaomi 18 Pro Max".
- * Solo intervienen los 5 nuevos modelos a instalar en Mesa 1 Cara 1 (P01 a P05).
- * Los modelos de P06 a P11 se mantienen igual respecto a la Auditoría Completa (solo actualizan su número de posición).
+ * Determina si una posición del planograma requiere instalar / verificar un dispositivo en "Nueva Implantación"
+ * para la campaña activa "Lanzamiento Xiaomi 18 Pro Max":
+ * - P01 a P04: Los 4 terminales Xiaomi 18 Pro Max y Xiaomi 18 Pro (según si son LDU o Dummy en esa tienda).
+ * - P05 (si lleva Xiaomi Clip): Xiaomi Clip (Dummy).
+ * - En Table 1: el puesto del Xiaomi Watch 5 (P08 con Clip, P07 sin Clip) que se instala/reubica sustituyendo a la Xiaomi Smart Band 10 Pro.
+ * - Resto de posiciones: se mantienen de la Auditoría Completa (no requieren volver a meter IMEI).
  */
 export const getSwapAssignmentForPosition = (
   pos: PlanogramPosition
@@ -434,7 +1563,9 @@ export const getSwapAssignmentForPosition = (
 
   if (!isMesa1Cara1) return null;
 
-  if (pos.posicionNumero === 1) {
+  const modelLower = (pos.modeloOficial || '').trim().toLowerCase();
+
+  if (pos.posicionNumero === 1 && modelLower.includes('18 pro max')) {
     return {
       posicionId: pos.id,
       mesaId: pos.mesaId,
@@ -443,10 +1574,10 @@ export const getSwapAssignmentForPosition = (
       modeloSaliente: 'Xiaomi 17 Ultra Green',
       esDummySaliente: true,
       modeloEntrante: 'Xiaomi 18 Pro Max',
-      esDummyEntrante: false
+      esDummyEntrante: Boolean(pos.esDummy)
     };
   }
-  if (pos.posicionNumero === 2) {
+  if (pos.posicionNumero === 2 && modelLower.includes('18 pro max')) {
     return {
       posicionId: pos.id,
       mesaId: pos.mesaId,
@@ -455,10 +1586,10 @@ export const getSwapAssignmentForPosition = (
       modeloSaliente: 'Xiaomi 17 Blue',
       esDummySaliente: true,
       modeloEntrante: 'Xiaomi 18 Pro Max',
-      esDummyEntrante: false
+      esDummyEntrante: Boolean(pos.esDummy)
     };
   }
-  if (pos.posicionNumero === 3) {
+  if (pos.posicionNumero === 3 && modelLower.includes('18 pro')) {
     return {
       posicionId: pos.id,
       mesaId: pos.mesaId,
@@ -467,10 +1598,10 @@ export const getSwapAssignmentForPosition = (
       modeloSaliente: 'Xiaomi 17 Ultra Black',
       esDummySaliente: false,
       modeloEntrante: 'Xiaomi 18 Pro',
-      esDummyEntrante: false
+      esDummyEntrante: Boolean(pos.esDummy)
     };
   }
-  if (pos.posicionNumero === 4) {
+  if (pos.posicionNumero === 4 && modelLower.includes('18 pro')) {
     return {
       posicionId: pos.id,
       mesaId: pos.mesaId,
@@ -479,10 +1610,10 @@ export const getSwapAssignmentForPosition = (
       modeloSaliente: 'Xiaomi 17 Black',
       esDummySaliente: false,
       modeloEntrante: 'Xiaomi 18 Pro',
-      esDummyEntrante: false
+      esDummyEntrante: Boolean(pos.esDummy)
     };
   }
-  if (pos.posicionNumero === 5) {
+  if (pos.posicionNumero === 5 && modelLower.includes('xiaomi clip')) {
     return {
       posicionId: pos.id,
       mesaId: pos.mesaId,
@@ -494,14 +1625,26 @@ export const getSwapAssignmentForPosition = (
       esDummyEntrante: true
     };
   }
+  // En Table 1: el Xiaomi Watch 5 se instala/reubica en el bloque central (P08 con Clip, P07 sin Clip) sustituyendo a la Smart Band 10 Pro
+  if (modelLower === 'xiaomi watch 5') {
+    return {
+      posicionId: pos.id,
+      mesaId: pos.mesaId,
+      posicionNumero: pos.posicionNumero,
+      categoria: 'Wearable',
+      modeloSaliente: 'Xiaomi Smart Band 10 Pro',
+      esDummySaliente: false,
+      modeloEntrante: 'Xiaomi Watch 5',
+      esDummyEntrante: false
+    };
+  }
 
-  // P06 a P11 se mantienen igual respecto a la Auditoría Completa: no requieren volver a poner IMEI
+  // El resto de dispositivos se mantienen igual respecto a la Auditoría Completa
   return null;
 };
 
 /**
  * Obtiene todas las posiciones asignadas al Swap de la campaña activa en una tienda.
- * Limitado exclusivamente a Mesa 1 Cara 1 (P01 a P05).
  */
 export const getAllSwapAssignmentsForStore = (store: StoreCenter): SwapCampaignAssignment[] => {
   const positions = getImplantationPositionsForMesa1Cara1(store);
@@ -518,9 +1661,8 @@ export const getAllSwapAssignmentsForStore = (store: StoreCenter): SwapCampaignA
 /**
  * Construye el registro de Auditoría Completa actualizado automáticamente tras finalizar y enviar
  * la "Nueva Implantación":
- * - P01 a P05 (Mesa 1 Cara 1): nuevos dispositivos instalados con sus IMEIs/estados.
- * - P06 a P11 (Mesa 1 Cara 1): dispositivos que se mantienen de la auditoría completa previa, conservando su IMEI y reajustando su posición de P07..P12 a P06..P11.
- * - P12 en adelante (Mesa 1 Cara 2): dispositivos de Cara 2 conservando su IMEI y reajustando su número de posición (-1, de P13..P23 a P12..P22) al pasar Cara 1 de 12 a 11 dispositivos.
+ * - Mesa 1 Cara 1: guarda los nuevos dispositivos instalados con sus IMEIs/estados y los dispositivos que se mantienen conservando su IMEI y reajustando su número de posición (11 puestos si lleva Xiaomi Clip, 10 puestos si no lleva Xiaomi Clip).
+ * - Mesa 1 Cara 2: conserva sus dispositivos e IMEIs reajustando su número de posición correlativo a continuación de Cara 1 (desde P12 si Cara 1 tiene 11 puestos, o desde P11 si Cara 1 tiene 10 puestos).
  * - Resto de mesas y espacios (Mesa 2, Mesa 3, Wall, MiniWall, Lineal Smartwatch): se mantienen intactos de la auditoría completa previa.
  */
 export const buildFullAuditRecordFromImplantation = (
@@ -561,7 +1703,7 @@ export const buildFullAuditRecordFromImplantation = (
       };
     }
 
-    // Posiciones P06 a P11: se mantienen de la auditoría completa previa con su IMEI original y nueva posición P06..P11
+    // Posiciones que se mantienen de la auditoría completa previa con su IMEI original y nuevo número de posición
     const kept = findKeptDeviceStateFromAudit(pos, baseAudit);
     const isDummy = pos.esDummy;
     const preservedImei = isDummy
@@ -587,7 +1729,8 @@ export const buildFullAuditRecordFromImplantation = (
     };
   });
 
-  // Posiciones de Mesa 1 Cara 2 de la auditoría completa previa: reajustar su número de posición a correlativo desde P12 (P12, P13, ...)
+  // Posiciones de Mesa 1 Cara 2 de la auditoría completa previa: reajustar su número de posición correlativo después de Cara 1
+  const startCara2Pos = m1c1Positions.length + 1; // 12 si Cara 1 tiene 11 puestos, 11 si Cara 1 tiene 10 puestos
   const basePositions = baseAudit?.positions || [];
   const baseMesa1Cara2 = basePositions
     .filter((p) => {
@@ -600,8 +1743,7 @@ export const buildFullAuditRecordFromImplantation = (
     .sort((a, b) => a.posicionNumero - b.posicionNumero);
 
   const updatedMesa1Cara2Positions: PositionAuditState[] = baseMesa1Cara2.map((p, idx) => {
-    // Si empezaban en P13 (porque Cara 1 tenía 12 puestos), ahora empiezan en P12 (porque Cara 1 tiene 11 puestos)
-    const newPosNum = p.posicionNumero >= 13 ? p.posicionNumero - 1 : 12 + idx;
+    const newPosNum = startCara2Pos + idx;
     return {
       ...p,
       posicionId: `${store.tipoEspacioId}-MESA_1_·_Cara_2-P${newPosNum}`,
@@ -646,13 +1788,8 @@ export const buildFullAuditRecordFromImplantation = (
 };
 
 /**
- * Obtiene los elementos de "POSM" oficiales (Lonas, Duratrans y Columna)
- * que deben intervenirse en la tienda durante la Nueva Implantación.
- * 
- * Se limita exclusivamente según especificación oficial a:
- * - Tiendas con lona Xiaomi 17 Ultra (Wall o Miniwall) -> cambio a Xiaomi 18 Series.
- * - Tiendas con duratrans (Top Table) -> la franja que pertenece a Xiaomi 17 Ultra se modifica por Xiaomi 18 Series.
- * - Tiendas con columna -> la cara de Xiaomi 17 Ultra se modifica a Xiaomi 18 Series.
+ * Obtiene los elementos de "POSM" oficiales (Lonas, Duratrans, Columna, Luminoso y Cubrecestas)
+ * que deben intervenirse en la tienda durante la Nueva Implantación según el Excel maestro.
  */
 export const getVisualElementsForStore = (store: StoreCenter): VisualElementDefinition[] => {
   if (hasActiveImplantationCampaign(store)) {

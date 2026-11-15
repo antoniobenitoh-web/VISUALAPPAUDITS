@@ -1964,20 +1964,19 @@ export const getDynamicPosmDefinitionsForImplantation = (store: StoreCenter): Vi
 
   // Solo mostrar la lona de Miniwall cuando la tienda NO tiene columna de 4 lados (solo tiene 1 lado / MiniWall).
   // Cuando tiene columna de 4 lados, la lona de Xiaomi 17 Ultra -> Xiaomi 18 Series es la Cara 1 de la Columna.
+  // Se muestra sin foto de ejemplo para que el usuario realice igualmente el reporte completo en POSM.
   if (config?.hasMiniwall && !config?.hasColumnas) {
     const miniwallItem = config.elementos.find((el) => el.tipo === 'miniwall');
     defs.push({
       id: `${store.tiendaId}-POSM-MINIWALL-X18`,
-      nombreElemento: 'Lona Miniwall · Xiaomi 18 Series',
+      nombreElemento: 'Lona Miniwall · Xiaomi 18 Pro Series',
       tipoMaterial: 'Textil / Lona',
       ubicacionEspacio: 'MINIWALL (Bastidor textil)',
       campanaOficial: 'Lanzamiento Xiaomi 18 Pro Max',
       medidasOficiales: miniwallItem?.medida || '650x460 mm',
       instruccionesFijacion:
-        'Sustituir la minilona anterior de Xiaomi 17 Ultra por la nueva lona de Xiaomi 18 Series, extendiéndola tensa y sin arrugas en el bastidor textil.',
-      guiaVisualTipo: 'lona_mesa',
-      imagenReferenciaAntes: './images/posm/lona_miniwall_x17.jpg',
-      imagenReferenciaDespues: './images/posm/miniwall_render.jpg'
+        'Sustituir la minilona anterior de Xiaomi 17 Ultra por la nueva lona de Xiaomi 18 Pro Series, extendiéndola tensa y sin arrugas en el bastidor textil.',
+      guiaVisualTipo: 'lona_mesa'
     });
   }
 
@@ -2001,23 +2000,23 @@ export const getDynamicPosmDefinitionsForImplantation = (store: StoreCenter): Vi
     });
   }
 
-  // 3. Tiendas con columna -> La cara de Xiaomi 17 Ultra (Cara 1) se modifica a Xiaomi 18 Series
+  // 3. Tiendas con columna -> La cara de Xiaomi 17 Ultra (Cara 1) se modifica a Xiaomi 18 Pro Series
   if (config?.hasColumnas) {
     const colCara1 =
       config.elementos.find((el) => el.tipo === 'columna' && (el.caraNumero === 1 || el.campanaOficial.toLowerCase().includes('17 ultra'))) ||
       config.elementos.find((el) => el.tipo === 'columna');
     defs.push({
       id: `${store.tiendaId}-POSM-COL-C1-X18`,
-      nombreElemento: 'Lona Columna Cara 1 · Xiaomi 18 Series',
+      nombreElemento: 'Lona Columna Cara 1 · Xiaomi 18 Pro Series',
       tipoMaterial: 'Textil / Lona',
       ubicacionEspacio: 'Columna · Cara 1 (Frontal principal)',
       campanaOficial: 'Lanzamiento Xiaomi 18 Pro Max',
       medidasOficiales: config.columnMeasures?.cara1 || colCara1?.medida || 'Columna Cara 1',
       instruccionesFijacion:
-        'Sustituir la lona anterior de Xiaomi 17 Ultra por la nueva lona textil de Xiaomi 18 Series tensada en la perfilería de la columna, sin arrugas y alineada con el zócalo.',
+        'Retirar la lona anterior de Xiaomi 17 Ultra e instalar la nueva lona textil de Xiaomi 18 Pro Series tensada en la perfilería de la Cara 1 de la columna, sin arrugas y alineada con el zócalo.',
       guiaVisualTipo: 'columna',
-      imagenReferenciaAntes: './images/posm/cara1_xiaomi17ultra.jpg',
-      imagenReferenciaDespues: './images/posm/cara1_xiaomi17ultra.jpg'
+      imagenReferenciaAntes: './images/posm/columna_cara1_x17_antes.jpg',
+      imagenReferenciaDespues: './images/posm/columna_cara1_x18_despues.jpg'
     });
   }
 

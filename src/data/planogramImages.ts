@@ -19,11 +19,19 @@ import miniwallImg from '../assets/tables/miniwall_render.jpg?inline';
 import miniwallX17Img from '../assets/tables/miniwall_x17_render.jpg?inline';
 import linealSmartwatchImg from '../assets/tables/lineal_smartwatch.jpg?inline';
 import mesa1Cara1X18Implantacion from '../assets/tables/mesa1_cara1_x18_implantacion.jpg?inline';
+import mesa1Cara1T1X18WithClip from '../assets/tables/mesa1_cara1_t1_x18_with_clip.jpg?inline';
+import mesa1Cara1T1X18NoClip from '../assets/tables/mesa1_cara1_t1_x18_no_clip.jpg?inline';
+import mesa1Cara1T2X18NoClipTt from '../assets/tables/mesa1_cara1_t2_x18_no_clip_tt.jpg?inline';
+import mesa1Cara1T2X18NoClipNoTt from '../assets/tables/mesa1_cara1_t2_x18_no_clip_no_tt.jpg?inline';
 
 export const PLANOGRAM_IMAGES = {
   table1Cara1,
   table1Cara1Xiaomi18,
   mesa1Cara1X18Implantacion,
+  mesa1Cara1T1X18WithClip,
+  mesa1Cara1T1X18NoClip,
+  mesa1Cara1T2X18NoClipTt,
+  mesa1Cara1T2X18NoClipNoTt,
   table2Mesa1Cara1: table2Mesa1Cara1Xiaomi18,
   table2Mesa1Cara1Xiaomi18,
   table2Mesa1Cara1NoWall,

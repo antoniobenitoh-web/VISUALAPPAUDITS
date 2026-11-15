@@ -1,4 +1,5 @@
 import { RetailerInfo, UserProfile, StoreCenter, SpaceType, PlanogramPosition, ProductCategory } from '../types';
+import { getImplantationPositionSpecsForStore } from './implantationCampaignData';
 
 export const SPREADSHEET_ID = '1s9hGfmS7tqvD3hP-QktLyDsTo_fRn7q8r0IMc1Dy-uo';
 
@@ -3417,19 +3418,7 @@ export const getPositionsForSpace = (
 
   const isMesa1Space = mesaId.toUpperCase().includes('MESA 1');
   if (isMesa1Space && hasStoreCompletedImplantation(storeOrId)) {
-    const POST_IMP_M1_CARA1_ITEMS = [
-      { pos: 1, device: 'Xiaomi 18 Pro Max', color: 'Red / Burgundy', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 15.8, pinY: 52.5 },
-      { pos: 2, device: 'Xiaomi 18 Pro Max', color: 'Red / Burgundy', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 21.2, pinY: 52.5 },
-      { pos: 3, device: 'Xiaomi 18 Pro', color: 'Purple / Blue', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 28.8, pinY: 52.5 },
-      { pos: 4, device: 'Xiaomi 18 Pro', color: 'Purple / Blue', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 34.2, pinY: 52.5 },
-      { pos: 5, device: 'Xiaomi Clip', color: 'Black (Maqueta)', dummy: true, category: 'Audio' as ProductCategory, pinX: 43.5, pinY: 52.5 },
-      { pos: 6, device: 'Xiaomi 17T Pro Blue', color: 'Blue', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 54.0, pinY: 52.5 },
-      { pos: 7, device: 'Xiaomi Watch S5 46mm', color: 'Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 59.3, pinY: 52.5 },
-      { pos: 8, device: 'Xiaomi Smart Band 10 Pro', color: 'Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 64.5, pinY: 52.5 },
-      { pos: 9, device: 'Xiaomi 17T Purple', color: 'Purple', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 74.6, pinY: 52.5 },
-      { pos: 10, device: 'Xiaomi 17T Blue', color: 'Blue (Maqueta)', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 79.8, pinY: 52.5 },
-      { pos: 11, device: 'Xiaomi Smart Band 11 Active', color: 'Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 85.2, pinY: 52.5 }
-    ];
+    const POST_IMP_M1_CARA1_ITEMS = getImplantationPositionSpecsForStore(storeOrId);
 
     const pCara1Post: PlanogramPosition[] = POST_IMP_M1_CARA1_ITEMS.map((item, index) => ({
       id: `${tipoEspacioId}-${mesaId.replace(/\s+/g, '_')}-P${item.pos}`,
@@ -3449,14 +3438,14 @@ export const getPositionsForSpace = (
       z: -0.35
     }));
 
-    const isTable2Format = tipoEspacioId.includes('Table 2');
+    const isTable2Format = tipoEspacioId.includes('Table 2') || tipoEspacioId.includes('Table 3');
     const c2RawItems = isTable2Format
       ? TABLE2_MESA1_CARA2_ITEMS
       : (items.length >= 22 ? items.slice(12, 22) : items.slice(Math.floor(items.length / 2)));
 
+    const startCara2Pos = pCara1Post.length + 1;
     const pCara2Post: PlanogramPosition[] = c2RawItems.map((item, index) => {
-      // Al pasar Cara 1 de 12 puestos a 11 puestos, los puestos de Cara 2 ajustan su posición (-1: de P13..P23 a P12..P22)
-      const adjustedPos = 12 + index;
+      const adjustedPos = startCara2Pos + index;
       const coord = isTable2Format
         ? TABLE2_MESA1_CARA2_ITEMS[index]
         : TABLE1_CARA2_PINS[index];

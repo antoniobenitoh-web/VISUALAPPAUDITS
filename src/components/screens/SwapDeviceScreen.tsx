@@ -110,6 +110,26 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
     return '';
   }, [store.tiendaId, position, assignment]);
 
+  // Si el modelo entrante se reubica dentro de la misma mesa (p.ej. Xiaomi Watch 5 en Table 1), recuperar su IMEI de la última auditoría
+  const memorizedRelocatedInImei = React.useMemo(() => {
+    try {
+      if ((assignment?.modeloEntrante || '').trim().toLowerCase() !== 'xiaomi watch 5') return '';
+      const latest = DbService.getLatestAuditForStore(store.tiendaId);
+      if (!latest || !latest.positions) return '';
+      const watchMatch = latest.positions.find(
+        (p) =>
+          p.mesaId.toUpperCase().includes('MESA 1') &&
+          p.modeloOficial.toLowerCase().includes('xiaomi watch 5') &&
+          p.imeiSerial &&
+          p.imeiSerial !== '-' &&
+          !p.esMaqueta
+      );
+      return watchMatch?.imeiSerial || '';
+    } catch {
+      return '';
+    }
+  }, [store.tiendaId, assignment]);
+
   // APARTADO 1 · INSTALACIÓN (NUEVO DISPOSITIVO)
   const [tipoIn, setTipoIn] = useState<'LDU' | 'DUMMY'>(
     currentState
@@ -121,7 +141,9 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
       : 'LDU'
   );
   const esDummyNuevo = tipoIn === 'DUMMY';
-  const [imeiIn, setImeiIn] = useState<string>(currentState?.imeiNuevo || '');
+  const [imeiIn, setImeiIn] = useState<string>(
+    currentState?.imeiNuevo || memorizedRelocatedInImei || ''
+  );
   const [fotoInUrl, setFotoInUrl] = useState<string | undefined>(currentState?.fotoInUrl);
 
   // APARTADO 2 · RETIRADA (DISPOSITIVO ANTERIOR)

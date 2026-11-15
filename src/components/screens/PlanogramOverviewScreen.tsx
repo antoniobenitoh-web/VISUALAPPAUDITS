@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { StoreCenter, PlanogramPosition, PositionAuditState, UserProfile, VisualElementAuditState } from '../../types';
 import { DbService } from '../../services/dbService';
 import { getPositionsForSpace } from '../../data/defaultData';
+import { getImplantationPlanogramImageKeyForStore } from '../../data/implantationCampaignData';
 import { PLANOGRAM_IMAGES } from '../../data/planogramImages';
 import { getStorePosmConfig, StorePosmItem } from '../../data/storePosmData';
 import { InteractiveColumnCanvas } from '../3d/InteractiveColumnCanvas';
@@ -322,7 +323,7 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
           ? PLANOGRAM_IMAGES.table2Mesa2Pad8ProCara1
           : (hasWallOrMiniwall ? PLANOGRAM_IMAGES.table2Mesa2Cara1 : PLANOGRAM_IMAGES.table2Mesa2Cara1NoWall));
   } else if (isMesa1Active && !isCara2Active && hasCompletedImplantation) {
-    bgImage = PLANOGRAM_IMAGES.mesa1Cara1X18Implantacion;
+    bgImage = PLANOGRAM_IMAGES[getImplantationPlanogramImageKeyForStore(store)];
   } else if (isTable2) {
     bgImage = isCara2Active
       ? (hasWallOrMiniwall ? PLANOGRAM_IMAGES.table2Mesa1Cara2 : PLANOGRAM_IMAGES.table2Mesa1Cara2NoWall)
