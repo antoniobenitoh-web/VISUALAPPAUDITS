@@ -3208,73 +3208,73 @@ export const getPositionsForSpace = (
   // Coordenadas calibradas con el render 3D oficial para Cara 1 (12 puestos lineales que no tapan los dispositivos)
   const TABLE1_CARA1_PINS = [
     // Sector Izquierda: 6 números
-    { pinX: 20.5, pinY: 53.5 }, // 1. Xiaomi 17 Ultra Green (Dummy tumbada)
-    { pinX: 25.0, pinY: 53.5 }, // 2. Xiaomi 17 Blue (Dummy tumbada)
-    { pinX: 28.6, pinY: 53.5 }, // 3. Xiaomi 17 Ultra Black (Smartphone vertical)
-    { pinX: 32.6, pinY: 53.5 }, // 4. Xiaomi 17 Black (Smartphone vertical)
-    { pinX: 37.2, pinY: 53.5 }, // 5. Xiaomi Watch 5 (Reloj en soporte)
-    { pinX: 41.2, pinY: 53.5 }, // 6. Xiaomi Buds 6 (Audio estuche)
+    { pinX: 20.5, pinY: 56.5 }, // 1. Xiaomi 17 Ultra Green (Dummy tumbada)
+    { pinX: 25.0, pinY: 56.5 }, // 2. Xiaomi 17 Blue (Dummy tumbada)
+    { pinX: 28.6, pinY: 56.5 }, // 3. Xiaomi 17 Ultra Black (Smartphone vertical)
+    { pinX: 32.6, pinY: 56.5 }, // 4. Xiaomi 17 Black (Smartphone vertical)
+    { pinX: 37.2, pinY: 56.5 }, // 5. Xiaomi Watch 5 (Reloj en soporte)
+    { pinX: 41.2, pinY: 56.5 }, // 6. Xiaomi Buds 6 (Audio estuche)
     // Sector Centro: trío de 3 números
-    { pinX: 49.2, pinY: 53.5 }, // 7. Xiaomi 17T Pro Blue (Smartphone vertical)
-    { pinX: 53.7, pinY: 53.5 }, // 8. Xiaomi 17T Purple (Smartphone vertical)
-    { pinX: 58.1, pinY: 53.5 }, // 9. Xiaomi Smart Band 10 Pro (Smart Band peana)
+    { pinX: 49.2, pinY: 56.5 }, // 7. Xiaomi 17T Pro Blue (Smartphone vertical)
+    { pinX: 53.7, pinY: 56.5 }, // 8. Xiaomi 17T Purple (Smartphone vertical)
+    { pinX: 58.1, pinY: 56.5 }, // 9. Xiaomi Smart Band 10 Pro (Smart Band peana)
     // Sector Derecha: trío de 3 números
-    { pinX: 73.1, pinY: 53.5 }, // 10. Redmi Note 17 Pro Max 5G White&Orange (Smartphone base naranja)
-    { pinX: 77.7, pinY: 53.5 }, // 11. Redmi Note 17 Pro Max 5G White&Orange Dummy (Smartphone centro base naranja)
-    { pinX: 82.6, pinY: 53.5 }  // 12. Redmi Note 17 Pro Max 5G Green (Smartphone dcha base naranja)
+    { pinX: 73.1, pinY: 56.5 }, // 10. Redmi Note 17 Pro Max 5G White&Orange (Smartphone base naranja)
+    { pinX: 77.7, pinY: 56.5 }, // 11. Redmi Note 17 Pro Max 5G White&Orange Dummy (Smartphone centro base naranja)
+    { pinX: 82.6, pinY: 56.5 }  // 12. Redmi Note 17 Pro Max 5G Green (Smartphone dcha base naranja)
   ];
 
   // Coordenadas calibradas lineales con el render 3D oficial para Cara 2 (10 puestos lineales sin tapar pantallas)
   const TABLE1_CARA2_PINS = [
-    { pinX: 14.5, pinY: 52.5 }, // 13. Redmi 17 4G (Smartphone izq)
-    { pinX: 23.0, pinY: 52.5 }, // 14. Pad 2 (Tablet izq)
-    { pinX: 32.0, pinY: 52.5 }, // 15. Redmi 17 5G (Smartphone centro-izq)
-    { pinX: 39.5, pinY: 52.5 }, // 16. Redmi Pad 2 Pro (Tablet centro)
-    { pinX: 51.0, pinY: 52.5 }, // 17. Redmi Note 17 5G Purple (Smartphone centro-dcha)
-    { pinX: 59.0, pinY: 52.5 }, // 18. Pad 8 (Tablet con teclado)
-    { pinX: 71.3, pinY: 52.5 }, // 19. Redmi note 17 Pro 5G Blue (Smartphone dcha 1)
-    { pinX: 76.0, pinY: 52.5 }, // 20. Redmi note 17 Pro 5G Purple (Smartphone dcha 2)
-    { pinX: 80.3, pinY: 52.5 }, // 21. Redmi Watch 6 (Wearable peana)
-    { pinX: 84.2, pinY: 52.5 }  // 22. Redmi Buds 8 (Audio estuche)
+    { pinX: 14.5, pinY: 56.0 }, // 13. Redmi 17 4G (Smartphone izq)
+    { pinX: 23.0, pinY: 56.0 }, // 14. Pad 2 (Tablet izq)
+    { pinX: 32.0, pinY: 56.0 }, // 15. Redmi 17 5G (Smartphone centro-izq)
+    { pinX: 39.5, pinY: 56.0 }, // 16. Redmi Pad 2 Pro (Tablet centro)
+    { pinX: 51.0, pinY: 56.0 }, // 17. Redmi Note 17 5G Purple (Smartphone centro-dcha)
+    { pinX: 59.0, pinY: 56.0 }, // 18. Pad 8 (Tablet con teclado)
+    { pinX: 71.3, pinY: 56.0 }, // 19. Redmi note 17 Pro 5G Blue (Smartphone dcha 1)
+    { pinX: 76.0, pinY: 56.0 }, // 20. Redmi note 17 Pro 5G Purple (Smartphone dcha 2)
+    { pinX: 80.3, pinY: 56.0 }, // 21. Redmi Watch 6 (Wearable peana)
+    { pinX: 84.2, pinY: 56.0 }  // 22. Redmi Buds 8 (Audio estuche)
   ];
 
   // Coordenadas calibradas con el render 3D oficial para Table CRF Cara 1 (4 smartphones lineales sin tapar pantallas)
   const TABLE_CRF_CARA1_PINS = [
-    { pinX: 19.1, pinY: 53.5 }, // 1. Redmi Note 15 Pro 5G (Smartphone izq)
-    { pinX: 34.5, pinY: 53.5 }, // 2. Redmi Note 17 5G (Smartphone centro-izq)
-    { pinX: 49.6, pinY: 53.5 }, // 3. Redmi 17 4G Dummy (Smartphone centro-dcha)
-    { pinX: 65.2, pinY: 53.5 }  // 4. Redmi 17 4G (Smartphone dcha)
+    { pinX: 19.1, pinY: 56.5 }, // 1. Redmi Note 15 Pro 5G (Smartphone izq)
+    { pinX: 34.5, pinY: 56.5 }, // 2. Redmi Note 17 5G (Smartphone centro-izq)
+    { pinX: 49.6, pinY: 56.5 }, // 3. Redmi 17 4G Dummy (Smartphone centro-dcha)
+    { pinX: 65.2, pinY: 56.5 }  // 4. Redmi 17 4G (Smartphone dcha)
   ];
 
   // Coordenadas calibradas con el render 3D oficial para Table CRF Cara 2 (3 tablets + 1 smartphone)
   const TABLE_CRF_CARA2_PINS = [
-    { pinX: 31.0, pinY: 53.5 }, // 5. Redmi Pad 2 Pro (Tablet 1)
-    { pinX: 46.1, pinY: 53.5 }, // 6. Redmi Pad 2 (Tablet 2)
-    { pinX: 61.0, pinY: 53.5 }, // 7. Redmi Pad 2 (Tablet 3)
-    { pinX: 76.2, pinY: 53.5 }  // 8. Redmi 15C 4G (Smartphone dcha)
+    { pinX: 31.0, pinY: 56.5 }, // 5. Redmi Pad 2 Pro (Tablet 1)
+    { pinX: 46.1, pinY: 56.5 }, // 6. Redmi Pad 2 (Tablet 2)
+    { pinX: 61.0, pinY: 56.5 }, // 7. Redmi Pad 2 (Tablet 3)
+    { pinX: 76.2, pinY: 56.5 }  // 8. Redmi 15C 4G (Smartphone dcha)
   ];
 
   // Coordenadas calibradas con el render 3D oficial para Wall (11 puestos lineales que no tapan dispositivos ni pantallas)
   const WALL_PINS = [
-    { pinX: 7.6, pinY: 73.5 },  // 1. Redmi Note 17 Pro Max 5G Green (Smartphone izq)
-    { pinX: 12.6, pinY: 73.5 }, // 2. Redmi Watch 6 Active (Reloj izq 1)
-    { pinX: 17.2, pinY: 73.5 }, // 3. Redmi Watch 6 Lite (Reloj izq 2)
-    { pinX: 25.1, pinY: 73.5 }, // 4. Redmi Note 17 Pro 5G Blue (Smartphone centro-izq)
-    { pinX: 29.8, pinY: 73.5 }, // 5. Redmi Watch 5 Active (Banda centro-izq 1)
-    { pinX: 34.5, pinY: 73.5 }, // 6. Redmi Watch 5 Lite (Banda centro-izq 2)
-    { pinX: 49.5, pinY: 73.5 }, // 7. Redmi Pad 2 (Tablet horizontal centro)
-    { pinX: 68.5, pinY: 73.5 }, // 8. Xiaomi Smart Band 11 Active (Banda centro-dcha 1)
-    { pinX: 73.2, pinY: 73.5 }, // 9. Xiaomi Smart Band 9 active (Banda centro-dcha 2)
-    { pinX: 85.5, pinY: 73.5 }, // 10. Xiaomi Smart Band 11 Active (Banda dcha 1)
-    { pinX: 90.5, pinY: 73.5 }  // 11. Xiaomi Smart Band 9 active (Banda dcha 2)
+    { pinX: 7.6, pinY: 76.5 },  // 1. Redmi Note 17 Pro Max 5G Green (Smartphone izq)
+    { pinX: 12.6, pinY: 76.5 }, // 2. Redmi Watch 6 Active (Reloj izq 1)
+    { pinX: 17.2, pinY: 76.5 }, // 3. Redmi Watch 6 Lite (Reloj izq 2)
+    { pinX: 25.1, pinY: 76.5 }, // 4. Redmi Note 17 Pro 5G Blue (Smartphone centro-izq)
+    { pinX: 29.8, pinY: 76.5 }, // 5. Redmi Watch 5 Active (Banda centro-izq 1)
+    { pinX: 34.5, pinY: 76.5 }, // 6. Redmi Watch 5 Lite (Banda centro-izq 2)
+    { pinX: 49.5, pinY: 76.5 }, // 7. Redmi Pad 2 (Tablet horizontal centro)
+    { pinX: 68.5, pinY: 76.5 }, // 8. Xiaomi Smart Band 11 Active (Banda centro-dcha 1)
+    { pinX: 73.2, pinY: 76.5 }, // 9. Xiaomi Smart Band 9 active (Banda centro-dcha 2)
+    { pinX: 85.5, pinY: 76.5 }, // 10. Xiaomi Smart Band 11 Active (Banda dcha 1)
+    { pinX: 90.5, pinY: 76.5 }  // 11. Xiaomi Smart Band 9 active (Banda dcha 2)
   ];
 
   // Coordenadas calibradas para MiniWall Oficial Xiaomi (4 puestos sobre balda del mueble)
   const MINIWALL_PINS = [
-    { pinX: 40.8, pinY: 62.5 }, // 1. Redmi Note 17 Pro Max 5G White&Orange (Smartphone)
-    { pinX: 43.8, pinY: 66.5 }, // 2. Redmi Watch 6 Active (Wearable)
-    { pinX: 46.8, pinY: 62.5 }, // 3. Redmi Watch 5 Lite (Wearable)
-    { pinX: 55.5, pinY: 63.5 }  // 4. Redmi Pad 2 (Tablet)
+    { pinX: 40.8, pinY: 66.5 }, // 1. Redmi Note 17 Pro Max 5G White&Orange (Smartphone)
+    { pinX: 43.8, pinY: 70.0 }, // 2. Redmi Watch 6 Active (Wearable)
+    { pinX: 46.8, pinY: 66.5 }, // 3. Redmi Watch 5 Lite (Wearable)
+    { pinX: 55.5, pinY: 67.5 }  // 4. Redmi Pad 2 (Tablet)
   ];
 
   // Coordenadas calibradas alternas para Lineal Wearables:
@@ -3283,152 +3283,152 @@ export const getPositionsForSpace = (
   const LINEAL_PINS_MAP: Record<number, Array<{ pinX: number; pinY: number }>> = {
     // 9 posiciones: 5 balda superior (1, 3, 5, 7, 9), 4 balda inferior (2, 4, 6, 8)
     9: [
-      { pinX: 21.0, pinY: 44.0 }, // Pos 1: Arriba 1 (Reloj)
-      { pinX: 21.5, pinY: 76.0 }, // Pos 2: Abajo 1 (Reloj)
-      { pinX: 35.0, pinY: 44.0 }, // Pos 3: Arriba 2 (Reloj)
-      { pinX: 37.0, pinY: 76.0 }, // Pos 4: Abajo 2 (Reloj)
-      { pinX: 53.0, pinY: 44.0 }, // Pos 5: Arriba 3 (Banda)
-      { pinX: 53.5, pinY: 76.0 }, // Pos 6: Abajo 3 (Banda)
-      { pinX: 67.5, pinY: 44.0 }, // Pos 7: Arriba 4 (Banda)
-      { pinX: 69.5, pinY: 76.0 }, // Pos 8: Abajo 4 (Banda)
-      { pinX: 81.5, pinY: 44.0 }  // Pos 9: Arriba 5 (Banda)
+      { pinX: 21.0, pinY: 47.5 }, // Pos 1: Arriba 1 (Reloj)
+      { pinX: 21.5, pinY: 79.5 }, // Pos 2: Abajo 1 (Reloj)
+      { pinX: 35.0, pinY: 47.5 }, // Pos 3: Arriba 2 (Reloj)
+      { pinX: 37.0, pinY: 79.5 }, // Pos 4: Abajo 2 (Reloj)
+      { pinX: 53.0, pinY: 47.5 }, // Pos 5: Arriba 3 (Banda)
+      { pinX: 53.5, pinY: 79.5 }, // Pos 6: Abajo 3 (Banda)
+      { pinX: 67.5, pinY: 47.5 }, // Pos 7: Arriba 4 (Banda)
+      { pinX: 69.5, pinY: 79.5 }, // Pos 8: Abajo 4 (Banda)
+      { pinX: 81.5, pinY: 47.5 }  // Pos 9: Arriba 5 (Banda)
     ],
     // 8 posiciones: 4 balda superior (1, 3, 5, 7), 4 balda inferior (2, 4, 6, 8)
     8: [
-      { pinX: 22.0, pinY: 44.0 }, // Pos 1: Arriba 1
-      { pinX: 22.0, pinY: 76.0 }, // Pos 2: Abajo 1
-      { pinX: 39.0, pinY: 44.0 }, // Pos 3: Arriba 2
-      { pinX: 39.0, pinY: 76.0 }, // Pos 4: Abajo 2
-      { pinX: 57.0, pinY: 44.0 }, // Pos 5: Arriba 3
-      { pinX: 57.0, pinY: 76.0 }, // Pos 6: Abajo 3
-      { pinX: 75.0, pinY: 44.0 }, // Pos 7: Arriba 4
-      { pinX: 75.0, pinY: 76.0 }  // Pos 8: Abajo 4
+      { pinX: 22.0, pinY: 47.5 }, // Pos 1: Arriba 1
+      { pinX: 22.0, pinY: 79.5 }, // Pos 2: Abajo 1
+      { pinX: 39.0, pinY: 47.5 }, // Pos 3: Arriba 2
+      { pinX: 39.0, pinY: 79.5 }, // Pos 4: Abajo 2
+      { pinX: 57.0, pinY: 47.5 }, // Pos 5: Arriba 3
+      { pinX: 57.0, pinY: 79.5 }, // Pos 6: Abajo 3
+      { pinX: 75.0, pinY: 47.5 }, // Pos 7: Arriba 4
+      { pinX: 75.0, pinY: 79.5 }  // Pos 8: Abajo 4
     ],
     // 7 posiciones: 4 balda superior (1, 3, 5, 7), 3 balda inferior (2, 4, 6)
     7: [
-      { pinX: 22.0, pinY: 44.0 }, // Pos 1: Arriba 1
-      { pinX: 28.0, pinY: 76.0 }, // Pos 2: Abajo 1
-      { pinX: 39.0, pinY: 44.0 }, // Pos 3: Arriba 2
-      { pinX: 48.0, pinY: 76.0 }, // Pos 4: Abajo 2
-      { pinX: 57.0, pinY: 44.0 }, // Pos 5: Arriba 3
-      { pinX: 68.0, pinY: 76.0 }, // Pos 6: Abajo 3
-      { pinX: 75.0, pinY: 44.0 }  // Pos 7: Arriba 4
+      { pinX: 22.0, pinY: 47.5 }, // Pos 1: Arriba 1
+      { pinX: 28.0, pinY: 79.5 }, // Pos 2: Abajo 1
+      { pinX: 39.0, pinY: 47.5 }, // Pos 3: Arriba 2
+      { pinX: 48.0, pinY: 79.5 }, // Pos 4: Abajo 2
+      { pinX: 57.0, pinY: 47.5 }, // Pos 5: Arriba 3
+      { pinX: 68.0, pinY: 79.5 }, // Pos 6: Abajo 3
+      { pinX: 75.0, pinY: 47.5 }  // Pos 7: Arriba 4
     ],
     // 6 posiciones: 3 balda superior (1, 3, 5), 3 balda inferior (2, 4, 6)
     6: [
-      { pinX: 26.0, pinY: 44.0 }, // Pos 1: Arriba 1
-      { pinX: 26.0, pinY: 76.0 }, // Pos 2: Abajo 1
-      { pinX: 48.0, pinY: 44.0 }, // Pos 3: Arriba 2
-      { pinX: 48.0, pinY: 76.0 }, // Pos 4: Abajo 2
-      { pinX: 70.0, pinY: 44.0 }, // Pos 5: Arriba 3
-      { pinX: 70.0, pinY: 76.0 }  // Pos 6: Abajo 3
+      { pinX: 26.0, pinY: 47.5 }, // Pos 1: Arriba 1
+      { pinX: 26.0, pinY: 79.5 }, // Pos 2: Abajo 1
+      { pinX: 48.0, pinY: 47.5 }, // Pos 3: Arriba 2
+      { pinX: 48.0, pinY: 79.5 }, // Pos 4: Abajo 2
+      { pinX: 70.0, pinY: 47.5 }, // Pos 5: Arriba 3
+      { pinX: 70.0, pinY: 79.5 }  // Pos 6: Abajo 3
     ],
     // 5 posiciones: 3 balda superior (1, 3, 5), 2 balda inferior (2, 4)
     5: [
-      { pinX: 26.0, pinY: 44.0 }, // Pos 1: Arriba 1
-      { pinX: 35.0, pinY: 76.0 }, // Pos 2: Abajo 1
-      { pinX: 48.0, pinY: 44.0 }, // Pos 3: Arriba 2
-      { pinX: 61.0, pinY: 76.0 }, // Pos 4: Abajo 2
-      { pinX: 70.0, pinY: 44.0 }  // Pos 5: Arriba 3
+      { pinX: 26.0, pinY: 47.5 }, // Pos 1: Arriba 1
+      { pinX: 35.0, pinY: 79.5 }, // Pos 2: Abajo 1
+      { pinX: 48.0, pinY: 47.5 }, // Pos 3: Arriba 2
+      { pinX: 61.0, pinY: 79.5 }, // Pos 4: Abajo 2
+      { pinX: 70.0, pinY: 47.5 }  // Pos 5: Arriba 3
     ]
   };
 
   // Coordenadas calibradas para Table 2 Mesa 1 Cara 1 (Oficial Wall + MiniWall - 12 puestos: P01 a P12)
   const TABLE2_MESA1_CARA1_PINS = [
-    { pinX: 18.8, pinY: 48.5 }, // 1. Xiaomi 17 Ultra Green (Dummy tumbada)
-    { pinX: 21.0, pinY: 48.5 }, // 2. Xiaomi 17 Blue (Dummy tumbada)
-    { pinX: 26.8, pinY: 48.5 }, // 3. Xiaomi 17 Ultra Black (Smartphone vertical)
-    { pinX: 31.0, pinY: 48.5 }, // 4. Xiaomi 17 Black (Smartphone vertical)
-    { pinX: 36.0, pinY: 48.5 }, // 5. Xiaomi Watch 5 (Reloj en soporte)
-    { pinX: 40.5, pinY: 48.5 }, // 6. Xiaomi Buds 6 (Audio estuche)
-    { pinX: 56.4, pinY: 48.5 }, // 7. Xiaomi 17T Pro Blue (Smartphone vertical)
-    { pinX: 60.6, pinY: 48.5 }, // 8. Xiaomi Watch S5 45mm (Reloj peana)
-    { pinX: 65.5, pinY: 48.5 }, // 9. Xiaomi Smart Band 10 Pro (Banda peana)
-    { pinX: 77.5, pinY: 48.5 }, // 10. Xiaomi 17T Purple (Smartphone vertical)
-    { pinX: 82.2, pinY: 48.5 }, // 11. Xiaomi 17T Blue (Smartphone vertical)
-    { pinX: 87.5, pinY: 48.5 }  // 12. Xiaomi Smart Band 11 Active (Banda peana)
+    { pinX: 18.8, pinY: 53.5 }, // 1. Xiaomi 17 Ultra Green (Dummy tumbada)
+    { pinX: 21.0, pinY: 53.5 }, // 2. Xiaomi 17 Blue (Dummy tumbada)
+    { pinX: 26.8, pinY: 53.5 }, // 3. Xiaomi 17 Ultra Black (Smartphone vertical)
+    { pinX: 31.0, pinY: 53.5 }, // 4. Xiaomi 17 Black (Smartphone vertical)
+    { pinX: 36.0, pinY: 53.5 }, // 5. Xiaomi Watch 5 (Reloj en soporte)
+    { pinX: 40.5, pinY: 53.5 }, // 6. Xiaomi Buds 6 (Audio estuche)
+    { pinX: 56.4, pinY: 53.5 }, // 7. Xiaomi 17T Pro Blue (Smartphone vertical)
+    { pinX: 60.6, pinY: 53.5 }, // 8. Xiaomi Watch S5 45mm (Reloj peana)
+    { pinX: 65.5, pinY: 53.5 }, // 9. Xiaomi Smart Band 10 Pro (Banda peana)
+    { pinX: 77.5, pinY: 53.5 }, // 10. Xiaomi 17T Purple (Smartphone vertical)
+    { pinX: 82.2, pinY: 53.5 }, // 11. Xiaomi 17T Blue (Smartphone vertical)
+    { pinX: 87.5, pinY: 53.5 }  // 12. Xiaomi Smart Band 11 Active (Banda peana)
   ];
 
   // Coordenadas y dispositivos calibrados para Table 2 Mesa 1 Cara 2 (Oficial Wall + MiniWall - 11 puestos: P13 a P23)
   const TABLE2_MESA1_CARA2_ITEMS = [
-    { pos: 13, device: 'Redmi 17 5G Orange', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 14.6, pinY: 48.5 },
-    { pos: 14, device: 'Redmi Buds 8', dummy: true, category: 'Audio' as ProductCategory, pinX: 17.6, pinY: 48.5 },
-    { pos: 15, device: 'Redmi Buds 8 Pro', dummy: true, category: 'Audio' as ProductCategory, pinX: 22.1, pinY: 48.5 },
-    { pos: 16, device: 'Redmi Note 17 5G Black', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 34.8, pinY: 48.5 },
-    { pos: 17, device: 'Redmi Note 17 5G Sky Teal', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 40.2, pinY: 48.5 },
-    { pos: 18, device: 'Redmi Note 17 Pro 5G Black', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 55.0, pinY: 48.5 },
-    { pos: 19, device: 'Redmi Note 17 Pro 5G Purple', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 59.5, pinY: 48.5 },
-    { pos: 20, device: 'Redmi Watch 6 Active Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 65.6, pinY: 48.5 },
-    { pos: 21, device: 'Redmi Note 17 Pro Max 5G Black', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 77.2, pinY: 48.5 },
-    { pos: 22, device: 'Redmi Note 17 Pro Max 5G Green', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 82.5, pinY: 48.5 },
-    { pos: 23, device: 'Redmi Watch 6 Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 87.6, pinY: 48.5 }
+    { pos: 13, device: 'Redmi 17 5G Orange', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 14.6, pinY: 53.5 },
+    { pos: 14, device: 'Redmi Buds 8', dummy: true, category: 'Audio' as ProductCategory, pinX: 17.6, pinY: 53.5 },
+    { pos: 15, device: 'Redmi Buds 8 Pro', dummy: true, category: 'Audio' as ProductCategory, pinX: 22.1, pinY: 53.5 },
+    { pos: 16, device: 'Redmi Note 17 5G Black', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 34.8, pinY: 53.5 },
+    { pos: 17, device: 'Redmi Note 17 5G Sky Teal', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 40.2, pinY: 53.5 },
+    { pos: 18, device: 'Redmi Note 17 Pro 5G Black', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 55.0, pinY: 53.5 },
+    { pos: 19, device: 'Redmi Note 17 Pro 5G Purple', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 59.5, pinY: 53.5 },
+    { pos: 20, device: 'Redmi Watch 6 Active Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 65.6, pinY: 53.5 },
+    { pos: 21, device: 'Redmi Note 17 Pro Max 5G Black', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 77.2, pinY: 53.5 },
+    { pos: 22, device: 'Redmi Note 17 Pro Max 5G Green', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 82.5, pinY: 53.5 },
+    { pos: 23, device: 'Redmi Watch 6 Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 87.6, pinY: 53.5 }
   ];
 
   // Coordenadas y dispositivos calibrados para Table 2 Mesa 2 Cara A (Cara 1) estándar - 6 puestos naturales (1 a 6)
   const TABLE2_MESA2_CARA1_ITEMS = [
-    { pos: 1, device: 'Xiaomi Pad 8', dummy: false, category: 'Tablet' as ProductCategory, pinX: 16.4, pinY: 56.0 },
-    { pos: 2, device: 'Redmi Pad 2 Pro', dummy: false, category: 'Tablet' as ProductCategory, pinX: 35.2, pinY: 56.0 },
-    { pos: 3, device: 'Redmi Pad 2 Pro', dummy: false, category: 'Tablet' as ProductCategory, pinX: 55.7, pinY: 56.0 },
-    { pos: 4, device: 'Redmi 17 5G Orange', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 64.6, pinY: 56.0 },
-    { pos: 5, device: 'Redmi Pad 2', dummy: false, category: 'Tablet' as ProductCategory, pinX: 77.9, pinY: 56.0 },
-    { pos: 6, device: 'Redmi 17 4G Blue', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 86.4, pinY: 56.0 }
+    { pos: 1, device: 'Xiaomi Pad 8', dummy: false, category: 'Tablet' as ProductCategory, pinX: 16.4, pinY: 58.5 },
+    { pos: 2, device: 'Redmi Pad 2 Pro', dummy: false, category: 'Tablet' as ProductCategory, pinX: 35.2, pinY: 58.5 },
+    { pos: 3, device: 'Redmi Pad 2 Pro', dummy: false, category: 'Tablet' as ProductCategory, pinX: 55.7, pinY: 58.5 },
+    { pos: 4, device: 'Redmi 17 5G Orange', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 64.6, pinY: 58.5 },
+    { pos: 5, device: 'Redmi Pad 2', dummy: false, category: 'Tablet' as ProductCategory, pinX: 77.9, pinY: 58.5 },
+    { pos: 6, device: 'Redmi 17 4G Blue', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 86.4, pinY: 58.5 }
   ];
 
   // Coordenadas y dispositivos calibrados para Table 2 Mesa 2 Cara A (Cara 1) CON Xiaomi Pad 8 Pro - 6 puestos calibrados
   const TABLE2_MESA2_PAD8PRO_CARA1_ITEMS = [
-    { pos: 1, device: 'Xiaomi Pad 8 Pro', dummy: false, category: 'Tablet' as ProductCategory, pinX: 23.5, pinY: 48.5 },
-    { pos: 2, device: 'Xiaomi Pad 8', dummy: false, category: 'Tablet' as ProductCategory, pinX: 40.5, pinY: 48.5 },
-    { pos: 3, device: 'Redmi Pad 2 Pro', dummy: false, category: 'Tablet' as ProductCategory, pinX: 54.8, pinY: 48.5 },
-    { pos: 4, device: 'Redmi 17 5G Orange', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 63.8, pinY: 48.5 },
-    { pos: 5, device: 'Redmi Pad 2', dummy: false, category: 'Tablet' as ProductCategory, pinX: 74.2, pinY: 48.5 },
-    { pos: 6, device: 'Redmi 17 4G Blue', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 83.6, pinY: 48.5 }
+    { pos: 1, device: 'Xiaomi Pad 8 Pro', dummy: false, category: 'Tablet' as ProductCategory, pinX: 23.5, pinY: 53.5 },
+    { pos: 2, device: 'Xiaomi Pad 8', dummy: false, category: 'Tablet' as ProductCategory, pinX: 40.5, pinY: 53.5 },
+    { pos: 3, device: 'Redmi Pad 2 Pro', dummy: false, category: 'Tablet' as ProductCategory, pinX: 54.8, pinY: 53.5 },
+    { pos: 4, device: 'Redmi 17 5G Orange', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 63.8, pinY: 53.5 },
+    { pos: 5, device: 'Redmi Pad 2', dummy: false, category: 'Tablet' as ProductCategory, pinX: 74.2, pinY: 53.5 },
+    { pos: 6, device: 'Redmi 17 4G Blue', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 83.6, pinY: 53.5 }
   ];
 
   // Coordenadas y dispositivos calibrados para Table 2 Mesa 2 Cara B (Cara 2) estándar - 11 puestos en orden requerido:
   // 10, 11, 7, 8, 9, 4, 5, 6, 1, 2, 3
   const TABLE2_MESA2_CARA2_ITEMS = [
-    { pos: 10, device: 'Redmi Pad 2 SE 9.7"', dummy: false, category: 'Tablet' as ProductCategory, pinX: 12.9, pinY: 56.0 },
-    { pos: 11, device: 'Redmi 17 4G Green', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 21.7, pinY: 56.0 },
-    { pos: 7,  device: 'Redmi 17 5G Purple', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 34.2, pinY: 56.0 },
-    { pos: 8,  device: 'Redmi 17 5G Blue', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 38.8, pinY: 56.0 },
-    { pos: 9,  device: 'Redmi Watch 6 Lite', dummy: false, category: 'Wearable' as ProductCategory, pinX: 43.5, pinY: 56.0 },
-    { pos: 4,  device: 'Redmi Note 17 Pro 5G Blue', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 55.7, pinY: 56.0 },
-    { pos: 5,  device: 'Redmi Note 17 Pro 5G Purple', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 60.5, pinY: 56.0 },
-    { pos: 6,  device: 'Redmi Watch 6 Active', dummy: false, category: 'Wearable' as ProductCategory, pinX: 65.0, pinY: 56.0 },
-    { pos: 1,  device: 'Redmi Note 17 Pro Max 5G White&Orange', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 77.5, pinY: 56.0 },
-    { pos: 2,  device: 'Redmi Note 17 Pro Max 5G White&Orange', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 82.2, pinY: 56.0 },
-    { pos: 3,  device: 'Redmi Watch 6', dummy: false, category: 'Wearable' as ProductCategory, pinX: 86.9, pinY: 56.0 }
+    { pos: 10, device: 'Redmi Pad 2 SE 9.7"', dummy: false, category: 'Tablet' as ProductCategory, pinX: 12.9, pinY: 58.5 },
+    { pos: 11, device: 'Redmi 17 4G Green', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 21.7, pinY: 58.5 },
+    { pos: 7,  device: 'Redmi 17 5G Purple', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 34.2, pinY: 58.5 },
+    { pos: 8,  device: 'Redmi 17 5G Blue', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 38.8, pinY: 58.5 },
+    { pos: 9,  device: 'Redmi Watch 6 Lite', dummy: false, category: 'Wearable' as ProductCategory, pinX: 43.5, pinY: 58.5 },
+    { pos: 4,  device: 'Redmi Note 17 Pro 5G Blue', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 55.7, pinY: 58.5 },
+    { pos: 5,  device: 'Redmi Note 17 Pro 5G Purple', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 60.5, pinY: 58.5 },
+    { pos: 6,  device: 'Redmi Watch 6 Active', dummy: false, category: 'Wearable' as ProductCategory, pinX: 65.0, pinY: 58.5 },
+    { pos: 1,  device: 'Redmi Note 17 Pro Max 5G White&Orange', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 77.5, pinY: 58.5 },
+    { pos: 2,  device: 'Redmi Note 17 Pro Max 5G White&Orange', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 82.2, pinY: 58.5 },
+    { pos: 3,  device: 'Redmi Watch 6', dummy: false, category: 'Wearable' as ProductCategory, pinX: 86.9, pinY: 58.5 }
   ];
 
   // Coordenadas y dispositivos calibrados para Table 2 Mesa 2 Cara B (Cara 2) CON Pad 8 Pro - 11 puestos calibrados:
   const TABLE2_MESA2_PAD8PRO_CARA2_ITEMS = [
-    { pos: 10, device: 'Redmi 17 4G Green', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 17.0, pinY: 48.5 },
-    { pos: 11, device: 'Redmi Pad 2 SE 9.7"', dummy: false, category: 'Tablet' as ProductCategory, pinX: 26.5, pinY: 48.5 },
-    { pos: 7,  device: 'Redmi 17 5G Purple', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 36.0, pinY: 48.5 },
-    { pos: 8,  device: 'Redmi 17 5G Blue', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 41.5, pinY: 48.5 },
-    { pos: 9,  device: 'Redmi Watch 6 Lite', dummy: false, category: 'Wearable' as ProductCategory, pinX: 45.7, pinY: 48.5 },
-    { pos: 4,  device: 'Redmi Note 17 Pro 5G Blue', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 55.5, pinY: 48.5 },
-    { pos: 5,  device: 'Redmi Note 17 Pro 5G Purple', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 60.0, pinY: 48.5 },
-    { pos: 6,  device: 'Redmi Watch 6 Active', dummy: false, category: 'Wearable' as ProductCategory, pinX: 64.5, pinY: 48.5 },
-    { pos: 1,  device: 'Redmi Note 17 Pro Max 5G White&Orange', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 74.5, pinY: 48.5 },
-    { pos: 2,  device: 'Redmi Note 17 Pro Max 5G White&Orange', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 79.5, pinY: 48.5 },
-    { pos: 3,  device: 'Redmi Watch 6', dummy: false, category: 'Wearable' as ProductCategory, pinX: 84.6, pinY: 48.5 }
+    { pos: 10, device: 'Redmi 17 4G Green', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 17.0, pinY: 53.5 },
+    { pos: 11, device: 'Redmi Pad 2 SE 9.7"', dummy: false, category: 'Tablet' as ProductCategory, pinX: 26.5, pinY: 53.5 },
+    { pos: 7,  device: 'Redmi 17 5G Purple', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 36.0, pinY: 53.5 },
+    { pos: 8,  device: 'Redmi 17 5G Blue', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 41.5, pinY: 53.5 },
+    { pos: 9,  device: 'Redmi Watch 6 Lite', dummy: false, category: 'Wearable' as ProductCategory, pinX: 45.7, pinY: 53.5 },
+    { pos: 4,  device: 'Redmi Note 17 Pro 5G Blue', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 55.5, pinY: 53.5 },
+    { pos: 5,  device: 'Redmi Note 17 Pro 5G Purple', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 60.0, pinY: 53.5 },
+    { pos: 6,  device: 'Redmi Watch 6 Active', dummy: false, category: 'Wearable' as ProductCategory, pinX: 64.5, pinY: 53.5 },
+    { pos: 1,  device: 'Redmi Note 17 Pro Max 5G White&Orange', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 74.5, pinY: 53.5 },
+    { pos: 2,  device: 'Redmi Note 17 Pro Max 5G White&Orange', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 79.5, pinY: 53.5 },
+    { pos: 3,  device: 'Redmi Watch 6', dummy: false, category: 'Wearable' as ProductCategory, pinX: 84.6, pinY: 53.5 }
   ];
 
   const isMesa1Space = mesaId.toUpperCase().includes('MESA 1');
   if (isMesa1Space && hasStoreCompletedImplantation(storeOrId)) {
     const POST_IMP_M1_CARA1_ITEMS = [
-      { pos: 1, device: 'Xiaomi 18 Pro Max', color: 'Red / Burgundy', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 16.5, pinY: 45.5 },
-      { pos: 2, device: 'Xiaomi 18 Pro Max', color: 'Red / Burgundy', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 21.0, pinY: 45.5 },
-      { pos: 3, device: 'Xiaomi 18 Pro', color: 'Purple / Blue', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 29.5, pinY: 45.5 },
-      { pos: 4, device: 'Xiaomi 18 Pro', color: 'Purple / Blue', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 34.0, pinY: 45.5 },
-      { pos: 5, device: 'Xiaomi Clip', color: 'Black (Maqueta)', dummy: true, category: 'Audio' as ProductCategory, pinX: 43.5, pinY: 45.5 },
-      { pos: 6, device: 'Xiaomi 17T Pro Blue', color: 'Blue', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 54.4, pinY: 45.5 },
-      { pos: 7, device: 'Xiaomi Watch S5 46mm', color: 'Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 59.3, pinY: 45.5 },
-      { pos: 8, device: 'Xiaomi Smart Band 10 Pro', color: 'Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 63.8, pinY: 45.5 },
-      { pos: 9, device: 'Xiaomi 17T Purple', color: 'Purple', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 75.0, pinY: 45.5 },
-      { pos: 10, device: 'Xiaomi 17T Blue', color: 'Blue (Maqueta)', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 79.8, pinY: 45.5 },
-      { pos: 11, device: 'Xiaomi Smart Band 11 Active', color: 'Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 84.8, pinY: 45.5 }
+      { pos: 1, device: 'Xiaomi 18 Pro Max', color: 'Red / Burgundy', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 15.8, pinY: 52.5 },
+      { pos: 2, device: 'Xiaomi 18 Pro Max', color: 'Red / Burgundy', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 21.2, pinY: 52.5 },
+      { pos: 3, device: 'Xiaomi 18 Pro', color: 'Purple / Blue', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 28.8, pinY: 52.5 },
+      { pos: 4, device: 'Xiaomi 18 Pro', color: 'Purple / Blue', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 34.2, pinY: 52.5 },
+      { pos: 5, device: 'Xiaomi Clip', color: 'Black (Maqueta)', dummy: true, category: 'Audio' as ProductCategory, pinX: 43.5, pinY: 52.5 },
+      { pos: 6, device: 'Xiaomi 17T Pro Blue', color: 'Blue', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 54.0, pinY: 52.5 },
+      { pos: 7, device: 'Xiaomi Watch S5 46mm', color: 'Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 59.3, pinY: 52.5 },
+      { pos: 8, device: 'Xiaomi Smart Band 10 Pro', color: 'Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 64.5, pinY: 52.5 },
+      { pos: 9, device: 'Xiaomi 17T Purple', color: 'Purple', dummy: false, category: 'Smartphone' as ProductCategory, pinX: 74.6, pinY: 52.5 },
+      { pos: 10, device: 'Xiaomi 17T Blue', color: 'Blue (Maqueta)', dummy: true, category: 'Smartphone' as ProductCategory, pinX: 79.8, pinY: 52.5 },
+      { pos: 11, device: 'Xiaomi Smart Band 11 Active', color: 'Black', dummy: false, category: 'Wearable' as ProductCategory, pinX: 85.2, pinY: 52.5 }
     ];
 
     const pCara1Post: PlanogramPosition[] = POST_IMP_M1_CARA1_ITEMS.map((item, index) => ({

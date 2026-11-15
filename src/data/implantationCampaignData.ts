@@ -157,17 +157,17 @@ export const X18_IMPLANTATION_M1_C1_ITEMS: Array<{
   isNewInstall: boolean;
   previousPosNum?: number;
 }> = [
-  { pos: 1, device: 'Xiaomi 18 Pro Max', color: 'Red / Burgundy', dummy: false, category: 'Smartphone', pinX: 16.5, pinY: 45.5, isNewInstall: true },
-  { pos: 2, device: 'Xiaomi 18 Pro Max', color: 'Red / Burgundy', dummy: false, category: 'Smartphone', pinX: 21.0, pinY: 45.5, isNewInstall: true },
-  { pos: 3, device: 'Xiaomi 18 Pro', color: 'Purple / Blue', dummy: false, category: 'Smartphone', pinX: 29.5, pinY: 45.5, isNewInstall: true },
-  { pos: 4, device: 'Xiaomi 18 Pro', color: 'Purple / Blue', dummy: false, category: 'Smartphone', pinX: 34.0, pinY: 45.5, isNewInstall: true },
-  { pos: 5, device: 'Xiaomi Clip', color: 'Black (Maqueta)', dummy: true, category: 'Audio', pinX: 43.5, pinY: 45.5, isNewInstall: true },
-  { pos: 6, device: 'Xiaomi 17T Pro Blue', color: 'Blue', dummy: false, category: 'Smartphone', pinX: 54.4, pinY: 45.5, isNewInstall: false, previousPosNum: 7 },
-  { pos: 7, device: 'Xiaomi Watch S5 46mm', color: 'Black', dummy: false, category: 'Wearable', pinX: 59.3, pinY: 45.5, isNewInstall: false, previousPosNum: 8 },
-  { pos: 8, device: 'Xiaomi Smart Band 10 Pro', color: 'Black', dummy: false, category: 'Wearable', pinX: 63.8, pinY: 45.5, isNewInstall: false, previousPosNum: 9 },
-  { pos: 9, device: 'Xiaomi 17T Purple', color: 'Purple', dummy: false, category: 'Smartphone', pinX: 75.0, pinY: 45.5, isNewInstall: false, previousPosNum: 10 },
-  { pos: 10, device: 'Xiaomi 17T Blue', color: 'Blue (Maqueta)', dummy: true, category: 'Smartphone', pinX: 79.8, pinY: 45.5, isNewInstall: false, previousPosNum: 11 },
-  { pos: 11, device: 'Xiaomi Smart Band 11 Active', color: 'Black', dummy: false, category: 'Wearable', pinX: 84.8, pinY: 45.5, isNewInstall: false, previousPosNum: 12 }
+  { pos: 1, device: 'Xiaomi 18 Pro Max', color: 'Red / Burgundy', dummy: false, category: 'Smartphone', pinX: 15.8, pinY: 52.5, isNewInstall: true },
+  { pos: 2, device: 'Xiaomi 18 Pro Max', color: 'Red / Burgundy', dummy: false, category: 'Smartphone', pinX: 21.2, pinY: 52.5, isNewInstall: true },
+  { pos: 3, device: 'Xiaomi 18 Pro', color: 'Purple / Blue', dummy: false, category: 'Smartphone', pinX: 28.8, pinY: 52.5, isNewInstall: true },
+  { pos: 4, device: 'Xiaomi 18 Pro', color: 'Purple / Blue', dummy: false, category: 'Smartphone', pinX: 34.2, pinY: 52.5, isNewInstall: true },
+  { pos: 5, device: 'Xiaomi Clip', color: 'Black (Maqueta)', dummy: true, category: 'Audio', pinX: 43.5, pinY: 52.5, isNewInstall: true },
+  { pos: 6, device: 'Xiaomi 17T Pro Blue', color: 'Blue', dummy: false, category: 'Smartphone', pinX: 54.0, pinY: 52.5, isNewInstall: false, previousPosNum: 7 },
+  { pos: 7, device: 'Xiaomi Watch S5 46mm', color: 'Black', dummy: false, category: 'Wearable', pinX: 59.3, pinY: 52.5, isNewInstall: false, previousPosNum: 8 },
+  { pos: 8, device: 'Xiaomi Smart Band 10 Pro', color: 'Black', dummy: false, category: 'Wearable', pinX: 64.5, pinY: 52.5, isNewInstall: false, previousPosNum: 9 },
+  { pos: 9, device: 'Xiaomi 17T Purple', color: 'Purple', dummy: false, category: 'Smartphone', pinX: 74.6, pinY: 52.5, isNewInstall: false, previousPosNum: 10 },
+  { pos: 10, device: 'Xiaomi 17T Blue', color: 'Blue (Maqueta)', dummy: true, category: 'Smartphone', pinX: 79.8, pinY: 52.5, isNewInstall: false, previousPosNum: 11 },
+  { pos: 11, device: 'Xiaomi Smart Band 11 Active', color: 'Black', dummy: false, category: 'Wearable', pinX: 85.2, pinY: 52.5, isNewInstall: false, previousPosNum: 12 }
 ];
 
 export const getImplantationPositionsForMesa1Cara1 = (store: StoreCenter): PlanogramPosition[] => {

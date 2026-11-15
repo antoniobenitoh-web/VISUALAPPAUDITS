@@ -997,14 +997,14 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                           position: 'absolute',
                           left: `${pos.pinX}%`,
                           top: `${pos.pinY}%`,
-                          transform: 'translate(-50%, -50%)',
+                          transform: 'translate(-50%, 0)',
                           pointerEvents: 'auto'
                         }
                       : {
                           position: 'absolute',
                           left: `${((idx + 0.5) / visiblePositions.length) * 100}%`,
-                          top: '52%',
-                          transform: 'translate(-50%, -50%)',
+                          top: '55%',
+                          transform: 'translate(-50%, 0)',
                           pointerEvents: 'auto'
                         };
 
@@ -1016,7 +1016,7 @@ export const PlanogramOverviewScreen: React.FC<PlanogramOverviewScreenProps> = (
                       >
                         {/* Línea indicadora vertical sutil hacia arriba que conecta con el dispositivo sin taparlo */}
                         <div 
-                          className={`w-[1.5px] sm:w-[2px] h-2 sm:h-3 transition-all ${
+                          className={`w-[1.5px] sm:w-[2px] h-3 sm:h-4 transition-all ${
                             isSel 
                               ? 'bg-[#00c4cc] shadow-sm shadow-[#00c4cc]' 
                               : 'bg-white/60 group-hover:bg-[#00c4cc]'

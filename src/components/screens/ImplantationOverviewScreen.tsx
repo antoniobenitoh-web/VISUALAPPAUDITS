@@ -929,14 +929,14 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                                 position: 'absolute',
                                 left: `${pos.pinX}%`,
                                 top: `${pos.pinY}%`,
-                                transform: 'translate(-50%, -50%)',
+                                transform: 'translate(-50%, 0)',
                                 pointerEvents: 'auto'
                               }
                             : {
                                 position: 'absolute',
                                 left: `${((idx + 0.5) / visiblePositions.length) * 100}%`,
-                                top: '52%',
-                                transform: 'translate(-50%, -50%)',
+                                top: '55%',
+                                transform: 'translate(-50%, 0)',
                                 pointerEvents: 'auto'
                               };
 
@@ -966,7 +966,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                               }`}
                             >
                               <div
-                                className={`w-[2px] h-2.5 sm:h-3.5 transition-all ${
+                                className={`w-[2px] h-3 sm:h-4 transition-all ${
                                   isCampaignPos
                                     ? isDoneOk
                                       ? 'bg-emerald-400'

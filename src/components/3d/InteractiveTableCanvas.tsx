@@ -326,7 +326,7 @@ export const InteractiveTableCanvas: React.FC<InteractiveTableCanvasProps> = ({
 
             // Coordenada por defecto si no está especificada
             const pinX = pos.pinX ?? (12 + (idx / Math.max(1, activePins.length - 1)) * 76);
-            const pinY = pos.pinY ?? 53.5;
+            const pinY = pos.pinY ?? 56.5;
 
             let badgeBg = 'bg-[#104a60] text-white border-white ring-2 ring-[#009ca6]/60 shadow-lg';
             if (isOk) {
@@ -342,7 +342,7 @@ export const InteractiveTableCanvas: React.FC<InteractiveTableCanvasProps> = ({
                   position: 'absolute',
                   left: `${pinX}%`,
                   top: `${pinY}%`,
-                  transform: 'translate(-50%, -50%)',
+                  transform: 'translate(-50%, 0)',
                   pointerEvents: 'auto'
                 }}
                 className="z-20 group"
