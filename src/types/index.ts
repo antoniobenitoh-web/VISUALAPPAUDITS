@@ -221,7 +221,8 @@ export interface VisualElementDefinition {
     | 'Duratrans / Filmina'
     | 'Luminoso / Metacrilato'
     | 'Cubrecestas'
-    | 'Cubrecestas / Cartelería';
+    | 'Cubrecestas / Cartelería'
+    | 'Cartelitos NEW / Peanas';
   ubicacionEspacio: string;
   campanaOficial: string;
   medidasOficiales: string;
@@ -235,7 +236,8 @@ export interface VisualElementDefinition {
     | 'columna'
     | 'top_table'
     | 'luminoso'
-    | 'cubrecestas';
+    | 'cubrecestas'
+    | 'cartelitos_new';
   imagenReferenciaAntes?: string;
   imagenReferenciaDespues?: string;
 }

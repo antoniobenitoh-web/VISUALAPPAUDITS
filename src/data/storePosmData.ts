@@ -2051,5 +2051,20 @@ export const getDynamicPosmDefinitionsForImplantation = (store: StoreCenter): Vi
     });
   }
 
+  // 6. Retirada y guardado de Cartelitos "NEW" (Serie Redmi Note 17) -> En todas las tiendas (Sin devolución, retirar y guardar para futuras implantaciones)
+  defs.push({
+    id: `${store.tiendaId}-POSM-CARTELITOS-NEW-NOTE17`,
+    nombreElemento: 'Cartelitos "NEW" · Serie Note 17 (Retirar y Guardar)',
+    tipoMaterial: 'Cartelitos NEW / Peanas',
+    ubicacionEspacio: 'Modelos de la serie Redmi Note 17 (Todas las tiendas)',
+    campanaOficial: 'Lanzamiento Xiaomi 18 Pro Max',
+    medidasOficiales: 'Retirar y guardar para futuras implantaciones (Sin devolución)',
+    instruccionesFijacion:
+      'IMPORTANTE: Retirar los cartelitos "NEW" que se encuentran actualmente en los diferentes modelos de la serie Note 17 y GUARDARLOS para futuras implantaciones. No requiere generar devolución.',
+    guiaVisualTipo: 'cartelitos_new',
+    imagenReferenciaAntes: './images/posm/cartelitos_new_note17_mesa.jpg',
+    imagenReferenciaDespues: './images/posm/cartelitos_new_note17_pieza.jpg'
+  });
+
   return defs;
 };

@@ -1450,6 +1450,160 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
               </div>
             </div>
 
+            {/* Aviso general en todas las tiendas: Retirada y Guardado de Cartelitos "NEW" (Serie Redmi Note 17) sin devolución */}
+            {(() => {
+              const cartelitosDef = visualDefinitions.find((v) => v.guiaVisualTipo === 'cartelitos_new');
+              if (!cartelitosDef) return null;
+              const cartelitosState = getOrCreateVisualState(cartelitosDef);
+              const answeredYes = cartelitosState.fijacionYMedidaCorrecta === true;
+              const answeredNo = cartelitosState.fijacionYMedidaCorrecta === false;
+
+              return (
+                <div
+                  className={`p-4 sm:p-5 rounded-3xl border-2 transition-all shadow-sm space-y-4 ${
+                    answeredYes
+                      ? 'bg-emerald-50/90 border-emerald-400'
+                      : answeredNo
+                      ? 'bg-amber-50/90 border-amber-400'
+                      : 'bg-white border-[#ff6900]'
+                  }`}
+                >
+                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                    <div className="space-y-1.5 flex-1">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-[#ff6900] text-white">
+                          Aviso General · Todas las Tiendas
+                        </span>
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-slate-900 text-amber-300">
+                          Sin Devolución · Guardar en Tienda
+                        </span>
+                        {answeredYes && (
+                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-emerald-600 text-white flex items-center gap-1">
+                            <Check className="w-3 h-3" /> Sí, retirados y guardados
+                          </span>
+                        )}
+                        {answeredNo && (
+                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-amber-600 text-white">
+                            No retirados
+                          </span>
+                        )}
+                      </div>
+
+                      <h3 className="text-base sm:text-lg font-black text-slate-900">
+                        Retirada de Cartelitos &ldquo;NEW&rdquo; · Serie Redmi Note 17 (Retirar y Guardar)
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-700 font-semibold leading-relaxed">
+                        Retira estos cartelitos <strong>&ldquo;NEW&rdquo;</strong> que se encuentran actualmente en los diferentes modelos de la <strong>serie Redmi Note 17</strong>.{' '}
+                        <span className="text-[#d95300] font-black underline">
+                          IMPORTANTE: Debes guardarlos en tienda para futuras implantaciones
+                        </span>{' '}
+                        (con este elemento no hay que generar ninguna devolución).
+                      </p>
+                    </div>
+
+                    {/* Miniaturas ampliables de referencia */}
+                    <div className="flex items-center gap-2.5 shrink-0">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setPosmPreviewModal({
+                            src: './images/posm/cartelitos_new_note17_mesa.jpg',
+                            title: 'Cartelitos "NEW" en modelos de la Serie Redmi Note 17',
+                            subtitle: 'Retirar de la mesa y guardar para futuras implantaciones (Sin devolución)'
+                          })
+                        }
+                        className="relative w-28 sm:w-32 h-20 rounded-2xl overflow-hidden border-2 border-slate-300 hover:border-[#009ca6] bg-black group cursor-pointer shrink-0 shadow-xs"
+                        title="Ampliar foto en mesa"
+                      >
+                        <img
+                          src="./images/posm/cartelitos_new_note17_mesa.jpg"
+                          alt="Cartelitos NEW en serie Note 17"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                        />
+                        <span className="absolute bottom-1 right-1 bg-black/80 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-md flex items-center gap-0.5">
+                          <ZoomIn className="w-2.5 h-2.5 text-teal-300" /> Ver
+                        </span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setPosmPreviewModal({
+                            src: './images/posm/cartelitos_new_note17_pieza.jpg',
+                            title: 'Detalle del Cartelito "NEW" a retirar y guardar',
+                            subtitle: 'Guardar para futuras implantaciones (Sin devolución)'
+                          })
+                        }
+                        className="relative w-20 sm:w-24 h-20 rounded-2xl overflow-hidden border-2 border-slate-300 hover:border-[#009ca6] bg-white group cursor-pointer shrink-0 shadow-xs"
+                        title="Ampliar detalle de pieza"
+                      >
+                        <img
+                          src="./images/posm/cartelitos_new_note17_pieza.jpg"
+                          alt="Pieza Cartelito NEW"
+                          className="w-full h-full object-contain p-1 group-hover:scale-105 transition-transform"
+                        />
+                        <span className="absolute bottom-1 right-1 bg-black/80 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-md flex items-center gap-0.5">
+                          <ZoomIn className="w-2.5 h-2.5 text-teal-300" /> Ver
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Pregunta simple Sí / No */}
+                  <div className="pt-3 border-t border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <span className="text-xs sm:text-sm font-black text-slate-900">
+                      ¿Has retirado y guardado los cartelitos &ldquo;NEW&rdquo; de la serie Note 17 para futuras implantaciones?
+                    </span>
+
+                    <div className="grid grid-cols-2 sm:flex items-center gap-2.5 shrink-0">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          onUpdateVisualState({
+                            ...cartelitosState,
+                            fijacionYMedidaCorrecta: true,
+                            motivoIncidencia: '',
+                            estadoVisual: 'OK',
+                            notas: 'Retirados y guardados en tienda para futuras implantaciones',
+                            fechaHora: new Date().toLocaleString('es-ES')
+                          })
+                        }
+                        className={`px-5 py-2.5 rounded-xl font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 border transition cursor-pointer ${
+                          answeredYes
+                            ? 'bg-emerald-600 text-white border-emerald-600 shadow-md'
+                            : 'bg-white hover:bg-emerald-50 text-slate-800 border-slate-300'
+                        }`}
+                      >
+                        <Check className="w-4 h-4" />
+                        <span>Sí</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() =>
+                          onUpdateVisualState({
+                            ...cartelitosState,
+                            fijacionYMedidaCorrecta: false,
+                            motivoIncidencia: 'No retirados / No guardados',
+                            estadoVisual: 'Incidencia',
+                            notas: 'No retirados o no guardados',
+                            fechaHora: new Date().toLocaleString('es-ES')
+                          })
+                        }
+                        className={`px-5 py-2.5 rounded-xl font-black text-xs sm:text-sm flex items-center justify-center gap-1.5 border transition cursor-pointer ${
+                          answeredNo
+                            ? 'bg-rose-600 text-white border-rose-600 shadow-md'
+                            : 'bg-white hover:bg-rose-50 text-slate-800 border-slate-300'
+                        }`}
+                      >
+                        <span>No</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
             {/* Listado de las tarjetas de dispositivos a devolver */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {returnDevices.map((dev) => {
@@ -1856,6 +2010,7 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
               const isFaldon = activeVisualDef.guiaVisualTipo === 'faldon_mesa';
               const isLuminoso = activeVisualDef.guiaVisualTipo === 'luminoso';
               const isCubrecestas = activeVisualDef.guiaVisualTipo === 'cubrecestas';
+              const isCartelitosNew = activeVisualDef.guiaVisualTipo === 'cartelitos_new';
 
               return (
                 <div className="bg-white border border-slate-200 rounded-3xl p-5 sm:p-7 shadow-sm space-y-6">
@@ -1883,6 +2038,21 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                               SEGUNDA POSICIÓN (2.ª posición)
                             </span>
                             .
+                          </p>
+                        </div>
+                      )}
+
+                      {isCartelitosNew && (
+                        <div className="bg-[#ff6900]/25 border-2 border-[#ff6900] rounded-xl p-3 space-y-1 shadow-lg">
+                          <span className="text-[10px] font-black uppercase tracking-wider text-amber-300 block">
+                            ⚠ IMPORTANTE · RETIRAR Y GUARDAR (SIN DEVOLUCIÓN)
+                          </span>
+                          <p className="text-xs sm:text-sm font-black text-white leading-snug">
+                            Retirar los cartelitos &ldquo;NEW&rdquo; de los diferentes modelos de la serie Redmi Note 17 y{' '}
+                            <span className="underline decoration-[#ff6900] decoration-2 text-amber-200">
+                              GUARDARLOS para futuras implantaciones
+                            </span>
+                            . No hay que generar devolución.
                           </p>
                         </div>
                       )}
@@ -1917,7 +2087,73 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
 
                     {/* Visualización derecha según tipo de POSM */}
                     <div className="lg:col-span-7">
-                      {isCubrecestas && activeVisualDef.imagenReferenciaDespues ? (
+                      {isCartelitosNew &&
+                      activeVisualDef.imagenReferenciaAntes &&
+                      activeVisualDef.imagenReferenciaDespues ? (
+                        <div className="rounded-2xl overflow-hidden border-2 border-teal-400/50 bg-slate-950/90 p-4 shadow-2xl space-y-3">
+                          <div className="flex items-center justify-between gap-2 flex-wrap">
+                            <span className="text-[10px] font-black uppercase tracking-wider text-teal-300">
+                              Referencia Visual · Cartelitos &ldquo;NEW&rdquo; Serie Note 17
+                            </span>
+                            <span className="px-2.5 py-0.5 rounded-full bg-[#ff6900] text-white text-[10px] font-black uppercase shadow-sm">
+                              Retirar y Guardar (Sin devolución)
+                            </span>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setPosmPreviewModal({
+                                  src: activeVisualDef.imagenReferenciaAntes!,
+                                  title: 'Ubicación actual en modelos de la Serie Redmi Note 17',
+                                  subtitle: 'Retirar de las peanas de la serie Note 17 y guardar para futuras implantaciones'
+                                })
+                              }
+                              className="bg-slate-900 hover:bg-slate-800 rounded-xl p-2 border border-amber-400/50 flex flex-col items-center cursor-pointer transition group"
+                            >
+                              <span className="text-[10px] font-black uppercase text-amber-300 mb-1.5">
+                                En mesa (Serie Note 17)
+                              </span>
+                              <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden bg-black">
+                                <img
+                                  src={activeVisualDef.imagenReferenciaAntes}
+                                  alt="Cartelitos NEW en mesa"
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                />
+                                <span className="absolute bottom-1.5 right-1.5 bg-black/75 text-white text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                                  <ZoomIn className="w-3 h-3 text-teal-300" /> Ampliar
+                                </span>
+                              </div>
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setPosmPreviewModal({
+                                  src: activeVisualDef.imagenReferenciaDespues!,
+                                  title: 'Pieza Cartelito "NEW" (Retirar y Guardar)',
+                                  subtitle: 'Guardar en tienda para futuras implantaciones (Sin devolución)'
+                                })
+                              }
+                              className="bg-slate-900 hover:bg-slate-800 rounded-xl p-2 border border-emerald-400/50 flex flex-col items-center cursor-pointer transition group"
+                            >
+                              <span className="text-[10px] font-black uppercase text-emerald-300 mb-1.5">
+                                Pieza a Retirar y Guardar
+                              </span>
+                              <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden bg-white">
+                                <img
+                                  src={activeVisualDef.imagenReferenciaDespues}
+                                  alt="Detalle Cartelito NEW"
+                                  className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform"
+                                />
+                                <span className="absolute bottom-1.5 right-1.5 bg-black/75 text-white text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                                  <ZoomIn className="w-3 h-3 text-emerald-300" /> Ampliar
+                                </span>
+                              </div>
+                            </button>
+                          </div>
+                        </div>
+                      ) : isCubrecestas && activeVisualDef.imagenReferenciaDespues ? (
                         /* GUÍA OFICIAL AMPLIABLE PARA CUBRECESTAS XIAOMI 18 PRO (2.ª POSICIÓN) */
                         <div className="rounded-2xl overflow-hidden border-2 border-teal-400/50 bg-slate-950/90 p-4 shadow-2xl space-y-3">
                           <div className="flex items-center justify-between gap-2 flex-wrap">
@@ -2263,7 +2499,69 @@ export const ImplantationOverviewScreen: React.FC<ImplantationOverviewScreenProp
                     </div>
                   </div>
 
-                  {isCubrecestas ? (
+                  {isCartelitosNew ? (
+                    /* FLUJO SIMPLE SÍ / NO PARA RETIRADA Y GUARDADO DE CARTELITOS "NEW" (SERIE NOTE 17) */
+                    <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                          <span className="text-[10px] font-black uppercase tracking-wider text-white bg-[#ff6900] px-2.5 py-0.5 rounded-full inline-block">
+                            CONFIRMACIÓN DE RETIRADA Y GUARDADO · SIN DEVOLUCIÓN
+                          </span>
+                          <h4 className="text-sm sm:text-base font-black text-slate-900 mt-2">
+                            ¿Has retirado y guardado los cartelitos &ldquo;NEW&rdquo; de la serie Note 17 para futuras implantaciones?
+                          </h4>
+                          <p className="text-xs text-slate-600 mt-0.5">
+                            No hay que generar ninguna devolución. Simplemente retíralos de los modelos de la serie Redmi Note 17 y guárdalos en tienda para futuras implantaciones.
+                          </p>
+                        </div>
+
+                        <div className="flex items-center gap-2.5 shrink-0">
+                          <button
+                            type="button"
+                            onClick={() =>
+                              onUpdateVisualState({
+                                ...curVState,
+                                fijacionYMedidaCorrecta: true,
+                                motivoIncidencia: '',
+                                estadoVisual: 'OK',
+                                notas: 'Retirados y guardados en tienda para futuras implantaciones',
+                                fechaHora: new Date().toLocaleString('es-ES')
+                              })
+                            }
+                            className={`px-6 py-3 rounded-xl font-black text-xs sm:text-sm flex items-center gap-1.5 border transition cursor-pointer ${
+                              curVState.fijacionYMedidaCorrecta === true
+                                ? 'bg-emerald-600 text-white border-emerald-600 shadow-md'
+                                : 'bg-white text-slate-700 border-slate-300 hover:bg-emerald-50'
+                            }`}
+                          >
+                            <Check className="w-4 h-4" />
+                            <span>Sí</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() =>
+                              onUpdateVisualState({
+                                ...curVState,
+                                fijacionYMedidaCorrecta: false,
+                                motivoIncidencia: 'No retirados / No guardados',
+                                estadoVisual: 'Incidencia',
+                                notas: 'No retirados o no guardados',
+                                fechaHora: new Date().toLocaleString('es-ES')
+                              })
+                            }
+                            className={`px-6 py-3 rounded-xl font-black text-xs sm:text-sm flex items-center gap-1.5 border transition cursor-pointer ${
+                              curVState.fijacionYMedidaCorrecta === false
+                                ? 'bg-rose-600 text-white border-rose-600 shadow-md'
+                                : 'bg-white text-slate-700 border-slate-300 hover:bg-rose-50'
+                            }`}
+                          >
+                            <span>No</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ) : isCubrecestas ? (
                     /* FLUJO ESPECÍFICO PARA CUBRECESTAS XIAOMI 18 PRO (2.ª POSICIÓN) */
                     <div className="space-y-5">
                       {/* PASO 1 CUBRECESTAS: CONFIRMACIÓN DE COLOCACIÓN E INCIDENCIAS */}
