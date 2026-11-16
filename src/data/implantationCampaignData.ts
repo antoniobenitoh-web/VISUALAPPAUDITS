@@ -762,8 +762,8 @@ export const getImplantationPositionSpecsForStore = (
         {
           pos: 5,
           device: 'Xiaomi Clip',
-          color: 'Black (Maqueta)',
-          dummy: true,
+          color: 'Black / Sand Gold',
+          dummy: false,
           category: 'Audio',
           pinX: 43.8,
           pinY: 53.5,
@@ -1027,8 +1027,8 @@ export const getImplantationPositionSpecsForStore = (
       {
         pos: 5,
         device: 'Xiaomi Clip',
-        color: 'Black (Maqueta)',
-        dummy: true,
+        color: 'Black / Sand Gold',
+        dummy: false,
         category: 'Audio',
         pinX: 43.5,
         pinY: 52.5,
@@ -1672,7 +1672,7 @@ export const getSwapAssignmentForPosition = (
       modeloSaliente: 'Xiaomi Buds 6',
       esDummySaliente: true,
       modeloEntrante: 'Xiaomi Clip',
-      esDummyEntrante: true
+      esDummyEntrante: false
     };
   }
   // En Table 1: el Xiaomi Watch 5 se instala/reubica en el bloque central (P08 con Clip, P07 sin Clip) sustituyendo a la Smart Band 10 Pro

@@ -39,6 +39,7 @@ export const ScannerModal: React.FC<ScannerModalProps> = ({
   const [isOcrWorkerLoading, setIsOcrWorkerLoading] = useState<boolean>(false);
   const [matchedCode, setMatchedCode] = useState<string | null>(null);
   const [isInstantCapturing, setIsInstantCapturing] = useState<boolean>(false);
+  const [barcodeHint, setBarcodeHint] = useState<string | null>(null);
 
   // Sincronizar modo cuando se abre el modal para un nuevo dispositivo
   useEffect(() => {
@@ -105,26 +106,68 @@ export const ScannerModal: React.FC<ScannerModalProps> = ({
     };
   }, [isOpen, mode]);
 
-  // 1. INICIAR ESCÁNER DE CÓDIGOS DE BARRA
+  // 1. INICIAR ESCÁNER DE CÓDIGOS DE BARRA (CON FILTRO INTELIGENTE PARA SERIAL NUMBER DE XIAOMI CLIP / CAJAS)
   const startBarcodeScanner = async () => {
     await stopAll();
+    setBarcodeHint(null);
     try {
       const html5QrCode = new Html5Qrcode(scannerElementId);
       scannerRef.current = html5QrCode;
+
+      const normalizeAndValidateScannedBarcode = (rawDecoded: string): string | null => {
+        let clean = rawDecoded
+          .trim()
+          .replace(/^S\/?N\s*[:.\-]?\s*/i, '')
+          .trim();
+
+        // Ignorar códigos QR con URLs (p. ej. "More info on mi.com" o descarga de app en cajas Xiaomi Clip)
+        if (/^https?:\/\//i.test(clean) || /mi\.com/i.test(clean)) {
+          setBarcodeHint('Código QR ignorado · Enfoca el 1.er código de barras superior (SN)');
+          return null;
+        }
+
+        // Ignorar códigos EAN-13 (13 dígitos numéricos, p. ej. 6939093047620) y UPC/código intermedio de 12 dígitos (p. ej. 190997012541) o EAN-8
+        if (/^\d{13}$/.test(clean) || /^\d{12}$/.test(clean) || /^\d{8}$/.test(clean)) {
+          setBarcodeHint(
+            `Código inferior (${clean}) ignorado · Apunta al 1.er código de barras superior (SN: 89924/...)`
+          );
+          return null;
+        }
+
+        // Si el código de barras de S/N viene sin la barra '/' (5 dígitos + 14 caracteres alfanuméricos, ej. 89924CEAGDF6WC00945), insertar '/'
+        if (/^\d{5}[A-Z0-9]{9,15}$/i.test(clean) && /[A-Z]/i.test(clean)) {
+          clean = `${clean.slice(0, 5)}/${clean.slice(5)}`.toUpperCase();
+        }
+
+        // Si es Audio (Xiaomi Clip), requerir formato de Número de Serie (con '/' o alfanumérico, no un código corto ni EAN)
+        if (deviceCategory === 'Audio') {
+          if (clean.includes('/') || (clean.length >= 10 && /[A-Z]/i.test(clean))) {
+            return clean.toUpperCase();
+          }
+          setBarcodeHint(
+            'Apunta al 1.er código de barras superior donde indica SN: (ej. 89924/CEAGDF6WC00945)'
+          );
+          return null;
+        }
+
+        return clean;
+      };
 
       await html5QrCode.start(
         { facingMode: 'environment' },
         {
           fps: 20,
-          qrbox: { width: 280, height: 160 },
+          qrbox: { width: 300, height: 120 },
           aspectRatio: 1.777778
         },
         (decodedText) => {
-          const clean = decodedText.trim();
+          const validCode = normalizeAndValidateScannedBarcode(decodedText);
+          if (!validCode) return;
+
           if (navigator.vibrate) {
             navigator.vibrate(70);
           }
-          onScanSuccess(clean);
+          onScanSuccess(validCode);
           stopAll();
           onClose();
         },
@@ -132,6 +175,35 @@ export const ScannerModal: React.FC<ScannerModalProps> = ({
           // Ignorar frames sin código
         }
       );
+
+      // Asistencia simultánea OCR sobre el vídeo de código de barras para leer "SN: 89924/CEAGDF6WC00945" al instante
+      ocrIntervalRef.current = setInterval(async () => {
+        if (isOcrProcessingRef.current) return;
+        const container = document.getElementById(scannerElementId);
+        const videoEl = container?.querySelector('video') as HTMLVideoElement | null;
+        if (!videoEl || videoEl.readyState < 2 || videoEl.videoWidth === 0) return;
+
+        isOcrProcessingRef.current = true;
+        try {
+          const canvas = buildCroppedFrameCanvas(videoEl, false);
+          if (!canvas) return;
+          const { detected } = await ocrService.recognizeSnippet(canvas);
+          if (detected) {
+            // Si es Audio / Wearable / Tablet preferimos SN; si es Smartphone aceptamos IMEI o SN
+            if (deviceCategory === 'Audio' && detected.type !== 'SN') return;
+            if (navigator.vibrate) {
+              navigator.vibrate(70);
+            }
+            onScanSuccess(detected.value);
+            stopAll();
+            onClose();
+          }
+        } catch {
+          // Ignorar errores puntuales de frame
+        } finally {
+          isOcrProcessingRef.current = false;
+        }
+      }, 280);
     } catch (err: any) {
       console.error('Error al inicializar cámara de código de barras:', err);
       setErrorMsg('No se pudo acceder a la cámara. Revisa los permisos en tu navegador.');
@@ -431,12 +503,33 @@ export const ScannerModal: React.FC<ScannerModalProps> = ({
           ) : (
             <div className="text-center mb-3">
               <p className="text-xs font-semibold text-slate-200">
-                Apunta al <strong className="text-sky-300">código de barras</strong> del terminal o
-                pantalla con <strong className="text-white">*#06#</strong>
+                {deviceCategory === 'Audio' ? (
+                  <>
+                    Apunta al <strong className="text-sky-300">1.er código de barras superior (SN)</strong> de la caja de{' '}
+                    <strong className="text-white">Xiaomi Clip</strong>
+                  </>
+                ) : (
+                  <>
+                    Apunta al <strong className="text-sky-300">código de barras</strong> del terminal o
+                    pantalla con <strong className="text-white">*#06#</strong>
+                  </>
+                )}
               </p>
               <p className="text-[11px] text-slate-400 mt-0.5">
-                Lectura instantánea de IMEI o código de barras
+                {deviceCategory === 'Audio' ? (
+                  <>
+                    Lee automáticamente el Serial Number (ej.{' '}
+                    <span className="font-mono text-teal-300 font-bold">89924/CEAGDF6WC00945</span>) e ignora el EAN inferior
+                  </>
+                ) : (
+                  'Lectura instantánea de IMEI o Número de Serie (S/N)'
+                )}
               </p>
+              {barcodeHint && (
+                <p className="text-[11px] font-bold text-amber-300 bg-amber-500/15 border border-amber-400/30 rounded-xl px-2.5 py-1 mt-1.5">
+                  {barcodeHint}
+                </p>
+              )}
             </div>
           )}
 

@@ -213,6 +213,9 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
   const streamRef = useRef<MediaStream | null>(null);
 
   const isSmartphone = assignment.categoria === 'Smartphone';
+  const isXiaomiClip =
+    (assignment.modeloEntrante || '').toLowerCase().includes('xiaomi clip') ||
+    assignment.categoria === 'Audio';
 
   const stopCamera = () => {
     if (streamRef.current) {
@@ -579,40 +582,99 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
             <span className="text-slate-500">
               {strict15Digits
                 ? 'Validación: 15 dígitos numéricos (Smartphone)'
-                : 'Longitud requerida: 12 a 20 caracteres'}
+                : 'Formato S/N o IMEI (ej. 89924/CEAGDF6WC00945)'}
             </span>
             <span className="font-mono font-black text-[#009ca6]">
               {currentVal.length} / {strict15Digits ? 15 : 20}
             </span>
           </div>
 
-          <div className="grid grid-cols-3 gap-2 max-w-sm mx-auto w-full pt-1">
-            {['1', '2', '3', '4', '5', '6', '7', '8', '9'].map((digit) => (
+          {!strict15Digits && (
+            <div className="flex items-center justify-center gap-2 pt-0.5">
               <button
-                key={digit}
                 type="button"
-                onClick={() => handleKeypadPress(digit)}
+                onClick={() => setKeypadMode('123')}
+                className={`px-3 py-1 rounded-xl text-xs font-black border transition cursor-pointer ${
+                  keypadMode === '123'
+                    ? 'bg-[#009ca6] text-white border-[#009ca6]'
+                    : 'bg-slate-100 text-slate-600 border-slate-200'
+                }`}
+              >
+                123 / Barra (/)
+              </button>
+              <button
+                type="button"
+                onClick={() => setKeypadMode('ABC')}
+                className={`px-3 py-1 rounded-xl text-xs font-black border transition cursor-pointer ${
+                  keypadMode === 'ABC'
+                    ? 'bg-[#009ca6] text-white border-[#009ca6]'
+                    : 'bg-slate-100 text-slate-600 border-slate-200'
+                }`}
+              >
+                Letras (A-Z)
+              </button>
+            </div>
+          )}
+
+          {strict15Digits || keypadMode === '123' ? (
+            <div className="grid grid-cols-3 gap-2 max-w-sm mx-auto w-full pt-1">
+              {['1', '2', '3', '4', '5', '6', '7', '8', '9'].map((digit) => (
+                <button
+                  key={digit}
+                  type="button"
+                  onClick={() => handleKeypadPress(digit)}
+                  className="py-3.5 bg-slate-50 hover:bg-slate-100 active:bg-slate-200 border border-slate-200/80 text-slate-800 font-black text-xl rounded-2xl shadow-2xs cursor-pointer"
+                >
+                  {digit}
+                </button>
+              ))}
+              {!strict15Digits ? (
+                <button
+                  type="button"
+                  onClick={() => handleKeypadPress('/')}
+                  className="py-3.5 bg-teal-50 hover:bg-teal-100 border border-teal-200 text-[#009ca6] font-black text-xl rounded-2xl shadow-2xs cursor-pointer"
+                >
+                  /
+                </button>
+              ) : (
+                <div />
+              )}
+              <button
+                type="button"
+                onClick={() => handleKeypadPress('0')}
                 className="py-3.5 bg-slate-50 hover:bg-slate-100 active:bg-slate-200 border border-slate-200/80 text-slate-800 font-black text-xl rounded-2xl shadow-2xs cursor-pointer"
               >
-                {digit}
+                0
               </button>
-            ))}
-            <div />
-            <button
-              type="button"
-              onClick={() => handleKeypadPress('0')}
-              className="py-3.5 bg-slate-50 hover:bg-slate-100 active:bg-slate-200 border border-slate-200/80 text-slate-800 font-black text-xl rounded-2xl shadow-2xs cursor-pointer"
-            >
-              0
-            </button>
-            <button
-              type="button"
-              onClick={() => handleKeypadPress('backspace')}
-              className="py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-black text-xl rounded-2xl shadow-2xs cursor-pointer"
-            >
-              ⌫
-            </button>
-          </div>
+              <button
+                type="button"
+                onClick={() => handleKeypadPress('backspace')}
+                className="py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-black text-xl rounded-2xl shadow-2xs cursor-pointer"
+              >
+                ⌫
+              </button>
+            </div>
+          ) : (
+            <div className="grid grid-cols-7 gap-1.5 max-w-sm mx-auto w-full pt-1">
+              {'ABCDEFGHIJKLMNOPQRSTUVWXYZ/'.split('').map((ch) => (
+                <button
+                  key={ch}
+                  type="button"
+                  onClick={() => handleKeypadPress(ch)}
+                  className="py-2.5 bg-slate-50 hover:bg-slate-100 active:bg-slate-200 border border-slate-200/80 text-slate-800 font-black text-sm rounded-xl shadow-2xs cursor-pointer"
+                >
+                  {ch}
+                </button>
+              ))}
+              <button
+                type="button"
+                onClick={() => handleKeypadPress('backspace')}
+                className="py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-black text-sm rounded-xl shadow-2xs cursor-pointer"
+              >
+                ⌫
+              </button>
+            </div>
+          )}
         </div>
 
         <div className="p-5 bg-white border-t border-slate-200">
@@ -999,9 +1061,30 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
           {/* Entrada del nuevo IMEI o Número de Serie instalado */}
           {tipoIn === 'LDU' && (
             <div className="space-y-2.5 pt-2 border-t border-slate-100 animate-fadeIn">
+              {isXiaomiClip && (
+                <div className="p-3.5 rounded-2xl bg-sky-50/90 border border-sky-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-black uppercase tracking-wider text-sky-800 block">
+                      Guía de Escaneo · Xiaomi Clip (LDU)
+                    </span>
+                    <p className="text-xs font-bold text-slate-800 leading-snug">
+                      Escanea el <strong>1.er código de barras superior (SN)</strong> de la etiqueta de la caja (ej.{' '}
+                      <span className="font-mono text-[#009ca6] font-black">89924/CEAGDF6WC00945</span>).
+                    </p>
+                  </div>
+                  <img
+                    src="./images/posm/xiaomi_clip_sn_barcode.jpg"
+                    alt="Ejemplo código de barras SN Xiaomi Clip"
+                    className="w-28 h-20 object-cover rounded-xl border border-sky-300 shrink-0 shadow-xs"
+                  />
+                </div>
+              )}
+
               <label className="block text-xs font-black text-slate-700 uppercase tracking-wider">
                 {isSmartphone
                   ? 'IMEI del nuevo terminal instalado'
+                  : isXiaomiClip
+                  ? 'Número de Serie (SN) · 1.er código de barras de la caja'
                   : 'Número de Serie (S/N) / IMEI del dispositivo instalado'}
               </label>
 
@@ -1015,7 +1098,11 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
                     <Camera className="w-4 h-4" />
                   </div>
                   <span className="text-xs font-black text-slate-900">
-                    {isSmartphone ? 'Escanear Cámara / OCR' : 'Escanear S/N en Pantalla'}
+                    {isSmartphone
+                      ? 'Escanear Cámara / OCR'
+                      : isXiaomiClip
+                      ? 'Escanear Código de Barras S/N'
+                      : 'Escanear S/N en Pantalla'}
                   </span>
                 </button>
 
@@ -1039,6 +1126,8 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
                   placeholder={
                     isSmartphone
                       ? 'Escribe o escanea el nuevo IMEI aquí...'
+                      : isXiaomiClip
+                      ? 'Escanea o escribe el S/N (ej. 89924/CEAGDF6WC00945)...'
                       : 'Escanea o escribe el Número de Serie (ej. 58891/DPAK6H5RH00440)...'
                   }
                   className={`w-full rounded-2xl px-4 py-3 text-sm font-mono font-black transition ${
@@ -1203,7 +1292,7 @@ export const SwapDeviceScreen: React.FC<SwapDeviceScreenProps> = ({
       {/* ESCÁNER DE CÁMARA INTELIGENTE (BARCODE / OCR) */}
       <ScannerModal
         isOpen={scannerTarget !== null}
-        initialMode={isSmartphone ? 'barcode' : 'ocr'}
+        initialMode={isSmartphone || isXiaomiClip ? 'barcode' : 'ocr'}
         deviceCategory={assignment.categoria}
         onClose={() => setScannerTarget(null)}
         onScanSuccess={(code) => {
