@@ -1847,7 +1847,7 @@ export const getPosmElementsForStore = (storeId?: string): StorePosmItem[] => {
 /**
  * Determina si una tienda pertenece al listado exclusivo de centros MediaMarkt
  * que llevan el apartado "Cubrecestas" de Xiaomi 18 Pro en POSM:
- * - Media Sant Antoni (Media Barcelona)
+ * - Media Maquinista
  * - Media Girona
  * - Media Barcelona 5 Fontanella
  * - Media Tarragona
@@ -1861,7 +1861,7 @@ export const getPosmElementsForStore = (storeId?: string): StorePosmItem[] => {
  * - Media Terrassa
  */
 const CUBRECESTAS_EXCLUSIVE_STORE_IDS = new Set<string>([
-  'MIESD00575', // Media Sant Antoni (Media Barcelona)
+  'MIESD00176', // Media Maquinista
   'MIESD00182', // Media Girona
   'MIESD00174', // Media Barcelona 5 Fontanella
   'MIESO00043', // Media Tarragona
@@ -1876,8 +1876,8 @@ const CUBRECESTAS_EXCLUSIVE_STORE_IDS = new Set<string>([
 ]);
 
 const CUBRECESTAS_EXCLUSIVE_STORE_NAMES = new Set<string>([
-  'media sant antoni',
-  'media barcelona',
+  'media maquinista',
+  'mediamarkt maquinista',
   'media girona',
   'media barcelona 5 fontanella',
   'media fontanella',
